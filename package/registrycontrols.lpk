@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Package Version="4">
+    <PathDelim Value="\"/>
+    <Name Value="registrycontrols"/>
+    <Author Value="Dipl. Ing. (FH) Alfred Gerke"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <OtherUnitFiles Value="..\source"/>
+        <UnitOutputDirectory Value="..\lib\$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+      <Parsing>
+        <SyntaxOptions>
+          <SyntaxMode Value="Delphi"/>
+        </SyntaxOptions>
+      </Parsing>
+      <Other>
+        <CompilerMessages>
+          <MsgFileName Value=""/>
+        </CompilerMessages>
+        <CompilerPath Value="$(CompPath)"/>
+      </Other>
+    </CompilerOptions>
+    <Description Value="Controls wie TRegEdit, TRegCheckBox, etc. werden über TRegistrySource mit der Registry verbunden."/>
+    <License Value="The MIT License (MIT)
+
+Copyright (c) 2013 Alfred Gerke
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the &quot;Software&quot;), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
+    <Version Major="1" Build="1"/>
+    <Files Count="5">
+      <Item1>
+        <Filename Value="registrycontrols.lrs"/>
+        <Type Value="LRS"/>
+      </Item1>
+      <Item2>
+        <Filename Value="..\source\regcheckbox.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="regcheckbox"/>
+      </Item2>
+      <Item3>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="regradiobutton"/>
+      </Item3>
+      <Item4>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="regradiogroup"/>
+      </Item4>
+      <Item5>
+        <Filename Value="..\source\regedit.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="regedit"/>
+      </Item5>
+    </Files>
+    <Type Value="RunAndDesignTime"/>
+    <RequiredPkgs Count="2">
+      <Item1>
+        <PackageName Value="IDEIntf"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>
