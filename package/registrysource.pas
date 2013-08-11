@@ -13,6 +13,7 @@ implementation
 
 procedure Register;
 begin
+  RegisterUnit('regsourcen', @regsourcen.Register);
 end;
 
 initialization

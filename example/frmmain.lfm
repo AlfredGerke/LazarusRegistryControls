@@ -1,8 +1,42 @@
 object Form1: TForm1
-  Left = 561
+  Left = 795
   Height = 240
-  Top = 367
+  Top = 296
   Width = 320
   Caption = 'Form1'
+  ClientHeight = 240
+  ClientWidth = 320
   LCLVersion = '1.0.10.0'
+  object RegEdit1: TRegEdit
+    Left = 40
+    Height = 21
+    Top = 48
+    Width = 80
+    TabOrder = 0
+    Text = 'RegEdit1'
+    RegistrySettings.RookKey = 'SOFTWARE\Software aus Erwitte\LAZ_TEST1\{672D2A10-A499-4A48-A7E6-F27B4EE50578}\'
+    RegistrySettings.RootKeyForDefaults = 'SOFTWARE\Software aus Erwitte\LAZ_TEST1\DEFAULTS\{672D2A10-A499-4A48-A7E6-F27B4EE50578}\'
+    RegistrySettings.Section = 'Desktop'
+    RegistrySettings.Ident = 'FileDir'
+    RegistrySettings.ReadDefaults = True
+    RegistrySettings.WriteDefaults = False
+    RegistrySettings.RootForDefaults = 'HKEY_LOCAL_MACHINE'
+    RegistrySettings.CanRead = True
+    RegistrySettings.CanWrite = True
+    RegistrySettings.DoWriteAdHoc = False
+    RegistrySource = RegistrySource1
+  end
+  object RegistrySource1: TRegistrySource
+    RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
+    RootKeyForDefaults = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%'
+    RootKeyForCommon = 'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%'
+    Project = 'LAZ_TEST1'
+    Organisation = 'Software aus Erwitte'
+    RootForDefaults = 'HKEY_LOCAL_MACHINE'
+    ReadDefaults = True
+    WriteDefaults = False
+    GUID = '{672D2A10-A499-4A48-A7E6-F27B4EE50578}'
+    left = 175
+    top = 37
+  end
 end

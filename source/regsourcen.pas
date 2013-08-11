@@ -17,6 +17,8 @@ uses
 const
 
   PROJECT_TOKEN = '%%PROJECT%%';
+  ORGANISATION_TOKEN = '%%ORGANISATION%%';
+  GUID_TOKEN = '%%GUID%%';
 
 type
 
@@ -56,6 +58,7 @@ type
     //Werte werde sofort (OnChange, OnClick, etc.) in die Registry geschrieben
     FDoWriteAdHoc: boolean;
     FProject: string;
+    FOrganisation: string;
     FGUID: string;
     FOnChange: TNotifyEvent;
 
@@ -73,6 +76,7 @@ type
     procedure SetDefault(aDefault: _T);
     procedure SetGUID(aGUID: string);
     procedure SetProject(aProject: string);
+    procedure SetOrganisation(aOrganisation: string);
 
     property Default: _T
       read FDefault
@@ -84,6 +88,9 @@ type
     property Project: string
       read FProject
       write SetProject;
+    property Organisation: string
+      read FOrganisation
+      write SetOrganisation;
     property OnChange: TNotifyEvent
       read FOnChange
       write FOnChange;
@@ -162,27 +169,47 @@ type
 
   TCustomRegistrySource = class(TComponent)
   private
-  protected
-  public
-  published
-  end;
-
-  { TRegistrySource }
-
-  TRegistrySource = class(TCustomRegistrySource)
-  private
     FRootKey: string;
     FRootKeyForDefaults: string;
     FRootKeyForCommon: string;
     FProject: string;
+    FOrganisation: string;
     FRootForDefaults: string;
     FReadDefaults: boolean;
     FWriteDefaults: boolean;
-    FUseGUID: boolean;
     FGUID: string;
   protected
-    function GetUseGUID: boolean;
+    property RootKey: string
+      read FRootKey
+      write FRootKey;
+    property RootKeyForDefaults: string
+      read FRootKeyForDefaults
+      write FRootKeyForDefaults;
+    property RootKeyForCommon: string
+      read FRootKeyForCommon
+      write FRootKeyForCommon;
+    property Project: string
+      read FProject
+      write FProject;
+    property Organisation: string
+      read FOrganisation
+      write FOrganisation;
+    property RootForDefaults: string
+      read FRootForDefaults
+      write FRootForDefaults;
+    property ReadDefaults: boolean
+      read FReadDefaults
+      write FReadDefaults;
+    property WriteDefaults: boolean
+      read FWriteDefaults
+      write FWriteDefaults;
+    property GUID: string
+      read FGUID
+      write FGUID;
   public
+    function GetRootKey: string;
+    function GetRootKeyForDefaults: string;
+    function GetRootKeyForCommon: string;
     function ReadString(aRootKey: string;
                         aRootKeyForDefaults: string;
                         aRootForDefaults: string;
@@ -253,33 +280,24 @@ type
                         aDefault: boolean); reintroduce; overload;
     constructor Create(AOwner: TComponent); override;
   published
-    property RootKey: string
-      read FRootKey
-      write FRootKey;
-    property RootKeyForDefaults: string
-      read FRootKeyForDefaults
-      write FRootKeyForDefaults;
-    property RootKeyForCommon: string
-      read FRootKeyForCommon
-      write FRootKeyForCommon;
-    property Project: string
-      read FProject
-      write FProject;
-    property RootForDefaults: string
-      read FRootForDefaults
-      write FRootForDefaults;
-    property ReadDefaults: boolean
-      read FReadDefaults
-      write FReadDefaults;
-    property WriteDefaults: boolean
-      read FWriteDefaults
-      write FWriteDefaults;
-    property UseGUID: boolean
-      read GetUseGUID
-      write FUseGUID;
-    property GUID: string
-      read FGUID
-      write FGUID;
+  end;
+
+  { TRegistrySource }
+
+  TRegistrySource = class(TCustomRegistrySource)
+  private
+  protected
+  public
+  published
+    property RootKey;
+    property RootKeyForDefaults;
+    property RootKeyForCommon;
+    property Project;
+    property Organisation;
+    property RootForDefaults;
+    property ReadDefaults;
+    property WriteDefaults;
+    property GUID;
   end;
 
 procedure Register;
@@ -296,15 +314,22 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetRootKey(aRootKey: string);
 begin
-  FRootKey := aRootKey;
+  FRootKey := IncludeTrailingPathDelimiter(aRootKey);
 
   if pos(PROJECT_TOKEN, FRootKey) > 0 then
     if ((Trim(FProject) <> EmptyStr) and
       (FProject <> PROJECT_TOKEN))then
       FRootKey := StringReplace(FRootKey, PROJECT_TOKEN, FProject, [rfReplaceAll]);
 
-  if (Trim(FGUID) <> EmptyStr) then
-    FRootKey := Format('%s\%s\', [FRootKey, FGUID]);
+  if pos(ORGANISATION_TOKEN, FRootKey) > 0 then
+    if ((Trim(FOrganisation) <> EmptyStr) and
+      (FOrganisation <> ORGANISATION_TOKEN))then
+      FRootKey := StringReplace(FRootKey, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+
+  if pos(GUID_TOKEN, FRootKey) > 0 then
+    if ((Trim(FGUID) <> EmptyStr) and
+      (FGUID <> GUID_TOKEN))then
+      FRootKey := StringReplace(FRootKey, GUID_TOKEN, FGUID, [rfReplaceAll]);
 
   if Assigned(FOnChange) then
     FOnChange(self);
@@ -313,15 +338,22 @@ end;
 procedure TCustomRegistrySettings<_T>.SetRootKeyForDefaults(
   aRootKeyForDefaults: string);
 begin
-  FRootKeyForDefaults := aRootKeyForDefaults;
+  FRootKeyForDefaults := IncludeTrailingPathDelimiter(aRootKeyForDefaults);
 
   if pos(PROJECT_TOKEN, FRootKeyForDefaults) > 0 then
     if ((Trim(FProject) <> EmptyStr) and
       (FProject <> PROJECT_TOKEN))then
       FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, PROJECT_TOKEN, FProject, [rfReplaceAll]);
 
-  if (Trim(FGUID) <> EmptyStr) then
-    FRootKeyForDefaults := Format('%s\%s\', [FRootKeyForDefaults, FGUID]);
+  if pos(ORGANISATION_TOKEN, FRootKeyForDefaults) > 0 then
+    if ((Trim(FOrganisation) <> EmptyStr) and
+      (FOrganisation <> ORGANISATION_TOKEN))then
+      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+
+  if pos(GUID_TOKEN, FRootKeyForDefaults) > 0 then
+    if ((Trim(FGUID) <> EmptyStr) and
+      (FGUID <> GUID_TOKEN))then
+      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, GUID_TOKEN, FGUID, [rfReplaceAll]);
 
   if Assigned(FOnChange) then
     FOnChange(self);
@@ -404,11 +436,15 @@ procedure TCustomRegistrySettings<_T>.SetGUID(aGUID: string);
 begin
   FGUID := aGUID;
 
-  if (Trim(FGUID) <> EmptyStr) then
-    FRootKey := Format('%s\%s\', [FRootKey, FGUID]);
+  if pos(GUID_TOKEN, FRootKey) > 0 then
+    if ((Trim(FGUID) <> EmptyStr) and
+      (FGUID <> GUID_TOKEN))then
+      FRootKey := StringReplace(FRootKey, GUID_TOKEN, FGUID, [rfReplaceAll]);
 
-  if (Trim(FGUID) <> EmptyStr) then
-    FRootKeyForDefaults := Format('%s\%s\', [FRootKeyForDefaults, FGUID]);
+  if pos(GUID_TOKEN, FRootKeyForDefaults) > 0 then
+    if ((Trim(FGUID) <> EmptyStr) and
+      (FGUID <> GUID_TOKEN))then
+      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, GUID_TOKEN, FGUID, [rfReplaceAll]);
 end;
 
 procedure TCustomRegistrySettings<_T>.SetProject(aProject: string);
@@ -426,22 +462,103 @@ begin
       FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, PROJECT_TOKEN, FProject, [rfReplaceAll]);
 end;
 
-function TRegistrySource.GetUseGUID: boolean;
+procedure TCustomRegistrySettings<_T>.SetOrganisation(aOrganisation: string);
 begin
-  Result := (Trim(FGUID) <> EmptyStr);
+  FOrganisation := aOrganisation;
+
+  if pos(ORGANISATION_TOKEN, FRootKey) > 0 then
+    if ((Trim(FOrganisation) <> EmptyStr) and
+      (FOrganisation <> ORGANISATION_TOKEN))then
+      FRootKey := StringReplace(FRootKey, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+
+  if pos(ORGANISATION_TOKEN, FRootKeyForDefaults) > 0 then
+    if ((Trim(FOrganisation) <> EmptyStr) and
+      (FOrganisation <> ORGANISATION_TOKEN))then
+      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
 end;
 
-constructor TRegistrySource.Create(AOwner: TComponent);
+function TCustomRegistrySource.GetRootKey: string;
+var
+  root_key: string;
+begin
+  root_key := IncludeTrailingPathDelimiter(FRootKey);
+
+  if pos(PROJECT_TOKEN, root_key) > 0 then
+    if ((Trim(FProject) <> EmptyStr) and
+      (FProject <> PROJECT_TOKEN))then
+      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);
+
+  if pos(ORGANISATION_TOKEN, root_key) > 0 then
+    if ((Trim(FOrganisation) <> EmptyStr) and
+      (FOrganisation <> ORGANISATION_TOKEN))then
+      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+
+  if pos(GUID_TOKEN, root_key) > 0 then
+    if ((Trim(FGUID) <> EmptyStr) and
+      (FGUID <> GUID_TOKEN))then
+      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);
+
+  Result := root_key;
+end;
+
+function TCustomRegistrySource.GetRootKeyForDefaults: string;
+var
+  root_key: string;
+begin
+  root_key := IncludeTrailingPathDelimiter(FRootKeyForDefaults);
+
+  if pos(PROJECT_TOKEN, root_key) > 0 then
+    if ((Trim(FProject) <> EmptyStr) and
+      (FProject <> PROJECT_TOKEN))then
+      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);
+
+  if pos(ORGANISATION_TOKEN, root_key) > 0 then
+    if ((Trim(FOrganisation) <> EmptyStr) and
+      (FOrganisation <> ORGANISATION_TOKEN))then
+      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+
+  if pos(GUID_TOKEN, root_key) > 0 then
+    if ((Trim(FGUID) <> EmptyStr) and
+      (FGUID <> GUID_TOKEN))then
+      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);
+
+  Result := root_key;
+end;
+
+function TCustomRegistrySource.GetRootKeyForCommon: string;
+var
+  root_key: string;
+begin
+  root_key := IncludeTrailingPathDelimiter(FRootKeyForCommon);
+
+  if pos(PROJECT_TOKEN, root_key) > 0 then
+    if ((Trim(FProject) <> EmptyStr) and
+      (FProject <> PROJECT_TOKEN))then
+      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);
+
+  if pos(ORGANISATION_TOKEN, root_key) > 0 then
+    if ((Trim(FOrganisation) <> EmptyStr) and
+      (FOrganisation <> ORGANISATION_TOKEN))then
+      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+
+  if pos(GUID_TOKEN, root_key) > 0 then
+    if ((Trim(FGUID) <> EmptyStr) and
+      (FGUID <> GUID_TOKEN))then
+      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);
+
+  Result := root_key;
+end;
+
+constructor TCustomRegistrySource.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
 
   FReadDefaults := False;
   FWriteDefaults := False;
-  FUseGUID := False;
-  FGUID := '';
+  FGUID := EmptyStr;
 end;
 
-function TRegistrySource.ReadString(aRootKey: string;
+function TCustomRegistrySource.ReadString(aRootKey: string;
   aRootKeyForDefaults: string;
   aRootForDefaults: string;
   aSection: string;
@@ -475,7 +592,7 @@ begin
   end;
 end;
 
-function TRegistrySource.ReadString(aSection: string;
+function TCustomRegistrySource.ReadString(aSection: string;
   aIdent: string;
   aDefault: string): string;
 begin
@@ -493,7 +610,7 @@ begin
   end;
 end;
 
-function TRegistrySource.ReadInteger(aRootKey: string;
+function TCustomRegistrySource.ReadInteger(aRootKey: string;
   aRootKeyForDefaults: string;
   aRootForDefaults: string;
   aSection: string;
@@ -527,7 +644,7 @@ begin
   end;
 end;
 
-function TRegistrySource.ReadInteger(aSection: string;
+function TCustomRegistrySource.ReadInteger(aSection: string;
   aIdent: string;
   aDefault: integer): integer;
 begin
@@ -548,7 +665,7 @@ begin
   end;
 end;
 
-function TRegistrySource.ReadBool(aRootKey: string;
+function TCustomRegistrySource.ReadBool(aRootKey: string;
   aRootKeyForDefaults: string;
   aRootForDefaults: string;
   aSection: string;
@@ -582,7 +699,7 @@ begin
   end;
 end;
 
-function TRegistrySource.ReadBool(aSection: string;
+function TCustomRegistrySource.ReadBool(aSection: string;
   aIdent: string;
   aDefault: boolean): boolean;
 begin
@@ -603,7 +720,7 @@ begin
   end;
 end;
 
-procedure TRegistrySource.ReadSection(aRootKey: string;
+procedure TCustomRegistrySource.ReadSection(aRootKey: string;
   aRootKeyForDefaults: string;
   aRootForDefaults: string;
   aSection: string;
@@ -632,7 +749,7 @@ begin
   end;
 end;
 
-procedure TRegistrySource.ReadSection(aSection: string;
+procedure TCustomRegistrySource.ReadSection(aSection: string;
   aStrings: TStrings);
 begin
   try
@@ -651,7 +768,7 @@ begin
   end;
 end;
 
-procedure TRegistrySource.WriteString(aRootKey: string;
+procedure TCustomRegistrySource.WriteString(aRootKey: string;
   aRootKeyForDefaults: string;
   aRootForDefaults: string;
   aSection: string;
@@ -681,7 +798,7 @@ begin
   end;
 end;
 
-procedure TRegistrySource.WriteString(aSection: string;
+procedure TCustomRegistrySource.WriteString(aSection: string;
   aIdent: string;
   aDefault: string);
 begin
@@ -699,7 +816,7 @@ begin
   end;
 end;
 
-procedure TRegistrySource.WriteInteger(aRootKey: string;
+procedure TCustomRegistrySource.WriteInteger(aRootKey: string;
   aRootKeyForDefaults: string;
   aRootForDefaults: string;
   aSection: string;
@@ -729,7 +846,7 @@ begin
   end;
 end;
 
-procedure TRegistrySource.WriteInteger(aSection: string;
+procedure TCustomRegistrySource.WriteInteger(aSection: string;
   aIdent: string;
   aDefault: integer);
 begin
@@ -749,7 +866,7 @@ begin
   end;
 end;
 
-procedure TRegistrySource.WriteBool(aRootKey: string;
+procedure TCustomRegistrySource.WriteBool(aRootKey: string;
   aRootKeyForDefaults: string;
   aRootForDefaults: string;
   aSection: string;
@@ -779,7 +896,7 @@ begin
   end;
 end;
 
-procedure TRegistrySource.WriteBool(aSection: string;
+procedure TCustomRegistrySource.WriteBool(aSection: string;
   aIdent: string;
   aDefault: boolean);
 begin

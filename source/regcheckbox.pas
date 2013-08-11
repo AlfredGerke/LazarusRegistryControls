@@ -15,16 +15,7 @@ const
   Write = False;
 
 type
-  TSTCheckBox = class(TCheckBox)
-  private
-  protected
-  public
-  published
-  end;
-
-  { TRegCheckBox }
-
-  TRegCheckBox = class(TSTCheckBox)
+  TCustomRegCheckBox = class(TCheckBox)
   private
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsBooleanDefault;
@@ -35,6 +26,13 @@ type
     procedure OnChangeSettings(aSender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
     procedure Click; override;
+
+    property RegistrySettings: TRegistrySettingsBooleanDefault
+      read FRegistrySettings
+      write FRegistrySettings;
+    property RegistrySource: TRegistrySource
+      read FRegistrySource
+      write SetRegistrySource;
   public
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
@@ -45,12 +43,17 @@ type
     property IsModified: boolean
       read FIsModified;
   published
-    property RegistrySettings: TRegistrySettingsBooleanDefault
-      read FRegistrySettings
-      write FRegistrySettings;
-    property RegistrySource: TRegistrySource
-      read FRegistrySource
-      write SetRegistrySource;
+  end;
+
+  { TRegCheckBox }
+
+  TRegCheckBox = class(TCustomRegCheckBox)
+  private
+  protected
+  public
+  published
+    property RegistrySettings;
+    property RegistrySource;
   end;
 
 procedure Register;
@@ -65,12 +68,12 @@ begin
   RegisterComponents('Registry Controls', [TRegCheckBox]);
 end;
 
-procedure TRegCheckBox.OnChangeSettings(aSender: TObject);
+procedure TCustomRegCheckBox.OnChangeSettings(aSender: TObject);
 begin
   ReadFromReg;
 end;
 
-procedure TRegCheckBox.ReadWriteInfo(aRead: boolean);
+procedure TCustomRegCheckBox.ReadWriteInfo(aRead: boolean);
 begin
   if not (csDesigning in ComponentState) then
   begin
@@ -112,7 +115,7 @@ begin
   end;
 end;
 
-procedure TRegCheckBox.SetRegistrySource(aRegistrySource: TRegistrySource);
+procedure TCustomRegCheckBox.SetRegistrySource(aRegistrySource: TRegistrySource);
 begin
   FRegistrySource := aRegistrySource;
   FRegistrySettings.RookKey := FRegistrySource.RootKey;
@@ -123,15 +126,13 @@ begin
   FRegistrySettings.CanRead := FRegistrySource.ReadDefaults;
   FRegistrySettings.CanWrite := FRegistrySource.WriteDefaults;
   FRegistrySettings.Project:= FRegistrySource.Project;
-  if FRegistrySource.UseGUID then
-    FRegistrySettings.GUID := FRegistrySource.GUID
-  else
-    FRegistrySettings.GUID := EmptyStr;
+  FRegistrySettings.Organisation := FRegistrySource.Organisation;
+  FRegistrySettings.GUID := FRegistrySource.GUID;
 
   ReadFromReg;
 end;
 
-procedure TRegCheckBox.Click;
+procedure TCustomRegCheckBox.Click;
 begin
   inherited;
 
@@ -141,7 +142,7 @@ begin
     WriteToReg;
 end;
 
-constructor TRegCheckBox.Create(AOwner: TComponent);
+constructor TCustomRegCheckBox.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
 
@@ -150,7 +151,7 @@ begin
   FRegistrySettings.OnChange:= OnChangeSettings;
 end;
 
-destructor TRegCheckBox.Destroy;
+destructor TCustomRegCheckBox.Destroy;
 begin
   if Assigned(FRegistrySettings) then
     FreeAndNil(FRegistrySettings);
@@ -158,12 +159,12 @@ begin
   inherited Destroy;
 end;
 
-procedure TRegCheckBox.AfterConstruction;
+procedure TCustomRegCheckBox.AfterConstruction;
 begin
   inherited;
 end;
 
-function TRegCheckBox.ReadFromReg: boolean;
+function TCustomRegCheckBox.ReadFromReg: boolean;
 begin
   Result := False;
 
@@ -181,7 +182,7 @@ begin
   end;
 end;
 
-function TRegCheckBox.WriteToReg: boolean;
+function TCustomRegCheckBox.WriteToReg: boolean;
 begin
   Result := False;
 

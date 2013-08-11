@@ -52,6 +52,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
       </Item1>
       <Item2>
         <Filename Value="..\source\regsourcen.pas"/>
+        <HasRegisterProc Value="True"/>
         <UnitName Value="regsourcen"/>
       </Item2>
     </Files>

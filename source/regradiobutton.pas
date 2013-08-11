@@ -15,16 +15,7 @@ const
   Write = False;
 
 type
-  TSTRadioButton = class(TRadioButton)
-  private
-  protected
-  public
-  published
-  end;
-
-  { TRegRadioButton }
-
-  TRegRadioButton = class(TSTRadioButton)
+  TCustomRegRadioButton = class(TRadioButton)
   private
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsBooleanDefault;
@@ -35,6 +26,13 @@ type
     procedure OnChangeSettings(aSender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
     procedure Click; override;
+
+    property RegistrySettings: TRegistrySettingsBooleanDefault
+      read FRegistrySettings
+      write FRegistrySettings;
+    property RegistrySource: TRegistrySource
+      read FRegistrySource
+      write SetRegistrySource;
   public
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
@@ -45,12 +43,17 @@ type
     property IsModified: boolean
       read FIsModified;
   published
-    property RegistrySettings: TRegistrySettingsBooleanDefault
-      read FRegistrySettings
-      write FRegistrySettings;
-    property RegistrySource: TRegistrySource
-      read FRegistrySource
-      write SetRegistrySource;
+  end;
+
+  { TRegRadioButton }
+
+  TRegRadioButton = class(TCustomRegRadioButton)
+  private
+  protected
+  public
+  published
+    property RegistrySettings;
+    property RegistrySource;
   end;
 
 procedure Register;
@@ -65,12 +68,12 @@ begin
   RegisterComponents('Registry Controls', [TRegRadioButton]);
 end;
 
-procedure TRegRadioButton.OnChangeSettings(aSender: TObject);
+procedure TCustomRegRadioButton.OnChangeSettings(aSender: TObject);
 begin
   ReadFromReg;
 end;
 
-procedure TRegRadioButton.ReadWriteInfo(aRead: boolean);
+procedure TCustomRegRadioButton.ReadWriteInfo(aRead: boolean);
 begin
   if not (csDesigning in ComponentState) then
   begin
@@ -111,7 +114,7 @@ begin
   end;
 end;
 
-procedure TRegRadioButton.SetRegistrySource(aRegistrySource: TRegistrySource);
+procedure TCustomRegRadioButton.SetRegistrySource(aRegistrySource: TRegistrySource);
 begin
   FRegistrySource := aRegistrySource;
   FRegistrySettings.RookKey := FRegistrySource.RootKey;
@@ -122,15 +125,13 @@ begin
   FRegistrySettings.CanRead := FRegistrySource.ReadDefaults;
   FRegistrySettings.CanWrite := FRegistrySource.WriteDefaults;
   FRegistrySettings.Project:= FRegistrySource.Project;
-  if FRegistrySource.UseGUID then
-    FRegistrySettings.GUID := FRegistrySource.GUID
-  else
-    FRegistrySettings.GUID := EmptyStr;
+  FRegistrySettings.Organisation := FRegistrySource.Organisation;
+  FRegistrySettings.GUID := FRegistrySource.GUID;
 
   ReadFromReg;
 end;
 
-procedure TRegRadioButton.Click;
+procedure TCustomRegRadioButton.Click;
 begin
   inherited;
 
@@ -140,7 +141,7 @@ begin
     WriteToReg;
 end;
 
-constructor TRegRadioButton.Create(AOwner: TComponent);
+constructor TCustomRegRadioButton.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
 
@@ -149,7 +150,7 @@ begin
   FRegistrySettings.OnChange:= OnChangeSettings;
 end;
 
-destructor TRegRadioButton.Destroy;
+destructor TCustomRegRadioButton.Destroy;
 begin
   if Assigned(FRegistrySettings) then
     FreeAndNil(FRegistrySettings);
@@ -157,13 +158,13 @@ begin
   inherited Destroy;
 end;
 
-procedure TRegRadioButton.AfterConstruction;
+procedure TCustomRegRadioButton.AfterConstruction;
 begin
   inherited;
 
 end;
 
-function TRegRadioButton.ReadFromReg: boolean;
+function TCustomRegRadioButton.ReadFromReg: boolean;
 begin
   Result := False;
 
@@ -181,7 +182,7 @@ begin
   end;
 end;
 
-function TRegRadioButton.WriteToReg: boolean;
+function TCustomRegRadioButton.WriteToReg: boolean;
 begin
   Result := False;
 

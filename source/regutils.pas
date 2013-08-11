@@ -4,7 +4,6 @@ interface
 
 uses
   Classes,
-  INIFILES,
   REGISTRY;
 
 type

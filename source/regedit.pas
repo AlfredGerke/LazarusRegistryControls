@@ -15,18 +15,8 @@ const
   Write = False;
 
 type
-  TSTEdit = class(TEdit)
+  TCustomRegEdit = class(TEdit)
   private
-  protected
-  public
-  published
-  end;
-
-  { TRegEdit }
-
-  TRegEdit = class(TSTEdit)
-  private
-    //Registrykomponente
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsStringDefault;
 
@@ -35,6 +25,13 @@ type
     procedure OnChangeSettings(aSender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource);
     procedure Change; override;
+
+    property RegistrySettings: TRegistrySettingsStringDefault
+      read FRegistrySettings
+      write FRegistrySettings;
+    property RegistrySource: TRegistrySource
+      read FRegistrySource
+      write SetRegistrySource;
   public
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
@@ -42,12 +39,18 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   published
-    property RegistrySettings: TRegistrySettingsStringDefault
-      read FRegistrySettings
-      write FRegistrySettings;
-    property RegistrySource: TRegistrySource
-      read FRegistrySource
-      write SetRegistrySource;
+  end;
+
+
+  { TRegEdit }
+
+  TRegEdit = class(TCustomRegEdit)
+  private
+  protected
+  public
+  published
+    property RegistrySettings;
+    property RegistrySource;
   end;
 
 procedure Register;
@@ -62,12 +65,12 @@ begin
   RegisterComponents('Registry Controls', [TRegEdit]);
 end;
 
-procedure TRegEdit.OnChangeSettings(aSender: TObject);
+procedure TCustomRegEdit.OnChangeSettings(aSender: TObject);
 begin
   ReadFromReg;
 end;
 
-procedure TRegEdit.ReadWriteInfo(aRead: boolean);
+procedure TCustomRegEdit.ReadWriteInfo(aRead: boolean);
 begin
   if not (csDesigning in ComponentState) then
   begin
@@ -108,7 +111,7 @@ begin
   end;
 end;
 
-procedure TRegEdit.SetRegistrySource(aRegistrySource: TRegistrySource);
+procedure TCustomRegEdit.SetRegistrySource(aRegistrySource: TRegistrySource);
 begin
   FRegistrySource := aRegistrySource;
   FRegistrySettings.RookKey := FRegistrySource.RootKey;
@@ -119,15 +122,13 @@ begin
   FRegistrySettings.CanRead := FRegistrySource.ReadDefaults;
   FRegistrySettings.CanWrite := FRegistrySource.WriteDefaults;
   FRegistrySettings.Project:= FRegistrySource.Project;
-  if FRegistrySource.UseGUID then
-    FRegistrySettings.GUID := FRegistrySource.GUID
-  else
-    FRegistrySettings.GUID := EmptyStr;
+  FRegistrySettings.Organisation := FRegistrySource.Organisation;
+  FRegistrySettings.GUID := FRegistrySource.GUID;
 
   ReadFromReg;
 end;
 
-procedure TRegEdit.Change;
+procedure TCustomRegEdit.Change;
 begin
   inherited;
 
@@ -135,7 +136,7 @@ begin
     WriteToReg;
 end;
 
-constructor TRegEdit.Create(AOwner: TComponent);
+constructor TCustomRegEdit.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
 
@@ -143,7 +144,7 @@ begin
   FRegistrySettings.OnChange:= OnChangeSettings;
 end;
 
-destructor TRegEdit.Destroy;
+destructor TCustomRegEdit.Destroy;
 begin
   if Assigned(FRegistrySettings) then
     FreeAndNil(FRegistrySettings);
@@ -151,13 +152,13 @@ begin
   inherited Destroy;
 end;
 
-procedure TRegEdit.AfterConstruction;
+procedure TCustomRegEdit.AfterConstruction;
 begin
   inherited;
 
 end;
 
-function TRegEdit.ReadFromReg: boolean;
+function TCustomRegEdit.ReadFromReg: boolean;
 begin
   Result := False;
 
@@ -175,7 +176,7 @@ begin
   end;
 end;
 
-function TRegEdit.WriteToReg: boolean;
+function TCustomRegEdit.WriteToReg: boolean;
 begin
   Result := False;
 
