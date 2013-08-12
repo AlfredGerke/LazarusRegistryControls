@@ -205,7 +205,7 @@ begin
   inherited Create(AOwner);
 
   FIsModified := False;
-  FRegistrySettings := TRegistrySettingsList.Create;
+  FRegistrySettings := TRegistrySettingsList.Create(Self);
   FRegistrySettings.OnChange:= OnChangeSettings;
 end;
 

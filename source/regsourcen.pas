@@ -18,11 +18,7 @@ type
   TTokenType = (ttUnknown, ttProject, ttOrganisation, ttGUID);
 
 const
-
   TokenTypeStr : array[TTokenType] of string = ('unknown', '%%PROJECT%%', '%%ORGANISATION%%', '%%GUID%%');
-  PROJECT_TOKEN = '%%PROJECT%%';
-  ORGANISATION_TOKEN = '%%ORGANISATION%%';
-  GUID_TOKEN = '%%GUID%%';
 
 type
 
@@ -32,6 +28,7 @@ type
   private
   protected
   public
+    constructor Create(aOwner: TObject); virtual; abstract;
   published
   end;
 
@@ -62,6 +59,7 @@ type
 
   TCustomRegistrySettings<_T> = class(TCustomProperties)
   private
+    FOwner: TObject;
     //Basisschlüssel, z.B.: SOFTWARE\SOFTWARE AUS ERWITTE\%%PROJECT%%\
     FRootKey: string;
     //Basisschlüssel für Defaults, z.B.: SOFTWARE\SOFTWARE AUS ERWITTE\%%PROJECT%%\DEFAULTS\
@@ -114,6 +112,9 @@ type
       read FDefault
       write SetDefault;
   public
+    function GetNamePath: string; override;
+    constructor Create(aOwner: TObject); override;
+
     property GUID: string
       read FGUID
       write SetGUID;
@@ -626,6 +627,16 @@ begin
     if ((Trim(FOrganisation) <> EmptyStr) and
       (FOrganisation <> ORGANISATION_TOKEN))then
       FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
+end;
+
+function TCustomRegistrySettings<_T>.GetNamePath: string;
+begin
+  Result:= FOwner.ClassName;
+end;
+
+constructor TCustomRegistrySettings<_T>.Create(aOwner: TObject);
+begin
+  FOwner := aOwner;
 end;
 
 function TCustomRegistrySource.GetRootKey: string;

@@ -5,8 +5,8 @@ unit frmMain;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, regsourcen,
-  regedit;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  regsourcen, regedit, LCLType;
 
 type
 

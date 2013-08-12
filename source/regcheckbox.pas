@@ -145,7 +145,7 @@ begin
   inherited Create(AOwner);
 
   FIsModified := False;
-  FRegistrySettings := TRegistrySettingsBooleanDefault.Create;
+  FRegistrySettings := TRegistrySettingsBooleanDefault.Create(Self);
   FRegistrySettings.OnChange:= OnChangeSettings;
 end;
 
