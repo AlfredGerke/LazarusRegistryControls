@@ -14,8 +14,12 @@ uses
   LResources,
   PropEdits;
 
+type
+  TTokenType = (ttUnknown, ttProject, ttOrganisation, ttGUID);
+
 const
 
+  TokenTypeStr : array[TTokenType] of string = ('unknown', '%%PROJECT%%', '%%ORGANISATION%%', '%%GUID%%');
   PROJECT_TOKEN = '%%PROJECT%%';
   ORGANISATION_TOKEN = '%%ORGANISATION%%';
   GUID_TOKEN = '%%GUID%%';
@@ -32,6 +36,29 @@ type
   end;
 
   { TCustomRegistrySettings }
+  TRegistrySettingString = string[255];
+
+  TRegistrySettingKind = (rskUnknown, rskRootKey, rskRootKeyForDefault,
+    rskSection, rskIdent, rskDefault, rskReadDefaults, rskWriteDefaults,
+    rskRootForDefaults, rskCanRead, rskCanWrite, rskDoWriteAdHoc);
+
+  TRegistrySettingValue = record
+    case Kind: TRegistrySettingKind of
+      rskRootKey: (RootKey: TRegistrySettingString);
+      rskRootKeyForDefault: (RootKeyForDefault: TRegistrySettingString);
+      rskSection: (Section: TRegistrySettingString);
+      rskIdent: (Ident: TRegistrySettingString);
+      rskDefault: (Default: TRegistrySettingString);
+      rskReadDefaults: (ReadDefaults: boolean);
+      rskWriteDefaults: (WriteDefaults: boolean);
+      rskRootForDefaults: (RootForDefaults: TRegistrySettingString);
+      rskCanRead: (CanRead: boolean);
+      rskCanWrite: (CanWrite: boolean);
+      rskDoWriteAdHoc: (DoWriteAdHoc: boolean);
+  end;
+
+  TOnRegistrySettingsChange = procedure(aSettingInfo: TRegistrySettingValue;
+                                        var aIsOk: boolean) of object;
 
   TCustomRegistrySettings<_T> = class(TCustomProperties)
   private
@@ -61,7 +88,12 @@ type
     FOrganisation: string;
     FGUID: string;
     FOnChange: TNotifyEvent;
+    FOnBeforeRegistrySettingChange: TOnRegistrySettingsChange;
 
+    function ChangeTokenForKey(aToken: TTokenType;
+                               aKey: string): string;
+    function TriggerOnBeforeRegistrySettingChange(aKind: TRegistrySettingKind;
+                                                  aValue: variant): boolean;
   protected
     procedure SetRootKey(aRootKey: string);
     procedure SetRootKeyForDefaults(aRootKeyForDefaults: string);
@@ -125,6 +157,9 @@ type
     property DoWriteAdHoc: boolean
       read FDoWriteAdHoc
       write SetDoWriteAdHoc;
+    property OnBeforeRegistrySettingChange: TOnRegistrySettingsChange
+      read FOnBeforeRegistrySettingChange
+      write FOnBeforeRegistrySettingChange;
   end;
 
   { TRegistrySettingsBooleanDefault }
@@ -300,6 +335,9 @@ type
     property GUID;
   end;
 
+function _ChangeTokenForKey(aToken: string;
+                            aTokenValue: string;
+                            aKey: string): string;
 procedure Register;
 
 implementation
@@ -312,24 +350,98 @@ begin
   RegisterComponents('Registry Controls', [TRegistrySource]);
 end;
 
+
+function _ChangeTokenForKey(aToken: string;
+  aTokenValue: string;
+  aKey: string): string;
+begin
+  if pos(aToken, aKey) > 0 then
+    if ((Trim(aTokenValue) <> EmptyStr) and
+      (aTokenValue <> aToken))then
+      result := StringReplace(aKey, aToken, aTokenValue, [rfReplaceAll]);
+end;
+
+function TCustomRegistrySettings<_T>.ChangeTokenForKey(aToken: TTokenType;
+  aKey: string): string;
+var
+  token: string;
+  value_for_token: string;
+begin
+  Result := aKey;
+
+  case aToken of
+    ttProject: value_for_token := FProject;
+    ttOrganisation: value_for_token := FOrganisation;
+    ttGUID: value_for_token := FGUID;
+  else
+    Exit;
+  end;
+
+  token := TokenTypeStr[aToken];
+
+  Result := _ChangeTokenForKey(token, value_for_token, aKey);
+end;
+
+function TCustomRegistrySettings<_T>.TriggerOnBeforeRegistrySettingChange(
+  aKind: TRegistrySettingKind;
+  aValue: variant): boolean;
+var
+  setting_value: TRegistrySettingValue;
+  is_ok: boolean;
+begin
+  if Assigned(FOnBeforeRegistrySettingChange) then
+  begin
+    setting_value.kind := aKind;
+    case aKind of
+      rskUnknown:
+      begin
+        Result := False;
+        Exit;
+      end;
+      rskRootKey: setting_value.RootKey := aValue;
+      rskRootKeyForDefault: setting_value.RootKeyForDefault := aValue;
+      rskSection: setting_value.Section := aValue;
+      rskIdent: setting_value.Ident := aValue;
+      rskDefault: setting_value.Default := aValue;
+      rskReadDefaults: setting_value.ReadDefaults := aValue;
+      rskWriteDefaults: setting_value.WriteDefaults := aValue;
+      rskRootForDefaults: setting_value.RootForDefaults := aValue;
+      rskCanRead: setting_value.CanRead := aValue;
+      rskCanWrite: setting_value.CanWrite := aValue;
+      rskDoWriteAdHoc: setting_value.DoWriteAdHoc := aValue;
+    end;
+
+    is_ok:= True;
+    FOnBeforeRegistrySettingChange(setting_value, is_ok);
+    if not is_ok then
+      Exit;
+  end;
+end;
+
 procedure TCustomRegistrySettings<_T>.SetRootKey(aRootKey: string);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskRootKey, aRootKey) then
+    Exit;
+
   FRootKey := IncludeTrailingPathDelimiter(aRootKey);
 
-  if pos(PROJECT_TOKEN, FRootKey) > 0 then
+  FRootKey := ChangeTokenForKey(ttProject, FRootKey);
+  {if pos(PROJECT_TOKEN, FRootKey) > 0 then
     if ((Trim(FProject) <> EmptyStr) and
       (FProject <> PROJECT_TOKEN))then
-      FRootKey := StringReplace(FRootKey, PROJECT_TOKEN, FProject, [rfReplaceAll]);
+      FRootKey := StringReplace(FRootKey, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
 
-  if pos(ORGANISATION_TOKEN, FRootKey) > 0 then
+  FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
+  {if pos(ORGANISATION_TOKEN, FRootKey) > 0 then
     if ((Trim(FOrganisation) <> EmptyStr) and
       (FOrganisation <> ORGANISATION_TOKEN))then
-      FRootKey := StringReplace(FRootKey, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+      FRootKey := StringReplace(FRootKey, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
 
-  if pos(GUID_TOKEN, FRootKey) > 0 then
+  FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
+  {if pos(GUID_TOKEN, FRootKey) > 0 then
     if ((Trim(FGUID) <> EmptyStr) and
       (FGUID <> GUID_TOKEN))then
-      FRootKey := StringReplace(FRootKey, GUID_TOKEN, FGUID, [rfReplaceAll]);
+      FRootKey := StringReplace(FRootKey, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 
   if Assigned(FOnChange) then
     FOnChange(self);
@@ -338,22 +450,28 @@ end;
 procedure TCustomRegistrySettings<_T>.SetRootKeyForDefaults(
   aRootKeyForDefaults: string);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskRootKeyForDefault, aRootKeyForDefaults) then
+    Exit;
+
   FRootKeyForDefaults := IncludeTrailingPathDelimiter(aRootKeyForDefaults);
 
-  if pos(PROJECT_TOKEN, FRootKeyForDefaults) > 0 then
+  FRootKeyForDefaults := ChangeTokenForKey(ttProject, FRootKeyForDefaults);
+  {if pos(PROJECT_TOKEN, FRootKeyForDefaults) > 0 then
     if ((Trim(FProject) <> EmptyStr) and
       (FProject <> PROJECT_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, PROJECT_TOKEN, FProject, [rfReplaceAll]);
+      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
 
-  if pos(ORGANISATION_TOKEN, FRootKeyForDefaults) > 0 then
+  FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
+  {if pos(ORGANISATION_TOKEN, FRootKeyForDefaults) > 0 then
     if ((Trim(FOrganisation) <> EmptyStr) and
       (FOrganisation <> ORGANISATION_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
 
-  if pos(GUID_TOKEN, FRootKeyForDefaults) > 0 then
+  FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
+  {if pos(GUID_TOKEN, FRootKeyForDefaults) > 0 then
     if ((Trim(FGUID) <> EmptyStr) and
       (FGUID <> GUID_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, GUID_TOKEN, FGUID, [rfReplaceAll]);
+      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 
   if Assigned(FOnChange) then
     FOnChange(self);
@@ -361,6 +479,9 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetSection(aSection: string);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskSection, aSection) then
+    Exit;
+
   FSection := aSection;
 
   if Assigned(FOnChange) then
@@ -369,6 +490,9 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetIdent(aIdent: string);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskIdent, aIdent) then
+    Exit;
+
   FIdent := aIdent;
 
   if Assigned(FOnChange) then
@@ -377,6 +501,9 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetReadDefaults(aReadDefaults: boolean);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskReadDefaults, aReadDefaults) then
+    Exit;
+
   FReadDefaults := aReadDefaults;
 
   if Assigned(FOnChange) then
@@ -385,6 +512,9 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetWriteDefaults(aWriteDefaults: boolean);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskWriteDefaults, aWriteDefaults) then
+    Exit;
+
   FWriteDefaults := aWriteDefaults;
 
   if Assigned(FOnChange) then
@@ -394,6 +524,9 @@ end;
 procedure TCustomRegistrySettings<_T>.SetRootForDefaults(
   aRootForDefaults: string);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskRootForDefaults, aRootForDefaults) then
+    Exit;
+
   FRootForDefaults := aRootForDefaults;
 
   if Assigned(FOnChange) then
@@ -402,6 +535,9 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetCanRead(aCanRead: boolean);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskCanRead, aCanRead) then
+    Exit;
+
   FCanRead := aCanRead;
 
   if Assigned(FOnChange) then
@@ -410,6 +546,9 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetCanWrite(aCanWrite: boolean);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskCanWrite, aCanWrite) then
+    Exit;
+
   FCanWrite := aCanWrite;
 
   if Assigned(FOnChange) then
@@ -418,6 +557,9 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetDoWriteAdHoc(aDoWriteAdHoc: boolean);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskDoWriteAdHoc, aDoWriteAdHoc) then
+    Exit;
+
   FDoWriteAdHoc := aDoWriteAdHoc;
 
   if Assigned(FOnChange) then
@@ -426,6 +568,9 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetDefault(aDefault: _T);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskDefault, aDefault) then
+    Exit;
+
   FDefault := aDefault;
 
   if Assigned(FOnChange) then
@@ -436,45 +581,51 @@ procedure TCustomRegistrySettings<_T>.SetGUID(aGUID: string);
 begin
   FGUID := aGUID;
 
-  if pos(GUID_TOKEN, FRootKey) > 0 then
+  FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
+  {if pos(GUID_TOKEN, FRootKey) > 0 then
     if ((Trim(FGUID) <> EmptyStr) and
       (FGUID <> GUID_TOKEN))then
-      FRootKey := StringReplace(FRootKey, GUID_TOKEN, FGUID, [rfReplaceAll]);
+      FRootKey := StringReplace(FRootKey, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 
-  if pos(GUID_TOKEN, FRootKeyForDefaults) > 0 then
+  FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
+  {if pos(GUID_TOKEN, FRootKeyForDefaults) > 0 then
     if ((Trim(FGUID) <> EmptyStr) and
       (FGUID <> GUID_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, GUID_TOKEN, FGUID, [rfReplaceAll]);
+      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 end;
 
 procedure TCustomRegistrySettings<_T>.SetProject(aProject: string);
 begin
   FProject := aProject;
 
-  if pos(PROJECT_TOKEN, FRootKey) > 0 then
+  FRootKey := ChangeTokenForKey(ttProject, FRootKey);
+  {if pos(PROJECT_TOKEN, FRootKey) > 0 then
     if ((Trim(FProject) <> EmptyStr) and
       (FProject <> PROJECT_TOKEN))then
-      FRootKey := StringReplace(FRootKey, PROJECT_TOKEN, FProject, [rfReplaceAll]);
+      FRootKey := StringReplace(FRootKey, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
 
-  if pos(PROJECT_TOKEN, FRootKeyForDefaults) > 0 then
+  FRootKeyForDefaults := ChangeTokenForKey(ttProject, FRootKeyForDefaults);
+  {if pos(PROJECT_TOKEN, FRootKeyForDefaults) > 0 then
     if ((Trim(FProject) <> EmptyStr) and
       (FProject <> PROJECT_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, PROJECT_TOKEN, FProject, [rfReplaceAll]);
+      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
 end;
 
 procedure TCustomRegistrySettings<_T>.SetOrganisation(aOrganisation: string);
 begin
   FOrganisation := aOrganisation;
 
-  if pos(ORGANISATION_TOKEN, FRootKey) > 0 then
+  FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
+  {if pos(ORGANISATION_TOKEN, FRootKey) > 0 then
     if ((Trim(FOrganisation) <> EmptyStr) and
       (FOrganisation <> ORGANISATION_TOKEN))then
-      FRootKey := StringReplace(FRootKey, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+      FRootKey := StringReplace(FRootKey, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
 
-  if pos(ORGANISATION_TOKEN, FRootKeyForDefaults) > 0 then
+  FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
+  {if pos(ORGANISATION_TOKEN, FRootKeyForDefaults) > 0 then
     if ((Trim(FOrganisation) <> EmptyStr) and
       (FOrganisation <> ORGANISATION_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
 end;
 
 function TCustomRegistrySource.GetRootKey: string;
@@ -483,20 +634,23 @@ var
 begin
   root_key := IncludeTrailingPathDelimiter(FRootKey);
 
-  if pos(PROJECT_TOKEN, root_key) > 0 then
+  root_key := _ChangeTokenForKey(TokenTypeStr[ttProject], FProject, root_key);
+  {if pos(PROJECT_TOKEN, root_key) > 0 then
     if ((Trim(FProject) <> EmptyStr) and
       (FProject <> PROJECT_TOKEN))then
-      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);
+      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
 
-  if pos(ORGANISATION_TOKEN, root_key) > 0 then
+  root_key := _ChangeTokenForKey(TokenTypeStr[ttOrganisation], FOrganisation, root_key);
+  {if pos(ORGANISATION_TOKEN, root_key) > 0 then
     if ((Trim(FOrganisation) <> EmptyStr) and
       (FOrganisation <> ORGANISATION_TOKEN))then
-      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
 
-  if pos(GUID_TOKEN, root_key) > 0 then
+  root_key := _ChangeTokenForKey(TokenTypeStr[ttGUID], FGUID, root_key);
+  {if pos(GUID_TOKEN, root_key) > 0 then
     if ((Trim(FGUID) <> EmptyStr) and
       (FGUID <> GUID_TOKEN))then
-      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);
+      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 
   Result := root_key;
 end;
@@ -507,20 +661,23 @@ var
 begin
   root_key := IncludeTrailingPathDelimiter(FRootKeyForDefaults);
 
-  if pos(PROJECT_TOKEN, root_key) > 0 then
+  root_key := _ChangeTokenForKey(TokenTypeStr[ttProject], FProject, root_key);
+  {if pos(PROJECT_TOKEN, root_key) > 0 then
     if ((Trim(FProject) <> EmptyStr) and
       (FProject <> PROJECT_TOKEN))then
-      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);
+      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
 
-  if pos(ORGANISATION_TOKEN, root_key) > 0 then
+  root_key := _ChangeTokenForKey(TokenTypeStr[ttOrganisation], FOrganisation, root_key);
+  {if pos(ORGANISATION_TOKEN, root_key) > 0 then
     if ((Trim(FOrganisation) <> EmptyStr) and
       (FOrganisation <> ORGANISATION_TOKEN))then
-      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
 
-  if pos(GUID_TOKEN, root_key) > 0 then
+  root_key := _ChangeTokenForKey(TokenTypeStr[ttGUID], FGUID, root_key);
+  {if pos(GUID_TOKEN, root_key) > 0 then
     if ((Trim(FGUID) <> EmptyStr) and
       (FGUID <> GUID_TOKEN))then
-      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);
+      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 
   Result := root_key;
 end;
@@ -531,20 +688,23 @@ var
 begin
   root_key := IncludeTrailingPathDelimiter(FRootKeyForCommon);
 
-  if pos(PROJECT_TOKEN, root_key) > 0 then
+  root_key := _ChangeTokenForKey(TokenTypeStr[ttProject], FProject, root_key);
+  {if pos(PROJECT_TOKEN, root_key) > 0 then
     if ((Trim(FProject) <> EmptyStr) and
       (FProject <> PROJECT_TOKEN))then
-      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);
+      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
 
-  if pos(ORGANISATION_TOKEN, root_key) > 0 then
+  root_key := _ChangeTokenForKey(TokenTypeStr[ttOrganisation], FOrganisation, root_key);
+  {if pos(ORGANISATION_TOKEN, root_key) > 0 then
     if ((Trim(FOrganisation) <> EmptyStr) and
       (FOrganisation <> ORGANISATION_TOKEN))then
-      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);
+      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
 
-  if pos(GUID_TOKEN, root_key) > 0 then
+  root_key := _ChangeTokenForKey(TokenTypeStr[ttGUID], FGUID, root_key);
+  {if pos(GUID_TOKEN, root_key) > 0 then
     if ((Trim(FGUID) <> EmptyStr) and
       (FGUID <> GUID_TOKEN))then
-      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);
+      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 
   Result := root_key;
 end;

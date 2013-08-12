@@ -2,7 +2,7 @@
   This source is only used to compile and install the package.
  }
 
-unit registrycontrols;
+unit RegistryControls;
 
 interface
 
@@ -20,5 +20,5 @@ begin
 end;
 
 initialization
-  RegisterPackage('registrycontrols', @Register);
+  RegisterPackage('RegistryControls', @Register);
 end.

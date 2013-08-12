@@ -4,12 +4,12 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="11">
+    <Units Count="12">
       <Unit0>
         <Filename Value="example.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="example"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="29"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -22,20 +22,18 @@
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="150" Y="11"/>
-        <UsageCount Value="25"/>
+        <CursorPos X="1" Y="30"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
-        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="28"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="11"/>
-        <Loaded Value="True"/>
+        <TopLine Value="615"/>
+        <CursorPos X="1" Y="653"/>
+        <UsageCount Value="13"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
@@ -51,9 +49,10 @@
         <Filename Value="..\source\regcheckbox.pas"/>
         <UnitName Value="regcheckbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="18"/>
-        <CursorPos X="50" Y="130"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="91"/>
+        <CursorPos X="1" Y="126"/>
+        <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
         <Filename Value="..\source\regedit.pas"/>
@@ -61,8 +60,8 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="101"/>
-        <CursorPos X="1" Y="128"/>
-        <UsageCount Value="10"/>
+        <CursorPos X="1" Y="126"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
@@ -71,16 +70,18 @@
         <UnitName Value="regradiobutton"/>
         <WindowIndex Value="0"/>
         <TopLine Value="106"/>
-        <CursorPos X="66" Y="128"/>
-        <UsageCount Value="10"/>
+        <CursorPos X="1" Y="125"/>
+        <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
         <Filename Value="..\source\regradiogroup.pas"/>
         <UnitName Value="regradiogroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="173"/>
-        <CursorPos X="50" Y="190"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="69"/>
+        <CursorPos X="35" Y="81"/>
+        <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
         <Filename Value="..\package\registrysource.pas"/>
@@ -102,31 +103,32 @@
       <Unit10>
         <Filename Value="..\package\registrycontrols.pas"/>
         <UnitName Value="registrycontrols"/>
-        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\classesh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1749"/>
+        <CursorPos X="14" Y="1766"/>
+        <UsageCount Value="11"/>
+      </Unit11>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="3" HistoryIndex="2">
+    <JumpHistory Count="2" HistoryIndex="1">
       <Position1>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Caret Line="11" Column="150" TopLine="1"/>
       </Position1>
       <Position2>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="11" Column="150" TopLine="1"/>
+        <Caret Line="30" Column="1" TopLine="1"/>
       </Position2>
-      <Position3>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="1" Column="1" TopLine="101"/>
-      </Position3>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
@@ -136,7 +138,7 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="..\source\regedit.pas"/>
-        <Line Value="128"/>
+        <Line Value="126"/>
       </Item1>
     </BreakPoints>
   </Debugging>

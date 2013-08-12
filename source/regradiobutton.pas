@@ -122,8 +122,6 @@ begin
   FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
   FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
   FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
-  FRegistrySettings.CanRead := FRegistrySource.ReadDefaults;
-  FRegistrySettings.CanWrite := FRegistrySource.WriteDefaults;
   FRegistrySettings.Project:= FRegistrySource.Project;
   FRegistrySettings.Organisation := FRegistrySource.Organisation;
   FRegistrySettings.GUID := FRegistrySource.GUID;
