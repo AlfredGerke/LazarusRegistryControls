@@ -19,6 +19,7 @@ type
   private
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsStringDefault;
+    FRegSettingChange: TOnRegistrySettingsChange;
 
     procedure ReadWriteInfo(aRead: boolean);
   protected
@@ -32,6 +33,9 @@ type
     property RegistrySource: TRegistrySource
       read FRegistrySource
       write SetRegistrySource;
+    property OnRegSettingChange: TOnRegistrySettingsChange
+      read FRegSettingChange
+      write FRegSettingChange;
   public
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
@@ -51,6 +55,7 @@ type
   published
     property RegistrySettings;
     property RegistrySource;
+    property OnRegSettingChange;
   end;
 
 procedure Register;
@@ -64,10 +69,7 @@ uses
 procedure Register;
 begin
   RegisterComponents('Registry Controls', [TRegEdit]);
-  RegisterPropertyEditor (TypeInfo (TNotifyEvent),
-    TCustomRegEdit,
-    'RegistrySettings',
-    TMethodProperty);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsStringDefault, 'OnBeforeRegistrySettingChange', TTestMethodPropertyEditor);
 end;
 
 procedure TCustomRegEdit.OnChangeSettings(aSender: TObject);
@@ -122,11 +124,14 @@ begin
   FRegistrySettings.RookKey := FRegistrySource.RootKey;
   FRegistrySettings.RootKeyForDefaults := FRegistrySource.RootKeyForDefaults;
   FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
-  FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
-  FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
   FRegistrySettings.Project:= FRegistrySource.Project;
   FRegistrySettings.Organisation := FRegistrySource.Organisation;
   FRegistrySettings.GUID := FRegistrySource.GUID;
+  if (csDesigning in ComponentState) then
+  begin
+    FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
+    FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
+  end;
 
   ReadFromReg;
 end;

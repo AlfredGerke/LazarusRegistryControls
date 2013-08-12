@@ -22,6 +22,13 @@ const
 
 type
 
+  { TTestMethodPropertyEditor }
+
+  TTestMethodPropertyEditor = class(TMethodPropertyEditor)
+  public
+    function GetValue: ansistring; override;
+  end;
+
   { TCustomProperties }
 
   TCustomProperties = class(TPersistent)
@@ -351,7 +358,6 @@ begin
   RegisterComponents('Registry Controls', [TRegistrySource]);
 end;
 
-
 function _ChangeTokenForKey(aToken: string;
   aTokenValue: string;
   aKey: string): string;
@@ -427,22 +433,8 @@ begin
   FRootKey := IncludeTrailingPathDelimiter(aRootKey);
 
   FRootKey := ChangeTokenForKey(ttProject, FRootKey);
-  {if pos(PROJECT_TOKEN, FRootKey) > 0 then
-    if ((Trim(FProject) <> EmptyStr) and
-      (FProject <> PROJECT_TOKEN))then
-      FRootKey := StringReplace(FRootKey, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
-
   FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
-  {if pos(ORGANISATION_TOKEN, FRootKey) > 0 then
-    if ((Trim(FOrganisation) <> EmptyStr) and
-      (FOrganisation <> ORGANISATION_TOKEN))then
-      FRootKey := StringReplace(FRootKey, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
-
   FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
-  {if pos(GUID_TOKEN, FRootKey) > 0 then
-    if ((Trim(FGUID) <> EmptyStr) and
-      (FGUID <> GUID_TOKEN))then
-      FRootKey := StringReplace(FRootKey, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 
   if Assigned(FOnChange) then
     FOnChange(self);
@@ -457,22 +449,8 @@ begin
   FRootKeyForDefaults := IncludeTrailingPathDelimiter(aRootKeyForDefaults);
 
   FRootKeyForDefaults := ChangeTokenForKey(ttProject, FRootKeyForDefaults);
-  {if pos(PROJECT_TOKEN, FRootKeyForDefaults) > 0 then
-    if ((Trim(FProject) <> EmptyStr) and
-      (FProject <> PROJECT_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
-
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
-  {if pos(ORGANISATION_TOKEN, FRootKeyForDefaults) > 0 then
-    if ((Trim(FOrganisation) <> EmptyStr) and
-      (FOrganisation <> ORGANISATION_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
-
   FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
-  {if pos(GUID_TOKEN, FRootKeyForDefaults) > 0 then
-    if ((Trim(FGUID) <> EmptyStr) and
-      (FGUID <> GUID_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 
   if Assigned(FOnChange) then
     FOnChange(self);
@@ -583,16 +561,7 @@ begin
   FGUID := aGUID;
 
   FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
-  {if pos(GUID_TOKEN, FRootKey) > 0 then
-    if ((Trim(FGUID) <> EmptyStr) and
-      (FGUID <> GUID_TOKEN))then
-      FRootKey := StringReplace(FRootKey, GUID_TOKEN, FGUID, [rfReplaceAll]);}
-
   FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
-  {if pos(GUID_TOKEN, FRootKeyForDefaults) > 0 then
-    if ((Trim(FGUID) <> EmptyStr) and
-      (FGUID <> GUID_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 end;
 
 procedure TCustomRegistrySettings<_T>.SetProject(aProject: string);
@@ -600,16 +569,7 @@ begin
   FProject := aProject;
 
   FRootKey := ChangeTokenForKey(ttProject, FRootKey);
-  {if pos(PROJECT_TOKEN, FRootKey) > 0 then
-    if ((Trim(FProject) <> EmptyStr) and
-      (FProject <> PROJECT_TOKEN))then
-      FRootKey := StringReplace(FRootKey, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
-
   FRootKeyForDefaults := ChangeTokenForKey(ttProject, FRootKeyForDefaults);
-  {if pos(PROJECT_TOKEN, FRootKeyForDefaults) > 0 then
-    if ((Trim(FProject) <> EmptyStr) and
-      (FProject <> PROJECT_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
 end;
 
 procedure TCustomRegistrySettings<_T>.SetOrganisation(aOrganisation: string);
@@ -617,16 +577,7 @@ begin
   FOrganisation := aOrganisation;
 
   FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
-  {if pos(ORGANISATION_TOKEN, FRootKey) > 0 then
-    if ((Trim(FOrganisation) <> EmptyStr) and
-      (FOrganisation <> ORGANISATION_TOKEN))then
-      FRootKey := StringReplace(FRootKey, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
-
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
-  {if pos(ORGANISATION_TOKEN, FRootKeyForDefaults) > 0 then
-    if ((Trim(FOrganisation) <> EmptyStr) and
-      (FOrganisation <> ORGANISATION_TOKEN))then
-      FRootKeyForDefaults := StringReplace(FRootKeyForDefaults, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
 end;
 
 function TCustomRegistrySettings<_T>.GetNamePath: string;
@@ -639,6 +590,13 @@ begin
   FOwner := aOwner;
 end;
 
+{ TTestMethodPropertyEditor }
+
+function TTestMethodPropertyEditor.GetValue: ansistring;
+begin
+  Result:=inherited GetValue;
+end;
+
 function TCustomRegistrySource.GetRootKey: string;
 var
   root_key: string;
@@ -646,22 +604,8 @@ begin
   root_key := IncludeTrailingPathDelimiter(FRootKey);
 
   root_key := _ChangeTokenForKey(TokenTypeStr[ttProject], FProject, root_key);
-  {if pos(PROJECT_TOKEN, root_key) > 0 then
-    if ((Trim(FProject) <> EmptyStr) and
-      (FProject <> PROJECT_TOKEN))then
-      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
-
   root_key := _ChangeTokenForKey(TokenTypeStr[ttOrganisation], FOrganisation, root_key);
-  {if pos(ORGANISATION_TOKEN, root_key) > 0 then
-    if ((Trim(FOrganisation) <> EmptyStr) and
-      (FOrganisation <> ORGANISATION_TOKEN))then
-      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
-
   root_key := _ChangeTokenForKey(TokenTypeStr[ttGUID], FGUID, root_key);
-  {if pos(GUID_TOKEN, root_key) > 0 then
-    if ((Trim(FGUID) <> EmptyStr) and
-      (FGUID <> GUID_TOKEN))then
-      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 
   Result := root_key;
 end;
@@ -673,22 +617,8 @@ begin
   root_key := IncludeTrailingPathDelimiter(FRootKeyForDefaults);
 
   root_key := _ChangeTokenForKey(TokenTypeStr[ttProject], FProject, root_key);
-  {if pos(PROJECT_TOKEN, root_key) > 0 then
-    if ((Trim(FProject) <> EmptyStr) and
-      (FProject <> PROJECT_TOKEN))then
-      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
-
   root_key := _ChangeTokenForKey(TokenTypeStr[ttOrganisation], FOrganisation, root_key);
-  {if pos(ORGANISATION_TOKEN, root_key) > 0 then
-    if ((Trim(FOrganisation) <> EmptyStr) and
-      (FOrganisation <> ORGANISATION_TOKEN))then
-      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
-
   root_key := _ChangeTokenForKey(TokenTypeStr[ttGUID], FGUID, root_key);
-  {if pos(GUID_TOKEN, root_key) > 0 then
-    if ((Trim(FGUID) <> EmptyStr) and
-      (FGUID <> GUID_TOKEN))then
-      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 
   Result := root_key;
 end;
@@ -700,22 +630,8 @@ begin
   root_key := IncludeTrailingPathDelimiter(FRootKeyForCommon);
 
   root_key := _ChangeTokenForKey(TokenTypeStr[ttProject], FProject, root_key);
-  {if pos(PROJECT_TOKEN, root_key) > 0 then
-    if ((Trim(FProject) <> EmptyStr) and
-      (FProject <> PROJECT_TOKEN))then
-      root_key := StringReplace(root_key, PROJECT_TOKEN, FProject, [rfReplaceAll]);}
-
   root_key := _ChangeTokenForKey(TokenTypeStr[ttOrganisation], FOrganisation, root_key);
-  {if pos(ORGANISATION_TOKEN, root_key) > 0 then
-    if ((Trim(FOrganisation) <> EmptyStr) and
-      (FOrganisation <> ORGANISATION_TOKEN))then
-      root_key := StringReplace(root_key, ORGANISATION_TOKEN, FOrganisation, [rfReplaceAll]);}
-
   root_key := _ChangeTokenForKey(TokenTypeStr[ttGUID], FGUID, root_key);
-  {if pos(GUID_TOKEN, root_key) > 0 then
-    if ((Trim(FGUID) <> EmptyStr) and
-      (FGUID <> GUID_TOKEN))then
-      root_key := StringReplace(root_key, GUID_TOKEN, FGUID, [rfReplaceAll]);}
 
   Result := root_key;
 end;
