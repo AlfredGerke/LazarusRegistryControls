@@ -64,7 +64,10 @@ uses
 procedure Register;
 begin
   RegisterComponents('Registry Controls', [TRegEdit]);
-  RegisterPropertyEditor(TypeInfo(TCustomProperties), TRegistrySettingsStringDefault, 'RegistrySettings', TMethodProperty); //Make it TNotifyEvent so that the events appear on the Events tab!
+  RegisterPropertyEditor (TypeInfo (TNotifyEvent),
+    TCustomRegEdit,
+    'RegistrySettings',
+    TMethodProperty);
 end;
 
 procedure TCustomRegEdit.OnChangeSettings(aSender: TObject);

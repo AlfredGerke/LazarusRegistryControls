@@ -16,12 +16,15 @@ object Form1: TForm1
     Text = 'RegEdit1'
     RegistrySettings.RookKey = 'SOFTWARE\Software aus Erwitte\LAZ_TEST1\{672D2A10-A499-4A48-A7E6-F27B4EE50578}\'
     RegistrySettings.RootKeyForDefaults = 'SOFTWARE\Software aus Erwitte\LAZ_TEST1\DEFAULTS\{672D2A10-A499-4A48-A7E6-F27B4EE50578}\'
+    RegistrySettings.Section = 'Desktop'
+    RegistrySettings.Ident = 'FileDir'
     RegistrySettings.ReadDefaults = True
     RegistrySettings.WriteDefaults = False
     RegistrySettings.RootForDefaults = 'HKEY_LOCAL_MACHINE'
-    RegistrySettings.CanRead = False
+    RegistrySettings.CanRead = True
     RegistrySettings.CanWrite = False
     RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.Default = 'C:\'
     RegistrySource = RegistrySource1
   end
   object RegistrySource1: TRegistrySource
