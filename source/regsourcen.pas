@@ -22,24 +22,31 @@ const
 
 type
 
-  { TTestMethodPropertyEditor }
-
-  TTestMethodPropertyEditor = class(TMethodPropertyEditor)
+  { TRegistrySettingsPropertyEditor }
+  TRegistrySettingsPropertyEditor = class(TMethodPropertyEditor)
   public
-    function GetValue: ansistring; override;
+    function GetFormMethodName: shortstring; override;
   end;
 
   { TCustomProperties }
-
   TCustomProperties = class(TPersistent)
   private
+    FOwner: TPersistent;
   protected
+    function GetOwnerComponentState: TComponentState;
+
+    function GetOwner: TPersistent; override;
+    procedure SetOwner(aOwner: TPersistent); dynamic;
+    property Owner: TPersistent
+      read GetOwner;
+    function GetOwnerIsLoading: boolean;
+    property OwnerIsLoading: boolean
+      read GetOwnerIsLoading;
   public
-    constructor Create(aOwner: TObject); virtual; abstract;
+    constructor Create(aOwner: TPersistent); virtual; abstract;
   published
   end;
 
-  { TCustomRegistrySettings }
   TRegistrySettingString = string[255];
 
   TRegistrySettingKind = (rskUnknown, rskRootKey, rskRootKeyForDefault,
@@ -64,9 +71,9 @@ type
   TOnRegistrySettingsChange = procedure(aSettingInfo: TRegistrySettingValue;
                                         var aIsOk: boolean) of object;
 
+  { TCustomRegistrySettings }
   TCustomRegistrySettings<_T> = class(TCustomProperties)
   private
-    FOwner: TObject;
     //Basisschlüssel, z.B.: SOFTWARE\SOFTWARE AUS ERWITTE\%%PROJECT%%\
     FRootKey: string;
     //Basisschlüssel für Defaults, z.B.: SOFTWARE\SOFTWARE AUS ERWITTE\%%PROJECT%%\DEFAULTS\
@@ -119,9 +126,9 @@ type
       read FDefault
       write SetDefault;
   public
-    function GetNamePath: string; override;
-    constructor Create(aOwner: TObject); override;
+    constructor Create(aOwner: TPersistent); override;
 
+    property Owner;
     property GUID: string
       read FGUID
       write SetGUID;
@@ -171,28 +178,24 @@ type
   end;
 
   { TRegistrySettingsBooleanDefault }
-
   TRegistrySettingsBooleanDefault = class(TCustomRegistrySettings<boolean>)
   published
     property Default;
   end;
 
   { TRegistrySettingsIntegerDefault }
-
   TRegistrySettingsIntegerDefault = class(TCustomRegistrySettings<integer>)
   published
     property Default;
   end;
 
   { TRegistrySettingsStringDefault }
-
   TRegistrySettingsStringDefault = class(TCustomRegistrySettings<string>)
   published
     property Default;
   end;
 
   { TRegistrySettingsList }
-
   TRegistrySettingsList = class(TRegistrySettingsIntegerDefault)
   private
     FItemsByRegistry: boolean;
@@ -209,7 +212,6 @@ type
   end;
 
   { TCustomRegistrySource }
-
   TCustomRegistrySource = class(TComponent)
   private
     FRootKey: string;
@@ -326,7 +328,6 @@ type
   end;
 
   { TRegistrySource }
-
   TRegistrySource = class(TCustomRegistrySource)
   private
   protected
@@ -356,6 +357,10 @@ uses
 procedure Register;
 begin
   RegisterComponents('Registry Controls', [TRegistrySource]);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsStringDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsIntegerDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsBooleanDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
 end;
 
 function _ChangeTokenForKey(aToken: string;
@@ -368,6 +373,7 @@ begin
       result := StringReplace(aKey, aToken, aTokenValue, [rfReplaceAll]);
 end;
 
+{ TCustomRegistrySettings }
 function TCustomRegistrySettings<_T>.ChangeTokenForKey(aToken: TTokenType;
   aKey: string): string;
 var
@@ -398,6 +404,12 @@ var
 begin
   if Assigned(FOnBeforeRegistrySettingChange) then
   begin
+    if OwnerIsLoading then
+    begin
+      Result := False;
+      Exit;
+    end;
+
     setting_value.kind := aKind;
     case aKind of
       rskUnknown:
@@ -580,23 +592,79 @@ begin
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
 end;
 
-function TCustomRegistrySettings<_T>.GetNamePath: string;
+constructor TCustomRegistrySettings<_T>.Create(aOwner: TPersistent);
 begin
-  Result:= FOwner.ClassName;
+  SetOwner(aOwner);
 end;
 
-constructor TCustomRegistrySettings<_T>.Create(aOwner: TObject);
+{ TRegistrySettingsPropertyEditor }
+function TRegistrySettingsPropertyEditor.GetFormMethodName: shortstring;
+var
+  anz: Integer;
+  root: TPersistent;
 begin
-  FOwner := aOwner;
+  Result := EmptyStr;
+  if (PropertyHook.LookupRoot = nil) then
+    exit;
+  if (GetComponent(0) = PropertyHook.LookupRoot) then
+  begin
+    root := PropertyHook.LookupRoot;
+    if (root is TCustomForm) then
+      Result := 'Form'
+    else
+    if (root is TDataModule) then
+      Result := 'DataModule'
+    else
+    if (root is TFrame) then
+      Result := 'Frame'
+    else
+    begin
+      Result := ClassNameToComponentName(PropertyHook.GetRootClassName);
+    end;
+  end
+  else
+  begin
+    if (GetComponent(0) is TCustomProperties) then
+      Result := PropertyHook.GetObjectName(TCustomProperties(GetComponent(0)).Owner)
+    else
+      Result := PropertyHook.GetObjectName(GetComponent(0));
+
+    for anz := Length(Result) downto 1 do
+    if not ((Result[anz] in ['a'..'z', 'A'..'Z', '_']) or
+      (anz > 1) and (Result[anz] in ['0'..'9']))
+    then
+      System.Delete(Result, anz, 1);
+  end;
+  if (Result = EmptyStr) then
+    exit;
+  Result := Result + GetTrimmedEventName;
 end;
 
-{ TTestMethodPropertyEditor }
-
-function TTestMethodPropertyEditor.GetValue: ansistring;
+{ TCustomProperties }
+function TCustomProperties.GetOwnerComponentState: TComponentState;
 begin
-  Result:=inherited GetValue;
+  if Owner is TComponent then
+    Result := TComponent(Owner).ComponentState
+  else
+    Result := [];
 end;
 
+function TCustomProperties.GetOwner: TPersistent;
+begin
+  Result:= FOwner;
+end;
+
+procedure TCustomProperties.SetOwner(aOwner: TPersistent);
+begin
+  FOwner := aOwner;;
+end;
+
+function TCustomProperties.GetOwnerIsLoading: boolean;
+begin
+  Result := (csloading in GetOwnerComponentState);
+end;
+
+{ TCustomRegistrySource }
 function TCustomRegistrySource.GetRootKey: string;
 var
   root_key: string;

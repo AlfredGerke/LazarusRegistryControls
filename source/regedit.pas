@@ -15,11 +15,12 @@ const
   Write = False;
 
 type
+
+  { TCustomRegEdit }
   TCustomRegEdit = class(TEdit)
   private
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsStringDefault;
-    FRegSettingChange: TOnRegistrySettingsChange;
 
     procedure ReadWriteInfo(aRead: boolean);
   protected
@@ -33,9 +34,6 @@ type
     property RegistrySource: TRegistrySource
       read FRegistrySource
       write SetRegistrySource;
-    property OnRegSettingChange: TOnRegistrySettingsChange
-      read FRegSettingChange
-      write FRegSettingChange;
   public
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
@@ -45,9 +43,7 @@ type
   published
   end;
 
-
   { TRegEdit }
-
   TRegEdit = class(TCustomRegEdit)
   private
   protected
@@ -55,7 +51,6 @@ type
   published
     property RegistrySettings;
     property RegistrySource;
-    property OnRegSettingChange;
   end;
 
 procedure Register;
@@ -63,15 +58,14 @@ procedure Register;
 implementation
 
 uses
-  Forms,
-  PropEdits;
+  Forms, dialogs;
 
 procedure Register;
 begin
   RegisterComponents('Registry Controls', [TRegEdit]);
-  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsStringDefault, 'OnBeforeRegistrySettingChange', TTestMethodPropertyEditor);
 end;
 
+{ TCustomRegEdit }
 procedure TCustomRegEdit.OnChangeSettings(aSender: TObject);
 begin
   ReadFromReg;

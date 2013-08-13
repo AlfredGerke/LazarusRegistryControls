@@ -5,8 +5,8 @@ unit frmmain;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, regsourcen,
-  regedit;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Buttons, regsourcen, regedit;
 
 type
 
@@ -14,10 +14,15 @@ type
 
   TForm1 = class(TForm)
     RegEdit1: TRegEdit;
+    RegEdit2: TRegEdit;
     RegistrySource1: TRegistrySource;
-    procedure FormCreate(Sender: TObject);
-    procedure RegEdit1RegSettingChange(aSettingInfo: TRegistrySettingValue;
-      var aIsOk: boolean);
+    SpeedButton1: TSpeedButton;
+    procedure RegEdit1BeforeRegistrySettingChange(
+      aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
+    procedure RegEdit2BeforeRegistrySettingChange(
+      aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
+    procedure RegEdit2Enter(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
   private
     { private declarations }
   public
@@ -33,15 +38,26 @@ implementation
 
 { TForm1 }
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TForm1.RegEdit2Enter(Sender: TObject);
 begin
-
+  ShowMessage('Test');
 end;
 
-procedure TForm1.RegEdit1RegSettingChange(aSettingInfo: TRegistrySettingValue;
-  var aIsOk: boolean);
+procedure TForm1.SpeedButton1Click(Sender: TObject);
 begin
+  RegEdit1.RegistrySettings.Section:= 'Test';
+end;
 
+procedure TForm1.RegEdit1BeforeRegistrySettingChange(
+  aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
+begin
+  ShowMessage('test beforeregistrySetttingchang');
+end;
+
+procedure TForm1.RegEdit2BeforeRegistrySettingChange(
+  aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
+begin
+  ShowMessage('Test2');
 end;
 
 end.

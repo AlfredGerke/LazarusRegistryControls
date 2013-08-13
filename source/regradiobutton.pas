@@ -120,11 +120,14 @@ begin
   FRegistrySettings.RookKey := FRegistrySource.RootKey;
   FRegistrySettings.RootKeyForDefaults := FRegistrySource.RootKeyForDefaults;
   FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
-  FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
-  FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
   FRegistrySettings.Project:= FRegistrySource.Project;
   FRegistrySettings.Organisation := FRegistrySource.Organisation;
   FRegistrySettings.GUID := FRegistrySource.GUID;
+  if (csDesigning in ComponentState) then
+  begin
+    FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
+    FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
+  end;
 
   ReadFromReg;
 end;
