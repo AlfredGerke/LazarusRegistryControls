@@ -18,7 +18,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmmain"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="61"/>
@@ -262,6 +261,7 @@
       </Unit29>
       <Unit30>
         <Filename Value="..\package\registrycontrols.lrs"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
@@ -283,7 +283,7 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="28" HistoryIndex="27">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="frmmain.pas"/>
         <Caret Line="56" Column="7" TopLine="24"/>
@@ -396,6 +396,10 @@
         <Filename Value="frmmain.pas"/>
         <Caret Line="58" Column="1" TopLine="58"/>
       </Position28>
+      <Position29>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="94" Column="50" TopLine="61"/>
+      </Position29>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
