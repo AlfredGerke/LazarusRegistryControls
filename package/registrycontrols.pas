@@ -7,7 +7,9 @@ unit RegistryControls;
 interface
 
 uses
-  regcheckbox, regradiobutton, regradiogroup, regedit, LazarusPackageIntf;
+  regcheckbox, regradiobutton, regradiogroup, regedit, reglistbox, 
+  regcombobox, regcheckgroup, regchecklistbox, regvaluelisteditor, 
+  LazarusPackageIntf;
 
 implementation
 
@@ -17,6 +19,11 @@ begin
   RegisterUnit('regradiobutton', @regradiobutton.Register);
   RegisterUnit('regradiogroup', @regradiogroup.Register);
   RegisterUnit('regedit', @regedit.Register);
+  RegisterUnit('reglistbox', @reglistbox.Register);
+  RegisterUnit('regcombobox', @regcombobox.Register);
+  RegisterUnit('regcheckgroup', @regcheckgroup.Register);
+  RegisterUnit('regchecklistbox', @regchecklistbox.Register);
+  RegisterUnit('regvaluelisteditor', @regvaluelisteditor.Register);
 end;
 
 initialization

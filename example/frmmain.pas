@@ -6,58 +6,94 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Buttons, regsourcen, regedit;
+  Buttons, ExtCtrls, Menus, ActnList, regsourcen, regedit;
 
 type
 
-  { TForm1 }
+  { TMain }
 
-  TForm1 = class(TForm)
-    RegEdit1: TRegEdit;
-    RegEdit2: TRegEdit;
+  TMain = class(TForm)
+    acClose: TAction;
+    acCreateExampleSettings: TAction;
+    acCheckExampleSettings: TAction;
+    ActionList1: TActionList;
+    MainMenu1: TMainMenu;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    mnuExampleSettings: TMenuItem;
+    mnuClose: TMenuItem;
+    mnuFile: TMenuItem;
     RegistrySource1: TRegistrySource;
-    SpeedButton1: TSpeedButton;
-    procedure RegEdit1BeforeRegistrySettingChange(
-      aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
-    procedure RegEdit2BeforeRegistrySettingChange(
-      aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
-    procedure RegEdit2Enter(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
+    procedure acCheckExampleSettingsExecute(Sender: TObject);
+    procedure acCloseExecute(Sender: TObject);
+    procedure acCreateExampleSettingsExecute(Sender: TObject);
   private
-    { private declarations }
+    function CheckForExampleSettings: boolean;
+    procedure CreateSettings;
   public
-    { public declarations }
   end;
 
 var
-  Form1: TForm1;
+  Main: TMain;
 
 implementation
 
 {$R *.lfm}
 
-{ TForm1 }
+{ TMain }
 
-procedure TForm1.RegEdit2Enter(Sender: TObject);
+procedure TMain.acCloseExecute(Sender: TObject);
 begin
-  ShowMessage('Test');
+  Close;
 end;
 
-procedure TForm1.SpeedButton1Click(Sender: TObject);
+procedure TMain.acCheckExampleSettingsExecute(Sender: TObject);
 begin
-  RegEdit1.RegistrySettings.Section:= 'Test';
+  if CheckForExampleSettings then
+    MessageDlg('Der Schlüssel "Desktop" ist vorhanden und gefüllt. Beispieleinträge sind grundsätzlich vorhanden!', mtInformation, [mbOk], 0)
+  else
+  begin
+    MessageDlg('Der Schlüssel "Desktop" ist entweder nicht vorhanden oder nicht gefüllt. Beispieleinträge sind wahrscheinlich nicht vorhanden!', mtWarning, [mbOk], 0);
+    CreateSettings;
+  end;
 end;
 
-procedure TForm1.RegEdit1BeforeRegistrySettingChange(
-  aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
+procedure TMain.acCreateExampleSettingsExecute(Sender: TObject);
 begin
-  ShowMessage('test beforeregistrySetttingchang');
+  CreateSettings;
 end;
 
-procedure TForm1.RegEdit2BeforeRegistrySettingChange(
-  aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
+function TMain.CheckForExampleSettings: boolean;
+var
+  list: TStrings;
 begin
-  ShowMessage('Test2');
+  Result := False;
+  with RegistrySource1 do
+  begin
+    list := TStringList.Create;
+    try
+      ReadSection('Desktop', list);
+      Result := (list.count > 0);
+    finally
+      if Assigned(list) then
+        FreeAndNil(list);
+    end;
+  end;
+end;
+
+procedure TMain.CreateSettings;
+var
+  use_defaults: boolean;
+begin
+  if (MessageDlg('Sollen Beispieleinträge in der Registry erstellt werden? (Einträge werden im Root: HKEY_CURRENT_USER erstellt)', mtConfirmation, [mbYes, mbNo], 0) = mrYes) then
+  begin
+    use_defaults := (MessageDlg('Zu den Beispieleinträgen können Defaults vergeben werden. Sollen Defaults erstellt werden? (Defaults werden im Root: HKEY_LOCAL_MACHINE erstellt, Adminrechte eventuell notwendig!!!)', mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    with RegistrySource1 do
+    begin
+      WriteDefaults := use_defaults;
+      WriteString('Desktop', 'Version', '1.0.0');
+    end;
+  end;
 end;
 
 end.

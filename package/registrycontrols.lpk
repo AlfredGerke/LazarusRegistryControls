@@ -45,7 +45,7 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
     <Version Major="1" Build="1"/>
-    <Files Count="5">
+    <Files Count="10">
       <Item1>
         <Filename Value="registrycontrols.lrs"/>
         <Type Value="LRS"/>
@@ -70,6 +70,31 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="regedit"/>
       </Item5>
+      <Item6>
+        <Filename Value="..\source\reglistbox.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="reglistbox"/>
+      </Item6>
+      <Item7>
+        <Filename Value="..\source\regcombobox.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="regcombobox"/>
+      </Item7>
+      <Item8>
+        <Filename Value="..\source\regcheckgroup.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="regcheckgroup"/>
+      </Item8>
+      <Item9>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="regchecklistbox"/>
+      </Item9>
+      <Item10>
+        <Filename Value="..\source\regvaluelisteditor.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="regvaluelisteditor"/>
+      </Item10>
     </Files>
     <Type Value="RunAndDesignTime"/>
     <RequiredPkgs Count="2">
