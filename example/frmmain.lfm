@@ -4,11 +4,133 @@ object Main: TMain
   Top = 169
   Width = 818
   Caption = 'RegistryControls in Aktion'
+  ClientHeight = 504
+  ClientWidth = 818
   Menu = MainMenu1
   LCLVersion = '1.0.10.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 504
+    Top = 0
+    Width = 818
+    ActivePage = TabSheet1
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Einzelwerte'
+      ClientHeight = 478
+      ClientWidth = 810
+      object RegEdit1: TRegEdit
+        Left = 20
+        Height = 21
+        Top = 42
+        Width = 136
+        TabOrder = 0
+        Text = 'RegEdit1'
+        RegistrySettings.RookKey = 'SOFTWARE\ExampleFactory\RegistryControlExample\{7142DBAD-5BEA-4690-B64E-B17CA6553E81}\'
+        RegistrySettings.RootKeyForDefaults = 'SOFTWARE\ExampleFactory\RegistryControlExample\DEFAULTS\{7142DBAD-5BEA-4690-B64E-B17CA6553E81}\'
+        RegistrySettings.Section = 'Einzelwerte'
+        RegistrySettings.Ident = 'Edit'
+        RegistrySettings.ReadDefaults = False
+        RegistrySettings.WriteDefaults = False
+        RegistrySettings.RootForDefaults = 'HKEY_LOCAL_MACHINE'
+        RegistrySettings.CanRead = True
+        RegistrySettings.CanWrite = False
+        RegistrySettings.DoWriteAdHoc = False
+        RegistrySource = RegistrySource1
+      end
+      object RegCheckBox1: TRegCheckBox
+        Left = 20
+        Height = 17
+        Top = 74
+        Width = 92
+        Caption = 'RegCheckBox1'
+        TabOrder = 1
+        RegistrySettings.RookKey = 'SOFTWARE\ExampleFactory\RegistryControlExample\{7142DBAD-5BEA-4690-B64E-B17CA6553E81}\'
+        RegistrySettings.RootKeyForDefaults = 'SOFTWARE\ExampleFactory\RegistryControlExample\DEFAULTS\{7142DBAD-5BEA-4690-B64E-B17CA6553E81}\'
+        RegistrySettings.Section = 'Einzelwerte'
+        RegistrySettings.Ident = 'CheckBox1'
+        RegistrySettings.ReadDefaults = False
+        RegistrySettings.WriteDefaults = False
+        RegistrySettings.RootForDefaults = 'HKEY_LOCAL_MACHINE'
+        RegistrySettings.CanRead = True
+        RegistrySettings.CanWrite = False
+        RegistrySettings.DoWriteAdHoc = False
+        RegistrySettings.Default = False
+        RegistrySource = RegistrySource1
+      end
+      object RegCheckBox2: TRegCheckBox
+        Left = 20
+        Height = 17
+        Top = 98
+        Width = 92
+        Caption = 'RegCheckBox2'
+        TabOrder = 2
+        RegistrySettings.RookKey = 'SOFTWARE\ExampleFactory\RegistryControlExample\{7142DBAD-5BEA-4690-B64E-B17CA6553E81}\'
+        RegistrySettings.RootKeyForDefaults = 'SOFTWARE\ExampleFactory\RegistryControlExample\DEFAULTS\{7142DBAD-5BEA-4690-B64E-B17CA6553E81}\'
+        RegistrySettings.Section = 'Einzelwerte'
+        RegistrySettings.Ident = 'CheckBox2'
+        RegistrySettings.ReadDefaults = False
+        RegistrySettings.WriteDefaults = False
+        RegistrySettings.RootForDefaults = 'HKEY_LOCAL_MACHINE'
+        RegistrySettings.CanRead = True
+        RegistrySettings.CanWrite = False
+        RegistrySettings.DoWriteAdHoc = False
+        RegistrySettings.Default = False
+        RegistrySource = RegistrySource1
+      end
+      object RegRadioButton1: TRegRadioButton
+        Left = 20
+        Height = 17
+        Top = 122
+        Width = 104
+        Caption = 'RegRadioButton1'
+        TabOrder = 3
+        RegistrySettings.RookKey = 'SOFTWARE\ExampleFactory\RegistryControlExample\{7142DBAD-5BEA-4690-B64E-B17CA6553E81}\'
+        RegistrySettings.RootKeyForDefaults = 'SOFTWARE\ExampleFactory\RegistryControlExample\DEFAULTS\{7142DBAD-5BEA-4690-B64E-B17CA6553E81}\'
+        RegistrySettings.Section = 'Einzelwerte'
+        RegistrySettings.Ident = 'RadioButton1'
+        RegistrySettings.ReadDefaults = False
+        RegistrySettings.WriteDefaults = False
+        RegistrySettings.RootForDefaults = 'HKEY_LOCAL_MACHINE'
+        RegistrySettings.CanRead = True
+        RegistrySettings.CanWrite = False
+        RegistrySettings.DoWriteAdHoc = False
+        RegistrySettings.Default = False
+        RegistrySource = RegistrySource1
+      end
+      object RegRadioButton2: TRegRadioButton
+        Left = 20
+        Height = 17
+        Top = 146
+        Width = 104
+        Caption = 'RegRadioButton2'
+        TabOrder = 4
+        RegistrySettings.RookKey = 'SOFTWARE\ExampleFactory\RegistryControlExample\{7142DBAD-5BEA-4690-B64E-B17CA6553E81}\'
+        RegistrySettings.RootKeyForDefaults = 'SOFTWARE\ExampleFactory\RegistryControlExample\DEFAULTS\{7142DBAD-5BEA-4690-B64E-B17CA6553E81}\'
+        RegistrySettings.Section = 'Einzelwerte'
+        RegistrySettings.Ident = 'RadioButton2'
+        RegistrySettings.ReadDefaults = False
+        RegistrySettings.WriteDefaults = False
+        RegistrySettings.RootForDefaults = 'HKEY_LOCAL_MACHINE'
+        RegistrySettings.CanRead = True
+        RegistrySettings.CanWrite = False
+        RegistrySettings.DoWriteAdHoc = False
+        RegistrySettings.Default = False
+        RegistrySource = RegistrySource1
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Listen'
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Kombination'
+    end
+  end
   object MainMenu1: TMainMenu
-    left = 720
-    top = 400
+    left = 752
+    top = 136
     object mnuFile: TMenuItem
       Caption = 'Datei'
       object MenuItem2: TMenuItem
@@ -23,8 +145,8 @@ object Main: TMain
     end
   end
   object ActionList1: TActionList
-    left = 640
-    top = 400
+    left = 752
+    top = 72
     object acClose: TAction
       Category = 'General'
       Caption = 'Beenden'
@@ -51,7 +173,7 @@ object Main: TMain
     ReadDefaults = True
     WriteDefaults = False
     GUID = '{7142DBAD-5BEA-4690-B64E-B17CA6553E81}'
-    left = 720
-    top = 336
+    left = 752
+    top = 200
   end
 end

@@ -38,4 +38,7 @@ begin
   RegisterComponents('Registry Controls', [TRegCheckGroup]);
 end;
 
+initialization
+  {$I ..\package\registrycontrols.lrs}
+
 end.

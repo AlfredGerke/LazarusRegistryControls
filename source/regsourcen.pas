@@ -752,8 +752,8 @@ function TCustomRegistrySource.ReadString(aSection: string;
   aDefault: string): string;
 begin
   try
-    Result := ReadString(RootKey,
-                RootKeyForDefaults,
+    Result := ReadString(GetRootKey,
+                GetRootKeyForDefaults,
                 RootForDefaults,
                 aSection,
                 aIdent,
@@ -804,8 +804,8 @@ function TCustomRegistrySource.ReadInteger(aSection: string;
   aDefault: integer): integer;
 begin
   try
-    Result := ReadInteger(RootKey,
-                RootKeyForDefaults,
+    Result := ReadInteger(GetRootKey,
+                GetRootKeyForDefaults,
                 RootForDefaults,
                 aSection,
                 aIdent,
@@ -859,8 +859,8 @@ function TCustomRegistrySource.ReadBool(aSection: string;
   aDefault: boolean): boolean;
 begin
   try
-    Result := ReadBool(RootKey,
-                RootKeyForDefaults,
+    Result := ReadBool(GetRootKey,
+                GetRootKeyForDefaults,
                 RootForDefaults,
                 aSection,
                 aIdent,
@@ -909,8 +909,8 @@ procedure TCustomRegistrySource.ReadSection(aSection: string;
 begin
   try
     try
-      ReadSection(RootKey,
-        RootKeyForDefaults,
+      ReadSection(GetRootKey,
+        GetRootKeyForDefaults,
         RootForDefaults,
         aSection,
         aStrings,
@@ -958,8 +958,8 @@ procedure TCustomRegistrySource.WriteString(aSection: string;
   aDefault: string);
 begin
   try
-    WriteString(RootKey,
-      RootKeyForDefaults,
+    WriteString(GetRootKey,
+      GetRootKeyForDefaults,
       RootForDefaults,
       aSection,
       aIdent,
@@ -1006,8 +1006,8 @@ procedure TCustomRegistrySource.WriteInteger(aSection: string;
   aDefault: integer);
 begin
   try
-    WriteInteger(RootKey,
-      RootKeyForDefaults,
+    WriteInteger(GetRootKey,
+      GetRootKeyForDefaults,
       RootForDefaults,
       aSection,
       aIdent,
@@ -1056,8 +1056,8 @@ procedure TCustomRegistrySource.WriteBool(aSection: string;
   aDefault: boolean);
 begin
   try
-    WriteBool(RootKey,
-      RootKeyForDefaults,
+    WriteBool(GetRootKey,
+      GetRootKeyForDefaults,
       RootForDefaults,
       aSection,
       aIdent,

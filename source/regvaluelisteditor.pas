@@ -38,4 +38,7 @@ begin
   RegisterComponents('Registry Controls', [TRegValueListEditor]);
 end;
 
+initialization
+  {$I ..\package\registrycontrols.lrs}
+
 end.
