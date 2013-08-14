@@ -22,6 +22,7 @@ type
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsStringDefault;
 
+    procedure RefreshSettings;
     procedure ReadWriteInfo(aRead: boolean);
   protected
     procedure OnChangeSettings(aSender: TObject); virtual;
@@ -71,6 +72,31 @@ begin
   ReadFromReg;
 end;
 
+procedure TCustomRegEdit.RefreshSettings;
+begin
+  if Assigned(FRegistrySource) then
+  begin
+    FRegistrySettings.BeginUpdate;
+    try
+      FRegistrySettings.RookKey := FRegistrySource.RootKey;
+      FRegistrySettings.RootKeyForDefaults := FRegistrySource.RootKeyForDefaults;
+      FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
+      FRegistrySettings.Project:= FRegistrySource.Project;
+      FRegistrySettings.Organisation := FRegistrySource.Organisation;
+      FRegistrySettings.GUID := FRegistrySource.GUID;
+      if (csDesigning in ComponentState) then
+      begin
+        FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
+        FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
+      end;
+
+      ReadFromReg;
+    finally
+      FRegistrySettings.EndUpdate
+    end;
+  end;
+end;
+
 procedure TCustomRegEdit.ReadWriteInfo(aRead: boolean);
 begin
   if not (csDesigning in ComponentState) then
@@ -114,20 +140,19 @@ end;
 
 procedure TCustomRegEdit.SetRegistrySource(aRegistrySource: TRegistrySource);
 begin
-  FRegistrySource := aRegistrySource;
-  FRegistrySettings.RookKey := FRegistrySource.RootKey;
-  FRegistrySettings.RootKeyForDefaults := FRegistrySource.RootKeyForDefaults;
-  FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
-  FRegistrySettings.Project:= FRegistrySource.Project;
-  FRegistrySettings.Organisation := FRegistrySource.Organisation;
-  FRegistrySettings.GUID := FRegistrySource.GUID;
-  if (csDesigning in ComponentState) then
+  if (FRegistrySource <> aRegistrySource) then
   begin
-    FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
-    FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
+    FRegistrySource := aRegistrySource;
+    if Assigned(FRegistrySource) then
+    begin
+      FRegistrySource.RegisterControl(self);
+      RefreshSettings;
+    end
+    else
+    begin
+      FRegistrySource.UnRegisterControl(self);
+    end;
   end;
-
-  ReadFromReg;
 end;
 
 procedure TCustomRegEdit.Change;
@@ -148,6 +173,9 @@ end;
 
 destructor TCustomRegEdit.Destroy;
 begin
+  if Assigned(FRegistrySource) then
+    FRegistrySource.UnRegisterControl(self);
+
   if Assigned(FRegistrySettings) then
     FreeAndNil(FRegistrySettings);
 

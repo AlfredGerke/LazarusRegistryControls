@@ -19,6 +19,7 @@ type
     acCreateExampleSettings: TAction;
     acCheckExampleSettings: TAction;
     ActionList1: TActionList;
+    lblEditSingleValue: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -26,18 +27,22 @@ type
     mnuClose: TMenuItem;
     mnuFile: TMenuItem;
     PageControl1: TPageControl;
-    RegCheckBox1: TRegCheckBox;
-    RegCheckBox2: TRegCheckBox;
-    RegEdit1: TRegEdit;
+    pnlClient: TPanel;
+    pnlTop: TPanel;
+    rcbWriteAdHoc: TRegCheckBox;
+    rcbxCheckBox1: TRegCheckBox;
+    rcbxCheckBox2: TRegCheckBox;
+    redtEdit: TRegEdit;
     RegistrySource1: TRegistrySource;
-    RegRadioButton1: TRegRadioButton;
-    RegRadioButton2: TRegRadioButton;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
-    TabSheet3: TTabSheet;
+    rrbRadioButton1: TRegRadioButton;
+    rrbRadioButton2: TRegRadioButton;
+    tabSingleValue: TTabSheet;
+    tabList: TTabSheet;
+    tabKombination: TTabSheet;
     procedure acCheckExampleSettingsExecute(Sender: TObject);
     procedure acCloseExecute(Sender: TObject);
     procedure acCreateExampleSettingsExecute(Sender: TObject);
+    procedure rcbWriteAdHocChange(Sender: TObject);
   private
     function CheckForExampleSettings: boolean;
     procedure CreateSettings;
@@ -72,6 +77,18 @@ end;
 procedure TMain.acCreateExampleSettingsExecute(Sender: TObject);
 begin
   CreateSettings;
+end;
+
+procedure TMain.rcbWriteAdHocChange(Sender: TObject);
+begin
+  if rcbWriteAdHoc.Checked then
+  begin
+
+  end
+  else
+  begin
+
+  end;
 end;
 
 function TMain.CheckForExampleSettings: boolean;
@@ -109,6 +126,7 @@ begin
       WriteString('Desktop', 'Git', 'https://github.com/AlfredGerke/LazarusRegistryControls.git');
 
       // Einzelwerte an Controls übergeben
+      WriteBool('Einzelwerte', 'DoWriteAdHoc', False);
       WriteString('Einzelwerte', 'Edit', 'Test für Edit');
       WriteBool('Einzelwerte', 'CheckBox1', True);
       WriteBool('Einzelwerte', 'CheckBox2', False);

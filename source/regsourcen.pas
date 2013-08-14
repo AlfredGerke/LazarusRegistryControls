@@ -101,6 +101,7 @@ type
     FGUID: string;
     FOnChange: TNotifyEvent;
     FOnBeforeRegistrySettingChange: TOnRegistrySettingsChange;
+    FTriggerEvents: boolean;
 
     function ChangeTokenForKey(aToken: TTokenType;
                                aKey: string): string;
@@ -126,6 +127,8 @@ type
       read FDefault
       write SetDefault;
   public
+    procedure BeginUpdate;
+    procedure EndUpdate;
     constructor Create(aOwner: TPersistent); override;
 
     property Owner;
@@ -223,6 +226,7 @@ type
     FReadDefaults: boolean;
     FWriteDefaults: boolean;
     FGUID: string;
+    FOwners: TStrings;
   protected
     property RootKey: string
       read FRootKey
@@ -252,6 +256,8 @@ type
       read FGUID
       write FGUID;
   public
+    procedure RegisterControl(AControl: TWinControl);
+    procedure UnRegisterControl(AControl: TWinControl);
     function GetRootKey: string;
     function GetRootKeyForDefaults: string;
     function GetRootKeyForCommon: string;
@@ -324,6 +330,7 @@ type
                         aIdent: string;
                         aDefault: boolean); reintroduce; overload;
     constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
   published
   end;
 
@@ -448,7 +455,7 @@ begin
   FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
   FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
 
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
@@ -464,7 +471,7 @@ begin
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
   FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
 
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
@@ -475,7 +482,7 @@ begin
 
   FSection := aSection;
 
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
@@ -486,7 +493,7 @@ begin
 
   FIdent := aIdent;
 
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
@@ -497,7 +504,7 @@ begin
 
   FReadDefaults := aReadDefaults;
 
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
@@ -508,7 +515,7 @@ begin
 
   FWriteDefaults := aWriteDefaults;
 
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
@@ -520,7 +527,7 @@ begin
 
   FRootForDefaults := aRootForDefaults;
 
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
@@ -531,7 +538,7 @@ begin
 
   FCanRead := aCanRead;
 
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
@@ -542,7 +549,7 @@ begin
 
   FCanWrite := aCanWrite;
 
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
@@ -553,7 +560,7 @@ begin
 
   FDoWriteAdHoc := aDoWriteAdHoc;
 
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
@@ -564,7 +571,7 @@ begin
 
   FDefault := aDefault;
 
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
@@ -592,9 +599,20 @@ begin
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
 end;
 
+procedure TCustomRegistrySettings<_T>.BeginUpdate;
+begin
+  FTriggerEvents := False;
+end;
+
+procedure TCustomRegistrySettings<_T>.EndUpdate;
+begin
+  FTriggerEvents := True;
+end;
+
 constructor TCustomRegistrySettings<_T>.Create(aOwner: TPersistent);
 begin
   SetOwner(aOwner);
+  FTriggerEvents := True;
 end;
 
 { TRegistrySettingsPropertyEditor }
@@ -665,6 +683,34 @@ begin
 end;
 
 { TCustomRegistrySource }
+procedure TCustomRegistrySource.RegisterControl(AControl: TWinControl);
+var
+  index: integer;
+  name: string;
+begin
+  if (AControl.Owner is TWinControl) then
+  begin
+    name := AControl.Owner.Name;
+    index := FOwners.IndexOf(name);
+    if (index = -1) then
+      FOwners.AddObject(name, TWinControl(AControl.Owner));
+  end;
+end;
+
+procedure TCustomRegistrySource.UnRegisterControl(AControl: TWinControl);
+var
+  index: integer;
+  name: string;
+begin
+  if (AControl.Owner is TWinControl) then
+  begin
+    name := AControl.Owner.Name;
+    index := FOwners.IndexOf(name);
+    if (index <> -1) then
+      FOwners.Delete(index);
+  end;
+end;
+
 function TCustomRegistrySource.GetRootKey: string;
 var
   root_key: string;
@@ -711,6 +757,16 @@ begin
   FReadDefaults := False;
   FWriteDefaults := False;
   FGUID := EmptyStr;
+
+  FOwners := TStringList.Create;
+end;
+
+destructor TCustomRegistrySource.Destroy;
+begin
+  if Assigned(FOwners) then
+    FreeAndNil(FOwners);
+
+  inherited Destroy;
 end;
 
 function TCustomRegistrySource.ReadString(aRootKey: string;

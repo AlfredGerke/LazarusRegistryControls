@@ -119,19 +119,27 @@ end;
 procedure TCustomRegCheckBox.SetRegistrySource(aRegistrySource: TRegistrySource);
 begin
   FRegistrySource := aRegistrySource;
-  FRegistrySettings.RookKey := FRegistrySource.RootKey;
-  FRegistrySettings.RootKeyForDefaults := FRegistrySource.RootKeyForDefaults;
-  FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
-  FRegistrySettings.Project:= FRegistrySource.Project;
-  FRegistrySettings.Organisation := FRegistrySource.Organisation;
-  FRegistrySettings.GUID := FRegistrySource.GUID;
-  if (csDesigning in ComponentState) then
+  if Assigned(FRegistrySource) then
   begin
-    FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
-    FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
-  end;
+    FRegistrySettings.BeginUpdate;
+    try
+      FRegistrySettings.RookKey := FRegistrySource.RootKey;
+      FRegistrySettings.RootKeyForDefaults := FRegistrySource.RootKeyForDefaults;
+      FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
+      FRegistrySettings.Project:= FRegistrySource.Project;
+      FRegistrySettings.Organisation := FRegistrySource.Organisation;
+      FRegistrySettings.GUID := FRegistrySource.GUID;
+      if (csDesigning in ComponentState) then
+      begin
+        FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
+        FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
+      end;
 
-  ReadFromReg;
+      ReadFromReg;
+    finally
+      FRegistrySettings.EndUpdate
+    end;
+  end;
 end;
 
 procedure TCustomRegCheckBox.Click;
