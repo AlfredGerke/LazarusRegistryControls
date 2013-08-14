@@ -8,14 +8,12 @@ uses
   Controls,
   StdCtrls,
   regsourcen,
+  regconst,
+  regmsg,
+  LMessages,
   LResources;
 
-const
-  Read = True;
-  Write = False;
-
 type
-
   { TCustomRegEdit }
   TCustomRegEdit = class(TEdit)
   private
@@ -25,6 +23,7 @@ type
     procedure RefreshSettings;
     procedure ReadWriteInfo(aRead: boolean);
   protected
+    procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
     procedure OnChangeSettings(aSender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource);
     procedure Change; override;
@@ -138,19 +137,23 @@ begin
   end;
 end;
 
+procedure TCustomRegEdit.RefreshData(var aMessage: TLMessage);
+begin
+  aMessage.Result := LongInt(ReadFromReg);
+end;
+
 procedure TCustomRegEdit.SetRegistrySource(aRegistrySource: TRegistrySource);
 begin
   if (FRegistrySource <> aRegistrySource) then
   begin
+    if Assigned(FRegistrySource) then
+      FRegistrySource.UnRegisterControl(self);
+
     FRegistrySource := aRegistrySource;
     if Assigned(FRegistrySource) then
     begin
       FRegistrySource.RegisterControl(self);
       RefreshSettings;
-    end
-    else
-    begin
-      FRegistrySource.UnRegisterControl(self);
     end;
   end;
 end;

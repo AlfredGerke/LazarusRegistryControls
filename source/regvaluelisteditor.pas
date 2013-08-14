@@ -12,7 +12,10 @@ uses
   Controls,
   Graphics,
   Dialogs,
-  ValEdit;
+  ValEdit,
+  regconst,
+  LMessages,
+  regmsg;
 
 type
   TCustomRegValueListEditor = class(TValueListEditor)

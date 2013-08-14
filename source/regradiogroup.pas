@@ -8,13 +8,14 @@ uses
   Controls,
   ExtCtrls,
   regsourcen,
-  LResources;
-
-const
-  Read = True;
-  Write = False;
+  LResources,
+  regconst,
+  LMessages,
+  regmsg;
 
 type
+
+  { TCustomRegRadioGroup }
 
   TCustomRegRadioGroup = class(TRadioGroup)
   private
@@ -22,9 +23,11 @@ type
     FRegistrySettings: TRegistrySettingsList;
     FIsModified: boolean;
 
+    procedure RefreshSettings;
     procedure ReadWriteInfo(aRead: boolean);
     function GetItemsByRegistry: boolean;
   protected
+    procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
     procedure OnChangeSettings(aSender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
     procedure Click; override;
@@ -74,6 +77,31 @@ end;
 procedure TCustomRegRadioGroup.OnChangeSettings(aSender: TObject);
 begin
   ReadFromReg;
+end;
+
+procedure TCustomRegRadioGroup.RefreshSettings;
+begin
+  if Assigned(FRegistrySource) then
+  begin
+    FRegistrySettings.BeginUpdate;
+    try
+      FRegistrySettings.RookKey := FRegistrySource.RootKey;
+      FRegistrySettings.RootKeyForDefaults := FRegistrySource.RootKeyForDefaults;
+      FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
+      FRegistrySettings.Project:= FRegistrySource.Project;
+      FRegistrySettings.Organisation := FRegistrySource.Organisation;
+      FRegistrySettings.GUID := FRegistrySource.GUID;
+      if (csDesigning in ComponentState) then
+      begin
+        FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
+        FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
+      end;
+
+      ReadFromReg;
+    finally
+      FRegistrySettings.EndUpdate
+    end;
+  end;
 end;
 
 procedure TCustomRegRadioGroup.ReadWriteInfo(aRead: boolean);
@@ -175,28 +203,23 @@ begin
   end;
 end;
 
+procedure TCustomRegRadioGroup.RefreshData(var aMessage: TLMessage);
+begin
+  aMessage.Result := LongInt(ReadFromReg);
+end;
+
 procedure TCustomRegRadioGroup.SetRegistrySource(aRegistrySource: TRegistrySource);
 begin
-  FRegistrySource := aRegistrySource;
-  if Assigned(FRegistrySource) then
+  if (FRegistrySource <> aRegistrySource) then
   begin
-    FRegistrySettings.BeginUpdate;
-    try
-      FRegistrySettings.RookKey := FRegistrySource.RootKey;
-      FRegistrySettings.RootKeyForDefaults := FRegistrySource.RootKeyForDefaults;
-      FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
-      FRegistrySettings.Project:= FRegistrySource.Project;
-      FRegistrySettings.Organisation := FRegistrySource.Organisation;
-      FRegistrySettings.GUID := FRegistrySource.GUID;
-      if (csDesigning in ComponentState) then
-      begin
-        FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
-        FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
-      end;
+    if Assigned(FRegistrySource) then
+      FRegistrySource.UnRegisterControl(self);
 
-      ReadFromReg;
-    finally
-      FRegistrySettings.EndUpdate
+    FRegistrySource := aRegistrySource;
+    if Assigned(FRegistrySource) then
+    begin
+      FRegistrySource.RegisterControl(self);
+      RefreshSettings;
     end;
   end;
 end;
@@ -222,6 +245,9 @@ end;
 
 destructor TCustomRegRadioGroup.Destroy;
 begin
+  if Assigned(FRegistrySource) then
+    FRegistrySource.UnRegisterControl(self);
+
   if Assigned(FRegistrySettings) then
     FreeAndNil(FRegistrySettings);
 

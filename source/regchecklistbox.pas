@@ -12,7 +12,10 @@ uses
   Controls,
   Graphics,
   Dialogs,
-  CheckLst;
+  CheckLst,
+  regconst,
+  LMessages,
+  regmsg;
 
 type
   TCustomRegCheckListBox = class(TCheckListBox)

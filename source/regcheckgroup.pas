@@ -12,7 +12,10 @@ uses
   Controls,
   Graphics,
   Dialogs,
-  ExtCtrls;
+  ExtCtrls,
+  regconst,
+  LMessages,
+  regmsg;
 
 type
   TCustomRegCheckGroup = class(TCheckGroup)

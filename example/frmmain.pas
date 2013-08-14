@@ -19,6 +19,7 @@ type
     acCreateExampleSettings: TAction;
     acCheckExampleSettings: TAction;
     ActionList1: TActionList;
+    btnRefreshControls: TButton;
     lblEditSingleValue: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
@@ -42,6 +43,7 @@ type
     procedure acCheckExampleSettingsExecute(Sender: TObject);
     procedure acCloseExecute(Sender: TObject);
     procedure acCreateExampleSettingsExecute(Sender: TObject);
+    procedure btnRefreshControlsClick(Sender: TObject);
     procedure rcbWriteAdHocChange(Sender: TObject);
   private
     function CheckForExampleSettings: boolean;
@@ -77,6 +79,11 @@ end;
 procedure TMain.acCreateExampleSettingsExecute(Sender: TObject);
 begin
   CreateSettings;
+end;
+
+procedure TMain.btnRefreshControlsClick(Sender: TObject);
+begin
+  RegistrySource1.RefreshControlData;
 end;
 
 procedure TMain.rcbWriteAdHocChange(Sender: TObject);

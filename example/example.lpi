@@ -41,7 +41,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="2">
       <Unit0>
         <Filename Value="example.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -55,11 +55,6 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmmain"/>
       </Unit1>
-      <Unit2>
-        <Filename Value="..\source\regconst.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="regconst"/>
-      </Unit2>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

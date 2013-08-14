@@ -12,7 +12,10 @@ uses
   Controls,
   Graphics,
   Dialogs,
-  StdCtrls;
+  StdCtrls,
+  regconst,
+  LMessages,
+  regmsg;
 
 type
   TCustomRegComboBox = class(TComboBox)

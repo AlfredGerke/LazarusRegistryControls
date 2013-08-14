@@ -12,13 +12,8 @@ uses
   Forms,
   Dialogs,
   LResources,
-  PropEdits;
-
-type
-  TTokenType = (ttUnknown, ttProject, ttOrganisation, ttGUID);
-
-const
-  TokenTypeStr : array[TTokenType] of string = ('unknown', '%%PROJECT%%', '%%ORGANISATION%%', '%%GUID%%');
+  PropEdits,
+  regconst;
 
 type
 
@@ -226,7 +221,10 @@ type
     FReadDefaults: boolean;
     FWriteDefaults: boolean;
     FGUID: string;
-    FOwners: TStrings;
+    FClientList: TStrings;
+
+    procedure DeliverMessage(aMessageConst: cardinal;
+                             aClientName: string = '');
   protected
     property RootKey: string
       read FRootKey
@@ -256,8 +254,10 @@ type
       read FGUID
       write FGUID;
   public
-    procedure RegisterControl(AControl: TWinControl);
-    procedure UnRegisterControl(AControl: TWinControl);
+    procedure RefreshSettings(AClientName: string = '');
+    procedure RefreshControlData(AClientName: string = '');
+    procedure RegisterControl(AControl: TComponent);
+    procedure UnRegisterControl(AControl: TComponent);
     function GetRootKey: string;
     function GetRootKeyForDefaults: string;
     function GetRootKeyForCommon: string;
@@ -359,7 +359,9 @@ procedure Register;
 implementation
 
 uses
-  regutils;
+  regutils,
+  regmsg,
+  LMessages;
 
 procedure Register;
 begin
@@ -682,32 +684,65 @@ begin
   Result := (csloading in GetOwnerComponentState);
 end;
 
-{ TCustomRegistrySource }
-procedure TCustomRegistrySource.RegisterControl(AControl: TWinControl);
+procedure TCustomRegistrySource.DeliverMessage(aMessageConst: cardinal;
+  aClientName: string = '');
 var
-  index: integer;
-  name: string;
+  anz: integer;
+  msg: TLMessage;
 begin
-  if (AControl.Owner is TWinControl) then
+  FillChar(msg, SizeOf(msg), #0);
+  msg.Msg := aMessageConst;
+
+  for anz := 0 to FClientList.count-1 do
   begin
-    name := AControl.Owner.Name;
-    index := FOwners.IndexOf(name);
-    if (index = -1) then
-      FOwners.AddObject(name, TWinControl(AControl.Owner));
+    if Assigned(FClientList.Objects[anz]) then
+      if FClientList.Objects[anz] is TWinControl then
+      begin
+        if (AClientName = EmptyStr) then
+          TComponent(FClientList.Objects[anz]).Dispatch(msg)
+        else
+          if (LowerCase(AClientName) = LowerCase(TComponent(FClientList.Objects[anz]).Name)) then
+            TComponent(FClientList.Objects[anz]).Dispatch(msg);
+      end;
   end;
 end;
 
-procedure TCustomRegistrySource.UnRegisterControl(AControl: TWinControl);
+procedure TCustomRegistrySource.RefreshSettings(AClientName: string = '');
+begin
+  DeliverMessage(LM_REGISTRY_CONTROL_REFRESH_SETTINGS, AClientName);
+end;
+
+{ TCustomRegistrySource }
+procedure TCustomRegistrySource.RefreshControlData(AClientName: string = '');
+begin
+  DeliverMessage(LM_REGISTRY_CONTROL_REFRESH_DATA, AClientName);
+end;
+
+procedure TCustomRegistrySource.RegisterControl(AControl: TComponent);
 var
   index: integer;
   name: string;
 begin
-  if (AControl.Owner is TWinControl) then
+  if Assigned(FClientList) then
   begin
-    name := AControl.Owner.Name;
-    index := FOwners.IndexOf(name);
+    name := AControl.Name;
+    index := FClientList.IndexOf(name);
+    if (index = -1) then
+      FClientList.AddObject(name, AControl);
+  end;
+end;
+
+procedure TCustomRegistrySource.UnRegisterControl(AControl: TComponent);
+var
+  index: integer;
+  name: string;
+begin
+  if Assigned(FClientList) then
+  begin
+    name := AControl.Name;
+    index := FClientList.IndexOf(name);
     if (index <> -1) then
-      FOwners.Delete(index);
+      FClientList.Delete(index);
   end;
 end;
 
@@ -758,13 +793,13 @@ begin
   FWriteDefaults := False;
   FGUID := EmptyStr;
 
-  FOwners := TStringList.Create;
+  FClientList := TStringList.Create;
 end;
 
 destructor TCustomRegistrySource.Destroy;
 begin
-  if Assigned(FOwners) then
-    FreeAndNil(FOwners);
+  if Assigned(FClientList) then
+    FreeAndNil(FClientList);
 
   inherited Destroy;
 end;

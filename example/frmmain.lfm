@@ -1,7 +1,7 @@
 object Main: TMain
-  Left = 599
+  Left = 595
   Height = 523
-  Top = 169
+  Top = 256
   Width = 818
   Caption = 'RegistryControls in Aktion'
   ClientHeight = 504
@@ -27,7 +27,6 @@ object Main: TMain
         Top = 44
         Width = 810
         Align = alClient
-        Caption = 'pnlClient'
         ClientHeight = 434
         ClientWidth = 810
         TabOrder = 0
@@ -167,6 +166,15 @@ object Main: TMain
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.Default = False
           RegistrySource = RegistrySource1
+        end
+        object btnRefreshControls: TButton
+          Left = 260
+          Height = 25
+          Top = 10
+          Width = 160
+          Caption = 'Steuerelemente aktualisieren'
+          OnClick = btnRefreshControlsClick
+          TabOrder = 1
         end
       end
     end
