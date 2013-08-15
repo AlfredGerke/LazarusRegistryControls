@@ -12,7 +12,6 @@ uses
   Forms,
   Dialogs,
   LResources,
-  PropEdits,
   regconst,
   regtype,
   regpropedits;
@@ -76,7 +75,8 @@ type
     procedure OnSyncData(aGroupIndex: Cardinal);
     procedure DeliverMessage(aMessageConst: cardinal;
                              aClientName: string = '';
-                             AGroupIndex: cardinal = 0);
+                             aGroupIndex: cardinal = 0;
+                             aWParam: integer = 0);
   protected
     property RootKey: string
       read FRootKey
@@ -109,11 +109,19 @@ type
       read FDoSyncData
       write FDoSyncData;
   public
-    procedure RefreshSettings(AClientName: string = '');
-    procedure RefreshControlData(AClientName: string = '';
-                                 AGroupIndex: cardinal = 0);
-    procedure RegisterControl(AControl: TComponent);
-    procedure UnRegisterControl(AControl: TComponent);
+    procedure FreeRegistrySource(aClientName: string = '';
+                                 aGroupIndex: cardinal = 0);
+    procedure RefreshWriteAdHocProperty(aDoWriteAdHoc : boolean = True;
+                                        aClientName: string = '';
+                                        aGroupIndex: cardinal = 0);
+    procedure RefreshSyncProperty(aDoSync : boolean = True;
+                                  aClientName: string = '';
+                                  aGroupIndex: cardinal = 0);
+    procedure RefreshSettings(aClientName: string = '');
+    procedure RefreshControlData(aClientName: string = '';
+                                 aGroupIndex: cardinal = 0);
+    procedure RegisterControl(aControl: TComponent);
+    procedure UnRegisterControl(aControl: TComponent);
     function GetRootKey: string;
     function GetRootKeyForDefaults: string;
     function GetRootKeyForCommon: string;
@@ -222,11 +230,14 @@ implementation
 uses
   regutils,
   regmsg,
-  LMessages;
+  LMessages,
+  PropEdits,
+  ComponentEditors;
 
 procedure Register;
 begin
   RegisterComponents('Registry Controls', [TRegistrySource]);
+  RegisterComponentEditor(TRegistrySource, TRegistrySourceComponentEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsStringDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsIntegerDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsBooleanDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
@@ -242,7 +253,8 @@ end;
 
 procedure TCustomRegistrySource.DeliverMessage(aMessageConst: cardinal;
   aClientName: string = '';
-  AGroupIndex: cardinal = 0);
+  aGroupIndex: cardinal = 0;
+  aWParam: integer = 0);
 var
   anz: integer;
   msg: TLMessage;
@@ -250,10 +262,11 @@ begin
   FillChar(msg, SizeOf(msg), #0);
   msg.Msg := aMessageConst;
   msg.lParam:=AGroupIndex;
-  for anz := 0 to FClientList.count-1 do
+  msg.wParam:=aWParam;
+  for anz := FClientList.count-1 downto 0 do
   begin
     if Assigned(FClientList.Objects[anz]) then
-      if FClientList.Objects[anz] is TWinControl then
+      if FClientList.Objects[anz] is TComponent then
       begin
         if (AClientName = EmptyStr) then
           TComponent(FClientList.Objects[anz]).Dispatch(msg)
@@ -264,18 +277,52 @@ begin
   end;
 end;
 
-procedure TCustomRegistrySource.RefreshSettings(AClientName: string = '');
+procedure TCustomRegistrySource.FreeRegistrySource(aClientName: string = '';
+  aGroupIndex: cardinal = 0);
 begin
-  DeliverMessage(LM_REGISTRY_CONTROL_REFRESH_SETTINGS, AClientName);
+  DeliverMessage(LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE, aClientName, aGroupIndex);
 end;
 
-procedure TCustomRegistrySource.RefreshControlData(AClientName: string = '';
-  AGroupIndex: cardinal = 0);
+procedure TCustomRegistrySource.RefreshWriteAdHocProperty(aDoWriteAdHoc: boolean = True;
+  aClientName: string = '';
+  aGroupIndex: cardinal = 0);
+var
+  w_param: integer;
 begin
-  DeliverMessage(LM_REGISTRY_CONTROL_REFRESH_DATA, AClientName, AGroupIndex);
+  if aDoWriteAdHoc then
+    w_param := 1
+  else
+    w_param := 0;
+
+  DeliverMessage(LM_REGISTRY_CONTROL_SET_WRITEADHOC, aClientName, aGroupIndex, w_param);
 end;
 
-procedure TCustomRegistrySource.RegisterControl(AControl: TComponent);
+procedure TCustomRegistrySource.RefreshSyncProperty(aDoSync: boolean = True;
+  aClientName: string = '';
+  aGroupIndex: cardinal = 0);
+var
+  w_param: integer;
+begin
+  if aDoSync then
+    w_param := 1
+  else
+    w_param := 0;
+
+  DeliverMessage(LM_REGISTRY_CONTROL_SET_SYNC, aClientName, aGroupIndex, w_param);
+end;
+
+procedure TCustomRegistrySource.RefreshSettings(aClientName: string = '');
+begin
+  DeliverMessage(LM_REGISTRY_CONTROL_REFRESH_SETTINGS, aClientName);
+end;
+
+procedure TCustomRegistrySource.RefreshControlData(aClientName: string = '';
+  aGroupIndex: cardinal = 0);
+begin
+  DeliverMessage(LM_REGISTRY_CONTROL_REFRESH_DATA, aClientName, aGroupIndex);
+end;
+
+procedure TCustomRegistrySource.RegisterControl(aControl: TComponent);
 var
   index: integer;
   name: string;
@@ -289,7 +336,7 @@ begin
   end;
 end;
 
-procedure TCustomRegistrySource.UnRegisterControl(AControl: TComponent);
+procedure TCustomRegistrySource.UnRegisterControl(aControl: TComponent);
 var
   index: integer;
   name: string;
@@ -356,6 +403,8 @@ end;
 
 destructor TCustomRegistrySource.Destroy;
 begin
+  FreeRegistrySource;
+
   if Assigned(FClientList) then
     FreeAndNil(FClientList);
 

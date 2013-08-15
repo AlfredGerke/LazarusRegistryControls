@@ -122,6 +122,23 @@ type
     constructor Create(aOwner: TPersistent); override;
 
     property Owner;
+
+    property RookKey: string
+      read FRootKey
+      write SetRootKey;
+    property RootKeyForDefaults: string
+      read FRootKeyForDefaults
+      write SetRootKeyForDefaults;
+    property ReadDefaults: boolean
+      read FReadDefaults
+      write SetReadDefaults;
+    property WriteDefaults: boolean
+      read FWriteDefaults
+      write SetWriteDefaults;
+    property RootForDefaults: string
+      read FRootForDefaults
+      write SetRootForDefaults;
+
     property GUID: string
       read FGUID
       write SetGUID;
@@ -135,27 +152,12 @@ type
       read FOnChange
       write FOnChange;
   published
-    property RookKey: string
-      read FRootKey
-      write SetRootKey;
-    property RootKeyForDefaults: string
-      read FRootKeyForDefaults
-      write SetRootKeyForDefaults;
     property Section: string
       read FSection
       write SetSection;
     property Ident: string
       read FIdent
       write SetIdent;
-    property ReadDefaults: boolean
-      read FReadDefaults
-      write SetReadDefaults;
-    property WriteDefaults: boolean
-      read FWriteDefaults
-      write SetWriteDefaults;
-    property RootForDefaults: string
-      read FRootForDefaults
-      write SetRootForDefaults;
     property CanRead: boolean
       read FCanRead
       write SetCanRead;

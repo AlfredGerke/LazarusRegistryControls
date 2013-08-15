@@ -34,8 +34,8 @@ type
     rcbWriteAdHoc: TRegCheckBox;
     rcbxCheckBox1: TRegCheckBox;
     rcbxCheckBox2: TRegCheckBox;
-    redtEdit: TRegEdit;
     redtControlName: TRegEdit;
+    redtEdit: TRegEdit;
     RegistrySource1: TRegistrySource;
     rgrpRadiaGroup1: TRegRadioGroup;
     rrbRadioButton1: TRegRadioButton;

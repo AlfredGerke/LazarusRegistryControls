@@ -26,6 +26,9 @@ type
     function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
   protected
+    procedure FreeRegistrySource(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE;
+    procedure RefreshWriteAdHoc(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_WRITEADHOC;
+    procedure RefreshSync(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_SYNC;
     procedure RefreshSettings(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
     procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
     procedure OnChangeSettings(aSender: TObject); virtual;
@@ -66,11 +69,14 @@ procedure Register;
 implementation
 
 uses
-  Forms;
+  Forms,
+  regpropedits,
+  ComponentEditors;
 
 procedure Register;
 begin
   RegisterComponents('Registry Controls', [TRegRadioButton]);
+  RegisterComponentEditor(TRegRadioButton, TRegistryControlComponentEditor);
 end;
 
 { TCustomRegRadioButton }
@@ -94,11 +100,8 @@ begin
       FRegistrySettings.Project:= FRegistrySource.Project;
       FRegistrySettings.Organisation := FRegistrySource.Organisation;
       FRegistrySettings.GUID := FRegistrySource.GUID;
-      if (csDesigning in ComponentState) then
-      begin
-        FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
-        FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
-      end;
+      FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
+      FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
 
       Result := ReadFromReg;
     finally
@@ -146,7 +149,8 @@ begin
                   FRegistrySettings.Section,
                   FRegistrySettings.Ident,
                   Checked,
-                  FRegistrySettings.WriteDefaults);
+                  FRegistrySettings.WriteDefaults,
+                  FRegistrySettings.GroupIndex);
               finally
                 FRegistrySettings.DoSyncData := sync_state_by_default;
               end;
@@ -156,6 +160,51 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TCustomRegRadioButton.FreeRegistrySource(var aMessage: TLMessage);
+begin
+  if Assigned(FRegistrySource) then
+    FRegistrySource.UnRegisterControl(self);
+  FRegistrySource := nil;
+end;
+
+procedure TCustomRegRadioButton.RefreshWriteAdHoc(var aMessage: TLMessage);
+var
+  group_index: cardinal;
+  do_writeadhoc_flag: integer;
+  do_writeadhoc: boolean;
+begin
+  group_index := aMessage.lParam;
+  do_writeadhoc_flag := aMessage.wParam;
+  do_writeadhoc := (do_writeadhoc_flag = 1);
+
+  if (group_index > 0) then
+  begin
+    if (group_index = FRegistrySettings.GroupIndex) then
+      FRegistrySettings.DoWriteAdHoc := do_writeadhoc
+  end
+  else
+    FRegistrySettings.DoWriteAdHoc := do_writeadhoc;
+end;
+
+procedure TCustomRegRadioButton.RefreshSync(var aMessage: TLMessage);
+var
+  group_index: cardinal;
+  do_sync_flag: integer;
+  do_sync: boolean;
+begin
+  group_index := aMessage.lParam;
+  do_sync_flag := aMessage.wParam;
+  do_sync := (do_sync_flag = 1);
+
+  if (group_index > 0) then
+  begin
+    if (group_index = FRegistrySettings.GroupIndex) then
+      FRegistrySettings.DoSyncData := do_sync
+  end
+  else
+    FRegistrySettings.DoSyncData := do_sync;
 end;
 
 procedure TCustomRegRadioButton.RefreshSettings(var aMessage: TLMessage);
