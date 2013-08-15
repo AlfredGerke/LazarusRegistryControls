@@ -23,13 +23,17 @@ type
     FRegistrySettings: TRegistrySettingsList;
     FIsModified: boolean;
 
-    procedure RefreshSettings;
+    function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
     function GetItemsByRegistry: boolean;
   protected
+    procedure RefreshSettings(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
     procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
     procedure OnChangeSettings(aSender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
+    // wird zu oft getriggert
+    procedure CheckItemIndexChanged; override;
+    // wird nicht getirggert
     procedure Click; override;
 
     property RegistrySettings: TRegistrySettingsList
@@ -74,13 +78,17 @@ begin
   RegisterComponents('Registry Controls', [TRegRadioGroup]);
 end;
 
+{ TCustomRegRadioGroup }
+
 procedure TCustomRegRadioGroup.OnChangeSettings(aSender: TObject);
 begin
   ReadFromReg;
 end;
 
-procedure TCustomRegRadioGroup.RefreshSettings;
+function TCustomRegRadioGroup.RefreshRegistrySettings: boolean;
 begin
+  Result := False;
+
   if Assigned(FRegistrySource) then
   begin
     FRegistrySettings.BeginUpdate;
@@ -97,7 +105,7 @@ begin
         FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
       end;
 
-      ReadFromReg;
+      Result := ReadFromReg;
     finally
       FRegistrySettings.EndUpdate
     end;
@@ -203,6 +211,11 @@ begin
   end;
 end;
 
+procedure TCustomRegRadioGroup.RefreshSettings(var aMessage: TLMessage);
+begin
+  aMessage.Result := LongInt(RefreshRegistrySettings);
+end;
+
 procedure TCustomRegRadioGroup.RefreshData(var aMessage: TLMessage);
 begin
   aMessage.Result := LongInt(ReadFromReg);
@@ -219,9 +232,19 @@ begin
     if Assigned(FRegistrySource) then
     begin
       FRegistrySource.RegisterControl(self);
-      RefreshSettings;
+      RefreshRegistrySettings;
     end;
   end;
+end;
+
+procedure TCustomRegRadioGroup.CheckItemIndexChanged;
+begin
+  inherited CheckItemIndexChanged;
+
+  FIsModified := True;
+
+  if FRegistrySettings.DoWriteAdHoc then
+    WriteToReg;
 end;
 
 procedure TCustomRegRadioGroup.Click;

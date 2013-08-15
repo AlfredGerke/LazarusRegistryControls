@@ -18,12 +18,17 @@ uses
   regmsg;
 
 type
+
+  { TCustomRegComboBox }
+
   TCustomRegComboBox = class(TComboBox)
   private
   protected
   public
   published
   end;
+
+  { TRegComboBox }
 
   TRegComboBox = class(TCustomRegComboBox)
   private

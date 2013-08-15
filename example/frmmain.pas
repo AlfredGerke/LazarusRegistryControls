@@ -18,6 +18,7 @@ type
     acClose: TAction;
     acCreateExampleSettings: TAction;
     acCheckExampleSettings: TAction;
+    acRefreshData: TAction;
     ActionList1: TActionList;
     btnRefreshControls: TButton;
     lblEditSingleValue: TLabel;
@@ -34,7 +35,9 @@ type
     rcbxCheckBox1: TRegCheckBox;
     rcbxCheckBox2: TRegCheckBox;
     redtEdit: TRegEdit;
+    redtControlName: TRegEdit;
     RegistrySource1: TRegistrySource;
+    rgrpRadiaGroup1: TRegRadioGroup;
     rrbRadioButton1: TRegRadioButton;
     rrbRadioButton2: TRegRadioButton;
     tabSingleValue: TTabSheet;
@@ -43,7 +46,7 @@ type
     procedure acCheckExampleSettingsExecute(Sender: TObject);
     procedure acCloseExecute(Sender: TObject);
     procedure acCreateExampleSettingsExecute(Sender: TObject);
-    procedure btnRefreshControlsClick(Sender: TObject);
+    procedure acRefreshDataExecute(Sender: TObject);
     procedure rcbWriteAdHocChange(Sender: TObject);
   private
     function CheckForExampleSettings: boolean;
@@ -81,9 +84,9 @@ begin
   CreateSettings;
 end;
 
-procedure TMain.btnRefreshControlsClick(Sender: TObject);
+procedure TMain.acRefreshDataExecute(Sender: TObject);
 begin
-  RegistrySource1.RefreshControlData;
+  RegistrySource1.RefreshControlData(Trim(redtControlName.Text));
 end;
 
 procedure TMain.rcbWriteAdHocChange(Sender: TObject);

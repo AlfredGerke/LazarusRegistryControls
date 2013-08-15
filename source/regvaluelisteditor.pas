@@ -18,12 +18,17 @@ uses
   regmsg;
 
 type
+
+  { TCustomRegValueListEditor }
+
   TCustomRegValueListEditor = class(TValueListEditor)
   private
   protected
   public
   published
   end;
+
+  { TRegValueListEditor }
 
   TRegValueListEditor = class(TCustomRegValueListEditor)
   private

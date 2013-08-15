@@ -14,15 +14,18 @@ uses
   LResources;
 
 type
+
   { TCustomRegEdit }
+
   TCustomRegEdit = class(TEdit)
   private
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsStringDefault;
 
-    procedure RefreshSettings;
+    function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
   protected
+    procedure RefreshSettings(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
     procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
     procedure OnChangeSettings(aSender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource);
@@ -44,6 +47,7 @@ type
   end;
 
   { TRegEdit }
+
   TRegEdit = class(TCustomRegEdit)
   private
   protected
@@ -66,13 +70,15 @@ begin
 end;
 
 { TCustomRegEdit }
+
 procedure TCustomRegEdit.OnChangeSettings(aSender: TObject);
 begin
   ReadFromReg;
 end;
 
-procedure TCustomRegEdit.RefreshSettings;
+function TCustomRegEdit.RefreshRegistrySettings: boolean;
 begin
+  Result := False;
   if Assigned(FRegistrySource) then
   begin
     FRegistrySettings.BeginUpdate;
@@ -89,7 +95,7 @@ begin
         FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
       end;
 
-      ReadFromReg;
+      Result := ReadFromReg;
     finally
       FRegistrySettings.EndUpdate
     end;
@@ -112,6 +118,7 @@ begin
           Read:
           begin
             if FRegistrySettings.CanRead then
+            begin
               Text := RegistrySource.ReadString(FRegistrySettings.RookKey,
                         FRegistrySettings.RootKeyForDefaults,
                         FRegistrySettings.RootForDefaults,
@@ -119,6 +126,7 @@ begin
                         FRegistrySettings.Ident,
                         FRegistrySettings.Default,
                         FRegistrySettings.ReadDefaults);
+            end;
           end;
           Write:
           begin
@@ -129,7 +137,8 @@ begin
                 FRegistrySettings.Section,
                 FRegistrySettings.Ident,
                 Text,
-                FRegistrySettings.WriteDefaults);
+                FRegistrySettings.WriteDefaults,
+                FRegistrySettings.GroupIndex);
           end;
         end;
       end;
@@ -137,9 +146,23 @@ begin
   end;
 end;
 
-procedure TCustomRegEdit.RefreshData(var aMessage: TLMessage);
+procedure TCustomRegEdit.RefreshSettings(var aMessage: TLMessage);
 begin
-  aMessage.Result := LongInt(ReadFromReg);
+  RefreshRegistrySettings;
+end;
+
+procedure TCustomRegEdit.RefreshData(var aMessage: TLMessage);
+var
+  group_index: cardinal;
+begin
+  group_index := aMessage.lParam;
+  if (group_index > 0) then
+  begin
+    if group_index = FRegistrySettings.GroupIndex then
+      aMessage.Result := LongInt(ReadFromReg)
+  end
+  else
+    aMessage.Result := LongInt(ReadFromReg)
 end;
 
 procedure TCustomRegEdit.SetRegistrySource(aRegistrySource: TRegistrySource);
@@ -153,7 +176,7 @@ begin
     if Assigned(FRegistrySource) then
     begin
       FRegistrySource.RegisterControl(self);
-      RefreshSettings;
+      RefreshRegistrySettings;
     end;
   end;
 end;

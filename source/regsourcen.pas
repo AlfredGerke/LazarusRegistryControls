@@ -13,187 +13,35 @@ uses
   Dialogs,
   LResources,
   PropEdits,
-  regconst;
+  regconst,
+  regtype,
+  regpropedits;
 
 type
 
-  { TRegistrySettingsPropertyEditor }
-  TRegistrySettingsPropertyEditor = class(TMethodPropertyEditor)
-  public
-    function GetFormMethodName: shortstring; override;
-  end;
-
-  { TCustomProperties }
-  TCustomProperties = class(TPersistent)
-  private
-    FOwner: TPersistent;
-  protected
-    function GetOwnerComponentState: TComponentState;
-
-    function GetOwner: TPersistent; override;
-    procedure SetOwner(aOwner: TPersistent); dynamic;
-    property Owner: TPersistent
-      read GetOwner;
-    function GetOwnerIsLoading: boolean;
-    property OwnerIsLoading: boolean
-      read GetOwnerIsLoading;
-  public
-    constructor Create(aOwner: TPersistent); virtual; abstract;
-  published
-  end;
-
-  TRegistrySettingString = string[255];
-
-  TRegistrySettingKind = (rskUnknown, rskRootKey, rskRootKeyForDefault,
-    rskSection, rskIdent, rskDefault, rskReadDefaults, rskWriteDefaults,
-    rskRootForDefaults, rskCanRead, rskCanWrite, rskDoWriteAdHoc);
-
-  TRegistrySettingValue = record
-    case Kind: TRegistrySettingKind of
-      rskRootKey: (RootKey: TRegistrySettingString);
-      rskRootKeyForDefault: (RootKeyForDefault: TRegistrySettingString);
-      rskSection: (Section: TRegistrySettingString);
-      rskIdent: (Ident: TRegistrySettingString);
-      rskDefault: (Default: TRegistrySettingString);
-      rskReadDefaults: (ReadDefaults: boolean);
-      rskWriteDefaults: (WriteDefaults: boolean);
-      rskRootForDefaults: (RootForDefaults: TRegistrySettingString);
-      rskCanRead: (CanRead: boolean);
-      rskCanWrite: (CanWrite: boolean);
-      rskDoWriteAdHoc: (DoWriteAdHoc: boolean);
-  end;
-
-  TOnRegistrySettingsChange = procedure(aSettingInfo: TRegistrySettingValue;
-                                        var aIsOk: boolean) of object;
-
-  { TCustomRegistrySettings }
-  TCustomRegistrySettings<_T> = class(TCustomProperties)
-  private
-    //Basisschlüssel, z.B.: SOFTWARE\SOFTWARE AUS ERWITTE\%%PROJECT%%\
-    FRootKey: string;
-    //Basisschlüssel für Defaults, z.B.: SOFTWARE\SOFTWARE AUS ERWITTE\%%PROJECT%%\DEFAULTS\
-    FRootKeyForDefaults: string;
-    //Unterschlüssel unter dem Basisschlüssel, z.B.: Desktop
-    FSection: string;
-    //Ident im Unterschlüssel, z.B.: FileDir
-    FIdent: string;
-    //Default, wenn kein Wert in der Registry gefunden wurde
-    FDefault: _T;
-    //Wenn TRUE, dann Werte aus dem Basisschlüssel für Defaults lesen
-    FReadDefaults: boolean;
-    //Wenn TRUE, dann Werte in den Basisschlüssel für Defaults schreiben
-    FWriteDefaults: boolean;
-    //Root des Basisschlüssel für Defaults (in der Regel: HKEY_LOCAL_MACHINE)
-    FRootForDefaults: string;
-    //Werte dürfen aus der Registry gelesen werden
-    FCanRead: boolean;
-    //Werte dürfen in die Registry geschrieben werden
-    FCanWrite: boolean;
-    //Werte werde sofort (OnChange, OnClick, etc.) in die Registry geschrieben
-    FDoWriteAdHoc: boolean;
-    FProject: string;
-    FOrganisation: string;
-    FGUID: string;
-    FOnChange: TNotifyEvent;
-    FOnBeforeRegistrySettingChange: TOnRegistrySettingsChange;
-    FTriggerEvents: boolean;
-
-    function ChangeTokenForKey(aToken: TTokenType;
-                               aKey: string): string;
-    function TriggerOnBeforeRegistrySettingChange(aKind: TRegistrySettingKind;
-                                                  aValue: variant): boolean;
-  protected
-    procedure SetRootKey(aRootKey: string);
-    procedure SetRootKeyForDefaults(aRootKeyForDefaults: string);
-    procedure SetSection(aSection: string);
-    procedure SetIdent(aIdent: string);
-    procedure SetReadDefaults(aReadDefaults: boolean);
-    procedure SetWriteDefaults(aWriteDefaults: boolean);
-    procedure SetRootForDefaults(aRootForDefaults: string);
-    procedure SetCanRead(aCanRead: boolean);
-    procedure SetCanWrite(aCanWrite: boolean);
-    procedure SetDoWriteAdHoc(aDoWriteAdHoc: boolean);
-    procedure SetDefault(aDefault: _T);
-    procedure SetGUID(aGUID: string);
-    procedure SetProject(aProject: string);
-    procedure SetOrganisation(aOrganisation: string);
-
-    property Default: _T
-      read FDefault
-      write SetDefault;
-  public
-    procedure BeginUpdate;
-    procedure EndUpdate;
-    constructor Create(aOwner: TPersistent); override;
-
-    property Owner;
-    property GUID: string
-      read FGUID
-      write SetGUID;
-    property Project: string
-      read FProject
-      write SetProject;
-    property Organisation: string
-      read FOrganisation
-      write SetOrganisation;
-    property OnChange: TNotifyEvent
-      read FOnChange
-      write FOnChange;
-  published
-    property RookKey: string
-      read FRootKey
-      write SetRootKey;
-    property RootKeyForDefaults: string
-      read FRootKeyForDefaults
-      write SetRootKeyForDefaults;
-    property Section: string
-      read FSection
-      write SetSection;
-    property Ident: string
-      read FIdent
-      write SetIdent;
-    property ReadDefaults: boolean
-      read FReadDefaults
-      write SetReadDefaults;
-    property WriteDefaults: boolean
-      read FWriteDefaults
-      write SetWriteDefaults;
-    property RootForDefaults: string
-      read FRootForDefaults
-      write SetRootForDefaults;
-    property CanRead: boolean
-      read FCanRead
-      write SetCanRead;
-    property CanWrite: boolean
-      read FCanWrite
-      write SetCanWrite;
-    property DoWriteAdHoc: boolean
-      read FDoWriteAdHoc
-      write SetDoWriteAdHoc;
-    property OnBeforeRegistrySettingChange: TOnRegistrySettingsChange
-      read FOnBeforeRegistrySettingChange
-      write FOnBeforeRegistrySettingChange;
-  end;
-
   { TRegistrySettingsBooleanDefault }
+
   TRegistrySettingsBooleanDefault = class(TCustomRegistrySettings<boolean>)
   published
     property Default;
   end;
 
   { TRegistrySettingsIntegerDefault }
+
   TRegistrySettingsIntegerDefault = class(TCustomRegistrySettings<integer>)
   published
     property Default;
   end;
 
   { TRegistrySettingsStringDefault }
+
   TRegistrySettingsStringDefault = class(TCustomRegistrySettings<string>)
   published
     property Default;
   end;
 
   { TRegistrySettingsList }
+
   TRegistrySettingsList = class(TRegistrySettingsIntegerDefault)
   private
     FItemsByRegistry: boolean;
@@ -210,6 +58,7 @@ type
   end;
 
   { TCustomRegistrySource }
+
   TCustomRegistrySource = class(TComponent)
   private
     FRootKey: string;
@@ -222,9 +71,12 @@ type
     FWriteDefaults: boolean;
     FGUID: string;
     FClientList: TStrings;
+    FDoSyncData: boolean;
 
+    procedure OnSyncData(aGroupIndex: Cardinal);
     procedure DeliverMessage(aMessageConst: cardinal;
-                             aClientName: string = '');
+                             aClientName: string = '';
+                             AGroupIndex: cardinal = 0);
   protected
     property RootKey: string
       read FRootKey
@@ -253,9 +105,13 @@ type
     property GUID: string
       read FGUID
       write FGUID;
+    property DoSyncData: boolean
+      read FDoSyncData
+      write FDoSyncData;
   public
     procedure RefreshSettings(AClientName: string = '');
-    procedure RefreshControlData(AClientName: string = '');
+    procedure RefreshControlData(AClientName: string = '';
+                                 AGroupIndex: cardinal = 0);
     procedure RegisterControl(AControl: TComponent);
     procedure UnRegisterControl(AControl: TComponent);
     function GetRootKey: string;
@@ -305,36 +161,43 @@ type
                           aSection: string;
                           aIdent: string;
                           aDefault: string;
-                          aUseDefaults: boolean); reintroduce; overload;
+                          aUseDefaults: boolean;
+                          aGroupIndex: Cardinal = 0); reintroduce; overload;
     procedure WriteString(aSection: string;
                           aIdent: string;
-                          aDefault: string); reintroduce; overload;
+                          aDefault: string;
+                          aGroupIndex: Cardinal = 0); reintroduce; overload;
     procedure WriteInteger(aRootKey: string;
                            aRootKeyForDefaults: string;
                            aRootForDefaults: string;
                            aSection: string;
                            aIdent: string;
                            aDefault: integer;
-                           aUseDefaults: boolean); reintroduce; overload;
+                           aUseDefaults: boolean;
+                          aGroupIndex: Cardinal = 0); reintroduce; overload;
     procedure WriteInteger(aSection: string;
                            aIdent: string;
-                           aDefault: integer); reintroduce; overload;
+                           aDefault: integer;
+                          aGroupIndex: Cardinal = 0); reintroduce; overload;
     procedure WriteBool(aRootKey: string;
                         aRootKeyForDefaults: string;
                         aRootForDefaults: string;
                         aSection: string;
                         aIdent: string;
                         aDefault: boolean;
-                        aUseDefaults: boolean); reintroduce; overload;
+                        aUseDefaults: boolean;
+                        aGroupIndex: Cardinal = 0); reintroduce; overload;
     procedure WriteBool(aSection: string;
                         aIdent: string;
-                        aDefault: boolean); reintroduce; overload;
+                        aDefault: boolean;
+                        aGroupIndex: Cardinal = 0); reintroduce; overload;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   published
   end;
 
   { TRegistrySource }
+
   TRegistrySource = class(TCustomRegistrySource)
   private
   protected
@@ -349,11 +212,9 @@ type
     property ReadDefaults;
     property WriteDefaults;
     property GUID;
+    property DoSyncData;
   end;
 
-function _ChangeTokenForKey(aToken: string;
-                            aTokenValue: string;
-                            aKey: string): string;
 procedure Register;
 
 implementation
@@ -372,327 +233,23 @@ begin
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
 end;
 
-function _ChangeTokenForKey(aToken: string;
-  aTokenValue: string;
-  aKey: string): string;
+{ TCustomRegistrySource }
+
+procedure TCustomRegistrySource.OnSyncData(aGroupIndex: cardinal = 0);
 begin
-  if pos(aToken, aKey) > 0 then
-    if ((Trim(aTokenValue) <> EmptyStr) and
-      (aTokenValue <> aToken))then
-      result := StringReplace(aKey, aToken, aTokenValue, [rfReplaceAll]);
-end;
-
-{ TCustomRegistrySettings }
-function TCustomRegistrySettings<_T>.ChangeTokenForKey(aToken: TTokenType;
-  aKey: string): string;
-var
-  token: string;
-  value_for_token: string;
-begin
-  Result := aKey;
-
-  case aToken of
-    ttProject: value_for_token := FProject;
-    ttOrganisation: value_for_token := FOrganisation;
-    ttGUID: value_for_token := FGUID;
-  else
-    Exit;
-  end;
-
-  token := TokenTypeStr[aToken];
-
-  Result := _ChangeTokenForKey(token, value_for_token, aKey);
-end;
-
-function TCustomRegistrySettings<_T>.TriggerOnBeforeRegistrySettingChange(
-  aKind: TRegistrySettingKind;
-  aValue: variant): boolean;
-var
-  setting_value: TRegistrySettingValue;
-  is_ok: boolean;
-begin
-  if Assigned(FOnBeforeRegistrySettingChange) then
-  begin
-    if OwnerIsLoading then
-    begin
-      Result := False;
-      Exit;
-    end;
-
-    setting_value.kind := aKind;
-    case aKind of
-      rskUnknown:
-      begin
-        Result := False;
-        Exit;
-      end;
-      rskRootKey: setting_value.RootKey := aValue;
-      rskRootKeyForDefault: setting_value.RootKeyForDefault := aValue;
-      rskSection: setting_value.Section := aValue;
-      rskIdent: setting_value.Ident := aValue;
-      rskDefault: setting_value.Default := aValue;
-      rskReadDefaults: setting_value.ReadDefaults := aValue;
-      rskWriteDefaults: setting_value.WriteDefaults := aValue;
-      rskRootForDefaults: setting_value.RootForDefaults := aValue;
-      rskCanRead: setting_value.CanRead := aValue;
-      rskCanWrite: setting_value.CanWrite := aValue;
-      rskDoWriteAdHoc: setting_value.DoWriteAdHoc := aValue;
-    end;
-
-    is_ok:= True;
-    FOnBeforeRegistrySettingChange(setting_value, is_ok);
-    if not is_ok then
-      Exit;
-  end;
-end;
-
-procedure TCustomRegistrySettings<_T>.SetRootKey(aRootKey: string);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskRootKey, aRootKey) then
-    Exit;
-
-  FRootKey := IncludeTrailingPathDelimiter(aRootKey);
-
-  FRootKey := ChangeTokenForKey(ttProject, FRootKey);
-  FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
-  FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
-
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetRootKeyForDefaults(
-  aRootKeyForDefaults: string);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskRootKeyForDefault, aRootKeyForDefaults) then
-    Exit;
-
-  FRootKeyForDefaults := IncludeTrailingPathDelimiter(aRootKeyForDefaults);
-
-  FRootKeyForDefaults := ChangeTokenForKey(ttProject, FRootKeyForDefaults);
-  FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
-  FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
-
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetSection(aSection: string);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskSection, aSection) then
-    Exit;
-
-  FSection := aSection;
-
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetIdent(aIdent: string);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskIdent, aIdent) then
-    Exit;
-
-  FIdent := aIdent;
-
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetReadDefaults(aReadDefaults: boolean);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskReadDefaults, aReadDefaults) then
-    Exit;
-
-  FReadDefaults := aReadDefaults;
-
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetWriteDefaults(aWriteDefaults: boolean);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskWriteDefaults, aWriteDefaults) then
-    Exit;
-
-  FWriteDefaults := aWriteDefaults;
-
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetRootForDefaults(
-  aRootForDefaults: string);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskRootForDefaults, aRootForDefaults) then
-    Exit;
-
-  FRootForDefaults := aRootForDefaults;
-
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetCanRead(aCanRead: boolean);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskCanRead, aCanRead) then
-    Exit;
-
-  FCanRead := aCanRead;
-
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetCanWrite(aCanWrite: boolean);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskCanWrite, aCanWrite) then
-    Exit;
-
-  FCanWrite := aCanWrite;
-
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetDoWriteAdHoc(aDoWriteAdHoc: boolean);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskDoWriteAdHoc, aDoWriteAdHoc) then
-    Exit;
-
-  FDoWriteAdHoc := aDoWriteAdHoc;
-
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetDefault(aDefault: _T);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskDefault, aDefault) then
-    Exit;
-
-  FDefault := aDefault;
-
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetGUID(aGUID: string);
-begin
-  FGUID := aGUID;
-
-  FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
-  FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetProject(aProject: string);
-begin
-  FProject := aProject;
-
-  FRootKey := ChangeTokenForKey(ttProject, FRootKey);
-  FRootKeyForDefaults := ChangeTokenForKey(ttProject, FRootKeyForDefaults);
-end;
-
-procedure TCustomRegistrySettings<_T>.SetOrganisation(aOrganisation: string);
-begin
-  FOrganisation := aOrganisation;
-
-  FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
-  FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
-end;
-
-procedure TCustomRegistrySettings<_T>.BeginUpdate;
-begin
-  FTriggerEvents := False;
-end;
-
-procedure TCustomRegistrySettings<_T>.EndUpdate;
-begin
-  FTriggerEvents := True;
-end;
-
-constructor TCustomRegistrySettings<_T>.Create(aOwner: TPersistent);
-begin
-  SetOwner(aOwner);
-  FTriggerEvents := True;
-end;
-
-{ TRegistrySettingsPropertyEditor }
-function TRegistrySettingsPropertyEditor.GetFormMethodName: shortstring;
-var
-  anz: Integer;
-  root: TPersistent;
-begin
-  Result := EmptyStr;
-  if (PropertyHook.LookupRoot = nil) then
-    exit;
-  if (GetComponent(0) = PropertyHook.LookupRoot) then
-  begin
-    root := PropertyHook.LookupRoot;
-    if (root is TCustomForm) then
-      Result := 'Form'
-    else
-    if (root is TDataModule) then
-      Result := 'DataModule'
-    else
-    if (root is TFrame) then
-      Result := 'Frame'
-    else
-    begin
-      Result := ClassNameToComponentName(PropertyHook.GetRootClassName);
-    end;
-  end
-  else
-  begin
-    if (GetComponent(0) is TCustomProperties) then
-      Result := PropertyHook.GetObjectName(TCustomProperties(GetComponent(0)).Owner)
-    else
-      Result := PropertyHook.GetObjectName(GetComponent(0));
-
-    for anz := Length(Result) downto 1 do
-    if not ((Result[anz] in ['a'..'z', 'A'..'Z', '_']) or
-      (anz > 1) and (Result[anz] in ['0'..'9']))
-    then
-      System.Delete(Result, anz, 1);
-  end;
-  if (Result = EmptyStr) then
-    exit;
-  Result := Result + GetTrimmedEventName;
-end;
-
-{ TCustomProperties }
-function TCustomProperties.GetOwnerComponentState: TComponentState;
-begin
-  if Owner is TComponent then
-    Result := TComponent(Owner).ComponentState
-  else
-    Result := [];
-end;
-
-function TCustomProperties.GetOwner: TPersistent;
-begin
-  Result:= FOwner;
-end;
-
-procedure TCustomProperties.SetOwner(aOwner: TPersistent);
-begin
-  FOwner := aOwner;;
-end;
-
-function TCustomProperties.GetOwnerIsLoading: boolean;
-begin
-  Result := (csloading in GetOwnerComponentState);
+  RefreshControlData('', aGroupIndex);
 end;
 
 procedure TCustomRegistrySource.DeliverMessage(aMessageConst: cardinal;
-  aClientName: string = '');
+  aClientName: string = '';
+  AGroupIndex: cardinal = 0);
 var
   anz: integer;
   msg: TLMessage;
 begin
   FillChar(msg, SizeOf(msg), #0);
   msg.Msg := aMessageConst;
-
+  msg.lParam:=AGroupIndex;
   for anz := 0 to FClientList.count-1 do
   begin
     if Assigned(FClientList.Objects[anz]) then
@@ -712,10 +269,10 @@ begin
   DeliverMessage(LM_REGISTRY_CONTROL_REFRESH_SETTINGS, AClientName);
 end;
 
-{ TCustomRegistrySource }
-procedure TCustomRegistrySource.RefreshControlData(AClientName: string = '');
+procedure TCustomRegistrySource.RefreshControlData(AClientName: string = '';
+  AGroupIndex: cardinal = 0);
 begin
-  DeliverMessage(LM_REGISTRY_CONTROL_REFRESH_DATA, AClientName);
+  DeliverMessage(LM_REGISTRY_CONTROL_REFRESH_DATA, AClientName, AGroupIndex);
 end;
 
 procedure TCustomRegistrySource.RegisterControl(AControl: TComponent);
@@ -792,6 +349,7 @@ begin
   FReadDefaults := False;
   FWriteDefaults := False;
   FGUID := EmptyStr;
+  FDoSyncData:= False;
 
   FClientList := TStringList.Create;
 end;
@@ -1020,7 +578,8 @@ procedure TCustomRegistrySource.WriteString(aRootKey: string;
   aSection: string;
   aIdent: string;
   aDefault: string;
-  aUseDefaults: boolean);
+  aUseDefaults: boolean;
+  aGroupIndex: Cardinal = 0);
 var
   streg: TSTRegIniFile;
 begin
@@ -1035,6 +594,9 @@ begin
         streg.WriteStringCheck4Defaults(aSection, aIdent, aDefault)
       else
         streg.WriteString(aSection, aIdent, aDefault);
+
+      if FDoSyncData then
+        OnSyncData(aGroupIndex);
     except
       on E: Exception do
         raise;
@@ -1046,7 +608,8 @@ end;
 
 procedure TCustomRegistrySource.WriteString(aSection: string;
   aIdent: string;
-  aDefault: string);
+  aDefault: string;
+  aGroupIndex: Cardinal = 0);
 begin
   try
     WriteString(GetRootKey,
@@ -1055,7 +618,8 @@ begin
       aSection,
       aIdent,
       aDefault,
-      WriteDefaults);
+      WriteDefaults,
+      aGroupIndex);
   except
     on E: Exception do
       raise;
@@ -1068,7 +632,8 @@ procedure TCustomRegistrySource.WriteInteger(aRootKey: string;
   aSection: string;
   aIdent: string;
   aDefault: integer;
-  aUseDefaults: boolean);
+  aUseDefaults: boolean;
+  aGroupIndex: Cardinal = 0);
 var
   streg: TSTRegIniFile;
 begin
@@ -1083,6 +648,9 @@ begin
         streg.WriteIntegerCheck4Defaults(aSection, aIdent, aDefault)
       else
         streg.WriteInteger(aSection, aIdent, aDefault);
+
+      if FDoSyncData then
+        OnSyncData(aGroupIndex);
     except
       on E: Exception do
         raise;
@@ -1094,7 +662,8 @@ end;
 
 procedure TCustomRegistrySource.WriteInteger(aSection: string;
   aIdent: string;
-  aDefault: integer);
+  aDefault: integer;
+  aGroupIndex: Cardinal = 0);
 begin
   try
     WriteInteger(GetRootKey,
@@ -1103,7 +672,8 @@ begin
       aSection,
       aIdent,
       aDefault,
-      WriteDefaults);
+      WriteDefaults,
+      aGroupIndex);
   except
     on E: Exception do
     begin
@@ -1118,7 +688,8 @@ procedure TCustomRegistrySource.WriteBool(aRootKey: string;
   aSection: string;
   aIdent: string;
   aDefault: boolean;
-  aUseDefaults: boolean);
+  aUseDefaults: boolean;
+  aGroupIndex: Cardinal = 0);
 var
   streg: TSTRegIniFile;
 begin
@@ -1133,6 +704,9 @@ begin
         streg.WriteBoolCheck4Defaults(aSection, aIdent, aDefault)
       else
         streg.WriteBool(aSection, aIdent, aDefault);
+
+      if FDoSyncData then
+        OnSyncData(aGroupIndex);
     except
       on E: Exception do
         raise;
@@ -1144,7 +718,8 @@ end;
 
 procedure TCustomRegistrySource.WriteBool(aSection: string;
   aIdent: string;
-  aDefault: boolean);
+  aDefault: boolean;
+  aGroupIndex: Cardinal = 0);
 begin
   try
     WriteBool(GetRootKey,
@@ -1153,7 +728,8 @@ begin
       aSection,
       aIdent,
       aDefault,
-      WriteDefaults);
+      WriteDefaults,
+      aGroupIndex);
   except
     on E: Exception do
       raise;

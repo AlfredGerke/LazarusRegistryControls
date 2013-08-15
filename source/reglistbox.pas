@@ -18,12 +18,17 @@ uses
   regmsg;
 
 type
+
+  { TCustomRegListBox }
+
   TCustomRegListBox = class(TListBox)
   private
   protected
   public
   published
   end;
+
+  { TRegListBox }
 
   TRegListBox = class(TCustomRegListBox)
   private

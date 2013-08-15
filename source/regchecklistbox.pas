@@ -18,12 +18,17 @@ uses
   regmsg;
 
 type
+
+  { TCustomRegCheckListBox }
+
   TCustomRegCheckListBox = class(TCheckListBox)
   private
   protected
   public
   published
   end;
+
+  { TCheckListBox }
 
   TRegCheckListBox = class(TCustomRegCheckListBox)
   private

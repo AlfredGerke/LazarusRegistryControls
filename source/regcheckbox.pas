@@ -16,15 +16,17 @@ uses
 type
 
   { TCustomRegCheckBox }
+
   TCustomRegCheckBox = class(TCheckBox)
   private
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsBooleanDefault;
     FIsModified: boolean;
 
-    procedure RefreshSettings;
+    function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
   protected
+    procedure RefreshSettings(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
     procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
     procedure OnChangeSettings(aSender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
@@ -49,6 +51,7 @@ type
   end;
 
   { TRegCheckBox }
+
   TRegCheckBox = class(TCustomRegCheckBox)
   private
   protected
@@ -70,13 +73,17 @@ begin
   RegisterComponents('Registry Controls', [TRegCheckBox]);
 end;
 
+{ TCustomRegCheckBox }
+
 procedure TCustomRegCheckBox.OnChangeSettings(aSender: TObject);
 begin
   ReadFromReg;
 end;
 
-procedure TCustomRegCheckBox.RefreshSettings;
+function TCustomRegCheckBox.RefreshRegistrySettings: boolean;
 begin
+  Result := False;
+
   if Assigned(FRegistrySource) then
   begin
     FRegistrySettings.BeginUpdate;
@@ -93,7 +100,7 @@ begin
         FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
       end;
 
-      ReadFromReg;
+      Result := ReadFromReg;
     finally
       FRegistrySettings.EndUpdate
     end;
@@ -142,6 +149,11 @@ begin
   end;
 end;
 
+procedure TCustomRegCheckBox.RefreshSettings(var aMessage: TLMessage);
+begin
+  aMessage.Result := LongInt(RefreshRegistrySettings);
+end;
+
 procedure TCustomRegCheckBox.RefreshData(var aMessage: TLMessage);
 begin
   aMessage.Result := LongInt(ReadFromReg);
@@ -158,7 +170,7 @@ begin
     if Assigned(FRegistrySource) then
     begin
       FRegistrySource.RegisterControl(self);
-      RefreshSettings;
+      RefreshRegistrySettings;
     end;
   end;
 end;

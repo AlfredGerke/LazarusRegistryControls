@@ -23,9 +23,10 @@ type
     FRegistrySettings: TRegistrySettingsBooleanDefault;
     FIsModified: boolean;
 
-    procedure RefreshSettings;
+    function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
   protected
+    procedure RefreshSettings(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
     procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
     procedure OnChangeSettings(aSender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
@@ -72,13 +73,17 @@ begin
   RegisterComponents('Registry Controls', [TRegRadioButton]);
 end;
 
+{ TCustomRegRadioButton }
+
 procedure TCustomRegRadioButton.OnChangeSettings(aSender: TObject);
 begin
   ReadFromReg;
 end;
 
-procedure TCustomRegRadioButton.RefreshSettings;
+function TCustomRegRadioButton.RefreshRegistrySettings: boolean;
 begin
+  Result := False;
+
   if Assigned(FRegistrySource) then
   begin
     FRegistrySettings.BeginUpdate;
@@ -95,7 +100,7 @@ begin
         FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
       end;
 
-      ReadFromReg;
+      Result := ReadFromReg;
     finally
       FRegistrySettings.EndUpdate
     end;
@@ -143,6 +148,11 @@ begin
   end;
 end;
 
+procedure TCustomRegRadioButton.RefreshSettings(var aMessage: TLMessage);
+begin
+  aMessage.Result := LongInt(RefreshRegistrySettings);
+end;
+
 procedure TCustomRegRadioButton.RefreshData(var aMessage: TLMessage);
 begin
   aMessage.Result := LongInt(ReadFromReg);
@@ -159,7 +169,7 @@ begin
     if Assigned(FRegistrySource) then
     begin
       FRegistrySource.RegisterControl(self);
-      RefreshSettings;
+      RefreshRegistrySettings;
     end;
   end;
 end;

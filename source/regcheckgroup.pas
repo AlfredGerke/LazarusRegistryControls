@@ -18,12 +18,17 @@ uses
   regmsg;
 
 type
+
+  { TCustomRegCheckGroup }
+
   TCustomRegCheckGroup = class(TCheckGroup)
   private
   protected
   public
   published
   end;
+
+  { TCheckGroup }
 
   TRegCheckGroup = class(TCustomRegCheckGroup)
   private
