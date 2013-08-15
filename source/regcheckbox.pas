@@ -108,6 +108,8 @@ begin
 end;
 
 procedure TCustomRegCheckBox.ReadWriteInfo(aRead: boolean);
+var
+  sync_state_by_default: boolean;
 begin
   if not (csDesigning in ComponentState) then
   begin
@@ -135,13 +137,21 @@ begin
           Write:
           begin
             if (FRegistrySettings.CanWrite and FIsModified) then
-              RegistrySource.WriteBool(FRegistrySettings.RookKey,
-                FRegistrySettings.RootKeyForDefaults,
-                FRegistrySettings.RootForDefaults,
-                FRegistrySettings.Section,
-                FRegistrySettings.Ident,
-                Checked,
-                FRegistrySettings.WriteDefaults);
+            begin
+              sync_state_by_default := FRegistrySettings.DoSyncData;
+              FRegistrySettings.DoSyncData:= False;
+              try
+                RegistrySource.WriteBool(FRegistrySettings.RookKey,
+                  FRegistrySettings.RootKeyForDefaults,
+                  FRegistrySettings.RootForDefaults,
+                  FRegistrySettings.Section,
+                  FRegistrySettings.Ident,
+                  Checked,
+                  FRegistrySettings.WriteDefaults);
+              finally
+                FRegistrySettings.DoSyncData := sync_state_by_default;
+              end;
+            end;
           end;
         end;
       end;
@@ -155,8 +165,20 @@ begin
 end;
 
 procedure TCustomRegCheckBox.RefreshData(var aMessage: TLMessage);
+var
+  group_index: cardinal;
 begin
-  aMessage.Result := LongInt(ReadFromReg);
+  if  FRegistrySettings.DoSyncData then
+  begin;
+    group_index := aMessage.lParam;
+    if (group_index > 0) then
+    begin
+      if group_index = FRegistrySettings.GroupIndex then
+        aMessage.Result := LongInt(ReadFromReg)
+    end
+    else
+      aMessage.Result := LongInt(ReadFromReg)
+  end;
 end;
 
 procedure TCustomRegCheckBox.SetRegistrySource(aRegistrySource: TRegistrySource);

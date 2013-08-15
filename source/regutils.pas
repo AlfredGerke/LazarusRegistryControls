@@ -4,11 +4,13 @@ interface
 
 uses
   Classes,
-  REGISTRY;
+  Registry;
 
 type
 
-  TSTDefaults4CurrentUser = class
+  { TDefaultsForCurrentUser }
+
+  TDefaultsForCurrentUser = class
   private
     FRoot: string;
     FDefaultKey: string;
@@ -16,56 +18,78 @@ type
     function GetDefaultKey: string;
     function GetHKeyRoot: HKEY;
   public
-    function ReadString(aSection: string; aIdent: string;
-      aDefault: string): string; virtual;
-    function ReadInteger(aSection: string; aIdent: string;
-      aDefault: integer): integer; virtual;
-    function ReadBool(aSection: string; aIdent: string;
-      aDefault: boolean): boolean; virtual;
-    procedure ReadSection(aSection: string; aStrings: TStrings); virtual;
+    function ReadString(aSection: string;
+                        aIdent: string;
+                        aDefault: string): string; virtual;
+    function ReadInteger(aSection: string;
+                         aIdent: string;
+                         aDefault: integer): integer; virtual;
+    function ReadBool(aSection: string;
+                      aIdent: string;
+                      aDefault: boolean): boolean; virtual;
+    procedure ReadSection(aSection: string;
+                          aStrings: TStrings); virtual;
 
-    procedure WriteString(aSection: string; aIdent: string;
-      aString: string); virtual;
-    procedure WriteInteger(aSection: string; aIdent: string;
-      aInteger: integer); virtual;
-    procedure WriteBool(aSection: string; aIdent: string;
-      aBool: boolean); virtual;
+    procedure WriteString(aSection: string;
+                          aIdent: string;
+                          aString: string); virtual;
+    procedure WriteInteger(aSection: string;
+                           aIdent: string;
+                           aInteger: integer); virtual;
+    procedure WriteBool(aSection: string;
+                        aIdent: string;
+                        aBool: boolean); virtual;
 
-    constructor Create(aRoot: string; aDefaultKey: string); virtual;
+    constructor Create(aRoot: string;
+                       aDefaultKey: string); virtual;
     destructor Destroy; override;
 
   published
-    property Root: string read FRoot write FRoot;
-    property DefaultKey: string read GetDefaultKey write FDefaultKey;
+    property Root: string
+      read FRoot
+      write FRoot;
+    property DefaultKey: string
+      read GetDefaultKey
+      write FDefaultKey;
   end;
 
-  TSTRegIniFile = class(TRegIniFile)
+  { TDataByCurrentUser }
+
+  TDataByCurrentUser = class(TRegIniFile)
   private
-    FUseDefaults: TSTDefaults4CurrentUser;
+    FUseDefaults: TDefaultsForCurrentUser;
   protected
   public
-    function ReadStringCheck4Defaults(aSection: string;
-      aIdent: string; aDefault: string): string; virtual;
-    function ReadIntegerCheck4Defaults(aSection: string;
-      aIdent: string; aDefault: integer): integer; virtual;
-    function ReadBoolCheck4Defaults(aSection: string; aIdent: string;
-      aDefault: boolean): boolean; virtual;
-    procedure ReadSectionCheck4Defaults(aSection: string;
-      aStrings: TStrings); virtual;
+    function ReadStringCheckForDefaults(aSection: string;
+                                        aIdent: string;
+                                        aDefault: string): string; virtual;
+    function ReadIntegerCheckForDefaults(aSection: string;
+                                         aIdent: string;
+                                         aDefault: integer): integer; virtual;
+    function ReadBoolCheckForDefaults(aSection: string;
+                                      aIdent: string;
+                                      aDefault: boolean): boolean; virtual;
+    procedure ReadSectionCheckForDefaults(aSection: string;
+                                          aStrings: TStrings); virtual;
 
-    procedure WriteStringCheck4Defaults(aSection: string;
-      aIdent: string; aString: string); virtual;
-    procedure WriteIntegerCheck4Defaults(aSection: string;
-      aIdent: string; aInteger: integer); virtual;
-    procedure WriteBoolCheck4Defaults(aSection: string;
-      aIdent: string; aBool: boolean); virtual;
+    procedure WriteStringCheckForDefaults(aSection: string;
+                                          aIdent: string;
+                                          aString: string); virtual;
+    procedure WriteIntegerCheckForDefaults(aSection: string;
+                                           aIdent: string;
+                                           aInteger: integer); virtual;
+    procedure WriteBoolCheckForDefaults(aSection: string;
+                                        aIdent: string;
+                                        aBool: boolean); virtual;
 
-    constructor Create(aFileName: string; aDefaultsRoot: string;
-      aDefaultKey: string); reintroduce; overload;
+    constructor Create(aFileName: string;
+                       aDefaultsRoot: string;
+                       aDefaultKey: string); reintroduce; overload;
     destructor Destroy; override;
   published
-    property UseDefaults: TSTDefaults4CurrentUser
-      read FUseDefaults write FUseDefaults;
+    property UseDefaults: TDefaultsForCurrentUser
+      read FUseDefaults
+      write FUseDefaults;
   end;
 
 implementation
@@ -73,52 +97,54 @@ implementation
 uses
   SysUtils;
 
-function TSTDefaults4CurrentUser.GetDefaultKey: string;
+{ TDefaultsForCurrentUser }
+
+function TDefaultsForCurrentUser.GetDefaultKey: string;
 begin
   Result := IncludeTrailingPathDelimiter(FDefaultKey);
 end;
 
-function TSTDefaults4CurrentUser.GetHKeyRoot: HKEY;
-var
-  resultValue: HKEY;
+function TDefaultsForCurrentUser.GetHKeyRoot: HKEY;
 begin
-  try
-    if (UpperCase(Trim(Root)) = 'HKEY_CLASSES_ROOT') then
-    begin
-      resultValue := HKEY_CLASSES_ROOT;
-    end;
+  if (UpperCase(Trim(Root)) = 'HKEY_CLASSES_ROOT') then
+  begin
+    Result := HKEY_CLASSES_ROOT;
+    Exit;
+  end;
 
-    if (UpperCase(Trim(Root)) = 'HKEY_CURRENT_USER') then
-    begin
-      resultValue := HKEY_CURRENT_USER;
-    end;
+  if (UpperCase(Trim(Root)) = 'HKEY_CURRENT_USER') then
+  begin
+    Result := HKEY_CURRENT_USER;
+    Exit;
+  end;
 
-    if (UpperCase(Trim(Root)) = 'HKEY_LOCAL_MACHINE') then
-    begin
-      resultValue := HKEY_LOCAL_MACHINE;
-    end;
+  if (UpperCase(Trim(Root)) = 'HKEY_LOCAL_MACHINE') then
+  begin
+    Result := HKEY_LOCAL_MACHINE;
+    Exit;
+  end;
 
-    if (UpperCase(Trim(Root)) = 'HKEY_USERS') then
-    begin
-      resultValue := HKEY_USERS;
-    end;
+  if (UpperCase(Trim(Root)) = 'HKEY_USERS') then
+  begin
+    Result := HKEY_USERS;
+    Exit;
+  end;
 
-    if (UpperCase(Trim(Root)) = 'HKEY_CURRENT_CONFIG') then
-    begin
-      resultValue := HKEY_CURRENT_CONFIG;
-    end;
+  if (UpperCase(Trim(Root)) = 'HKEY_CURRENT_CONFIG') then
+  begin
+    Result := HKEY_CURRENT_CONFIG;
+    Exit;
+  end;
 
-    if (UpperCase(Trim(Root)) = 'HKEY_DYN_DATA') then
-    begin
-      resultValue := HKEY_DYN_DATA;
-    end;
-  finally
-    Result := resultValue;
+  if (UpperCase(Trim(Root)) = 'HKEY_DYN_DATA') then
+  begin
+    Result := HKEY_DYN_DATA;
+    Exit;
   end;
 end;
 
-{********************************* public    **********************************}
-constructor TSTDefaults4CurrentUser.Create(aRoot: string; aDefaultKey: string);
+constructor TDefaultsForCurrentUser.Create(aRoot: string;
+  aDefaultKey: string);
 begin
   inherited Create;
 
@@ -126,7 +152,7 @@ begin
   FDefaultKey := aDefaultKey;
 end;
 
-destructor TSTDefaults4CurrentUser.Destroy;
+destructor TDefaultsForCurrentUser.Destroy;
 begin
   FRoot := '';
   FDefaultKey := '';
@@ -134,254 +160,216 @@ begin
   inherited Destroy;
 end;
 
-function TSTDefaults4CurrentUser.ReadString(aSection: string;
-  aIdent: string; aDefault: string): string;
+function TDefaultsForCurrentUser.ReadString(aSection: string;
+  aIdent: string;
+  aDefault: string): string;
 var
-  resultValue: string;
-
-  STReg: TRegistry;
-
-  aKey: string;
+  reg: TRegistry;
+  key: string;
 begin
-
-  resultValue := '';
-
+  Result := EmptyStr;
+  reg := TRegistry.Create;
   try
     try
-
-      STReg := TRegistry.Create;
-
-      with STReg do
+      with reg do
       begin
         RootKey := GetHKEYRoot;
-        aKey := concat(DefaultKey, aSection);
+        key := concat(DefaultKey, aSection);
 
-        OpenKeyReadOnly(aKey);
+        OpenKeyReadOnly(key);
 
-        resultValue := ReadString(aIdent);
+        Result := ReadString(aIdent);
 
-        if (LowerCase(Trim(resultValue)) = '') then
-        begin
-          resultValue := aDefault;
-        end;
+        if (LowerCase(Trim(Result)) = '') then
+          Result := aDefault;
 
         CloseKey;
       end;
-
     except
       on E: Exception do
-      begin
-        resultValue := aDefault;
-      end;
+        Result := aDefault;
     end;
   finally
-    STReg.Free;
-    Result := resultValue;
+    if Assigned(reg) then
+      FreeAndNil(reg);
   end;
 end;
 
-function TSTDefaults4CurrentUser.ReadInteger(aSection: string;
-  aIdent: string; aDefault: integer): integer;
+function TDefaultsForCurrentUser.ReadInteger(aSection: string;
+  aIdent: string;
+  aDefault: integer): integer;
 var
-  resultValue: integer;
-
-  STReg: TRegistry;
-
-  aKey: string;
+  reg: TRegistry;
+  key: string;
 begin
-
-  resultValue := -1;
-
+  Result := -1;
+  reg := TRegistry.Create;
   try
     try
-
-      STReg := TRegistry.Create;
-
-      with STReg do
+      with reg do
       begin
-
         RootKey := GetHKEYRoot;
-        aKey := concat(DefaultKey, aSection);
+        key := concat(DefaultKey, aSection);
 
-        OpenKeyReadOnly(aKey);
+        OpenKeyReadOnly(key);
 
-        resultValue := StrToInt(ReadString(aIdent));
+        Result := StrToInt(ReadString(aIdent));
 
         CloseKey;
-
       end;
-
     except
       on E: Exception do
-      begin
-        resultValue := aDefault;
-      end;
+        Result := aDefault;
     end;
   finally
-    STReg.Free;
-    Result := resultValue;
+    if Assigned(reg) then
+      FreeAndNil(reg);
   end;
 end;
 
-function TSTDefaults4CurrentUser.ReadBool(aSection: string; aIdent: string;
+function TDefaultsForCurrentUser.ReadBool(aSection: string;
+  aIdent: string;
   aDefault: boolean): boolean;
 var
-  resultValue: boolean;
-
-  STReg: TRegistry;
-
-  aKey: string;
+  reg: TRegistry;
+  key: string;
 begin
-
-  resultValue := False;
-
+  Result := False;
+  reg := TRegistry.Create;
   try
     try
-
-      STReg := TRegistry.Create;
-
-      with STReg do
+      with reg do
       begin
         RootKey := GetHKEYRoot;
-        aKey := concat(DefaultKey, aSection);
+        key := concat(DefaultKey, aSection);
 
-        OpenKeyReadOnly(aKey);
+        OpenKeyReadOnly(key);
 
-        resultValue := StrToInt(ReadString(aIdent)) <> 0;
+        Result := StrToInt(ReadString(aIdent)) <> 0;
 
         CloseKey;
       end;
-
     except
       on E: Exception do
-      begin
-        resultValue := aDefault;
-      end;
+        Result := aDefault;
     end;
   finally
-    STReg.Free;
-    Result := resultValue;
+    if Assigned(reg) then
+      FreeAndNil(reg);
   end;
 end;
 
-procedure TSTDefaults4CurrentUser.ReadSection(aSection: string; aStrings: TStrings);
+procedure TDefaultsForCurrentUser.ReadSection(aSection: string;
+  aStrings: TStrings);
 var
-  STReg: TRegistry;
-  aKey: string;
+  reg: TRegistry;
+  key: string;
 begin
+  reg := TRegistry.Create;
   try
     try
-
       aStrings.Clear;
-
-      STReg := TRegistry.Create;
-
-      with STReg do
+      with reg do
       begin
         RootKey := GetHKEYRoot;
-        aKey := concat(DefaultKey, aSection);
+        key := concat(DefaultKey, aSection);
 
-        OpenKeyReadOnly(aKey);
+        OpenKeyReadOnly(key);
 
         GetValueNames(aStrings);
 
         CloseKey;
       end;
-
     except
       on E: Exception do
-      begin
         aStrings.Clear;
-      end;
     end;
   finally
-    STReg.Free;
+    if Assigned(reg) then
+      FreeAndNil(reg);
   end;
 end;
 
-procedure TSTDefaults4CurrentUser.WriteString(aSection: string;
-  aIdent: string; aString: string);
+procedure TDefaultsForCurrentUser.WriteString(aSection: string;
+  aIdent: string;
+  aString: string);
 var
-  STReg: TRegistry;
-
-  aKey: string;
+  reg: TRegistry;
+  key: string;
 begin
+  reg := TRegistry.Create;
   try
     try
-      STReg := TRegistry.Create;
-
-      with STReg do
+      with reg do
       begin
         RootKey := GetHKEYRoot;
-        aKey := concat(DefaultKey, aSection);
+        key := concat(DefaultKey, aSection);
 
-        OpenKey(aKey, True);
+        OpenKey(key, True);
 
         WriteString(aIdent, aString);
 
         CloseKey;
       end;
-
     except
       on E: Exception do
       begin
       end;
     end;
   finally
-    STReg.Free;
+    if Assigned(reg) then
+      FreeAndNil(reg);
   end;
 end;
 
-procedure TSTDefaults4CurrentUser.WriteInteger(aSection: string;
-  aIdent: string; aInteger: integer);
+procedure TDefaultsForCurrentUser.WriteInteger(aSection: string;
+  aIdent: string;
+  aInteger: integer);
 var
-  STReg: TRegistry;
-
-  aKey: string;
+  reg: TRegistry;
+  key: string;
 begin
+  reg := TRegistry.Create;
   try
     try
-      STReg := TRegistry.Create;
-
-      with STReg do
+      with reg do
       begin
         RootKey := GetHKEYRoot;
-        aKey := concat(DefaultKey, aSection);
+        key := concat(DefaultKey, aSection);
 
-        OpenKey(aKey, True);
+        OpenKey(key, True);
 
         WriteString(aIdent, IntToStr(aInteger));
 
         CloseKey;
       end;
-
     except
       on E: Exception do
       begin
       end;
     end;
   finally
-    STReg.Free;
+    if Assigned(reg) then
+      FreeAndNil(reg);
   end;
 end;
 
-procedure TSTDefaults4CurrentUser.WriteBool(aSection: string;
-  aIdent: string; aBool: boolean);
+procedure TDefaultsForCurrentUser.WriteBool(aSection: string;
+  aIdent: string;
+  aBool: boolean);
 var
-  STReg: TRegistry;
-
-  aKey: string;
+  reg: TRegistry;
+  key: string;
 begin
+  reg := TRegistry.Create;
   try
     try
-      STReg := TRegistry.Create;
-
-      with STReg do
+      with reg do
       begin
         RootKey := GetHKEYRoot;
-        aKey := concat(DefaultKey, aSection);
+        key := concat(DefaultKey, aSection);
 
-        OpenKey(aKey, True);
+        OpenKey(key, True);
 
         if aBool then
           WriteString(aIdent, '1')
@@ -390,130 +378,101 @@ begin
 
         CloseKey;
       end;
-
     except
       on E: Exception do
       begin
       end;
     end;
   finally
-    STReg.Free;
+    if Assigned(reg) then
+      FreeAndNil(reg);
   end;
 end;
 
-{********************************* published **********************************}
-{********************************* ONNOTIFY  **********************************}
-{******************************************************************************}
-{******************************************************************************}
-{******************************************************************************}
+{ TDataByCurrentUser }
 
-{********************************* TSTRegIniFile ******************************}
-{******************************************************************************}
-{******************************************************************************}
-{********************************* private   **********************************}
-{********************************* protected **********************************}
-{********************************* public    **********************************}
-constructor TSTRegIniFile.Create(aFileName: string; aDefaultsRoot: string;
+constructor TDataByCurrentUser.Create(aFileName: string;
+  aDefaultsRoot: string;
   aDefaultKey: string);
 begin
   inherited Create(aFileName);
 
-  FUseDefaults := TSTDefaults4CurrentUser.Create(aDefaultsRoot, aDefaultKey);
+  FUseDefaults := TDefaultsForCurrentUser.Create(aDefaultsRoot, aDefaultKey);
 end;
 
-destructor TSTRegIniFile.Destroy;
+destructor TDataByCurrentUser.Destroy;
 begin
   FUseDefaults.Free;
 
   inherited Destroy;
 end;
 
-function TSTRegIniFile.ReadStringCheck4Defaults(aSection: string;
-  aIdent: string; aDefault: string): string;
-var
-  resultValue: string;
+function TDataByCurrentUser.ReadStringCheckForDefaults(aSection: string;
+  aIdent: string;
+  aDefault: string): string;
 begin
-  try
-    resultValue := ReadString(aSection, aIdent,
-      UseDefaults.ReadString(aSection, aIdent, aDefault));
-  finally
-    Result := resultValue;
-  end;
+  Result := ReadString(aSection,
+              aIdent,
+              UseDefaults.ReadString(aSection, aIdent, aDefault));
 end;
 
-function TSTRegIniFile.ReadIntegerCheck4Defaults(aSection: string;
-  aIdent: string; aDefault: integer): integer;
-var
-  resultValue: integer;
+function TDataByCurrentUser.ReadIntegerCheckForDefaults(aSection: string;
+  aIdent: string;
+  aDefault: integer): integer;
 begin
-  try
-    resultValue := ReadInteger(aSection, aIdent,
-      UseDefaults.ReadInteger(aSection, aIdent, aDefault));
-  finally
-    Result := resultValue;
-  end;
+  Result := ReadInteger(aSection,
+              aIdent,
+              UseDefaults.ReadInteger(aSection, aIdent, aDefault));
 end;
 
-function TSTRegIniFile.ReadBoolCheck4Defaults(aSection: string;
-  aIdent: string; aDefault: boolean): boolean;
-var
-  resultValue: boolean;
+function TDataByCurrentUser.ReadBoolCheckForDefaults(aSection: string;
+  aIdent: string;
+  aDefault: boolean): boolean;
 begin
-  try
-    resultValue := ReadBool(aSection, aIdent,
-      UseDefaults.ReadBool(aSection, aIdent, aDefault));
-  finally
-    Result := resultValue;
-  end;
+  Result := ReadBool(aSection,
+              aIdent,
+              UseDefaults.ReadBool(aSection, aIdent, aDefault));
 end;
 
-procedure TSTRegIniFile.ReadSectionCheck4Defaults(aSection: string;
+procedure TDataByCurrentUser.ReadSectionCheckForDefaults(aSection: string;
   aStrings: TStrings);
 begin
   try
-    try
+    aStrings.Clear;
+
+    ReadSection(aSection, aStrings);
+
+    if aStrings.Count = 0 then
+      UseDefaults.ReadSection(aSection, aStrings);
+
+  except
+    on E: Exception do
       aStrings.Clear;
-
-      ReadSection(aSection, aStrings);
-
-      if aStrings.Count = 0 then
-        UseDefaults.ReadSection(aSection, aStrings);
-
-    except
-      on E: Exception do
-      begin
-        aStrings.Clear;
-      end;
-    end;
-  finally
   end;
 end;
 
-procedure TSTRegIniFile.WriteStringCheck4Defaults(aSection: string;
-  aIdent: string; aString: string);
+procedure TDataByCurrentUser.WriteStringCheckForDefaults(aSection: string;
+  aIdent: string;
+  aString: string);
 begin
   WriteString(aSection, aIdent, aString);
   UseDefaults.WriteString(aSection, aIdent, aString);
 end;
 
-procedure TSTRegIniFile.WriteIntegerCheck4Defaults(aSection: string;
-  aIdent: string; aInteger: integer);
+procedure TDataByCurrentUser.WriteIntegerCheckForDefaults(aSection: string;
+  aIdent: string;
+  aInteger: integer);
 begin
   WriteInteger(aSection, aIdent, aInteger);
   UseDefaults.WriteInteger(aSection, aIdent, aInteger);
 end;
 
-procedure TSTRegIniFile.WriteBoolCheck4Defaults(aSection: string;
-  aIdent: string; aBool: boolean);
+procedure TDataByCurrentUser.WriteBoolCheckForDefaults(aSection: string;
+  aIdent: string;
+  aBool: boolean);
 begin
   WriteBool(aSection, aIdent, aBool);
   UseDefaults.WriteBool(aSection, aIdent, aBool);
 end;
-
-{********************************* published **********************************}
-{********************************* ONNOTIFY  **********************************}
-{******************************************************************************}
-{******************************************************************************}
-{******************************************************************************}
 
 end.

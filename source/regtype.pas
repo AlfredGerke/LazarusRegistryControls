@@ -83,6 +83,7 @@ type
     //Werte werde sofort (OnChange, OnClick, etc.) in die Registry geschrieben
     FDoWriteAdHoc: boolean;
     FGroupIndex: cardinal;
+    FDoSyncData: boolean;
     FProject: string;
     FOrganisation: string;
     FGUID: string;
@@ -110,6 +111,7 @@ type
     procedure SetProject(aProject: string);
     procedure SetOrganisation(aOrganisation: string);
     procedure SetGroupIndex(aGroupIndex: cardinal);
+    procedure SetDoSyncData(aDoSyncData: boolean);
 
     property Default: _T
       read FDefault
@@ -166,6 +168,9 @@ type
     property GroupIndex: cardinal
       read FGroupIndex
       write SetGroupIndex;
+    property DoSyncData: boolean
+      read FDoSyncData
+      write SetDoSyncData;
     property OnBeforeRegistrySettingChange: TOnRegistrySettingsChange
       read FOnBeforeRegistrySettingChange
       write FOnBeforeRegistrySettingChange;
@@ -440,6 +445,11 @@ begin
   FGroupIndex := aGroupIndex;
 end;
 
+procedure TCustomRegistrySettings<_T>.SetDoSyncData(aDoSyncData: boolean);
+begin
+  FDoSyncData := aDoSyncData;
+end;
+
 procedure TCustomRegistrySettings<_T>.BeginUpdate;
 begin
   FTriggerEvents := False;
@@ -454,6 +464,8 @@ constructor TCustomRegistrySettings<_T>.Create(aOwner: TPersistent);
 begin
   SetOwner(aOwner);
   FTriggerEvents := True;
+  FDoSyncData := False;
+  FGroupIndex := 0;
 end;
 
 end.

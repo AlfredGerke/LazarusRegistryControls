@@ -55,6 +55,7 @@ object Main: TMain
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 1
+          RegistrySettings.DoSyncData = False
           RegistrySource = RegistrySource1
         end
         object rcbxCheckBox1: TRegCheckBox
@@ -75,6 +76,7 @@ object Main: TMain
           RegistrySettings.CanWrite = False
           RegistrySettings.DoWriteAdHoc = False
           RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
           RegistrySettings.Default = False
           RegistrySource = RegistrySource1
         end
@@ -96,6 +98,7 @@ object Main: TMain
           RegistrySettings.CanWrite = False
           RegistrySettings.DoWriteAdHoc = False
           RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
           RegistrySettings.Default = False
           RegistrySource = RegistrySource1
         end
@@ -117,6 +120,7 @@ object Main: TMain
           RegistrySettings.CanWrite = False
           RegistrySettings.DoWriteAdHoc = False
           RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
           RegistrySettings.Default = False
           RegistrySource = RegistrySource1
         end
@@ -138,6 +142,7 @@ object Main: TMain
           RegistrySettings.CanWrite = False
           RegistrySettings.DoWriteAdHoc = False
           RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
           RegistrySettings.Default = False
           RegistrySource = RegistrySource1
         end
@@ -166,6 +171,7 @@ object Main: TMain
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
           RegistrySource = RegistrySource1
         end
         object rgrpRadiaGroup1: TRegRadioGroup
@@ -204,6 +210,7 @@ object Main: TMain
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
           RegistrySettings.Default = 0
           RegistrySettings.ItemsByRegistry = False
           RegistrySource = RegistrySource1
@@ -237,6 +244,7 @@ object Main: TMain
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
           RegistrySettings.Default = False
           RegistrySource = RegistrySource1
         end

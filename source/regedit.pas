@@ -103,6 +103,8 @@ begin
 end;
 
 procedure TCustomRegEdit.ReadWriteInfo(aRead: boolean);
+var
+  sync_state_by_default: boolean;
 begin
   if not (csDesigning in ComponentState) then
   begin
@@ -131,14 +133,22 @@ begin
           Write:
           begin
             if (FRegistrySettings.CanWrite and Modified) then
-              RegistrySource.WriteString(FRegistrySettings.RookKey,
-                FRegistrySettings.RootKeyForDefaults,
-                FRegistrySettings.RootForDefaults,
-                FRegistrySettings.Section,
-                FRegistrySettings.Ident,
-                Text,
-                FRegistrySettings.WriteDefaults,
-                FRegistrySettings.GroupIndex);
+            begin
+              sync_state_by_default:= FRegistrySettings.DoSyncData;
+              FRegistrySettings.DoSyncData := False;
+              try
+                RegistrySource.WriteString(FRegistrySettings.RookKey,
+                  FRegistrySettings.RootKeyForDefaults,
+                  FRegistrySettings.RootForDefaults,
+                  FRegistrySettings.Section,
+                  FRegistrySettings.Ident,
+                  Text,
+                  FRegistrySettings.WriteDefaults,
+                  FRegistrySettings.GroupIndex);
+              finally
+                FRegistrySettings.DoSyncData := sync_state_by_default;
+              end;
+            end;
           end;
         end;
       end;
@@ -155,14 +165,17 @@ procedure TCustomRegEdit.RefreshData(var aMessage: TLMessage);
 var
   group_index: cardinal;
 begin
-  group_index := aMessage.lParam;
-  if (group_index > 0) then
+  if FRegistrySettings.DoSyncData then
   begin
-    if group_index = FRegistrySettings.GroupIndex then
+    group_index := aMessage.lParam;
+    if (group_index > 0) then
+    begin
+      if group_index = FRegistrySettings.GroupIndex then
+        aMessage.Result := LongInt(ReadFromReg)
+    end
+    else
       aMessage.Result := LongInt(ReadFromReg)
-  end
-  else
-    aMessage.Result := LongInt(ReadFromReg)
+  end;
 end;
 
 procedure TCustomRegEdit.SetRegistrySource(aRegistrySource: TRegistrySource);

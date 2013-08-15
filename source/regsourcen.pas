@@ -370,18 +370,18 @@ function TCustomRegistrySource.ReadString(aRootKey: string;
   aDefault: string;
   aUseDefaults: boolean): string;
 var
-  streg: TSTRegIniFile;
+  streg: TDataByCurrentUser;
 begin
   Result := '';
   try
     try
       if aUseDefaults then
-        streg := TSTRegIniFile.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
+        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
       else
-        streg := TSTRegIniFile.Create(aRootKey);
+        streg := TDataByCurrentUser.Create(aRootKey);
 
       if aUseDefaults then
-        Result := streg.ReadStringCheck4Defaults(aSection, aIdent, aDefault)
+        Result := streg.ReadStringCheckForDefaults(aSection, aIdent, aDefault)
       else
         Result := streg.ReadString(aSection, aIdent, aDefault);
     except
@@ -422,18 +422,18 @@ function TCustomRegistrySource.ReadInteger(aRootKey: string;
   aDefault: integer;
   aUseDefaults: boolean): integer;
 var
-  streg: TSTRegIniFile;
+  streg: TDataByCurrentUser;
 begin
   Result := aDefault;
   try
     try
       if aUseDefaults then
-        streg := TSTRegIniFile.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
+        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
       else
-        streg := TSTRegIniFile.Create(aRootKey);
+        streg := TDataByCurrentUser.Create(aRootKey);
 
       if aUseDefaults then
-        Result := streg.ReadIntegerCheck4Defaults(aSection, aIdent, aDefault)
+        Result := streg.ReadIntegerCheckForDefaults(aSection, aIdent, aDefault)
       else
         Result := streg.ReadInteger(aSection, aIdent, aDefault);
     except
@@ -477,18 +477,18 @@ function TCustomRegistrySource.ReadBool(aRootKey: string;
   aDefault: boolean;
   aUseDefaults: boolean): boolean;
 var
-  streg: TSTRegIniFile;
+  streg: TDataByCurrentUser;
 begin
   Result := aDefault;
   try
     try
       if aUseDefaults then
-        streg := TSTRegIniFile.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
+        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
       else
-        streg := TSTRegIniFile.Create(aRootKey);
+        streg := TDataByCurrentUser.Create(aRootKey);
 
       if aUseDefaults then
-        Result := streg.ReadBoolCheck4Defaults(aSection, aIdent, aDefault)
+        Result := streg.ReadBoolCheckForDefaults(aSection, aIdent, aDefault)
       else
         Result := streg.ReadBool(aSection, aIdent, aDefault);
     except
@@ -531,17 +531,17 @@ procedure TCustomRegistrySource.ReadSection(aRootKey: string;
   aStrings: TStrings;
   aUseDefaults: boolean);
 var
-  streg: TSTRegIniFile;
+  streg: TDataByCurrentUser;
 begin
   try
     try
       if aUseDefaults then
-        streg := TSTRegIniFile.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
+        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
       else
-        streg := TSTRegIniFile.Create(aRootKey);
+        streg := TDataByCurrentUser.Create(aRootKey);
 
       if aUseDefaults then
-        streg.ReadSectionCheck4Defaults(aSection, aStrings)
+        streg.ReadSectionCheckForDefaults(aSection, aStrings)
       else
         streg.ReadSection(aSection, aStrings);
     except
@@ -581,17 +581,17 @@ procedure TCustomRegistrySource.WriteString(aRootKey: string;
   aUseDefaults: boolean;
   aGroupIndex: Cardinal = 0);
 var
-  streg: TSTRegIniFile;
+  streg: TDataByCurrentUser;
 begin
   try
     try
       if aUseDefaults then
-        streg := TSTRegIniFile.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
+        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
       else
-        streg := TSTRegIniFile.Create(aRootKey);
+        streg := TDataByCurrentUser.Create(aRootKey);
 
       if aUseDefaults then
-        streg.WriteStringCheck4Defaults(aSection, aIdent, aDefault)
+        streg.WriteStringCheckForDefaults(aSection, aIdent, aDefault)
       else
         streg.WriteString(aSection, aIdent, aDefault);
 
@@ -635,17 +635,17 @@ procedure TCustomRegistrySource.WriteInteger(aRootKey: string;
   aUseDefaults: boolean;
   aGroupIndex: Cardinal = 0);
 var
-  streg: TSTRegIniFile;
+  streg: TDataByCurrentUser;
 begin
   try
     try
       if aUseDefaults then
-        streg := TSTRegIniFile.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
+        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
       else
-        streg := TSTRegIniFile.Create(aRootKey);
+        streg := TDataByCurrentUser.Create(aRootKey);
 
       if aUseDefaults then
-        streg.WriteIntegerCheck4Defaults(aSection, aIdent, aDefault)
+        streg.WriteIntegerCheckForDefaults(aSection, aIdent, aDefault)
       else
         streg.WriteInteger(aSection, aIdent, aDefault);
 
@@ -691,17 +691,17 @@ procedure TCustomRegistrySource.WriteBool(aRootKey: string;
   aUseDefaults: boolean;
   aGroupIndex: Cardinal = 0);
 var
-  streg: TSTRegIniFile;
+  streg: TDataByCurrentUser;
 begin
   try
     try
       if aUseDefaults then
-        streg := TSTRegIniFile.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
+        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
       else
-        streg := TSTRegIniFile.Create(aRootKey);
+        streg := TDataByCurrentUser.Create(aRootKey);
 
       if aUseDefaults then
-        streg.WriteBoolCheck4Defaults(aSection, aIdent, aDefault)
+        streg.WriteBoolCheckForDefaults(aSection, aIdent, aDefault)
       else
         streg.WriteBool(aSection, aIdent, aDefault);
 

@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="55"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -21,11 +21,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmmain"/>
-        <EditorIndex Value="0"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="32" Y="4"/>
-        <UsageCount Value="51"/>
+        <CursorPos X="113" Y="5"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -41,11 +42,10 @@
       <Unit3>
         <Filename Value="..\source\regedit.pas"/>
         <UnitName Value="regedit"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="136"/>
-        <CursorPos X="1" Y="159"/>
+        <TopLine Value="67"/>
+        <CursorPos X="1" Y="236"/>
         <UsageCount Value="15"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -68,11 +68,11 @@
       <Unit6>
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="224"/>
-        <CursorPos X="1" Y="255"/>
-        <UsageCount Value="14"/>
+        <TopLine Value="256"/>
+        <CursorPos X="40" Y="266"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
@@ -110,10 +110,12 @@
       <Unit11>
         <Filename Value="..\source\regradiogroup.pas"/>
         <UnitName Value="regradiogroup"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="161"/>
-        <CursorPos X="3" Y="165"/>
+        <TopLine Value="267"/>
+        <CursorPos X="1" Y="286"/>
         <UsageCount Value="11"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
@@ -208,19 +210,23 @@
       <Unit23>
         <Filename Value="..\source\regcheckbox.pas"/>
         <UnitName Value="regcheckbox"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="3" Y="20"/>
+        <TopLine Value="60"/>
+        <CursorPos X="1" Y="255"/>
         <UsageCount Value="12"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit23>
       <Unit24>
         <Filename Value="..\source\regradiobutton.pas"/>
         <UnitName Value="regradiobutton"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="3" Y="20"/>
+        <TopLine Value="182"/>
+        <CursorPos X="1" Y="213"/>
         <UsageCount Value="11"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit24>
       <Unit25>
@@ -288,9 +294,9 @@
         <Filename Value="..\source\regutils.pas"/>
         <UnitName Value="regutils"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="231"/>
-        <CursorPos X="1" Y="250"/>
-        <UsageCount Value="12"/>
+        <TopLine Value="43"/>
+        <CursorPos X="21" Y="58"/>
+        <UsageCount Value="13"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit32>
       <Unit33>
@@ -410,10 +416,12 @@
       <Unit48>
         <Filename Value="..\source\regtype.pas"/>
         <UnitName Value="regtype"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="380"/>
-        <CursorPos X="3" Y="383"/>
+        <TopLine Value="432"/>
+        <CursorPos X="20" Y="468"/>
         <UsageCount Value="12"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit48>
       <Unit49>
@@ -488,90 +496,103 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="18" HistoryIndex="17">
+    <JumpHistory Count="24" HistoryIndex="23">
       <Position1>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="178" Column="1" TopLine="156"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="536" Column="3" TopLine="525"/>
       </Position1>
       <Position2>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="181" Column="1" TopLine="156"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="374" Column="33" TopLine="353"/>
       </Position2>
       <Position3>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="182" Column="1" TopLine="156"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="373" Column="23" TopLine="354"/>
       </Position3>
       <Position4>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="184" Column="1" TopLine="156"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="701" Column="36" TopLine="669"/>
       </Position4>
       <Position5>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="185" Column="1" TopLine="156"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="384" Column="43" TopLine="364"/>
       </Position5>
       <Position6>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="188" Column="1" TopLine="156"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="436" Column="52" TopLine="417"/>
       </Position6>
       <Position7>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="158" Column="1" TopLine="151"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="544" Column="15" TopLine="525"/>
       </Position7>
       <Position8>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="164" Column="1" TopLine="151"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="491" Column="49" TopLine="471"/>
       </Position8>
       <Position9>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="165" Column="1" TopLine="151"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="544" Column="34" TopLine="525"/>
       </Position9>
       <Position10>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="167" Column="1" TopLine="151"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="594" Column="34" TopLine="575"/>
       </Position10>
       <Position11>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="172" Column="1" TopLine="151"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="648" Column="35" TopLine="629"/>
       </Position11>
       <Position12>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="158" Column="1" TopLine="151"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="115" Column="25" TopLine="104"/>
       </Position12>
       <Position13>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="164" Column="1" TopLine="151"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="352" Column="3" TopLine="343"/>
       </Position13>
       <Position14>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="165" Column="1" TopLine="151"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="74" Column="16" TopLine="55"/>
       </Position14>
       <Position15>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="167" Column="1" TopLine="151"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="109" Column="23" TopLine="78"/>
       </Position15>
       <Position16>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="168" Column="1" TopLine="151"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="110" Column="24" TopLine="79"/>
       </Position16>
       <Position17>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="163" Column="1" TopLine="136"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="352" Column="14" TopLine="320"/>
       </Position17>
       <Position18>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="158" Column="1" TopLine="136"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="599" Column="18" TopLine="566"/>
       </Position18>
+      <Position19>
+        <Filename Value="..\source\regcheckbox.pas"/>
+        <Caret Line="179" Column="7" TopLine="145"/>
+      </Position19>
+      <Position20>
+        <Filename Value="..\source\regcheckbox.pas"/>
+        <Caret Line="22" Column="1" TopLine="3"/>
+      </Position20>
+      <Position21>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="25" Column="8" TopLine="5"/>
+      </Position21>
+      <Position22>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="25" Column="11" TopLine="11"/>
+      </Position22>
+      <Position23>
+        <Filename Value="..\source\regedit.pas"/>
+        <Caret Line="22" Column="9" TopLine="1"/>
+      </Position23>
+      <Position24>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="4" Column="32" TopLine="1"/>
+      </Position24>
     </JumpHistory>
   </ProjectSession>
-  <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="..\source\regedit.pas"/>
-        <Line Value="158"/>
-      </Item1>
-    </BreakPoints>
-  </Debugging>
 </CONFIG>
