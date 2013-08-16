@@ -6,34 +6,43 @@ interface
 
 uses
   PropEdits,
-  ComponentEditors;
+  ComponentEditors,
+  Menus,
+  Classes;
 
 type
 
-  { TRegistrySourceComponentEditor }
 
-    { TRegistryControlComponentEditor }
 
-    TRegistryControlComponentEditor = class(TComponentEditor)
-    protected
-      procedure ExecuteShowInfo;
-    public
-      procedure ExecuteVerb(Index: Integer); override;
-      function  GetVerb(Index: Integer): String; override;
-      function  GetVerbCount: Integer; override;
-    end;
+  { TRegistryControlComponentEditor }
+
+  TRegistryControlComponentEditor = class(TComponentEditor)
+  protected
+    procedure ExecuteShowInfo;
+  public
+    procedure ExecuteVerb(Index: Integer); override;
+    function  GetVerb(Index: Integer): String; override;
+    function  GetVerbCount: Integer; override;
+  end;
 
   { TRegistrySourceComponentEditor }
 
   TRegistrySourceComponentEditor = class(TComponentEditor)
   protected
+    procedure OnClientMenuItemClick(Sender: TObject);
+    procedure AddMenuItemsByClientList(aParentMenuItem: TMenuItem;
+                                       aRegistrySource: TComponent);
+    procedure AddMenuItemsForComponent(aIndex: integer;
+                                       aParentMenuItem: TMenuItem;
+                                       aRegistrySource: TComponent);
     procedure ExecuteRefreshSettings;
     procedure ExecuteRefreshSyncProperty;
     procedure ExecuteRefreshWriteAdHocProperty;
   public
     procedure ExecuteVerb(Index: Integer); override;
-    function  GetVerb(Index: Integer): String; override;
-    function  GetVerbCount: Integer; override;
+    function GetVerb(Index: Integer): String; override;
+    function GetVerbCount: Integer; override;
+    procedure PrepareItem(Index: Integer; const AItem: TMenuItem); override;
   end;
 
   { TRegistrySettingsPropertyEditor }
@@ -46,10 +55,11 @@ type
 implementation
 
 uses
-  Classes,
   SysUtils,
   Forms,
-  regtype;
+  regtype,
+  regsourcen,
+  Dialogs;
 
 { TRegistryControlComponentEditor }
 
@@ -79,19 +89,73 @@ end;
 
 { TRegistrySourceComponentEditor }
 
-procedure TRegistrySourceComponentEditor.ExecuteRefreshSettings;
+procedure TRegistrySourceComponentEditor.OnClientMenuItemClick(Sender: TObject);
+var
+  registry_source: TRegistrySource;
+  control: TComponent;
 begin
+  registry_source := Component as TRegistrySource;
 
+  if (Sender is TMenuItem) then;
+  begin
+    control := registry_source.GetClientByName(TMenuItem(sender).Caption);
+    if Assigned(Control) then
+      Designer.SelectOnlyThisComponent(control);
+  end;
+end;
+
+procedure TRegistrySourceComponentEditor.AddMenuItemsByClientList(
+  aParentMenuItem: TMenuItem;
+  aRegistrySource: TComponent);
+var
+  anz: integer;
+  client_menu_item: TMenuItem;
+begin
+  if (aRegistrySource is TRegistrySource) then
+    for anz := 0 to TRegistrySource(aRegistrySource).ClientCount-1 do
+    begin
+      client_menu_item := TMenuItem.Create(aParentMenuItem);
+      client_menu_item.Name := 'RegSrcSub' + IntToStr(anz);
+      client_menu_item.Caption := TRegistrySource(aRegistrySource).GetClientNameByIndex(anz);
+      client_menu_item.OnClick := OnClientMenuItemClick;
+      aParentMenuItem.Add(client_menu_item);
+    end;
+end;
+
+procedure TRegistrySourceComponentEditor.AddMenuItemsForComponent(aIndex: integer;
+  aParentMenuItem: TMenuItem;
+  aRegistrySource: TComponent);
+begin
+  case aIndex of
+    0: ;
+    1: ;
+    2: ;
+    3: AddMenuItemsByClientList(aParentMenuItem, aRegistrySource);
+  end;
+end;
+
+procedure TRegistrySourceComponentEditor.ExecuteRefreshSettings;
+var
+  registry_source: TRegistrySource;
+begin
+  registry_source := Component as TRegistrySource;
+  registry_source.RefreshSettings;
 end;
 
 procedure TRegistrySourceComponentEditor.ExecuteRefreshSyncProperty;
+var
+  registry_source: TRegistrySource;
 begin
-
+  registry_source := Component as TRegistrySource;
+  registry_source.RefreshSyncProperty;
 end;
 
 procedure TRegistrySourceComponentEditor.ExecuteRefreshWriteAdHocProperty;
+var
+  registry_source: TRegistrySource;
 begin
-
+  registry_source := Component as TRegistrySource;
+  registry_source.RefreshWriteAdHocProperty;
 end;
 
 procedure TRegistrySourceComponentEditor.ExecuteVerb(Index: Integer);
@@ -106,15 +170,33 @@ end;
 function TRegistrySourceComponentEditor.GetVerb(Index: Integer): String;
 begin
   case Index of
-    0: Result := 'Refresh RegistrySettings';
+    0: Result := 'Refresh ClientSettings';
     1: Result := 'Refresh DoWriteAdHoc';
     2: Result := 'Refresh DoSyncData';
+    3: Result := 'Registered Clients';
   end;
 end;
 
 function TRegistrySourceComponentEditor.GetVerbCount: Integer;
 begin
-  Result := 3;
+  Result := 4;
+end;
+
+procedure TRegistrySourceComponentEditor.PrepareItem(Index: Integer;
+  const AItem: TMenuItem);
+var
+  registry_source: TRegistrySource;
+begin
+  registry_source := Component as TRegistrySource;
+  case Index of
+    0: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
+    1: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
+    2: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
+    3: if (assigned(registry_source) and (registry_source.ClientCount > 0)) then
+         AddMenuItemsForComponent(Index, aItem, registry_source)
+       else
+         AItem.Enabled := False;
+  end;
 end;
 
 { TRegistrySettingsPropertyEditor }

@@ -112,7 +112,12 @@ type
     property PrefereStrings: boolean
       read FPrefereStrings
       write FPrefereStrings;
+    function GetClientCount: integer;
+    property ClientCount: integer
+      read GetClientCount;
   public
+    function GetClientByName(aClientName: string): TComponent;
+    function GetClientNameByIndex(aIndex: integer) : string;
     procedure FreeRegistrySource(aClientName: string = '';
                                  aGroupIndex: cardinal = 0);
     procedure RefreshWriteAdHocProperty(aDoWriteAdHoc : boolean = True;
@@ -214,6 +219,7 @@ type
   private
   protected
   public
+    property ClientCount;
   published
     property RootKey;
     property RootKeyForDefaults;
@@ -280,6 +286,35 @@ begin
             TComponent(FClientList.Objects[anz]).Dispatch(msg);
       end;
   end;
+end;
+
+function TCustomRegistrySource.GetClientCount: integer;
+begin
+  if Assigned(FClientList) then
+    Result := FClientList.Count
+  else
+    Result := 0;
+end;
+
+function TCustomRegistrySource.GetClientByName(aClientName: string): TComponent;
+var
+  index: integer;
+begin
+  Result := nil;
+  if (ClientCount > 0) then
+  begin
+    index := FClientList.IndexOf(aClientName);
+    if (index <> -1) then
+      if Assigned(FClientList.Objects[index]) then
+        if (FClientList.Objects[index] is TComponent) then
+          Result := TComponent(FClientList.Objects[index]);
+  end;
+end;
+
+function TCustomRegistrySource.GetClientNameByIndex(aIndex: integer): string;
+begin
+  if ((ClientCount > 0) and ((ClientCount-1) >= aIndex)) then
+    Result := FClientList.Strings[aIndex];
 end;
 
 procedure TCustomRegistrySource.FreeRegistrySource(aClientName: string = '';

@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="60">
+    <Units Count="61">
       <Unit0>
         <Filename Value="example.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="66"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -24,11 +24,10 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="113"/>
-        <CursorPos X="29" Y="115"/>
-        <UsageCount Value="64"/>
+        <TopLine Value="97"/>
+        <CursorPos X="109" Y="99"/>
+        <UsageCount Value="66"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regconst.pas"/>
@@ -51,8 +50,8 @@
       <Unit4>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\classesh.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1605"/>
-        <CursorPos X="38" Y="1625"/>
+        <TopLine Value="1651"/>
+        <CursorPos X="3" Y="1670"/>
         <UsageCount Value="11"/>
       </Unit4>
       <Unit5>
@@ -67,9 +66,9 @@
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="766"/>
-        <CursorPos X="1" Y="798"/>
-        <UsageCount Value="18"/>
+        <TopLine Value="21"/>
+        <CursorPos X="1" Y="39"/>
+        <UsageCount Value="19"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -424,9 +423,9 @@
         <Filename Value="..\source\regpropedits.pas"/>
         <UnitName Value="regpropedits"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="44"/>
-        <CursorPos X="42" Y="56"/>
-        <UsageCount Value="11"/>
+        <TopLine Value="61"/>
+        <CursorPos X="3" Y="61"/>
+        <UsageCount Value="12"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit50>
       <Unit51>
@@ -484,8 +483,8 @@
         <Filename Value="C:\lazarus\ideintf\componenteditors.pas"/>
         <UnitName Value="ComponentEditors"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="375"/>
-        <CursorPos X="34" Y="403"/>
+        <TopLine Value="163"/>
+        <CursorPos X="24" Y="1413"/>
         <UsageCount Value="10"/>
       </Unit58>
       <Unit59>
@@ -495,43 +494,18 @@
         <CursorPos X="3" Y="245"/>
         <UsageCount Value="10"/>
       </Unit59>
+      <Unit60>
+        <Filename Value="C:\lazarus\lcl\menus.pp"/>
+        <UnitName Value="Menus"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="99"/>
+        <CursorPos X="3" Y="118"/>
+        <UsageCount Value="10"/>
+      </Unit60>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="8" HistoryIndex="7">
-      <Position1>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="53" Column="38" TopLine="29"/>
-      </Position1>
-      <Position2>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="51" Column="30" TopLine="29"/>
-      </Position2>
-      <Position3>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="49" Column="53" TopLine="29"/>
-      </Position3>
-      <Position4>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="50" Column="30" TopLine="32"/>
-      </Position4>
-      <Position5>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="51" Column="39" TopLine="32"/>
-      </Position5>
-      <Position6>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="74" Column="3" TopLine="49"/>
-      </Position6>
-      <Position7>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="72" Column="24" TopLine="63"/>
-      </Position7>
-      <Position8>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="74" Column="24" TopLine="65"/>
-      </Position8>
-    </JumpHistory>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
   </ProjectSession>
 </CONFIG>
