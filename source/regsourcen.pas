@@ -71,6 +71,7 @@ type
     FGUID: string;
     FClientList: TStrings;
     FDoSyncData: boolean;
+    FPrefereStrings: boolean;
 
     procedure OnSyncData(aGroupIndex: Cardinal);
     procedure DeliverMessage(aMessageConst: cardinal;
@@ -108,6 +109,9 @@ type
     property DoSyncData: boolean
       read FDoSyncData
       write FDoSyncData;
+    property PrefereStrings: boolean
+      read FPrefereStrings
+      write FPrefereStrings;
   public
     procedure FreeRegistrySource(aClientName: string = '';
                                  aGroupIndex: cardinal = 0);
@@ -221,6 +225,7 @@ type
     property WriteDefaults;
     property GUID;
     property DoSyncData;
+    property PrefereStrings;
   end;
 
 procedure Register;
@@ -393,10 +398,17 @@ constructor TCustomRegistrySource.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
 
+  FRootKey := EmptyStr;
+  FRootKeyForDefaults := EmptyStr;
+  FRootKeyForCommon := EmptyStr;
+  FProject := EmptyStr;
+  FOrganisation := EmptyStr;
+  FRootForDefaults := EmptyStr;
   FReadDefaults := False;
   FWriteDefaults := False;
   FGUID := EmptyStr;
-  FDoSyncData:= False;
+  FDoSyncData := False;
+  FPrefereStrings := False;
 
   FClientList := TStringList.Create;
 end;
@@ -422,13 +434,17 @@ var
   streg: TDataByCurrentUser;
 begin
   Result := '';
+
+  if aUseDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey);
+
   try
     try
-      if aUseDefaults then
-        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
-      else
-        streg := TDataByCurrentUser.Create(aRootKey);
-
       if aUseDefaults then
         Result := streg.ReadStringCheckForDefaults(aSection, aIdent, aDefault)
       else
@@ -441,7 +457,8 @@ begin
       end;
     end;
   finally
-    streg.Free;
+    if Assigned(streg) then
+      FreeAndNil(streg);
   end;
 end;
 
@@ -474,13 +491,18 @@ var
   streg: TDataByCurrentUser;
 begin
   Result := aDefault;
+
+  if aUseDefaults then
+    streg := TDataByCurrentUser.Create(
+               aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey);
+
   try
     try
-      if aUseDefaults then
-        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
-      else
-        streg := TDataByCurrentUser.Create(aRootKey);
-
       if aUseDefaults then
         Result := streg.ReadIntegerCheckForDefaults(aSection, aIdent, aDefault)
       else
@@ -493,7 +515,8 @@ begin
       end;
     end;
   finally
-    streg.Free;
+    if Assigned(streg) then
+      FreeAndNil(streg);
   end;
 end;
 
@@ -529,13 +552,17 @@ var
   streg: TDataByCurrentUser;
 begin
   Result := aDefault;
+
+  if aUseDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey);
+
   try
     try
-      if aUseDefaults then
-        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
-      else
-        streg := TDataByCurrentUser.Create(aRootKey);
-
       if aUseDefaults then
         Result := streg.ReadBoolCheckForDefaults(aSection, aIdent, aDefault)
       else
@@ -548,7 +575,8 @@ begin
       end;
     end;
   finally
-    streg.Free;
+    if Assigned(streg) then
+      FreeAndNil(streg);
   end;
 end;
 
@@ -582,13 +610,16 @@ procedure TCustomRegistrySource.ReadSection(aRootKey: string;
 var
   streg: TDataByCurrentUser;
 begin
+  if aUseDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey);
+
   try
     try
-      if aUseDefaults then
-        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
-      else
-        streg := TDataByCurrentUser.Create(aRootKey);
-
       if aUseDefaults then
         streg.ReadSectionCheckForDefaults(aSection, aStrings)
       else
@@ -598,7 +629,8 @@ begin
         raise;
     end;
   finally
-    streg.Free;
+    if Assigned(streg) then
+      FreeAndNil(streg);
   end;
 end;
 
@@ -632,13 +664,16 @@ procedure TCustomRegistrySource.WriteString(aRootKey: string;
 var
   streg: TDataByCurrentUser;
 begin
+  if aUseDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey);
+
   try
     try
-      if aUseDefaults then
-        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
-      else
-        streg := TDataByCurrentUser.Create(aRootKey);
-
       if aUseDefaults then
         streg.WriteStringCheckForDefaults(aSection, aIdent, aDefault)
       else
@@ -651,7 +686,8 @@ begin
         raise;
     end;
   finally
-    streg.Free;
+    if Assigned(streg) then
+      FreeAndNil(streg);
   end;
 end;
 
@@ -686,13 +722,16 @@ procedure TCustomRegistrySource.WriteInteger(aRootKey: string;
 var
   streg: TDataByCurrentUser;
 begin
+  if aUseDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey);
+
   try
     try
-      if aUseDefaults then
-        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
-      else
-        streg := TDataByCurrentUser.Create(aRootKey);
-
       if aUseDefaults then
         streg.WriteIntegerCheckForDefaults(aSection, aIdent, aDefault)
       else
@@ -705,7 +744,8 @@ begin
         raise;
     end;
   finally
-    streg.Free;
+    if Assigned(streg) then
+      FreeAndNil(streg);
   end;
 end;
 
@@ -742,13 +782,16 @@ procedure TCustomRegistrySource.WriteBool(aRootKey: string;
 var
   streg: TDataByCurrentUser;
 begin
+  if aUseDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey);
+
   try
     try
-      if aUseDefaults then
-        streg := TDataByCurrentUser.Create(aRootKey, aRootForDefaults, aRootKeyForDefaults)
-      else
-        streg := TDataByCurrentUser.Create(aRootKey);
-
       if aUseDefaults then
         streg.WriteBoolCheckForDefaults(aSection, aIdent, aDefault)
       else
@@ -761,7 +804,8 @@ begin
         raise;
     end;
   finally
-    streg.Free;
+    if Assigned(streg) then
+      FreeAndNil(streg);
   end;
 end;
 

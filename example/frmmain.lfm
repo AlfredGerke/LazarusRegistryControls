@@ -122,13 +122,13 @@ object Main: TMain
           RegistrySettings.Default = False
           RegistrySource = RegistrySource1
         end
-        object rgrpRadiaGroup1: TRegRadioGroup
+        object rgrpRadioGroup1: TRegRadioGroup
           Left = 316
           Height = 129
           Top = 13
           Width = 217
           AutoFill = True
-          Caption = 'RadioGroup (rgrpRadiaGroup1) statisch'
+          Caption = 'RadioGroup (rgrpRadioGroup1) statisch'
           ChildSizing.LeftRightSpacing = 6
           ChildSizing.TopBottomSpacing = 6
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -172,8 +172,7 @@ object Main: TMain
           Height = 17
           Top = 13
           Width = 231
-          Caption = 'Änderungen sofort in die Registry schreiben'
-          OnChange = rcbWriteAdHocChange
+          Action = acRefreshWriteAdHoc
           TabOrder = 0
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.Ident = 'DoWriteAdHoc'
@@ -254,8 +253,13 @@ object Main: TMain
     end
     object acRefreshData: TAction
       Category = 'ExecuteExample'
-      Caption = 'Steuerelement aktualisieren'
+      Caption = 'Steuerelement(e) aktualisieren'
       OnExecute = acRefreshDataExecute
+    end
+    object acRefreshWriteAdHoc: TAction
+      Category = 'ExecuteExample'
+      Caption = 'Änderungen sofort in die Registry schreiben'
+      OnExecute = acRefreshWriteAdHocExecute
     end
   end
   object RegistrySource1: TRegistrySource
@@ -269,6 +273,7 @@ object Main: TMain
     WriteDefaults = False
     GUID = '{7142DBAD-5BEA-4690-B64E-B17CA6553E81}'
     DoSyncData = True
+    PrefereStrings = False
     left = 752
     top = 200
   end

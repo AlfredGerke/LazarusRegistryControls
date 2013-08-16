@@ -19,6 +19,7 @@ type
     acCreateExampleSettings: TAction;
     acCheckExampleSettings: TAction;
     acRefreshData: TAction;
+    acRefreshWriteAdHoc: TAction;
     ActionList1: TActionList;
     btnRefreshControls: TButton;
     lblEditSingleValue: TLabel;
@@ -37,7 +38,7 @@ type
     redtControlName: TRegEdit;
     redtEdit: TRegEdit;
     RegistrySource1: TRegistrySource;
-    rgrpRadiaGroup1: TRegRadioGroup;
+    rgrpRadioGroup1: TRegRadioGroup;
     rrbRadioButton1: TRegRadioButton;
     rrbRadioButton2: TRegRadioButton;
     tabSingleValue: TTabSheet;
@@ -47,8 +48,10 @@ type
     procedure acCloseExecute(Sender: TObject);
     procedure acCreateExampleSettingsExecute(Sender: TObject);
     procedure acRefreshDataExecute(Sender: TObject);
-    procedure rcbWriteAdHocChange(Sender: TObject);
+    procedure acRefreshWriteAdHocExecute(Sender: TObject);
   private
+    procedure RefreshWriteAdHocProperty;
+    procedure RefershSyncDataProperty;
     function CheckForExampleSettings: boolean;
     procedure CreateSettings;
   public
@@ -62,6 +65,24 @@ implementation
 {$R *.lfm}
 
 { TMain }
+
+procedure TMain.RefreshWriteAdHocProperty;
+begin
+  if rcbWriteAdHoc.Checked then
+    RegistrySource1.RefreshWriteAdHocProperty(True)
+  else
+    RegistrySource1.RefreshWriteAdHocProperty(False);
+end;
+
+procedure TMain.RefershSyncDataProperty;
+begin
+  {
+  if ???.Checked then
+    RegistrySource1.RefreshSyncProperty(True)
+  else
+    RegistrySource1.RefreshSyncProperty(False);
+  }
+end;
 
 procedure TMain.acCloseExecute(Sender: TObject);
 begin
@@ -89,16 +110,9 @@ begin
   RegistrySource1.RefreshControlData(Trim(redtControlName.Text));
 end;
 
-procedure TMain.rcbWriteAdHocChange(Sender: TObject);
+procedure TMain.acRefreshWriteAdHocExecute(Sender: TObject);
 begin
-  if rcbWriteAdHoc.Checked then
-  begin
-
-  end
-  else
-  begin
-
-  end;
+  RefreshWriteAdHocProperty;
 end;
 
 function TMain.CheckForExampleSettings: boolean;
@@ -149,7 +163,7 @@ begin
       WriteInteger('ListBox', 'TopIndex', 1);
 
       // Section als Liste laden
-      // nur wenn als Value '1', 1 oder True dann Ident in die Liste laden
+      // nur wenn als Value 1 oder True dann Ident in die Liste laden
       WriteInteger('RaidoGroupListe', 'RaidoGroup1', 1);
       WriteInteger('RaidoGroupListe', 'RaidoGroup2', 1);
       WriteInteger('RaidoGroupListe', 'RaidoGroup3', 1);
@@ -157,7 +171,7 @@ begin
       WriteInteger('RaidoGroupListe', 'RaidoGroup5', 1);
 
       // Section als Liste laden
-      // nur wenn als Value '1', 1 oder True dann Ident in die Liste laden
+      // nur wenn als Value 1 oder True dann Ident in die Liste laden
       WriteInteger('ListBoxListe', 'ListBox1', 1);
       WriteInteger('ListBoxListe', 'ListBox2', 1);
       WriteInteger('ListBoxListe', 'ListBox3', 1);
@@ -165,24 +179,24 @@ begin
       WriteInteger('ListBoxListe', 'ListBox5', 1);
 
       // Section als Liste laden
-      // nur wenn als Value '1', 1 oder True dann Ident in die Liste laden
-      WriteString('ComboBoxListe', 'ComboBox1', '1');
+      // nur wenn als Value 1 oder True dann Ident in die Liste laden
+      WriteInteger('ComboBoxListe', 'ComboBox1', 1);
       WriteInteger('ComboBoxListe', 'ComboBox2', 0);
       WriteInteger('ComboBoxListe', 'ComboBox3', 1);
       WriteBool('ComboBoxListe', 'ComboBox4', True);
       WriteBool('ComboBoxListe', 'ComboBox5', False);
 
       // Section als Liste laden
-      // nur wenn als Value '1', 1 oder True dann Ident in die Liste laden
-      WriteString('CheckGroupListe', 'CheckGroup1', '1');
+      // nur wenn als Value 1 oder True dann Ident in die Liste laden
+      WriteInteger('CheckGroupListe', 'CheckGroup1', 1);
       WriteInteger('CheckGroupListe', 'CheckGroup2', 1);
       WriteInteger('CheckGroupListe', 'CheckGroup3', 0);
       WriteBool('CheckGroupListe', 'CheckGroup4', True);
       WriteBool('CheckGroupListe', 'CheckGroup5', False);
 
       // Section als Liste laden
-      // nur wenn als Value '1', 1 oder True dann Ident in die Liste laden
-      WriteString('CheckListBoxListe', 'CheckListBox1', '1');
+      // nur wenn als Value 1 oder True dann Ident in die Liste laden
+      WriteInteger('CheckListBoxListe', 'CheckListBox1', 1);
       WriteInteger('CheckListBoxListe', 'CheckListBox2', 0);
       WriteInteger('CheckListBoxListe', 'CheckListBox3', 1);
       WriteBool('CheckListBoxListe', 'CheckListBox4', True);

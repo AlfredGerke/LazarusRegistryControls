@@ -14,6 +14,7 @@ type
   private
     FRoot: string;
     FDefaultKey: string;
+    FPrefereStrings: boolean;
   protected
     function GetDefaultKey: string;
     function GetHKeyRoot: HKEY;
@@ -41,7 +42,8 @@ type
                         aBool: boolean); virtual;
 
     constructor Create(aRoot: string;
-                       aDefaultKey: string); virtual;
+                       aDefaultKey: string;
+                       aPrefereString: boolean = False); virtual;
     destructor Destroy; override;
 
   published
@@ -84,7 +86,8 @@ type
 
     constructor Create(aFileName: string;
                        aDefaultsRoot: string;
-                       aDefaultKey: string); reintroduce; overload;
+                       aDefaultKey: string;
+                       aPrefereStrings: boolean = False); reintroduce; overload;
     destructor Destroy; override;
   published
     property UseDefaults: TDefaultsForCurrentUser
@@ -144,12 +147,14 @@ begin
 end;
 
 constructor TDefaultsForCurrentUser.Create(aRoot: string;
-  aDefaultKey: string);
+  aDefaultKey: string;
+  aPrefereString: boolean = False);
 begin
   inherited Create;
 
   FRoot := aRoot;
   FDefaultKey := aDefaultKey;
+  FPrefereStrings := aPrefereString;
 end;
 
 destructor TDefaultsForCurrentUser.Destroy;
@@ -167,7 +172,7 @@ var
   reg: TRegistry;
   key: string;
 begin
-  Result := EmptyStr;
+  Result := aDefault;
   reg := TRegistry.Create;
   try
     try
@@ -176,12 +181,9 @@ begin
         RootKey := GetHKEYRoot;
         key := concat(DefaultKey, aSection);
 
-        OpenKeyReadOnly(key);
-
-        Result := ReadString(aIdent);
-
-        if (LowerCase(Trim(Result)) = '') then
-          Result := aDefault;
+        if OpenKeyReadOnly(key) then
+          if ValueExists(aIdent) then
+            Result := ReadString(aIdent);
 
         CloseKey;
       end;
@@ -202,7 +204,7 @@ var
   reg: TRegistry;
   key: string;
 begin
-  Result := -1;
+  Result := aDefault;
   reg := TRegistry.Create;
   try
     try
@@ -211,9 +213,16 @@ begin
         RootKey := GetHKEYRoot;
         key := concat(DefaultKey, aSection);
 
-        OpenKeyReadOnly(key);
-
-        Result := StrToInt(ReadString(aIdent));
+        if OpenKeyReadOnly(key) then
+        begin
+          if ValueExists(aIdent) then
+          begin
+            if FPrefereStrings then
+              Result := StrToInt(ReadString(aIdent))
+            else
+              Result := ReadInteger(aIdent);
+          end;
+        end;
 
         CloseKey;
       end;
@@ -234,7 +243,7 @@ var
   reg: TRegistry;
   key: string;
 begin
-  Result := False;
+  Result := aDefault;
   reg := TRegistry.Create;
   try
     try
@@ -243,9 +252,16 @@ begin
         RootKey := GetHKEYRoot;
         key := concat(DefaultKey, aSection);
 
-        OpenKeyReadOnly(key);
-
-        Result := StrToInt(ReadString(aIdent)) <> 0;
+        if OpenKeyReadOnly(key) then
+        begin
+          if ValueExists(aIdent) then
+          begin
+            if FPrefereStrings then
+              Result := StrToInt(ReadString(aIdent)) <> 0
+            else
+              Result := ReadBool(aIdent);
+          end;
+        end;
 
         CloseKey;
       end;
@@ -274,9 +290,8 @@ begin
         RootKey := GetHKEYRoot;
         key := concat(DefaultKey, aSection);
 
-        OpenKeyReadOnly(key);
-
-        GetValueNames(aStrings);
+        if OpenKeyReadOnly(key) then
+          GetValueNames(aStrings);
 
         CloseKey;
       end;
@@ -305,9 +320,8 @@ begin
         RootKey := GetHKEYRoot;
         key := concat(DefaultKey, aSection);
 
-        OpenKey(key, True);
-
-        WriteString(aIdent, aString);
+        if OpenKey(key, True) then
+          WriteString(aIdent, aString);
 
         CloseKey;
       end;
@@ -337,9 +351,13 @@ begin
         RootKey := GetHKEYRoot;
         key := concat(DefaultKey, aSection);
 
-        OpenKey(key, True);
-
-        WriteString(aIdent, IntToStr(aInteger));
+        if OpenKey(key, True) then
+        begin
+          if FPrefereStrings then
+            WriteString(aIdent, IntToStr(aInteger))
+          else
+            WriteInteger(aIdent, aInteger);
+        end;
 
         CloseKey;
       end;
@@ -369,12 +387,18 @@ begin
         RootKey := GetHKEYRoot;
         key := concat(DefaultKey, aSection);
 
-        OpenKey(key, True);
-
-        if aBool then
-          WriteString(aIdent, '1')
-        else
-          WriteString(aIdent, '0');
+        if OpenKey(key, True) then
+        begin
+          if FPrefereStrings then
+          begin
+            if aBool then
+              WriteString(aIdent, '1')
+            else
+              WriteString(aIdent, '0');
+            end
+          else
+            WriteBool(aIdent, aBool);
+        end;
 
         CloseKey;
       end;
@@ -393,11 +417,13 @@ end;
 
 constructor TDataByCurrentUser.Create(aFileName: string;
   aDefaultsRoot: string;
-  aDefaultKey: string);
+  aDefaultKey: string;
+  aPrefereStrings: boolean = False);
 begin
   inherited Create(aFileName);
 
-  FUseDefaults := TDefaultsForCurrentUser.Create(aDefaultsRoot, aDefaultKey);
+  FUseDefaults :=
+    TDefaultsForCurrentUser.Create(aDefaultsRoot, aDefaultKey, aPrefereStrings);
 end;
 
 destructor TDataByCurrentUser.Destroy;
