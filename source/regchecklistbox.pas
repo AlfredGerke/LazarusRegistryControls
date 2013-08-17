@@ -1,6 +1,6 @@
 unit regchecklistbox;
 
-{$mode delphi}
+{$mode Delphi}{$H+}
 
 interface
 

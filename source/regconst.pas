@@ -1,5 +1,7 @@
 unit regconst;
 
+{$mode Delphi}{$H+}
+
 interface
 
 type

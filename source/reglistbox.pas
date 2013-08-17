@@ -1,6 +1,6 @@
 unit reglistbox;
 
-{$mode delphi}
+{$mode Delphi}{$H+}
 
 interface
 

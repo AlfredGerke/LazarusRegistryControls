@@ -1,6 +1,6 @@
 unit dlgeditsettings;
 
-{$mode objfpc}{$H+}
+{$mode Delphi}{$H+}
 
 interface
 
@@ -8,7 +8,8 @@ uses
   Forms,
   ExtCtrls,
   Buttons,
-  StdCtrls;
+  StdCtrls,
+  regtype;
 
 type
 
@@ -36,16 +37,10 @@ type
   private
     FEdit: boolean;
 
-    procedure SetEditMode(aEdit: boolean);
+    procedure SetEdit(aEdit: boolean);
   public
-    procedure SetData(aRootKey: string;
-                      aRootKeyForDefaults: string;
-                      aRootForDefaults: string;
-                      aGUID: string;
-                      aOrganisation: string;
-                      aProject: string;
-                      aReadDefaults: boolean;
-                      aWriteDefaults: boolean);
+    procedure SetData(aRootKeys: TRootKeysStruct);
+    procedure GetData(var aRootKeys: TRootKeysStruct);
     function ShowModalEx(aEdit: boolean = False): integer; virtual;
 
     property Edit: boolean
@@ -61,8 +56,13 @@ implementation
 
 { TEditSettings }
 
-procedure TEditSettings.SetEditMode(aEdit: boolean);
+procedure TEditSettings.SetEdit(aEdit: boolean);
 begin
+  FEdit := aEdit;
+  if FEdit then
+    Caption := 'Edit RootKeys'
+  else
+    Caption := 'Show RootKeys';
   edtRootKey.ReadOnly := not aEdit;
   edtRootKeyForDefaults.ReadOnly := not aEdit;
   edtRootForDefaults.ReadOnly := not aEdit;
@@ -75,28 +75,36 @@ begin
   btnOk.Visible := aEdit;
 end;
 
-procedure TEditSettings.SetData(aRootKey: string;
-  aRootKeyForDefaults: string;
-  aRootForDefaults: string;
-  aGUID: string;
-  aOrganisation: string;
-  aProject: string;
-  aReadDefaults: boolean;
-  aWriteDefaults: boolean);
+procedure TEditSettings.SetData(aRootKeys: TRootKeysStruct);
 begin
-  edtRootKey.Text := aRootKey;
-  edtRootKeyForDefaults.Text := aRootKeyForDefaults;
-  edtRootForDefaults.Text := aRootForDefaults;
-  edtGUID.Text := aGUID;
-  edtOrganisation.Text := aOrganisation;
-  edtProject.Text := aProject;
-  cbxReadDefaults.Checked := aReadDefaults;
-  cbxWriteDefaults.Checked := aWriteDefaults;
+  edtRootKey.Text := aRootKeys.RootKey;
+  edtRootKeyForDefaults.Text := aRootKeys.RootKeyForDefaults;
+  edtRootForDefaults.Text := aRootKeys.RootForDefaults;
+  edtGUID.Text := aRootKeys.GUID;
+  edtOrganisation.Text := aRootKeys.Organisation;
+  edtProject.Text := aRootKeys.Project;
+  cbxReadDefaults.Checked := aRootKeys.ReadDefaults;
+  cbxWriteDefaults.Checked := aRootKeys.WriteDefaults;
+end;
+
+procedure TEditSettings.GetData(var aRootKeys: TRootKeysStruct);
+begin
+  if FEdit then
+  begin
+    aRootKeys.RootKey := edtRootKey.Text;
+    aRootKeys.RootKeyForDefaults := edtRootKeyForDefaults.Text;
+    aRootKeys.RootForDefaults := edtRootForDefaults.Text;
+    aRootKeys.GUID := edtGUID.Text;
+    aRootKeys.Organisation := edtOrganisation.Text;
+    aRootKeys.Project := edtProject.Text;
+    aRootKeys.ReadDefaults := cbxReadDefaults.Checked;
+    aRootKeys.WriteDefaults := cbxWriteDefaults.Checked;
+  end;
 end;
 
 function TEditSettings.ShowModalEx(aEdit: boolean): integer;
 begin
-  SetEditMode(aEdit);
+  SetEdit(aEdit);
   Result := ShowModal;
 end;
 

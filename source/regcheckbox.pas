@@ -1,5 +1,7 @@
 unit regcheckbox;
 
+{$mode Delphi}{$H+}
+
 interface
 
 uses
@@ -32,6 +34,7 @@ type
     procedure RefreshSync(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_SYNC;
     procedure RefreshSettings(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
     procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
+
     procedure OnChangeSettings(aSender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
     procedure Click; override;
@@ -73,7 +76,8 @@ uses
   Forms,
   regpropedits,
   ComponentEditors,
-  dlgeditsettings;
+  dlgeditsettings,
+  regtype;
 
 procedure Register;
 begin
@@ -169,6 +173,7 @@ procedure TCustomRegCheckBox.ShowEditDialog(var aMessage: TLMessage);
 var
   edit_settings: TEditSettings;
   do_edit: boolean;
+  aRootKeys: TRootKeysStruct;
 begin
   if (aMessage.wParam = 1) then
     do_edit:= True
@@ -179,17 +184,24 @@ begin
   try
     with edit_settings do
     begin
-      SetData(RegistrySettings.RootKey,
-        RegistrySettings.RootKeyForDefaults,
-        RegistrySettings.RootForDefaults,
-        RegistrySettings.GUID,
-        RegistrySettings.Organisation,
-        RegistrySettings.Project,
-        RegistrySettings.ReadDefaults,
-        RegistrySettings.WriteDefaults);
+      RegistrySettings.GetRootKeys(aRootKeys);
+      SetData(aRootKeys);
 
       case ShowModalEx(do_edit) of
-        mrOk:;
+        mrOk:
+        begin
+          GetData(aRootKeys);
+
+          RegistrySettings.RootKey := aRootKeys.RootKey;
+          RegistrySettings.RootKeyForDefaults := aRootKeys.RootKeyForDefaults;
+          RegistrySettings.RootForDefaults := aRootKeys.RootForDefaults;
+          RegistrySettings.GUID := aRootKeys.GUID;
+          RegistrySettings.Organisation := aRootKeys.Organisation;
+          RegistrySettings.Project := aRootKeys.Project;
+          RegistrySettings.ReadDefaults := aRootKeys.ReadDefaults;
+          RegistrySettings.WriteDefaults := aRootKeys.WriteDefaults;
+          aMessage.Result := 1;
+        end;
         mrCancel:;
       end;
     end;

@@ -1,6 +1,6 @@
 unit regpropedits;
 
-{S+}
+{$mode Delphi}{$H+}
 
 interface
 

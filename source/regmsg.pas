@@ -1,5 +1,7 @@
 unit regmsg;
 
+{$mode Delphi}{$H+}
+
 interface
 
 uses

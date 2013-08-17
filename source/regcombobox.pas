@@ -1,6 +1,6 @@
 unit regcombobox;
 
-{$mode delphi}
+{$mode Delphi}{$H+}
 
 interface
 

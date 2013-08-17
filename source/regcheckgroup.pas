@@ -1,6 +1,6 @@
 unit regcheckgroup;
 
-{$mode delphi}
+{$mode Delphi}{$H+}
 
 interface
 

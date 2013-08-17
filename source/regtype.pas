@@ -1,6 +1,6 @@
 unit regtype;
 
-{S+}
+{$mode Delphi}{$H+}
 
 interface
 
@@ -55,6 +55,19 @@ type
 
   TOnRegistrySettingsChange = procedure(aSettingInfo: TRegistrySettingValue;
                                         var aIsOk: boolean) of object;
+
+  { TRootKeysStruct }
+
+  TRootKeysStruct = record
+    RootKey: string;
+    RootKeyForDefaults: string;
+    ReadDefaults: boolean;
+    WriteDefaults: boolean;
+    RootForDefaults: string;
+    Project: string;
+    Organisation: string;
+    GUID: string;
+  end;
 
   { TCustomRegistrySettings }
 
@@ -117,6 +130,8 @@ type
       read FDefault
       write SetDefault;
   public
+    procedure GetRootKeys(var aRootKeys: TRootKeysStruct);
+    procedure SetRootKeys(aRootKeys: TRootKeysStruct);
     procedure BeginUpdate;
     procedure EndUpdate;
     constructor Create(aOwner: TPersistent); override;
@@ -450,6 +465,30 @@ end;
 procedure TCustomRegistrySettings<_T>.SetDoSyncData(aDoSyncData: boolean);
 begin
   FDoSyncData := aDoSyncData;
+end;
+
+procedure TCustomRegistrySettings<_T>.GetRootKeys(var aRootKeys: TRootKeysStruct);
+begin
+  aRootKeys.RootKey := FRootKey;
+  aRootKeys.RootKeyForDefaults := FRootKeyForDefaults;
+  aRootKeys.ReadDefaults := FReadDefaults;
+  aRootKeys.WriteDefaults := FWriteDefaults;
+  aRootKeys.RootForDefaults := FRootForDefaults;
+  aRootKeys.Project := FProject;
+  aRootKeys.Organisation := FOrganisation;
+  aRootKeys.GUID := FGUID;
+end;
+
+procedure TCustomRegistrySettings<_T>.SetRootKeys(aRootKeys: TRootKeysStruct);
+begin
+  FRootKey := aRootKeys.RootKey;
+  FRootKeyForDefaults := aRootKeys.RootKeyForDefaults;
+  FReadDefaults := aRootKeys.ReadDefaults;
+  FWriteDefaults := aRootKeys.WriteDefaults;
+  FRootForDefaults := aRootKeys.RootForDefaults;
+  FProject := aRootKeys.Project;
+  FOrganisation := aRootKeys.Organisation;
+  FGUID := aRootKeys.GUID;
 end;
 
 procedure TCustomRegistrySettings<_T>.BeginUpdate;

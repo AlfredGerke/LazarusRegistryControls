@@ -1,6 +1,6 @@
 unit regvaluelisteditor;
 
-{$mode delphi}
+{$mode Delphi}{$H+}
 
 interface
 

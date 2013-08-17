@@ -1,6 +1,6 @@
 unit dlgTrueFalse;
 
-{$mode objfpc}{$H+}
+{$mode Delphi}{$H+}
 
 interface
 
