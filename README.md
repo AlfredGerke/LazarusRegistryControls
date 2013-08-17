@@ -6,35 +6,31 @@ LazarusRegistryControls (LRC)
 Sammlung von Lazarus-Steuerelementen, welche direkt mit der Registry verbunden 
 werden (lesen/schreiben)
 
-Inhaltsübersicht:
+Inhaltsï¿½bersicht:
 
-1.1   Einleitung
-1.2   HKEY_CURRENT_USER
-1.3   Standardwerte
-2     Packagenamen
-3     Installation
-4     LazarusRegistryControls (LRC) Funktionalität
-4.1   HKEY_CURRENT_USER
-4.2   Standardwerte
-4.3   Synchronisierung und Gruppierung
-4.3.1 Synchronisierung
-4.3.2 Gruppierung
+- 1     Einleitung
+- 2     Packagenamen
+- 3     Installation
+- 4     LazarusRegistryControls (LRC) Funktionalitï¿½t
+- 4.1   HKEY_CURRENT_USER
+- 4.2   Standardwerte
+- 4.3   Synchronisierung und Gruppierung
+- 4.3.1 Synchronisierung
+- 4.3.2 Gruppierung
 
-==============================================
 
-1.1 Einleitung
+1 Einleitung
 
 Die LazarusRegistryControls (LRC) sind direkte Ableitung einer Teilmenge aus den 
 Standard- und den Additional-Steuerelemte. Sie werden auf einem eigenen Reiter 
 der Komponentenpalette "Registry Controls" installiert. Die Auswahl der abgeleiteten
-Steuerelement richtet sich nach der Häufigkeit ihrer Nutzung (TEdit, TComboBox,
+Steuerelement richtet sich nach der Hï¿½ufigkeit ihrer Nutzung (TEdit, TComboBox,
 TCheckBox, TListBox, TRadioButton, TRadioGroup, TCheckListBox, TCheckGroup, 
 TValueListEditor). Diese Steuerelemente sollten nur genutzt werden, um Werte in 
 der Registry zu verwalten. 
 
-==============================================
 
-2. Packagenamen
+2 Packagenamen
 
 - registrysource.lpk
   Inhalt: TRegistrySource, Erweiterung der Eigenschaften, Property- und Komponenteneditoren
@@ -43,57 +39,55 @@ der Registry zu verwalten.
   Inhalt: TRegEdit, TRegComboBox, TRegCheckBox, TRegListBox, TRegRadioButton, 
   TRegRadioGroup, TCheckListBox, TRegCheckGroup, TRegValueListEditor 
 
-==============================================
 
-3. Installation
+3 Installation
 
 in folgender Reihenfolge:
 - registrysource.lpk
 - registrycontrols.lpk
 
-==============================================
 
-4. LazarusRegistryControls (LRC) Funktionalität  
+4 LazarusRegistryControls (LRC) Funktionalitï¿½t  
 
-Die abgeleiteten Steuerelement werden über eine zentrale Komponente 
-(TRegistrySource) mit der Registry verbunden. Über eine Erweiterung der
-Eigenschaften (RegistrySettings) der abgeleiteten Steuerelement können spezifische 
-Informationen für Schlüssel der Registry hinterlegt werden, welche genutzt werden, 
+Die abgeleiteten Steuerelement werden ï¿½ber eine zentrale Komponente 
+(TRegistrySource) mit der Registry verbunden. ï¿½ber eine Erweiterung der
+Eigenschaften (RegistrySettings) der abgeleiteten Steuerelement kï¿½nnen spezifische 
+Informationen fï¿½r Schlï¿½ssel der Registry hinterlegt werden, welche genutzt werden, 
 um Daten aus der Registry zu lesen und in die Registry zu schreiben. 
 
 4.1 HKEY_CURRENT_USER
 
-Die Steuerelemente schreiben und lesen immer in das Registryroot: HEKY_CURRENT_USER.
+Die Steuerelemente schreiben und lesen immer in das Registryroot: HKEY_CURRENT_USER.
 
 4.2 Standardwerte
 
-Standardwerte für nicht erfolgreiche Zugriffe auf die Registry (in der Regel 
-Schlüssel nicht vorhanden) können zum einen statisch am Steuerelement definiert
-werden. Als zweite Möglichkeit kann man am Steuerelement einen Schlüsselpfad 
-definieren, über den Defaults in der Registry verwaltet werden können.
+Standardwerte fï¿½r nicht erfolgreiche Zugriffe auf die Registry (in der Regel 
+Schlï¿½ssel nicht vorhanden) kï¿½nnen zum einen statisch am Steuerelement definiert
+werden. Als zweite Mï¿½glichkeit kann man am Steuerelement einen Schlï¿½sselpfad 
+definieren, ï¿½ber den Defaults in der Registry verwaltet werden kï¿½nnen.
 
 4.3 Synchronisierung und Gruppierung
 
 4.3.1 Synchronisierung
-Auf Wunsch können Steuerelemente automatisch veranlasst werden, sich zu aktualisieren,
-wenn der Inhalt eines beliebigen Steuerelementes geändert wurde. Voraussetzung ist,
+Auf Wunsch kï¿½nnen Steuerelemente automatisch veranlasst werden, sich zu aktualisieren,
+wenn der Inhalt eines beliebigen Steuerelementes geï¿½ndert wurde. Voraussetzung ist,
 das alle diese Steuerelement mit der selben RegistrySoruce (TRegistrySource) 
-verbunden sind, wie das Steuerelement dessen Wert geändert wurde. Jedes Steuerelement
-kann über die Eigenschaft DoSyncData bestimmen, ob es an einer automatischen
+verbunden sind, wie das Steuerelement dessen Wert geï¿½ndert wurde. Jedes Steuerelement
+kann ï¿½ber die Eigenschaft DoSyncData bestimmen, ob es an einer automatischen
 Synchronisierung teilnimmt. Die Eigenschaft DoSyncData an der zentralen Komponente 
-(TRegistrySource) bestimmt ob überhaupt synchronisiert werden soll.
+(TRegistrySource) bestimmt ob ï¿½berhaupt synchronisiert werden soll.
 
 4.3.2 Gruppierung
-Über die Eigenschaft GroupIndex der erweiterten Eigenschaften (RegistrySettings)
-können Steuerelemente zu Gruppen zusammengefasst werden. Der GroupIndex=0 steht 
-dabei immer für "keine Zuordnung zu einer Gruppe".
+ï¿½ber die Eigenschaft GroupIndex der erweiterten Eigenschaften (RegistrySettings)
+kï¿½nnen Steuerelemente zu Gruppen zusammengefasst werden. Der GroupIndex=0 steht 
+dabei immer fï¿½r "keine Zuordnung zu einer Gruppe".
 
 Beispiel 1: 
-Wenn ein Steuerelement mit dem GroupIndex=0 seinen Wert ändert, die Synchronisierung 
-überall eingeschaltet ist, dann werden auch alle anderen Steuerelemente veranlasst, 
-ihre Daten zu aktualisieren, unabhängig ob deren GroupIndex<>0 ist.
+Wenn ein Steuerelement mit dem GroupIndex=0 seinen Wert ï¿½ndert, die Synchronisierung 
+ï¿½berall eingeschaltet ist, dann werden auch alle anderen Steuerelemente veranlasst, 
+ihre Daten zu aktualisieren, unabhï¿½ngig ob deren GroupIndex<>0 ist.
 
 Beispiel 2: 
-Wenn ein Steuerelement mit dem GroupIndex=1 seinen Wert ändert, dann werden nur 
+Wenn ein Steuerelement mit dem GroupIndex=1 seinen Wert ï¿½ndert, dann werden nur 
 die Steuerelemente zur Synchronisierung veranlasst, welche ebenfalls den GroupIndex=1 
 besitzen.     
