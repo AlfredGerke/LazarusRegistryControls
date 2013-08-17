@@ -48,7 +48,7 @@ object Main: TMain
           RegistrySettings.Ident = 'Edit'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.DoWriteAdHoc = False
           RegistrySettings.GroupIndex = 1
           RegistrySettings.DoSyncData = False
           RegistrySettings.Default = 'leerstring'
@@ -57,7 +57,7 @@ object Main: TMain
         object rcbxCheckBox1: TRegCheckBox
           Left = 15
           Height = 17
-          Top = 60
+          Top = 59
           Width = 257
           Caption = 'CheckBox (rcbxCheckBox1) vearbeitet Einzelwert'
           TabOrder = 1
@@ -65,9 +65,9 @@ object Main: TMain
           RegistrySettings.Ident = 'CheckBox1'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.DoWriteAdHoc = False
           RegistrySettings.GroupIndex = 5
-          RegistrySettings.DoSyncData = True
+          RegistrySettings.DoSyncData = False
           RegistrySettings.Default = False
           RegistrySource = RegistrySource1
         end
@@ -78,8 +78,6 @@ object Main: TMain
           Width = 261
           Caption = 'CheckBox (rcbxCheckBox2) verarbeitet Einzelwert'
           TabOrder = 2
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'CheckBox2'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = False
           RegistrySettings.DoWriteAdHoc = False
@@ -96,7 +94,6 @@ object Main: TMain
           Caption = 'RadioButton (rrbRadioButton1) verarbeitet Einzelwert'
           TabOrder = 3
           RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'RadioButton1'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = False
           RegistrySettings.DoWriteAdHoc = False
@@ -150,7 +147,7 @@ object Main: TMain
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.DoWriteAdHoc = False
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = False
           RegistrySettings.Default = 0
@@ -174,11 +171,9 @@ object Main: TMain
           Width = 231
           Action = acRefreshWriteAdHoc
           TabOrder = 0
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'DoWriteAdHoc'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.DoWriteAdHoc = False
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = False
           RegistrySettings.Default = False
@@ -190,14 +185,11 @@ object Main: TMain
           Top = 34
           Width = 160
           TabOrder = 1
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'ControlName'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.DoWriteAdHoc = False
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = False
-          RegistrySettings.Default = 'redtEdit'
           RegistrySource = RegistrySource1
         end
         object btnRefreshControls: TButton

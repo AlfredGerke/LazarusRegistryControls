@@ -13,8 +13,7 @@ uses
   Dialogs,
   LResources,
   regconst,
-  regtype,
-  regpropedits;
+  regtype;
 
 type
 
@@ -116,6 +115,7 @@ type
     property ClientCount: integer
       read GetClientCount;
   public
+    procedure ShowClientEditDialog(aClientName: string);
     function GetClientByName(aClientName: string): TComponent;
     function GetClientNameByIndex(aIndex: integer) : string;
     procedure FreeRegistrySource(aClientName: string = '';
@@ -243,7 +243,8 @@ uses
   regmsg,
   LMessages,
   PropEdits,
-  ComponentEditors;
+  ComponentEditors,
+  regpropedits;
 
 procedure Register;
 begin
@@ -294,6 +295,11 @@ begin
     Result := FClientList.Count
   else
     Result := 0;
+end;
+
+procedure TCustomRegistrySource.ShowClientEditDialog(aClientName: string);
+begin
+  DeliverMessage(LM_REGISTRY_CONTROL_SHOW_EDITDIALOG, aClientName, 0, 0);
 end;
 
 function TCustomRegistrySource.GetClientByName(aClientName: string): TComponent;

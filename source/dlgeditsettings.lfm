@@ -1,0 +1,174 @@
+object EditSettings: TEditSettings
+  Left = 685
+  Height = 303
+  Top = 290
+  Width = 438
+  BorderStyle = bsDialog
+  Caption = 'Show RootKeys'
+  ClientHeight = 303
+  ClientWidth = 438
+  Position = poScreenCenter
+  LCLVersion = '1.0.10.0'
+  object pnlBottom: TPanel
+    Left = 0
+    Height = 26
+    Top = 277
+    Width = 438
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 26
+    ClientWidth = 438
+    TabOrder = 0
+    object btnOk: TBitBtn
+      Left = 263
+      Height = 24
+      Top = 1
+      Width = 81
+      Default = True
+      DefaultCaption = True
+      Kind = bkOK
+      ModalResult = 1
+      TabOrder = 0
+    end
+    object btnCancel: TBitBtn
+      Left = 351
+      Height = 24
+      Top = 1
+      Width = 81
+      Cancel = True
+      DefaultCaption = True
+      Kind = bkCancel
+      ModalResult = 2
+      TabOrder = 1
+    end
+  end
+  object pnlClient: TPanel
+    Left = 0
+    Height = 277
+    Top = 0
+    Width = 438
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 277
+    ClientWidth = 438
+    TabOrder = 1
+    object edtRootKey: TLabeledEdit
+      Left = 8
+      Height = 21
+      Top = 18
+      Width = 424
+      EditLabel.AnchorSideLeft.Control = edtRootKey
+      EditLabel.AnchorSideRight.Control = edtRootKey
+      EditLabel.AnchorSideRight.Side = asrBottom
+      EditLabel.AnchorSideBottom.Control = edtRootKey
+      EditLabel.Left = 8
+      EditLabel.Height = 14
+      EditLabel.Top = 1
+      EditLabel.Width = 424
+      EditLabel.Caption = 'RootKey'
+      EditLabel.ParentColor = False
+      TabOrder = 0
+    end
+    object edtRootKeyForDefaults: TLabeledEdit
+      Left = 8
+      Height = 21
+      Top = 61
+      Width = 424
+      EditLabel.AnchorSideLeft.Control = edtRootKeyForDefaults
+      EditLabel.AnchorSideRight.Control = edtRootKeyForDefaults
+      EditLabel.AnchorSideRight.Side = asrBottom
+      EditLabel.AnchorSideBottom.Control = edtRootKeyForDefaults
+      EditLabel.Left = 8
+      EditLabel.Height = 14
+      EditLabel.Top = 44
+      EditLabel.Width = 424
+      EditLabel.Caption = 'RootKey for Defaults'
+      EditLabel.ParentColor = False
+      TabOrder = 1
+    end
+    object edtRootForDefaults: TLabeledEdit
+      Left = 8
+      Height = 21
+      Top = 102
+      Width = 424
+      EditLabel.AnchorSideLeft.Control = edtRootForDefaults
+      EditLabel.AnchorSideRight.Control = edtRootForDefaults
+      EditLabel.AnchorSideRight.Side = asrBottom
+      EditLabel.AnchorSideBottom.Control = edtRootForDefaults
+      EditLabel.Left = 8
+      EditLabel.Height = 14
+      EditLabel.Top = 85
+      EditLabel.Width = 424
+      EditLabel.Caption = 'Root for Defaults'
+      EditLabel.ParentColor = False
+      TabOrder = 2
+    end
+    object edtGUID: TLabeledEdit
+      Left = 8
+      Height = 21
+      Top = 144
+      Width = 424
+      EditLabel.AnchorSideLeft.Control = edtGUID
+      EditLabel.AnchorSideRight.Control = edtGUID
+      EditLabel.AnchorSideRight.Side = asrBottom
+      EditLabel.AnchorSideBottom.Control = edtGUID
+      EditLabel.Left = 8
+      EditLabel.Height = 14
+      EditLabel.Top = 127
+      EditLabel.Width = 424
+      EditLabel.Caption = 'GUID'
+      EditLabel.ParentColor = False
+      TabOrder = 3
+    end
+    object edtOrganisation: TLabeledEdit
+      Left = 8
+      Height = 21
+      Top = 185
+      Width = 424
+      EditLabel.AnchorSideLeft.Control = edtOrganisation
+      EditLabel.AnchorSideRight.Control = edtOrganisation
+      EditLabel.AnchorSideRight.Side = asrBottom
+      EditLabel.AnchorSideBottom.Control = edtOrganisation
+      EditLabel.Left = 8
+      EditLabel.Height = 14
+      EditLabel.Top = 168
+      EditLabel.Width = 424
+      EditLabel.Caption = 'Organisation'
+      EditLabel.ParentColor = False
+      TabOrder = 4
+    end
+    object edtProject: TLabeledEdit
+      Left = 8
+      Height = 21
+      Top = 224
+      Width = 424
+      EditLabel.AnchorSideLeft.Control = edtProject
+      EditLabel.AnchorSideRight.Control = edtProject
+      EditLabel.AnchorSideRight.Side = asrBottom
+      EditLabel.AnchorSideBottom.Control = edtProject
+      EditLabel.Left = 8
+      EditLabel.Height = 14
+      EditLabel.Top = 207
+      EditLabel.Width = 424
+      EditLabel.Caption = 'Project'
+      EditLabel.ParentColor = False
+      TabOrder = 5
+    end
+    object cbxReadDefaults: TCheckBox
+      Left = 8
+      Height = 17
+      Top = 256
+      Width = 88
+      Caption = 'Read Defaults'
+      TabOrder = 6
+    end
+    object cbxWriteDefaults: TCheckBox
+      Left = 232
+      Height = 17
+      Top = 256
+      Width = 89
+      Caption = 'Write Defaults'
+      TabOrder = 7
+    end
+  end
+end

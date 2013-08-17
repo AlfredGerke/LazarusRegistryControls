@@ -45,7 +45,7 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
     <Version Minor="9" Build="2"/>
-    <Files Count="6">
+    <Files Count="9">
       <Item1>
         <Filename Value="registrysource.lrs"/>
         <Type Value="LRS"/>
@@ -71,6 +71,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
         <Filename Value="..\source\regpropedits.pas"/>
         <UnitName Value="regpropedits"/>
       </Item6>
+      <Item7>
+        <Filename Value="..\source\dlgtruefalse.lfm"/>
+        <Type Value="LFM"/>
+      </Item7>
+      <Item8>
+        <Filename Value="..\source\dlgtruefalse.pas"/>
+        <UnitName Value="dlgTrueFalse"/>
+      </Item8>
+      <Item9>
+        <Filename Value="..\source\dlgeditsettings.pas"/>
+        <UnitName Value="dlgeditsettings"/>
+      </Item9>
     </Files>
     <Type Value="RunAndDesignTime"/>
     <RequiredPkgs Count="2">
@@ -87,5 +99,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
     <PublishOptions>
       <Version Value="2"/>
     </PublishOptions>
+    <CustomOptions Items="ExternHelp" Version="2">
+      <_ExternHelp Items="Count"/>
+    </CustomOptions>
   </Package>
 </CONFIG>

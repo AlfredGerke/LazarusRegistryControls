@@ -7,7 +7,8 @@ unit RegistrySource;
 interface
 
 uses
-  regsourcen, regmsg, regconst, regtype, regpropedits, LazarusPackageIntf;
+  regsourcen, regmsg, regconst, regtype, regpropedits, dlgTrueFalse, 
+  dlgeditsettings, LazarusPackageIntf;
 
 implementation
 

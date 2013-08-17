@@ -25,6 +25,7 @@ type
     function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
   protected
+    procedure ShowEditDialog(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
     procedure FreeRegistrySource(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE;
     procedure RefreshWriteAdHoc(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_WRITEADHOC;
     procedure RefreshSync(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_SYNC;
@@ -68,7 +69,8 @@ uses
   Forms,
   dialogs,
   regpropedits,
-  ComponentEditors;
+  ComponentEditors,
+  dlgeditsettings;
 
 procedure Register;
 begin
@@ -90,7 +92,7 @@ begin
   begin
     FRegistrySettings.BeginUpdate;
     try
-      FRegistrySettings.RookKey := FRegistrySource.RootKey;
+      FRegistrySettings.RootKey := FRegistrySource.RootKey;
       FRegistrySettings.RootKeyForDefaults := FRegistrySource.RootKeyForDefaults;
       FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
       FRegistrySettings.Project:= FRegistrySource.Project;
@@ -114,7 +116,7 @@ begin
   begin
     if assigned(RegistrySource) then
     begin
-      if ((FRegistrySettings.RookKey <> '') and
+      if ((FRegistrySettings.RootKey <> '') and
         (FRegistrySettings.RootKeyForDefaults <> '') and
         (FRegistrySettings.RootForDefaults <> '') and
         (FRegistrySettings.Section <> '') and
@@ -125,7 +127,7 @@ begin
           begin
             if FRegistrySettings.CanRead then
             begin
-              Text := RegistrySource.ReadString(FRegistrySettings.RookKey,
+              Text := RegistrySource.ReadString(FRegistrySettings.RootKey,
                         FRegistrySettings.RootKeyForDefaults,
                         FRegistrySettings.RootForDefaults,
                         FRegistrySettings.Section,
@@ -141,7 +143,7 @@ begin
               sync_state_by_default:= FRegistrySettings.DoSyncData;
               FRegistrySettings.DoSyncData := False;
               try
-                RegistrySource.WriteString(FRegistrySettings.RookKey,
+                RegistrySource.WriteString(FRegistrySettings.RootKey,
                   FRegistrySettings.RootKeyForDefaults,
                   FRegistrySettings.RootForDefaults,
                   FRegistrySettings.Section,
@@ -157,6 +159,34 @@ begin
         end;
       end;
     end;
+  end;
+end;
+
+procedure TCustomRegEdit.ShowEditDialog(var aMessage: TLMessage);
+var
+  edit_settings: TEditSettings;
+begin
+  edit_settings := TEditSettings.Create(nil);
+  try
+    with edit_settings do
+    begin
+      SetData(RegistrySettings.RootKey,
+        RegistrySettings.RootKeyForDefaults,
+        RegistrySettings.RootForDefaults,
+        RegistrySettings.GUID,
+        RegistrySettings.Organisation,
+        RegistrySettings.Project,
+        RegistrySettings.ReadDefaults,
+        RegistrySettings.WriteDefaults);
+
+      case ShowModalEx(False) of
+        mrOk:;
+        mrCancel:;
+      end;
+    end;
+  finally
+    if Assigned(edit_settings) then
+      edit_settings.Release;
   end;
 end;
 

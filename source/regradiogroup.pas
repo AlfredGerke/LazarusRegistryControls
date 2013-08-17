@@ -27,6 +27,7 @@ type
     procedure ReadWriteInfo(aRead: boolean);
     function GetItemsByRegistry: boolean;
   protected
+    procedure ShowEditDialog(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
     procedure FreeRegistrySource(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE;
     procedure RefreshWriteAdHoc(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_WRITEADHOC;
     procedure RefreshSync(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_SYNC;
@@ -76,7 +77,8 @@ uses
   Forms,
   Dialogs,
   regpropedits,
-  ComponentEditors;
+  ComponentEditors,
+  dlgeditsettings;
 
 procedure Register;
 begin
@@ -99,7 +101,7 @@ begin
   begin
     FRegistrySettings.BeginUpdate;
     try
-      FRegistrySettings.RookKey := FRegistrySource.RootKey;
+      FRegistrySettings.RootKey := FRegistrySource.RootKey;
       FRegistrySettings.RootKeyForDefaults := FRegistrySource.RootKeyForDefaults;
       FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
       FRegistrySettings.Project:= FRegistrySource.Project;
@@ -123,7 +125,7 @@ begin
   begin
     if assigned(RegistrySource) then
     begin
-      if ((FRegistrySettings.RookKey <> '') and
+      if ((FRegistrySettings.RootKey <> '') and
         (FRegistrySettings.RootKeyForDefaults <> '') and
         (FRegistrySettings.RootForDefaults <> '') and
         (FRegistrySettings.Section <> '') and
@@ -137,7 +139,7 @@ begin
             else
             begin
               if (FRegistrySettings.CanRead and not FRegistrySettings.ItemsByRegistry) then
-                ItemIndex := RegistrySource.ReadInteger(FRegistrySettings.RookKey,
+                ItemIndex := RegistrySource.ReadInteger(FRegistrySettings.RootKey,
                                FRegistrySettings.RootKeyForDefaults,
                                FRegistrySettings.RootForDefaults,
                                FRegistrySettings.Section,
@@ -153,7 +155,7 @@ begin
               sync_state_by_default := FRegistrySettings.DoSyncData;
               FRegistrySettings.DoSyncData := False;
               try
-                RegistrySource.WriteInteger(FRegistrySettings.RookKey,
+                RegistrySource.WriteInteger(FRegistrySettings.RootKey,
                   FRegistrySettings.RootKeyForDefaults,
                   FRegistrySettings.RootForDefaults,
                   FRegistrySettings.Section,
@@ -191,20 +193,20 @@ begin
       begin
         if assigned(RegistrySource) then
         begin
-          if ((FRegistrySettings.RookKey <> '') and
+          if ((FRegistrySettings.RootKey <> '') and
             (FRegistrySettings.RootKeyForDefaults <> '') and
             (FRegistrySettings.RootForDefaults <> '') and
             (FRegistrySettings.Section <> '') and
             (FRegistrySettings.Ident <> '')) then
           begin
-            RegistrySource.ReadSection(FRegistrySettings.RookKey,
+            RegistrySource.ReadSection(FRegistrySettings.RootKey,
               FRegistrySettings.RootForDefaults,
               FRegistrySettings.RootForDefaults,
               FRegistrySettings.ListSection,
               list,
               FRegistrySettings.ReadDefaults);
             Items.AddStrings(list);
-            ItemIndex := RegistrySource.ReadInteger(FRegistrySettings.RookKey,
+            ItemIndex := RegistrySource.ReadInteger(FRegistrySettings.RootKey,
                            FRegistrySettings.RootKeyForDefaults,
                            FRegistrySettings.RootForDefaults,
                            FRegistrySettings.Section,
@@ -222,6 +224,34 @@ begin
     end;
   finally
     list.Free;
+  end;
+end;
+
+procedure TCustomRegRadioGroup.ShowEditDialog(var aMessage: TLMessage);
+var
+  edit_settings: TEditSettings;
+begin
+  edit_settings := TEditSettings.Create(nil);
+  try
+    with edit_settings do
+    begin
+      SetData(RegistrySettings.RootKey,
+        RegistrySettings.RootKeyForDefaults,
+        RegistrySettings.RootForDefaults,
+        RegistrySettings.GUID,
+        RegistrySettings.Organisation,
+        RegistrySettings.Project,
+        RegistrySettings.ReadDefaults,
+        RegistrySettings.WriteDefaults);
+
+      case ShowModalEx(False) of
+        mrOk:;
+        mrCancel:;
+      end;
+    end;
+  finally
+    if Assigned(edit_settings) then
+      edit_settings.Release;
   end;
 end;
 

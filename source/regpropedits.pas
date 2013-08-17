@@ -12,8 +12,6 @@ uses
 
 type
 
-
-
   { TRegistryControlComponentEditor }
 
   TRegistryControlComponentEditor = class(TComponentEditor)
@@ -35,6 +33,7 @@ type
     procedure AddMenuItemsForComponent(aIndex: integer;
                                        aParentMenuItem: TMenuItem;
                                        aRegistrySource: TComponent);
+    procedure ExecuteShowInfo;
     procedure ExecuteRefreshSettings;
     procedure ExecuteRefreshSyncProperty;
     procedure ExecuteRefreshWriteAdHocProperty;
@@ -59,13 +58,14 @@ uses
   Forms,
   regtype,
   regsourcen,
+  dlgTrueFalse,
+  Controls,
   Dialogs;
 
 { TRegistryControlComponentEditor }
 
 procedure TRegistryControlComponentEditor.ExecuteShowInfo;
 begin
-
 end;
 
 procedure TRegistryControlComponentEditor.ExecuteVerb(Index: Integer);
@@ -78,7 +78,7 @@ end;
 function TRegistryControlComponentEditor.GetVerb(Index: Integer): String;
 begin
   case Index of
-    0: Result := 'Show Rootkeys';
+    0: Result := 'About';
   end;
 end;
 
@@ -92,16 +92,11 @@ end;
 procedure TRegistrySourceComponentEditor.OnClientMenuItemClick(Sender: TObject);
 var
   registry_source: TRegistrySource;
-  control: TComponent;
 begin
   registry_source := Component as TRegistrySource;
 
   if (Sender is TMenuItem) then;
-  begin
-    control := registry_source.GetClientByName(TMenuItem(sender).Caption);
-    if Assigned(Control) then
-      Designer.SelectOnlyThisComponent(control);
-  end;
+    registry_source.ShowClientEditDialog(TMenuItem(sender).Caption);
 end;
 
 procedure TRegistrySourceComponentEditor.AddMenuItemsByClientList(
@@ -130,8 +125,14 @@ begin
     0: ;
     1: ;
     2: ;
-    3: AddMenuItemsByClientList(aParentMenuItem, aRegistrySource);
+    3: ;
+    4: AddMenuItemsByClientList(aParentMenuItem, aRegistrySource);
   end;
+end;
+
+procedure TRegistrySourceComponentEditor.ExecuteShowInfo;
+begin
+
 end;
 
 procedure TRegistrySourceComponentEditor.ExecuteRefreshSettings;
@@ -140,46 +141,109 @@ var
 begin
   registry_source := Component as TRegistrySource;
   registry_source.RefreshSettings;
+  Modified;
 end;
 
 procedure TRegistrySourceComponentEditor.ExecuteRefreshSyncProperty;
 var
   registry_source: TRegistrySource;
+  dlg_true_false: TSetSyncData;
 begin
-  registry_source := Component as TRegistrySource;
-  registry_source.RefreshSyncProperty;
+  dlg_true_false := TSetSyncData.Create(nil);
+  try
+    with dlg_true_false do
+    begin
+      case ShowModal of
+        mrOk:
+        begin
+          registry_source := Component as TRegistrySource;
+          case SelectedIndex of
+            0:
+            begin
+              registry_source.RefreshSyncProperty(False);
+              Modified;
+            end;
+            1:
+            begin
+              registry_source.RefreshSyncProperty(True);
+              Modified;
+            end
+          else
+            MessageDlg('Invalid Selection!', mtInformation, [mbOk], 0);
+          end;
+        end;
+      else
+        MessageDlg('Request canceled!', mtInformation, [mbOk], 0);
+      end;
+    end;
+  finally
+    if Assigned(dlg_true_false) then
+      dlg_true_false.Release;
+  end;
 end;
 
 procedure TRegistrySourceComponentEditor.ExecuteRefreshWriteAdHocProperty;
 var
   registry_source: TRegistrySource;
+  dlg_true_false: TSetWriteAdHoc;
 begin
-  registry_source := Component as TRegistrySource;
-  registry_source.RefreshWriteAdHocProperty;
+  dlg_true_false := TSetWriteAdHoc.Create(nil);
+  try
+    with dlg_true_false do
+    begin
+      case ShowModal of
+        mrOk:
+        begin
+          registry_source := Component as TRegistrySource;
+          case SelectedIndex of
+            0:
+            begin
+              registry_source.RefreshWriteAdHocProperty(False);
+              Modified;
+            end;
+            1:
+            begin
+              registry_source.RefreshWriteAdHocProperty(True);
+              Modified;
+            end
+          else
+            MessageDlg('Invalid Selection!', mtInformation, [mbOk], 0);
+          end;
+        end;
+      else
+        MessageDlg('Request canceled!', mtInformation, [mbOk], 0);
+      end;
+    end;
+  finally
+    if Assigned(dlg_true_false) then
+      dlg_true_false.Release;
+  end;
 end;
 
 procedure TRegistrySourceComponentEditor.ExecuteVerb(Index: Integer);
 begin
   case Index of
-    0: ExecuteRefreshSettings;
-    1: ExecuteRefreshWriteAdHocProperty;
-    2: ExecuteRefreshSyncProperty;
+    0: ExecuteShowInfo;
+    1: ExecuteRefreshSettings;
+    2: ExecuteRefreshWriteAdHocProperty;
+    3: ExecuteRefreshSyncProperty;
   end;
 end;
 
 function TRegistrySourceComponentEditor.GetVerb(Index: Integer): String;
 begin
   case Index of
-    0: Result := 'Refresh ClientSettings';
-    1: Result := 'Refresh DoWriteAdHoc';
-    2: Result := 'Refresh DoSyncData';
-    3: Result := 'Registered Clients';
+    0: Result := 'About';
+    1: Result := 'Refresh ClientSettings';
+    2: Result := 'Refresh DoWriteAdHoc';
+    3: Result := 'Refresh DoSyncData';
+    4: Result := 'Registered Clients';
   end;
 end;
 
 function TRegistrySourceComponentEditor.GetVerbCount: Integer;
 begin
-  Result := 4;
+  Result := 5;
 end;
 
 procedure TRegistrySourceComponentEditor.PrepareItem(Index: Integer;
@@ -189,10 +253,11 @@ var
 begin
   registry_source := Component as TRegistrySource;
   case Index of
-    0: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
+    0:;
     1: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
     2: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
-    3: if (assigned(registry_source) and (registry_source.ClientCount > 0)) then
+    3: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
+    4: if (assigned(registry_source) and (registry_source.ClientCount > 0)) then
          AddMenuItemsForComponent(Index, aItem, registry_source)
        else
          AItem.Enabled := False;

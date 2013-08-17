@@ -123,7 +123,7 @@ type
 
     property Owner;
 
-    property RookKey: string
+    property RootKey: string
       read FRootKey
       write SetRootKey;
     property RootKeyForDefaults: string

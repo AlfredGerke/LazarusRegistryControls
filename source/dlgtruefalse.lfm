@@ -1,0 +1,71 @@
+object TrueFalse: TTrueFalse
+  Left = 845
+  Height = 82
+  Top = 537
+  Width = 221
+  BorderStyle = bsDialog
+  ClientHeight = 82
+  ClientWidth = 221
+  Position = poScreenCenter
+  LCLVersion = '1.0.10.0'
+  object pnlBottom: TPanel
+    Left = 0
+    Height = 26
+    Top = 56
+    Width = 221
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 26
+    ClientWidth = 221
+    TabOrder = 0
+    object btnCancel: TBitBtn
+      Left = 138
+      Height = 24
+      Top = 1
+      Width = 81
+      Cancel = True
+      DefaultCaption = True
+      Kind = bkCancel
+      ModalResult = 2
+      TabOrder = 0
+    end
+    object btnOk: TBitBtn
+      Left = 50
+      Height = 24
+      Top = 1
+      Width = 81
+      Default = True
+      DefaultCaption = True
+      Kind = bkOK
+      ModalResult = 1
+      TabOrder = 1
+    end
+  end
+  object pnlClient: TPanel
+    Left = 0
+    Height = 56
+    Top = 0
+    Width = 221
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 56
+    ClientWidth = 221
+    TabOrder = 1
+    object rbtnFalse: TRadioButton
+      Left = 16
+      Height = 17
+      Top = 8
+      Width = 65
+      Caption = 'rbtnFalse'
+      TabOrder = 0
+    end
+    object rbtnTrue: TRadioButton
+      Left = 16
+      Height = 17
+      Top = 32
+      Width = 62
+      Caption = 'rbtnTrue'
+      TabOrder = 1
+    end
+  end
+end
