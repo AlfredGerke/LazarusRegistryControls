@@ -1,0 +1,114 @@
+object AboutComponent: TAboutComponent
+  Left = 724
+  Height = 120
+  Top = 406
+  Width = 332
+  BorderStyle = bsDialog
+  Caption = 'About...'
+  ClientHeight = 120
+  ClientWidth = 332
+  Position = poScreenCenter
+  LCLVersion = '1.0.10.0'
+  object pnlClient: TPanel
+    Left = 0
+    Height = 94
+    Top = 0
+    Width = 332
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 94
+    ClientWidth = 332
+    TabOrder = 0
+    object lblCompName1: TLabel
+      Left = 21
+      Height = 23
+      Top = 16
+      Width = 231
+      Caption = 'LararusRegistryControls'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -19
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold, fsUnderline]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblCompName2: TLabel
+      Left = 257
+      Height = 25
+      Top = 14
+      Width = 57
+      Caption = '(LRC)'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -21
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblAuthor: TLabel
+      Left = 21
+      Height = 17
+      Top = 72
+      Width = 43
+      Caption = 'Author:'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblGitHub: TLabel
+      Left = 21
+      Height = 14
+      Top = 44
+      Width = 289
+      Caption = 'https://github.com/AlfredGerke/LazarusRegistryControls.git'
+      ParentColor = False
+    end
+    object lblName: TLabel
+      Left = 70
+      Height = 17
+      Top = 72
+      Width = 157
+      Caption = 'Dipl. Ing. (FH) Alfred Gerke'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object pnlBottom: TPanel
+    Left = 0
+    Height = 26
+    Top = 94
+    Width = 332
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 26
+    ClientWidth = 332
+    TabOrder = 1
+    object btnOk: TBitBtn
+      Left = 249
+      Height = 24
+      Top = 0
+      Width = 81
+      Default = True
+      DefaultCaption = True
+      Kind = bkOK
+      ModalResult = 1
+      TabOrder = 0
+    end
+  end
+end

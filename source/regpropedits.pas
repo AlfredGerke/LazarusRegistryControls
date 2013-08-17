@@ -60,12 +60,14 @@ uses
   regsourcen,
   dlgTrueFalse,
   Controls,
-  Dialogs;
+  Dialogs,
+  dlgaboutcomponent;
 
 { TRegistryControlComponentEditor }
 
 procedure TRegistryControlComponentEditor.ExecuteShowInfo;
 begin
+  StartAbout;
 end;
 
 procedure TRegistryControlComponentEditor.ExecuteVerb(Index: Integer);
@@ -97,6 +99,9 @@ begin
 
   if (Sender is TMenuItem) then;
     registry_source.ShowClientEditDialog(TMenuItem(sender).Caption);
+
+  if registry_source.EditClientRootKeys then
+    Modified;
 end;
 
 procedure TRegistrySourceComponentEditor.AddMenuItemsByClientList(
@@ -132,7 +137,7 @@ end;
 
 procedure TRegistrySourceComponentEditor.ExecuteShowInfo;
 begin
-
+  StartAbout;
 end;
 
 procedure TRegistrySourceComponentEditor.ExecuteRefreshSettings;

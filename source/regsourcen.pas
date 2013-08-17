@@ -71,6 +71,7 @@ type
     FClientList: TStrings;
     FDoSyncData: boolean;
     FPrefereStrings: boolean;
+    FEditClientRootKeys: boolean;
 
     procedure OnSyncData(aGroupIndex: Cardinal);
     procedure DeliverMessage(aMessageConst: cardinal;
@@ -114,6 +115,9 @@ type
     function GetClientCount: integer;
     property ClientCount: integer
       read GetClientCount;
+    property EditClientRootKeys: boolean
+      read FEditClientRootKeys
+      write FEditClientRootKeys;
   public
     procedure ShowClientEditDialog(aClientName: string);
     function GetClientByName(aClientName: string): TComponent;
@@ -220,6 +224,7 @@ type
   protected
   public
     property ClientCount;
+    property EditClientRootKeys;
   published
     property RootKey;
     property RootKeyForDefaults;
@@ -298,8 +303,15 @@ begin
 end;
 
 procedure TCustomRegistrySource.ShowClientEditDialog(aClientName: string);
+var
+  w_param: integer;
 begin
-  DeliverMessage(LM_REGISTRY_CONTROL_SHOW_EDITDIALOG, aClientName, 0, 0);
+  if FEditClientRootKeys then
+    w_param := 1
+  else
+    w_param := 0;
+
+  DeliverMessage(LM_REGISTRY_CONTROL_SHOW_EDITDIALOG, aClientName, 0, w_param);
 end;
 
 function TCustomRegistrySource.GetClientByName(aClientName: string): TComponent;
@@ -450,6 +462,7 @@ begin
   FGUID := EmptyStr;
   FDoSyncData := False;
   FPrefereStrings := False;
+  FEditClientRootKeys := False;
 
   FClientList := TStringList.Create;
 end;

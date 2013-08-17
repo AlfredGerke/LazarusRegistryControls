@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="67">
+    <Units Count="68">
       <Unit0>
         <Filename Value="example.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="76"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -26,7 +26,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="124"/>
         <CursorPos X="23" Y="126"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="76"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -42,8 +42,8 @@
         <Filename Value="..\source\regedit.pas"/>
         <UnitName Value="regedit"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="58"/>
-        <CursorPos X="18" Y="73"/>
+        <TopLine Value="153"/>
+        <CursorPos X="14" Y="173"/>
         <UsageCount Value="17"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
@@ -66,9 +66,9 @@
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="243"/>
-        <CursorPos X="72" Y="302"/>
-        <UsageCount Value="21"/>
+        <TopLine Value="101"/>
+        <CursorPos X="39" Y="118"/>
+        <UsageCount Value="22"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -106,8 +106,8 @@
         <Filename Value="..\source\regradiogroup.pas"/>
         <UnitName Value="regradiogroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="69"/>
-        <CursorPos X="18" Y="81"/>
+        <TopLine Value="221"/>
+        <CursorPos X="14" Y="238"/>
         <UsageCount Value="13"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
@@ -204,8 +204,8 @@
         <Filename Value="..\source\regcheckbox.pas"/>
         <UnitName Value="regcheckbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="59"/>
-        <CursorPos X="18" Y="76"/>
+        <TopLine Value="9"/>
+        <CursorPos X="38" Y="30"/>
         <UsageCount Value="14"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit23>
@@ -213,8 +213,8 @@
         <Filename Value="..\source\regradiobutton.pas"/>
         <UnitName Value="regradiobutton"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="65"/>
-        <CursorPos X="18" Y="76"/>
+        <TopLine Value="154"/>
+        <CursorPos X="14" Y="175"/>
         <UsageCount Value="13"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit24>
@@ -423,9 +423,9 @@
         <Filename Value="..\source\regpropedits.pas"/>
         <UnitName Value="regpropedits"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="190"/>
-        <CursorPos X="12" Y="228"/>
-        <UsageCount Value="14"/>
+        <TopLine Value="59"/>
+        <CursorPos X="14" Y="169"/>
+        <UsageCount Value="15"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit50>
       <Unit51>
@@ -509,9 +509,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="dlgTrueFalse"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="56"/>
+        <TopLine Value="31"/>
         <CursorPos X="41" Y="71"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit61>
       <Unit62>
@@ -559,6 +559,18 @@
         <UsageCount Value="11"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit66>
+      <Unit67>
+        <Filename Value="..\source\dlgaboutcomponent.pas"/>
+        <ComponentName Value="AboutComponent"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="dlgaboutcomponent"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="10"/>
+        <CursorPos X="4" Y="40"/>
+        <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit67>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>

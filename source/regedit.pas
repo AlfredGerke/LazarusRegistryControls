@@ -165,7 +165,13 @@ end;
 procedure TCustomRegEdit.ShowEditDialog(var aMessage: TLMessage);
 var
   edit_settings: TEditSettings;
+  do_edit: boolean;
 begin
+  if (aMessage.wParam = 1) then
+    do_edit:= True
+  else
+    do_edit := False;
+
   edit_settings := TEditSettings.Create(nil);
   try
     with edit_settings do
@@ -179,7 +185,7 @@ begin
         RegistrySettings.ReadDefaults,
         RegistrySettings.WriteDefaults);
 
-      case ShowModalEx(False) of
+      case ShowModalEx(do_edit) of
         mrOk:;
         mrCancel:;
       end;
