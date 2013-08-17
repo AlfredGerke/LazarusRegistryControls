@@ -17,6 +17,7 @@ type
   TRegistryControlComponentEditor = class(TComponentEditor)
   protected
     procedure ExecuteShowInfo;
+    procedure ExecuteEditRootKeys;
   public
     procedure ExecuteVerb(Index: Integer); override;
     function  GetVerb(Index: Integer): String; override;
@@ -61,7 +62,9 @@ uses
   dlgTrueFalse,
   Controls,
   Dialogs,
-  dlgaboutcomponent;
+  dlgaboutcomponent,
+  LMessages,
+  regmsg;
 
 { TRegistryControlComponentEditor }
 
@@ -70,23 +73,41 @@ begin
   StartAbout;
 end;
 
+procedure TRegistryControlComponentEditor.ExecuteEditRootKeys;
+var
+  msg: TLMessage;
+begin
+  // löst Hint: Local variable "msg" does not seem to be initialized
+  msg.Result:=0;
+  FillChar(msg, SizeOf(msg), #0);
+  msg.Msg := LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
+  msg.lParam:=0;
+  msg.wParam:=0;
+
+  Component.Dispatch(msg);
+end;
+
 procedure TRegistryControlComponentEditor.ExecuteVerb(Index: Integer);
 begin
   case Index of
     0: ExecuteShowInfo;
+    1:;
+    2: ExecuteEditRootKeys;
   end;
 end;
 
 function TRegistryControlComponentEditor.GetVerb(Index: Integer): String;
 begin
   case Index of
-    0: Result := 'About';
+    0: Result := 'About...';
+    1: Result := '-';
+    2: Result := 'Show RootKeys';
   end;
 end;
 
 function TRegistryControlComponentEditor.GetVerbCount: Integer;
 begin
-  Result := 1;
+  Result := 3;
 end;
 
 { TRegistrySourceComponentEditor }
@@ -131,7 +152,8 @@ begin
     1: ;
     2: ;
     3: ;
-    4: AddMenuItemsByClientList(aParentMenuItem, aRegistrySource);
+    4: ;
+    5: AddMenuItemsByClientList(aParentMenuItem, aRegistrySource);
   end;
 end;
 
@@ -229,26 +251,27 @@ procedure TRegistrySourceComponentEditor.ExecuteVerb(Index: Integer);
 begin
   case Index of
     0: ExecuteShowInfo;
-    1: ExecuteRefreshSettings;
-    2: ExecuteRefreshWriteAdHocProperty;
-    3: ExecuteRefreshSyncProperty;
+    2: ExecuteRefreshSettings;
+    3: ExecuteRefreshWriteAdHocProperty;
+    4: ExecuteRefreshSyncProperty;
   end;
 end;
 
 function TRegistrySourceComponentEditor.GetVerb(Index: Integer): String;
 begin
   case Index of
-    0: Result := 'About';
-    1: Result := 'Refresh ClientSettings';
-    2: Result := 'Refresh DoWriteAdHoc';
-    3: Result := 'Refresh DoSyncData';
-    4: Result := 'Registered Clients';
+    0: Result := 'About...';
+    1: Result := '-';
+    2: Result := 'Refresh ClientSettings';
+    3: Result := 'Refresh DoWriteAdHoc';
+    4: Result := 'Refresh DoSyncData';
+    5: Result := 'Registered Clients';
   end;
 end;
 
 function TRegistrySourceComponentEditor.GetVerbCount: Integer;
 begin
-  Result := 5;
+  Result := 6;
 end;
 
 procedure TRegistrySourceComponentEditor.PrepareItem(Index: Integer;
@@ -259,10 +282,11 @@ begin
   registry_source := Component as TRegistrySource;
   case Index of
     0:;
-    1: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
+    1:;
     2: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
     3: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
-    4: if (assigned(registry_source) and (registry_source.ClientCount > 0)) then
+    4: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
+    5: if (assigned(registry_source) and (registry_source.ClientCount > 0)) then
          AddMenuItemsForComponent(Index, aItem, registry_source)
        else
          AItem.Enabled := False;

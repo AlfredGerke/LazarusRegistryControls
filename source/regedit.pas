@@ -34,7 +34,7 @@ type
     procedure RefreshSettings(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
     procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
 
-    procedure OnChangeSettings(aSender: TObject); virtual;
+    procedure OnChangeSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource);
     procedure Change; override;
 
@@ -84,7 +84,7 @@ end;
 
 { TCustomRegEdit }
 
-procedure TCustomRegEdit.OnChangeSettings(aSender: TObject);
+procedure TCustomRegEdit.OnChangeSettings(Sender: TObject);
 begin
   ReadFromReg;
 end;
@@ -155,6 +155,8 @@ begin
                   Text,
                   FRegistrySettings.WriteDefaults,
                   FRegistrySettings.GroupIndex);
+
+                Modified := False;
               finally
                 FRegistrySettings.DoSyncData := sync_state_by_default;
               end;
@@ -170,8 +172,11 @@ procedure TCustomRegEdit.ShowEditDialog(var aMessage: TLMessage);
 var
   edit_settings: TEditSettings;
   do_edit: boolean;
-  aRootKeys: TRootKeysStruct;
+  root_keys: TRootKeysStruct;
 begin
+  root_keys.Found := False;
+  root_keys.Clear;
+
   if (aMessage.wParam = 1) then
     do_edit:= True
   else
@@ -181,22 +186,15 @@ begin
   try
     with edit_settings do
     begin
-      RegistrySettings.GetRootKeys(aRootKeys);
-      SetData(aRootKeys);
+      RegistrySettings.GetRootKeys(root_keys);
+      SetData(root_keys);
 
       case ShowModalEx(do_edit) of
         mrOk:
         begin
-          GetData(aRootKeys);
-
-          RegistrySettings.RootKey := aRootKeys.RootKey;
-          RegistrySettings.RootKeyForDefaults := aRootKeys.RootKeyForDefaults;
-          RegistrySettings.RootForDefaults := aRootKeys.RootForDefaults;
-          RegistrySettings.GUID := aRootKeys.GUID;
-          RegistrySettings.Organisation := aRootKeys.Organisation;
-          RegistrySettings.Project := aRootKeys.Project;
-          RegistrySettings.ReadDefaults := aRootKeys.ReadDefaults;
-          RegistrySettings.WriteDefaults := aRootKeys.WriteDefaults;
+          root_keys.Clear;
+          GetData(root_keys);
+          RegistrySettings.SetRootKeys(root_keys);
           aMessage.Result := 1;
         end;
         mrCancel:;
@@ -213,6 +211,10 @@ begin
   if Assigned(FRegistrySource) then
     FRegistrySource.UnRegisterControl(self);
   FRegistrySource := nil;
+  RegistrySettings.CanWrite := False;
+  RegistrySettings.CanRead := False;
+  RegistrySettings.DoWriteAdHoc := False;
+  aMessage.Result := 1;
 end;
 
 procedure TCustomRegEdit.RefreshWriteAdHoc(var aMessage: TLMessage);
@@ -255,7 +257,7 @@ end;
 
 procedure TCustomRegEdit.RefreshSettings(var aMessage: TLMessage);
 begin
-  RefreshRegistrySettings;
+  aMessage.Result := LongInt(RefreshRegistrySettings);
 end;
 
 procedure TCustomRegEdit.RefreshData(var aMessage: TLMessage);
@@ -352,7 +354,6 @@ begin
   try
     ReadWriteInfo(Write);
     Application.ProcessMessages;
-    Modified := True;
 
     Result := True;
   except

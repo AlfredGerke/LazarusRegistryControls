@@ -91,14 +91,14 @@ procedure TEditSettings.GetData(var aRootKeys: TRootKeysStruct);
 begin
   if FEdit then
   begin
-    aRootKeys.RootKey := edtRootKey.Text;
-    aRootKeys.RootKeyForDefaults := edtRootKeyForDefaults.Text;
-    aRootKeys.RootForDefaults := edtRootForDefaults.Text;
-    aRootKeys.GUID := edtGUID.Text;
-    aRootKeys.Organisation := edtOrganisation.Text;
-    aRootKeys.Project := edtProject.Text;
-    aRootKeys.ReadDefaults := cbxReadDefaults.Checked;
-    aRootKeys.WriteDefaults := cbxWriteDefaults.Checked;
+    aRootKeys.SetRootKeys(edtRootKey.Text,
+       edtRootKeyForDefaults.Text,
+       cbxReadDefaults.Checked,
+       cbxWriteDefaults.Checked,
+       edtRootForDefaults.Text,
+       edtProject.Text,
+       edtOrganisation.Text,
+       edtGUID.Text);
   end;
 end;
 

@@ -32,11 +32,17 @@ type
   published
   end;
 
+  { TRegistrySettingString }
+
   TRegistrySettingString = string[255];
+
+  { TRegistrySettingKind }
 
   TRegistrySettingKind = (rskUnknown, rskRootKey, rskRootKeyForDefault,
     rskSection, rskIdent, rskDefault, rskReadDefaults, rskWriteDefaults,
     rskRootForDefaults, rskCanRead, rskCanWrite, rskDoWriteAdHoc);
+
+  { TRegistrySettingValue }
 
   TRegistrySettingValue = record
     case Kind: TRegistrySettingKind of
@@ -53,12 +59,15 @@ type
       rskDoWriteAdHoc: (DoWriteAdHoc: boolean);
   end;
 
+  { TOnRegistrySettingsChange }
+
   TOnRegistrySettingsChange = procedure(aSettingInfo: TRegistrySettingValue;
                                         var aIsOk: boolean) of object;
 
   { TRootKeysStruct }
 
   TRootKeysStruct = record
+    Found: boolean;
     RootKey: string;
     RootKeyForDefaults: string;
     ReadDefaults: boolean;
@@ -67,6 +76,16 @@ type
     Project: string;
     Organisation: string;
     GUID: string;
+
+    procedure SetRootKeys(aRootKey: string;
+                          aRootKeyForDefaults: string;
+                          aReadDefaults: boolean;
+                          aWriteDefaults: boolean;
+                          aRootForDefaults: string;
+                          aProject: string;
+                          aOrganisation: string;
+                          aGUID: string);
+    procedure Clear;
   end;
 
   { TCustomRegistrySettings }
@@ -212,6 +231,33 @@ begin
       result := StringReplace(aKey, aToken, aTokenValue, [rfReplaceAll]);
 end;
 
+{ TRootKeysStruct }
+
+procedure TRootKeysStruct.SetRootKeys(aRootKey: string;
+  aRootKeyForDefaults: string;
+  aReadDefaults: boolean;
+  aWriteDefaults: boolean;
+  aRootForDefaults: string;
+  aProject: string;
+  aOrganisation: string;
+  aGUID: string);
+begin
+  Found := True;
+  RootKey := aRootKey;
+  RootKeyForDefaults := aRootKeyForDefaults;
+  ReadDefaults := aReadDefaults;
+  WriteDefaults := aWriteDefaults;
+  RootForDefaults := aRootForDefaults;
+  Project := aProject;
+  Organisation := aOrganisation;
+  GUID := aGUID;
+end;
+
+procedure TRootKeysStruct.Clear;
+begin
+  FillChar(Self, SizeOf(Self), #0);
+end;
+
 { TCustomProperties }
 
 function TCustomProperties.GetOwnerComponentState: TComponentState;
@@ -313,6 +359,7 @@ begin
   FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
   FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
 
+  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -329,6 +376,7 @@ begin
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
   FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
 
+  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -340,6 +388,7 @@ begin
 
   FSection := aSection;
 
+  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -351,6 +400,7 @@ begin
 
   FIdent := aIdent;
 
+  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -362,6 +412,7 @@ begin
 
   FReadDefaults := aReadDefaults;
 
+  // muss hier aktualisiert werden???
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -373,6 +424,7 @@ begin
 
   FWriteDefaults := aWriteDefaults;
 
+  // muss hier aktualisiert werden???
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -385,6 +437,7 @@ begin
 
   FRootForDefaults := aRootForDefaults;
 
+  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -396,6 +449,7 @@ begin
 
   FCanRead := aCanRead;
 
+  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -407,6 +461,7 @@ begin
 
   FCanWrite := aCanWrite;
 
+  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -418,6 +473,7 @@ begin
 
   FDoWriteAdHoc := aDoWriteAdHoc;
 
+  // muss hier aktualisiert werden???
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -429,6 +485,7 @@ begin
 
   FDefault := aDefault;
 
+  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;

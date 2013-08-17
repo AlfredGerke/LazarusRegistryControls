@@ -23,8 +23,8 @@ object AboutComponent: TAboutComponent
       Left = 21
       Height = 23
       Top = 16
-      Width = 231
-      Caption = 'LararusRegistryControls'
+      Width = 233
+      Caption = 'LazarusRegistryControls'
       Font.CharSet = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -19

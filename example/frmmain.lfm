@@ -81,7 +81,7 @@ object Main: TMain
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.Ident = 'CheckBox2'
           RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = False
+          RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
@@ -115,7 +115,7 @@ object Main: TMain
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.Ident = 'RadioButton2'
           RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = False
+          RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
@@ -147,8 +147,8 @@ object Main: TMain
             'RadioGroup statisch 5'
           )
           TabOrder = 5
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'RadioGroup1'
+          RegistrySettings.Section = 'RadioGroup1'
+          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
@@ -175,6 +175,8 @@ object Main: TMain
           Width = 231
           Action = acRefreshWriteAdHoc
           TabOrder = 0
+          RegistrySettings.Section = 'Desktop'
+          RegistrySettings.Ident = 'DoWriteAdHoc'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
@@ -184,13 +186,13 @@ object Main: TMain
           RegistrySource = RegistrySource1
         end
         object redtControlName: TRegEdit
-          Left = 8
+          Left = 260
           Height = 21
           Top = 34
           Width = 160
           TabOrder = 1
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'ClientName'
+          RegistrySettings.Section = 'Desktop'
+          RegistrySettings.Ident = 'ClientToRefresh'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
@@ -199,17 +201,100 @@ object Main: TMain
           RegistrySource = RegistrySource1
         end
         object btnRefreshControls: TButton
-          Left = 172
+          Left = 260
           Height = 25
-          Top = 33
+          Top = 5
           Width = 160
           Action = acRefreshData
           TabOrder = 2
+        end
+        object rcbSetSyncData: TRegCheckBox
+          Left = 8
+          Height = 17
+          Top = 34
+          Width = 174
+          Action = acRefreshSyncData
+          TabOrder = 3
+          RegistrySettings.Section = 'Desktop'
+          RegistrySettings.Ident = 'DoSyncData'
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = False
+          RegistrySource = RegistrySource1
         end
       end
     end
     object tabList: TTabSheet
       Caption = 'Listen'
+      ClientHeight = 478
+      ClientWidth = 810
+      object pnlTop1: TPanel
+        Left = 0
+        Height = 63
+        Top = 0
+        Width = 810
+        Align = alTop
+        ClientHeight = 63
+        ClientWidth = 810
+        TabOrder = 0
+        object rcbWriteAdHoc1: TRegCheckBox
+          Left = 8
+          Height = 17
+          Top = 13
+          Width = 231
+          Caption = 'Änderungen sofort in die Registry schreiben'
+          OnClick = acRefreshWriteAdHocExecute
+          TabOrder = 0
+          RegistrySettings.Section = 'Desktop'
+          RegistrySettings.Ident = 'DoWriteAdHoc'
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = False
+        end
+        object redtControlName1: TRegEdit
+          Left = 260
+          Height = 21
+          Top = 34
+          Width = 160
+          TabOrder = 1
+          RegistrySettings.Section = 'Desktop'
+          RegistrySettings.Ident = 'ClientToRefresh'
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+        end
+        object btnRefreshControls1: TButton
+          Left = 260
+          Height = 25
+          Top = 5
+          Width = 160
+          Action = acRefreshData
+          TabOrder = 2
+        end
+        object rcbSetSyncData1: TRegCheckBox
+          Left = 8
+          Height = 17
+          Top = 34
+          Width = 174
+          Caption = 'Steuerelemente synchroniserien'
+          OnClick = acRefreshSyncDataExecute
+          TabOrder = 3
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = False
+        end
+      end
     end
     object tabKombination: TTabSheet
       Caption = 'Kombination'
@@ -217,7 +302,7 @@ object Main: TMain
   end
   object MainMenu1: TMainMenu
     left = 752
-    top = 136
+    top = 152
     object mnuFile: TMenuItem
       Caption = 'Datei'
       object MenuItem2: TMenuItem
@@ -233,7 +318,7 @@ object Main: TMain
   end
   object ActionList1: TActionList
     left = 752
-    top = 72
+    top = 96
     object acClose: TAction
       Category = 'General'
       Caption = 'Beenden'
@@ -250,21 +335,26 @@ object Main: TMain
       OnExecute = acCheckExampleSettingsExecute
     end
     object acRefreshData: TAction
-      Category = 'ExecuteExample'
+      Category = 'ExecuteSingleValueExample'
       Caption = 'Steuerelement(e) aktualisieren'
       OnExecute = acRefreshDataExecute
     end
     object acRefreshWriteAdHoc: TAction
-      Category = 'ExecuteExample'
+      Category = 'ExecuteSingleValueExample'
       Caption = 'Änderungen sofort in die Registry schreiben'
       OnExecute = acRefreshWriteAdHocExecute
+    end
+    object acRefreshSyncData: TAction
+      Category = 'ExecuteSingleValueExample'
+      Caption = 'Steuerelemente synchroniserien'
+      OnExecute = acRefreshSyncDataExecute
     end
   end
   object RegistrySource1: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
     RootKeyForDefaults = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%'
     RootKeyForCommon = 'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%'
-    Project = 'RegistryControlExample'
+    Project = 'LazarusRegistryControls'
     Organisation = 'ExampleFactory'
     RootForDefaults = 'HKEY_LOCAL_MACHINE'
     ReadDefaults = True
@@ -273,6 +363,21 @@ object Main: TMain
     DoSyncData = True
     PrefereStrings = False
     left = 752
-    top = 200
+    top = 216
+  end
+  object RegistrySource2: TRegistrySource
+    RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
+    RootKeyForDefaults = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%'
+    RootKeyForCommon = 'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%'
+    Project = 'LazarusRegistryControls'
+    Organisation = 'ExampleFactory'
+    RootForDefaults = 'HKEY_LOCAL_MACHINE'
+    ReadDefaults = True
+    WriteDefaults = False
+    GUID = '{EC8199A8-A8FD-40D9-9ACA-C28D913C2E0B}'
+    DoSyncData = True
+    PrefereStrings = False
+    left = 752
+    top = 272
   end
 end
