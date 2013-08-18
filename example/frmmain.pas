@@ -49,6 +49,8 @@ type
     redtEdit: TRegEdit;
     RegistrySource1: TRegistrySource;
     RegistrySource2: TRegistrySource;
+    RegListBox1: TRegListBox;
+    RegListBox2: TRegListBox;
     rgrpRadioGroupList1: TRegRadioGroup;
     rgrpRadioGroup1: TRegRadioGroup;
     rrbRadioButton1: TRegRadioButton;

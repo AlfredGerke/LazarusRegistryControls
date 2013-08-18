@@ -4,7 +4,8 @@ interface
 
 uses
   Classes,
-  Registry;
+  Registry,
+  regtype;
 
 type
 
@@ -15,6 +16,10 @@ type
     FRoot: string;
     FDefaultKey: string;
     FPrefereStrings: boolean;
+
+    procedure ReadSectionValuesByKind(aSection: string;
+                                      aStrings: TStrings;
+                                      aKind: TListSourceKind = Both);
   protected
     function GetDefaultKey: string;
     function GetHKeyRoot: HKEY;
@@ -28,6 +33,8 @@ type
     function ReadBool(aSection: string;
                       aIdent: string;
                       aDefault: boolean): boolean; virtual;
+    procedure ReadSectionValuesOnly(aSection: string;
+                                    aStrings: TStrings);
     procedure ReadSection(aSection: string;
                           aStrings: TStrings); virtual;
     procedure ReadSectionValues(aSection: string;
@@ -63,6 +70,10 @@ type
     FUseDefaults: TDefaultsForCurrentUser;
   protected
   public
+    procedure ReadSectionValuesOnly(aSection: string;
+                                    aStrings: TStrings);
+    procedure ReadSectionValuesOnlyForDefaults(aSection: string;
+                                               aStrings: TStrings);
     function ReadStringCheckForDefaults(aSection: string;
                                         aIdent: string;
                                         aDefault: string): string; virtual;
@@ -103,6 +114,57 @@ uses
   SysUtils;
 
 { TDefaultsForCurrentUser }
+
+procedure TDefaultsForCurrentUser.ReadSectionValuesByKind(aSection: string;
+  aStrings: TStrings;
+  aKind: TListSourceKind = Both);
+var
+  list: TStrings;
+  reg: TRegistry;
+  key: string;
+  anz: integer;
+  value: string;
+begin
+  reg := TRegistry.Create;
+  list := TStringList.Create;
+  try
+    try
+      aStrings.Clear;
+      with reg do
+      begin
+        RootKey := GetHKEYRoot;
+        key := concat(DefaultKey, aSection);
+
+        if OpenKeyReadOnly(key) then
+        begin
+          GetValueNames(list);
+
+ 	 for anz := 0 to list.Count-1 do
+ 	 begin
+ 	   value := reg.ReadString(list.Strings[anz]);
+           case aKind of
+             byValue: aStrings.Add(value);
+             byKey: aStrings.Add(list.Strings[anz]);
+             Both: aStrings.Add(list.Strings[anz] + '=' + value);
+           else
+             Break;
+           end;
+ 	 end;
+        end;
+
+        CloseKey;
+      end;
+    except
+      on E: Exception do
+        aStrings.Clear;
+    end;
+  finally
+    if Assigned(reg) then
+      FreeAndNil(reg);
+    if Assigned(list) then
+      FreeAndNil(list);
+  end;
+end;
 
 function TDefaultsForCurrentUser.GetDefaultKey: string;
 begin
@@ -277,6 +339,12 @@ begin
   end;
 end;
 
+procedure TDefaultsForCurrentUser.ReadSectionValuesOnly(aSection: string;
+  aStrings: TStrings);
+begin
+  ReadSectionValuesByKind(aSection, aStrings, byValue);
+end;
+
 procedure TDefaultsForCurrentUser.ReadSection(aSection: string;
   aStrings: TStrings);
 var
@@ -309,46 +377,8 @@ end;
 
 procedure TDefaultsForCurrentUser.ReadSectionValues(aSection: string;
   aStrings: TStrings);
-var
-  list: TStrings;
-  reg: TRegistry;
-  key: string;
-  anz: integer;
-  value: string;
 begin
-  reg := TRegistry.Create;
-  list := TStringList.Create;
-  try
-    try
-      aStrings.Clear;
-      with reg do
-      begin
-        RootKey := GetHKEYRoot;
-        key := concat(DefaultKey, aSection);
-
-        if OpenKeyReadOnly(key) then
-        begin
-          GetValueNames(list);
-
- 	 for anz := 0 to list.Count-1 do
- 	 begin
- 	   value := reg.ReadString(list.Strings[anz]);
- 	   aStrings.Add(list.Strings[anz] + '=' + value);
- 	 end;
-        end;
-
-        CloseKey;
-      end;
-    except
-      on E: Exception do
-        aStrings.Clear;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-    if Assigned(list) then
-      FreeAndNil(list);
-  end;
+  ReadSectionValuesByKind(aSection, aStrings, Both);
 end;
 
 procedure TDefaultsForCurrentUser.WriteString(aSection: string;
@@ -477,6 +507,46 @@ begin
   FUseDefaults.Free;
 
   inherited Destroy;
+end;
+
+procedure TDataByCurrentUser.ReadSectionValuesOnly(aSection: string;
+  aStrings: TStrings);
+var
+  list: TStringList;
+  anz: Integer;
+  value: String;
+begin
+  aStrings.Clear;
+  list := TStringlist.Create;
+  try
+    ReadSectionValues(aSection, list);
+
+    for anz := 0 to list.Count-1 do
+    begin
+      value := list.Values[list.Names[anz]];
+      aStrings.Add(value);
+    end;
+  finally
+    if Assigned(list) then
+      FreeAndNil(list);
+  end;
+end;
+
+procedure TDataByCurrentUser.ReadSectionValuesOnlyForDefaults(aSection: string;
+  aStrings: TStrings);
+begin
+  try
+    aStrings.Clear;
+
+    ReadSectionValuesOnly(aSection, aStrings);
+
+    if (aStrings.Count = 0) then
+      UseDefaults.ReadSectionValuesOnly(aSection, aStrings);
+
+  except
+    on E: Exception do
+      aStrings.Clear;
+  end;
 end;
 
 function TDataByCurrentUser.ReadStringCheckForDefaults(aSection: string;

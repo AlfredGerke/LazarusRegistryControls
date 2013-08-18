@@ -686,7 +686,7 @@ begin
       begin
         case aListSource of
           byKey: streg.ReadSectionCheckForDefaults(aSection, aStrings);
-          byValue: ;
+          byValue: streg.ReadSectionValuesOnlyForDefaults(aSection, aStrings);
           Both: streg.ReadSectionValuesCheckForDefaults(aSection, aStrings);
         else
           aStrings.clear;
@@ -696,7 +696,7 @@ begin
       begin
         case aListSource of
           byKey: streg.ReadSection(aSection, aStrings);
-          byValue: ;
+          byValue: streg.ReadSectionValuesOnly(aSection, aStrings);
           Both: streg.ReadSectionValues(aSection, aStrings);
         else
           aStrings.clear;

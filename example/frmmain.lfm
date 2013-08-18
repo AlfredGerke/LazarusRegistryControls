@@ -159,6 +159,33 @@ object Main: TMain
           RegistrySettings.SourceKind = lskUnknown
           RegistrySource = RegistrySource1
         end
+        object RegListBox2: TRegListBox
+          Left = 12
+          Height = 128
+          Top = 163
+          Width = 281
+          Items.Strings = (
+            'statischer Eintrag 1'
+            'statischer Eintrag 2'
+            'statischer Eintrag 3'
+            'statischer Eintrag 4'
+            'statischer Eintrag 5'
+            'statischer Eintrag 6'
+          )
+          ItemHeight = 13
+          TabOrder = 6
+          RegistrySettings.Section = 'ListBox1'
+          RegistrySettings.Ident = 'ItemIndex'
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.SourceKind = lskUnknown
+          RegistrySource = RegistrySource1
+        end
       end
       object pnlTop: TPanel
         Left = 0
@@ -328,6 +355,26 @@ object Main: TMain
         RegistrySettings.Default = 0
         RegistrySettings.ItemsByRegistry = True
         RegistrySettings.ListSection = 'RaidoGroupListe'
+        RegistrySettings.SourceKind = byKey
+        RegistrySource = RegistrySource2
+      end
+      object RegListBox1: TRegListBox
+        Left = 276
+        Height = 128
+        Top = 82
+        Width = 240
+        ItemHeight = 0
+        TabOrder = 2
+        RegistrySettings.Section = 'ListBox1'
+        RegistrySettings.Ident = 'ItemIndex'
+        RegistrySettings.CanRead = True
+        RegistrySettings.CanWrite = True
+        RegistrySettings.DoWriteAdHoc = True
+        RegistrySettings.GroupIndex = 0
+        RegistrySettings.DoSyncData = True
+        RegistrySettings.Default = 0
+        RegistrySettings.ItemsByRegistry = True
+        RegistrySettings.ListSection = 'ListBoxListe'
         RegistrySettings.SourceKind = byKey
         RegistrySource = RegistrySource2
       end
