@@ -42,6 +42,7 @@ type
     procedure CheckItemIndexChanged; override;
     // wird nicht getirggert
     procedure Click; override;
+    procedure SetName(const NewName: TComponentName); override;
 
     property RegistrySettings: TRegistrySettingsList
       read FRegistrySettings
@@ -382,6 +383,21 @@ begin
 
   if FRegistrySettings.DoWriteAdHoc then
     WriteToReg;
+end;
+
+procedure TCustomRegRadioGroup.SetName(const NewName: TComponentName);
+var
+  old_name: TComponentName;
+  new_name: TComponentName;
+begin
+  old_name := Name;
+
+  inherited SetName(NewName);
+
+  new_name := Name;
+
+  if Assigned(FRegistrySource) then
+    FRegistrySource.RenameClient(old_name, new_name);
 end;
 
 constructor TCustomRegRadioGroup.Create(AOwner: TComponent);

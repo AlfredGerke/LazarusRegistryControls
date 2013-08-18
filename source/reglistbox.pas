@@ -37,6 +37,8 @@ type
     procedure RefreshSettings(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
     procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
 
+    procedure SetName(const NewName: TComponentName); override;
+
     procedure OnChangeSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
 
@@ -339,6 +341,21 @@ begin
     else
       aMessage.Result := LongInt(ReadFromReg)
   end;
+end;
+
+procedure TCustomRegListBox.SetName(const NewName: TComponentName);
+var
+  old_name: TComponentName;
+  new_name: TComponentName;
+begin
+  old_name := Name;
+
+  inherited SetName(NewName);
+
+  new_name := Name;
+
+  if Assigned(FRegistrySource) then
+    FRegistrySource.RenameClient(old_name, new_name);
 end;
 
 procedure TCustomRegListBox.OnChangeSettings(Sender: TObject);

@@ -123,6 +123,8 @@ type
       read FEditClientRootKeys
       write FEditClientRootKeys;
   public
+    procedure RenameClient(aOldName: TComponentName;
+                           aNewName: TComponentName);
     procedure ShowClientEditDialog(aClientName: string);
     function GetClientByName(aClientName: string): TComponent;
     function GetClientNameByIndex(aIndex: integer) : string;
@@ -307,6 +309,20 @@ begin
     Result := FClientList.Count
   else
     Result := 0;
+end;
+
+procedure TCustomRegistrySource.RenameClient(aOldName: TComponentName;
+  aNewName: TComponentName);
+var
+  index: integer;
+begin
+  if Assigned(FClientList) then
+    if (FClientList.Count > 0) then
+    begin
+      index := FClientList.IndexOf(aOldName);
+      if (index <> -1) then
+        FClientList.Strings[index] := aNewName;
+    end;
 end;
 
 procedure TCustomRegistrySource.ShowClientEditDialog(aClientName: string);

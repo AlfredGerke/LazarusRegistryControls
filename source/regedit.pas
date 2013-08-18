@@ -37,6 +37,7 @@ type
     procedure OnChangeSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource);
     procedure Change; override;
+    procedure SetName(const NewName: TComponentName); override;
 
     property RegistrySettings: TRegistrySettingsStringDefault
       read FRegistrySettings
@@ -299,6 +300,21 @@ begin
 
   if FRegistrySettings.DoWriteAdHoc then
     WriteToReg;
+end;
+
+procedure TCustomRegEdit.SetName(const NewName: TComponentName);
+var
+  old_name: TComponentName;
+  new_name: TComponentName;
+begin
+  old_name := Name;
+
+  inherited SetName(NewName);
+
+  new_name := Name;
+
+  if Assigned(FRegistrySource) then
+    FRegistrySource.RenameClient(old_name, new_name);
 end;
 
 constructor TCustomRegEdit.Create(AOwner: TComponent);

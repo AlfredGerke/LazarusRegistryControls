@@ -7,6 +7,7 @@ object Main: TMain
   ClientHeight = 504
   ClientWidth = 818
   Menu = MainMenu1
+  OnShow = FormShow
   LCLVersion = '1.0.10.0'
   object PageControl1: TPageControl
     Left = 0
@@ -125,7 +126,7 @@ object Main: TMain
         object rgrpRadioGroup1: TRegRadioGroup
           Left = 316
           Height = 129
-          Top = 13
+          Top = 189
           Width = 217
           AutoFill = True
           Caption = 'RadioGroup (rgrpRadioGroup1) statisch'
@@ -162,7 +163,7 @@ object Main: TMain
         object RegListBox2: TRegListBox
           Left = 12
           Height = 128
-          Top = 163
+          Top = 189
           Width = 281
           Items.Strings = (
             'statischer Eintrag 1'
@@ -186,6 +187,58 @@ object Main: TMain
           RegistrySettings.SourceKind = lskUnknown
           RegistrySource = RegistrySource1
         end
+        object redtComboBox1: TRegComboBox
+          Left = 316
+          Height = 21
+          Top = 30
+          Width = 192
+          ItemHeight = 13
+          Items.Strings = (
+            'statischer Eintrag 1'
+            'statischer Eintrag 2'
+            'statischer Eintrag 3'
+            'statischer Eintrag 4'
+            'statischer Eintrag 5'
+            'statischer Eintrag 6'
+          )
+          TabOrder = 7
+          Text = 'redtComboBox1'
+          RegistrySettings.Section = 'Combobox1'
+          RegistrySettings.Ident = 'ItemIndex'
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
+          RegistrySettings.Default = 0
+          RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.SourceKind = lskUnknown
+          RegistrySource = RegistrySource1
+        end
+        object lblListBox1: TLabel
+          Left = 15
+          Height = 14
+          Top = 172
+          Width = 173
+          Caption = 'Es wird nur der ItemIndex gesichert'
+          ParentColor = False
+        end
+        object lblRadioGroup1: TLabel
+          Left = 316
+          Height = 14
+          Top = 172
+          Width = 173
+          Caption = 'Es wird nur der ItemIndex gesichert'
+          ParentColor = False
+        end
+        object lblComboBox1: TLabel
+          Left = 316
+          Height = 14
+          Top = 12
+          Width = 173
+          Caption = 'Es wird nur der ItemIndex gesichert'
+          ParentColor = False
+        end
       end
       object pnlTop: TPanel
         Left = 0
@@ -196,30 +249,13 @@ object Main: TMain
         ClientHeight = 63
         ClientWidth = 810
         TabOrder = 1
-        object rcbWriteAdHoc: TRegCheckBox
-          Left = 8
-          Height = 17
-          Top = 13
-          Width = 231
-          Action = acRefreshWriteAdHoc
-          TabOrder = 0
-          RegistrySettings.Section = 'Desktop'
-          RegistrySettings.Ident = 'DoWriteAdHoc'
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = False
-          RegistrySource = RegistrySource1
-        end
         object redtControlName: TRegEdit
-          Left = 260
+          Left = 476
           Height = 21
           Hint = 'wenn Leerstring, alle Steuerelemente aktualisieren'
-          Top = 34
+          Top = 35
           Width = 160
-          TabOrder = 1
+          TabOrder = 0
           RegistrySettings.Section = 'Desktop'
           RegistrySettings.Ident = 'ClientToRefresh'
           RegistrySettings.CanRead = True
@@ -230,29 +266,44 @@ object Main: TMain
           RegistrySource = RegistrySource1
         end
         object btnRefreshControls: TButton
-          Left = 260
+          Left = 476
           Height = 25
           Top = 5
           Width = 160
           Action = acRefreshData
+          TabOrder = 1
+        end
+        object btnWriteAdHocOn: TButton
+          Left = 8
+          Height = 25
+          Top = 5
+          Width = 259
+          Action = acWriteAdHocOn
           TabOrder = 2
         end
-        object rcbSetSyncData: TRegCheckBox
-          Left = 8
-          Height = 17
-          Top = 34
-          Width = 174
-          Action = acRefreshSyncData
+        object btnSyncDataOn: TButton
+          Left = 268
+          Height = 25
+          Top = 5
+          Width = 200
+          Action = acSyncDataOn
           TabOrder = 3
-          RegistrySettings.Section = 'Desktop'
-          RegistrySettings.Ident = 'DoSyncData'
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = False
-          RegistrySource = RegistrySource1
+        end
+        object btnWriteAdHocOff: TButton
+          Left = 8
+          Height = 25
+          Top = 31
+          Width = 259
+          Action = acWriteAdHocOff
+          TabOrder = 4
+        end
+        object btnSyncDataOf: TButton
+          Left = 268
+          Height = 25
+          Top = 31
+          Width = 200
+          Action = acSyncDataOff
+          TabOrder = 5
         end
       end
     end
@@ -260,7 +311,7 @@ object Main: TMain
       Caption = 'Listen'
       ClientHeight = 478
       ClientWidth = 810
-      object pnlTop1: TPanel
+      object pnlTopList: TPanel
         Left = 0
         Height = 63
         Top = 0
@@ -269,114 +320,111 @@ object Main: TMain
         ClientHeight = 63
         ClientWidth = 810
         TabOrder = 0
-        object rcbWriteAdHoc1: TRegCheckBox
-          Left = 8
-          Height = 17
-          Top = 13
-          Width = 231
-          Caption = 'Änderungen sofort in die Registry schreiben'
-          OnClick = acRefreshWriteAdHocExecute
-          TabOrder = 0
-          RegistrySettings.Section = 'Desktop'
-          RegistrySettings.Ident = 'DoWriteAdHoc'
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = False
-          RegistrySource = RegistrySource2
-        end
         object redtControlName1: TRegEdit
-          Left = 260
+          Left = 612
           Height = 21
           Hint = 'wenn Leerstring, alle Steuerelemente aktualisieren'
           Top = 34
           Width = 160
-          TabOrder = 1
+          TabOrder = 0
           RegistrySettings.Section = 'Desktop'
           RegistrySettings.Ident = 'ClientToRefresh'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.DoWriteAdHoc = False
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySource = RegistrySource2
         end
         object btnRefreshControls1: TButton
-          Left = 260
+          Left = 612
           Height = 25
           Top = 5
           Width = 160
           Caption = 'Steuerelement(e) aktualisieren'
           OnClick = acRefreshDataExecute
-          TabOrder = 2
+          TabOrder = 1
         end
-        object rcbSetSyncData1: TRegCheckBox
-          Left = 8
-          Height = 17
-          Top = 34
-          Width = 174
-          Caption = 'Steuerelemente synchroniserien'
-          OnClick = acRefreshSyncDataExecute
-          TabOrder = 3
+      end
+      object pnlClientList: TPanel
+        Left = 0
+        Height = 415
+        Top = 63
+        Width = 810
+        Align = alClient
+        ClientHeight = 415
+        ClientWidth = 810
+        TabOrder = 1
+        object rgrpRadioGroupList1: TRegRadioGroup
+          Left = 20
+          Height = 136
+          Top = 27
+          Width = 248
+          AutoFill = True
+          Caption = ' Radiogroup (rgrpRadioGroupList1) dynamisch'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.TopBottomSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          TabOrder = 0
+          RegistrySettings.Section = 'RadioGroup1'
+          RegistrySettings.Ident = 'ItemIndex'
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.ItemsByRegistry = True
+          RegistrySettings.ListSection = 'RaidoGroupListe'
+          RegistrySettings.SourceKind = byKey
+          RegistrySource = RegistrySource2
+        end
+        object RegListBox1: TRegListBox
+          Left = 276
+          Height = 128
+          Top = 35
+          Width = 240
+          ItemHeight = 0
+          TabOrder = 1
+          RegistrySettings.Section = 'ListBox1'
+          RegistrySettings.Ident = 'ItemIndex'
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.ItemsByRegistry = True
+          RegistrySettings.ListSection = 'ListBoxListe'
+          RegistrySettings.SourceKind = byKey
+          RegistrySource = RegistrySource2
+        end
+        object redtComboBoxList1: TRegComboBox
+          Left = 20
+          Height = 21
+          Top = 185
+          Width = 248
+          ItemHeight = 13
+          TabOrder = 2
+          Text = 'redtComboBoxList1'
+          RegistrySettings.Section = 'ComboBox1'
+          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = False
+          RegistrySettings.Default = 0
+          RegistrySettings.ItemsByRegistry = True
+          RegistrySettings.ListSection = 'ComboBoxListe'
+          RegistrySettings.SourceKind = byKey
           RegistrySource = RegistrySource2
         end
-      end
-      object rgrpRadioGroupList1: TRegRadioGroup
-        Left = 20
-        Height = 136
-        Top = 74
-        Width = 248
-        AutoFill = True
-        Caption = ' Radiogroup (rgrpRadioGroupList1) dynamisch'
-        ChildSizing.LeftRightSpacing = 6
-        ChildSizing.TopBottomSpacing = 6
-        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-        ChildSizing.EnlargeVertical = crsHomogenousChildResize
-        ChildSizing.ShrinkHorizontal = crsScaleChilds
-        ChildSizing.ShrinkVertical = crsScaleChilds
-        ChildSizing.Layout = cclLeftToRightThenTopToBottom
-        ChildSizing.ControlsPerLine = 1
-        TabOrder = 1
-        RegistrySettings.Section = 'RadioGroup1'
-        RegistrySettings.Ident = 'ItemIndex'
-        RegistrySettings.CanRead = True
-        RegistrySettings.CanWrite = True
-        RegistrySettings.DoWriteAdHoc = True
-        RegistrySettings.GroupIndex = 0
-        RegistrySettings.DoSyncData = True
-        RegistrySettings.Default = 0
-        RegistrySettings.ItemsByRegistry = True
-        RegistrySettings.ListSection = 'RaidoGroupListe'
-        RegistrySettings.SourceKind = byKey
-        RegistrySource = RegistrySource2
-      end
-      object RegListBox1: TRegListBox
-        Left = 276
-        Height = 128
-        Top = 82
-        Width = 240
-        ItemHeight = 0
-        TabOrder = 2
-        RegistrySettings.Section = 'ListBox1'
-        RegistrySettings.Ident = 'ItemIndex'
-        RegistrySettings.CanRead = True
-        RegistrySettings.CanWrite = True
-        RegistrySettings.DoWriteAdHoc = True
-        RegistrySettings.GroupIndex = 0
-        RegistrySettings.DoSyncData = True
-        RegistrySettings.Default = 0
-        RegistrySettings.ItemsByRegistry = True
-        RegistrySettings.ListSection = 'ListBoxListe'
-        RegistrySettings.SourceKind = byKey
-        RegistrySource = RegistrySource2
       end
     end
     object tabKombination: TTabSheet
@@ -422,17 +470,17 @@ object Main: TMain
       Caption = 'Steuerelement(e) aktualisieren'
       OnExecute = acRefreshDataExecute
     end
-    object acRefreshWriteAdHoc: TAction
+    object acWriteAdHocOn: TAction
       Category = 'ExecuteSingleValueExample'
       Caption = 'Änderungen sofort in die Registry schreiben'
       Hint = 'alle Elemente auf dem Reiter werden eingestellt'
-      OnExecute = acRefreshWriteAdHocExecute
+      OnExecute = acWriteAdHocOnExecute
     end
-    object acRefreshSyncData: TAction
+    object acSyncDataOn: TAction
       Category = 'ExecuteSingleValueExample'
       Caption = 'Steuerelemente synchroniserien'
       Hint = 'alle Elemente auf dem Reiter werden eingestellt'
-      OnExecute = acRefreshSyncDataExecute
+      OnExecute = acSyncDataOnExecute
     end
     object acRefreshDataList: TAction
       Category = 'ExecuteListExample'
@@ -447,6 +495,16 @@ object Main: TMain
       Category = 'ExecuteListExample'
       Caption = 'Steuerelemente synchronisieren'
       Hint = 'alle Elemente auf dem Reiter werden eingestellt'
+    end
+    object acWriteAdHocOff: TAction
+      Category = 'ExecuteSingleValueExample'
+      Caption = 'Änderungen nicht sofort in die Registry schreiben'
+      OnExecute = acWriteAdHocOffExecute
+    end
+    object acSyncDataOff: TAction
+      Category = 'ExecuteSingleValueExample'
+      Caption = 'Steuerelemente nicht synchroniserien'
+      OnExecute = acSyncDataOffExecute
     end
   end
   object RegistrySource1: TRegistrySource
