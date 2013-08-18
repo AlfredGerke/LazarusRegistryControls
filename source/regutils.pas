@@ -30,7 +30,8 @@ type
                       aDefault: boolean): boolean; virtual;
     procedure ReadSection(aSection: string;
                           aStrings: TStrings); virtual;
-
+    procedure ReadSectionValues(aSection: string;
+                               aStrings: TStrings); virtual;
     procedure WriteString(aSection: string;
                           aIdent: string;
                           aString: string); virtual;
@@ -73,7 +74,8 @@ type
                                       aDefault: boolean): boolean; virtual;
     procedure ReadSectionCheckForDefaults(aSection: string;
                                           aStrings: TStrings); virtual;
-
+    procedure ReadSectionValuesCheckForDefaults(aSection: string;
+                                                aStrings: TStrings); virtual;
     procedure WriteStringCheckForDefaults(aSection: string;
                                           aIdent: string;
                                           aString: string); virtual;
@@ -305,6 +307,50 @@ begin
   end;
 end;
 
+procedure TDefaultsForCurrentUser.ReadSectionValues(aSection: string;
+  aStrings: TStrings);
+var
+  list: TStrings;
+  reg: TRegistry;
+  key: string;
+  anz: integer;
+  value: string;
+begin
+  reg := TRegistry.Create;
+  list := TStringList.Create;
+  try
+    try
+      aStrings.Clear;
+      with reg do
+      begin
+        RootKey := GetHKEYRoot;
+        key := concat(DefaultKey, aSection);
+
+        if OpenKeyReadOnly(key) then
+        begin
+          GetValueNames(list);
+
+ 	 for anz := 0 to list.Count-1 do
+ 	 begin
+ 	   value := reg.ReadString(list.Strings[anz]);
+ 	   aStrings.Add(list.Strings[anz] + '=' + value);
+ 	 end;
+        end;
+
+        CloseKey;
+      end;
+    except
+      on E: Exception do
+        aStrings.Clear;
+    end;
+  finally
+    if Assigned(reg) then
+      FreeAndNil(reg);
+    if Assigned(list) then
+      FreeAndNil(list);
+  end;
+end;
+
 procedure TDefaultsForCurrentUser.WriteString(aSection: string;
   aIdent: string;
   aString: string);
@@ -470,6 +516,23 @@ begin
 
     if aStrings.Count = 0 then
       UseDefaults.ReadSection(aSection, aStrings);
+
+  except
+    on E: Exception do
+      aStrings.Clear;
+  end;
+end;
+
+procedure TDataByCurrentUser.ReadSectionValuesCheckForDefaults(
+  aSection: string; aStrings: TStrings);
+begin
+  try
+    aStrings.Clear;
+
+    ReadSectionValues(aSection, aStrings);
+
+    if aStrings.Count = 0 then
+      UseDefaults.ReadSectionValues(aSection, aStrings);
 
   except
     on E: Exception do

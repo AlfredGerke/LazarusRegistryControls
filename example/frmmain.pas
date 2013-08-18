@@ -21,6 +21,9 @@ type
     acRefreshData: TAction;
     acRefreshWriteAdHoc: TAction;
     acRefreshSyncData: TAction;
+    acRefreshDataList: TAction;
+    acRefreshWriteAdHocList: TAction;
+    acRefreshSyncDataList: TAction;
     ActionList1: TActionList;
     btnRefreshControls: TButton;
     btnRefreshControls1: TButton;
@@ -46,6 +49,7 @@ type
     redtEdit: TRegEdit;
     RegistrySource1: TRegistrySource;
     RegistrySource2: TRegistrySource;
+    rgrpRadioGroupList1: TRegRadioGroup;
     rgrpRadioGroup1: TRegRadioGroup;
     rrbRadioButton1: TRegRadioButton;
     rrbRadioButton2: TRegRadioButton;
@@ -150,6 +154,7 @@ end;
 procedure TMain.CreateSettings;
 var
   use_defaults: boolean;
+  old_sync_data: boolean;
 begin
   if (MessageDlg('Sollen Beispieleinträge in der Registry erstellt werden? (Einträge werden im Root: HKEY_CURRENT_USER erstellt)', mtConfirmation, [mbYes, mbNo], 0) = mrYes) then
   begin
@@ -157,12 +162,14 @@ begin
     with RegistrySource1 do
     begin
       Screen.Cursor:=crHourGlass;
+      old_sync_data := DoSyncData;
       DoSyncData := False;
       WriteDefaults := use_defaults;
 
       WriteString('Desktop', 'Version', '1.0.0');
       WriteString('Desktop', 'Projekt', 'LazarusRegistryControls');
       WriteString('Desktop', 'Git', 'https://github.com/AlfredGerke/LazarusRegistryControls.git');
+      WriteString('Desktop', 'Test', 'Einzelwerte');
 
       // Einzelwerte an Controls übergeben
       WriteBool('Einzelwerte', 'DoWriteAdHoc', False);
@@ -177,16 +184,19 @@ begin
       WriteInteger('Combobox1', 'ItemIndex', 1);
       WriteInteger('ListBox1', 'TopIndex', 1);
 
-      DoSyncData := False;
       RefreshControlData('', 0);
+      DoSyncData := old_sync_data;
       Screen.Cursor:=crDefault;
     end;
 
     with RegistrySource2 do
     begin
       Screen.Cursor:=crHourGlass;
+      old_sync_data := DoSyncData;
       DoSyncData := False;
       WriteDefaults := use_defaults;
+
+      WriteString('Desktop', 'Test', 'Listen');
 
       // Section als Liste laden
       WriteString('RaidoGroupListe', 'RaidoGroup1Key', 'RaidoGroup1Value');
@@ -233,8 +243,8 @@ begin
       WriteString('RegValueListe', 'Key4', 'Value4');
       WriteString('RegValueListe', 'Key5', 'Value5');
 
-      DoSyncData := False;
       RefreshControlData('', 0);
+      DoSyncData := old_sync_data;
       Screen.Cursor:=crDefault;
     end;
   end;

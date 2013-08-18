@@ -44,6 +44,7 @@ type
   private
     FItemsByRegistry: boolean;
     FListSection: string;
+    FSourceKind: TListSourceKind;
   protected
   public
   published
@@ -53,6 +54,9 @@ type
     property ListSection: string
       read FListSection
       write FListSection;
+    property SourceKind: TListSourceKind
+      read FSourceKind
+      write FSourceKind;
   end;
 
   { TCustomRegistrySource }
@@ -173,7 +177,8 @@ type
                           aRootForDefaults: string;
                           aSection: string;
                           aStrings: TStrings;
-                          aUseDefaults: boolean); reintroduce; overload;
+                          aUseDefaults: boolean;
+                          aListSource: TListSourceKind = byKey); reintroduce; overload;
     procedure ReadSection(aSection: string;
                           aStrings: TStrings); reintroduce; overload;
     procedure WriteString(aRootKey: string;
@@ -662,7 +667,8 @@ procedure TCustomRegistrySource.ReadSection(aRootKey: string;
   aRootForDefaults: string;
   aSection: string;
   aStrings: TStrings;
-  aUseDefaults: boolean);
+  aUseDefaults: boolean;
+  aListSource: TListSourceKind = byKey);
 var
   streg: TDataByCurrentUser;
 begin
@@ -677,9 +683,25 @@ begin
   try
     try
       if aUseDefaults then
-        streg.ReadSectionCheckForDefaults(aSection, aStrings)
+      begin
+        case aListSource of
+          byKey: streg.ReadSectionCheckForDefaults(aSection, aStrings);
+          byValue: ;
+          Both: streg.ReadSectionValuesCheckForDefaults(aSection, aStrings);
+        else
+          aStrings.clear;
+        end;
+      end
       else
-        streg.ReadSection(aSection, aStrings);
+      begin
+        case aListSource of
+          byKey: streg.ReadSection(aSection, aStrings);
+          byValue: ;
+          Both: streg.ReadSectionValues(aSection, aStrings);
+        else
+          aStrings.clear;
+        end;
+      end;
     except
       on E: Exception do
         raise;
@@ -700,7 +722,8 @@ begin
         RootForDefaults,
         aSection,
         aStrings,
-        ReadDefaults);
+        ReadDefaults,
+        byKey);
     except
       on E: Exception do
         raise;

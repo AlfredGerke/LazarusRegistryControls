@@ -14,6 +14,7 @@ type
 
   TAboutComponent = class(TForm)
     btnOk: TBitBtn;
+    imgPic: TImage;
     lblCompName1: TLabel;
     lblCompName2: TLabel;
     lblAuthor: TLabel;

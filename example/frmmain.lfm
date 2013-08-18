@@ -91,7 +91,7 @@ object Main: TMain
         object rrbRadioButton1: TRegRadioButton
           Left = 15
           Height = 17
-          Top = 108
+          Top = 107
           Width = 278
           Caption = 'RadioButton (rrbRadioButton1) verarbeitet Einzelwert'
           TabOrder = 3
@@ -156,6 +156,7 @@ object Main: TMain
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
           RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.SourceKind = lskUnknown
           RegistrySource = RegistrySource1
         end
       end
@@ -188,6 +189,7 @@ object Main: TMain
         object redtControlName: TRegEdit
           Left = 260
           Height = 21
+          Hint = 'wenn Leerstring, alle Steuerelemente aktualisieren'
           Top = 34
           Width = 160
           TabOrder = 1
@@ -256,10 +258,12 @@ object Main: TMain
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = False
+          RegistrySource = RegistrySource2
         end
         object redtControlName1: TRegEdit
           Left = 260
           Height = 21
+          Hint = 'wenn Leerstring, alle Steuerelemente aktualisieren'
           Top = 34
           Width = 160
           TabOrder = 1
@@ -270,13 +274,15 @@ object Main: TMain
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
+          RegistrySource = RegistrySource2
         end
         object btnRefreshControls1: TButton
           Left = 260
           Height = 25
           Top = 5
           Width = 160
-          Action = acRefreshData
+          Caption = 'Steuerelement(e) aktualisieren'
+          OnClick = acRefreshDataExecute
           TabOrder = 2
         end
         object rcbSetSyncData1: TRegCheckBox
@@ -293,7 +299,37 @@ object Main: TMain
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = False
+          RegistrySource = RegistrySource2
         end
+      end
+      object rgrpRadioGroupList1: TRegRadioGroup
+        Left = 20
+        Height = 136
+        Top = 74
+        Width = 248
+        AutoFill = True
+        Caption = ' Radiogroup (rgrpRadioGroupList1) dynamisch'
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.TopBottomSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.EnlargeVertical = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 1
+        TabOrder = 1
+        RegistrySettings.Section = 'RadioGroup1'
+        RegistrySettings.Ident = 'ItemIndex'
+        RegistrySettings.CanRead = True
+        RegistrySettings.CanWrite = True
+        RegistrySettings.DoWriteAdHoc = True
+        RegistrySettings.GroupIndex = 0
+        RegistrySettings.DoSyncData = True
+        RegistrySettings.Default = 0
+        RegistrySettings.ItemsByRegistry = True
+        RegistrySettings.ListSection = 'RaidoGroupListe'
+        RegistrySettings.SourceKind = byKey
+        RegistrySource = RegistrySource2
       end
     end
     object tabKombination: TTabSheet
@@ -342,12 +378,28 @@ object Main: TMain
     object acRefreshWriteAdHoc: TAction
       Category = 'ExecuteSingleValueExample'
       Caption = 'Änderungen sofort in die Registry schreiben'
+      Hint = 'alle Elemente auf dem Reiter werden eingestellt'
       OnExecute = acRefreshWriteAdHocExecute
     end
     object acRefreshSyncData: TAction
       Category = 'ExecuteSingleValueExample'
       Caption = 'Steuerelemente synchroniserien'
+      Hint = 'alle Elemente auf dem Reiter werden eingestellt'
       OnExecute = acRefreshSyncDataExecute
+    end
+    object acRefreshDataList: TAction
+      Category = 'ExecuteListExample'
+      Caption = 'Steuerelement(e) aktualisieren'
+    end
+    object acRefreshWriteAdHocList: TAction
+      Category = 'ExecuteListExample'
+      Caption = 'Änderungen sofort in die Registry schreiben'
+      Hint = 'alle Elemente auf dem Reiter werden eingestellt'
+    end
+    object acRefreshSyncDataList: TAction
+      Category = 'ExecuteListExample'
+      Caption = 'Steuerelemente synchronisieren'
+      Hint = 'alle Elemente auf dem Reiter werden eingestellt'
     end
   end
   object RegistrySource1: TRegistrySource

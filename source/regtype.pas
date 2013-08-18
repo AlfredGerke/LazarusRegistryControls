@@ -10,6 +10,10 @@ uses
 
 type
 
+  { TListSourceKind }
+
+  TListSourceKind = (lskUnknown, byKey, byValue, Both);
+
   { TCustomProperties }
 
   TCustomProperties = class(TPersistent)
@@ -40,7 +44,7 @@ type
 
   TRegistrySettingKind = (rskUnknown, rskRootKey, rskRootKeyForDefault,
     rskSection, rskIdent, rskDefault, rskReadDefaults, rskWriteDefaults,
-    rskRootForDefaults, rskCanRead, rskCanWrite, rskDoWriteAdHoc);
+    rskRootForDefaults, rskCanRead, rskCanWrite, rskDoWriteAdHoc, rskDoSyncData);
 
   { TRegistrySettingValue }
 
@@ -57,6 +61,7 @@ type
       rskCanRead: (CanRead: boolean);
       rskCanWrite: (CanWrite: boolean);
       rskDoWriteAdHoc: (DoWriteAdHoc: boolean);
+      rskDoSyncData: (DoSyncData: boolean);
   end;
 
   { TOnRegistrySettingsChange }
@@ -339,6 +344,7 @@ begin
       rskCanRead: setting_value.CanRead := aValue;
       rskCanWrite: setting_value.CanWrite := aValue;
       rskDoWriteAdHoc: setting_value.DoWriteAdHoc := aValue;
+      rskDoSyncData: setting_value.DoSyncData := aValue;
     end;
 
     is_ok:= True;
@@ -412,7 +418,7 @@ begin
 
   FReadDefaults := aReadDefaults;
 
-  // muss hier aktualisiert werden???
+  // muss hier aktualisiert werden??? ich glaube Ja!!!
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -424,7 +430,7 @@ begin
 
   FWriteDefaults := aWriteDefaults;
 
-  // muss hier aktualisiert werden???
+  // muss hier aktualisiert werden??? ich glaube Ja!!!
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -472,10 +478,6 @@ begin
     Exit;
 
   FDoWriteAdHoc := aDoWriteAdHoc;
-
-  // muss hier aktualisiert werden???
-  if Assigned(FOnChange) and FTriggerEvents then
-    FOnChange(self);
 end;
 
 procedure TCustomRegistrySettings<_T>.SetDefault(aDefault: _T);
@@ -521,6 +523,9 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetDoSyncData(aDoSyncData: boolean);
 begin
+  if not TriggerOnBeforeRegistrySettingChange(rskDoSyncData, aDoSyncData) then
+    Exit;
+
   FDoSyncData := aDoSyncData;
 end;
 

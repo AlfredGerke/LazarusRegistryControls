@@ -183,6 +183,7 @@ end;
 function TCustomRegRadioGroup.GetItemsByRegistry: boolean;
 var
   list: TStrings;
+  index: integer;
 begin
   Result := False;
   try
@@ -210,15 +211,20 @@ begin
               FRegistrySettings.RootForDefaults,
               FRegistrySettings.ListSection,
               list,
-              FRegistrySettings.ReadDefaults);
+              FRegistrySettings.ReadDefaults,
+              FRegistrySettings.SourceKind);
             Items.AddStrings(list);
-            ItemIndex := RegistrySource.ReadInteger(FRegistrySettings.RootKey,
-                           FRegistrySettings.RootKeyForDefaults,
-                           FRegistrySettings.RootForDefaults,
-                           FRegistrySettings.Section,
-                           FRegistrySettings.Ident,
-                           FRegistrySettings.Default,
-                           FRegistrySettings.ReadDefaults);
+            index := RegistrySource.ReadInteger(FRegistrySettings.RootKey,
+                       FRegistrySettings.RootKeyForDefaults,
+                       FRegistrySettings.RootForDefaults,
+                       FRegistrySettings.Section,
+                       FRegistrySettings.Ident,
+                       FRegistrySettings.Default,
+                       FRegistrySettings.ReadDefaults);
+            if (index <= Items.Count-1) then
+              ItemIndex := index
+            else
+              ItemIndex := Items.Count-1;
           end;
         end;
       end;
