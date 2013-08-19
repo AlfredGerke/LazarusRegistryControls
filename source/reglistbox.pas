@@ -182,6 +182,7 @@ var
 begin
   Result := False;
   try
+    Items.BeginUpdate;
     try
       list := TStringList.Create;
 
@@ -230,6 +231,7 @@ begin
         Result := False;
     end;
   finally
+    Items.EndUpdate;
     list.Free;
   end;
 end;

@@ -11,6 +11,8 @@ werden (lesen/schreiben)
 - 1     Einleitung
 - 2     Packagenamen
 - 3     Installation
+- 3.1   Versionen
+- 3.2   Reihenfolge
 - 4     LazarusRegistryControls (LRC) Funktionalität
 - 4.1   HKEY_CURRENT_USER
 - 4.2   Standardwerte
@@ -23,12 +25,12 @@ werden (lesen/schreiben)
 ------------
 
 Die LazarusRegistryControls (LRC) sind direkte Ableitung einer Teilmenge aus den 
-Standard- und den Additional-Steuerelemte. Sie werden auf einem eigenen Reiter 
-der Komponentenpalette "Registry Controls" installiert. Die Auswahl der abgeleiteten
-Steuerelement richtet sich nach der Häufigkeit ihrer Nutzung (TEdit, TComboBox,
-TCheckBox, TListBox, TRadioButton, TRadioGroup, TCheckListBox, TCheckGroup, 
-TValueListEditor). Diese Steuerelemente sollten nur genutzt werden, um Werte in 
-der Registry zu verwalten. 
+Standard- und den Additional-Steuerelemte der LCL von Lazarus. Sie werden auf einem 
+eigenen Reiter der Komponentenpalette "Registry Controls" installiert. Die Auswahl 
+der abgeleiteten Steuerelement richtet sich nach der Häufigkeit ihrer Nutzung 
+(TEdit, TComboBox, TCheckBox, TListBox, TRadioButton, TRadioGroup, TCheckListBox, 
+TCheckGroup, TValueListEditor). Diese Steuerelemente sollten nur genutzt werden, 
+um Werte in der Registry zu verwalten.     
 
 
 2 Packagenamen
@@ -45,7 +47,14 @@ der Registry zu verwalten.
 3 Installation
 --------------
 
-in folgender Reihenfolge:    
+Für die Installation sind keine zusätzlichen Packages (etc.) notwendig.    
+
+## 3.1 Versionen       
+Lazarus: 1.0.10    
+FPC: 2.6.2     
+LazarusRegistryControls (LRC): *?.?.? (in Progress)*            
+
+## 3.2 Reihenfolge:    
 - registrysource.lpk
 - registrycontrols.lpk
 

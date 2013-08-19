@@ -1,7 +1,7 @@
 object Main: TMain
-  Left = 595
+  Left = 619
   Height = 523
-  Top = 256
+  Top = 230
   Width = 818
   Caption = 'RegistryControls in Aktion'
   ClientHeight = 504
@@ -33,11 +33,19 @@ object Main: TMain
         TabOrder = 0
         object lblEditSingleValue: TLabel
           Left = 15
-          Height = 14
-          Top = 13
-          Width = 216
+          Height = 17
+          Top = 10
+          Width = 253
           Caption = 'Edit-Control (redtEdit) verarbeitet Einzelwert'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
           ParentColor = False
+          ParentFont = False
         end
         object redtEdit: TRegEdit
           Left = 15
@@ -50,7 +58,7 @@ object Main: TMain
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 1
+          RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 'leerstring'
           RegistrySource = RegistrySource1
@@ -67,23 +75,6 @@ object Main: TMain
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 5
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = False
-          RegistrySource = RegistrySource1
-        end
-        object rcbxCheckBox2: TRegCheckBox
-          Left = 15
-          Height = 17
-          Top = 84
-          Width = 261
-          Caption = 'CheckBox (rcbxCheckBox2) verarbeitet Einzelwert'
-          TabOrder = 2
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'CheckBox2'
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = False
@@ -92,10 +83,10 @@ object Main: TMain
         object rrbRadioButton1: TRegRadioButton
           Left = 15
           Height = 17
-          Top = 107
+          Top = 82
           Width = 278
           Caption = 'RadioButton (rrbRadioButton1) verarbeitet Einzelwert'
-          TabOrder = 3
+          TabOrder = 2
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.Ident = 'RadioButton1'
           RegistrySettings.CanRead = True
@@ -109,10 +100,10 @@ object Main: TMain
         object rrbRadioButton2: TRegRadioButton
           Left = 15
           Height = 17
-          Top = 132
+          Top = 107
           Width = 278
           Caption = 'RadioButton (rrbRadioButton2) verarbeitet Einzelwert'
-          TabOrder = 4
+          TabOrder = 3
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.Ident = 'RadioButton2'
           RegistrySettings.CanRead = True
@@ -147,7 +138,7 @@ object Main: TMain
             'RadioGroup statisch 4'
             'RadioGroup statisch 5'
           )
-          TabOrder = 5
+          TabOrder = 4
           RegistrySettings.Section = 'RadioGroup1'
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
@@ -160,8 +151,8 @@ object Main: TMain
           RegistrySettings.SourceKind = lskUnknown
           RegistrySource = RegistrySource1
         end
-        object RegListBox2: TRegListBox
-          Left = 12
+        object rlbListBox1: TRegListBox
+          Left = 15
           Height = 128
           Top = 189
           Width = 281
@@ -174,12 +165,12 @@ object Main: TMain
             'statischer Eintrag 6'
           )
           ItemHeight = 13
-          TabOrder = 6
+          TabOrder = 5
           RegistrySettings.Section = 'ListBox1'
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
@@ -201,15 +192,14 @@ object Main: TMain
             'statischer Eintrag 5'
             'statischer Eintrag 6'
           )
-          TabOrder = 7
-          Text = 'redtComboBox1'
+          TabOrder = 6
           RegistrySettings.Section = 'Combobox1'
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = False
+          RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
           RegistrySettings.ItemsByRegistry = False
           RegistrySettings.SourceKind = lskUnknown
@@ -217,27 +207,51 @@ object Main: TMain
         end
         object lblListBox1: TLabel
           Left = 15
-          Height = 14
-          Top = 172
-          Width = 173
-          Caption = 'Es wird nur der ItemIndex gesichert'
+          Height = 17
+          Top = 169
+          Width = 282
+          Caption = 'Es wird nur der ItemIndex gesichert (rlbListBox1)'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
           ParentColor = False
+          ParentFont = False
         end
         object lblRadioGroup1: TLabel
           Left = 316
-          Height = 14
-          Top = 172
-          Width = 173
+          Height = 17
+          Top = 169
+          Width = 205
           Caption = 'Es wird nur der ItemIndex gesichert'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
           ParentColor = False
+          ParentFont = False
         end
         object lblComboBox1: TLabel
           Left = 316
-          Height = 14
-          Top = 12
-          Width = 173
-          Caption = 'Es wird nur der ItemIndex gesichert'
+          Height = 17
+          Top = 10
+          Width = 310
+          Caption = 'Es wird nur der ItemIndex gesichert (redtComboBox1)'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
           ParentColor = False
+          ParentFont = False
         end
       end
       object pnlTop: TPanel
@@ -250,7 +264,7 @@ object Main: TMain
         ClientWidth = 810
         TabOrder = 1
         object redtControlName: TRegEdit
-          Left = 476
+          Left = 475
           Height = 21
           Hint = 'wenn Leerstring, alle Steuerelemente aktualisieren'
           Top = 35
@@ -266,7 +280,7 @@ object Main: TMain
           RegistrySource = RegistrySource1
         end
         object btnRefreshControls: TButton
-          Left = 476
+          Left = 475
           Height = 25
           Top = 5
           Width = 160
@@ -321,7 +335,7 @@ object Main: TMain
         ClientWidth = 810
         TabOrder = 0
         object redtControlName1: TRegEdit
-          Left = 612
+          Left = 475
           Height = 21
           Hint = 'wenn Leerstring, alle Steuerelemente aktualisieren'
           Top = 34
@@ -331,19 +345,50 @@ object Main: TMain
           RegistrySettings.Ident = 'ClientToRefresh'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySource = RegistrySource2
         end
-        object btnRefreshControls1: TButton
-          Left = 612
+        object btnRefreshControlsList: TButton
+          Left = 475
           Height = 25
           Top = 5
           Width = 160
-          Caption = 'Steuerelement(e) aktualisieren'
-          OnClick = acRefreshDataExecute
+          Action = acRefreshDataList
           TabOrder = 1
+        end
+        object btnSyncDataOfList: TButton
+          Left = 268
+          Height = 25
+          Top = 31
+          Width = 200
+          Action = acSyncDataListOff
+          TabOrder = 2
+        end
+        object btnSyncDataOnList: TButton
+          Left = 268
+          Height = 25
+          Top = 5
+          Width = 200
+          Action = acSyncDataListOn
+          TabOrder = 3
+        end
+        object btnWriteAdHocOnList: TButton
+          Left = 8
+          Height = 25
+          Top = 5
+          Width = 259
+          Action = acWriteAdHocOnList
+          TabOrder = 4
+        end
+        object btnWriteAdHocOffList: TButton
+          Left = 8
+          Height = 25
+          Top = 30
+          Width = 259
+          Action = acWriteAdHocOffList
+          TabOrder = 5
         end
       end
       object pnlClientList: TPanel
@@ -358,7 +403,7 @@ object Main: TMain
         object rgrpRadioGroupList1: TRegRadioGroup
           Left = 20
           Height = 136
-          Top = 27
+          Top = 46
           Width = 248
           AutoFill = True
           Caption = ' Radiogroup (rgrpRadioGroupList1) dynamisch'
@@ -375,7 +420,7 @@ object Main: TMain
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
@@ -384,10 +429,10 @@ object Main: TMain
           RegistrySettings.SourceKind = byKey
           RegistrySource = RegistrySource2
         end
-        object RegListBox1: TRegListBox
+        object rlbListBox2: TRegListBox
           Left = 276
           Height = 128
-          Top = 35
+          Top = 54
           Width = 240
           ItemHeight = 0
           TabOrder = 1
@@ -395,7 +440,7 @@ object Main: TMain
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
@@ -407,11 +452,10 @@ object Main: TMain
         object redtComboBoxList1: TRegComboBox
           Left = 20
           Height = 21
-          Top = 185
+          Top = 235
           Width = 248
           ItemHeight = 13
           TabOrder = 2
-          Text = 'redtComboBoxList1'
           RegistrySettings.Section = 'ComboBox1'
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
@@ -424,6 +468,54 @@ object Main: TMain
           RegistrySettings.ListSection = 'ComboBoxListe'
           RegistrySettings.SourceKind = byKey
           RegistrySource = RegistrySource2
+        end
+        object lblRadioGroupList1: TLabel
+          Left = 20
+          Height = 33
+          Top = 11
+          Width = 226
+          Caption = 'Einträge werden aus Registry ermittelt,'#13#10'ItemIndex wird gesichert'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lbListBoxList2: TLabel
+          Left = 276
+          Height = 33
+          Top = 11
+          Width = 226
+          Caption = 'Einträge werden aus Registry ermittelt,'#13#10'ItemIndex wird gesichert (rlbListBox2)'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblRadioGroupList2: TLabel
+          Left = 20
+          Height = 33
+          Top = 195
+          Width = 267
+          Caption = 'Einträge werden aus Registry ermittelt,'#13#10'ItemIndex wird gesichert (redtComboBoxList1)'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
+          ParentColor = False
+          ParentFont = False
         end
       end
     end
@@ -485,16 +577,19 @@ object Main: TMain
     object acRefreshDataList: TAction
       Category = 'ExecuteListExample'
       Caption = 'Steuerelement(e) aktualisieren'
+      OnExecute = acRefreshDataListExecute
     end
-    object acRefreshWriteAdHocList: TAction
+    object acWriteAdHocOnList: TAction
       Category = 'ExecuteListExample'
       Caption = 'Änderungen sofort in die Registry schreiben'
       Hint = 'alle Elemente auf dem Reiter werden eingestellt'
+      OnExecute = acWriteAdHocOnListExecute
     end
-    object acRefreshSyncDataList: TAction
+    object acSyncDataListOn: TAction
       Category = 'ExecuteListExample'
       Caption = 'Steuerelemente synchronisieren'
       Hint = 'alle Elemente auf dem Reiter werden eingestellt'
+      OnExecute = acSyncDataListOnExecute
     end
     object acWriteAdHocOff: TAction
       Category = 'ExecuteSingleValueExample'
@@ -505,6 +600,16 @@ object Main: TMain
       Category = 'ExecuteSingleValueExample'
       Caption = 'Steuerelemente nicht synchroniserien'
       OnExecute = acSyncDataOffExecute
+    end
+    object acWriteAdHocOffList: TAction
+      Category = 'ExecuteListExample'
+      Caption = 'Änderungen nicht sofort in die Registry schreiben'
+      OnExecute = acWriteAdHocOffListExecute
+    end
+    object acSyncDataListOff: TAction
+      Category = 'ExecuteListExample'
+      Caption = 'Steuerelemente nicht synchronisieren'
+      OnExecute = acSyncDataListOffExecute
     end
   end
   object RegistrySource1: TRegistrySource

@@ -20,23 +20,32 @@ type
     acCheckExampleSettings: TAction;
     acRefreshData: TAction;
     acSyncDataOff: TAction;
+    acWriteAdHocOffList: TAction;
+    acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
     acWriteAdHocOn: TAction;
     acSyncDataOn: TAction;
     acRefreshDataList: TAction;
-    acRefreshWriteAdHocList: TAction;
-    acRefreshSyncDataList: TAction;
+    acWriteAdHocOnList: TAction;
+    acSyncDataListOn: TAction;
     ActionList1: TActionList;
     btnRefreshControls: TButton;
-    btnRefreshControls1: TButton;
+    btnRefreshControlsList: TButton;
+    btnSyncDataOfList: TButton;
+    btnSyncDataOnList: TButton;
+    btnWriteAdHocOffList: TButton;
     btnWriteAdHocOn: TButton;
     btnSyncDataOn: TButton;
     btnWriteAdHocOff: TButton;
     btnSyncDataOf: TButton;
+    btnWriteAdHocOnList: TButton;
+    lblRadioGroupList1: TLabel;
     lblEditSingleValue: TLabel;
     lblListBox1: TLabel;
     lblComboBox1: TLabel;
     lblRadioGroup1: TLabel;
+    lbListBoxList2: TLabel;
+    lblRadioGroupList2: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -49,7 +58,6 @@ type
     pnlTop: TPanel;
     pnlTopList: TPanel;
     rcbxCheckBox1: TRegCheckBox;
-    rcbxCheckBox2: TRegCheckBox;
     redtComboBoxList1: TRegComboBox;
     redtControlName: TRegEdit;
     redtControlName1: TRegEdit;
@@ -57,8 +65,8 @@ type
     redtComboBox1: TRegComboBox;
     RegistrySource1: TRegistrySource;
     RegistrySource2: TRegistrySource;
-    RegListBox1: TRegListBox;
-    RegListBox2: TRegListBox;
+    rlbListBox2: TRegListBox;
+    rlbListBox1: TRegListBox;
     rgrpRadioGroup1: TRegRadioGroup;
     rgrpRadioGroupList1: TRegRadioGroup;
     rrbRadioButton1: TRegRadioButton;
@@ -70,10 +78,15 @@ type
     procedure acCloseExecute(Sender: TObject);
     procedure acCreateExampleSettingsExecute(Sender: TObject);
     procedure acRefreshDataExecute(Sender: TObject);
+    procedure acRefreshDataListExecute(Sender: TObject);
+    procedure acSyncDataListOffExecute(Sender: TObject);
+    procedure acSyncDataListOnExecute(Sender: TObject);
     procedure acSyncDataOffExecute(Sender: TObject);
     procedure acWriteAdHocOffExecute(Sender: TObject);
+    procedure acWriteAdHocOffListExecute(Sender: TObject);
     procedure acWriteAdHocOnExecute(Sender: TObject);
     procedure acSyncDataOnExecute(Sender: TObject);
+    procedure acWriteAdHocOnListExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     procedure RefreshWriteAdHocOnOff(aFlag: integer;
@@ -138,6 +151,21 @@ begin
   RegistrySource1.RefreshControlData(Trim(redtControlName.Text));
 end;
 
+procedure TMain.acRefreshDataListExecute(Sender: TObject);
+begin
+  RegistrySource2.RefreshControlData(Trim(redtControlName1.Text));
+end;
+
+procedure TMain.acSyncDataListOffExecute(Sender: TObject);
+begin
+  RefreshSyncDataOnOff(1, False);
+end;
+
+procedure TMain.acSyncDataListOnExecute(Sender: TObject);
+begin
+  RefreshSyncDataOnOff(1, True);
+end;
+
 procedure TMain.acSyncDataOffExecute(Sender: TObject);
 begin
     RefreshSyncDataOnOff(0, False);
@@ -146,6 +174,11 @@ end;
 procedure TMain.acWriteAdHocOffExecute(Sender: TObject);
 begin
   RefreshWriteAdHocOnOff(0, False);
+end;
+
+procedure TMain.acWriteAdHocOffListExecute(Sender: TObject);
+begin
+  RefreshWriteAdHocOnOff(1, False);
 end;
 
 procedure TMain.acWriteAdHocOnExecute(Sender: TObject);
@@ -158,12 +191,17 @@ begin
   RefreshSyncDataOnOff(0, True);
 end;
 
+procedure TMain.acWriteAdHocOnListExecute(Sender: TObject);
+begin
+  RefreshWriteAdHocOnOff(1, True);
+end;
+
 procedure TMain.FormShow(Sender: TObject);
 begin
   RefreshWriteAdHocOnOff(0, True);
   RefreshSyncDataOnOff(0, True);
   RefreshWriteAdHocOnOff(1, True);
-  RefreshSyncDataOnOff(2, True);
+  RefreshSyncDataOnOff(1, True);
 end;
 
 function TMain.CheckForExampleSettings: boolean;

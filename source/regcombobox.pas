@@ -38,6 +38,7 @@ type
     procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
 
     procedure SetName(const NewName: TComponentName); override;
+    procedure Change; override;
 
     procedure OnChangeSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
@@ -182,6 +183,7 @@ var
 begin
   Result := False;
   try
+    Items.BeginUpdate;
     try
       list := TStringList.Create;
 
@@ -230,6 +232,7 @@ begin
         Result := False;
     end;
   finally
+    Items.EndUpdate;
     list.Free;
   end;
 end;
@@ -356,6 +359,16 @@ begin
 
   if Assigned(FRegistrySource) then
     FRegistrySource.RenameClient(old_name, new_name);
+end;
+
+procedure TCustomRegComboBox.Change;
+begin
+  inherited;
+
+  FIsModified := True;
+
+  if FRegistrySettings.DoWriteAdHoc then
+    WriteToReg;
 end;
 
 procedure TCustomRegComboBox.OnChangeSettings(Sender: TObject);
