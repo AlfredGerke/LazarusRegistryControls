@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="73">
+    <Units Count="74">
       <Unit0>
         <Filename Value="example.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="98"/>
+        <UsageCount Value="101"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -21,14 +21,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmmain"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="164"/>
         <CursorPos X="31" Y="166"/>
-        <UsageCount Value="98"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="101"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regconst.pas"/>
@@ -138,16 +134,16 @@
         <Filename Value="C:\lazarus\lcl\stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="758"/>
-        <CursorPos X="66" Y="766"/>
+        <TopLine Value="532"/>
+        <CursorPos X="15" Y="552"/>
         <UsageCount Value="10"/>
       </Unit15>
       <Unit16>
         <Filename Value="C:\lazarus\lcl\controls.pp"/>
         <UnitName Value="Controls"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1300"/>
-        <CursorPos X="15" Y="1320"/>
+        <TopLine Value="1289"/>
+        <CursorPos X="19" Y="1308"/>
         <UsageCount Value="11"/>
       </Unit16>
       <Unit17>
@@ -222,10 +218,13 @@
       <Unit25>
         <Filename Value="..\source\reglistbox.pas"/>
         <UnitName Value="reglistbox"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="361"/>
-        <CursorPos X="23" Y="388"/>
-        <UsageCount Value="12"/>
+        <TopLine Value="420"/>
+        <CursorPos X="48" Y="436"/>
+        <UsageCount Value="14"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit25>
       <Unit26>
@@ -249,10 +248,12 @@
       <Unit28>
         <Filename Value="..\source\regchecklistbox.pas"/>
         <UnitName Value="regchecklistbox"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="3" Y="17"/>
-        <UsageCount Value="11"/>
+        <TopLine Value="364"/>
+        <CursorPos X="38" Y="374"/>
+        <UsageCount Value="13"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
       <Unit29>
@@ -399,8 +400,8 @@
       <Unit47>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="3145"/>
-        <CursorPos X="3" Y="3164"/>
+        <TopLine Value="2705"/>
+        <CursorPos X="3" Y="2710"/>
         <UsageCount Value="10"/>
       </Unit47>
       <Unit48>
@@ -484,8 +485,8 @@
         <Filename Value="C:\lazarus\ideintf\componenteditors.pas"/>
         <UnitName Value="ComponentEditors"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="619"/>
-        <CursorPos X="3" Y="621"/>
+        <TopLine Value="386"/>
+        <CursorPos X="11" Y="405"/>
         <UsageCount Value="10"/>
       </Unit58>
       <Unit59>
@@ -608,31 +609,43 @@
         <CursorPos X="3" Y="202"/>
         <UsageCount Value="10"/>
       </Unit72>
+      <Unit73>
+        <Filename Value="C:\lazarus\lcl\checklst.pas"/>
+        <UnitName Value="CheckLst"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="48"/>
+        <CursorPos X="57" Y="66"/>
+        <UsageCount Value="10"/>
+      </Unit73>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="5" HistoryIndex="4">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="166" Column="31" TopLine="164"/>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="31" Column="30" TopLine="6"/>
       </Position1>
       <Position2>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="167" Column="31" TopLine="165"/>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="99" Column="3" TopLine="35"/>
       </Position2>
       <Position3>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="168" Column="31" TopLine="166"/>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="13" Column="1" TopLine="1"/>
       </Position3>
       <Position4>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="167" Column="31" TopLine="165"/>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="444" Column="66" TopLine="12"/>
       </Position4>
       <Position5>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="166" Column="31" TopLine="164"/>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="444" Column="66" TopLine="18"/>
       </Position5>
+      <Position6>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="41" Column="57" TopLine="18"/>
+      </Position6>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
