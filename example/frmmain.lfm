@@ -517,14 +517,14 @@ object Main: TMain
           ParentColor = False
           ParentFont = False
         end
-        object lrbCheckListBox1: TRegCheckListBox
+        object rlbCheckListBox1: TRegCheckListBox
           Left = 524
-          Height = 128
+          Height = 125
           Top = 54
-          Width = 216
+          Width = 232
           ItemHeight = 0
           TabOrder = 3
-          RegistrySettings.Section = 'CheckedListBox1'
+          RegistrySettings.Section = 'CheckListBox1'
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
@@ -532,8 +532,8 @@ object Main: TMain
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
-          RegistrySettings.ItemsByRegistry = False
-          RegistrySettings.ListSection = 'CheckListBoxListe'
+          RegistrySettings.ItemsByRegistry = True
+          RegistrySettings.ListSection = 'CheckListBoxListe2'
           RegistrySettings.ResultSourceKind = ResultByValue
           RegistrySource = RegistrySource2
         end

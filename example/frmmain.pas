@@ -63,7 +63,7 @@ type
     redtControlName1: TRegEdit;
     redtEdit: TRegEdit;
     redtComboBox1: TRegComboBox;
-    lrbCheckListBox1: TRegCheckListBox;
+    rlbCheckListBox1: TRegCheckListBox;
     RegistrySource1: TRegistrySource;
     RegistrySource2: TRegistrySource;
     rlbListBox2: TRegListBox;
@@ -307,6 +307,13 @@ begin
       WriteInteger('CheckListBoxListe', 'CheckListBox3Key', 1);
       WriteBool('CheckListBoxListe', 'CheckListBox4Key', True);
       WriteBool('CheckListBoxListe', 'CheckListBox5Key', False);
+
+      WriteString('CheckListBoxListe2', 'CheckListBox1Key', '1');
+      WriteString('CheckListBoxListe2', 'CheckListBox2Key', '0');
+      WriteString('CheckListBoxListe2', 'CheckListBox3Key', '1');
+      WriteString('CheckListBoxListe2', 'CheckListBox4Key', 'True');
+      WriteString('CheckListBoxListe2', 'CheckListBox5Key', 'False');
+
 
       // Section als Liste laden (Key=Value)
       WriteString('RegValueListe', 'Key1', 'Value1');
