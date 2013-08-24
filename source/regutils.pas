@@ -68,8 +68,14 @@ type
   TDataByCurrentUser = class(TRegIniFile)
   private
     FUseDefaults: TDefaultsForCurrentUser;
+
+    procedure ReadSectionValuesByKind(aSection: string;
+                                      aStrings: TStrings;
+                                      aKind: TListSourceKind = Both);
   protected
   public
+    procedure ReadSectionValuesEx(aSection: string;
+                                  aStrings: TStrings); virtual;
     procedure ReadSectionValuesOnly(aSection: string;
                                     aStrings: TStrings);
     procedure ReadSectionValuesOnlyForDefaults(aSection: string;
@@ -124,6 +130,8 @@ var
   key: string;
   anz: integer;
   value: string;
+  value_name: string;
+  value_data_type: TRegDataType;
 begin
   reg := TRegistry.Create;
   list := TStringList.Create;
@@ -141,11 +149,26 @@ begin
 
  	 for anz := 0 to list.Count-1 do
  	 begin
- 	   value := reg.ReadString(list.Strings[anz]);
+           value_name := list.Strings[anz];
+           value_data_type := GetDataType(value_name);
+
+           case value_data_type of
+             rdString:
+               value := reg.ReadString(value_name);
+             rdExpandString:
+               value := reg.ReadString(value_name);
+             rdBinary:
+               Continue;
+             rdInteger:
+               value := IntToStr(ReadInteger(value_name));
+           else
+             Continue;
+           end;
+
            case aKind of
              byValue: aStrings.Add(value);
-             byKey: aStrings.Add(list.Strings[anz]);
-             Both: aStrings.Add(list.Strings[anz] + '=' + value);
+             byKey: aStrings.Add(value_name);
+             Both: aStrings.Add(value_name + '=' + value);
            else
              Break;
            end;
@@ -509,27 +532,81 @@ begin
   inherited Destroy;
 end;
 
-procedure TDataByCurrentUser.ReadSectionValuesOnly(aSection: string;
-  aStrings: TStrings);
+procedure TDataByCurrentUser.ReadSectionValuesByKind(aSection: string;
+  aStrings: TStrings;
+  aKind: TListSourceKind);
 var
   list: TStringList;
   anz: Integer;
   value: String;
+  value_name: string;
+  value_data_type: TRegDataType;
+  reg: TRegistry;
+  key: string;
 begin
   aStrings.Clear;
   list := TStringlist.Create;
   try
-    ReadSectionValues(aSection, list);
+    case aKind of
+      byKey:
+        ReadSection(aSection, aStrings);
+      byValue,
+      Both:
+      begin
+        ReadSection(aSection, list);
 
-    for anz := 0 to list.Count-1 do
-    begin
-      value := list.Values[list.Names[anz]];
-      aStrings.Add(value);
+        reg := TRegistry.Create;
+        reg.RootKey := HKEY_CURRENT_USER;
+        key := Concat(FileName + aSection);
+
+        if reg.OpenKeyReadOnly(key) then
+        begin
+          for anz := 0 to list.Count-1 do
+          begin
+            value_name := list[anz];
+            value_data_type := reg.GetDataType(value_name);
+
+            case value_data_type of
+              rdString:
+                value := ReadString(aSection, value_name, EmptyStr);
+              rdExpandString:
+                value := ReadString(aSection, value_name, EmptyStr);
+              rdBinary:
+                Continue;
+              rdInteger:
+                value := IntToStr(ReadInteger(aSection, value_name, $FFFFFF));
+            else
+              Continue;
+            end;
+
+            if (aKind = Both) then
+              value := value_name + '=' + value;
+
+            aStrings.Add(value);
+          end;
+        end;
+
+        reg.CloseKey;
+      end;
+    else
+      Exit;
     end;
   finally
     if Assigned(list) then
       FreeAndNil(list);
   end;
+end;
+
+procedure TDataByCurrentUser.ReadSectionValuesEx(aSection: string;
+  aStrings: TStrings);
+begin
+  ReadSectionValuesByKind(aSection, aStrings, Both);
+end;
+
+procedure TDataByCurrentUser.ReadSectionValuesOnly(aSection: string;
+  aStrings: TStrings);
+begin
+  ReadSectionValuesByKind(aSection, aStrings, byValue);
 end;
 
 procedure TDataByCurrentUser.ReadSectionValuesOnlyForDefaults(aSection: string;
@@ -542,7 +619,6 @@ begin
 
     if (aStrings.Count = 0) then
       UseDefaults.ReadSectionValuesOnly(aSection, aStrings);
-
   except
     on E: Exception do
       aStrings.Clear;
@@ -586,7 +662,6 @@ begin
 
     if aStrings.Count = 0 then
       UseDefaults.ReadSection(aSection, aStrings);
-
   except
     on E: Exception do
       aStrings.Clear;
@@ -594,16 +669,16 @@ begin
 end;
 
 procedure TDataByCurrentUser.ReadSectionValuesCheckForDefaults(
-  aSection: string; aStrings: TStrings);
+  aSection: string;
+  aStrings: TStrings);
 begin
   try
     aStrings.Clear;
 
-    ReadSectionValues(aSection, aStrings);
+    ReadSectionValuesEx(aSection, aStrings);
 
     if aStrings.Count = 0 then
       UseDefaults.ReadSectionValues(aSection, aStrings);
-
   except
     on E: Exception do
       aStrings.Clear;

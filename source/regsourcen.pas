@@ -66,12 +66,9 @@ type
     FItemsByRegistry: boolean;
     FListSection: string;
     FSourceKind: TListSourceKind;
-    FResultSourceKind: TListResultSourceKind;
   protected
     procedure _Initialize; override;
     procedure _Finalize; override;
-
-    procedure SetResultSourceKind(aListResultSourceKind: TListResultSourceKind);
   public
     property SourceKind: TListSourceKind
       read FSourceKind;
@@ -82,9 +79,6 @@ type
     property ListSection: string
       read FListSection
       write FListSection;
-    property ResultSourceKind: TListResultSourceKind
-      read FResultSourceKind
-      write SetResultSourceKind;
   end;
 
   { TCustomRegistrySource }
@@ -300,31 +294,16 @@ end;
 
 procedure TRegistrySettingsCheckedList._Initialize;
 begin
-  FResultSourceKind := lrskUnknown;
-  FSourceKind := lskUnknown;
+  FSourceKind := Both;
 
   inherited;
 end;
 
 procedure TRegistrySettingsCheckedList._Finalize;
 begin
+  FSourceKind := lskUnknown;
 
   inherited;
-end;
-
-procedure TRegistrySettingsCheckedList.SetResultSourceKind(
-  aListResultSourceKind: TListResultSourceKind);
-begin
-  if (FResultSourceKind <> aListResultSourceKind) then
-  begin
-    FResultSourceKind := aListResultSourceKind;
-    case FResultSourceKind of
-      ResultByKey: FSourceKind := Both;
-      ResultByValue: FSourceKind := Both;
-    else
-      FSourceKind := lskUnknown;
-    end;
-  end;
 end;
 
 { TCustomRegistrySource }
@@ -772,7 +751,7 @@ begin
         case aListSource of
           byKey: streg.ReadSection(aSection, aStrings);
           byValue: streg.ReadSectionValuesOnly(aSection, aStrings);
-          Both: streg.ReadSectionValues(aSection, aStrings);
+          Both: streg.ReadSectionValuesEx(aSection, aStrings);
         else
           aStrings.clear;
         end;

@@ -26,7 +26,6 @@ type
     FRegistrySettings: TRegistrySettingsCheckedList;
     FIsModified: boolean;
 
-    procedure SetCheckedItemsByKey(aList: TStrings);
     procedure SetCheckedItemsByValue(aList: TStrings);
     procedure SetCheckedItemsByList(aList: TStrings);
     function RefreshRegistrySettings: boolean;
@@ -96,27 +95,6 @@ end;
 
 { TCustomRegCheckListBox }
 
-procedure TCustomRegCheckListBox.SetCheckedItemsByKey(aList: TStrings);
-var
-  anz: integer;
-  res_str: string;
-  res_bool: boolean;
-  item_value: string;
-begin
-  Items.Clear;
-  for anz := 0 to aList.Count-1 do
-  begin
-    res_str:=aList.Names[anz];
-    item_value:=aList.Values[res_str];
-    Items.Add(item_value);
-
-    if TryStrToBool(res_str, res_bool) then
-      Checked[anz] := res_bool
-    else
-      Checked[anz] := False
-  end;
-end;
-
 procedure TCustomRegCheckListBox.SetCheckedItemsByValue(aList: TStrings);
 var
   anz: integer;
@@ -140,10 +118,7 @@ end;
 
 procedure TCustomRegCheckListBox.SetCheckedItemsByList(aList: TStrings);
 begin
-  case RegistrySettings.ResultSourceKind of
-    ResultByKey: SetCheckedItemsByKey(aList);
-    ResultByValue: SetCheckedItemsByValue(aList);
-  end;
+  SetCheckedItemsByValue(aList);
 end;
 
 function TCustomRegCheckListBox.RefreshRegistrySettings: boolean;
@@ -257,7 +232,7 @@ begin
             (FRegistrySettings.Ident <> '')) then
           begin
             RegistrySource.ReadSection(FRegistrySettings.RootKey,
-              FRegistrySettings.RootForDefaults,
+              FRegistrySettings.RootKeyForDefaults,
               FRegistrySettings.RootForDefaults,
               FRegistrySettings.ListSection,
               list,

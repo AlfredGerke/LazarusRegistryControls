@@ -39,6 +39,7 @@ type
     btnWriteAdHocOff: TButton;
     btnSyncDataOf: TButton;
     btnWriteAdHocOnList: TButton;
+    lblCheckListBox1: TLabel;
     lblRadioGroupList1: TLabel;
     lblEditSingleValue: TLabel;
     lblListBox1: TLabel;

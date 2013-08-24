@@ -13,7 +13,6 @@ type
   { TListSourceKind }
 
   TListSourceKind = (lskUnknown, byKey, byValue, Both);
-  TListResultSourceKind = (lrskUnknown, ResultByKey, ResultByValue);
 
   { TCustomProperties }
 

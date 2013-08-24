@@ -519,9 +519,9 @@ object Main: TMain
         end
         object rlbCheckListBox1: TRegCheckListBox
           Left = 524
-          Height = 125
+          Height = 128
           Top = 54
-          Width = 232
+          Width = 224
           ItemHeight = 0
           TabOrder = 3
           RegistrySettings.Section = 'CheckListBox1'
@@ -533,9 +533,25 @@ object Main: TMain
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
           RegistrySettings.ItemsByRegistry = True
-          RegistrySettings.ListSection = 'CheckListBoxListe2'
-          RegistrySettings.ResultSourceKind = ResultByValue
+          RegistrySettings.ListSection = 'CheckListBoxListe'
           RegistrySource = RegistrySource2
+        end
+        object lblCheckListBox1: TLabel
+          Left = 524
+          Height = 33
+          Top = 11
+          Width = 216
+          AutoSize = False
+          Caption = 'Einträge werden aus Registry ermittelt,'#13#10'ItemIndex/Checks werden gesichert (rlbCheckListBox1)'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
+          ParentColor = False
+          ParentFont = False
         end
       end
     end
