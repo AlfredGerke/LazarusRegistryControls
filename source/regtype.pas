@@ -13,6 +13,7 @@ type
   { TListSourceKind }
 
   TListSourceKind = (lskUnknown, byKey, byValue, Both);
+  TListResultSourceKind = (lrskUnknown, ResultByKey, ResultByValue);
 
   { TCustomProperties }
 
@@ -20,6 +21,9 @@ type
   private
     FOwner: TPersistent;
   protected
+    procedure _Initialize; virtual; abstract;
+    procedure _Finalize; virtual; abstract;
+
     function GetOwnerComponentState: TComponentState;
 
     function GetOwner: TPersistent; override;
@@ -133,6 +137,9 @@ type
     function TriggerOnBeforeRegistrySettingChange(aKind: TRegistrySettingKind;
                                                   aValue: variant): boolean;
   protected
+    procedure _Initialize; override;
+    procedure _Finalize; override;
+
     procedure SetRootKey(aRootKey: string);
     procedure SetRootKeyForDefaults(aRootKeyForDefaults: string);
     procedure SetSection(aSection: string);
@@ -159,6 +166,7 @@ type
     procedure BeginUpdate;
     procedure EndUpdate;
     constructor Create(aOwner: TPersistent); override;
+    destructor Destroy; override;
 
     property Owner;
 
@@ -352,6 +360,16 @@ begin
     if not is_ok then
       Exit;
   end;
+end;
+
+procedure TCustomRegistrySettings<_T>._Initialize;
+begin
+  // In Ableitungen verwenden
+end;
+
+procedure TCustomRegistrySettings<_T>._Finalize;
+begin
+  // In Ableitungen verwenden
 end;
 
 procedure TCustomRegistrySettings<_T>.SetRootKey(aRootKey: string);
@@ -569,6 +587,15 @@ begin
   FTriggerEvents := True;
   FDoSyncData := False;
   FGroupIndex := 0;
+
+  _Initialize;
+end;
+
+destructor TCustomRegistrySettings<_T>.Destroy;
+begin
+  _Finalize;
+
+  inherited;
 end;
 
 end.

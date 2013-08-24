@@ -517,6 +517,26 @@ object Main: TMain
           ParentColor = False
           ParentFont = False
         end
+        object lrbCheckListBox1: TRegCheckListBox
+          Left = 524
+          Height = 128
+          Top = 54
+          Width = 216
+          ItemHeight = 0
+          TabOrder = 3
+          RegistrySettings.Section = 'CheckedListBox1'
+          RegistrySettings.Ident = 'ItemIndex'
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.ListSection = 'CheckListBoxListe'
+          RegistrySettings.ResultSourceKind = ResultByValue
+          RegistrySource = RegistrySource2
+        end
       end
     end
     object tabKombination: TTabSheet
@@ -524,8 +544,8 @@ object Main: TMain
     end
   end
   object MainMenu1: TMainMenu
-    left = 752
-    top = 152
+    left = 688
+    top = 24
     object mnuFile: TMenuItem
       Caption = 'Datei'
       object MenuItem2: TMenuItem
@@ -540,8 +560,8 @@ object Main: TMain
     end
   end
   object ActionList1: TActionList
-    left = 752
-    top = 96
+    left = 648
+    top = 24
     object acClose: TAction
       Category = 'General'
       Caption = 'Beenden'
@@ -624,8 +644,8 @@ object Main: TMain
     GUID = '{7142DBAD-5BEA-4690-B64E-B17CA6553E81}'
     DoSyncData = True
     PrefereStrings = False
-    left = 752
-    top = 216
+    left = 632
+    top = 448
   end
   object RegistrySource2: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
@@ -639,7 +659,7 @@ object Main: TMain
     GUID = '{EC8199A8-A8FD-40D9-9ACA-C28D913C2E0B}'
     DoSyncData = True
     PrefereStrings = False
-    left = 752
-    top = 272
+    left = 744
+    top = 448
   end
 end

@@ -59,6 +59,34 @@ type
       write FSourceKind;
   end;
 
+  { TRegistrySettingsCheckedList }
+
+  TRegistrySettingsCheckedList = class(TRegistrySettingsIntegerDefault)
+  private
+    FItemsByRegistry: boolean;
+    FListSection: string;
+    FSourceKind: TListSourceKind;
+    FResultSourceKind: TListResultSourceKind;
+  protected
+    procedure _Initialize; override;
+    procedure _Finalize; override;
+
+    procedure SetResultSourceKind(aListResultSourceKind: TListResultSourceKind);
+  public
+    property SourceKind: TListSourceKind
+      read FSourceKind;
+  published
+    property ItemsByRegistry: boolean
+      read FItemsByRegistry
+      write FItemsByRegistry;
+    property ListSection: string
+      read FListSection
+      write FListSection;
+    property ResultSourceKind: TListResultSourceKind
+      read FResultSourceKind
+      write SetResultSourceKind;
+  end;
+
   { TCustomRegistrySource }
 
   TCustomRegistrySource = class(TComponent)
@@ -266,6 +294,37 @@ begin
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsIntegerDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsBooleanDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
+end;
+
+{ TRegistrySettingsCheckedList }
+
+procedure TRegistrySettingsCheckedList._Initialize;
+begin
+  FResultSourceKind := lrskUnknown;
+  FSourceKind := lskUnknown;
+
+  inherited;
+end;
+
+procedure TRegistrySettingsCheckedList._Finalize;
+begin
+
+  inherited;
+end;
+
+procedure TRegistrySettingsCheckedList.SetResultSourceKind(
+  aListResultSourceKind: TListResultSourceKind);
+begin
+  if (FResultSourceKind <> aListResultSourceKind) then
+  begin
+    FResultSourceKind := aListResultSourceKind;
+    case FResultSourceKind of
+      ResultByKey: FSourceKind := Both;
+      ResultByValue: FSourceKind := Both;
+    else
+      FSourceKind := lskUnknown;
+    end;
+  end;
 end;
 
 { TCustomRegistrySource }

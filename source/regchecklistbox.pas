@@ -23,9 +23,12 @@ type
   TCustomRegCheckListBox = class(TCheckListBox)
   private
     FRegistrySource: TRegistrySource;
-    FRegistrySettings: TRegistrySettingsList;
+    FRegistrySettings: TRegistrySettingsCheckedList;
     FIsModified: boolean;
 
+    procedure SetCheckedItemsByKey(aList: TStrings);
+    procedure SetCheckedItemsByValue(aList: TStrings);
+    procedure SetCheckedItemsByList(aList: TStrings);
     function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
     function GetItemsByRegistry: boolean;
@@ -43,7 +46,7 @@ type
     procedure OnChangeSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
 
-    property RegistrySettings: TRegistrySettingsList
+    property RegistrySettings: TRegistrySettingsCheckedList
       read FRegistrySettings
       write FRegistrySettings;
     property RegistrySource: TRegistrySource
@@ -92,6 +95,56 @@ begin
 end;
 
 { TCustomRegCheckListBox }
+
+procedure TCustomRegCheckListBox.SetCheckedItemsByKey(aList: TStrings);
+var
+  anz: integer;
+  res_str: string;
+  res_bool: boolean;
+  item_value: string;
+begin
+  Items.Clear;
+  for anz := 0 to aList.Count-1 do
+  begin
+    res_str:=aList.Names[anz];
+    item_value:=aList.Values[res_str];
+    Items.Add(item_value);
+
+    if TryStrToBool(res_str, res_bool) then
+      Checked[anz] := res_bool
+    else
+      Checked[anz] := False
+  end;
+end;
+
+procedure TCustomRegCheckListBox.SetCheckedItemsByValue(aList: TStrings);
+var
+  anz: integer;
+  res_str: string;
+  res_bool: boolean;
+  item_value: string;
+begin
+  Items.Clear;
+  for anz := 0 to aList.Count-1 do
+  begin
+    res_str:=aList.ValueFromIndex[anz];
+    item_value:=aList.Names[anz];
+    Items.Add(item_value);
+
+    if TryStrToBool(res_str, res_bool) then
+      Checked[anz] := res_bool
+    else
+      Checked[anz] := False
+  end;
+end;
+
+procedure TCustomRegCheckListBox.SetCheckedItemsByList(aList: TStrings);
+begin
+  case RegistrySettings.ResultSourceKind of
+    ResultByKey: SetCheckedItemsByKey(aList);
+    ResultByValue: SetCheckedItemsByValue(aList);
+  end;
+end;
 
 function TCustomRegCheckListBox.RefreshRegistrySettings: boolean;
 begin
@@ -210,7 +263,7 @@ begin
               list,
               FRegistrySettings.ReadDefaults,
               FRegistrySettings.SourceKind);
-            Items.AddStrings(list);
+            SetCheckedItemsByList(list);
             index := RegistrySource.ReadInteger(FRegistrySettings.RootKey,
                        FRegistrySettings.RootKeyForDefaults,
                        FRegistrySettings.RootForDefaults,
@@ -443,7 +496,7 @@ begin
   inherited Create(AOwner);
 
   FIsModified := False;
-  FRegistrySettings := TRegistrySettingsList.Create(Self);
+  FRegistrySettings := TRegistrySettingsCheckedList.Create(Self);
   FRegistrySettings.OnChange:= OnChangeSettings;
 end;
 

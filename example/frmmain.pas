@@ -63,6 +63,7 @@ type
     redtControlName1: TRegEdit;
     redtEdit: TRegEdit;
     redtComboBox1: TRegComboBox;
+    lrbCheckListBox1: TRegCheckListBox;
     RegistrySource1: TRegistrySource;
     RegistrySource2: TRegistrySource;
     rlbListBox2: TRegListBox;
