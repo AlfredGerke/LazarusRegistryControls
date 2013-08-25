@@ -30,7 +30,8 @@ eigenen Reiter der Komponentenpalette "Registry Controls" installiert. Die Auswa
 der abgeleiteten Steuerelement richtet sich nach der Häufigkeit ihrer Nutzung 
 (TEdit, TComboBox, TCheckBox, TListBox, TRadioButton, TRadioGroup, TCheckListBox, 
 TCheckGroup, TValueListEditor). Diese Steuerelemente sollten nur genutzt werden, 
-um Werte in der Registry zu verwalten.     
+um Werte in der Registry zu verwalten. Sie sind in der vorliegenden Version nur
+für den Einsatz unter Windows sinnvoll.     
 
 
 2 Packagenamen
@@ -47,7 +48,8 @@ um Werte in der Registry zu verwalten.
 3 Installation
 --------------
 
-Für die Installation sind keine zusätzlichen Packages (etc.) notwendig.    
+Für die Installation sind keine zusätzlichen Packages (etc.) notwendig. In der 
+vorliegenden Version nur unter Windows sinnvoll.   
 
 ## 3.1 Versionen       
 Lazarus: 1.0.10    

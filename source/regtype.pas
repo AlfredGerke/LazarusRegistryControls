@@ -10,6 +10,10 @@ uses
 
 type
 
+  { TInfoKind }
+
+  TInfoKind = (ikItemIndex, ikInfo);
+
   { TListSourceKind }
 
   TListSourceKind = (lskUnknown, byKey, byValue, Both);

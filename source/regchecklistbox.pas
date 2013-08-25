@@ -14,12 +14,12 @@ uses
   regconst,
   LMessages,
   regmsg,
-  regsourcen;
+  regsourcen,
+  regtype;
 
 type
 
   { TCustomRegCheckListBox }
-
   TCustomRegCheckListBox = class(TCheckListBox)
   private
     FRegistrySource: TRegistrySource;
@@ -29,18 +29,24 @@ type
     procedure SetCheckedItemsByValue(aList: TStrings);
     procedure SetCheckedItemsByList(aList: TStrings);
     function RefreshRegistrySettings: boolean;
-    procedure ReadWriteInfo(aRead: boolean);
+    procedure ReadWriteInfo(aRead: boolean;
+                            aType: TInfoKind = ikItemIndex);
     function GetItemsByRegistry: boolean;
   protected
-    procedure ShowEditDialog(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
-    procedure FreeRegistrySource(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE;
-    procedure RefreshWriteAdHoc(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_WRITEADHOC;
+    procedure ShowEditDialog(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
+    procedure FreeRegistrySource(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE;
+    procedure RefreshWriteAdHoc(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_SET_WRITEADHOC;
     procedure RefreshSync(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_SYNC;
-    procedure RefreshSettings(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
-    procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
+    procedure RefreshSettings(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
+    procedure RefreshData(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_REFRESH_DATA;
 
     procedure SetName(const NewName: TComponentName); override;
-    procedure ItemClick(const AIndex: Integer); override;
+    procedure ItemClick(const AIndex: integer); override;
 
     procedure OnChangeSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
@@ -55,7 +61,7 @@ type
     procedure Click; override;
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
-    function WriteToReg: boolean; virtual;
+    function WriteToReg(aType: TInfoKind = ikItemIndex): boolean; virtual;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
 
@@ -84,8 +90,7 @@ uses
   Dialogs,
   regpropedits,
   ComponentEditors,
-  dlgeditsettings,
-  regtype;
+  dlgeditsettings;
 
 procedure Register;
 begin
@@ -103,16 +108,16 @@ var
   item_value: string;
 begin
   Items.Clear;
-  for anz := 0 to aList.Count-1 do
+  for anz := 0 to aList.Count - 1 do
   begin
-    res_str:=aList.ValueFromIndex[anz];
-    item_value:=aList.Names[anz];
+    res_str := aList.ValueFromIndex[anz];
+    item_value := aList.Names[anz];
     Items.Add(item_value);
 
     if TryStrToBool(res_str, res_bool) then
       Checked[anz] := res_bool
     else
-      Checked[anz] := False
+      Checked[anz] := False;
   end;
 end;
 
@@ -132,7 +137,7 @@ begin
       FRegistrySettings.RootKey := FRegistrySource.RootKey;
       FRegistrySettings.RootKeyForDefaults := FRegistrySource.RootKeyForDefaults;
       FRegistrySettings.RootForDefaults := FRegistrySource.RootForDefaults;
-      FRegistrySettings.Project:= FRegistrySource.Project;
+      FRegistrySettings.Project := FRegistrySource.Project;
       FRegistrySettings.Organisation := FRegistrySource.Organisation;
       FRegistrySettings.GUID := FRegistrySource.GUID;
       FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
@@ -145,9 +150,12 @@ begin
   end;
 end;
 
-procedure TCustomRegCheckListBox.ReadWriteInfo(aRead: boolean);
+procedure TCustomRegCheckListBox.ReadWriteInfo(aRead: boolean;
+  aType: TInfoKind = ikItemIndex);
 var
   sync_state_by_default: boolean;
+  ident_by_itemindex: string;
+  checked_by_itemindex: boolean;
 begin
   if not (csDesigning in ComponentState) then
   begin
@@ -166,14 +174,15 @@ begin
               GetItemsByRegistry
             else
             begin
-              if (FRegistrySettings.CanRead and not FRegistrySettings.ItemsByRegistry) then
+              if (FRegistrySettings.CanRead and not
+                FRegistrySettings.ItemsByRegistry) then
                 ItemIndex := RegistrySource.ReadInteger(FRegistrySettings.RootKey,
-                               FRegistrySettings.RootKeyForDefaults,
-                               FRegistrySettings.RootForDefaults,
-                               FRegistrySettings.Section,
-                               FRegistrySettings.Ident,
-                               FRegistrySettings.Default,
-                               FRegistrySettings.ReadDefaults);
+                  FRegistrySettings.RootKeyForDefaults,
+                  FRegistrySettings.RootForDefaults,
+                  FRegistrySettings.Section,
+                  FRegistrySettings.Ident,
+                  FRegistrySettings.Default,
+                  FRegistrySettings.ReadDefaults);
             end;
           end;
           Write:
@@ -183,15 +192,33 @@ begin
               sync_state_by_default := FRegistrySettings.DoSyncData;
               FRegistrySettings.DoSyncData := False;
               try
-                RegistrySource.WriteInteger(FRegistrySettings.RootKey,
-                  FRegistrySettings.RootKeyForDefaults,
-                  FRegistrySettings.RootForDefaults,
-                  FRegistrySettings.Section,
-                  FRegistrySettings.Ident,
-                  ItemIndex,
-                  FRegistrySettings.WriteDefaults,
-                  FRegistrySettings.GroupIndex);
-
+                case aType of
+                  ikInfo:
+                  begin
+                    if (FRegistrySettings.ListSection <> '') then
+                    begin
+                      ident_by_itemindex := Items.Strings[ItemIndex];
+                      checked_by_itemindex := Checked[ItemIndex];
+                      RegistrySource.WriteBool(FRegistrySettings.RootKey,
+                        FRegistrySettings.RootKeyForDefaults,
+                        FRegistrySettings.RootForDefaults,
+                        FRegistrySettings.ListSection,
+                        ident_by_itemindex,
+                        checked_by_itemindex,
+                        FRegistrySettings.WriteDefaults,
+                        FRegistrySettings.GroupIndex);
+                    end;
+                  end;
+                else
+                  RegistrySource.WriteInteger(FRegistrySettings.RootKey,
+                    FRegistrySettings.RootKeyForDefaults,
+                    FRegistrySettings.RootForDefaults,
+                    FRegistrySettings.Section,
+                    FRegistrySettings.Ident,
+                    ItemIndex,
+                    FRegistrySettings.WriteDefaults,
+                    FRegistrySettings.GroupIndex);
+                end;
                 FIsModified := False;
               finally
                 FRegistrySettings.DoSyncData := sync_state_by_default;
@@ -240,16 +267,16 @@ begin
               FRegistrySettings.SourceKind);
             SetCheckedItemsByList(list);
             index := RegistrySource.ReadInteger(FRegistrySettings.RootKey,
-                       FRegistrySettings.RootKeyForDefaults,
-                       FRegistrySettings.RootForDefaults,
-                       FRegistrySettings.Section,
-                       FRegistrySettings.Ident,
-                       FRegistrySettings.Default,
-                       FRegistrySettings.ReadDefaults);
-            if (index <= Items.Count-1) then
+              FRegistrySettings.RootKeyForDefaults,
+              FRegistrySettings.RootForDefaults,
+              FRegistrySettings.Section,
+              FRegistrySettings.Ident,
+              FRegistrySettings.Default,
+              FRegistrySettings.ReadDefaults);
+            if (index <= Items.Count - 1) then
               ItemIndex := index
             else
-              ItemIndex := Items.Count-1;
+              ItemIndex := Items.Count - 1;
           end;
         end;
       end;
@@ -275,7 +302,7 @@ begin
   root_keys.Clear;
 
   if (aMessage.wParam = 1) then
-    do_edit:= True
+    do_edit := True
   else
     do_edit := False;
 
@@ -294,7 +321,7 @@ begin
           RegistrySettings.SetRootKeys(root_keys);
           aMessage.Result := 1;
         end;
-        mrCancel:;
+        mrCancel: ;
       end;
     end;
   finally
@@ -327,7 +354,7 @@ begin
   if (group_index > 0) then
   begin
     if (group_index = FRegistrySettings.GroupIndex) then
-      FRegistrySettings.DoWriteAdHoc := do_writeadhoc
+      FRegistrySettings.DoWriteAdHoc := do_writeadhoc;
   end
   else
     FRegistrySettings.DoWriteAdHoc := do_writeadhoc;
@@ -346,7 +373,7 @@ begin
   if (group_index > 0) then
   begin
     if (group_index = FRegistrySettings.GroupIndex) then
-      FRegistrySettings.DoSyncData := do_sync
+      FRegistrySettings.DoSyncData := do_sync;
   end
   else
     FRegistrySettings.DoSyncData := do_sync;
@@ -354,7 +381,7 @@ end;
 
 procedure TCustomRegCheckListBox.RefreshSettings(var aMessage: TLMessage);
 begin
-  aMessage.Result := LongInt(RefreshRegistrySettings);
+  aMessage.Result := longint(RefreshRegistrySettings);
 end;
 
 procedure TCustomRegCheckListBox.RefreshData(var aMessage: TLMessage);
@@ -362,15 +389,16 @@ var
   group_index: cardinal;
 begin
   if FRegistrySettings.DoSyncData then
-  begin;
+  begin
+    ;
     group_index := aMessage.lParam;
     if (group_index > 0) then
     begin
       if group_index = FRegistrySettings.GroupIndex then
-        aMessage.Result := LongInt(ReadFromReg)
+        aMessage.Result := longint(ReadFromReg);
     end
     else
-      aMessage.Result := LongInt(ReadFromReg)
+      aMessage.Result := longint(ReadFromReg);
   end;
 end;
 
@@ -389,9 +417,14 @@ begin
     FRegistrySource.RenameClient(old_name, new_name);
 end;
 
-procedure TCustomRegCheckListBox.ItemClick(const AIndex: Integer);
+procedure TCustomRegCheckListBox.ItemClick(const AIndex: integer);
 begin
-  inherited ItemClick(AIndex);
+  inherited;
+
+  FIsModified := True;
+
+  if FRegistrySettings.DoWriteAdHoc then
+    WriteToReg(ikInfo);
 end;
 
 procedure TCustomRegCheckListBox.OnChangeSettings(Sender: TObject);
@@ -422,7 +455,7 @@ begin
   FIsModified := True;
 
   if FRegistrySettings.DoWriteAdHoc then
-    WriteToReg;
+    WriteToReg(ikItemIndex);
 end;
 
 procedure TCustomRegCheckListBox.AfterConstruction;
@@ -448,7 +481,7 @@ begin
   end;
 end;
 
-function TCustomRegCheckListBox.WriteToReg: boolean;
+function TCustomRegCheckListBox.WriteToReg(aType: TInfoKind = ikItemIndex): boolean;
 begin
   Result := False;
 
@@ -456,7 +489,7 @@ begin
     Exit;
 
   try
-    ReadWriteInfo(Write);
+    ReadWriteInfo(Write, aType);
     Application.ProcessMessages;
 
     Result := True;
@@ -472,7 +505,7 @@ begin
 
   FIsModified := False;
   FRegistrySettings := TRegistrySettingsCheckedList.Create(Self);
-  FRegistrySettings.OnChange:= OnChangeSettings;
+  FRegistrySettings.OnChange := OnChangeSettings;
 end;
 
 destructor TCustomRegCheckListBox.Destroy;

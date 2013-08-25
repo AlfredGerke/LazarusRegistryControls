@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Buttons, ExtCtrls, Menus, ActnList, ComCtrls, regsourcen, regedit,
+  Buttons, ExtCtrls, Menus, ActnList, ComCtrls, CheckLst, regsourcen, regedit,
   regcheckgroup, reglistbox, regcombobox, regvaluelisteditor, regchecklistbox,
   regradiogroup, regcheckbox, regradiobutton;
 
