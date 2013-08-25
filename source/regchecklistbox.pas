@@ -26,8 +26,6 @@ type
     FRegistrySettings: TRegistrySettingsCheckedList;
     FIsModified: boolean;
 
-    procedure SetCheckedItemsByValue(aList: TStrings;
-                                     aCheckOnly: boolean);
     procedure SetCheckedItemsByList(aList: TStrings;
                                     aCheckOnly: boolean);
     function RefreshRegistrySettings: boolean;
@@ -102,7 +100,7 @@ end;
 
 { TCustomRegCheckListBox }
 
-procedure TCustomRegCheckListBox.SetCheckedItemsByValue(aList: TStrings;
+procedure TCustomRegCheckListBox.SetCheckedItemsByList(aList: TStrings;
   aCheckOnly: boolean);
 var
   anz: integer;
@@ -110,7 +108,9 @@ var
   res_bool: boolean;
   item_value: string;
 begin
-  Items.Clear;
+  if not aCheckOnly then
+    Items.Clear;
+
   for anz := 0 to aList.Count - 1 do
   begin
     res_str := aList.ValueFromIndex[anz];
@@ -126,12 +126,6 @@ begin
     else
       Checked[anz] := False;
   end;
-end;
-
-procedure TCustomRegCheckListBox.SetCheckedItemsByList(aList: TStrings;
-  aCheckOnly: boolean);
-begin
-  SetCheckedItemsByValue(aList, aCheckOnly);
 end;
 
 function TCustomRegCheckListBox.RefreshRegistrySettings: boolean;

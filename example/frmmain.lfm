@@ -1,45 +1,45 @@
 object Main: TMain
-  Left = 619
-  Height = 523
-  Top = 230
-  Width = 818
+  Left = 541
+  Height = 488
+  Top = 122
+  Width = 811
   Caption = 'RegistryControls in Aktion'
-  ClientHeight = 504
-  ClientWidth = 818
+  ClientHeight = 469
+  ClientWidth = 811
   Menu = MainMenu1
   OnShow = FormShow
   LCLVersion = '1.0.10.0'
   object PageControl1: TPageControl
     Left = 0
-    Height = 504
+    Height = 469
     Top = 0
-    Width = 818
+    Width = 811
     ActivePage = tabSingleValue
     Align = alClient
     TabIndex = 0
     TabOrder = 0
     object tabSingleValue: TTabSheet
       Caption = 'Einzelwerte'
-      ClientHeight = 478
-      ClientWidth = 810
+      ClientHeight = 443
+      ClientWidth = 803
       object pnlClient: TPanel
         Left = 0
-        Height = 415
+        Height = 380
         Top = 63
-        Width = 810
+        Width = 803
         Align = alClient
-        ClientHeight = 415
-        ClientWidth = 810
+        ClientHeight = 380
+        ClientWidth = 803
         TabOrder = 0
         object lblEditSingleValue: TLabel
-          Left = 15
-          Height = 17
-          Top = 10
-          Width = 253
-          Caption = 'Edit-Control (redtEdit) verarbeitet Einzelwert'
+          Left = 20
+          Height = 15
+          Top = 11
+          Width = 144
+          Caption = 'Edit (redtEdit): Text verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
@@ -48,10 +48,10 @@ object Main: TMain
           ParentFont = False
         end
         object redtEdit: TRegEdit
-          Left = 15
+          Left = 20
           Height = 21
-          Top = 30
-          Width = 136
+          Top = 46
+          Width = 248
           TabOrder = 0
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.Ident = 'Edit'
@@ -64,11 +64,18 @@ object Main: TMain
           RegistrySource = RegistrySource1
         end
         object rcbxCheckBox1: TRegCheckBox
-          Left = 15
-          Height = 17
-          Top = 59
-          Width = 257
-          Caption = 'CheckBox (rcbxCheckBox1) vearbeitet Einzelwert'
+          Left = 20
+          Height = 18
+          Top = 123
+          Width = 240
+          Caption = 'CheckBox (rcbxCheckBox1): ItemIndex verw.'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 1
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.Ident = 'CheckBox1'
@@ -81,11 +88,18 @@ object Main: TMain
           RegistrySource = RegistrySource1
         end
         object rrbRadioButton1: TRegRadioButton
-          Left = 15
-          Height = 17
-          Top = 82
-          Width = 278
-          Caption = 'RadioButton (rrbRadioButton1) verarbeitet Einzelwert'
+          Left = 20
+          Height = 18
+          Top = 150
+          Width = 265
+          Caption = 'RadioButton (rrbRadioButton1): Checkstatus verw.'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 2
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.Ident = 'RadioButton1'
@@ -98,11 +112,18 @@ object Main: TMain
           RegistrySource = RegistrySource1
         end
         object rrbRadioButton2: TRegRadioButton
-          Left = 15
-          Height = 17
-          Top = 107
-          Width = 278
-          Caption = 'RadioButton (rrbRadioButton2) verarbeitet Einzelwert'
+          Left = 20
+          Height = 18
+          Top = 175
+          Width = 265
+          Caption = 'RadioButton (rrbRadioButton2): Checkstatus verw.'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 3
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.Ident = 'RadioButton2'
@@ -115,12 +136,12 @@ object Main: TMain
           RegistrySource = RegistrySource1
         end
         object rgrpRadioGroup1: TRegRadioGroup
-          Left = 316
+          Left = 284
           Height = 129
-          Top = 189
-          Width = 217
+          Top = 225
+          Width = 248
           AutoFill = True
-          Caption = 'RadioGroup (rgrpRadioGroup1) statisch'
+          Caption = 'RadioGroup (rgrpRadioGroup1): statisch'
           ChildSizing.LeftRightSpacing = 6
           ChildSizing.TopBottomSpacing = 6
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -130,7 +151,7 @@ object Main: TMain
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
           ClientHeight = 111
-          ClientWidth = 213
+          ClientWidth = 244
           Items.Strings = (
             'RadioGroup statisch 1'
             'RadioGroup statisch 2'
@@ -152,10 +173,10 @@ object Main: TMain
           RegistrySource = RegistrySource1
         end
         object rlbListBox1: TRegListBox
-          Left = 15
+          Left = 284
           Height = 128
-          Top = 189
-          Width = 281
+          Top = 46
+          Width = 248
           Items.Strings = (
             'statischer Eintrag 1'
             'statischer Eintrag 2'
@@ -179,10 +200,10 @@ object Main: TMain
           RegistrySource = RegistrySource1
         end
         object redtComboBox1: TRegComboBox
-          Left = 316
+          Left = 20
           Height = 21
-          Top = 30
-          Width = 192
+          Top = 91
+          Width = 248
           ItemHeight = 13
           Items.Strings = (
             'statischer Eintrag 1'
@@ -206,14 +227,14 @@ object Main: TMain
           RegistrySource = RegistrySource1
         end
         object lblListBox1: TLabel
-          Left = 15
-          Height = 17
-          Top = 169
-          Width = 282
-          Caption = 'Es wird nur der ItemIndex gesichert (rlbListBox1)'
+          Left = 284
+          Height = 15
+          Top = 11
+          Width = 249
+          Caption = 'ListBox (rlbListBox1): statisch, ItemIndex verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
@@ -222,14 +243,14 @@ object Main: TMain
           ParentFont = False
         end
         object lblRadioGroup1: TLabel
-          Left = 316
-          Height = 17
-          Top = 169
-          Width = 205
-          Caption = 'Es wird nur der ItemIndex gesichert'
+          Left = 284
+          Height = 15
+          Top = 195
+          Width = 161
+          Caption = 'RadioGroup: ItemIndex verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
@@ -238,14 +259,14 @@ object Main: TMain
           ParentFont = False
         end
         object lblComboBox1: TLabel
-          Left = 316
-          Height = 17
-          Top = 10
-          Width = 310
-          Caption = 'Es wird nur der ItemIndex gesichert (redtComboBox1)'
+          Left = 20
+          Height = 15
+          Top = 75
+          Width = 244
+          Caption = 'ComboBox (redtComboBox1): ItemIndex verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
@@ -253,15 +274,54 @@ object Main: TMain
           ParentColor = False
           ParentFont = False
         end
+        object rlbCheckListBox2: TRegCheckListBox
+          Left = 548
+          Height = 128
+          Top = 46
+          Width = 248
+          ItemHeight = 0
+          TabOrder = 7
+          RegistrySettings.CanRead = False
+          RegistrySettings.CanWrite = False
+          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
+          RegistrySettings.Default = 0
+          RegistrySettings.ItemsByRegistry = False
+        end
+        object rcgCheckGroup2: TRegCheckGroup
+          Left = 548
+          Height = 129
+          Top = 225
+          Width = 248
+          AutoFill = True
+          Caption = ' CheckGroup (rcgCheckGroup2): statisch'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.TopBottomSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          TabOrder = 8
+          RegistrySettings.CanRead = False
+          RegistrySettings.CanWrite = False
+          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
+          RegistrySettings.Default = 0
+          RegistrySettings.ItemsByRegistry = False
+        end
       end
       object pnlTop: TPanel
         Left = 0
         Height = 63
         Top = 0
-        Width = 810
+        Width = 803
         Align = alTop
         ClientHeight = 63
-        ClientWidth = 810
+        ClientWidth = 803
         TabOrder = 1
         object redtControlName: TRegEdit
           Left = 475
@@ -323,16 +383,16 @@ object Main: TMain
     end
     object tabList: TTabSheet
       Caption = 'Listen'
-      ClientHeight = 478
-      ClientWidth = 810
+      ClientHeight = 443
+      ClientWidth = 803
       object pnlTopList: TPanel
         Left = 0
         Height = 63
         Top = 0
-        Width = 810
+        Width = 803
         Align = alTop
         ClientHeight = 63
-        ClientWidth = 810
+        ClientWidth = 803
         TabOrder = 0
         object redtControlName1: TRegEdit
           Left = 475
@@ -393,17 +453,17 @@ object Main: TMain
       end
       object pnlClientList: TPanel
         Left = 0
-        Height = 415
+        Height = 380
         Top = 63
-        Width = 810
+        Width = 803
         Align = alClient
-        ClientHeight = 415
-        ClientWidth = 810
+        ClientHeight = 380
+        ClientWidth = 803
         TabOrder = 1
         object rgrpRadioGroupList1: TRegRadioGroup
           Left = 20
           Height = 136
-          Top = 46
+          Top = 41
           Width = 248
           AutoFill = True
           Caption = ' Radiogroup (rgrpRadioGroupList1) dynamisch'
@@ -430,10 +490,10 @@ object Main: TMain
           RegistrySource = RegistrySource2
         end
         object rlbListBox2: TRegListBox
-          Left = 276
+          Left = 284
           Height = 128
-          Top = 54
-          Width = 240
+          Top = 46
+          Width = 248
           ItemHeight = 0
           TabOrder = 1
           RegistrySettings.Section = 'ListBox1'
@@ -452,7 +512,7 @@ object Main: TMain
         object redtComboBoxList1: TRegComboBox
           Left = 20
           Height = 21
-          Top = 235
+          Top = 232
           Width = 248
           ItemHeight = 13
           TabOrder = 2
@@ -469,15 +529,16 @@ object Main: TMain
           RegistrySettings.SourceKind = byKey
           RegistrySource = RegistrySource2
         end
-        object lblRadioGroupList1: TLabel
+        object lblRadioGroupList: TLabel
           Left = 20
-          Height = 33
+          Height = 29
           Top = 11
-          Width = 226
-          Caption = 'Einträge werden aus Registry ermittelt,'#13#10'ItemIndex wird gesichert'
+          Width = 247
+          AutoSize = False
+          Caption = 'Radiogroup: Items laden, ItemIndex verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
@@ -485,15 +546,16 @@ object Main: TMain
           ParentColor = False
           ParentFont = False
         end
-        object lbListBoxList2: TLabel
-          Left = 276
-          Height = 33
+        object lbListBoxList: TLabel
+          Left = 284
+          Height = 32
           Top = 11
-          Width = 226
-          Caption = 'Einträge werden aus Registry ermittelt,'#13#10'ItemIndex wird gesichert (rlbListBox2)'
+          Width = 248
+          AutoSize = False
+          Caption = 'ListBox (rlbListBox2): Items laden, ItemIndex '#13#10'verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
@@ -501,15 +563,16 @@ object Main: TMain
           ParentColor = False
           ParentFont = False
         end
-        object lblRadioGroupList2: TLabel
+        object lblComboBox: TLabel
           Left = 20
           Height = 33
           Top = 195
-          Width = 267
-          Caption = 'Einträge werden aus Registry ermittelt,'#13#10'ItemIndex wird gesichert (redtComboBoxList1)'
+          Width = 247
+          AutoSize = False
+          Caption = 'ComboBox (redtComboBoxList1): Items laden,'#13#10'ItemIndex verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
@@ -518,10 +581,10 @@ object Main: TMain
           ParentFont = False
         end
         object rlbCheckListBox1: TRegCheckListBox
-          Left = 524
+          Left = 548
           Height = 128
-          Top = 54
-          Width = 224
+          Top = 46
+          Width = 248
           ItemHeight = 0
           TabOrder = 3
           RegistrySettings.Section = 'CheckListBox1'
@@ -536,16 +599,61 @@ object Main: TMain
           RegistrySettings.ListSection = 'CheckListBoxListe'
           RegistrySource = RegistrySource2
         end
-        object lblCheckListBox1: TLabel
-          Left = 524
+        object lblCheckListBox: TLabel
+          Left = 548
           Height = 33
           Top = 11
-          Width = 216
+          Width = 248
           AutoSize = False
-          Caption = 'Einträge werden aus Registry ermittelt,'#13#10'ItemIndex/Checks werden gesichert (rlbCheckListBox1)'
+          Caption = 'CheckListBox (rlbCheckListBox1): Items laden, '#13#10'ItemIndex u. Checkstatus verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
+          ParentColor = False
+          ParentFont = False
+        end
+        object rcgCheckGroup1: TRegCheckGroup
+          Left = 284
+          Height = 129
+          Top = 225
+          Width = 248
+          AutoFill = True
+          Caption = 'CheckGroup (rcgCheckGroup1) dynamisch'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.TopBottomSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          TabOrder = 4
+          RegistrySettings.Section = 'CheckGroup1'
+          RegistrySettings.Ident = 'LastChecked'
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.ItemsByRegistry = True
+          RegistrySettings.ListSection = 'CheckGroupListe'
+          RegistrySource = RegistrySource2
+        end
+        object lblCheckGroup: TLabel
+          Left = 284
+          Height = 33
+          Top = 195
+          Width = 247
+          AutoSize = False
+          Caption = 'CheckGroup: Items laden, LastChecked u.'#13#10'Checkstatus verwalten'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
@@ -560,8 +668,8 @@ object Main: TMain
     end
   end
   object MainMenu1: TMainMenu
-    left = 688
-    top = 24
+    left = 132
+    top = 347
     object mnuFile: TMenuItem
       Caption = 'Datei'
       object MenuItem2: TMenuItem
@@ -576,8 +684,8 @@ object Main: TMain
     end
   end
   object ActionList1: TActionList
-    left = 648
-    top = 24
+    left = 44
+    top = 347
     object acClose: TAction
       Category = 'General'
       Caption = 'Beenden'
@@ -660,8 +768,8 @@ object Main: TMain
     GUID = '{7142DBAD-5BEA-4690-B64E-B17CA6553E81}'
     DoSyncData = True
     PrefereStrings = False
-    left = 632
-    top = 448
+    left = 44
+    top = 403
   end
   object RegistrySource2: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
@@ -675,7 +783,7 @@ object Main: TMain
     GUID = '{EC8199A8-A8FD-40D9-9ACA-C28D913C2E0B}'
     DoSyncData = True
     PrefereStrings = False
-    left = 744
-    top = 448
+    left = 132
+    top = 403
   end
 end

@@ -26,9 +26,9 @@ type
     FRegistrySettings: TRegistrySettingsCheckedList;
     FIsModified: boolean;
     FLastChecked: integer;
+    FCustomOnItemCheck: TCheckGroupClicked;
 
-    procedure SetCheckedItemsByValue(aList: TStrings;
-                                     aCheckOnly: boolean);
+    procedure OnHookedItemCheck(Sender: TObject; Index: integer);
     procedure SetCheckedItemsByList(aList: TStrings;
                                     aCheckOnly: boolean);
     function RefreshRegistrySettings: boolean;
@@ -108,7 +108,18 @@ end;
 
 { TCustomRegCheckGroup }
 
-procedure TCustomRegCheckGroup.SetCheckedItemsByValue(aList: TStrings;
+procedure TCustomRegCheckGroup.OnHookedItemCheck(Sender: TObject;
+  Index: integer);
+begin
+  FLastChecked := Index;
+
+  Click;
+
+  if Assigned(FCustomOnItemCheck) then
+    FCustomOnItemCheck(Sender, Index);
+end;
+
+procedure TCustomRegCheckGroup.SetCheckedItemsByList(aList: TStrings;
   aCheckOnly: boolean);
 var
   anz: integer;
@@ -116,28 +127,28 @@ var
   res_bool: boolean;
   item_value: string;
 begin
-  Items.Clear;
+  if not aCheckOnly then;
+  begin
+    Items.Clear;
+
+    for anz := 0 to aList.Count - 1 do
+    begin
+        item_value := aList.Names[anz];
+        Items.Add(item_value);
+    end;
+
+    Loaded;
+  end;
+
   for anz := 0 to aList.Count - 1 do
   begin
     res_str := aList.ValueFromIndex[anz];
-
-    if not aCheckOnly then;
-    begin
-      item_value := aList.Names[anz];
-      Items.Add(item_value);
-    end;
 
     if TryStrToBool(res_str, res_bool) then
       Checked[anz] := res_bool
     else
       Checked[anz] := False;
   end;
-end;
-
-procedure TCustomRegCheckGroup.SetCheckedItemsByList(aList: TStrings;
-  aCheckOnly: boolean);
-begin
-  SetCheckedItemsByValue(aList, aCheckOnly);
 end;
 
 function TCustomRegCheckGroup.RefreshRegistrySettings: boolean;
@@ -501,6 +512,11 @@ begin
   FIsModified := False;
   FRegistrySettings := TRegistrySettingsCheckedList.Create(Self);
   FRegistrySettings.OnChange := OnChangeSettings;
+
+  if Assigned(OnItemClick) then
+    FCustomOnItemCheck := OnItemClick;
+
+  OnItemClick := OnHookedItemCheck;
 end;
 
 destructor TCustomRegCheckGroup.Destroy;
