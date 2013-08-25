@@ -288,6 +288,7 @@ begin
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsIntegerDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsBooleanDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsCheckedList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
 end;
 
 { TRegistrySettingsCheckedList }

@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="116"/>
+        <UsageCount Value="118"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -22,9 +22,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmmain"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="113"/>
-        <CursorPos X="19" Y="132"/>
-        <UsageCount Value="116"/>
+        <TopLine Value="208"/>
+        <CursorPos X="3" Y="208"/>
+        <UsageCount Value="118"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regconst.pas"/>
@@ -62,10 +62,12 @@
       <Unit6>
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="746"/>
-        <CursorPos X="1" Y="767"/>
-        <UsageCount Value="31"/>
+        <TopLine Value="314"/>
+        <CursorPos X="1" Y="333"/>
+        <UsageCount Value="32"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -102,10 +104,12 @@
       <Unit11>
         <Filename Value="..\source\regradiogroup.pas"/>
         <UnitName Value="regradiogroup"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="3"/>
-        <CursorPos X="3" Y="22"/>
+        <TopLine Value="322"/>
+        <CursorPos X="1" Y="341"/>
         <UsageCount Value="18"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
@@ -236,22 +240,23 @@
       <Unit27>
         <Filename Value="..\source\regcheckgroup.pas"/>
         <UnitName Value="regcheckgroup"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="160"/>
-        <CursorPos X="13" Y="162"/>
-        <UsageCount Value="14"/>
+        <TopLine Value="111"/>
+        <CursorPos X="5" Y="127"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit27>
       <Unit28>
         <Filename Value="..\source\regchecklistbox.pas"/>
         <UnitName Value="regchecklistbox"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="487"/>
-        <CursorPos X="21" Y="519"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="164"/>
+        <CursorPos X="1" Y="182"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
@@ -406,12 +411,11 @@
       <Unit48>
         <Filename Value="..\source\regtype.pas"/>
         <UnitName Value="regtype"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="14" Y="13"/>
-        <UsageCount Value="21"/>
+        <TopLine Value="539"/>
+        <CursorPos X="1" Y="551"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit48>
@@ -435,12 +439,10 @@
       <Unit51>
         <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
         <UnitName Value="ExtCtrls"/>
-        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="732"/>
         <CursorPos X="23" Y="739"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit51>
       <Unit52>
         <Filename Value="C:\lazarus\lcl\include\radiogroup.inc"/>
@@ -639,71 +641,173 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="16" HistoryIndex="15">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="..\source\regcheckgroup.pas"/>
-        <Caret Line="449" Column="17" TopLine="439"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="546" Column="1" TopLine="539"/>
       </Position1>
       <Position2>
-        <Filename Value="..\source\regcheckgroup.pas"/>
-        <Caret Line="23" Column="3" TopLine="4"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="547" Column="1" TopLine="539"/>
       </Position2>
       <Position3>
-        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
-        <Caret Line="727" Column="21" TopLine="735"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="550" Column="1" TopLine="539"/>
       </Position3>
       <Position4>
-        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
-        <Caret Line="760" Column="82" TopLine="736"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="551" Column="1" TopLine="539"/>
       </Position4>
       <Position5>
-        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
-        <Caret Line="726" Column="22" TopLine="719"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="330" Column="1" TopLine="300"/>
       </Position5>
       <Position6>
-        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
-        <Caret Line="608" Column="17" TopLine="588"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="311" Column="1" TopLine="301"/>
       </Position6>
       <Position7>
-        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
-        <Caret Line="614" Column="22" TopLine="588"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="333" Column="1" TopLine="314"/>
       </Position7>
       <Position8>
-        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
-        <Caret Line="712" Column="21" TopLine="680"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="334" Column="1" TopLine="314"/>
       </Position8>
       <Position9>
-        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
-        <Caret Line="722" Column="37" TopLine="690"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="336" Column="1" TopLine="314"/>
       </Position9>
       <Position10>
-        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
-        <Caret Line="726" Column="22" TopLine="694"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="337" Column="1" TopLine="314"/>
       </Position10>
       <Position11>
-        <Filename Value="..\source\regcheckgroup.pas"/>
-        <Caret Line="23" Column="3" TopLine="18"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="333" Column="1" TopLine="314"/>
       </Position11>
       <Position12>
-        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
-        <Caret Line="766" Column="3" TopLine="746"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="341" Column="1" TopLine="321"/>
       </Position12>
       <Position13>
-        <Filename Value="..\source\regcheckgroup.pas"/>
-        <Caret Line="23" Column="3" TopLine="18"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="343" Column="1" TopLine="321"/>
       </Position13>
       <Position14>
-        <Filename Value="..\source\regcheckgroup.pas"/>
-        <Caret Line="28" Column="1" TopLine="18"/>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="392" Column="1" TopLine="370"/>
       </Position14>
       <Position15>
-        <Filename Value="..\source\regcheckgroup.pas"/>
-        <Caret Line="60" Column="12" TopLine="43"/>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="182" Column="1" TopLine="164"/>
       </Position15>
       <Position16>
-        <Filename Value="..\source\regcheckgroup.pas"/>
-        <Caret Line="59" Column="1" TopLine="41"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="341" Column="1" TopLine="321"/>
       </Position16>
+      <Position17>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="343" Column="1" TopLine="321"/>
+      </Position17>
+      <Position18>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="390" Column="1" TopLine="370"/>
+      </Position18>
+      <Position19>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="182" Column="1" TopLine="164"/>
+      </Position19>
+      <Position20>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="341" Column="1" TopLine="321"/>
+      </Position20>
+      <Position21>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="343" Column="1" TopLine="321"/>
+      </Position21>
+      <Position22>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="344" Column="1" TopLine="321"/>
+      </Position22>
+      <Position23>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="390" Column="1" TopLine="370"/>
+      </Position23>
+      <Position24>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="182" Column="1" TopLine="164"/>
+      </Position24>
+      <Position25>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="319" Column="1" TopLine="300"/>
+      </Position25>
+      <Position26>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="341" Column="1" TopLine="322"/>
+      </Position26>
+      <Position27>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="390" Column="1" TopLine="370"/>
+      </Position27>
+      <Position28>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="182" Column="1" TopLine="164"/>
+      </Position28>
+      <Position29>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="341" Column="1" TopLine="322"/>
+      </Position29>
+      <Position30>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="390" Column="1" TopLine="370"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="6">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\source\regchecklistbox.pas"/>
+        <Line Value="182"/>
+      </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\source\regchecklistbox.pas"/>
+        <Line Value="185"/>
+      </Item2>
+      <Item3>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\source\regchecklistbox.pas"/>
+        <Line Value="390"/>
+      </Item3>
+      <Item4>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\source\regradiogroup.pas"/>
+        <Line Value="319"/>
+      </Item4>
+      <Item5>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\source\regchecklistbox.pas"/>
+        <Line Value="368"/>
+      </Item5>
+      <Item6>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\source\regradiogroup.pas"/>
+        <Line Value="341"/>
+      </Item6>
+    </BreakPoints>
+  </Debugging>
 </CONFIG>

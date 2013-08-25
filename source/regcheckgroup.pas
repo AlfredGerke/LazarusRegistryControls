@@ -25,12 +25,15 @@ type
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsCheckedList;
     FIsModified: boolean;
+    FLastChecked: integer;
 
-    procedure SetCheckedItemsByValue(aList: TStrings);
-    procedure SetCheckedItemsByList(aList: TStrings);
+    procedure SetCheckedItemsByValue(aList: TStrings;
+                                     aCheckOnly: boolean);
+    procedure SetCheckedItemsByList(aList: TStrings;
+                                    aCheckOnly: boolean);
     function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
-    function GetItemsByRegistry: boolean;
+    function GetItemsByRegistry(aCheckOnly: boolean): boolean;
   protected
     procedure ShowEditDialog(var aMessage: TLMessage);
       message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
@@ -55,7 +58,10 @@ type
     property RegistrySource: TRegistrySource
       read FRegistrySource
       write SetRegistrySource;
-    procedure SetItemIndex(aItemIndex: integer); virtual;
+    procedure SetLastChecked(aLastChecked: integer);
+    property LastChecked: integer
+      read FLastChecked
+      write SetLastChecked;
   public
     procedure Click; override;
     procedure AfterConstruction; override;
@@ -70,6 +76,8 @@ type
   end;
 
   { TCheckGroup }
+
+  { TRegCheckGroup }
 
   TRegCheckGroup = class(TCustomRegCheckGroup)
   private
@@ -100,7 +108,8 @@ end;
 
 { TCustomRegCheckGroup }
 
-procedure TCustomRegCheckGroup.SetCheckedItemsByValue(aList: TStrings);
+procedure TCustomRegCheckGroup.SetCheckedItemsByValue(aList: TStrings;
+  aCheckOnly: boolean);
 var
   anz: integer;
   res_str: string;
@@ -111,8 +120,12 @@ begin
   for anz := 0 to aList.Count - 1 do
   begin
     res_str := aList.ValueFromIndex[anz];
-    item_value := aList.Names[anz];
-    Items.Add(item_value);
+
+    if not aCheckOnly then;
+    begin
+      item_value := aList.Names[anz];
+      Items.Add(item_value);
+    end;
 
     if TryStrToBool(res_str, res_bool) then
       Checked[anz] := res_bool
@@ -121,9 +134,10 @@ begin
   end;
 end;
 
-procedure TCustomRegCheckGroup.SetCheckedItemsByList(aList: TStrings);
+procedure TCustomRegCheckGroup.SetCheckedItemsByList(aList: TStrings;
+  aCheckOnly: boolean);
 begin
-  SetCheckedItemsByValue(aList);
+  SetCheckedItemsByValue(aList, aCheckOnly);
 end;
 
 function TCustomRegCheckGroup.RefreshRegistrySettings: boolean;
@@ -170,19 +184,10 @@ begin
           Read:
           begin
             if (FRegistrySettings.CanRead and FRegistrySettings.ItemsByRegistry) then
-              GetItemsByRegistry
+              GetItemsByRegistry(False)
             else
-            begin
-              if (FRegistrySettings.CanRead and not
-                FRegistrySettings.ItemsByRegistry) then
-                ItemIndex := RegistrySource.ReadInteger(FRegistrySettings.RootKey,
-                  FRegistrySettings.RootKeyForDefaults,
-                  FRegistrySettings.RootForDefaults,
-                  FRegistrySettings.Section,
-                  FRegistrySettings.Ident,
-                  FRegistrySettings.Default,
-                  FRegistrySettings.ReadDefaults);
-            end;
+              if (FRegistrySettings.CanRead and not FRegistrySettings.ItemsByRegistry) then
+                GetItemsByRegistry(True)
           end;
           Write:
           begin
@@ -196,14 +201,14 @@ begin
                   FRegistrySettings.RootForDefaults,
                   FRegistrySettings.Section,
                   FRegistrySettings.Ident,
-                  ItemIndex,
+                  LastChecked,
                   FRegistrySettings.WriteDefaults,
                   FRegistrySettings.GroupIndex);
 
                   if (FRegistrySettings.ListSection <> '') then
                   begin
-                    ident_by_itemindex := Items.Strings[ItemIndex];
-                    checked_by_itemindex := Checked[ItemIndex];
+                    ident_by_itemindex := Items.Strings[LastChecked];
+                    checked_by_itemindex := Checked[LastChecked];
                     RegistrySource.WriteBool(FRegistrySettings.RootKey,
                       FRegistrySettings.RootKeyForDefaults,
                       FRegistrySettings.RootForDefaults,
@@ -225,7 +230,7 @@ begin
   end;
 end;
 
-function TCustomRegCheckGroup.GetItemsByRegistry: boolean;
+function TCustomRegCheckGroup.GetItemsByRegistry(aCheckOnly: boolean): boolean;
 var
   list: TStrings;
   index: integer;
@@ -259,7 +264,7 @@ begin
               list,
               FRegistrySettings.ReadDefaults,
               FRegistrySettings.SourceKind);
-            SetCheckedItemsByList(list);
+            SetCheckedItemsByList(list, aCheckOnly);
             index := RegistrySource.ReadInteger(FRegistrySettings.RootKey,
               FRegistrySettings.RootKeyForDefaults,
               FRegistrySettings.RootForDefaults,
@@ -268,9 +273,9 @@ begin
               FRegistrySettings.Default,
               FRegistrySettings.ReadDefaults);
             if (index <= Items.Count - 1) then
-              ItemIndex := index
+              LastChecked := index
             else
-              ItemIndex := Items.Count - 1;
+              LastChecked := Items.Count - 1;
           end;
         end;
       end;
@@ -433,16 +438,15 @@ begin
   end;
 end;
 
-procedure TCustomRegCheckGroup.SetItemIndex(aItemIndex: integer);
+procedure TCustomRegCheckGroup.SetLastChecked(aLastChecked: integer);
 begin
-  FItemIndex := aItemIndex;
+  FLastChecked := aLastChecked;
 end;
 
 procedure TCustomRegCheckGroup.Click;
 begin
   inherited;
 
-  ItemIndex := 1;
   FIsModified := True;
 
   if FRegistrySettings.DoWriteAdHoc then

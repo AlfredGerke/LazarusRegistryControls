@@ -26,12 +26,14 @@ type
     FRegistrySettings: TRegistrySettingsCheckedList;
     FIsModified: boolean;
 
-    procedure SetCheckedItemsByValue(aList: TStrings);
-    procedure SetCheckedItemsByList(aList: TStrings);
+    procedure SetCheckedItemsByValue(aList: TStrings;
+                                     aCheckOnly: boolean);
+    procedure SetCheckedItemsByList(aList: TStrings;
+                                    aCheckOnly: boolean);
     function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean;
                             aType: TInfoKind = ikItemIndex);
-    function GetItemsByRegistry: boolean;
+    function GetItemsByRegistry(aCheckOnly: boolean): boolean;
   protected
     procedure ShowEditDialog(var aMessage: TLMessage);
       message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
@@ -100,7 +102,8 @@ end;
 
 { TCustomRegCheckListBox }
 
-procedure TCustomRegCheckListBox.SetCheckedItemsByValue(aList: TStrings);
+procedure TCustomRegCheckListBox.SetCheckedItemsByValue(aList: TStrings;
+  aCheckOnly: boolean);
 var
   anz: integer;
   res_str: string;
@@ -111,8 +114,12 @@ begin
   for anz := 0 to aList.Count - 1 do
   begin
     res_str := aList.ValueFromIndex[anz];
-    item_value := aList.Names[anz];
-    Items.Add(item_value);
+
+    if not aCheckOnly then
+    begin
+      item_value := aList.Names[anz];
+      Items.Add(item_value);
+    end;
 
     if TryStrToBool(res_str, res_bool) then
       Checked[anz] := res_bool
@@ -121,9 +128,10 @@ begin
   end;
 end;
 
-procedure TCustomRegCheckListBox.SetCheckedItemsByList(aList: TStrings);
+procedure TCustomRegCheckListBox.SetCheckedItemsByList(aList: TStrings;
+  aCheckOnly: boolean);
 begin
-  SetCheckedItemsByValue(aList);
+  SetCheckedItemsByValue(aList, aCheckOnly);
 end;
 
 function TCustomRegCheckListBox.RefreshRegistrySettings: boolean;
@@ -171,19 +179,10 @@ begin
           Read:
           begin
             if (FRegistrySettings.CanRead and FRegistrySettings.ItemsByRegistry) then
-              GetItemsByRegistry
+              GetItemsByRegistry(False)
             else
-            begin
-              if (FRegistrySettings.CanRead and not
-                FRegistrySettings.ItemsByRegistry) then
-                ItemIndex := RegistrySource.ReadInteger(FRegistrySettings.RootKey,
-                  FRegistrySettings.RootKeyForDefaults,
-                  FRegistrySettings.RootForDefaults,
-                  FRegistrySettings.Section,
-                  FRegistrySettings.Ident,
-                  FRegistrySettings.Default,
-                  FRegistrySettings.ReadDefaults);
-            end;
+              if (FRegistrySettings.CanRead and not FRegistrySettings.ItemsByRegistry) then
+                GetItemsByRegistry(True);
           end;
           Write:
           begin
@@ -231,7 +230,7 @@ begin
   end;
 end;
 
-function TCustomRegCheckListBox.GetItemsByRegistry: boolean;
+function TCustomRegCheckListBox.GetItemsByRegistry(aCheckOnly: boolean): boolean;
 var
   list: TStrings;
   index: integer;
@@ -265,7 +264,7 @@ begin
               list,
               FRegistrySettings.ReadDefaults,
               FRegistrySettings.SourceKind);
-            SetCheckedItemsByList(list);
+            SetCheckedItemsByList(list, aCheckOnly);
             index := RegistrySource.ReadInteger(FRegistrySettings.RootKey,
               FRegistrySettings.RootKeyForDefaults,
               FRegistrySettings.RootForDefaults,
@@ -390,7 +389,6 @@ var
 begin
   if FRegistrySettings.DoSyncData then
   begin
-    ;
     group_index := aMessage.lParam;
     if (group_index > 0) then
     begin
