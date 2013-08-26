@@ -127,7 +127,7 @@ var
   res_bool: boolean;
   item_value: string;
 begin
-  if not aCheckOnly then;
+  if not aCheckOnly then
   begin
     Items.Clear;
 
@@ -247,17 +247,10 @@ var
   index: integer;
 begin
   Result := False;
+  list := TStringList.Create;
+  Items.BeginUpdate;
   try
-    Items.BeginUpdate;
     try
-      list := TStringList.Create;
-
-      if assigned(Items) then
-      begin
-        list.Clear;
-        Items.Clear;
-      end;
-
       if not (csDesigning in ComponentState) then
       begin
         if assigned(RegistrySource) then
@@ -298,7 +291,8 @@ begin
     end;
   finally
     Items.EndUpdate;
-    list.Free;
+    if Assigned(list) then
+      FreeAndNil(list);
   end;
 end;
 

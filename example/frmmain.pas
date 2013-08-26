@@ -5,10 +5,31 @@ unit frmmain;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Buttons, ExtCtrls, Menus, ActnList, ComCtrls, CheckLst, regsourcen, regedit,
-  regcheckgroup, reglistbox, regcombobox, regvaluelisteditor, regchecklistbox,
-  regradiogroup, regcheckbox, regradiobutton, regtype;
+  Classes,
+  SysUtils,
+  FileUtil,
+  Forms,
+  Controls,
+  Graphics,
+  Dialogs,
+  StdCtrls,
+  Buttons,
+  ExtCtrls,
+  Menus,
+  ActnList,
+  ComCtrls,
+  CheckLst,
+  regsourcen,
+  regedit,
+  regcheckgroup,
+  reglistbox,
+  regcombobox,
+  regvaluelisteditor,
+  regchecklistbox,
+  regradiogroup,
+  regcheckbox,
+  regradiobutton,
+  regtype;
 
 type
 
@@ -40,6 +61,13 @@ type
     btnSyncDataOf: TButton;
     btnWriteAdHocOnList: TButton;
     lblCheckListBox: TLabel;
+    lblCheckListBox2: TLabel;
+    lblCheckListBox3: TLabel;
+    lblCheckGroup2: TLabel;
+    lblComboBox2: TLabel;
+    lblEditSingleValue1: TLabel;
+    lblListBox2: TLabel;
+    lblRadioGroup2: TLabel;
     lblRadioGroupList: TLabel;
     lblEditSingleValue: TLabel;
     lblListBox1: TLabel;
@@ -55,11 +83,15 @@ type
     mnuClose: TMenuItem;
     mnuFile: TMenuItem;
     PageControl1: TPageControl;
+    pnlClient1: TPanel;
     pnlClientList: TPanel;
     pnlClient: TPanel;
     pnlTop: TPanel;
     pnlTopList: TPanel;
     rcbxCheckBox1: TRegCheckBox;
+    rcbxCheckBox2: TRegCheckBox;
+    rcgCheckGroup3: TRegCheckGroup;
+    redtComboBox2: TRegComboBox;
     redtComboBoxList1: TRegComboBox;
     redtControlName: TRegEdit;
     redtControlName1: TRegEdit;
@@ -67,16 +99,22 @@ type
     redtComboBox1: TRegComboBox;
     rcgCheckGroup1: TRegCheckGroup;
     rcgCheckGroup2: TRegCheckGroup;
+    redtEdit1: TRegEdit;
+    rgrpRadioGroup2: TRegRadioGroup;
     rlbCheckListBox2: TRegCheckListBox;
     rlbCheckListBox1: TRegCheckListBox;
     RegistrySource1: TRegistrySource;
     RegistrySource2: TRegistrySource;
+    rlbCheckListBox3: TRegCheckListBox;
     rlbListBox2: TRegListBox;
     rlbListBox1: TRegListBox;
     rgrpRadioGroup1: TRegRadioGroup;
     rgrpRadioGroupList1: TRegRadioGroup;
+    rlbListBox3: TRegListBox;
     rrbRadioButton1: TRegRadioButton;
     rrbRadioButton2: TRegRadioButton;
+    rrbRadioButton3: TRegRadioButton;
+    rrbRadioButton4: TRegRadioButton;
     tabSingleValue: TTabSheet;
     tabList: TTabSheet;
     tabKombination: TTabSheet;
@@ -139,10 +177,16 @@ end;
 procedure TMain.acCheckExampleSettingsExecute(Sender: TObject);
 begin
   if CheckForExampleSettings then
-    MessageDlg('Der Schlüssel "Desktop" ist vorhanden und gefüllt. Beispieleinträge sind grundsätzlich vorhanden!', mtInformation, [mbOk], 0)
+    MessageDlg('Der Schlüssel "Desktop" ist vorhanden und gefüllt. Beispieleinträge sind grundsätzlich vorhanden!',
+      mtInformation,
+      [mbOK],
+      0)
   else
   begin
-    MessageDlg('Der Schlüssel "Desktop" ist entweder nicht vorhanden oder nicht gefüllt. Beispieleinträge sind wahrscheinlich nicht vorhanden!', mtWarning, [mbOk], 0);
+    MessageDlg('Der Schlüssel "Desktop" ist entweder nicht vorhanden oder nicht gefüllt. Beispieleinträge sind wahrscheinlich nicht vorhanden!',
+      mtWarning,
+      [mbOK],
+      0);
     CreateSettings;
   end;
 end;
@@ -174,7 +218,7 @@ end;
 
 procedure TMain.acSyncDataOffExecute(Sender: TObject);
 begin
-    RefreshSyncDataOnOff(0, False);
+  RefreshSyncDataOnOff(0, False);
 end;
 
 procedure TMain.acWriteAdHocOffExecute(Sender: TObject);
@@ -220,7 +264,7 @@ begin
     list := TStringList.Create;
     try
       ReadSection('Desktop', list);
-      Result := (list.count > 0);
+      Result := (list.Count > 0);
     finally
       if Assigned(list) then
         FreeAndNil(list);
@@ -233,19 +277,26 @@ var
   use_defaults: boolean;
   old_sync_data: boolean;
 begin
-  if (MessageDlg('Sollen Beispieleinträge in der Registry erstellt werden? (Einträge werden im Root: HKEY_CURRENT_USER erstellt)', mtConfirmation, [mbYes, mbNo], 0) = mrYes) then
+  if (MessageDlg(
+    'Sollen Beispieleinträge in der Registry erstellt werden? (Einträge werden im Root: HKEY_CURRENT_USER erstellt)',
+    mtConfirmation, [mbYes, mbNo], 0) = mrYes) then
   begin
-    use_defaults := (MessageDlg('Zu den Beispieleinträgen können Defaults vergeben werden. Sollen Defaults erstellt werden? (Defaults werden im Root: HKEY_LOCAL_MACHINE erstellt, Adminrechte eventuell notwendig!!!)', mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    use_defaults :=
+      (MessageDlg('Zu den Beispieleinträgen können Defaults vergeben werden. Sollen Defaults erstellt werden? (Defaults werden im Root: HKEY_LOCAL_MACHINE erstellt, Adminrechte eventuell notwendig!!!)',
+         mtConfirmation,
+         [mbYes, mbNo],
+         0) = mrYes);
     with RegistrySource1 do
     begin
-      Screen.Cursor:=crHourGlass;
+      Screen.Cursor := crHourGlass;
       old_sync_data := DoSyncData;
       DoSyncData := False;
       WriteDefaults := use_defaults;
 
       WriteString('Desktop', 'Version', '1.0.0');
       WriteString('Desktop', 'Projekt', 'LazarusRegistryControls');
-      WriteString('Desktop', 'Git', 'https://github.com/AlfredGerke/LazarusRegistryControls.git');
+      WriteString('Desktop', 'Git',
+        'https://github.com/AlfredGerke/LazarusRegistryControls.git');
       WriteString('Desktop', 'Test', 'Einzelwerte');
 
       // Einzelwerte an Controls übergeben
@@ -263,12 +314,12 @@ begin
 
       RefreshControlData('', 0);
       DoSyncData := old_sync_data;
-      Screen.Cursor:=crDefault;
+      Screen.Cursor := crDefault;
     end;
 
     with RegistrySource2 do
     begin
-      Screen.Cursor:=crHourGlass;
+      Screen.Cursor := crHourGlass;
       old_sync_data := DoSyncData;
       DoSyncData := False;
       WriteDefaults := use_defaults;
@@ -329,10 +380,9 @@ begin
 
       RefreshControlData('', 0);
       DoSyncData := old_sync_data;
-      Screen.Cursor:=crDefault;
+      Screen.Cursor := crDefault;
     end;
   end;
 end;
 
 end.
-

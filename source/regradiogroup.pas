@@ -187,16 +187,12 @@ var
   index: integer;
 begin
   Result := False;
+  list := TStringList.Create;
   try
     Items.BeginUpdate;
     try
-      list := TStringList.Create;
-
       if assigned(Items) then
-      begin
-        list.Clear;
         Items.Clear;
-      end;
 
       if not (csDesigning in ComponentState) then
       begin
@@ -223,6 +219,7 @@ begin
                        FRegistrySettings.Ident,
                        FRegistrySettings.Default,
                        FRegistrySettings.ReadDefaults);
+            Items.EndUpdate;
             if (index <= Items.Count-1) then
               ItemIndex := index
             else
@@ -237,8 +234,8 @@ begin
         Result := False;
     end;
   finally
-    Items.EndUpdate;
-    list.Free;
+    if Assigned(list) then
+      FreeAndNil(list);
   end;
 end;
 
