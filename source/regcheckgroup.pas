@@ -26,7 +26,8 @@ type
     FRegistrySettings: TRegistrySettingsCheckedList;
     FIsModified: boolean;
     FLastChecked: integer;
-    FCustomOnItemCheck: TCheckGroupClicked;
+    FOnOriginalItemCheck: TCheckGroupClicked;
+    FOnCustomItemCheck: TCheckGroupClicked;
 
     procedure OnHookedItemCheck(Sender: TObject; Index: integer);
     procedure SetCheckedItemsByList(aList: TStrings;
@@ -62,6 +63,9 @@ type
     property LastChecked: integer
       read FLastChecked
       write SetLastChecked;
+    property OnCustomItemCheck: TCheckGroupClicked
+      read FOnCustomItemCheck
+      write FOnCustomItemCheck;
   public
     procedure Click; override;
     procedure AfterConstruction; override;
@@ -86,6 +90,7 @@ type
   published
     property RegistrySettings;
     property RegistrySource;
+    property OnCustomItemCheck;
   end;
 
 procedure Register;
@@ -115,8 +120,11 @@ begin
 
   Click;
 
-  if Assigned(FCustomOnItemCheck) then
-    FCustomOnItemCheck(Sender, Index);
+  if Assigned(FOnOriginalItemCheck) then
+    FOnOriginalItemCheck(Sender, Index);
+
+  if Assigned(FOnCustomItemCheck) then
+    FOnCustomItemCheck(Sender, Index);
 end;
 
 procedure TCustomRegCheckGroup.SetCheckedItemsByList(aList: TStrings;
@@ -394,7 +402,6 @@ var
 begin
   if FRegistrySettings.DoSyncData then
   begin
-    ;
     group_index := aMessage.lParam;
     if (group_index > 0) then
     begin
@@ -508,7 +515,7 @@ begin
   FRegistrySettings.OnChange := OnChangeSettings;
 
   if Assigned(OnItemClick) then
-    FCustomOnItemCheck := OnItemClick;
+    FOnOriginalItemCheck := OnItemClick;
 
   OnItemClick := OnHookedItemCheck;
 end;

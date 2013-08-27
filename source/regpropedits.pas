@@ -14,7 +14,7 @@ type
 
   { TRegistryControlComponentEditor }
 
-  TRegistryControlComponentEditor = class(TComponentEditor)
+  TRegistryControlComponentEditor = class(TDefaultComponentEditor)
   protected
     procedure ExecuteShowInfo;
     procedure ExecuteEditRootKeys;
@@ -64,7 +64,8 @@ uses
   Dialogs,
   dlgaboutcomponent,
   LMessages,
-  regmsg;
+  regmsg,
+  ObjInspStrConsts;
 
 { TRegistryControlComponentEditor }
 
@@ -90,24 +91,26 @@ end;
 procedure TRegistryControlComponentEditor.ExecuteVerb(Index: Integer);
 begin
   case Index of
-    0: ExecuteShowInfo;
+    0: Edit;
     1:;
-    2: ExecuteEditRootKeys;
+    2: ExecuteShowInfo;
+    3: ExecuteEditRootKeys;
   end;
 end;
 
 function TRegistryControlComponentEditor.GetVerb(Index: Integer): String;
 begin
   case Index of
-    0: Result := 'About...';
+    0: Result := oisCreateDefaultEvent;
     1: Result := '-';
-    2: Result := 'Show RootKeys';
+    2: Result := 'About...';
+    3: Result := 'Show RootKeys';
   end;
 end;
 
 function TRegistryControlComponentEditor.GetVerbCount: Integer;
 begin
-  Result := 3;
+  Result := 4;
 end;
 
 { TRegistrySourceComponentEditor }
