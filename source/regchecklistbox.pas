@@ -33,17 +33,12 @@ type
                             aType: TInfoKind = ikItemIndex);
     function GetItemsByRegistry(aCheckOnly: boolean): boolean;
   protected
-    procedure ShowEditDialog(var aMessage: TLMessage);
-      message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
-    procedure FreeRegistrySource(var aMessage: TLMessage);
-      message LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE;
-    procedure RefreshWriteAdHoc(var aMessage: TLMessage);
-      message LM_REGISTRY_CONTROL_SET_WRITEADHOC;
+    procedure ShowEditDialog(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
+    procedure FreeRegistrySource(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE;
+    procedure RefreshWriteAdHoc(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_WRITEADHOC;
     procedure RefreshSync(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_SYNC;
-    procedure RefreshSettings(var aMessage: TLMessage);
-      message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
-    procedure RefreshData(var aMessage: TLMessage);
-      message LM_REGISTRY_CONTROL_REFRESH_DATA;
+    procedure RefreshSettings(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
+    procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
 
     procedure SetName(const NewName: TComponentName); override;
     procedure ItemClick(const AIndex: integer); override;

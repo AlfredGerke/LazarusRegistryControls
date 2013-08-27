@@ -53,14 +53,14 @@ object Main: TMain
           Top = 46
           Width = 248
           TabOrder = 0
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'Edit'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 'leerstring'
+          RegistrySettings.Section = 'Einzelwerte'
+          RegistrySettings.Ident = 'Edit'
           RegistrySource = RegistrySource1
         end
         object rcbxCheckBox1: TRegCheckBox
@@ -77,14 +77,14 @@ object Main: TMain
           Font.Quality = fqDraft
           ParentFont = False
           TabOrder = 1
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'CheckBox1'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = False
+          RegistrySettings.Section = 'Einzelwerte'
+          RegistrySettings.Ident = 'CheckBox1'
           RegistrySource = RegistrySource1
         end
         object rrbRadioButton1: TRegRadioButton
@@ -101,14 +101,14 @@ object Main: TMain
           Font.Quality = fqDraft
           ParentFont = False
           TabOrder = 2
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'RadioButton1'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = False
+          RegistrySettings.Section = 'Einzelwerte'
+          RegistrySettings.Ident = 'RadioButton1'
           RegistrySource = RegistrySource1
         end
         object rrbRadioButton2: TRegRadioButton
@@ -125,14 +125,14 @@ object Main: TMain
           Font.Quality = fqDraft
           ParentFont = False
           TabOrder = 3
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'RadioButton2'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = False
+          RegistrySettings.Section = 'Einzelwerte'
+          RegistrySettings.Ident = 'RadioButton2'
           RegistrySource = RegistrySource1
         end
         object rgrpRadioGroup1: TRegRadioGroup
@@ -160,14 +160,14 @@ object Main: TMain
             'RadioGroup statisch 5'
           )
           TabOrder = 4
-          RegistrySettings.Section = 'RadioGroup1'
-          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
+          RegistrySettings.Section = 'RadioGroup1'
+          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = False
           RegistrySettings.SourceKind = lskUnknown
           RegistrySource = RegistrySource1
@@ -187,8 +187,6 @@ object Main: TMain
           )
           ItemHeight = 13
           TabOrder = 5
-          RegistrySettings.Section = 'ListBox1'
-          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
@@ -214,14 +212,14 @@ object Main: TMain
             'statischer Eintrag 6'
           )
           TabOrder = 6
-          RegistrySettings.Section = 'Combobox1'
-          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
+          RegistrySettings.Section = 'Combobox1'
+          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = False
           RegistrySettings.SourceKind = lskUnknown
           RegistrySource = RegistrySource1
@@ -288,14 +286,14 @@ object Main: TMain
           )
           ItemHeight = 15
           TabOrder = 7
-          RegistrySettings.Section = 'CheckListBox2'
-          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
+          RegistrySettings.Section = 'CheckListBox2'
+          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = False
           RegistrySettings.ListSection = 'CheckListBoxListe'
           RegistrySource = RegistrySource1
@@ -386,14 +384,14 @@ object Main: TMain
             Top = 46
             Width = 248
             TabOrder = 0
-            RegistrySettings.Section = 'Einzelwerte'
-            RegistrySettings.Ident = 'Edit'
             RegistrySettings.CanRead = True
             RegistrySettings.CanWrite = True
             RegistrySettings.DoWriteAdHoc = True
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = 'leerstring'
+            RegistrySettings.Section = 'Einzelwerte'
+            RegistrySettings.Ident = 'Edit'
             RegistrySource = RegistrySource1
           end
           object rcbxCheckBox2: TRegCheckBox
@@ -410,8 +408,6 @@ object Main: TMain
             Font.Quality = fqDraft
             ParentFont = False
             TabOrder = 2
-            RegistrySettings.Section = 'Einzelwerte'
-            RegistrySettings.Ident = 'CheckBox1'
             RegistrySettings.CanRead = True
             RegistrySettings.CanWrite = True
             RegistrySettings.DoWriteAdHoc = True
@@ -434,8 +430,6 @@ object Main: TMain
             Font.Quality = fqDraft
             ParentFont = False
             TabOrder = 3
-            RegistrySettings.Section = 'Einzelwerte'
-            RegistrySettings.Ident = 'RadioButton1'
             RegistrySettings.CanRead = True
             RegistrySettings.CanWrite = True
             RegistrySettings.DoWriteAdHoc = True
@@ -466,6 +460,7 @@ object Main: TMain
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = False
+
             RegistrySource = RegistrySource1
           end
           object rgrpRadioGroup2: TRegRadioGroup
@@ -501,6 +496,7 @@ object Main: TMain
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = 0
+
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.SourceKind = lskUnknown
             RegistrySource = RegistrySource1
@@ -520,8 +516,6 @@ object Main: TMain
             )
             ItemHeight = 13
             TabOrder = 5
-            RegistrySettings.Section = 'ListBox1'
-            RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.CanRead = True
             RegistrySettings.CanWrite = True
             RegistrySettings.DoWriteAdHoc = True
@@ -547,14 +541,14 @@ object Main: TMain
               'statischer Eintrag 6'
             )
             TabOrder = 1
-            RegistrySettings.Section = 'Combobox1'
-            RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.CanRead = True
             RegistrySettings.CanWrite = True
             RegistrySettings.DoWriteAdHoc = True
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = 0
+            RegistrySettings.Section = 'Combobox1'
+            RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.SourceKind = lskUnknown
             RegistrySource = RegistrySource1
@@ -629,6 +623,7 @@ object Main: TMain
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = 0
+
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.ListSection = 'CheckListBoxListe'
             RegistrySource = RegistrySource1
@@ -661,14 +656,14 @@ object Main: TMain
               'CheckGroup statisch 5'
             )
             TabOrder = 8
-            RegistrySettings.Section = 'CheckGroup2'
-            RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.CanRead = True
             RegistrySettings.CanWrite = True
             RegistrySettings.DoWriteAdHoc = True
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = 0
+            RegistrySettings.Section = 'CheckGroup2'
+            RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.ListSection = 'CheckGroupListe'
             RegistrySource = RegistrySource1
@@ -804,6 +799,7 @@ object Main: TMain
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
+
           RegistrySource = RegistrySource2
         end
         object btnRefreshControlsList: TButton
@@ -872,14 +868,14 @@ object Main: TMain
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
           TabOrder = 3
-          RegistrySettings.Section = 'RadioGroup1'
-          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
+          RegistrySettings.Section = 'RadioGroup1'
+          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'RaidoGroupListe'
           RegistrySettings.SourceKind = byKey
@@ -892,14 +888,14 @@ object Main: TMain
           Width = 248
           ItemHeight = 0
           TabOrder = 1
-          RegistrySettings.Section = 'ListBox1'
-          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
+          RegistrySettings.Section = 'ListBox1'
+          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'ListBoxListe'
           RegistrySettings.SourceKind = byKey
@@ -912,14 +908,14 @@ object Main: TMain
           Width = 248
           ItemHeight = 13
           TabOrder = 0
-          RegistrySettings.Section = 'ComboBox1'
-          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
+          RegistrySettings.Section = 'ComboBox1'
+          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'ComboBoxListe'
           RegistrySettings.SourceKind = byKey
@@ -983,14 +979,14 @@ object Main: TMain
           Width = 248
           ItemHeight = 0
           TabOrder = 2
-          RegistrySettings.Section = 'CheckListBox1'
-          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
+          RegistrySettings.Section = 'CheckListBox1'
+          RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'CheckListBoxListe'
           RegistrySource = RegistrySource2
@@ -1057,6 +1053,26 @@ object Main: TMain
           ParentColor = False
           ParentFont = False
         end
+        object rvlValueListEditor: TRegValueListEditor
+          Left = 20
+          Height = 268
+          Top = 83
+          Width = 248
+          FixedCols = 0
+          RowCount = 2
+          TabOrder = 5
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.ListSection = 'RegValueListe'
+          RegistrySource = RegistrySource2
+          ColWidths = (
+            64
+            180
+          )
+        end
       end
     end
     object tabKombination: TTabSheet
@@ -1076,6 +1092,12 @@ object Main: TMain
       end
       object mnuClose: TMenuItem
         Action = acClose
+      end
+    end
+    object mnuRefresh: TMenuItem
+      Caption = 'Aktualisieren'
+      object mnuSettings: TMenuItem
+        Action = acRefreshSettingsSingleSource
       end
     end
   end
@@ -1150,6 +1172,11 @@ object Main: TMain
       Category = 'ExecuteListExample'
       Caption = 'Steuerelemente nicht synchronisieren'
       OnExecute = acSyncDataListOffExecute
+    end
+    object acRefreshSettingsSingleSource: TAction
+      Category = 'ExecuteSingleValueExample'
+      Caption = 'Einstellungen (RegistrySource1)'
+      OnExecute = acRefreshSettingsSingleSourceExecute
     end
   end
   object RegistrySource1: TRegistrySource

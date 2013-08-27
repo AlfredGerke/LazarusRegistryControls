@@ -42,7 +42,7 @@ für den Einsatz unter Windows sinnvoll.
 
 - registrycontrols.lpk    
   Inhalt: TRegEdit, TRegComboBox, TRegCheckBox, TRegListBox, TRegRadioButton, 
-  TRegRadioGroup, TCheckListBox, TRegCheckGroup, TRegValueListEditor 
+  TRegRadioGroup, TRegCheckListBox, TRegCheckGroup, TRegValueListEditor 
 
 
 3 Installation

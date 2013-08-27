@@ -22,6 +22,12 @@ type
   TRegistrySettingsBooleanDefault = class(TCustomRegistrySettings<boolean>)
   published
     property Default;
+    property Section: string
+      read FSection
+      write SetSection;
+    property Ident: string
+      read FIdent
+      write SetIdent;
   end;
 
   { TRegistrySettingsIntegerDefault }
@@ -29,6 +35,12 @@ type
   TRegistrySettingsIntegerDefault = class(TCustomRegistrySettings<integer>)
   published
     property Default;
+    property Section: string
+      read FSection
+      write SetSection;
+    property Ident: string
+      read FIdent
+      write SetIdent;
   end;
 
   { TRegistrySettingsStringDefault }
@@ -36,6 +48,32 @@ type
   TRegistrySettingsStringDefault = class(TCustomRegistrySettings<string>)
   published
     property Default;
+    property Section: string
+      read FSection
+      write SetSection;
+    property Ident: string
+      read FIdent
+      write SetIdent;
+  end;
+
+  { TRegistrySettingsStringDefault }
+
+  { TRegistrySettingsValueList }
+
+  TRegistrySettingsValueList = class(TCustomRegistrySettings<string>)
+  private
+    FListSection: string;
+    FSourceKind: TListSourceKind;
+  protected
+    procedure _Initialize; override;
+    procedure _Finalize; override;
+  public
+    property SourceKind: TListSourceKind
+      read FSourceKind;
+  published
+    property ListSection: string
+      read FListSection
+      write FListSection;
   end;
 
   { TRegistrySettingsList }
@@ -48,6 +86,12 @@ type
   protected
   public
   published
+    property Section: string
+      read FSection
+      write SetSection;
+    property Ident: string
+      read FIdent
+      write SetIdent;
     property ItemsByRegistry: boolean
       read FItemsByRegistry
       write FItemsByRegistry;
@@ -73,6 +117,12 @@ type
     property SourceKind: TListSourceKind
       read FSourceKind;
   published
+    property Section: string
+      read FSection
+      write SetSection;
+    property Ident: string
+      read FIdent
+      write SetIdent;
     property ItemsByRegistry: boolean
       read FItemsByRegistry
       write FItemsByRegistry;
@@ -289,6 +339,23 @@ begin
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsBooleanDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsCheckedList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsValueList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
+end;
+
+{ TRegistrySettingsValueList }
+
+procedure TRegistrySettingsValueList._Initialize;
+begin
+  FSourceKind := Both;
+
+  inherited;
+end;
+
+procedure TRegistrySettingsValueList._Finalize;
+begin
+  FSourceKind := lskUnknown;
+
+  inherited;
 end;
 
 { TRegistrySettingsCheckedList }

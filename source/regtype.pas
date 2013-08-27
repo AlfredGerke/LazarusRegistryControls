@@ -163,6 +163,12 @@ type
     property Default: _T
       read FDefault
       write SetDefault;
+    property Section: string
+      read FSection
+      write SetSection;
+    property Ident: string
+      read FIdent
+      write SetIdent;
   public
     procedure GetRootKeys(var aRootKeys: TRootKeysStruct);
     procedure SetRootKeys(aRootKeys: TRootKeysStruct);
@@ -202,12 +208,6 @@ type
       read FOnChange
       write FOnChange;
   published
-    property Section: string
-      read FSection
-      write SetSection;
-    property Ident: string
-      read FIdent
-      write SetIdent;
     property CanRead: boolean
       read FCanRead
       write SetCanRead;
@@ -331,19 +331,14 @@ var
 begin
   if Assigned(FOnBeforeRegistrySettingChange) then
   begin
+    Result := False;
+
     if OwnerIsLoading then
-    begin
-      Result := False;
       Exit;
-    end;
 
     setting_value.kind := aKind;
     case aKind of
-      rskUnknown:
-      begin
-        Result := False;
-        Exit;
-      end;
+      rskUnknown: Exit;
       rskRootKey: setting_value.RootKey := aValue;
       rskRootKeyForDefault: setting_value.RootKeyForDefault := aValue;
       rskSection: setting_value.Section := aValue;
@@ -362,7 +357,11 @@ begin
     FOnBeforeRegistrySettingChange(setting_value, is_ok);
     if not is_ok then
       Exit;
-  end;
+
+    Result := True;
+  end
+  else
+    Result := True;
 end;
 
 procedure TCustomRegistrySettings<_T>._Initialize;

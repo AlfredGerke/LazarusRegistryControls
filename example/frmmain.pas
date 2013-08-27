@@ -18,7 +18,6 @@ uses
   Menus,
   ActnList,
   ComCtrls,
-  CheckLst,
   regsourcen,
   regedit,
   regcheckgroup,
@@ -28,8 +27,7 @@ uses
   regchecklistbox,
   regradiogroup,
   regcheckbox,
-  regradiobutton,
-  regtype;
+  regradiobutton;
 
 type
 
@@ -41,6 +39,7 @@ type
     acCheckExampleSettings: TAction;
     acRefreshData: TAction;
     acSyncDataOff: TAction;
+    acRefreshSettingsSingleSource: TAction;
     acWriteAdHocOffList: TAction;
     acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
@@ -79,6 +78,8 @@ type
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    mnuRefresh: TMenuItem;
+    mnuSettings: TMenuItem;
     mnuExampleSettings: TMenuItem;
     mnuClose: TMenuItem;
     mnuFile: TMenuItem;
@@ -100,6 +101,7 @@ type
     rcgCheckGroup1: TRegCheckGroup;
     rcgCheckGroup2: TRegCheckGroup;
     redtEdit1: TRegEdit;
+    rvlValueListEditor: TRegValueListEditor;
     rgrpRadioGroup2: TRegRadioGroup;
     rlbCheckListBox2: TRegCheckListBox;
     rlbCheckListBox1: TRegCheckListBox;
@@ -123,6 +125,7 @@ type
     procedure acCreateExampleSettingsExecute(Sender: TObject);
     procedure acRefreshDataExecute(Sender: TObject);
     procedure acRefreshDataListExecute(Sender: TObject);
+    procedure acRefreshSettingsSingleSourceExecute(Sender: TObject);
     procedure acSyncDataListOffExecute(Sender: TObject);
     procedure acSyncDataListOnExecute(Sender: TObject);
     procedure acSyncDataOffExecute(Sender: TObject);
@@ -204,6 +207,11 @@ end;
 procedure TMain.acRefreshDataListExecute(Sender: TObject);
 begin
   RegistrySource2.RefreshControlData(Trim(redtControlName1.Text));
+end;
+
+procedure TMain.acRefreshSettingsSingleSourceExecute(Sender: TObject);
+begin
+  RegistrySource1.RefreshSettings;
 end;
 
 procedure TMain.acSyncDataListOffExecute(Sender: TObject);
