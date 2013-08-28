@@ -40,6 +40,7 @@ type
     acRefreshData: TAction;
     acSyncDataOff: TAction;
     acRefreshSettingsSingleSource: TAction;
+    acRefreshSettingListSource: TAction;
     acWriteAdHocOffList: TAction;
     acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
@@ -77,9 +78,11 @@ type
     lblCheckGroup: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
+    mnuCheckCreateSettings: TMenuItem;
+    mnuCreateSettings: TMenuItem;
+    mnuSettingsList: TMenuItem;
     mnuRefresh: TMenuItem;
-    mnuSettings: TMenuItem;
+    mnuSettingsSingle: TMenuItem;
     mnuExampleSettings: TMenuItem;
     mnuClose: TMenuItem;
     mnuFile: TMenuItem;
@@ -125,6 +128,7 @@ type
     procedure acCreateExampleSettingsExecute(Sender: TObject);
     procedure acRefreshDataExecute(Sender: TObject);
     procedure acRefreshDataListExecute(Sender: TObject);
+    procedure acRefreshSettingListSourceExecute(Sender: TObject);
     procedure acRefreshSettingsSingleSourceExecute(Sender: TObject);
     procedure acSyncDataListOffExecute(Sender: TObject);
     procedure acSyncDataListOnExecute(Sender: TObject);
@@ -207,6 +211,11 @@ end;
 procedure TMain.acRefreshDataListExecute(Sender: TObject);
 begin
   RegistrySource2.RefreshControlData(Trim(redtControlName1.Text));
+end;
+
+procedure TMain.acRefreshSettingListSourceExecute(Sender: TObject);
+begin
+  RegistrySource2.RefreshSettings;
 end;
 
 procedure TMain.acRefreshSettingsSingleSourceExecute(Sender: TObject);

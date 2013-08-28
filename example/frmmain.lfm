@@ -414,6 +414,8 @@ object Main: TMain
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = False
+            RegistrySettings.Section = 'Einzelwerte'
+            RegistrySettings.Ident = 'CheckBox1'
             RegistrySource = RegistrySource1
           end
           object rrbRadioButton3: TRegRadioButton
@@ -436,6 +438,8 @@ object Main: TMain
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = False
+            RegistrySettings.Section = 'Einzelwerte'
+            RegistrySettings.Ident = 'RadioButton1'
             RegistrySource = RegistrySource1
           end
           object rrbRadioButton4: TRegRadioButton
@@ -452,15 +456,14 @@ object Main: TMain
             Font.Quality = fqDraft
             ParentFont = False
             TabOrder = 4
-            RegistrySettings.Section = 'Einzelwerte'
-            RegistrySettings.Ident = 'RadioButton2'
             RegistrySettings.CanRead = True
             RegistrySettings.CanWrite = True
             RegistrySettings.DoWriteAdHoc = True
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = False
-
+            RegistrySettings.Section = 'Einzelwerte'
+            RegistrySettings.Ident = 'RadioButton2'
             RegistrySource = RegistrySource1
           end
           object rgrpRadioGroup2: TRegRadioGroup
@@ -488,15 +491,14 @@ object Main: TMain
               'RadioGroup statisch 5'
             )
             TabOrder = 7
-            RegistrySettings.Section = 'RadioGroup1'
-            RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.CanRead = True
             RegistrySettings.CanWrite = True
             RegistrySettings.DoWriteAdHoc = True
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = 0
-
+            RegistrySettings.Section = 'RadioGroup1'
+            RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.SourceKind = lskUnknown
             RegistrySource = RegistrySource1
@@ -522,6 +524,8 @@ object Main: TMain
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = 0
+            RegistrySettings.Section = 'ListBox1'
+            RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.SourceKind = lskUnknown
             RegistrySource = RegistrySource1
@@ -615,15 +619,14 @@ object Main: TMain
             )
             ItemHeight = 15
             TabOrder = 6
-            RegistrySettings.Section = 'CheckListBox2'
-            RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.CanRead = True
             RegistrySettings.CanWrite = True
             RegistrySettings.DoWriteAdHoc = True
             RegistrySettings.GroupIndex = 0
             RegistrySettings.DoSyncData = True
             RegistrySettings.Default = 0
-
+            RegistrySettings.Section = 'CheckListBox2'
+            RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.ListSection = 'CheckListBoxListe'
             RegistrySource = RegistrySource1
@@ -721,13 +724,13 @@ object Main: TMain
           Top = 35
           Width = 160
           TabOrder = 0
-          RegistrySettings.Section = 'Desktop'
-          RegistrySettings.Ident = 'ClientToRefresh'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
+          RegistrySettings.Section = 'Desktop'
+          RegistrySettings.Ident = 'ClientToRefresh'
           RegistrySource = RegistrySource1
         end
         object btnRefreshControls: TButton
@@ -792,14 +795,13 @@ object Main: TMain
           Top = 34
           Width = 160
           TabOrder = 5
-          RegistrySettings.Section = 'Desktop'
-          RegistrySettings.Ident = 'ClientToRefresh'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
-
+          RegistrySettings.Section = 'Desktop'
+          RegistrySettings.Ident = 'ClientToRefresh'
           RegistrySource = RegistrySource2
         end
         object btnRefreshControlsList: TButton
@@ -1024,14 +1026,14 @@ object Main: TMain
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
           TabOrder = 4
-          RegistrySettings.Section = 'CheckGroup1'
-          RegistrySettings.Ident = 'LastChecked'
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.Default = 0
+          RegistrySettings.Section = 'CheckGroup1'
+          RegistrySettings.Ident = 'LastChecked'
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'CheckGroupListe'
           RegistrySource = RegistrySource2
@@ -1084,11 +1086,14 @@ object Main: TMain
     top = 88
     object mnuFile: TMenuItem
       Caption = 'Datei'
-      object MenuItem2: TMenuItem
+      object mnuCheckCreateSettings: TMenuItem
         Action = acCheckExampleSettings
       end
-      object MenuItem1: TMenuItem
+      object mnuCreateSettings: TMenuItem
         Action = acCreateExampleSettings
+      end
+      object MenuItem1: TMenuItem
+        Caption = '-'
       end
       object mnuClose: TMenuItem
         Action = acClose
@@ -1096,8 +1101,11 @@ object Main: TMain
     end
     object mnuRefresh: TMenuItem
       Caption = 'Aktualisieren'
-      object mnuSettings: TMenuItem
+      object mnuSettingsSingle: TMenuItem
         Action = acRefreshSettingsSingleSource
+      end
+      object mnuSettingsList: TMenuItem
+        Action = acRefreshSettingListSource
       end
     end
   end
@@ -1116,7 +1124,7 @@ object Main: TMain
     end
     object acCheckExampleSettings: TAction
       Category = 'Example'
-      Caption = 'Beispieleinträge überprüfen'
+      Caption = 'Beispieleinträge überprüfen/erstellen'
       OnExecute = acCheckExampleSettingsExecute
     end
     object acRefreshData: TAction
@@ -1177,6 +1185,11 @@ object Main: TMain
       Category = 'ExecuteSingleValueExample'
       Caption = 'Einstellungen (RegistrySource1)'
       OnExecute = acRefreshSettingsSingleSourceExecute
+    end
+    object acRefreshSettingListSource: TAction
+      Category = 'ExecuteListExample'
+      Caption = 'Einstellungen (RegistrySource2)'
+      OnExecute = acRefreshSettingListSourceExecute
     end
   end
   object RegistrySource1: TRegistrySource
