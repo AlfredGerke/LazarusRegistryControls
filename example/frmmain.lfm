@@ -1057,7 +1057,7 @@ object Main: TMain
         end
         object rvlValueListEditor: TRegValueListEditor
           Left = 20
-          Height = 268
+          Height = 271
           Top = 83
           Width = 248
           FixedCols = 0

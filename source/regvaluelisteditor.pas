@@ -24,15 +24,12 @@ type
 
   TCustomRegValueListEditor = class(TValueListEditor)
   private
+    FCurrKeyValueItems: TKeyValueItems;
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsValueList;
-    FOnOriginalStringsChange: TNotifyEvent;
-    FOnCustomStringsChange: TNotifyEvent;
-    FOnOriginalSetEditText: TSetEditEvent;
-    FOnCustomSetEditText: TSetEditEvent;
 
-    procedure OnHookedSetEditText(Sender: TObject; ACol, ARow: Integer; const Value: string);
-    procedure OnHookedStringsChange(Sender: TObject);
+    procedure UpdateKeyValueInfo(aCol: integer;
+                                 aRow: integer);
     procedure SetItemsByList(aList: TStrings);
     function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
@@ -48,6 +45,7 @@ type
     procedure SetName(const NewName: TComponentName); override;
     procedure OnChangeSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
+    procedure SetEditText(ACol, ARow: Longint; const Value: string); override;
 
     property RegistrySettings: TRegistrySettingsValueList
       read FRegistrySettings
@@ -55,20 +53,12 @@ type
     property RegistrySource: TRegistrySource
       read FRegistrySource
       write SetRegistrySource;
-    property OnCustomStringsChange: TNotifyEvent
-      read FOnCustomStringsChange
-      write FOnCustomStringsChange;
-    property OnCustomSetEditText: TSetEditEvent
-      read FOnCustomSetEditText
-      write FOnCustomSetEditText;
   public
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
     function WriteToReg: boolean; virtual;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    property OnSetEditText;
-    property OnStringsChange;
   published
   end;
 
@@ -81,8 +71,6 @@ type
   published
     property RegistrySettings;
     property RegistrySource;
-    property OnCustomStringsChange;
-    property OnCustomSetEditText;
   end;
 
 procedure Register;
@@ -104,27 +92,21 @@ end;
 
 { TCustomRegValueListEditor }
 
-procedure TCustomRegValueListEditor.OnHookedSetEditText(Sender: TObject; ACol,
-  ARow: Integer; const Value: string);
+procedure TCustomRegValueListEditor.UpdateKeyValueInfo(aCol: integer;
+  aRow: integer);
+var
+  idxRow: integer;
+  keyValue: string;
+  valValue: string;
 begin
-  inherited;
+  idxRow := ARow-FixedRows;
+  keyValue := Strings.Names[idxRow];
+  valValue := Strings.ValueFromIndex[idxRow];
+  if not FCurrKeyValueItems.IsEqual(keyValue, valValue, ACol, ARow) then
+    FCurrKeyValueItems.SetItems(keyValue, valValue, ACol, ARow);
 
-  if Assigned(FOnOriginalSetEditText) then
-    FOnOriginalSetEditText(Sender, ACol, ARow, Value);
-
-  if Assigned(FOnCustomSetEditText) then
-    FOnCustomSetEditText(Sender, ACol, ARow, Value);
-end;
-
-procedure TCustomRegValueListEditor.OnHookedStringsChange(Sender: TObject);
-begin
-  inherited;
-
-  if Assigned(FOnOriginalStringsChange) then
-    FOnOriginalStringsChange(Sender);
-
-  if Assigned(FOnCustomStringsChange) then
-    FOnCustomStringsChange(Sender);
+  if RegistrySettings.DoWriteAdHoc then
+    WriteToReg;
 end;
 
 procedure TCustomRegValueListEditor.SetItemsByList(aList: TStrings);
@@ -133,16 +115,8 @@ begin
   Strings.BeginUpdate;
   try
     Strings.AddStrings(aList);
-    // ist das noch notwendig?
-    {
-    for anz := 0 to aList.Count - 1 do
-    begin
-      key := aList.Names[anz];
-      Keys[anz] := key;
-      Values[key] := aList.ValueFromIndex[anz];
-    end;
-    }
     Loaded;
+    FCurrKeyValueItems.Clear;
   finally
     Strings.EndUpdate;
   end;
@@ -198,7 +172,7 @@ begin
               sync_state_by_default := FRegistrySettings.DoSyncData;
               FRegistrySettings.DoSyncData := False;
               try
-                // wie wird man in die Registry schreibe?
+                // wie wird man in die Registry schreiben?
               finally
                 FRegistrySettings.DoSyncData := sync_state_by_default;
               end;
@@ -396,6 +370,14 @@ begin
   end;
 end;
 
+procedure TCustomRegValueListEditor.SetEditText(ACol, ARow: Longint;
+  const Value: string);
+begin
+  inherited SetEditText(ACol, ARow, Value);
+
+  UpdateKeyValueInfo(ACol, ARow);
+end;
+
 procedure TCustomRegValueListEditor.AfterConstruction;
 begin
   inherited AfterConstruction;
@@ -443,24 +425,11 @@ begin
 
   FRegistrySettings := TRegistrySettingsValueList.Create(Self);
   FRegistrySettings.OnChange := OnChangeSettings;
-
-  FOnOriginalStringsChange := nil;
-  if Assigned(OnStringsChange) then
-    FOnOriginalStringsChange := OnStringsChange;
-
-  OnStringsChange := OnHookedStringsChange;
-
-  FOnOriginalSetEditText := nil;
-  if Assigned(OnSetEditText) then
-    FOnOriginalSetEditText := OnSetEditText;
-
-  OnSetEditText := OnHookedSetEditText;
+  FCurrKeyValueItems.Clear;
 end;
 
 destructor TCustomRegValueListEditor.Destroy;
 begin
-  FOnOriginalStringsChange := nil;
-
   if Assigned(FRegistrySource) then
     FRegistrySource.UnRegisterControl(self);
 

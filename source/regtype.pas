@@ -10,6 +10,26 @@ uses
 
 type
 
+  { TKeyValueItems }
+
+  TKeyValueItems = record
+    Found: boolean;
+    Key: string;
+    Value: string;
+    Col: integer;
+    Row: integer;
+
+    function IsEqual(aKey: string;
+                     aValue: string;
+                     aCol: integer;
+                     aRow: integer): boolean;
+    procedure SetItems(aKey: string;
+                       aValue: string;
+                       aCol: integer;
+                       aRow: integer);
+    procedure Clear;
+  end;
+
   { TInfoKind }
 
   TInfoKind = (ikItemIndex, ikInfo);
@@ -245,6 +265,33 @@ begin
     if ((Trim(aTokenValue) <> EmptyStr) and
       (aTokenValue <> aToken))then
       result := StringReplace(aKey, aToken, aTokenValue, [rfReplaceAll]);
+end;
+
+{ TKeyValueItems }
+
+function TKeyValueItems.IsEqual(aKey: string;
+  aValue: string;
+  aCol: integer;
+  aRow: integer): boolean;
+begin
+  Result := ((Key=aKey) and (Value=aValue) and (Col=aCol) and (Row=aRow)) and Found;
+end;
+
+procedure TKeyValueItems.SetItems(aKey: string;
+  aValue: string;
+  aCol: integer;
+  aRow: integer);
+begin
+  Found := True;
+  Key := aKey;
+  Value := aValue;
+  Col := aCol;
+  Row := aRow;
+end;
+
+procedure TKeyValueItems.Clear;
+begin
+  FillChar(Self, SizeOf(Self), #0);
 end;
 
 { TRootKeysStruct }

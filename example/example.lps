@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="80">
+    <Units Count="82">
       <Unit0>
         <Filename Value="example.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="139"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -24,10 +24,11 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="274"/>
-        <CursorPos X="3" Y="277"/>
-        <UsageCount Value="136"/>
+        <TopLine Value="273"/>
+        <CursorPos X="3" Y="273"/>
+        <UsageCount Value="139"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regconst.pas"/>
@@ -42,8 +43,8 @@
         <Filename Value="..\source\regedit.pas"/>
         <UnitName Value="regedit"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="123"/>
-        <CursorPos X="1" Y="133"/>
+        <TopLine Value="125"/>
+        <CursorPos X="55" Y="146"/>
         <UsageCount Value="23"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
@@ -106,8 +107,8 @@
         <Filename Value="..\source\regradiogroup.pas"/>
         <UnitName Value="regradiogroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="207"/>
-        <CursorPos X="1" Y="225"/>
+        <TopLine Value="365"/>
+        <CursorPos X="3" Y="369"/>
         <UsageCount Value="20"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
@@ -137,16 +138,16 @@
         <Filename Value="C:\lazarus\lcl\stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="146"/>
-        <CursorPos X="3" Y="165"/>
+        <TopLine Value="152"/>
+        <CursorPos X="17" Y="171"/>
         <UsageCount Value="10"/>
       </Unit15>
       <Unit16>
         <Filename Value="C:\lazarus\lcl\controls.pp"/>
         <UnitName Value="Controls"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1294"/>
-        <CursorPos X="21" Y="1324"/>
+        <TopLine Value="2044"/>
+        <CursorPos X="3" Y="1830"/>
         <UsageCount Value="11"/>
       </Unit16>
       <Unit17>
@@ -240,8 +241,8 @@
         <Filename Value="..\source\regcheckgroup.pas"/>
         <UnitName Value="regcheckgroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="69"/>
-        <CursorPos X="32" Y="93"/>
+        <TopLine Value="9"/>
+        <CursorPos X="41" Y="10"/>
         <UsageCount Value="18"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit27>
@@ -258,9 +259,9 @@
         <Filename Value="..\source\regvaluelisteditor.pas"/>
         <UnitName Value="regvaluelisteditor"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="438"/>
-        <CursorPos X="1" Y="457"/>
-        <UsageCount Value="16"/>
+        <TopLine Value="1"/>
+        <CursorPos X="45" Y="111"/>
+        <UsageCount Value="17"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
@@ -406,9 +407,9 @@
         <Filename Value="..\source\regtype.pas"/>
         <UnitName Value="regtype"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="291"/>
-        <CursorPos X="1" Y="323"/>
-        <UsageCount Value="25"/>
+        <TopLine Value="268"/>
+        <CursorPos X="1" Y="278"/>
+        <UsageCount Value="26"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit48>
       <Unit49>
@@ -432,15 +433,15 @@
         <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
         <UnitName Value="ExtCtrls"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="733"/>
+        <TopLine Value="726"/>
         <CursorPos X="3" Y="766"/>
         <UsageCount Value="11"/>
       </Unit51>
       <Unit52>
         <Filename Value="C:\lazarus\lcl\include\radiogroup.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="300"/>
-        <CursorPos X="16" Y="332"/>
+        <TopLine Value="415"/>
+        <CursorPos X="3" Y="417"/>
         <UsageCount Value="10"/>
       </Unit52>
       <Unit53>
@@ -468,8 +469,8 @@
         <Filename Value="C:\lazarus\lcl\lresources.pp"/>
         <UnitName Value="LResources"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="776"/>
-        <CursorPos X="1" Y="796"/>
+        <TopLine Value="689"/>
+        <CursorPos X="3" Y="694"/>
         <UsageCount Value="10"/>
       </Unit56>
       <Unit57>
@@ -625,8 +626,8 @@
       <Unit75>
         <Filename Value="C:\lazarus\lcl\include\customcheckgroup.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="280"/>
-        <CursorPos X="35" Y="293"/>
+        <TopLine Value="162"/>
+        <CursorPos X="3" Y="311"/>
         <UsageCount Value="10"/>
       </Unit75>
       <Unit76>
@@ -648,18 +649,33 @@
         <Filename Value="C:\lazarus\lcl\valedit.pas"/>
         <UnitName Value="ValEdit"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="234"/>
-        <CursorPos X="28" Y="255"/>
-        <UsageCount Value="11"/>
+        <TopLine Value="1018"/>
+        <CursorPos X="27" Y="1042"/>
+        <UsageCount Value="12"/>
       </Unit78>
       <Unit79>
         <Filename Value="C:\lazarus\lcl\grids.pas"/>
         <UnitName Value="Grids"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1343"/>
-        <CursorPos X="14" Y="1359"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="9684"/>
+        <CursorPos X="13" Y="9703"/>
+        <UsageCount Value="11"/>
       </Unit79>
+      <Unit80>
+        <Filename Value="C:\lazarus\lcl\include\customgroupbox.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="9"/>
+        <CursorPos X="32" Y="38"/>
+        <UsageCount Value="10"/>
+      </Unit80>
+      <Unit81>
+        <Filename Value="C:\lazarus\lcl\widgetset\wsextctrls.pp"/>
+        <UnitName Value="WSExtCtrls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="289"/>
+        <CursorPos X="3" Y="293"/>
+        <UsageCount Value="10"/>
+      </Unit81>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
