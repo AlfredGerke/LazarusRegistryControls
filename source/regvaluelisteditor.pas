@@ -24,12 +24,13 @@ type
 
   TCustomRegValueListEditor = class(TValueListEditor)
   private
-    FCurrKeyValueItems: TKeyValueItems;
+    FCurrKeyValueItems: TKeyValues;
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsValueList;
 
     procedure UpdateKeyValueInfo(aCol: integer;
-                                 aRow: integer);
+                                 aRow: integer;
+                                 aDoBefore: boolean);
     procedure SetItemsByList(aList: TStrings);
     function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
@@ -93,7 +94,8 @@ end;
 { TCustomRegValueListEditor }
 
 procedure TCustomRegValueListEditor.UpdateKeyValueInfo(aCol: integer;
-  aRow: integer);
+  aRow: integer;
+  aDoBefore: boolean);
 var
   idxRow: integer;
   keyValue: string;
@@ -102,11 +104,21 @@ begin
   idxRow := ARow-FixedRows;
   keyValue := Strings.Names[idxRow];
   valValue := Strings.ValueFromIndex[idxRow];
-  if not FCurrKeyValueItems.IsEqual(keyValue, valValue, ACol, ARow) then
-    FCurrKeyValueItems.SetItems(keyValue, valValue, ACol, ARow);
 
-  if RegistrySettings.DoWriteAdHoc then
-    WriteToReg;
+  if aDoBefore then
+  begin
+    if FCurrKeyValueItems.OldKeyItems.IsEqual(keyValue, valValue, ACol, ARow) then
+      FCurrKeyValueItems.OldKeyItems.SetItems(keyValue, valValue, ACol, ARow);
+  end
+  else
+  begin
+    if FCurrKeyValueItems.NewKeyItems.IsEqual(keyValue, valValue, ACol, ARow) then
+      FCurrKeyValueItems.NewKeyItems.SetItems(keyValue, valValue, ACol, ARow);
+  end;
+
+  if FCurrKeyValueItems.KeyDataChanged then
+    if RegistrySettings.DoWriteAdHoc then
+      WriteToReg;
 end;
 
 procedure TCustomRegValueListEditor.SetItemsByList(aList: TStrings);
@@ -373,9 +385,11 @@ end;
 procedure TCustomRegValueListEditor.SetEditText(ACol, ARow: Longint;
   const Value: string);
 begin
+  UpdateKeyValueInfo(ACol, ARow, True);
+
   inherited SetEditText(ACol, ARow, Value);
 
-  UpdateKeyValueInfo(ACol, ARow);
+  UpdateKeyValueInfo(ACol, ARow, False);
 end;
 
 procedure TCustomRegValueListEditor.AfterConstruction;

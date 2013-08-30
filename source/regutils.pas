@@ -24,6 +24,12 @@ type
     function GetDefaultKey: string;
     function GetHKeyRoot: HKEY;
   public
+    procedure EraseSection(aSection: string);
+    procedure DeleteKey(aSection: string;
+                        aKey: string);
+    procedure RenameKey(aSection: string;
+                        aOldKey: string;
+                        aNewKey: string);
     function ReadString(aSection: string;
                         aIdent: string;
                         aDefault: string): string; virtual;
@@ -74,6 +80,15 @@ type
                                       aKind: TListSourceKind = Both);
   protected
   public
+    procedure EraseSectionForDefaults(aSection: string);
+    procedure DeleteKeyForDefaults(aSection: string;
+                                   aKey: string);
+    procedure RenameKey(aSection: string;
+                        aOldKey: string;
+                        aNewKey: string);
+    procedure RenameKeyForDefaults(aSection: string;
+                                   aOldKey: string;
+                                   aNewKey: string);
     procedure ReadSectionValuesEx(aSection: string;
                                   aStrings: TStrings); virtual;
     procedure ReadSectionValuesOnly(aSection: string;
@@ -231,6 +246,23 @@ begin
     Result := HKEY_DYN_DATA;
     Exit;
   end;
+end;
+
+procedure TDefaultsForCurrentUser.EraseSection(aSection: string);
+begin
+
+end;
+
+procedure TDefaultsForCurrentUser.DeleteKey(aSection: string; aKey: string);
+begin
+
+end;
+
+procedure TDefaultsForCurrentUser.RenameKey(aSection: string;
+  aOldKey: string;
+  aNewKey: string);
+begin
+
 end;
 
 constructor TDefaultsForCurrentUser.Create(aRoot: string;
@@ -595,6 +627,34 @@ begin
     if Assigned(list) then
       FreeAndNil(list);
   end;
+end;
+
+procedure TDataByCurrentUser.EraseSectionForDefaults(aSection: string);
+begin
+  EraseSection(aSection);
+  UseDefaults.EraseSection(aSection);
+end;
+
+procedure TDataByCurrentUser.DeleteKeyForDefaults(aSection: string;
+  aKey: string);
+begin
+  DeleteKey(aSection, aKey);
+  UseDefaults.DeleteKey(aSection, aKey);
+end;
+
+procedure TDataByCurrentUser.RenameKey(aSection: string;
+  aOldKey: string;
+  aNewKey: string);
+begin
+   { TODO -oAlfred Gerke -cregutils :  RenameKey, DeleteKey und EraseSection für TDataByCurrentUser und für UseDefaults ausprogrammieren }
+end;
+
+procedure TDataByCurrentUser.RenameKeyForDefaults(aSection: string;
+  aOldKey: string;
+  aNewKey: string);
+begin
+  RenameKey(aSection, aOldKey, aNewKey);
+  UseDefaults.RenameKey(aSection, aOldKey, aNewKey);
 end;
 
 procedure TDataByCurrentUser.ReadSectionValuesEx(aSection: string;

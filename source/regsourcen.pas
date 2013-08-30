@@ -291,6 +291,36 @@ type
                         aIdent: string;
                         aDefault: boolean;
                         aGroupIndex: Cardinal = 0); reintroduce; overload;
+    procedure RenameKey(aRootKey: string;
+                        aRootKeyForDefaults: string;
+                        aRootForDefaults: string;
+                        aSection: string;
+                        aOldKey: string;
+                        aNewKey: string;
+                        aUseDefaults: boolean;
+                        aGroupIndex: Cardinal = 0); reintroduce; overload;
+    procedure RenameKey(aSection: string;
+                        aOldKey: string;
+                        aNewKey: string;
+                        aGroupIndex: Cardinal = 0); reintroduce; overload;
+    procedure DeleteKey(aRootKey: string;
+                        aRootKeyForDefaults: string;
+                        aRootForDefaults: string;
+                        aSection: string;
+                        aKey: string;
+                        aUseDefaults: boolean;
+                        aGroupIndex: Cardinal = 0); reintroduce; overload;
+    procedure DeleteKey(aSection: string;
+                        aKey: string;
+                        aGroupIndex: Cardinal = 0); reintroduce; overload;
+    procedure EraseSection(aRootKey: string;
+                           aRootKeyForDefaults: string;
+                           aRootForDefaults: string;
+                           aSection: string;
+                           aUseDefaults: boolean;
+                           aGroupIndex: Cardinal = 0); reintroduce; overload;
+    procedure EraseSection(aSection: string;
+                           aGroupIndex: Cardinal = 0); reintroduce; overload;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   published
@@ -1022,6 +1052,169 @@ begin
       aSection,
       aIdent,
       aDefault,
+      WriteDefaults,
+      aGroupIndex);
+  except
+    on E: Exception do
+      raise;
+  end;
+end;
+
+procedure TCustomRegistrySource.RenameKey(aRootKey: string;
+  aRootKeyForDefaults: string;
+  aRootForDefaults: string;
+  aSection: string;
+  aOldKey: string;
+  aNewKey: string;
+  aUseDefaults: boolean;
+  aGroupIndex: Cardinal);
+var
+  streg: TDataByCurrentUser;
+begin
+  if aUseDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey);
+
+  try
+    try
+      if aUseDefaults then
+        streg.RenameKeyForDefaults(aSection, aOldKey, aNewKey)
+      else
+        streg.RenameKey(aSection, aOldKey, aNewKey);
+
+      if FDoSyncData then
+        OnSyncData(aGroupIndex);
+    except
+      on E: Exception do
+        raise;
+    end;
+  finally
+    if Assigned(streg) then
+      FreeAndNil(streg);
+  end;
+end;
+
+procedure TCustomRegistrySource.RenameKey(aSection: string; aOldKey: string;
+  aNewKey: string; aGroupIndex: Cardinal);
+begin
+  try
+    RenameKey(GetRootKey,
+      GetRootKeyForDefaults,
+      RootForDefaults,
+      aSection,
+      aOldKey,
+      aNewKey,
+      WriteDefaults,
+      aGroupIndex);
+  except
+    on E: Exception do
+      raise;
+  end;
+end;
+
+procedure TCustomRegistrySource.DeleteKey(aRootKey: string;
+  aRootKeyForDefaults: string;
+  aRootForDefaults: string;
+  aSection: string;
+  aKey: string;
+  aUseDefaults: boolean;
+  aGroupIndex: Cardinal);
+var
+  streg: TDataByCurrentUser;
+begin
+  if aUseDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey);
+
+  try
+    try
+      if aUseDefaults then
+        streg.DeleteKeyForDefaults(aSection, aKey)
+      else
+        streg.DeleteKey(aSection, aKey);
+
+      if FDoSyncData then
+        OnSyncData(aGroupIndex);
+    except
+      on E: Exception do
+        raise;
+    end;
+  finally
+    if Assigned(streg) then
+      FreeAndNil(streg);
+  end;
+end;
+
+procedure TCustomRegistrySource.DeleteKey(aSection: string;
+  aKey: string;
+  aGroupIndex: Cardinal);
+begin
+  try
+    DeleteKey(GetRootKey,
+      GetRootKeyForDefaults,
+      RootForDefaults,
+      aSection,
+      aKey,
+      WriteDefaults,
+      aGroupIndex);
+  except
+    on E: Exception do
+      raise;
+  end;
+end;
+
+procedure TCustomRegistrySource.EraseSection(aRootKey: string;
+  aRootKeyForDefaults: string;
+  aRootForDefaults: string;
+  aSection: string;
+  aUseDefaults: boolean;
+  aGroupIndex: Cardinal);
+var
+  streg: TDataByCurrentUser;
+begin
+  if aUseDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey);
+
+  try
+    try
+      if aUseDefaults then
+        streg.EraseSectionForDefaults(aSection)
+      else
+        streg.EraseSection(aSection);
+
+      if FDoSyncData then
+        OnSyncData(aGroupIndex);
+    except
+      on E: Exception do
+        raise;
+    end;
+  finally
+    if Assigned(streg) then
+      FreeAndNil(streg);
+  end;
+end;
+
+procedure TCustomRegistrySource.EraseSection(aSection: string;
+  aGroupIndex: Cardinal);
+begin
+  try
+    EraseSection(GetRootKey,
+      GetRootKeyForDefaults,
+      RootForDefaults,
+      aSection,
       WriteDefaults,
       aGroupIndex);
   except

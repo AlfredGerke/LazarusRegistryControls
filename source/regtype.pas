@@ -10,6 +10,7 @@ uses
 
 type
 
+
   { TKeyValueItems }
 
   TKeyValueItems = record
@@ -27,6 +28,19 @@ type
                        aValue: string;
                        aCol: integer;
                        aRow: integer);
+    procedure Clear;
+  end;
+
+  { TKeyValues }
+
+  TKeyValues = record
+    OldKeyItems: TKeyValueItems;
+    NewKeyItems: TKeyValueItems;
+
+    function IsEqual: boolean;
+    function KeyValueDataChanged: boolean;
+    function KeyDataChanged: boolean;
+    function ValueDataChanged: boolean;
     procedure Clear;
   end;
 
@@ -265,6 +279,45 @@ begin
     if ((Trim(aTokenValue) <> EmptyStr) and
       (aTokenValue <> aToken))then
       result := StringReplace(aKey, aToken, aTokenValue, [rfReplaceAll]);
+end;
+
+{ TKeyValues }
+
+function TKeyValues.IsEqual: boolean;
+begin
+  Result := ((OldKeyItems.Key=NewKeyItems.Key) and
+             (OldKeyItems.Value=NewKeyItems.Value) and
+             (OldKeyItems.Col=NewKeyItems.Col) and
+             (OldKeyItems.Row=NewKeyItems.Row));
+end;
+
+function TKeyValues.KeyValueDataChanged: boolean;
+begin
+  Result := ((OldKeyItems.Key<>NewKeyItems.Key) or
+             (OldKeyItems.Value<>NewKeyItems.Value))
+            and
+            ((OldKeyItems.Col=NewKeyItems.Col) and
+             (OldKeyItems.Row=NewKeyItems.Row));
+end;
+
+function TKeyValues.KeyDataChanged: boolean;
+begin
+  Result := False;
+  if KeyValueDataChanged then
+    Result := (OldKeyItems.Key<>NewKeyItems.Key);
+end;
+
+function TKeyValues.ValueDataChanged: boolean;
+begin
+  Result := False;
+  if KeyValueDataChanged then
+    Result := (OldKeyItems.Value<>NewKeyItems.Value);
+end;
+
+procedure TKeyValues.Clear;
+begin
+  OldKeyItems.Clear;
+  NewKeyItems.Clear;
 end;
 
 { TKeyValueItems }
