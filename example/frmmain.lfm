@@ -1108,6 +1108,18 @@ object Main: TMain
         Action = acRefreshSettingListSource
       end
     end
+    object mnuTest: TMenuItem
+      Caption = 'Test'
+      object mnuTestDeleteKey: TMenuItem
+        Action = acTestDeleteKey
+      end
+      object mnuTestEraseSection: TMenuItem
+        Action = acTestEraseSection
+      end
+      object mnuTestRenameKey: TMenuItem
+        Action = acTestRenameKey
+      end
+    end
   end
   object ActionList1: TActionList
     left = 240
@@ -1190,6 +1202,21 @@ object Main: TMain
       Category = 'ExecuteListExample'
       Caption = 'Einstellungen (RegistrySource2)'
       OnExecute = acRefreshSettingListSourceExecute
+    end
+    object acTestDeleteKey: TAction
+      Category = 'Example'
+      Caption = 'Funktion DeleteKey testen (rcgCheckGroup3)'
+      OnExecute = acTestDeleteKeyExecute
+    end
+    object acTestEraseSection: TAction
+      Category = 'Example'
+      Caption = 'Funktion EraseSection testen (rcgCheckGroup3)'
+      OnExecute = acTestEraseSectionExecute
+    end
+    object acTestRenameKey: TAction
+      Category = 'Example'
+      Caption = 'Funktion RenameKey testen (rcgCheckGroup3)'
+      OnExecute = acTestRenameKeyExecute
     end
   end
   object RegistrySource1: TRegistrySource

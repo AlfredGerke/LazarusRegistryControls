@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="82">
+    <Units Count="83">
       <Unit0>
         <Filename Value="example.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="144"/>
+        <UsageCount Value="148"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -21,10 +21,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmmain"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="273"/>
-        <CursorPos X="3" Y="273"/>
-        <UsageCount Value="144"/>
+        <TopLine Value="238"/>
+        <CursorPos X="4" Y="261"/>
+        <UsageCount Value="148"/>
+        <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regconst.pas"/>
@@ -63,9 +66,9 @@
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1170"/>
-        <CursorPos X="15" Y="1194"/>
-        <UsageCount Value="36"/>
+        <TopLine Value="1166"/>
+        <CursorPos X="1" Y="1185"/>
+        <UsageCount Value="38"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -237,8 +240,8 @@
         <Filename Value="..\source\regcheckgroup.pas"/>
         <UnitName Value="regcheckgroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="9"/>
-        <CursorPos X="41" Y="10"/>
+        <TopLine Value="443"/>
+        <CursorPos X="1" Y="462"/>
         <UsageCount Value="18"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit27>
@@ -279,13 +282,10 @@
       <Unit32>
         <Filename Value="..\source\regutils.pas"/>
         <UnitName Value="regutils"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="632"/>
-        <CursorPos X="40" Y="655"/>
-        <UsageCount Value="22"/>
-        <Loaded Value="True"/>
+        <TopLine Value="127"/>
+        <CursorPos X="1" Y="748"/>
+        <UsageCount Value="24"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit32>
       <Unit33>
@@ -300,8 +300,8 @@
         <Filename Value="C:\lazarus\fpc\2.6.2\source\packages\fcl-registry\src\registry.pp"/>
         <UnitName Value="registry"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="123"/>
-        <CursorPos X="23" Y="75"/>
+        <TopLine Value="801"/>
+        <CursorPos X="15" Y="150"/>
         <UsageCount Value="15"/>
       </Unit34>
       <Unit35>
@@ -675,39 +675,53 @@
         <CursorPos X="3" Y="293"/>
         <UsageCount Value="10"/>
       </Unit81>
+      <Unit82>
+        <Filename Value="C:\lazarus\fpc\2.6.2\source\packages\fcl-base\src\inifiles.pp"/>
+        <UnitName Value="IniFiles"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="789"/>
+        <CursorPos X="3" Y="794"/>
+        <UsageCount Value="11"/>
+      </Unit82>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="7" HistoryIndex="6">
+    <JumpHistory Count="2" HistoryIndex="1">
       <Position1>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="620" Column="3" TopLine="597"/>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="260" Column="48" TopLine="235"/>
       </Position1>
       <Position2>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="27" Column="22" TopLine="7"/>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="261" Column="4" TopLine="238"/>
       </Position2>
-      <Position3>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="81" Column="50" TopLine="61"/>
-      </Position3>
-      <Position4>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="621" Column="29" TopLine="618"/>
-      </Position4>
-      <Position5>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="27" Column="1" TopLine="16"/>
-      </Position5>
-      <Position6>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="244" Column="3" TopLine="244"/>
-      </Position6>
-      <Position7>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="83" Column="57" TopLine="59"/>
-      </Position7>
     </JumpHistory>
   </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="3">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\source\regutils.pas"/>
+        <InitialEnabled Value="False"/>
+        <Line Value="748"/>
+      </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\source\regcheckgroup.pas"/>
+        <Line Value="121"/>
+      </Item2>
+      <Item3>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\source\regcheckgroup.pas"/>
+        <Line Value="462"/>
+      </Item3>
+    </BreakPoints>
+  </Debugging>
 </CONFIG>

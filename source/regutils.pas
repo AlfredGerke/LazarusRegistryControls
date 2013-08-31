@@ -24,9 +24,9 @@ type
     function GetDefaultKey: string;
     function GetHKeyRoot: HKEY;
   public
-    procedure EraseSection(aSection: string);
-    procedure DeleteKey(aSection: string;
-                        aKey: string);
+    function DeleteKey(aSection: string): boolean;
+    function DeleteValue(aSection: string;
+                         aKey: string): boolean;
     procedure RenameKey(aSection: string;
                         aOldKey: string;
                         aNewKey: string);
@@ -248,21 +248,114 @@ begin
   end;
 end;
 
-procedure TDefaultsForCurrentUser.EraseSection(aSection: string);
+function TDefaultsForCurrentUser.DeleteKey(aSection: string): boolean;
+var
+  reg: TRegistry;
+  key: string;
 begin
+  Result := False;
+  reg := TRegistry.Create;
+  try
+    try
+      with reg do
+      begin
+        RootKey := GetHKEYRoot;
+        key := concat(DefaultKey, aSection);
 
+        if KeyExists(key) then
+          Result := DeleteKey(key);
+
+        CloseKey;
+      end;
+    except
+      on E: Exception do
+      begin
+      end;
+    end;
+  finally
+    if Assigned(reg) then
+      FreeAndNil(reg);
+  end;
 end;
 
-procedure TDefaultsForCurrentUser.DeleteKey(aSection: string; aKey: string);
+function TDefaultsForCurrentUser.DeleteValue(aSection: string;
+  aKey: string): boolean;
+var
+  reg: TRegistry;
+  key: string;
 begin
+  Result := False;
+  reg := TRegistry.Create;
+  try
+    try
+      with reg do
+      begin
+        RootKey := GetHKEYRoot;
+        key := concat(DefaultKey, aSection);
 
+        if OpenKey(key, True) then
+          Result := DeleteValue(aKey);
+
+        CloseKey;
+      end;
+    except
+      on E: Exception do
+        Result := False;
+    end;
+  finally
+    if Assigned(reg) then
+      FreeAndNil(reg);
+  end;
 end;
 
 procedure TDefaultsForCurrentUser.RenameKey(aSection: string;
   aOldKey: string;
   aNewKey: string);
+var
+  value_str: string;
+  value_int: integer;
+  value_data_type: TRegDataType;
+  reg: TRegistry;
+  key: string;
 begin
+  reg := TRegistry.Create;
+  try
+    with reg do
+    begin
+      RootKey := GetHKEYRoot;
+      key := concat(DefaultKey, aSection);
 
+      if OpenKey(key, True) then
+      begin
+        value_data_type := reg.GetDataType(aOldKey);
+
+        case value_data_type of
+          rdString:
+            value_str := ReadString(aOldKey);
+          rdExpandString:
+            value_str := ReadString(aOldKey);
+          rdInteger:
+            value_int := ReadInteger(aOldKey);
+        end;
+      end;
+
+      DeleteValue(aOldKey);
+
+      case value_data_type of
+        rdString:
+          WriteString(aNewKey, value_str);
+        rdExpandString:
+          WriteString(aNewKey, value_str);
+        rdInteger:
+          WriteInteger(aNewKey, value_int);
+      end;
+
+       CloseKey;
+    end;
+  finally
+    if Assigned(reg) then
+      FreeAndNil(reg);
+  end;
 end;
 
 constructor TDefaultsForCurrentUser.Create(aRoot: string;
@@ -632,21 +725,60 @@ end;
 procedure TDataByCurrentUser.EraseSectionForDefaults(aSection: string);
 begin
   EraseSection(aSection);
-  UseDefaults.EraseSection(aSection);
+  UseDefaults.DeleteKey(aSection);
 end;
 
 procedure TDataByCurrentUser.DeleteKeyForDefaults(aSection: string;
   aKey: string);
 begin
   DeleteKey(aSection, aKey);
-  UseDefaults.DeleteKey(aSection, aKey);
+  UseDefaults.DeleteValue(aSection, aKey);
 end;
 
 procedure TDataByCurrentUser.RenameKey(aSection: string;
   aOldKey: string;
   aNewKey: string);
+var
+  value_str: string;
+  value_int: integer;
+  value_data_type: TRegDataType;
+  reg: TRegistry;
+  key: string;
 begin
-   { TODO -oAlfred Gerke -cregutils :  RenameKey, DeleteKey und EraseSection für TDataByCurrentUser und für UseDefaults ausprogrammieren }
+  reg := TRegistry.Create;
+  try
+    reg.RootKey := HKEY_CURRENT_USER;
+    key := Concat(FileName + aSection);
+
+    if reg.OpenKeyReadOnly(key) then
+    begin
+      value_data_type := reg.GetDataType(aOldKey);
+
+      case value_data_type of
+        rdString:
+          value_str := ReadString(aSection, aOldKey, EmptyStr);
+        rdExpandString:
+          value_str := ReadString(aSection, aOldKey, EmptyStr);
+        rdInteger:
+          value_int := ReadInteger(aSection, aOldKey, $FFFFFF);
+      end;
+    end;
+    reg.CloseKey;
+
+    DeleteKey(aSection, aOldKey);
+
+    case value_data_type of
+      rdString:
+        WriteString(aSection, aNewKey, value_str);
+      rdExpandString:
+        WriteString(aSection, aNewKey, value_str);
+      rdInteger:
+        WriteInteger(aSection, aNewKey, value_int);
+    end;
+  finally
+    if Assigned(reg) then
+      FreeAndNil(reg);
+  end;
 end;
 
 procedure TDataByCurrentUser.RenameKeyForDefaults(aSection: string;

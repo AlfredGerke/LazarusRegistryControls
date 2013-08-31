@@ -41,6 +41,9 @@ type
     acSyncDataOff: TAction;
     acRefreshSettingsSingleSource: TAction;
     acRefreshSettingListSource: TAction;
+    acTestDeleteKey: TAction;
+    acTestEraseSection: TAction;
+    acTestRenameKey: TAction;
     acWriteAdHocOffList: TAction;
     acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
@@ -78,6 +81,10 @@ type
     lblCheckGroup: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
+    mnuTestRenameKey: TMenuItem;
+    mnuTestEraseSection: TMenuItem;
+    mnuTestDeleteKey: TMenuItem;
+    mnuTest: TMenuItem;
     mnuCheckCreateSettings: TMenuItem;
     mnuCreateSettings: TMenuItem;
     mnuSettingsList: TMenuItem;
@@ -133,6 +140,9 @@ type
     procedure acSyncDataListOffExecute(Sender: TObject);
     procedure acSyncDataListOnExecute(Sender: TObject);
     procedure acSyncDataOffExecute(Sender: TObject);
+    procedure acTestDeleteKeyExecute(Sender: TObject);
+    procedure acTestEraseSectionExecute(Sender: TObject);
+    procedure acTestRenameKeyExecute(Sender: TObject);
     procedure acWriteAdHocOffExecute(Sender: TObject);
     procedure acWriteAdHocOffListExecute(Sender: TObject);
     procedure acWriteAdHocOnExecute(Sender: TObject);
@@ -236,6 +246,27 @@ end;
 procedure TMain.acSyncDataOffExecute(Sender: TObject);
 begin
   RefreshSyncDataOnOff(0, False);
+end;
+
+procedure TMain.acTestDeleteKeyExecute(Sender: TObject);
+begin
+  RegistrySource2.DeleteKey('CheckGroupListe',
+    'CheckGroup5Key',
+    0);
+end;
+
+procedure TMain.acTestEraseSectionExecute(Sender: TObject);
+begin
+ RegistrySource2.EraseSection('CheckGroupListe',
+   0);
+end;
+
+procedure TMain.acTestRenameKeyExecute(Sender: TObject);
+begin
+  RegistrySource2.RenameKey('CheckGroupListe',
+    'CheckGroup1Key',
+    'CheckGroup1_1Key',
+    0);
 end;
 
 procedure TMain.acWriteAdHocOffExecute(Sender: TObject);

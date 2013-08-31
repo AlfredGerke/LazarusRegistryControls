@@ -1098,8 +1098,10 @@ begin
   end;
 end;
 
-procedure TCustomRegistrySource.RenameKey(aSection: string; aOldKey: string;
-  aNewKey: string; aGroupIndex: Cardinal);
+procedure TCustomRegistrySource.RenameKey(aSection: string;
+  aOldKey: string;
+  aNewKey: string;
+  aGroupIndex: Cardinal);
 begin
   try
     RenameKey(GetRootKey,
