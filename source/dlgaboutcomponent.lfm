@@ -77,8 +77,8 @@ object AboutComponent: TAboutComponent
       Left = 163
       Height = 17
       Top = 81
-      Width = 157
-      Caption = 'Dipl. Ing. (FH) Alfred Gerke'
+      Width = 73
+      Caption = 'Alfred Gerke'
       Font.CharSet = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -13

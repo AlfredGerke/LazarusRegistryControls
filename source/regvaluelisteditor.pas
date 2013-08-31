@@ -55,6 +55,8 @@ type
       read FRegistrySource
       write SetRegistrySource;
   public
+    procedure ClearItems(aAskFor: boolean = True;
+                         aMsg: string = 'Clear Items?'); virtual;
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
     function WriteToReg: boolean; virtual;
@@ -101,22 +103,28 @@ var
   keyValue: string;
   valValue: string;
 begin
+  if (Strings.Count = 0) then
+  begin
+    FCurrKeyValueItems.Clear;
+    Exit;
+  end;
+
   idxRow := ARow-FixedRows;
   keyValue := Strings.Names[idxRow];
   valValue := Strings.ValueFromIndex[idxRow];
 
   if aDoBefore then
   begin
-    if FCurrKeyValueItems.OldKeyItems.IsEqual(keyValue, valValue, ACol, ARow) then
+    if not FCurrKeyValueItems.OldKeyItems.IsEqual(keyValue, valValue, ACol, ARow) then
       FCurrKeyValueItems.OldKeyItems.SetItems(keyValue, valValue, ACol, ARow);
   end
   else
   begin
-    if FCurrKeyValueItems.NewKeyItems.IsEqual(keyValue, valValue, ACol, ARow) then
+    if not FCurrKeyValueItems.NewKeyItems.IsEqual(keyValue, valValue, ACol, ARow) then
       FCurrKeyValueItems.NewKeyItems.SetItems(keyValue, valValue, ACol, ARow);
   end;
 
-  if FCurrKeyValueItems.KeyDataChanged then
+  if FCurrKeyValueItems.KeyValueDataChanged then
     if RegistrySettings.DoWriteAdHoc then
       WriteToReg;
 end;
@@ -184,7 +192,29 @@ begin
               sync_state_by_default := FRegistrySettings.DoSyncData;
               FRegistrySettings.DoSyncData := False;
               try
-                // wie wird man in die Registry schreiben?
+                if FCurrKeyValueItems.KeyDataChanged then
+                begin
+                  FRegistrySource.RenameKey(FRegistrySettings.RootKey,
+                    FRegistrySettings.RootKeyForDefaults,
+                    FRegistrySettings.RootForDefaults,
+                    FRegistrySettings.ListSection,
+                    FCurrKeyValueItems.OldKeyItems.Key,
+                    FCurrKeyValueItems.NewKeyItems.Key,
+                    FRegistrySettings.WriteDefaults,
+                    FRegistrySettings.GroupIndex);
+                end
+                else
+                  if FCurrKeyValueItems.ValueDataChanged then
+                  begin
+                    RegistrySource.WriteString(FRegistrySettings.RootKey,
+                      FRegistrySettings.RootKeyForDefaults,
+                      FRegistrySettings.RootForDefaults,
+                      FRegistrySettings.ListSection,
+                      FCurrKeyValueItems.NewKeyItems.Key,
+                      FCurrKeyValueItems.NewKeyItems.Value,
+                      FRegistrySettings.WriteDefaults,
+                      FRegistrySettings.GroupIndex);
+                  end;
               finally
                 FRegistrySettings.DoSyncData := sync_state_by_default;
               end;
@@ -390,6 +420,24 @@ begin
   inherited SetEditText(ACol, ARow, Value);
 
   UpdateKeyValueInfo(ACol, ARow, False);
+end;
+
+procedure TCustomRegValueListEditor.ClearItems(aAskFor: boolean = True;
+  aMsg: string = 'Clear Items?');
+var
+  start: boolean;
+begin
+  start := not aAskFor;
+  if FRegistrySettings.CanRead then
+    if aAskFor then
+      start := (MessageDlg(aMsg, mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    if start then
+      FRegistrySource.EraseSection(FRegistrySettings.RootKey,
+        FRegistrySettings.RootKeyForDefaults,
+        FRegistrySettings.RootForDefaults,
+        FRegistrySettings.ListSection,
+        FRegistrySettings.WriteDefaults,
+        FRegistrySettings.GroupIndex);
 end;
 
 procedure TCustomRegValueListEditor.AfterConstruction;

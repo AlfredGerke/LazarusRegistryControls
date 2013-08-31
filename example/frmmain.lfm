@@ -1061,7 +1061,7 @@ object Main: TMain
           Top = 83
           Width = 248
           FixedCols = 0
-          RowCount = 2
+          RowCount = 1
           TabOrder = 5
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
@@ -1078,12 +1078,203 @@ object Main: TMain
       end
     end
     object tabKombination: TTabSheet
-      Caption = 'Kombination'
+      Caption = 'Kombinationen'
+      ClientHeight = 443
+      ClientWidth = 803
+      object pnlTopKombination: TPanel
+        Left = 0
+        Height = 63
+        Top = 0
+        Width = 803
+        Align = alTop
+        ClientHeight = 63
+        ClientWidth = 803
+        TabOrder = 0
+        object redtControlName2: TRegEdit
+          Left = 9
+          Height = 21
+          Hint = 'wenn Leerstring, alle Steuerelemente aktualisieren'
+          Top = 34
+          Width = 160
+          TabOrder = 1
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Section = 'Desktop'
+          RegistrySettings.Ident = 'ClientToRefresh'
+          RegistrySource = RegistrySource3
+        end
+        object btnRefreshControlsList1: TButton
+          Left = 9
+          Height = 25
+          Top = 5
+          Width = 160
+          Caption = 'Steuerelement(e) aktualisieren'
+          OnClick = acRefreshDataListExecute
+          TabOrder = 0
+        end
+      end
+      object pnlClientKombination: TPanel
+        Left = 0
+        Height = 380
+        Top = 63
+        Width = 803
+        Align = alClient
+        ClientHeight = 380
+        ClientWidth = 803
+        TabOrder = 1
+        object redtAddValue: TRegEdit
+          Left = 8
+          Height = 21
+          Top = 7
+          Width = 173
+          TabOrder = 0
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = False
+          RegistrySettings.GroupIndex = 1
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 'leer'
+          RegistrySettings.Section = 'ValueEditString'
+          RegistrySettings.Ident = 'Key'
+          RegistrySource = RegistrySource3
+        end
+        object SpeedButton1: TSpeedButton
+          Left = 186
+          Height = 22
+          Top = 7
+          Width = 23
+          Action = acAddValue
+          NumGlyphs = 0
+        end
+        object rvlValueListEditorKombi: TRegValueListEditor
+          Left = 9
+          Height = 306
+          Top = 33
+          Width = 200
+          FixedCols = 0
+          RowCount = 2
+          TabOrder = 1
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 1
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.ListSection = 'ValueEditString'
+          RegistrySource = RegistrySource3
+          ColWidths = (
+            64
+            132
+          )
+        end
+        object btnEraseValueEditList: TSpeedButton
+          Left = 9
+          Height = 22
+          Top = 339
+          Width = 199
+          Action = acEraseSectionValueEdit
+          NumGlyphs = 0
+        end
+        object rvalKombi: TRegValueListEditor
+          Left = 218
+          Height = 160
+          Top = 179
+          Width = 200
+          FixedCols = 0
+          RowCount = 2
+          TabOrder = 2
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 2
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.ListSection = 'RegValueListe'
+          RegistrySource = RegistrySource3
+          ColWidths = (
+            64
+            132
+          )
+        end
+        object rcbxKombi: TRegCheckBox
+          Left = 218
+          Height = 17
+          Top = 12
+          Width = 44
+          Caption = 'Key1'
+          TabOrder = 3
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 2
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = False
+          RegistrySettings.Section = 'RegValueListe'
+          RegistrySettings.Ident = 'Key1'
+          RegistrySource = RegistrySource3
+        end
+        object SpeedButton2: TSpeedButton
+          Left = 218
+          Height = 22
+          Top = 339
+          Width = 200
+          Action = acEraseSectionValueEdit2
+          NumGlyphs = 0
+        end
+        object rvgKombi: TRegCheckGroup
+          Left = 426
+          Height = 138
+          Top = 33
+          Width = 185
+          AutoFill = True
+          Caption = ' CheckedGroup '
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.TopBottomSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          TabOrder = 4
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 2
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.Section = 'CheckGroup1'
+          RegistrySettings.Ident = 'LastChecked'
+          RegistrySettings.ItemsByRegistry = True
+          RegistrySettings.ListSection = 'RegValueListe'
+          RegistrySource = RegistrySource3
+        end
+        object rlbKombi: TRegCheckListBox
+          Left = 218
+          Height = 136
+          Top = 36
+          Width = 199
+          ItemHeight = 0
+          TabOrder = 5
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 2
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.Section = 'CheckListBox1'
+          RegistrySettings.Ident = 'ItemIndex'
+          RegistrySettings.ItemsByRegistry = True
+          RegistrySettings.ListSection = 'RegValueListe'
+          RegistrySource = RegistrySource3
+        end
+      end
     end
   end
   object MainMenu1: TMainMenu
-    left = 184
-    top = 88
+    left = 752
+    top = 264
     object mnuFile: TMenuItem
       Caption = 'Datei'
       object mnuCheckCreateSettings: TMenuItem
@@ -1107,6 +1298,9 @@ object Main: TMain
       object mnuSettingsList: TMenuItem
         Action = acRefreshSettingListSource
       end
+      object MenuItem2: TMenuItem
+        Action = acRefreshSettingsKombination
+      end
     end
     object mnuTest: TMenuItem
       Caption = 'Test'
@@ -1122,8 +1316,8 @@ object Main: TMain
     end
   end
   object ActionList1: TActionList
-    left = 240
-    top = 88
+    left = 752
+    top = 184
     object acClose: TAction
       Category = 'General'
       Caption = 'Beenden'
@@ -1205,18 +1399,43 @@ object Main: TMain
     end
     object acTestDeleteKey: TAction
       Category = 'Example'
-      Caption = 'Funktion DeleteKey testen (rcgCheckGroup3)'
+      Caption = 'Funktion DeleteKey testen (rcgCheckGroup1)'
       OnExecute = acTestDeleteKeyExecute
     end
     object acTestEraseSection: TAction
       Category = 'Example'
-      Caption = 'Funktion EraseSection testen (rcgCheckGroup3)'
+      Caption = 'Funktion EraseSection testen (rcgCheckGroup1)'
       OnExecute = acTestEraseSectionExecute
     end
     object acTestRenameKey: TAction
       Category = 'Example'
-      Caption = 'Funktion RenameKey testen (rcgCheckGroup3)'
+      Caption = 'Funktion RenameKey testen (rcgCheckGroup1)'
       OnExecute = acTestRenameKeyExecute
+    end
+    object acRefreshSettingsKombination: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = 'Einstellungen (RegistrySource3)'
+      OnExecute = acRefreshSettingsKombinationExecute
+    end
+    object acAddValue: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = '...'
+      OnExecute = acAddValueExecute
+    end
+    object acEraseSectionValueEdit: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = 'Liste löschen'
+      OnExecute = acEraseSectionValueEditExecute
+    end
+    object acRefreshDataKombi: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = 'Steuerelemente(e) aktualisieren'
+      OnExecute = acRefreshDataKombiExecute
+    end
+    object acEraseSectionValueEdit2: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = 'Liste löschen'
+      OnExecute = acEraseSectionValueEdit2Execute
     end
   end
   object RegistrySource1: TRegistrySource
@@ -1248,5 +1467,20 @@ object Main: TMain
     PrefereStrings = False
     left = 752
     top = 32
+  end
+  object RegistrySource3: TRegistrySource
+    RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
+    RootKeyForDefaults = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%'
+    RootKeyForCommon = 'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%'
+    Project = 'LazarusRegistryControls'
+    Organisation = 'ExampleFactory'
+    RootForDefaults = 'HKEY_LOCAL_MACHINE'
+    ReadDefaults = True
+    WriteDefaults = False
+    GUID = '{7CB5D48B-FCE3-414F-BB3A-BCB07BC5D25F}'
+    DoSyncData = True
+    PrefereStrings = False
+    left = 752
+    top = 104
   end
 end

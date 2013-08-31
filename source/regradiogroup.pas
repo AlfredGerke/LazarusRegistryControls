@@ -51,6 +51,8 @@ type
       read FRegistrySource
       write SetRegistrySource;
   public
+    procedure ClearItems(aAskFor: boolean = True;
+                         aMsg: string = 'Clear Items?'); virtual;
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
     function WriteToReg: boolean; virtual;
@@ -397,6 +399,24 @@ begin
 
   if Assigned(FRegistrySource) then
     FRegistrySource.RenameClient(old_name, new_name);
+end;
+
+procedure TCustomRegRadioGroup.ClearItems(aAskFor: boolean = True;
+  aMsg: string = 'Clear Items?');
+var
+  start: boolean;
+begin
+  start := not aAskFor;
+  if FRegistrySettings.ItemsByRegistry then
+    if aAskFor then
+      start := (MessageDlg(aMsg, mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    if start then
+      FRegistrySource.EraseSection(FRegistrySettings.RootKey,
+        FRegistrySettings.RootKeyForDefaults,
+        FRegistrySettings.RootForDefaults,
+        FRegistrySettings.ListSection,
+        FRegistrySettings.WriteDefaults,
+        FRegistrySettings.GroupIndex);
 end;
 
 constructor TCustomRegRadioGroup.Create(AOwner: TComponent);

@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="83">
+    <Units Count="84">
       <Unit0>
         <Filename Value="example.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="148"/>
+        <UsageCount Value="156"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -24,9 +24,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="238"/>
-        <CursorPos X="4" Y="261"/>
-        <UsageCount Value="148"/>
+        <TopLine Value="302"/>
+        <CursorPos X="1" Y="321"/>
+        <UsageCount Value="156"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -35,16 +35,16 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="15"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="24"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
         <Filename Value="..\source\regedit.pas"/>
         <UnitName Value="regedit"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="125"/>
-        <CursorPos X="55" Y="146"/>
-        <UsageCount Value="23"/>
+        <TopLine Value="142"/>
+        <CursorPos X="1" Y="160"/>
+        <UsageCount Value="25"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -52,7 +52,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="100"/>
         <CursorPos X="43" Y="120"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit4>
       <Unit5>
         <Filename Value="C:\lazarus\ideintf\propedits.pp"/>
@@ -60,15 +60,15 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1020"/>
         <CursorPos X="11" Y="1039"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit5>
       <Unit6>
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1166"/>
-        <CursorPos X="1" Y="1185"/>
-        <UsageCount Value="38"/>
+        <TopLine Value="1174"/>
+        <CursorPos X="3" Y="1205"/>
+        <UsageCount Value="39"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -76,7 +76,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="214"/>
         <CursorPos X="8" Y="187"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit7>
       <Unit8>
         <Filename Value="C:\lazarus\ideintf\objinspstrconsts.pas"/>
@@ -84,7 +84,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="3" Y="187"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit8>
       <Unit9>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\typinfo.pp"/>
@@ -92,7 +92,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="354"/>
         <CursorPos X="3" Y="373"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit9>
       <Unit10>
         <Filename Value="C:\lazarus\lcl\dialogs.pp"/>
@@ -100,15 +100,15 @@
         <WindowIndex Value="0"/>
         <TopLine Value="496"/>
         <CursorPos X="11" Y="515"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit10>
       <Unit11>
         <Filename Value="..\source\regradiogroup.pas"/>
         <UnitName Value="regradiogroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="365"/>
-        <CursorPos X="3" Y="369"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="394"/>
+        <CursorPos X="13" Y="413"/>
+        <UsageCount Value="22"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
@@ -116,21 +116,21 @@
         <WindowIndex Value="0"/>
         <TopLine Value="11"/>
         <CursorPos X="17" Y="61"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit12>
       <Unit13>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\sysutils\sysstr.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1833"/>
         <CursorPos X="5" Y="1846"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit13>
       <Unit14>
         <Filename Value="frmmain.lfm"/>
         <WindowIndex Value="0"/>
         <TopLine Value="127"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit14>
       <Unit15>
@@ -139,7 +139,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="152"/>
         <CursorPos X="17" Y="171"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit15>
       <Unit16>
         <Filename Value="C:\lazarus\lcl\controls.pp"/>
@@ -147,7 +147,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="2044"/>
         <CursorPos X="3" Y="1830"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit16>
       <Unit17>
         <Filename Value="C:\lazarus\lcl\lclclasses.pp"/>
@@ -155,14 +155,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="29"/>
         <CursorPos X="3" Y="48"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit17>
       <Unit18>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\persist.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="46"/>
         <CursorPos X="3" Y="49"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit18>
       <Unit19>
         <Filename Value="..\source\register_source.pas"/>
@@ -170,7 +170,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="152" Y="7"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit19>
       <Unit20>
@@ -179,7 +179,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit20>
       <Unit21>
@@ -188,7 +188,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="17"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
@@ -197,7 +197,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="12"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit22>
       <Unit23>
@@ -206,61 +206,61 @@
         <WindowIndex Value="0"/>
         <TopLine Value="96"/>
         <CursorPos X="1" Y="104"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="18"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit23>
       <Unit24>
         <Filename Value="..\source\regradiobutton.pas"/>
         <UnitName Value="regradiobutton"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="56"/>
+        <TopLine Value="32"/>
         <CursorPos X="23" Y="60"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="17"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit24>
       <Unit25>
         <Filename Value="..\source\reglistbox.pas"/>
         <UnitName Value="reglistbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="325"/>
-        <CursorPos X="1" Y="332"/>
-        <UsageCount Value="21"/>
+        <TopLine Value="373"/>
+        <CursorPos X="13" Y="392"/>
+        <UsageCount Value="23"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit25>
       <Unit26>
         <Filename Value="..\source\regcombobox.pas"/>
         <UnitName Value="regcombobox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="326"/>
-        <CursorPos X="1" Y="333"/>
-        <UsageCount Value="15"/>
+        <TopLine Value="375"/>
+        <CursorPos X="13" Y="403"/>
+        <UsageCount Value="17"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit26>
       <Unit27>
         <Filename Value="..\source\regcheckgroup.pas"/>
         <UnitName Value="regcheckgroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="443"/>
-        <CursorPos X="1" Y="462"/>
-        <UsageCount Value="18"/>
+        <TopLine Value="211"/>
+        <CursorPos X="1" Y="229"/>
+        <UsageCount Value="20"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit27>
       <Unit28>
         <Filename Value="..\source\regchecklistbox.pas"/>
         <UnitName Value="regchecklistbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="465"/>
-        <CursorPos X="21" Y="500"/>
-        <UsageCount Value="25"/>
+        <TopLine Value="415"/>
+        <CursorPos X="13" Y="443"/>
+        <UsageCount Value="27"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
       <Unit29>
         <Filename Value="..\source\regvaluelisteditor.pas"/>
         <UnitName Value="regvaluelisteditor"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="82"/>
-        <CursorPos X="42" Y="430"/>
-        <UsageCount Value="19"/>
+        <TopLine Value="97"/>
+        <CursorPos X="1" Y="110"/>
+        <UsageCount Value="22"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
@@ -269,22 +269,22 @@
         <WindowIndex Value="0"/>
         <TopLine Value="663"/>
         <CursorPos X="3" Y="407"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit30>
       <Unit31>
         <Filename Value="..\package\registrycontrols.lrs"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="8"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit31>
       <Unit32>
         <Filename Value="..\source\regutils.pas"/>
         <UnitName Value="regutils"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="127"/>
-        <CursorPos X="1" Y="748"/>
+        <TopLine Value="825"/>
+        <CursorPos X="1" Y="844"/>
         <UsageCount Value="24"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit32>
@@ -294,7 +294,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit33>
       <Unit34>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\packages\fcl-registry\src\registry.pp"/>
@@ -302,14 +302,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="801"/>
         <CursorPos X="15" Y="150"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="14"/>
       </Unit34>
       <Unit35>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\packages\fcl-registry\src\regini.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="118"/>
         <CursorPos X="3" Y="158"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit35>
       <Unit36>
         <Filename Value="..\source\regmsg.pas"/>
@@ -317,7 +317,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="38" Y="16"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit36>
       <Unit37>
@@ -326,14 +326,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="800"/>
         <CursorPos X="3" Y="819"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit37>
       <Unit38>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\win\wininc\messages.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1308"/>
         <CursorPos X="6" Y="1327"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit38>
       <Unit39>
         <Filename Value="..\source\register_regcontrol.pas"/>
@@ -341,7 +341,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="13"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit39>
       <Unit40>
@@ -350,7 +350,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="3" Y="10"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit40>
       <Unit41>
@@ -358,56 +358,56 @@
         <WindowIndex Value="0"/>
         <TopLine Value="5305"/>
         <CursorPos X="1" Y="5323"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit41>
       <Unit42>
         <Filename Value="C:\lazarus\lcl\include\dragdock.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit42>
       <Unit43>
         <Filename Value="C:\lazarus\lcl\include\sizeconstraints.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit43>
       <Unit44>
         <Filename Value="C:\lazarus\lcl\include\controlcanvas.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit44>
       <Unit45>
         <Filename Value="C:\lazarus\lcl\include\customcontrol.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit45>
       <Unit46>
         <Filename Value="C:\lazarus\lcl\include\dragmanager.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit46>
       <Unit47>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="2094"/>
         <CursorPos X="1" Y="2112"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit47>
       <Unit48>
         <Filename Value="..\source\regtype.pas"/>
         <UnitName Value="regtype"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="278"/>
-        <CursorPos X="13" Y="314"/>
+        <TopLine Value="501"/>
+        <CursorPos X="1" Y="515"/>
         <UsageCount Value="27"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit48>
@@ -417,7 +417,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit49>
       <Unit50>
         <Filename Value="..\source\regpropedits.pas"/>
@@ -425,7 +425,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="66" Y="17"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="15"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit50>
       <Unit51>
@@ -434,35 +434,35 @@
         <WindowIndex Value="0"/>
         <TopLine Value="726"/>
         <CursorPos X="3" Y="766"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit51>
       <Unit52>
         <Filename Value="C:\lazarus\lcl\include\radiogroup.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="415"/>
         <CursorPos X="3" Y="417"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit52>
       <Unit53>
         <Filename Value="C:\lazarus\lcl\include\customcheckbox.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="40"/>
         <CursorPos X="1" Y="53"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit53>
       <Unit54>
         <Filename Value="C:\lazarus\lcl\include\radiobutton.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="75"/>
         <CursorPos X="1" Y="83"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit54>
       <Unit55>
         <Filename Value="C:\lazarus\lcl\include\application.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="360"/>
         <CursorPos X="1" Y="381"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit55>
       <Unit56>
         <Filename Value="C:\lazarus\lcl\lresources.pp"/>
@@ -470,14 +470,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="689"/>
         <CursorPos X="3" Y="694"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit56>
       <Unit57>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="2886"/>
         <CursorPos X="3" Y="2886"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit57>
       <Unit58>
         <Filename Value="C:\lazarus\ideintf\componenteditors.pas"/>
@@ -485,14 +485,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="727"/>
         <CursorPos X="26" Y="730"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit58>
       <Unit59>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\packages\fcl-registry\src\winreg.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="52"/>
         <CursorPos X="3" Y="57"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit59>
       <Unit60>
         <Filename Value="C:\lazarus\lcl\menus.pp"/>
@@ -500,7 +500,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="99"/>
         <CursorPos X="3" Y="118"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit60>
       <Unit61>
         <Filename Value="..\source\dlgtruefalse.pas"/>
@@ -511,7 +511,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="20" Y="3"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="22"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit61>
       <Unit62>
@@ -520,14 +520,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="49"/>
         <CursorPos X="3" Y="68"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit62>
       <Unit63>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\win\wininc\struct.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="198"/>
         <CursorPos X="6" Y="217"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit63>
       <Unit64>
         <Filename Value="C:\lazarus\ideintf\checklistboxeditordlg.pas"/>
@@ -538,14 +538,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="169"/>
         <CursorPos X="3" Y="28"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit64>
       <Unit65>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\inc\systemh.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="507"/>
         <CursorPos X="11" Y="526"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit65>
       <Unit66>
         <Filename Value="..\source\dlgeditsettings.pas"/>
@@ -556,7 +556,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="80"/>
         <CursorPos X="22" Y="101"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit66>
       <Unit67>
@@ -568,7 +568,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="56" Y="2"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit67>
       <Unit68>
@@ -576,7 +576,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit68>
       <Unit69>
@@ -584,28 +584,28 @@
         <WindowIndex Value="0"/>
         <TopLine Value="31"/>
         <CursorPos X="1" Y="56"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit69>
       <Unit70>
         <Filename Value="C:\lazarus\lcl\include\customedit.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="528"/>
-        <CursorPos X="3" Y="530"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="260"/>
+        <CursorPos X="1" Y="279"/>
+        <UsageCount Value="11"/>
       </Unit70>
       <Unit71>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\compon.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="214"/>
         <CursorPos X="3" Y="217"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit71>
       <Unit72>
         <Filename Value="C:\lazarus\lcl\include\customcombobox.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="195"/>
         <CursorPos X="3" Y="202"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit72>
       <Unit73>
         <Filename Value="C:\lazarus\lcl\checklst.pas"/>
@@ -613,35 +613,35 @@
         <WindowIndex Value="0"/>
         <TopLine Value="325"/>
         <CursorPos X="40" Y="344"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit73>
       <Unit74>
         <Filename Value="C:\lazarus\lcl\include\customlistbox.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="178"/>
         <CursorPos X="1" Y="197"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit74>
       <Unit75>
         <Filename Value="C:\lazarus\lcl\include\customcheckgroup.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="162"/>
         <CursorPos X="3" Y="311"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit75>
       <Unit76>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\stringl.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="593"/>
         <CursorPos X="3" Y="598"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit76>
       <Unit77>
         <Filename Value="..\doc\regsourcen.xml"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="XML"/>
       </Unit77>
       <Unit78>
@@ -650,7 +650,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1018"/>
         <CursorPos X="27" Y="1042"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit78>
       <Unit79>
         <Filename Value="C:\lazarus\lcl\grids.pas"/>
@@ -658,14 +658,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="9684"/>
         <CursorPos X="13" Y="9703"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit79>
       <Unit80>
         <Filename Value="C:\lazarus\lcl\include\customgroupbox.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="9"/>
         <CursorPos X="32" Y="38"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit80>
       <Unit81>
         <Filename Value="C:\lazarus\lcl\widgetset\wsextctrls.pp"/>
@@ -673,7 +673,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="289"/>
         <CursorPos X="3" Y="293"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit81>
       <Unit82>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\packages\fcl-base\src\inifiles.pp"/>
@@ -681,25 +681,108 @@
         <WindowIndex Value="0"/>
         <TopLine Value="789"/>
         <CursorPos X="3" Y="794"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit82>
+      <Unit83>
+        <Filename Value="C:\lazarus\lcl\include\containedaction.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="79"/>
+        <CursorPos X="1" Y="104"/>
+        <UsageCount Value="10"/>
+      </Unit83>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="2" HistoryIndex="1">
+    <JumpHistory Count="21" HistoryIndex="20">
       <Position1>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="260" Column="48" TopLine="235"/>
+        <Caret Line="250" Column="37" TopLine="248"/>
       </Position1>
       <Position2>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="261" Column="4" TopLine="238"/>
+        <Caret Line="250" Column="37" TopLine="248"/>
       </Position2>
+      <Position3>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="252" Column="37" TopLine="250"/>
+      </Position3>
+      <Position4>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="262" Column="59" TopLine="260"/>
+      </Position4>
+      <Position5>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="262" Column="59" TopLine="260"/>
+      </Position5>
+      <Position6>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="263" Column="59" TopLine="261"/>
+      </Position6>
+      <Position7>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="264" Column="59" TopLine="262"/>
+      </Position7>
+      <Position8>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="265" Column="59" TopLine="263"/>
+      </Position8>
+      <Position9>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="266" Column="59" TopLine="264"/>
+      </Position9>
+      <Position10>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="489" Column="25" TopLine="475"/>
+      </Position10>
+      <Position11>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="488" Column="25" TopLine="474"/>
+      </Position11>
+      <Position12>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="489" Column="25" TopLine="475"/>
+      </Position12>
+      <Position13>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="489" Column="25" TopLine="475"/>
+      </Position13>
+      <Position14>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="496" Column="25" TopLine="482"/>
+      </Position14>
+      <Position15>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="363" Column="64" TopLine="360"/>
+      </Position15>
+      <Position16>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="369" Column="65" TopLine="350"/>
+      </Position16>
+      <Position17>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="260" Column="22" TopLine="253"/>
+      </Position17>
+      <Position18>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="265" Column="37" TopLine="253"/>
+      </Position18>
+      <Position19>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="259" Column="1" TopLine="244"/>
+      </Position19>
+      <Position20>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="260" Column="1" TopLine="245"/>
+      </Position20>
+      <Position21>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="365" Column="3" TopLine="365"/>
+      </Position21>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="3">
+    <BreakPoints Count="2">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -712,16 +795,9 @@
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
-        <Source Value="..\source\regcheckgroup.pas"/>
-        <Line Value="121"/>
+        <Source Value="frmmain.pas"/>
+        <Line Value="321"/>
       </Item2>
-      <Item3>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="..\source\regcheckgroup.pas"/>
-        <Line Value="462"/>
-      </Item3>
     </BreakPoints>
   </Debugging>
 </CONFIG>

@@ -49,6 +49,8 @@ type
       read FRegistrySource
       write SetRegistrySource;
   public
+    procedure ClearItems(aAskFor: boolean = True;
+                         aMsg: string = 'Clear Items?'); virtual;
     procedure Click; override;
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
@@ -376,6 +378,24 @@ begin
       RefreshRegistrySettings;
     end;
   end;
+end;
+
+procedure TCustomRegListBox.ClearItems(aAskFor: boolean = True;
+  aMsg: string = 'Clear Items?');
+var
+  start: boolean;
+begin
+  start := not aAskFor;
+  if FRegistrySettings.ItemsByRegistry then
+    if aAskFor then
+      start := (MessageDlg(aMsg, mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    if start then
+      FRegistrySource.EraseSection(FRegistrySettings.RootKey,
+        FRegistrySettings.RootKeyForDefaults,
+        FRegistrySettings.RootForDefaults,
+        FRegistrySettings.ListSection,
+        FRegistrySettings.WriteDefaults,
+        FRegistrySettings.GroupIndex);
 end;
 
 procedure TCustomRegListBox.Click;

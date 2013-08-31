@@ -10,7 +10,6 @@ uses
 
 type
 
-
   { TKeyValueItems }
 
   TKeyValueItems = record
@@ -138,27 +137,16 @@ type
 
   TCustomRegistrySettings<_T> = class(TCustomProperties)
   private
-    //Basisschlüssel, z.B.: SOFTWARE\SOFTWARE AUS ERWITTE\%%PROJECT%%\
     FRootKey: string;
-    //Basisschlüssel für Defaults, z.B.: SOFTWARE\SOFTWARE AUS ERWITTE\%%PROJECT%%\DEFAULTS\
     FRootKeyForDefaults: string;
-    //Unterschlüssel unter dem Basisschlüssel, z.B.: Desktop
     FSection: string;
-    //Ident im Unterschlüssel, z.B.: FileDir
     FIdent: string;
-    //Default, wenn kein Wert in der Registry gefunden wurde
     FDefault: _T;
-    //Wenn TRUE, dann Werte aus dem Basisschlüssel für Defaults lesen
     FReadDefaults: boolean;
-    //Wenn TRUE, dann Werte in den Basisschlüssel für Defaults schreiben
     FWriteDefaults: boolean;
-    //Root des Basisschlüssel für Defaults (in der Regel: HKEY_LOCAL_MACHINE)
     FRootForDefaults: string;
-    //Werte dürfen aus der Registry gelesen werden
     FCanRead: boolean;
-    //Werte dürfen in die Registry geschrieben werden
     FCanWrite: boolean;
-    //Werte werde sofort (OnChange, OnClick, etc.) in die Registry geschrieben
     FDoWriteAdHoc: boolean;
     FGroupIndex: cardinal;
     FDoSyncData: boolean;
@@ -485,7 +473,6 @@ begin
   FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
   FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
 
-  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -502,7 +489,6 @@ begin
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
   FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
 
-  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -514,7 +500,6 @@ begin
 
   FSection := aSection;
 
-  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -526,7 +511,6 @@ begin
 
   FIdent := aIdent;
 
-  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -538,7 +522,6 @@ begin
 
   FReadDefaults := aReadDefaults;
 
-  // muss hier aktualisiert werden??? ich glaube Ja!!!
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -550,7 +533,6 @@ begin
 
   FWriteDefaults := aWriteDefaults;
 
-  // muss hier aktualisiert werden??? ich glaube Ja!!!
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -563,7 +545,6 @@ begin
 
   FRootForDefaults := aRootForDefaults;
 
-  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -575,7 +556,6 @@ begin
 
   FCanRead := aCanRead;
 
-  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -587,7 +567,6 @@ begin
 
   FCanWrite := aCanWrite;
 
-  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -607,7 +586,6 @@ begin
 
   FDefault := aDefault;
 
-  // in diesem Fall muss immer aktualisiert werden
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;

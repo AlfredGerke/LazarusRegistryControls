@@ -53,6 +53,8 @@ type
       read FRegistrySource
       write SetRegistrySource;
   public
+    procedure ClearItems(aAskFor: boolean = True;
+                         aMsg: string = 'Clear Items?'); virtual;
     procedure Click; override;
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
@@ -183,7 +185,7 @@ begin
                 case aType of
                   ikInfo:
                   begin
-                    if (FRegistrySettings.ListSection <> '') then
+                    if ((FRegistrySettings.ListSection <> '') and (Items.Count > 0)) then
                     begin
                       ident_by_itemindex := Items.Strings[ItemIndex];
                       checked_by_itemindex := Checked[ItemIndex];
@@ -427,6 +429,24 @@ begin
       RefreshRegistrySettings;
     end;
   end;
+end;
+
+procedure TCustomRegCheckListBox.ClearItems(aAskFor: boolean = True;
+  aMsg: string = 'Clear Items?');
+var
+  start: boolean;
+begin
+  start := not aAskFor;
+  if FRegistrySettings.ItemsByRegistry then
+    if aAskFor then
+      start := (MessageDlg(aMsg, mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    if start then
+      FRegistrySource.EraseSection(FRegistrySettings.RootKey,
+        FRegistrySettings.RootKeyForDefaults,
+        FRegistrySettings.RootForDefaults,
+        FRegistrySettings.ListSection,
+        FRegistrySettings.WriteDefaults,
+        FRegistrySettings.GroupIndex);
 end;
 
 procedure TCustomRegCheckListBox.Click;

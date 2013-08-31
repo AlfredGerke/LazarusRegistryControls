@@ -3,7 +3,7 @@
   <Package Version="4">
     <PathDelim Value="\"/>
     <Name Value="RegistrySource"/>
-    <Author Value="Dipl. Ing. (FH) Alfred Gerke"/>
+    <Author Value="Alfred Gerke"/>
     <CompilerOptions>
       <Version Value="11"/>
       <PathDelim Value="\"/>
@@ -44,7 +44,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
-    <Version Minor="9" Release="5" Build="1"/>
+    <Version Minor="9" Release="8" Build="1"/>
     <Files Count="10">
       <Item1>
         <Filename Value="registrysource.lrs"/>

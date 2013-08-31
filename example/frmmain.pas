@@ -44,6 +44,11 @@ type
     acTestDeleteKey: TAction;
     acTestEraseSection: TAction;
     acTestRenameKey: TAction;
+    acRefreshSettingsKombination: TAction;
+    acAddValue: TAction;
+    acEraseSectionValueEdit: TAction;
+    acRefreshDataKombi: TAction;
+    acEraseSectionValueEdit2: TAction;
     acWriteAdHocOffList: TAction;
     acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
@@ -55,6 +60,7 @@ type
     ActionList1: TActionList;
     btnRefreshControls: TButton;
     btnRefreshControlsList: TButton;
+    btnRefreshControlsList1: TButton;
     btnSyncDataOfList: TButton;
     btnSyncDataOnList: TButton;
     btnWriteAdHocOffList: TButton;
@@ -81,6 +87,7 @@ type
     lblCheckGroup: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
     mnuTestRenameKey: TMenuItem;
     mnuTestEraseSection: TMenuItem;
     mnuTestDeleteKey: TMenuItem;
@@ -94,11 +101,13 @@ type
     mnuClose: TMenuItem;
     mnuFile: TMenuItem;
     PageControl1: TPageControl;
+    pnlClientKombination: TPanel;
     pnlClient1: TPanel;
     pnlClientList: TPanel;
     pnlClient: TPanel;
     pnlTop: TPanel;
     pnlTopList: TPanel;
+    pnlTopKombination: TPanel;
     rcbxCheckBox1: TRegCheckBox;
     rcbxCheckBox2: TRegCheckBox;
     rcgCheckGroup3: TRegCheckGroup;
@@ -106,11 +115,19 @@ type
     redtComboBoxList1: TRegComboBox;
     redtControlName: TRegEdit;
     redtControlName1: TRegEdit;
+    redtControlName2: TRegEdit;
     redtEdit: TRegEdit;
     redtComboBox1: TRegComboBox;
     rcgCheckGroup1: TRegCheckGroup;
     rcgCheckGroup2: TRegCheckGroup;
     redtEdit1: TRegEdit;
+    redtAddValue: TRegEdit;
+    rcbxKombi: TRegCheckBox;
+    rlbKombi: TRegCheckListBox;
+    rvgKombi: TRegCheckGroup;
+    RegistrySource3: TRegistrySource;
+    rvalKombi: TRegValueListEditor;
+    rvlValueListEditorKombi: TRegValueListEditor;
     rvlValueListEditor: TRegValueListEditor;
     rgrpRadioGroup2: TRegRadioGroup;
     rlbCheckListBox2: TRegCheckListBox;
@@ -127,15 +144,23 @@ type
     rrbRadioButton2: TRegRadioButton;
     rrbRadioButton3: TRegRadioButton;
     rrbRadioButton4: TRegRadioButton;
+    SpeedButton1: TSpeedButton;
+    btnEraseValueEditList: TSpeedButton;
+    SpeedButton2: TSpeedButton;
     tabSingleValue: TTabSheet;
     tabList: TTabSheet;
     tabKombination: TTabSheet;
+    procedure acAddValueExecute(Sender: TObject);
     procedure acCheckExampleSettingsExecute(Sender: TObject);
     procedure acCloseExecute(Sender: TObject);
     procedure acCreateExampleSettingsExecute(Sender: TObject);
+    procedure acEraseSectionValueEdit2Execute(Sender: TObject);
+    procedure acEraseSectionValueEditExecute(Sender: TObject);
     procedure acRefreshDataExecute(Sender: TObject);
+    procedure acRefreshDataKombiExecute(Sender: TObject);
     procedure acRefreshDataListExecute(Sender: TObject);
     procedure acRefreshSettingListSourceExecute(Sender: TObject);
+    procedure acRefreshSettingsKombinationExecute(Sender: TObject);
     procedure acRefreshSettingsSingleSourceExecute(Sender: TObject);
     procedure acSyncDataListOffExecute(Sender: TObject);
     procedure acSyncDataListOnExecute(Sender: TObject);
@@ -208,14 +233,45 @@ begin
   end;
 end;
 
+procedure TMain.acAddValueExecute(Sender: TObject);
+var
+  ident: string;
+begin
+  ident := Format('Key%d', [rvlValueListEditorKombi.Strings.Count]);
+  // BeginUpdate verhindert das Triggern das OnChange der RegistrySettings
+  redtAddValue.RegistrySettings.BeginUpdate;
+  try
+    redtAddValue.RegistrySettings.Ident := ident;
+  finally
+    // EndUpdate muss unbedingt aufgerufen werden
+    redtAddValue.RegistrySettings.EndUpdate;
+  end;
+  redtAddValue.WriteToReg;
+end;
+
 procedure TMain.acCreateExampleSettingsExecute(Sender: TObject);
 begin
   CreateSettings;
 end;
 
+procedure TMain.acEraseSectionValueEdit2Execute(Sender: TObject);
+begin
+  rvalKombi.ClearItems(True, 'Soll die Liste gelöscht werden?');
+end;
+
+procedure TMain.acEraseSectionValueEditExecute(Sender: TObject);
+begin
+  rvlValueListEditorKombi.ClearItems;
+end;
+
 procedure TMain.acRefreshDataExecute(Sender: TObject);
 begin
   RegistrySource1.RefreshControlData(Trim(redtControlName.Text));
+end;
+
+procedure TMain.acRefreshDataKombiExecute(Sender: TObject);
+begin
+  RegistrySource3.RefreshControlData(Trim(redtControlName2.Text));
 end;
 
 procedure TMain.acRefreshDataListExecute(Sender: TObject);
@@ -226,6 +282,11 @@ end;
 procedure TMain.acRefreshSettingListSourceExecute(Sender: TObject);
 begin
   RegistrySource2.RefreshSettings;
+end;
+
+procedure TMain.acRefreshSettingsKombinationExecute(Sender: TObject);
+begin
+  RegistrySource3.RefreshSettings;
 end;
 
 procedure TMain.acRefreshSettingsSingleSourceExecute(Sender: TObject);
@@ -334,6 +395,7 @@ begin
          mtConfirmation,
          [mbYes, mbNo],
          0) = mrYes);
+
     with RegistrySource1 do
     begin
       Screen.Cursor := crHourGlass;
@@ -425,6 +487,27 @@ begin
       WriteString('RegValueListe', 'Key3', 'Value3');
       WriteString('RegValueListe', 'Key4', 'Value4');
       WriteString('RegValueListe', 'Key5', 'Value5');
+
+      RefreshControlData('', 0);
+      DoSyncData := old_sync_data;
+      Screen.Cursor := crDefault;
+    end;
+
+    with RegistrySource3 do
+    begin
+      Screen.Cursor := crHourGlass;
+      old_sync_data := DoSyncData;
+      DoSyncData := False;
+      WriteDefaults := use_defaults;
+
+      WriteString('Desktop', 'Test', 'Kombinationen');
+
+      // Section als Liste laden (Key=Value)
+      WriteInteger('RegValueListe', 'Key1', 0);
+      WriteInteger('RegValueListe', 'Key2', 1);
+      WriteInteger('RegValueListe', 'Key3', 2);
+      WriteBool('RegValueListe', 'Key4', True);
+      WriteBool('RegValueListe', 'Key5', False);
 
       RefreshControlData('', 0);
       DoSyncData := old_sync_data;
