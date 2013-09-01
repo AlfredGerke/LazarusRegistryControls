@@ -156,6 +156,7 @@ type
     FOnChange: TNotifyEvent;
     FOnBeforeRegistrySettingChange: TOnRegistrySettingsChange;
     FTriggerEvents: boolean;
+    FMergeData: boolean;
 
     function ChangeTokenForKey(aToken: TTokenType;
                                aKey: string): string;
@@ -191,6 +192,9 @@ type
     property Ident: string
       read FIdent
       write SetIdent;
+    property MergeData: boolean
+      read FMergeData
+      write FMergeData;
   public
     procedure GetRootKeys(var aRootKeys: TRootKeysStruct);
     procedure SetRootKeys(aRootKeys: TRootKeysStruct);

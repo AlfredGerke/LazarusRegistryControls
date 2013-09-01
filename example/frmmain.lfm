@@ -170,6 +170,7 @@ object Main: TMain
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = False
           RegistrySettings.SourceKind = lskUnknown
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource1
         end
         object rlbListBox1: TRegListBox
@@ -195,6 +196,7 @@ object Main: TMain
           RegistrySettings.Default = 0
           RegistrySettings.ItemsByRegistry = False
           RegistrySettings.SourceKind = lskUnknown
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource1
         end
         object redtComboBox1: TRegComboBox
@@ -222,6 +224,7 @@ object Main: TMain
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = False
           RegistrySettings.SourceKind = lskUnknown
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource1
         end
         object lblListBox1: TLabel
@@ -296,6 +299,7 @@ object Main: TMain
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = False
           RegistrySettings.ListSection = 'CheckListBoxListe'
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource1
           Data = {
             050000000000000000
@@ -333,6 +337,7 @@ object Main: TMain
           RegistrySettings.DoSyncData = False
           RegistrySettings.Default = 0
           RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.MergeData = False
           Data = {
             050000000202020202
           }
@@ -501,6 +506,7 @@ object Main: TMain
             RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.SourceKind = lskUnknown
+            RegistrySettings.MergeData = False
             RegistrySource = RegistrySource1
           end
           object rlbListBox3: TRegListBox
@@ -528,6 +534,7 @@ object Main: TMain
             RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.SourceKind = lskUnknown
+            RegistrySettings.MergeData = False
             RegistrySource = RegistrySource1
           end
           object redtComboBox2: TRegComboBox
@@ -555,6 +562,7 @@ object Main: TMain
             RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.SourceKind = lskUnknown
+            RegistrySettings.MergeData = False
             RegistrySource = RegistrySource1
           end
           object lblListBox2: TLabel
@@ -629,6 +637,7 @@ object Main: TMain
             RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.ListSection = 'CheckListBoxListe'
+            RegistrySettings.MergeData = False
             RegistrySource = RegistrySource1
             Data = {
               050000000000000000
@@ -669,6 +678,7 @@ object Main: TMain
             RegistrySettings.Ident = 'ItemIndex'
             RegistrySettings.ItemsByRegistry = False
             RegistrySettings.ListSection = 'CheckGroupListe'
+            RegistrySettings.MergeData = False
             RegistrySource = RegistrySource1
             Data = {
               050000000202020202
@@ -881,6 +891,7 @@ object Main: TMain
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'RaidoGroupListe'
           RegistrySettings.SourceKind = byKey
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource2
         end
         object rlbListBox2: TRegListBox
@@ -901,6 +912,7 @@ object Main: TMain
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'ListBoxListe'
           RegistrySettings.SourceKind = byKey
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource2
         end
         object redtComboBoxList1: TRegComboBox
@@ -921,6 +933,7 @@ object Main: TMain
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'ComboBoxListe'
           RegistrySettings.SourceKind = byKey
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource2
         end
         object lblRadioGroupList: TLabel
@@ -991,6 +1004,7 @@ object Main: TMain
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'CheckListBoxListe'
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource2
         end
         object lblCheckListBox: TLabel
@@ -1036,6 +1050,7 @@ object Main: TMain
           RegistrySettings.Ident = 'LastChecked'
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'CheckGroupListe'
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource2
         end
         object lblCheckGroup: TLabel
@@ -1069,6 +1084,7 @@ object Main: TMain
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
           RegistrySettings.ListSection = 'RegValueListe'
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource2
           ColWidths = (
             64
@@ -1163,6 +1179,7 @@ object Main: TMain
           RegistrySettings.GroupIndex = 1
           RegistrySettings.DoSyncData = True
           RegistrySettings.ListSection = 'ValueEditString'
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource3
           ColWidths = (
             64
@@ -1191,6 +1208,7 @@ object Main: TMain
           RegistrySettings.GroupIndex = 2
           RegistrySettings.DoSyncData = True
           RegistrySettings.ListSection = 'RegValueListe'
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource3
           ColWidths = (
             64
@@ -1248,6 +1266,7 @@ object Main: TMain
           RegistrySettings.Ident = 'LastChecked'
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'RegValueListe'
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource3
         end
         object rlbKombi: TRegCheckListBox
@@ -1267,6 +1286,7 @@ object Main: TMain
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'RegValueListe'
+          RegistrySettings.MergeData = False
           RegistrySource = RegistrySource3
         end
       end

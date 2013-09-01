@@ -19,7 +19,8 @@ type
 
     procedure ReadSectionValuesByKind(aSection: string;
                                       aStrings: TStrings;
-                                      aKind: TListSourceKind = Both);
+                                      aKind: TListSourceKind = Both;
+                                      aMerge: boolean = False);
   protected
     function GetDefaultKey: string;
     function GetHKeyRoot: HKEY;
@@ -40,11 +41,14 @@ type
                       aIdent: string;
                       aDefault: boolean): boolean; virtual;
     procedure ReadSectionValuesOnly(aSection: string;
-                                    aStrings: TStrings);
+                                    aStrings: TStrings;
+                                    aMerge: boolean);
     procedure ReadSection(aSection: string;
-                          aStrings: TStrings); virtual;
+                          aStrings: TStrings;
+                          aMerge: boolean); virtual;
     procedure ReadSectionValues(aSection: string;
-                               aStrings: TStrings); virtual;
+                                aStrings: TStrings;
+                                aMerge: boolean); virtual;
     procedure WriteString(aSection: string;
                           aIdent: string;
                           aString: string); virtual;
@@ -94,7 +98,8 @@ type
     procedure ReadSectionValuesOnly(aSection: string;
                                     aStrings: TStrings);
     procedure ReadSectionValuesOnlyForDefaults(aSection: string;
-                                               aStrings: TStrings);
+                                               aStrings: TStrings;
+                                               aMerge: boolean);
     function ReadStringCheckForDefaults(aSection: string;
                                         aIdent: string;
                                         aDefault: string): string; virtual;
@@ -105,9 +110,11 @@ type
                                       aIdent: string;
                                       aDefault: boolean): boolean; virtual;
     procedure ReadSectionCheckForDefaults(aSection: string;
-                                          aStrings: TStrings); virtual;
+                                          aStrings: TStrings;
+                                          aMerge: boolean); virtual;
     procedure ReadSectionValuesCheckForDefaults(aSection: string;
-                                                aStrings: TStrings); virtual;
+                                                aStrings: TStrings;
+                                                aMerge: boolean); virtual;
     procedure WriteStringCheckForDefaults(aSection: string;
                                           aIdent: string;
                                           aString: string); virtual;
@@ -138,7 +145,8 @@ uses
 
 procedure TDefaultsForCurrentUser.ReadSectionValuesByKind(aSection: string;
   aStrings: TStrings;
-  aKind: TListSourceKind = Both);
+  aKind: TListSourceKind = Both;
+  aMerge: boolean = False);
 var
   list: TStrings;
   reg: TRegistry;
@@ -488,13 +496,15 @@ begin
 end;
 
 procedure TDefaultsForCurrentUser.ReadSectionValuesOnly(aSection: string;
-  aStrings: TStrings);
+  aStrings: TStrings;
+  aMerge: boolean);
 begin
-  ReadSectionValuesByKind(aSection, aStrings, byValue);
+  ReadSectionValuesByKind(aSection, aStrings, byValue, aMerge);
 end;
 
 procedure TDefaultsForCurrentUser.ReadSection(aSection: string;
-  aStrings: TStrings);
+  aStrings: TStrings;
+  aMerge: boolean);
 var
   reg: TRegistry;
   key: string;
@@ -524,9 +534,10 @@ begin
 end;
 
 procedure TDefaultsForCurrentUser.ReadSectionValues(aSection: string;
-  aStrings: TStrings);
+  aStrings: TStrings;
+  aMerge: boolean);
 begin
-  ReadSectionValuesByKind(aSection, aStrings, Both);
+  ReadSectionValuesByKind(aSection, aStrings, Both, aMerge);
 end;
 
 procedure TDefaultsForCurrentUser.WriteString(aSection: string;
@@ -802,7 +813,8 @@ begin
 end;
 
 procedure TDataByCurrentUser.ReadSectionValuesOnlyForDefaults(aSection: string;
-  aStrings: TStrings);
+  aStrings: TStrings;
+  aMerge: boolean);
 begin
   try
     aStrings.Clear;
@@ -810,7 +822,10 @@ begin
     ReadSectionValuesOnly(aSection, aStrings);
 
     if (aStrings.Count = 0) then
-      UseDefaults.ReadSectionValuesOnly(aSection, aStrings);
+      UseDefaults.ReadSectionValuesOnly(aSection, aStrings, False)
+    else
+      if aMerge then
+        UseDefaults.ReadSectionValuesOnly(aSection, aStrings, True);
   except
     on E: Exception do
       aStrings.Clear;
@@ -845,15 +860,19 @@ begin
 end;
 
 procedure TDataByCurrentUser.ReadSectionCheckForDefaults(aSection: string;
-  aStrings: TStrings);
+  aStrings: TStrings;
+  aMerge: boolean);
 begin
   try
     aStrings.Clear;
 
     ReadSection(aSection, aStrings);
 
-    if aStrings.Count = 0 then
-      UseDefaults.ReadSection(aSection, aStrings);
+    if (aStrings.Count = 0) then
+      UseDefaults.ReadSection(aSection, aStrings, False)
+    else
+      if aMerge then
+        UseDefaults.ReadSection(aSection, aStrings, True);
   except
     on E: Exception do
       aStrings.Clear;
@@ -862,7 +881,8 @@ end;
 
 procedure TDataByCurrentUser.ReadSectionValuesCheckForDefaults(
   aSection: string;
-  aStrings: TStrings);
+  aStrings: TStrings;
+  aMerge: boolean);
 begin
   try
     aStrings.Clear;
@@ -870,7 +890,10 @@ begin
     ReadSectionValuesEx(aSection, aStrings);
 
     if aStrings.Count = 0 then
-      UseDefaults.ReadSectionValues(aSection, aStrings);
+      UseDefaults.ReadSectionValues(aSection, aStrings, False)
+    else
+      if aMerge then
+        UseDefaults.ReadSectionValues(aSection, aStrings, True);
   except
     on E: Exception do
       aStrings.Clear;

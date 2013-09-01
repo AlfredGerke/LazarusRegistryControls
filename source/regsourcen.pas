@@ -74,6 +74,7 @@ type
     property ListSection: string
       read FListSection
       write FListSection;
+    property MergeData;
   end;
 
   { TRegistrySettingsList }
@@ -101,6 +102,7 @@ type
     property SourceKind: TListSourceKind
       read FSourceKind
       write FSourceKind;
+    property MergeData;
   end;
 
   { TRegistrySettingsCheckedList }
@@ -129,6 +131,7 @@ type
     property ListSection: string
       read FListSection
       write FListSection;
+    property MergeData;
   end;
 
   { TCustomRegistrySource }
@@ -195,6 +198,9 @@ type
       read FEditClientRootKeys
       write FEditClientRootKeys;
   public
+    procedure ClearClientItems(aClientName: string = '';
+                               aAskFor: boolean = True;
+                               aMsg: string = 'Clear Items?');
     procedure DeleteRootKey; reintroduce; overload;
     procedure DeleteRootKey(aRootKey: string;
                             aRootKeyForDefaults: string;
@@ -256,10 +262,12 @@ type
                           aRootForDefaults: string;
                           aSection: string;
                           aStrings: TStrings;
+                          aMerge: boolean;
                           aUseDefaults: boolean;
                           aListSource: TListSourceKind = byKey); reintroduce; overload;
     procedure ReadSection(aSection: string;
-                          aStrings: TStrings); reintroduce; overload;
+                          aStrings: TStrings;
+                          aMerge: boolean); reintroduce; overload;
     procedure WriteString(aRootKey: string;
                           aRootKeyForDefaults: string;
                           aRootForDefaults: string;
@@ -450,6 +458,19 @@ begin
     Result := FClientList.Count
   else
     Result := 0;
+end;
+
+procedure TCustomRegistrySource.ClearClientItems(aClientName: string = '';
+  aAskFor: boolean = True;
+  aMsg: string = 'Clear Items?');
+var
+  start: boolean;
+begin
+  start := not aAskFor;
+  if aAskFor then
+    start := (MessageDlg(aMsg, mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+  if start then
+    DeliverMessage(LM_REGISTRY_CONTROL_CLEAR_LIST, aClientName, 0, 0);
 end;
 
 procedure TCustomRegistrySource.DeleteRootKey;
@@ -880,6 +901,7 @@ procedure TCustomRegistrySource.ReadSection(aRootKey: string;
   aRootForDefaults: string;
   aSection: string;
   aStrings: TStrings;
+  aMerge: boolean;
   aUseDefaults: boolean;
   aListSource: TListSourceKind = byKey);
 var
@@ -898,9 +920,12 @@ begin
       if aUseDefaults then
       begin
         case aListSource of
-          byKey: streg.ReadSectionCheckForDefaults(aSection, aStrings);
-          byValue: streg.ReadSectionValuesOnlyForDefaults(aSection, aStrings);
-          Both: streg.ReadSectionValuesCheckForDefaults(aSection, aStrings);
+          byKey:
+            streg.ReadSectionCheckForDefaults(aSection, aStrings, aMerge);
+          byValue:
+            streg.ReadSectionValuesOnlyForDefaults(aSection, aStrings, aMerge);
+          Both:
+            streg.ReadSectionValuesCheckForDefaults(aSection, aStrings, aMerge);
         else
           aStrings.clear;
         end;
@@ -926,7 +951,8 @@ begin
 end;
 
 procedure TCustomRegistrySource.ReadSection(aSection: string;
-  aStrings: TStrings);
+  aStrings: TStrings;
+  aMerge: boolean);
 begin
   try
     try
@@ -935,6 +961,7 @@ begin
         RootForDefaults,
         aSection,
         aStrings,
+        aMerge,
         ReadDefaults,
         byKey);
     except

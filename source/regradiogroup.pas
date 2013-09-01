@@ -29,6 +29,8 @@ type
     procedure ReadWriteInfo(aRead: boolean);
     function GetItemsByRegistry: boolean;
   protected
+    procedure ClearClientItems(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_CLEAR_LIST;
     procedure ShowEditDialog(var aMessage: TLMessage);
       message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
     procedure FreeRegistrySource(var aMessage: TLMessage);
@@ -219,6 +221,7 @@ begin
               FRegistrySettings.RootForDefaults,
               FRegistrySettings.ListSection,
               list,
+              FRegistrySettings.MergeData,
               FRegistrySettings.ReadDefaults,
               FRegistrySettings.SourceKind);
             Items.AddStrings(list);
@@ -247,6 +250,13 @@ begin
     if Assigned(list) then
       FreeAndNil(list);
   end;
+end;
+
+procedure TCustomRegRadioGroup.ClearClientItems(var aMessage: TLMessage);
+begin
+  ClearItems(False);
+  // verhindert Hinweis auf unbenutzten Parameter aMessage
+  aMessage.Result := 1;
 end;
 
 procedure TCustomRegRadioGroup.ShowEditDialog(var aMessage: TLMessage);
