@@ -195,6 +195,11 @@ type
       read FEditClientRootKeys
       write FEditClientRootKeys;
   public
+    procedure DeleteRootKey; reintroduce; overload;
+    procedure DeleteRootKey(aRootKey: string;
+                            aRootKeyForDefaults: string;
+                            aRootForDefaults: string;
+                            aUseDefaults: boolean); reintroduce; overload;
     procedure RenameClient(aOldName: TComponentName;
                            aNewName: TComponentName);
     procedure ShowClientEditDialog(aClientName: string);
@@ -445,6 +450,62 @@ begin
     Result := FClientList.Count
   else
     Result := 0;
+end;
+
+procedure TCustomRegistrySource.DeleteRootKey;
+begin
+  try
+    DeleteRootKey(GetRootKey,
+      GetRootKeyForDefaults,
+      RootForDefaults,
+      WriteDefaults);
+  except
+    on E: Exception do
+      raise;
+  end;
+end;
+
+procedure TCustomRegistrySource.DeleteRootKey(aRootKey: string;
+  aRootKeyForDefaults: string;
+  aRootForDefaults: string;
+  aUseDefaults: boolean);
+var
+  streg: TDataByCurrentUser;
+  list: TStrings;
+  anz: Integer;
+  section: string;
+begin
+  if aUseDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey);
+
+  list := TStringlist.Create;
+  try
+    try
+      streg.ReadSections(list);
+
+      for anz := 0 to list.count-1 do
+      begin
+        section := list.Strings[anz];
+        if aUseDefaults then
+          streg.EraseSectionForDefaults(section)
+        else
+          streg.EraseSection(section);
+      end;
+    except
+      on E: Exception do
+        raise;
+    end;
+  finally
+    if Assigned(list) then
+      FreeAndNil(list);
+    if Assigned(streg) then
+      FreeAndNil(streg);
+  end;
 end;
 
 procedure TCustomRegistrySource.RenameClient(aOldName: TComponentName;

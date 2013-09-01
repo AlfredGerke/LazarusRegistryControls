@@ -28,17 +28,25 @@ type
     function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
   protected
-    procedure ShowEditDialog(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
-    procedure FreeRegistrySource(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE;
-    procedure RefreshWriteAdHoc(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_WRITEADHOC;
-    procedure RefreshSync(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_SYNC;
-    procedure RefreshSettings(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
-    procedure RefreshData(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_REFRESH_DATA;
+    procedure ShowEditDialog(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
+    procedure FreeRegistrySource(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE;
+    procedure RefreshWriteAdHoc(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_SET_WRITEADHOC;
+    procedure RefreshSync(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_SET_SYNC;
+    procedure RefreshSettings(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
+    procedure RefreshData(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_REFRESH_DATA;
+
+    procedure Click; override;
+    procedure SetName(const NewName: TComponentName); override;
 
     procedure OnChangeSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
-    procedure Click; override;
-    procedure SetName(const NewName: TComponentName); override;
+    function GetEditDialog(aEdit: boolean): boolean; virtual;
 
     property RegistrySettings: TRegistrySettingsBooleanDefault
       read FRegistrySettings
@@ -174,40 +182,14 @@ end;
 
 procedure TCustomRegCheckBox.ShowEditDialog(var aMessage: TLMessage);
 var
-  edit_settings: TEditSettings;
   do_edit: boolean;
-  root_keys: TRootKeysStruct;
 begin
-  root_keys.Found := False;
-  root_keys.Clear;
-
   if (aMessage.wParam = 1) then
     do_edit:= True
   else
     do_edit := False;
 
-  edit_settings := TEditSettings.Create(nil);
-  try
-    with edit_settings do
-    begin
-      RegistrySettings.GetRootKeys(root_keys);
-      SetData(root_keys);
-
-      case ShowModalEx(do_edit) of
-        mrOk:
-        begin
-          root_keys.Clear;
-          GetData(root_keys);
-          RegistrySettings.SetRootKeys(root_keys);
-          aMessage.Result := 1;
-        end;
-        mrCancel:;
-      end;
-    end;
-  finally
-    if Assigned(edit_settings) then
-      edit_settings.Release;
-  end;
+  aMessage.Result := LongInt(GetEditDialog(do_edit));
 end;
 
 procedure TCustomRegCheckBox.FreeRegistrySource(var aMessage: TLMessage);
@@ -294,6 +276,39 @@ begin
       FRegistrySource.RegisterControl(self);
       RefreshRegistrySettings;
     end;
+  end;
+end;
+
+function TCustomRegCheckBox.GetEditDialog(aEdit: boolean): boolean;
+var
+  edit_settings: TEditSettings;
+  root_keys: TRootKeysStruct;
+begin
+  Result := False;
+  root_keys.Found := False;
+  root_keys.Clear;
+
+  edit_settings := TEditSettings.Create(nil);
+  try
+    with edit_settings do
+    begin
+      RegistrySettings.GetRootKeys(root_keys);
+      SetData(root_keys);
+
+      case ShowModalEx(aEdit) of
+        mrOk:
+        begin
+          root_keys.Clear;
+          GetData(root_keys);
+          RegistrySettings.SetRootKeys(root_keys);
+          Result := True;
+        end;
+        mrCancel:;
+      end;
+    end;
+  finally
+    if Assigned(edit_settings) then
+      edit_settings.Release;
   end;
 end;
 

@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="159"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -24,10 +24,11 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="302"/>
-        <CursorPos X="1" Y="321"/>
-        <UsageCount Value="156"/>
+        <TopLine Value="290"/>
+        <CursorPos X="118" Y="295"/>
+        <UsageCount Value="159"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regconst.pas"/>
@@ -42,8 +43,8 @@
         <Filename Value="..\source\regedit.pas"/>
         <UnitName Value="regedit"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="142"/>
-        <CursorPos X="1" Y="160"/>
+        <TopLine Value="179"/>
+        <CursorPos X="54" Y="189"/>
         <UsageCount Value="25"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
@@ -66,9 +67,9 @@
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1174"/>
-        <CursorPos X="3" Y="1205"/>
-        <UsageCount Value="39"/>
+        <TopLine Value="448"/>
+        <CursorPos X="1" Y="478"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -106,8 +107,8 @@
         <Filename Value="..\source\regradiogroup.pas"/>
         <UnitName Value="regradiogroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="394"/>
-        <CursorPos X="13" Y="413"/>
+        <TopLine Value="251"/>
+        <CursorPos X="54" Y="261"/>
         <UsageCount Value="22"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
@@ -204,8 +205,8 @@
         <Filename Value="..\source\regcheckbox.pas"/>
         <UnitName Value="regcheckbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="96"/>
-        <CursorPos X="1" Y="104"/>
+        <TopLine Value="182"/>
+        <CursorPos X="54" Y="192"/>
         <UsageCount Value="18"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit23>
@@ -213,8 +214,8 @@
         <Filename Value="..\source\regradiobutton.pas"/>
         <UnitName Value="regradiobutton"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="32"/>
-        <CursorPos X="23" Y="60"/>
+        <TopLine Value="181"/>
+        <CursorPos X="54" Y="191"/>
         <UsageCount Value="17"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit24>
@@ -222,8 +223,8 @@
         <Filename Value="..\source\reglistbox.pas"/>
         <UnitName Value="reglistbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="373"/>
-        <CursorPos X="13" Y="392"/>
+        <TopLine Value="244"/>
+        <CursorPos X="54" Y="254"/>
         <UsageCount Value="23"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit25>
@@ -231,8 +232,8 @@
         <Filename Value="..\source\regcombobox.pas"/>
         <UnitName Value="regcombobox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="375"/>
-        <CursorPos X="13" Y="403"/>
+        <TopLine Value="245"/>
+        <CursorPos X="54" Y="255"/>
         <UsageCount Value="17"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit26>
@@ -240,8 +241,8 @@
         <Filename Value="..\source\regcheckgroup.pas"/>
         <UnitName Value="regcheckgroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="211"/>
-        <CursorPos X="1" Y="229"/>
+        <TopLine Value="309"/>
+        <CursorPos X="54" Y="319"/>
         <UsageCount Value="20"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit27>
@@ -249,8 +250,8 @@
         <Filename Value="..\source\regchecklistbox.pas"/>
         <UnitName Value="regchecklistbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="415"/>
-        <CursorPos X="13" Y="443"/>
+        <TopLine Value="285"/>
+        <CursorPos X="54" Y="295"/>
         <UsageCount Value="27"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
@@ -258,8 +259,8 @@
         <Filename Value="..\source\regvaluelisteditor.pas"/>
         <UnitName Value="regvaluelisteditor"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="97"/>
-        <CursorPos X="1" Y="110"/>
+        <TopLine Value="276"/>
+        <CursorPos X="1" Y="287"/>
         <UsageCount Value="22"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
@@ -694,95 +695,67 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="21" HistoryIndex="20">
+    <JumpHistory Count="14" HistoryIndex="13">
       <Position1>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="250" Column="37" TopLine="248"/>
+        <Caret Line="331" Column="32" TopLine="302"/>
       </Position1>
       <Position2>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="250" Column="37" TopLine="248"/>
+        <Caret Line="338" Column="32" TopLine="309"/>
       </Position2>
       <Position3>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="252" Column="37" TopLine="250"/>
+        <Caret Line="201" Column="1" TopLine="186"/>
       </Position3>
       <Position4>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="262" Column="59" TopLine="260"/>
+        <Caret Line="277" Column="7" TopLine="248"/>
       </Position4>
       <Position5>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="262" Column="59" TopLine="260"/>
+        <Caret Line="278" Column="21" TopLine="249"/>
       </Position5>
       <Position6>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="263" Column="59" TopLine="261"/>
+        <Caret Line="265" Column="1" TopLine="249"/>
       </Position6>
       <Position7>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="264" Column="59" TopLine="262"/>
+        <Caret Line="267" Column="1" TopLine="249"/>
       </Position7>
       <Position8>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="265" Column="59" TopLine="263"/>
+        <Caret Line="268" Column="1" TopLine="249"/>
       </Position8>
       <Position9>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="266" Column="59" TopLine="264"/>
+        <Caret Line="269" Column="1" TopLine="249"/>
       </Position9>
       <Position10>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="489" Column="25" TopLine="475"/>
+        <Caret Line="270" Column="1" TopLine="249"/>
       </Position10>
       <Position11>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="488" Column="25" TopLine="474"/>
+        <Caret Line="271" Column="1" TopLine="249"/>
       </Position11>
       <Position12>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="489" Column="25" TopLine="475"/>
+        <Caret Line="273" Column="1" TopLine="249"/>
       </Position12>
       <Position13>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="489" Column="25" TopLine="475"/>
+        <Caret Line="304" Column="23" TopLine="276"/>
       </Position13>
       <Position14>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="496" Column="25" TopLine="482"/>
+        <Caret Line="265" Column="1" TopLine="245"/>
       </Position14>
-      <Position15>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="363" Column="64" TopLine="360"/>
-      </Position15>
-      <Position16>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="369" Column="65" TopLine="350"/>
-      </Position16>
-      <Position17>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="260" Column="22" TopLine="253"/>
-      </Position17>
-      <Position18>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="265" Column="37" TopLine="253"/>
-      </Position18>
-      <Position19>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="259" Column="1" TopLine="244"/>
-      </Position19>
-      <Position20>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="260" Column="1" TopLine="245"/>
-      </Position20>
-      <Position21>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="365" Column="3" TopLine="365"/>
-      </Position21>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="2">
+    <BreakPoints Count="4">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -796,8 +769,22 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="frmmain.pas"/>
-        <Line Value="321"/>
+        <Line Value="387"/>
       </Item2>
+      <Item3>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="frmmain.pas"/>
+        <Line Value="265"/>
+      </Item3>
+      <Item4>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\source\regsourcen.pas"/>
+        <Line Value="478"/>
+      </Item4>
     </BreakPoints>
   </Debugging>
 </CONFIG>

@@ -1283,6 +1283,9 @@ object Main: TMain
       object mnuCreateSettings: TMenuItem
         Action = acCreateExampleSettings
       end
+      object mnuDeleteRootKey: TMenuItem
+        Action = acDeleteRootKey
+      end
       object MenuItem1: TMenuItem
         Caption = '-'
       end
@@ -1436,6 +1439,11 @@ object Main: TMain
       Category = 'ExecuteKombinationExcample'
       Caption = 'Liste löschen'
       OnExecute = acEraseSectionValueEdit2Execute
+    end
+    object acDeleteRootKey: TAction
+      Category = 'Example'
+      Caption = 'Beispieleinträge entfernen'
+      OnExecute = acDeleteRootKeyExecute
     end
   end
   object RegistrySource1: TRegistrySource

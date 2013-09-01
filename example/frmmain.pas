@@ -49,6 +49,7 @@ type
     acEraseSectionValueEdit: TAction;
     acRefreshDataKombi: TAction;
     acEraseSectionValueEdit2: TAction;
+    acDeleteRootKey: TAction;
     acWriteAdHocOffList: TAction;
     acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
@@ -88,6 +89,7 @@ type
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    mnuDeleteRootKey: TMenuItem;
     mnuTestRenameKey: TMenuItem;
     mnuTestEraseSection: TMenuItem;
     mnuTestDeleteKey: TMenuItem;
@@ -154,6 +156,7 @@ type
     procedure acCheckExampleSettingsExecute(Sender: TObject);
     procedure acCloseExecute(Sender: TObject);
     procedure acCreateExampleSettingsExecute(Sender: TObject);
+    procedure acDeleteRootKeyExecute(Sender: TObject);
     procedure acEraseSectionValueEdit2Execute(Sender: TObject);
     procedure acEraseSectionValueEditExecute(Sender: TObject);
     procedure acRefreshDataExecute(Sender: TObject);
@@ -252,6 +255,69 @@ end;
 procedure TMain.acCreateExampleSettingsExecute(Sender: TObject);
 begin
   CreateSettings;
+end;
+
+procedure TMain.acDeleteRootKeyExecute(Sender: TObject);
+var
+  old_sync_data: boolean;
+  old_write_defaults: boolean;
+begin
+  with RegistrySource1 do
+  begin
+    Screen.Cursor := crHourGlass;
+    old_sync_data := DoSyncData;
+    old_write_defaults := WriteDefaults;
+    // schalten die Synchronisierung für Element Clients dieser RegistrySource aus
+    DoSyncData := False;
+    // ermöglicht das Schreiben/Löschen von Defaults in der Registry
+    WriteDefaults := True;
+
+    DeleteRootKey;
+
+    // aktualisiert alle Clients dieser RegistrySource
+    RefreshControlData('', 0);
+    WriteDefaults := old_write_defaults;
+    DoSyncData := old_sync_data;
+    Screen.Cursor := crDefault;
+  end;
+
+  with RegistrySource2 do
+  begin
+    Screen.Cursor := crHourGlass;
+    old_sync_data := DoSyncData;
+    old_write_defaults := WriteDefaults;
+    // schalten die Synchronisierung für Element Clients dieser RegistrySource aus
+    DoSyncData := False;
+    // ermöglicht das Schreiben/Löschen von Defaults in der Registry
+    WriteDefaults := True;
+
+    DeleteRootKey;
+
+    // aktualisiert alle Clients dieser RegistrySource
+    RefreshControlData('', 0);
+    WriteDefaults := old_write_defaults;
+    DoSyncData := old_sync_data;
+    Screen.Cursor := crDefault;
+  end;
+
+  with RegistrySource3 do
+  begin
+    Screen.Cursor := crHourGlass;
+    old_sync_data := DoSyncData;
+    old_write_defaults := WriteDefaults;
+    // schalten die Synchronisierung für Element Clients dieser RegistrySource aus
+    DoSyncData := False;
+    // ermöglicht das Schreiben/Löschen von Defaults in der Registry
+    WriteDefaults := True;
+
+    DeleteRootKey;
+
+    // aktualisiert alle Clients dieser RegistrySource
+    RefreshControlData('', 0);
+    WriteDefaults := old_write_defaults;
+    DoSyncData := old_sync_data;
+    Screen.Cursor := crDefault;
+  end;
 end;
 
 procedure TMain.acEraseSectionValueEdit2Execute(Sender: TObject);
