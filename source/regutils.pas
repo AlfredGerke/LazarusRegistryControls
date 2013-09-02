@@ -147,6 +147,31 @@ procedure TDefaultsForCurrentUser.ReadSectionValuesByKind(aSection: string;
   aStrings: TStrings;
   aKind: TListSourceKind = Both;
   aMerge: boolean = False);
+
+  procedure AddString(aStrings: TStrings;
+                      aValue: string;
+                      aMerge: boolean);
+  var
+    index: Integer;
+    value_name: string;
+    pos_index: SizeInt;
+  begin
+     if aMerge then
+     begin
+       pos_index := Pos('=', aValue);
+       if (pos_index = 0) then
+         index := aStrings.IndexOf(aValue)
+       else
+       begin
+         value_name := Copy(aValue, 1, pos_index-1);
+         index := aStrings.IndexOfName(value_name);
+       end;
+       if (index = -1) then
+         aStrings.Add(aValue);
+     end
+     else
+       aStrings.Add(aValue);
+  end;
 var
   list: TStrings;
   reg: TRegistry;
@@ -160,7 +185,8 @@ begin
   list := TStringList.Create;
   try
     try
-      aStrings.Clear;
+      if not aMerge then
+        aStrings.Clear;
       with reg do
       begin
         RootKey := GetHKEYRoot;
@@ -189,9 +215,9 @@ begin
            end;
 
            case aKind of
-             byValue: aStrings.Add(value);
-             byKey: aStrings.Add(value_name);
-             Both: aStrings.Add(value_name + '=' + value);
+             byValue: AddString(aStrings, value, aMerge);
+             byKey: AddString(aStrings, value_name, aMerge);
+             Both: AddString(aStrings, value_name + '=' + value, aMerge);
            else
              Break;
            end;
@@ -505,32 +531,37 @@ end;
 procedure TDefaultsForCurrentUser.ReadSection(aSection: string;
   aStrings: TStrings;
   aMerge: boolean);
-var
-  reg: TRegistry;
-  key: string;
+{
+ var
+   reg: TRegistry;
+   key: string;
+}
 begin
-  reg := TRegistry.Create;
-  try
-    try
-      aStrings.Clear;
-      with reg do
-      begin
-        RootKey := GetHKEYRoot;
-        key := concat(DefaultKey, aSection);
+  ReadSectionValuesByKind(aSection, aStrings, byKey, aMerge);
+  {
+   reg := TRegistry.Create;
+   try
+     try
+       aStrings.Clear;
+       with reg do
+       begin
+         RootKey := GetHKEYRoot;
+         key := concat(DefaultKey, aSection);
 
-        if OpenKeyReadOnly(key) then
-          GetValueNames(aStrings);
+         if OpenKeyReadOnly(key) then
+           GetValueNames(aStrings);
 
-        CloseKey;
-      end;
-    except
-      on E: Exception do
-        aStrings.Clear;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-  end;
+         CloseKey;
+       end;
+     except
+       on E: Exception do
+         aStrings.Clear;
+     end;
+   finally
+     if Assigned(reg) then
+       FreeAndNil(reg);
+   end;
+  }
 end;
 
 procedure TDefaultsForCurrentUser.ReadSectionValues(aSection: string;

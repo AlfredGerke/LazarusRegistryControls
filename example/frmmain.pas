@@ -50,6 +50,9 @@ type
     acRefreshDataKombi: TAction;
     acEraseSectionValueEdit2: TAction;
     acDeleteRootKey: TAction;
+    acClearItems: TAction;
+    acMergeData: TAction;
+    acReadDefaults: TAction;
     acWriteAdHocOffList: TAction;
     acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
@@ -62,6 +65,7 @@ type
     btnRefreshControls: TButton;
     btnRefreshControlsList: TButton;
     btnRefreshControlsList1: TButton;
+    btnClearItems: TButton;
     btnSyncDataOfList: TButton;
     btnSyncDataOnList: TButton;
     btnWriteAdHocOffList: TButton;
@@ -117,7 +121,6 @@ type
     redtComboBoxList1: TRegComboBox;
     redtControlName: TRegEdit;
     redtControlName1: TRegEdit;
-    redtControlName2: TRegEdit;
     redtEdit: TRegEdit;
     redtComboBox1: TRegComboBox;
     rcgCheckGroup1: TRegCheckGroup;
@@ -125,6 +128,8 @@ type
     redtEdit1: TRegEdit;
     redtAddValue: TRegEdit;
     rcbxKombi: TRegCheckBox;
+    rcbxMergeData: TRegCheckBox;
+    rcbxReadDefaults: TRegCheckBox;
     rlbKombi: TRegCheckListBox;
     rvgKombi: TRegCheckGroup;
     RegistrySource3: TRegistrySource;
@@ -154,6 +159,7 @@ type
     tabKombination: TTabSheet;
     procedure acAddValueExecute(Sender: TObject);
     procedure acCheckExampleSettingsExecute(Sender: TObject);
+    procedure acClearItemsExecute(Sender: TObject);
     procedure acCloseExecute(Sender: TObject);
     procedure acCreateExampleSettingsExecute(Sender: TObject);
     procedure acDeleteRootKeyExecute(Sender: TObject);
@@ -202,6 +208,7 @@ begin
   case aFlag of
     0: RegistrySource1.RefreshWriteAdHocProperty(aSet);
     1: RegistrySource2.RefreshWriteAdHocProperty(aSet);
+    2: RegistrySource3.RefreshWriteAdHocProperty(aSet);
   end;
 end;
 
@@ -211,6 +218,7 @@ begin
   case aFlag of
     0: RegistrySource1.RefreshSyncProperty(aSet);
     1: RegistrySource1.RefreshSyncProperty(aSet);
+    2: RegistrySource1.RefreshSyncProperty(aSet);
   end;
 end;
 
@@ -234,6 +242,13 @@ begin
       0);
     CreateSettings;
   end;
+end;
+
+procedure TMain.acClearItemsExecute(Sender: TObject);
+begin
+  RegistrySource3.ClearClientItems('',
+    True,
+    'Sollen die Listen gelöscht werden? (Wenn ReadDefaults=True werden sofort Defaults nachgeladen)');
 end;
 
 procedure TMain.acAddValueExecute(Sender: TObject);
@@ -337,7 +352,7 @@ end;
 
 procedure TMain.acRefreshDataKombiExecute(Sender: TObject);
 begin
-  RegistrySource3.RefreshControlData(Trim(redtControlName2.Text));
+  RegistrySource3.RefreshControlData;
 end;
 
 procedure TMain.acRefreshDataListExecute(Sender: TObject);
@@ -427,6 +442,8 @@ begin
   RefreshSyncDataOnOff(0, True);
   RefreshWriteAdHocOnOff(1, True);
   RefreshSyncDataOnOff(1, True);
+  RefreshWriteAdHocOnOff(2, True);
+  RefreshSyncDataOnOff(2, True);
 end;
 
 function TMain.CheckForExampleSettings: boolean;
@@ -438,7 +455,7 @@ begin
   begin
     list := TStringList.Create;
     try
-      ReadSection('Desktop', list);
+      ReadSection('Desktop', list, False);
       Result := (list.Count > 0);
     finally
       if Assigned(list) then

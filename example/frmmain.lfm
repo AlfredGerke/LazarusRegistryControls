@@ -1106,30 +1106,55 @@ object Main: TMain
         ClientHeight = 63
         ClientWidth = 803
         TabOrder = 0
-        object redtControlName2: TRegEdit
+        object btnRefreshControlsList1: TButton
           Left = 9
-          Height = 21
-          Hint = 'wenn Leerstring, alle Steuerelemente aktualisieren'
-          Top = 34
+          Height = 25
+          Top = 5
           Width = 160
+          Action = acRefreshDataKombi
+          TabOrder = 0
+        end
+        object rcbxMergeData: TRegCheckBox
+          Left = 12
+          Height = 17
+          Top = 34
+          Width = 159
+          Action = acMergeData
           TabOrder = 1
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
           RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = False
           RegistrySettings.Section = 'Desktop'
-          RegistrySettings.Ident = 'ClientToRefresh'
+          RegistrySettings.Ident = 'MergeData'
           RegistrySource = RegistrySource3
         end
-        object btnRefreshControlsList1: TButton
-          Left = 9
+        object btnClearItems: TButton
+          Left = 174
           Height = 25
           Top = 5
           Width = 160
-          Caption = 'Steuerelement(e) aktualisieren'
-          OnClick = acRefreshDataListExecute
-          TabOrder = 0
+          Action = acClearItems
+          TabOrder = 2
+        end
+        object rcbxReadDefaults: TRegCheckBox
+          Left = 174
+          Height = 17
+          Top = 34
+          Width = 88
+          Action = acReadDefaults
+          TabOrder = 3
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = False
+          RegistrySettings.Section = 'Desktop'
+          RegistrySettings.Ident = 'ReadDefaults'
+          RegistrySource = RegistrySource3
         end
       end
       object pnlClientKombination: TPanel
@@ -1286,7 +1311,7 @@ object Main: TMain
           RegistrySettings.Ident = 'ItemIndex'
           RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'RegValueListe'
-          RegistrySettings.MergeData = False
+          RegistrySettings.MergeData = True
           RegistrySource = RegistrySource3
         end
       end
@@ -1452,7 +1477,7 @@ object Main: TMain
     end
     object acRefreshDataKombi: TAction
       Category = 'ExecuteKombinationExcample'
-      Caption = 'Steuerelemente(e) aktualisieren'
+      Caption = 'Steuerelemente aktualisieren'
       OnExecute = acRefreshDataKombiExecute
     end
     object acEraseSectionValueEdit2: TAction
@@ -1464,6 +1489,19 @@ object Main: TMain
       Category = 'Example'
       Caption = 'Beispieleinträge entfernen'
       OnExecute = acDeleteRootKeyExecute
+    end
+    object acClearItems: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = 'Listen löschen'
+      OnExecute = acClearItemsExecute
+    end
+    object acMergeData: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = 'Liste mit Defaults vermischen'
+    end
+    object acReadDefaults: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = 'Defaults lesen'
     end
   end
   object RegistrySource1: TRegistrySource

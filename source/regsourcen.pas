@@ -267,7 +267,7 @@ type
                           aListSource: TListSourceKind = byKey); reintroduce; overload;
     procedure ReadSection(aSection: string;
                           aStrings: TStrings;
-                          aMerge: boolean); reintroduce; overload;
+                          aMerge: boolean = False); reintroduce; overload;
     procedure WriteString(aRootKey: string;
                           aRootKeyForDefaults: string;
                           aRootForDefaults: string;
@@ -952,23 +952,20 @@ end;
 
 procedure TCustomRegistrySource.ReadSection(aSection: string;
   aStrings: TStrings;
-  aMerge: boolean);
+  aMerge: boolean = False);
 begin
   try
-    try
-      ReadSection(GetRootKey,
-        GetRootKeyForDefaults,
-        RootForDefaults,
-        aSection,
-        aStrings,
-        aMerge,
-        ReadDefaults,
-        byKey);
-    except
-      on E: Exception do
-        raise;
-    end;
-  finally
+    ReadSection(GetRootKey,
+      GetRootKeyForDefaults,
+      RootForDefaults,
+      aSection,
+      aStrings,
+      aMerge,
+      ReadDefaults,
+      byKey);
+  except
+    on E: Exception do
+      raise;
   end;
 end;
 

@@ -96,6 +96,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
         <UnitName Value="regvaluelisteditor"/>
       </Item10>
     </Files>
+    <LazDoc Paths="C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc" PackageName="RegistryControls"/>
     <Type Value="RunAndDesignTime"/>
     <RequiredPkgs Count="2">
       <Item1>
