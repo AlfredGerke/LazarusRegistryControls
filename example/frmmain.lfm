@@ -1107,54 +1107,37 @@ object Main: TMain
         ClientWidth = 803
         TabOrder = 0
         object btnRefreshControlsList1: TButton
-          Left = 9
+          Left = 172
           Height = 25
-          Top = 5
+          Top = 30
           Width = 160
           Action = acRefreshDataKombi
           TabOrder = 0
         end
-        object rcbxMergeData: TRegCheckBox
-          Left = 12
-          Height = 17
-          Top = 34
-          Width = 159
-          Action = acMergeData
-          TabOrder = 1
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = False
-          RegistrySettings.Section = 'Desktop'
-          RegistrySettings.Ident = 'MergeData'
-          RegistrySource = RegistrySource3
-        end
         object btnClearItems: TButton
-          Left = 174
+          Left = 172
           Height = 25
           Top = 5
           Width = 160
           Action = acClearItems
+          TabOrder = 1
+        end
+        object cbxClientList: TComboBox
+          Left = 8
+          Height = 21
+          Top = 34
+          Width = 160
+          ItemHeight = 13
+          Style = csDropDownList
           TabOrder = 2
         end
-        object rcbxReadDefaults: TRegCheckBox
-          Left = 174
-          Height = 17
-          Top = 34
-          Width = 88
-          Action = acReadDefaults
+        object btnShowClientDialog: TButton
+          Left = 8
+          Height = 25
+          Top = 5
+          Width = 160
+          Action = acShowClientEditDialog
           TabOrder = 3
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = False
-          RegistrySettings.Section = 'Desktop'
-          RegistrySettings.Ident = 'ReadDefaults'
-          RegistrySource = RegistrySource3
         end
       end
       object pnlClientKombination: TPanel
@@ -1166,7 +1149,7 @@ object Main: TMain
         ClientHeight = 380
         ClientWidth = 803
         TabOrder = 1
-        object redtAddValue: TRegEdit
+        object redtEditKombi: TRegEdit
           Left = 8
           Height = 21
           Top = 7
@@ -1190,7 +1173,7 @@ object Main: TMain
           Action = acAddValue
           NumGlyphs = 0
         end
-        object rvlValueListEditorKombi: TRegValueListEditor
+        object rvlValueListEditorKombi1: TRegValueListEditor
           Left = 9
           Height = 306
           Top = 33
@@ -1219,8 +1202,8 @@ object Main: TMain
           Action = acEraseSectionValueEdit
           NumGlyphs = 0
         end
-        object rvalKombi: TRegValueListEditor
-          Left = 218
+        object rvlValueListEditorKombi2: TRegValueListEditor
+          Left = 217
           Height = 160
           Top = 179
           Width = 200
@@ -1240,7 +1223,7 @@ object Main: TMain
             132
           )
         end
-        object rcbxKombi: TRegCheckBox
+        object rcbxCheckBoxKombi: TRegCheckBox
           Left = 218
           Height = 17
           Top = 12
@@ -1265,7 +1248,7 @@ object Main: TMain
           Action = acEraseSectionValueEdit2
           NumGlyphs = 0
         end
-        object rvgKombi: TRegCheckGroup
+        object rcgCheckedGroup: TRegCheckGroup
           Left = 426
           Height = 138
           Top = 33
@@ -1294,7 +1277,7 @@ object Main: TMain
           RegistrySettings.MergeData = False
           RegistrySource = RegistrySource3
         end
-        object rlbKombi: TRegCheckListBox
+        object rlbCheckedListBox: TRegCheckListBox
           Left = 218
           Height = 136
           Top = 36
@@ -1336,6 +1319,7 @@ object Main: TMain
       end
       object mnuClose: TMenuItem
         Action = acClose
+        OnClick = mnuCloseClick
       end
     end
     object mnuRefresh: TMenuItem
@@ -1495,13 +1479,10 @@ object Main: TMain
       Caption = 'Listen löschen'
       OnExecute = acClearItemsExecute
     end
-    object acMergeData: TAction
+    object acShowClientEditDialog: TAction
       Category = 'ExecuteKombinationExcample'
-      Caption = 'Liste mit Defaults vermischen'
-    end
-    object acReadDefaults: TAction
-      Category = 'ExecuteKombinationExcample'
-      Caption = 'Defaults lesen'
+      Caption = 'RootKeys ändern'
+      OnExecute = acShowClientEditDialogExecute
     end
   end
   object RegistrySource1: TRegistrySource

@@ -29,6 +29,8 @@ type
     procedure ReadWriteInfo(aRead: boolean);
     function GetItemsByRegistry: boolean;
   protected
+    procedure RefreshMerge(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_MERGE_LIST;
     procedure ClearClientItems(var aMessage: TLMessage);
       message LM_REGISTRY_CONTROL_CLEAR_LIST;
     procedure ShowEditDialog(var aMessage: TLMessage);
@@ -252,11 +254,38 @@ begin
   end;
 end;
 
-procedure TCustomRegRadioGroup.ClearClientItems(var aMessage: TLMessage);
+procedure TCustomRegRadioGroup.RefreshMerge(var aMessage: TLMessage);
+var
+  group_index: cardinal;
+  do_mergedata_flag: integer;
+  do_mergedata: boolean;
 begin
-  ClearItems(False);
-  // verhindert Hinweis auf unbenutzten Parameter aMessage
-  aMessage.Result := 1;
+  group_index := aMessage.lParam;
+  do_mergedata_flag := aMessage.wParam;
+  do_mergedata := (do_mergedata_flag = 1);
+
+  if (group_index > 0) then
+  begin
+    if (group_index = FRegistrySettings.GroupIndex) then
+      FRegistrySettings.MergeData := do_mergedata;
+  end
+  else
+    FRegistrySettings.MergeData := do_mergedata;
+end;
+
+procedure TCustomRegRadioGroup.ClearClientItems(var aMessage: TLMessage);
+var
+  group_index: cardinal;
+begin
+  group_index := aMessage.lParam;
+
+  if (group_index > 0) then
+  begin
+    if (group_index = FRegistrySettings.GroupIndex) then
+      ClearItems(False);
+  end
+  else
+    ClearItems(False);
 end;
 
 procedure TCustomRegRadioGroup.ShowEditDialog(var aMessage: TLMessage);

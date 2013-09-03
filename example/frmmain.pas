@@ -51,8 +51,7 @@ type
     acEraseSectionValueEdit2: TAction;
     acDeleteRootKey: TAction;
     acClearItems: TAction;
-    acMergeData: TAction;
-    acReadDefaults: TAction;
+    acShowClientEditDialog: TAction;
     acWriteAdHocOffList: TAction;
     acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
@@ -62,6 +61,7 @@ type
     acWriteAdHocOnList: TAction;
     acSyncDataListOn: TAction;
     ActionList1: TActionList;
+    btnShowClientDialog: TButton;
     btnRefreshControls: TButton;
     btnRefreshControlsList: TButton;
     btnRefreshControlsList1: TButton;
@@ -74,6 +74,7 @@ type
     btnWriteAdHocOff: TButton;
     btnSyncDataOf: TButton;
     btnWriteAdHocOnList: TButton;
+    cbxClientList: TComboBox;
     lblCheckListBox: TLabel;
     lblCheckListBox2: TLabel;
     lblCheckListBox3: TLabel;
@@ -126,15 +127,13 @@ type
     rcgCheckGroup1: TRegCheckGroup;
     rcgCheckGroup2: TRegCheckGroup;
     redtEdit1: TRegEdit;
-    redtAddValue: TRegEdit;
-    rcbxKombi: TRegCheckBox;
-    rcbxMergeData: TRegCheckBox;
-    rcbxReadDefaults: TRegCheckBox;
-    rlbKombi: TRegCheckListBox;
-    rvgKombi: TRegCheckGroup;
+    redtEditKombi: TRegEdit;
+    rcbxCheckBoxKombi: TRegCheckBox;
+    rlbCheckedListBox: TRegCheckListBox;
+    rcgCheckedGroup: TRegCheckGroup;
     RegistrySource3: TRegistrySource;
-    rvalKombi: TRegValueListEditor;
-    rvlValueListEditorKombi: TRegValueListEditor;
+    rvlValueListEditorKombi2: TRegValueListEditor;
+    rvlValueListEditorKombi1: TRegValueListEditor;
     rvlValueListEditor: TRegValueListEditor;
     rgrpRadioGroup2: TRegRadioGroup;
     rlbCheckListBox2: TRegCheckListBox;
@@ -171,6 +170,7 @@ type
     procedure acRefreshSettingListSourceExecute(Sender: TObject);
     procedure acRefreshSettingsKombinationExecute(Sender: TObject);
     procedure acRefreshSettingsSingleSourceExecute(Sender: TObject);
+    procedure acShowClientEditDialogExecute(Sender: TObject);
     procedure acSyncDataListOffExecute(Sender: TObject);
     procedure acSyncDataListOnExecute(Sender: TObject);
     procedure acSyncDataOffExecute(Sender: TObject);
@@ -183,6 +183,7 @@ type
     procedure acSyncDataOnExecute(Sender: TObject);
     procedure acWriteAdHocOnListExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure mnuCloseClick(Sender: TObject);
   private
     procedure RefreshWriteAdHocOnOff(aFlag: integer;
                                      aSet: boolean);
@@ -255,16 +256,16 @@ procedure TMain.acAddValueExecute(Sender: TObject);
 var
   ident: string;
 begin
-  ident := Format('Key%d', [rvlValueListEditorKombi.Strings.Count]);
+  ident := Format('Key%d', [rvlValueListEditorKombi1.Strings.Count]);
   // BeginUpdate verhindert das Triggern das OnChange der RegistrySettings
-  redtAddValue.RegistrySettings.BeginUpdate;
+  redtEditKombi.RegistrySettings.BeginUpdate;
   try
-    redtAddValue.RegistrySettings.Ident := ident;
+    redtEditKombi.RegistrySettings.Ident := ident;
   finally
     // EndUpdate muss unbedingt aufgerufen werden
-    redtAddValue.RegistrySettings.EndUpdate;
+    redtEditKombi.RegistrySettings.EndUpdate;
   end;
-  redtAddValue.WriteToReg;
+  redtEditKombi.WriteToReg;
 end;
 
 procedure TMain.acCreateExampleSettingsExecute(Sender: TObject);
@@ -337,12 +338,12 @@ end;
 
 procedure TMain.acEraseSectionValueEdit2Execute(Sender: TObject);
 begin
-  rvalKombi.ClearItems(True, 'Soll die Liste gelöscht werden?');
+  rvlValueListEditorKombi2.ClearItems(True, 'Soll die Liste gelöscht werden?');
 end;
 
 procedure TMain.acEraseSectionValueEditExecute(Sender: TObject);
 begin
-  rvlValueListEditorKombi.ClearItems;
+  rvlValueListEditorKombi1.ClearItems;
 end;
 
 procedure TMain.acRefreshDataExecute(Sender: TObject);
@@ -373,6 +374,25 @@ end;
 procedure TMain.acRefreshSettingsSingleSourceExecute(Sender: TObject);
 begin
   RegistrySource1.RefreshSettings;
+end;
+
+procedure TMain.acShowClientEditDialogExecute(Sender: TObject);
+var
+  client_name: string;
+begin
+  with RegistrySource3 do
+  begin
+    EditClientRootKeys := True;
+    try
+      client_name := Trim(cbxClientList.Text);
+      if (client_name <> EmptyStr) then
+        ShowClientEditDialog(client_name)
+      else
+        MessageDlg('Ungültiger Clientname gewählt!', mtWarning, [mbOk], 0);
+    finally
+      EditClientRootKeys := False;
+    end;
+  end;
 end;
 
 procedure TMain.acSyncDataListOffExecute(Sender: TObject);
@@ -444,6 +464,17 @@ begin
   RefreshSyncDataOnOff(1, True);
   RefreshWriteAdHocOnOff(2, True);
   RefreshSyncDataOnOff(2, True);
+  RegistrySource3.GetClientList(cbxClientList.Items);
+  if cbxClientList.Items.Count > 0 then
+    cbxClientList.ItemIndex := 0
+  else
+    cbxClientList.ItemIndex := -1;
+
+end;
+
+procedure TMain.mnuCloseClick(Sender: TObject);
+begin
+
 end;
 
 function TMain.CheckForExampleSettings: boolean;

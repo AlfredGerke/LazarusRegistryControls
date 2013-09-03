@@ -198,9 +198,14 @@ type
       read FEditClientRootKeys
       write FEditClientRootKeys;
   public
+    procedure RefreshMergeDataProperty(aMergeData: boolean = False;
+                                       aClientName: string = '';
+                                       aGroupIndex: cardinal = 0);
+    function GetClientList(aList: TStrings): boolean;
     procedure ClearClientItems(aClientName: string = '';
                                aAskFor: boolean = True;
-                               aMsg: string = 'Clear Items?');
+                               aMsg: string = 'Clear Items?';
+                               aGroupIndex: cardinal = 0);
     procedure DeleteRootKey; reintroduce; overload;
     procedure DeleteRootKey(aRootKey: string;
                             aRootKeyForDefaults: string;
@@ -460,9 +465,31 @@ begin
     Result := 0;
 end;
 
+procedure TCustomRegistrySource.RefreshMergeDataProperty(aMergeData: boolean = False;
+  aClientName: string = '';
+  aGroupIndex: cardinal = 0);
+var
+  w_param: integer;
+begin
+  if aMergeData then
+    w_param := 1
+  else
+    w_param := 0;
+
+  DeliverMessage(LM_REGISTRY_CONTROL_MERGE_LIST, aClientName, aGroupIndex, w_param);
+end;
+
+function TCustomRegistrySource.GetClientList(aList: TStrings): boolean;
+begin
+  aList.Clear;
+  aList.AddStrings(FClientList);
+  Result := (aList.Count > 0);
+end;
+
 procedure TCustomRegistrySource.ClearClientItems(aClientName: string = '';
   aAskFor: boolean = True;
-  aMsg: string = 'Clear Items?');
+  aMsg: string = 'Clear Items?';
+  aGroupIndex: cardinal = 0);
 var
   start: boolean;
 begin
@@ -470,7 +497,7 @@ begin
   if aAskFor then
     start := (MessageDlg(aMsg, mtConfirmation, [mbYes, mbNo], 0) = mrYes);
   if start then
-    DeliverMessage(LM_REGISTRY_CONTROL_CLEAR_LIST, aClientName, 0, 0);
+    DeliverMessage(LM_REGISTRY_CONTROL_CLEAR_LIST, aClientName, aGroupIndex, 0);
 end;
 
 procedure TCustomRegistrySource.DeleteRootKey;

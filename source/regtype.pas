@@ -84,7 +84,8 @@ type
 
   TRegistrySettingKind = (rskUnknown, rskRootKey, rskRootKeyForDefault,
     rskSection, rskIdent, rskDefault, rskReadDefaults, rskWriteDefaults,
-    rskRootForDefaults, rskCanRead, rskCanWrite, rskDoWriteAdHoc, rskDoSyncData);
+    rskRootForDefaults, rskCanRead, rskCanWrite, rskDoWriteAdHoc, rskDoSyncData,
+    rskMergeData);
 
   { TRegistrySettingValue }
 
@@ -102,6 +103,7 @@ type
       rskCanWrite: (CanWrite: boolean);
       rskDoWriteAdHoc: (DoWriteAdHoc: boolean);
       rskDoSyncData: (DoSyncData: boolean);
+      rskMergeData: (MergeData: boolean);
   end;
 
   { TOnRegistrySettingsChange }
@@ -182,6 +184,7 @@ type
     procedure SetOrganisation(aOrganisation: string);
     procedure SetGroupIndex(aGroupIndex: cardinal);
     procedure SetDoSyncData(aDoSyncData: boolean);
+    procedure SetMergeData(aMergeData: boolean);
 
     property Default: _T
       read FDefault
@@ -194,7 +197,7 @@ type
       write SetIdent;
     property MergeData: boolean
       read FMergeData
-      write FMergeData;
+      write SetMergeData;
   public
     procedure GetRootKeys(var aRootKeys: TRootKeysStruct);
     procedure SetRootKeys(aRootKeys: TRootKeysStruct);
@@ -443,6 +446,7 @@ begin
       rskCanWrite: setting_value.CanWrite := aValue;
       rskDoWriteAdHoc: setting_value.DoWriteAdHoc := aValue;
       rskDoSyncData: setting_value.DoSyncData := aValue;
+      rskMergeData: setting_value.MergeData := aValue;
     end;
 
     is_ok:= True;
@@ -629,6 +633,14 @@ begin
     Exit;
 
   FDoSyncData := aDoSyncData;
+end;
+
+procedure TCustomRegistrySettings<_T>.SetMergeData(aMergeData: boolean);
+begin
+  if not TriggerOnBeforeRegistrySettingChange(rskMergeData, aMergeData) then
+    Exit;
+
+  FMergeData := aMergeData;
 end;
 
 procedure TCustomRegistrySettings<_T>.GetRootKeys(var aRootKeys: TRootKeysStruct);
