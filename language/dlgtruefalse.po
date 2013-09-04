@@ -1,0 +1,27 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: dlgtruefalse.rssetsyncdataproperty
+msgid "Set SyncData-Property"
+msgstr ""
+
+#: dlgtruefalse.rssetwriteadhocproperty
+msgid "Set WriteAdHoc-Property"
+msgstr ""
+
+#: dlgtruefalse.rssynchronisationoff
+msgid "Synchronisation Off"
+msgstr ""
+
+#: dlgtruefalse.rssynchronisationon
+msgid "Synchronisation On"
+msgstr ""
+
+#: dlgtruefalse.rswriteadhocoff
+msgid "WriteAdHoc Off"
+msgstr ""
+
+#: dlgtruefalse.rswriteadhocon
+msgid "WriteAdHoc On"
+msgstr ""
+

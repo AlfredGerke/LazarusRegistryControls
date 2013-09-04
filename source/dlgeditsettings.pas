@@ -11,6 +11,10 @@ uses
   StdCtrls,
   regtype;
 
+resourcestring
+  rsEditRootKeys = 'Edit RootKeys';
+  rsShowRootKeys = 'Show RootKeys';
+
 type
 
   { TEditSettings }
@@ -60,9 +64,9 @@ procedure TEditSettings.SetEdit(aEdit: boolean);
 begin
   FEdit := aEdit;
   if FEdit then
-    Caption := 'Edit RootKeys'
+    Caption := rsEditRootKeys
   else
-    Caption := 'Show RootKeys';
+    Caption := rsShowRootKeys;
   edtRootKey.ReadOnly := not aEdit;
   edtRootKeyForDefaults.ReadOnly := not aEdit;
   edtRootForDefaults.ReadOnly := not aEdit;

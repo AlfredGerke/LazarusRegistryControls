@@ -10,6 +10,14 @@ uses
   ExtCtrls,
   StdCtrls;
 
+resourcestring
+  rsSetSyncDataProperty = 'Set SyncData-Property';
+  rsSynchronisationOff = 'Synchronisation Off';
+  rsSynchronisationOn = 'Synchronisation On';
+  rsSetWriteAdHocProperty = 'Set WriteAdHoc-Property';
+  rsWriteAdHocOff = 'WriteAdHoc Off';
+  rsWriteAdHocOn = 'WriteAdHoc On';
+
 type
 
   { TTrueFalse }
@@ -57,18 +65,18 @@ implementation
 
 procedure TSetSyncData.SetCaptions;
 begin
-  Self.Caption := 'Set SyncData-Property';
-  Self.rbtnFalse.Caption := 'Synchronisation Off';
-  Self.rbtnTrue.Caption := 'Synchronisation On';
+  Self.Caption := rsSetSyncDataProperty;
+  Self.rbtnFalse.Caption := rsSynchronisationOff;
+  Self.rbtnTrue.Caption := rsSynchronisationOn;
 end;
 
 { TSetWriteAdHoc }
 
 procedure TSetWriteAdHoc.SetCaptions;
 begin
-  Self.Caption := 'Set WriteAdHoc-Property';
-  Self.rbtnFalse.Caption := 'WriteAdHoc Off';
-  Self.rbtnTrue.Caption := 'WriteAdHoc On';
+  Self.Caption := rsSetWriteAdHocProperty;
+  Self.rbtnFalse.Caption := rsWriteAdHocOff;
+  Self.rbtnTrue.Caption := rsWriteAdHocOn;
 end;
 
 { TTrueFalse }

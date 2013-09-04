@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<fpdoc-descriptions>
+<package name="MyPackage">
+
+<!--
+  ====================================================================
+    regutils
+  ====================================================================
+-->
+
+<module name="regutils">
+<short></short>
+<descr>
+</descr>
+
+<!-- class Visibility: default -->
+<element name="TDefaultsForCurrentUser">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TDefaultsForCurrentUser.FRoot">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TDefaultsForCurrentUser.FDefaultKey">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TDefaultsForCurrentUser.FPrefereStrings">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- procedure Visibility: private -->
+<element name="TDefaultsForCurrentUser.ReadSectionValuesByKind">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aStrings">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aKind">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aMerge">
+<short></short>
+</element>
+
+<!-- function Visibility: protected -->
+<element name="TDefaultsForCurrentUser.GetDefaultKey">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TDefaultsForCurrentUser.GetDefaultKey.Result">
+<short></short>
+</element>
+
+<!-- function Visibility: protected -->
+<element name="TDefaultsForCurrentUser.GetHKeyRoot">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TDefaultsForCurrentUser.GetHKeyRoot.Result">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TDefaultsForCurrentUser.DeleteKey">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TDefaultsForCurrentUser.DeleteKey.Result">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.DeleteKey.aSection">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TDefaultsForCurrentUser.DeleteValue">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TDefaultsForCurrentUser.DeleteValue.Result">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.DeleteValue.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.DeleteValue.aKey">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDefaultsForCurrentUser.RenameKey">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.RenameKey.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.RenameKey.aOldKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.RenameKey.aNewKey">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TDefaultsForCurrentUser.ReadString">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadString.Result">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadString.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadString.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadString.aDefault">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TDefaultsForCurrentUser.ReadInteger">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadInteger.Result">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadInteger.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadInteger.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadInteger.aDefault">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TDefaultsForCurrentUser.ReadBool">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadBool.Result">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadBool.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadBool.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadBool.aDefault">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDefaultsForCurrentUser.ReadSectionValuesOnly">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aStrings">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aMerge">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDefaultsForCurrentUser.ReadSection">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSection.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSection.aStrings">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSection.aMerge">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDefaultsForCurrentUser.ReadSectionValues">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSectionValues.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSectionValues.aStrings">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.ReadSectionValues.aMerge">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDefaultsForCurrentUser.WriteString">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.WriteString.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.WriteString.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.WriteString.aString">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDefaultsForCurrentUser.WriteInteger">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.WriteInteger.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.WriteInteger.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.WriteInteger.aInteger">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDefaultsForCurrentUser.WriteBool">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.WriteBool.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.WriteBool.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.WriteBool.aBool">
+<short></short>
+</element>
+
+<!-- constructor Visibility: public -->
+<element name="TDefaultsForCurrentUser.Create">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.Create.aRoot">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.Create.aDefaultKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDefaultsForCurrentUser.Create.aPrefereString">
+<short></short>
+</element>
+
+<!-- destructor Visibility: public -->
+<element name="TDefaultsForCurrentUser.Destroy">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TDefaultsForCurrentUser.Root">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TDefaultsForCurrentUser.DefaultKey">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- class Visibility: default -->
+<element name="TDataByCurrentUser">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TDataByCurrentUser.FUseDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- procedure Visibility: private -->
+<element name="TDataByCurrentUser.ReadSectionValuesByKind">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesByKind.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesByKind.aStrings">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesByKind.aKind">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.EraseSectionForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.EraseSectionForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.DeleteKeyForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.DeleteKeyForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.DeleteKeyForDefaults.aKey">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.RenameKey">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.RenameKey.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.RenameKey.aOldKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.RenameKey.aNewKey">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.RenameKeyForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.RenameKeyForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.RenameKeyForDefaults.aOldKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.RenameKeyForDefaults.aNewKey">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.ReadSectionValuesEx">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesEx.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesEx.aStrings">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.ReadSectionValuesOnly">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesOnly.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesOnly.aStrings">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aStrings">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aMerge">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TDataByCurrentUser.ReadStringCheckForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TDataByCurrentUser.ReadStringCheckForDefaults.Result">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadStringCheckForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadStringCheckForDefaults.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadStringCheckForDefaults.aDefault">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TDataByCurrentUser.ReadIntegerCheckForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.Result">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.aDefault">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TDataByCurrentUser.ReadBoolCheckForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TDataByCurrentUser.ReadBoolCheckForDefaults.Result">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadBoolCheckForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadBoolCheckForDefaults.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadBoolCheckForDefaults.aDefault">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.ReadSectionCheckForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aStrings">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aMerge">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aStrings">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aMerge">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.WriteStringCheckForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.WriteStringCheckForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.WriteStringCheckForDefaults.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.WriteStringCheckForDefaults.aString">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.WriteIntegerCheckForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aInteger">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TDataByCurrentUser.WriteBoolCheckForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aBool">
+<short></short>
+</element>
+
+<!-- constructor Visibility: public -->
+<element name="TDataByCurrentUser.Create">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.Create.aFileName">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.Create.aDefaultsRoot">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.Create.aDefaultKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TDataByCurrentUser.Create.aPrefereStrings">
+<short></short>
+</element>
+
+<!-- destructor Visibility: public -->
+<element name="TDataByCurrentUser.Destroy">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TDataByCurrentUser.UseDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+</module> <!-- regutils -->
+
+</package>
+</fpdoc-descriptions>

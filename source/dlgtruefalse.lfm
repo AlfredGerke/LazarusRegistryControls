@@ -1,7 +1,7 @@
 object TrueFalse: TTrueFalse
-  Left = 845
+  Left = 846
   Height = 82
-  Top = 537
+  Top = 522
   Width = 221
   BorderStyle = bsDialog
   ClientHeight = 82

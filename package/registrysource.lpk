@@ -45,7 +45,7 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
     <Version Minor="9" Release="8" Build="1"/>
-    <Files Count="10">
+    <Files Count="12">
       <Item1>
         <Filename Value="registrysource.lrs"/>
         <Type Value="LRS"/>
@@ -72,23 +72,36 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
         <UnitName Value="regpropedits"/>
       </Item6>
       <Item7>
-        <Filename Value="..\source\dlgtruefalse.lfm"/>
-        <Type Value="LFM"/>
-      </Item7>
-      <Item8>
         <Filename Value="..\source\dlgtruefalse.pas"/>
         <UnitName Value="dlgTrueFalse"/>
-      </Item8>
-      <Item9>
+      </Item7>
+      <Item8>
         <Filename Value="..\source\dlgeditsettings.pas"/>
         <UnitName Value="dlgeditsettings"/>
-      </Item9>
-      <Item10>
+      </Item8>
+      <Item9>
         <Filename Value="..\source\dlgaboutcomponent.pas"/>
         <UnitName Value="dlgaboutcomponent"/>
+      </Item9>
+      <Item10>
+        <Filename Value="..\source\dlgaboutcomponent.lfm"/>
+        <Type Value="LFM"/>
       </Item10>
+      <Item11>
+        <Filename Value="..\source\dlgeditsettings.lfm"/>
+        <Type Value="LFM"/>
+      </Item11>
+      <Item12>
+        <Filename Value="..\source\dlgtruefalse.lfm"/>
+        <Type Value="LFM"/>
+      </Item12>
     </Files>
     <LazDoc Paths="C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc" PackageName="RegistrySource"/>
+    <i18n>
+      <EnableI18N Value="True"/>
+      <OutDir Value="..\language"/>
+      <EnableI18NForLFM Value="True"/>
+    </i18n>
     <Type Value="RunAndDesignTime"/>
     <RequiredPkgs Count="2">
       <Item1>
