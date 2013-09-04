@@ -1110,7 +1110,7 @@ object Main: TMain
           Left = 172
           Height = 25
           Top = 30
-          Width = 160
+          Width = 176
           Action = acRefreshDataKombi
           TabOrder = 0
         end
@@ -1118,7 +1118,7 @@ object Main: TMain
           Left = 172
           Height = 25
           Top = 5
-          Width = 160
+          Width = 176
           Action = acClearItems
           TabOrder = 1
         end
@@ -1138,6 +1138,22 @@ object Main: TMain
           Width = 160
           Action = acShowClientEditDialog
           TabOrder = 3
+        end
+        object btnSetMergePropertyOn: TButton
+          Left = 348
+          Height = 25
+          Top = 5
+          Width = 176
+          Action = acRefreshMergeDataOn
+          TabOrder = 4
+        end
+        object btnSetMergePropertyOff: TButton
+          Left = 348
+          Height = 25
+          Top = 30
+          Width = 176
+          Action = acRefreshMergeDataOff
+          TabOrder = 5
         end
       end
       object pnlClientKombination: TPanel
@@ -1319,7 +1335,6 @@ object Main: TMain
       end
       object mnuClose: TMenuItem
         Action = acClose
-        OnClick = mnuCloseClick
       end
     end
     object mnuRefresh: TMenuItem
@@ -1483,6 +1498,16 @@ object Main: TMain
       Category = 'ExecuteKombinationExcample'
       Caption = 'RootKeys ändern'
       OnExecute = acShowClientEditDialogExecute
+    end
+    object acRefreshMergeDataOn: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = 'Listen mit Defaults mischen'
+      OnExecute = acRefreshMergeDataOnExecute
+    end
+    object acRefreshMergeDataOff: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = 'Listen nicht mir Defaults mischen'
+      OnExecute = acRefreshMergeDataOffExecute
     end
   end
   object RegistrySource1: TRegistrySource

@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="169"/>
+        <UsageCount Value="172"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -24,11 +24,10 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="475"/>
-        <CursorPos X="3" Y="477"/>
-        <UsageCount Value="169"/>
+        <TopLine Value="338"/>
+        <CursorPos X="33" Y="356"/>
+        <UsageCount Value="172"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regconst.pas"/>
@@ -241,8 +240,8 @@
         <Filename Value="..\source\regcheckgroup.pas"/>
         <UnitName Value="regcheckgroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="314"/>
-        <CursorPos X="49" Y="331"/>
+        <TopLine Value="107"/>
+        <CursorPos X="1" Y="126"/>
         <UsageCount Value="22"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit27>
@@ -260,7 +259,7 @@
         <UnitName Value="regvaluelisteditor"/>
         <WindowIndex Value="0"/>
         <TopLine Value="282"/>
-        <CursorPos X="49" Y="298"/>
+        <CursorPos X="45" Y="282"/>
         <UsageCount Value="23"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
@@ -695,29 +694,43 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="1" HistoryIndex="0">
+    <JumpHistory Count="9" HistoryIndex="8">
       <Position1>
         <Filename Value="frmmain.pas"/>
         <Caret Line="478" Column="75" TopLine="440"/>
       </Position1>
+      <Position2>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="473" Column="3" TopLine="473"/>
+      </Position2>
+      <Position3>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="480" Column="3" TopLine="480"/>
+      </Position3>
+      <Position4>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="367" Column="57" TopLine="365"/>
+      </Position4>
+      <Position5>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="374" Column="57" TopLine="372"/>
+      </Position5>
+      <Position6>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="413" Column="1" TopLine="386"/>
+      </Position6>
+      <Position7>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="374" Column="48" TopLine="336"/>
+      </Position7>
+      <Position8>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="375" Column="48" TopLine="337"/>
+      </Position8>
+      <Position9>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="376" Column="48" TopLine="338"/>
+      </Position9>
     </JumpHistory>
   </ProjectSession>
-  <Debugging>
-    <BreakPoints Count="2">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="..\source\regcheckgroup.pas"/>
-        <Line Value="126"/>
-      </Item1>
-      <Item2>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="..\source\regcheckgroup.pas"/>
-        <Line Value="529"/>
-      </Item2>
-    </BreakPoints>
-  </Debugging>
 </CONFIG>

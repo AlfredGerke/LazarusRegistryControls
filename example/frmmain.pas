@@ -52,6 +52,8 @@ type
     acDeleteRootKey: TAction;
     acClearItems: TAction;
     acShowClientEditDialog: TAction;
+    acRefreshMergeDataOn: TAction;
+    acRefreshMergeDataOff: TAction;
     acWriteAdHocOffList: TAction;
     acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
@@ -61,6 +63,8 @@ type
     acWriteAdHocOnList: TAction;
     acSyncDataListOn: TAction;
     ActionList1: TActionList;
+    btnSetMergePropertyOn: TButton;
+    btnSetMergePropertyOff: TButton;
     btnShowClientDialog: TButton;
     btnRefreshControls: TButton;
     btnRefreshControlsList: TButton;
@@ -167,6 +171,8 @@ type
     procedure acRefreshDataExecute(Sender: TObject);
     procedure acRefreshDataKombiExecute(Sender: TObject);
     procedure acRefreshDataListExecute(Sender: TObject);
+    procedure acRefreshMergeDataOffExecute(Sender: TObject);
+    procedure acRefreshMergeDataOnExecute(Sender: TObject);
     procedure acRefreshSettingListSourceExecute(Sender: TObject);
     procedure acRefreshSettingsKombinationExecute(Sender: TObject);
     procedure acRefreshSettingsSingleSourceExecute(Sender: TObject);
@@ -183,7 +189,6 @@ type
     procedure acSyncDataOnExecute(Sender: TObject);
     procedure acWriteAdHocOnListExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure mnuCloseClick(Sender: TObject);
   private
     procedure RefreshWriteAdHocOnOff(aFlag: integer;
                                      aSet: boolean);
@@ -361,6 +366,16 @@ begin
   RegistrySource2.RefreshControlData(Trim(redtControlName1.Text));
 end;
 
+procedure TMain.acRefreshMergeDataOffExecute(Sender: TObject);
+begin
+  RegistrySource3.RefreshMergeDataProperty(False);
+end;
+
+procedure TMain.acRefreshMergeDataOnExecute(Sender: TObject);
+begin
+  RegistrySource3.RefreshMergeDataProperty(True);
+end;
+
 procedure TMain.acRefreshSettingListSourceExecute(Sender: TObject);
 begin
   RegistrySource2.RefreshSettings;
@@ -469,11 +484,6 @@ begin
     cbxClientList.ItemIndex := 0
   else
     cbxClientList.ItemIndex := -1;
-
-end;
-
-procedure TMain.mnuCloseClick(Sender: TObject);
-begin
 
 end;
 
