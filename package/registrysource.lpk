@@ -45,7 +45,7 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
     <Version Minor="9" Release="8" Build="1"/>
-    <Files Count="12">
+    <Files Count="9">
       <Item1>
         <Filename Value="registrysource.lrs"/>
         <Type Value="LRS"/>
@@ -83,18 +83,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
         <Filename Value="..\source\dlgaboutcomponent.pas"/>
         <UnitName Value="dlgaboutcomponent"/>
       </Item9>
-      <Item10>
-        <Filename Value="..\source\dlgaboutcomponent.lfm"/>
-        <Type Value="LFM"/>
-      </Item10>
-      <Item11>
-        <Filename Value="..\source\dlgeditsettings.lfm"/>
-        <Type Value="LFM"/>
-      </Item11>
-      <Item12>
-        <Filename Value="..\source\dlgtruefalse.lfm"/>
-        <Type Value="LFM"/>
-      </Item12>
     </Files>
     <LazDoc Paths="C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc" PackageName="RegistrySource"/>
     <i18n>
