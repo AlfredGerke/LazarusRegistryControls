@@ -1,0 +1,26 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: taboutcomponent:caption
+msgid "About..."
+msgstr "Über das Programm"
+
+#: taboutcomponent:lblcompname1.caption
+msgid "LazarusRegistryControls"
+msgstr "LazarusRegistryControls"
+
+#: taboutcomponent:lblcompname2.caption
+msgid "(LRC)"
+msgstr "(LRC)"
+
+#: taboutcomponent:lblauthor.caption
+msgid "Author:"
+msgstr "Autor:"
+
+#: taboutcomponent:lblgithub.caption
+msgid "https://github.com/AlfredGerke/LazarusRegistryControls.git"
+msgstr "https://github.com/AlfredGerke/LazarusRegistryControls.git"
+
+#: taboutcomponent:lblname.caption
+msgid "Alfred Gerke"
+msgstr "Alfred Gerke"

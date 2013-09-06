@@ -9,3 +9,39 @@ msgstr ""
 msgid "Show RootKeys"
 msgstr ""
 
+#: teditsettings.caption
+msgid ""
+msgstr ""
+
+#: teditsettings.cbxreaddefaults.caption
+msgid ""
+msgstr ""
+
+#: teditsettings.cbxwritedefaults.caption
+msgid ""
+msgstr ""
+
+#: teditsettings.edtguid.editlabel.caption
+msgid ""
+msgstr ""
+
+#: teditsettings.edtorganisation.editlabel.caption
+msgid ""
+msgstr ""
+
+#: teditsettings.edtproject.editlabel.caption
+msgid ""
+msgstr ""
+
+#: teditsettings.edtrootfordefaults.editlabel.caption
+msgid ""
+msgstr ""
+
+#: teditsettings.edtrootkey.editlabel.caption
+msgid ""
+msgstr ""
+
+#: teditsettings.edtrootkeyfordefaults.editlabel.caption
+msgid ""
+msgstr ""
+

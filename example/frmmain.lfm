@@ -1,7 +1,7 @@
 object Main: TMain
-  Left = 541
+  Left = 565
   Height = 488
-  Top = 122
+  Top = 128
   Width = 811
   Caption = 'RegistryControls in Aktion'
   ClientHeight = 469

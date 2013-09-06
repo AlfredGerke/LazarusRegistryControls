@@ -1,0 +1,326 @@
+msgid "Checkstatus verwaltenCheckstatus verwalten"
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+msgid "Checkstatus verwalten"
+msgstr ""
+
+#: tmain.acaddvalue.caption
+msgid "..."
+msgstr ""
+
+#: tmain.accheckexamplesettings.caption
+msgid "Beispieleinträge überprüfen/erstellen"
+msgstr ""
+
+#: tmain.acclearitems.caption
+msgid "Listen löschen"
+msgstr ""
+
+#: tmain.acclose.caption
+msgid "Beenden"
+msgstr ""
+
+#: tmain.accreateexamplesettings.caption
+msgid "Beispieleinträge erstellen"
+msgstr ""
+
+#: tmain.acdeleterootkey.caption
+msgid "Beispieleinträge entfernen"
+msgstr ""
+
+#: tmain.acerasesectionvalueedit.caption
+msgctxt "tmain.acerasesectionvalueedit.caption"
+msgid "Liste löschen"
+msgstr ""
+
+#: tmain.acerasesectionvalueedit2.caption
+msgctxt "TMAIN.ACERASESECTIONVALUEEDIT2.CAPTION"
+msgid "Liste löschen"
+msgstr ""
+
+#: tmain.acrefreshdata.caption
+msgctxt "tmain.acrefreshdata.caption"
+msgid "Steuerelement(e) aktualisieren"
+msgstr ""
+
+#: tmain.acrefreshdatakombi.caption
+msgid "Steuerelemente aktualisieren"
+msgstr ""
+
+#: tmain.acrefreshdatalist.caption
+msgctxt "TMAIN.ACREFRESHDATALIST.CAPTION"
+msgid "Steuerelement(e) aktualisieren"
+msgstr ""
+
+#: tmain.acrefreshmergedataoff.caption
+msgid "Listen nicht mir Defaults mischen"
+msgstr ""
+
+#: tmain.acrefreshmergedataon.caption
+msgid "Listen mit Defaults mischen"
+msgstr ""
+
+#: tmain.acrefreshsettinglistsource.caption
+msgid "Einstellungen (RegistrySource2)"
+msgstr ""
+
+#: tmain.acrefreshsettingskombination.caption
+msgid "Einstellungen (RegistrySource3)"
+msgstr ""
+
+#: tmain.acrefreshsettingssinglesource.caption
+msgid "Einstellungen (RegistrySource1)"
+msgstr ""
+
+#: tmain.acshowclienteditdialog.caption
+msgid "RootKeys ändern"
+msgstr ""
+
+#: tmain.acsyncdatalistoff.caption
+msgid "Steuerelemente nicht synchronisieren"
+msgstr ""
+
+#: tmain.acsyncdataliston.caption
+msgid "Steuerelemente synchronisieren"
+msgstr ""
+
+#: tmain.acsyncdataliston.hint
+msgctxt "TMAIN.ACSYNCDATALISTON.HINT"
+msgid "alle Elemente auf dem Reiter werden eingestellt"
+msgstr ""
+
+#: tmain.acsyncdataoff.caption
+msgid "Steuerelemente nicht synchroniserien"
+msgstr ""
+
+#: tmain.acsyncdataon.caption
+msgid "Steuerelemente synchroniserien"
+msgstr ""
+
+#: tmain.acsyncdataon.hint
+msgctxt "TMAIN.ACSYNCDATAON.HINT"
+msgid "alle Elemente auf dem Reiter werden eingestellt"
+msgstr ""
+
+#: tmain.actestdeletekey.caption
+msgid "Funktion DeleteKey testen (rcgCheckGroup1)"
+msgstr ""
+
+#: tmain.actesterasesection.caption
+msgid "Funktion EraseSection testen (rcgCheckGroup1)"
+msgstr ""
+
+#: tmain.actestrenamekey.caption
+msgid "Funktion RenameKey testen (rcgCheckGroup1)"
+msgstr ""
+
+#: tmain.acwriteadhocoff.caption
+msgctxt "tmain.acwriteadhocoff.caption"
+msgid "Änderungen nicht sofort in die Registry schreiben"
+msgstr ""
+
+#: tmain.acwriteadhocofflist.caption
+msgctxt "TMAIN.ACWRITEADHOCOFFLIST.CAPTION"
+msgid "Änderungen nicht sofort in die Registry schreiben"
+msgstr ""
+
+#: tmain.acwriteadhocon.caption
+msgctxt "tmain.acwriteadhocon.caption"
+msgid "Änderungen sofort in die Registry schreiben"
+msgstr ""
+
+#: tmain.acwriteadhocon.hint
+msgctxt "tmain.acwriteadhocon.hint"
+msgid "alle Elemente auf dem Reiter werden eingestellt"
+msgstr ""
+
+#: tmain.acwriteadhoconlist.caption
+msgctxt "TMAIN.ACWRITEADHOCONLIST.CAPTION"
+msgid "Änderungen sofort in die Registry schreiben"
+msgstr ""
+
+#: tmain.acwriteadhoconlist.hint
+msgctxt "TMAIN.ACWRITEADHOCONLIST.HINT"
+msgid "alle Elemente auf dem Reiter werden eingestellt"
+msgstr ""
+
+#: tmain.caption
+msgid "RegistryControls in Aktion"
+msgstr ""
+
+#: tmain.lblcheckgroup.caption
+msgid "CheckGroup: Items laden, LastChecked u."
+msgstr ""
+
+#: tmain.lblcheckgroup2.caption
+msgid "CheckListBox (rcgCheckGroup3): statisch, "
+msgstr ""
+
+#: tmain.lblchecklistbox.caption
+msgid "CheckListBox (rlbCheckListBox1): Items laden, "
+msgstr ""
+
+#: tmain.lblchecklistbox2.caption
+msgid "CheckListBox (rlbCheckListBox2): statisch, ItemIndex "
+msgstr ""
+
+#: tmain.lblchecklistbox3.caption
+msgid "CheckListBox (rlbCheckListBox2): statisch, "
+msgstr ""
+
+#: tmain.lblcombobox.caption
+msgid "ComboBox (redtComboBoxList1): Items laden,"
+msgstr ""
+
+#: tmain.lblcombobox1.caption
+msgctxt "tmain.lblcombobox1.caption"
+msgid "ComboBox (redtComboBox1): ItemIndex verwalten"
+msgstr ""
+
+#: tmain.lblcombobox2.caption
+msgctxt "TMAIN.LBLCOMBOBOX2.CAPTION"
+msgid "ComboBox (redtComboBox1): ItemIndex verwalten"
+msgstr ""
+
+#: tmain.lbleditsinglevalue.caption
+msgctxt "tmain.lbleditsinglevalue.caption"
+msgid "Edit (redtEdit): Text verwalten"
+msgstr ""
+
+#: tmain.lbleditsinglevalue1.caption
+msgctxt "tmain.lbleditsinglevalue1.caption"
+msgid "Edit (redtEdit): Text verwalten"
+msgstr ""
+
+#: tmain.lblistboxlist.caption
+msgid "ListBox (rlbListBox2): Items laden, ItemIndex "
+msgstr ""
+
+#: tmain.lbllistbox1.caption
+msgctxt "tmain.lbllistbox1.caption"
+msgid "ListBox (rlbListBox1): statisch, ItemIndex verwalten"
+msgstr ""
+
+#: tmain.lbllistbox2.caption
+msgctxt "TMAIN.LBLLISTBOX2.CAPTION"
+msgid "ListBox (rlbListBox1): statisch, ItemIndex verwalten"
+msgstr ""
+
+#: tmain.lblradiogroup1.caption
+msgctxt "tmain.lblradiogroup1.caption"
+msgid "RadioGroup: ItemIndex verwalten"
+msgstr ""
+
+#: tmain.lblradiogroup2.caption
+msgctxt "TMAIN.LBLRADIOGROUP2.CAPTION"
+msgid "RadioGroup: ItemIndex verwalten"
+msgstr ""
+
+#: tmain.lblradiogrouplist.caption
+msgid "Radiogroup: Items laden, ItemIndex verwalten"
+msgstr ""
+
+#: tmain.menuitem1.caption
+msgid "-"
+msgstr ""
+
+#: tmain.mnufile.caption
+msgid "Datei"
+msgstr ""
+
+#: tmain.mnurefresh.caption
+msgid "Aktualisieren"
+msgstr ""
+
+#: tmain.mnutest.caption
+msgid "Test"
+msgstr ""
+
+#: tmain.rcbxcheckbox1.caption
+msgctxt "tmain.rcbxcheckbox1.caption"
+msgid "CheckBox (rcbxCheckBox1): ItemIndex verw."
+msgstr ""
+
+#: tmain.rcbxcheckbox2.caption
+msgctxt "TMAIN.RCBXCHECKBOX2.CAPTION"
+msgid "CheckBox (rcbxCheckBox1): ItemIndex verw."
+msgstr ""
+
+#: tmain.rcbxcheckboxkombi.caption
+msgid "Key1"
+msgstr ""
+
+#: tmain.rcgcheckedgroup.caption
+msgid " CheckedGroup "
+msgstr ""
+
+#: tmain.rcgcheckgroup1.caption
+msgid "CheckGroup (rcgCheckGroup1) dynamisch"
+msgstr ""
+
+#: tmain.rcgcheckgroup2.caption
+msgctxt "tmain.rcgcheckgroup2.caption"
+msgid " CheckGroup (rcgCheckGroup2): statisch"
+msgstr ""
+
+#: tmain.rcgcheckgroup3.caption
+msgctxt "TMAIN.RCGCHECKGROUP3.CAPTION"
+msgid " CheckGroup (rcgCheckGroup2): statisch"
+msgstr ""
+
+#: tmain.redtcontrolname.hint
+msgctxt "tmain.redtcontrolname.hint"
+msgid "wenn Leerstring, alle Steuerelemente aktualisieren"
+msgstr ""
+
+#: tmain.redtcontrolname1.hint
+msgctxt "TMAIN.REDTCONTROLNAME1.HINT"
+msgid "wenn Leerstring, alle Steuerelemente aktualisieren"
+msgstr ""
+
+#: tmain.rgrpradiogroup1.caption
+msgctxt "tmain.rgrpradiogroup1.caption"
+msgid "RadioGroup (rgrpRadioGroup1): statisch"
+msgstr ""
+
+#: tmain.rgrpradiogroup2.caption
+msgctxt "TMAIN.RGRPRADIOGROUP2.CAPTION"
+msgid "RadioGroup (rgrpRadioGroup1): statisch"
+msgstr ""
+
+#: tmain.rgrpradiogrouplist1.caption
+msgid " Radiogroup (rgrpRadioGroupList1) dynamisch"
+msgstr ""
+
+#: tmain.rrbradiobutton1.caption
+msgctxt "tmain.rrbradiobutton1.caption"
+msgid "RadioButton (rrbRadioButton1): Checkstatus verw."
+msgstr ""
+
+#: tmain.rrbradiobutton2.caption
+msgctxt "tmain.rrbradiobutton2.caption"
+msgid "RadioButton (rrbRadioButton2): Checkstatus verw."
+msgstr ""
+
+#: tmain.rrbradiobutton3.caption
+msgctxt "TMAIN.RRBRADIOBUTTON3.CAPTION"
+msgid "RadioButton (rrbRadioButton1): Checkstatus verw."
+msgstr ""
+
+#: tmain.rrbradiobutton4.caption
+msgctxt "TMAIN.RRBRADIOBUTTON4.CAPTION"
+msgid "RadioButton (rrbRadioButton2): Checkstatus verw."
+msgstr ""
+
+#: tmain.tabkombination.caption
+msgid "Kombinationen"
+msgstr ""
+
+#: tmain.tablist.caption
+msgid "Listen"
+msgstr ""
+
+#: tmain.tabsinglevalue.caption
+msgid "Einzelwerte"
+msgstr ""
+

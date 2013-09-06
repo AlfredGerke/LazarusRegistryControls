@@ -1,0 +1,1 @@
+rstconv -i dlgeditsettings.lrt -o ..\language\dlgeditsettings.po

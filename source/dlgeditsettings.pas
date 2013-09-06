@@ -9,7 +9,8 @@ uses
   ExtCtrls,
   Buttons,
   StdCtrls,
-  regtype;
+  regtype,
+  DefaultTranslator;
 
 resourcestring
   rsEditRootKeys = 'Edit RootKeys';

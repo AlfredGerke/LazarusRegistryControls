@@ -1,7 +1,7 @@
 object AboutComponent: TAboutComponent
-  Left = 724
+  Left = 611
   Height = 145
-  Top = 359
+  Top = 244
   Width = 419
   BorderStyle = bsDialog
   Caption = 'About...'

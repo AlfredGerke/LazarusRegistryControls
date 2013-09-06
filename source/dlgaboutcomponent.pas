@@ -5,8 +5,17 @@ unit dlgaboutcomponent;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, Buttons;
+  Classes,
+  SysUtils,
+  FileUtil,
+  Forms,
+  Controls,
+  Graphics,
+  Dialogs,
+  ExtCtrls,
+  StdCtrls,
+  Buttons,
+  DefaultTranslator;
 
 type
 
@@ -47,6 +56,4 @@ end;
 
 {$R *.lfm}
 
-
 end.
-
