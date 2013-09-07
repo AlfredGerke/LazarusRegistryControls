@@ -1,25 +1,13 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-#: taboutcomponent:caption
+#: dlgaboutcomponent.rsaboutformcaption
+msgctxt "dlgaboutcomponent.rsaboutformcaption"
 msgid "About..."
 msgstr ""
 
-#: taboutcomponent:lblcompname1.caption
-msgid "LazarusRegistryControls
-
-#: taboutcomponent:lblcompname2.caption
-msgid "(LRC)"
-msgstr ""
-
-#: taboutcomponent:lblauthor.caption
+#: dlgaboutcomponent.rslblauthorcaption
+msgctxt "dlgaboutcomponent.rslblauthorcaption"
 msgid "Author:"
 msgstr ""
 
-#: taboutcomponent:lblgithub.caption
-msgid "https://github.com/AlfredGerke/LazarusRegistryControls.git"
-msgstr ""
-
-#: taboutcomponent:lblname.caption
-msgid "Alfred Gerke"
-msgstr ""

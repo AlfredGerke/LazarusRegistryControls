@@ -11,6 +11,9 @@ uses
   StdCtrls;
 
 resourcestring
+  rsSetMergeDataProperty = 'Set MergeData-Property';
+  rsSetMergeDataOff = 'MergeData Off';
+  rsSetMergeDataOn = 'MergeData On';
   rsSetSyncDataProperty = 'Set SyncData-Property';
   rsSynchronisationOff = 'Synchronisation Off';
   rsSynchronisationOn = 'Synchronisation On';
@@ -57,9 +60,27 @@ type
     property SelectedIndex;
   end;
 
+  { TSetMergeData }
+
+  TSetMergeData = class(TTrueFalse)
+  protected
+    procedure SetCaptions; override;
+  public
+    property SelectedIndex;
+  end;
+
 implementation
 
 {$R *.lfm}
+
+{ TSetMergeData }
+
+procedure TSetMergeData.SetCaptions;
+begin
+  Self.Caption := rsSetMergeDataProperty;
+  Self.rbtnFalse.Caption := rsSetMergeDataOff;
+  Self.rbtnTrue.Caption := rsSetMergeDataOn;
+end;
 
 { TSetSyncData }
 

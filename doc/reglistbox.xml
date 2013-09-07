@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fpdoc-descriptions>
+  <package name="RegistryControls">
+    <!--
+  ====================================================================
+    reglistbox
+  ====================================================================
+-->
+    <module name="reglistbox">
+      <short/>
+      <descr/>
+      <!-- class Visibility: default -->
+      <element name="TCustomRegListBox">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegListBox.FRegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegListBox.FRegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegListBox.FIsModified">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: private -->
+      <element name="TCustomRegListBox.RefreshRegistrySettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegListBox.RefreshRegistrySettings.Result">
+        <short/>
+      </element>
+      <!-- procedure Visibility: private -->
+      <element name="TCustomRegListBox.ReadWriteInfo">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.ReadWriteInfo.aRead">
+        <short/>
+      </element>
+      <!-- function Visibility: private -->
+      <element name="TCustomRegListBox.GetItemsByRegistry">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegListBox.GetItemsByRegistry.Result">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegListBox.RefreshMerge">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.RefreshMerge.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegListBox.ClearClientItems">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.ClearClientItems.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegListBox.ShowEditDialog">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.ShowEditDialog.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegListBox.FreeRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.FreeRegistrySource.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegListBox.RefreshWriteAdHoc">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.RefreshWriteAdHoc.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegListBox.RefreshSync">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.RefreshSync.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegListBox.RefreshSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.RefreshSettings.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegListBox.RefreshData">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.RefreshData.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegListBox.SetName">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.SetName.NewName">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegListBox.OnChangeSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.OnChangeSettings.Sender">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegListBox.SetRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.SetRegistrySource.aRegistrySource">
+        <short/>
+      </element>
+      <!-- function Visibility: protected -->
+      <element name="TCustomRegListBox.GetEditDialog">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegListBox.GetEditDialog.Result">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.GetEditDialog.aEdit">
+        <short/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegListBox.RegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegListBox.RegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TCustomRegListBox.ClearItems">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.ClearItems.aAskFor">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.ClearItems.aMsg">
+        <short/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TCustomRegListBox.Click">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TCustomRegListBox.AfterConstruction">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TCustomRegListBox.ReadFromReg">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegListBox.ReadFromReg.Result">
+        <short/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TCustomRegListBox.WriteToReg">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegListBox.WriteToReg.Result">
+        <short/>
+      </element>
+      <!-- constructor Visibility: public -->
+      <element name="TCustomRegListBox.Create">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegListBox.Create.AOwner">
+        <short/>
+      </element>
+      <!-- destructor Visibility: public -->
+      <element name="TCustomRegListBox.Destroy">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: public -->
+      <element name="TCustomRegListBox.IsModified">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- class Visibility: default -->
+      <element name="TRegListBox">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: published -->
+      <element name="TRegListBox.RegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: published -->
+      <element name="TRegListBox.RegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: default -->
+      <element name="Register">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+    </module>
+    <!-- reglistbox -->
+  </package>
+</fpdoc-descriptions>

@@ -1,0 +1,43 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: regresstrings.rsclearitems
+msgid "Clear Items?"
+msgstr ""
+
+#: regresstrings.rsexecuteinvalidsection
+msgid "Invalid Selection!"
+msgstr ""
+
+#: regresstrings.rsexecuterequestcanceled
+msgid "Request canceled!"
+msgstr ""
+
+#: regresstrings.rsverbabout
+msgid "About..."
+msgstr ""
+
+#: regresstrings.rsverbmergedata
+msgid "Refresh MergeData"
+msgstr ""
+
+#: regresstrings.rsverbrefreshclientsettings
+msgid "Refresh ClientSettings"
+msgstr ""
+
+#: regresstrings.rsverbrefreshdosyncdata
+msgid "Refresh DoSyncData"
+msgstr ""
+
+#: regresstrings.rsverbrefreshdowriteadhoc
+msgid "Refresh DoWriteAdHoc"
+msgstr ""
+
+#: regresstrings.rsverbregisteredclients
+msgid "Registered Clients"
+msgstr ""
+
+#: regresstrings.rsverbshowrootkeys
+msgid "Show RootKeys"
+msgstr ""
+

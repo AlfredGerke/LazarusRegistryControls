@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fpdoc-descriptions>
+  <package name="RegistryControls">
+    <!--
+  ====================================================================
+    regcombobox
+  ====================================================================
+-->
+    <module name="regcombobox">
+      <short/>
+      <descr/>
+      <!-- class Visibility: default -->
+      <element name="TCustomRegComboBox">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegComboBox.FRegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegComboBox.FRegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegComboBox.FIsModified">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: private -->
+      <element name="TCustomRegComboBox.RefreshRegistrySettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegComboBox.RefreshRegistrySettings.Result">
+        <short/>
+      </element>
+      <!-- procedure Visibility: private -->
+      <element name="TCustomRegComboBox.ReadWriteInfo">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.ReadWriteInfo.aRead">
+        <short/>
+      </element>
+      <!-- function Visibility: private -->
+      <element name="TCustomRegComboBox.GetItemsByRegistry">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegComboBox.GetItemsByRegistry.Result">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.RefreshMerge">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.RefreshMerge.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.ClearClientItems">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.ClearClientItems.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.ShowEditDialog">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.ShowEditDialog.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.FreeRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.FreeRegistrySource.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.RefreshWriteAdHoc">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.RefreshWriteAdHoc.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.RefreshSync">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.RefreshSync.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.RefreshSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.RefreshSettings.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.RefreshData">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.RefreshData.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.SetName">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.SetName.NewName">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.Change">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.OnChangeSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.OnChangeSettings.Sender">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegComboBox.SetRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.SetRegistrySource.aRegistrySource">
+        <short/>
+      </element>
+      <!-- function Visibility: protected -->
+      <element name="TCustomRegComboBox.GetEditDialog">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegComboBox.GetEditDialog.Result">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.GetEditDialog.aEdit">
+        <short/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegComboBox.RegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegComboBox.RegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TCustomRegComboBox.ClearItems">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.ClearItems.aAskFor">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.ClearItems.aMsg">
+        <short/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TCustomRegComboBox.Click">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TCustomRegComboBox.AfterConstruction">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TCustomRegComboBox.ReadFromReg">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegComboBox.ReadFromReg.Result">
+        <short/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TCustomRegComboBox.WriteToReg">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegComboBox.WriteToReg.Result">
+        <short/>
+      </element>
+      <!-- constructor Visibility: public -->
+      <element name="TCustomRegComboBox.Create">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegComboBox.Create.AOwner">
+        <short/>
+      </element>
+      <!-- destructor Visibility: public -->
+      <element name="TCustomRegComboBox.Destroy">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: public -->
+      <element name="TCustomRegComboBox.IsModified">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- class Visibility: default -->
+      <element name="TRegComboBox">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: published -->
+      <element name="TRegComboBox.RegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: published -->
+      <element name="TRegComboBox.RegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: default -->
+      <element name="Register">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+    </module>
+    <!-- regcombobox -->
+  </package>
+</fpdoc-descriptions>

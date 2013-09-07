@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fpdoc-descriptions>
+  <package name="RegistryControls">
+    <!--
+  ====================================================================
+    regradiobutton
+  ====================================================================
+-->
+    <module name="regradiobutton">
+      <short/>
+      <descr/>
+      <!-- class Visibility: default -->
+      <element name="TCustomRegRadioButton">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegRadioButton.FRegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegRadioButton.FRegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegRadioButton.FIsModified">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: private -->
+      <element name="TCustomRegRadioButton.RefreshRegistrySettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegRadioButton.RefreshRegistrySettings.Result">
+        <short/>
+      </element>
+      <!-- procedure Visibility: private -->
+      <element name="TCustomRegRadioButton.ReadWriteInfo">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.ReadWriteInfo.aRead">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegRadioButton.ShowEditDialog">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.ShowEditDialog.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegRadioButton.FreeRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.FreeRegistrySource.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegRadioButton.RefreshWriteAdHoc">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.RefreshWriteAdHoc.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegRadioButton.RefreshSync">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.RefreshSync.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegRadioButton.RefreshSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.RefreshSettings.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegRadioButton.RefreshData">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.RefreshData.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegRadioButton.Click">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegRadioButton.SetName">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.SetName.NewName">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegRadioButton.OnChangeSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.OnChangeSettings.Sender">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegRadioButton.SetRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.SetRegistrySource.aRegistrySource">
+        <short/>
+      </element>
+      <!-- function Visibility: protected -->
+      <element name="TCustomRegRadioButton.GetEditDialog">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegRadioButton.GetEditDialog.Result">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.GetEditDialog.aEdit">
+        <short/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegRadioButton.RegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegRadioButton.RegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TCustomRegRadioButton.AfterConstruction">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TCustomRegRadioButton.ReadFromReg">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegRadioButton.ReadFromReg.Result">
+        <short/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TCustomRegRadioButton.WriteToReg">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegRadioButton.WriteToReg.Result">
+        <short/>
+      </element>
+      <!-- constructor Visibility: public -->
+      <element name="TCustomRegRadioButton.Create">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegRadioButton.Create.AOwner">
+        <short/>
+      </element>
+      <!-- destructor Visibility: public -->
+      <element name="TCustomRegRadioButton.Destroy">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: public -->
+      <element name="TCustomRegRadioButton.IsModified">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- class Visibility: default -->
+      <element name="TRegRadioButton">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: published -->
+      <element name="TRegRadioButton.RegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: published -->
+      <element name="TRegRadioButton.RegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: default -->
+      <element name="Register">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+    </module>
+    <!-- regradiobutton -->
+  </package>
+</fpdoc-descriptions>

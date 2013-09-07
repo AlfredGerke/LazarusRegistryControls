@@ -1,7 +1,7 @@
 object EditSettings: TEditSettings
-  Left = 742
+  Left = 613
   Height = 303
-  Top = 236
+  Top = 277
   Width = 438
   BorderStyle = bsDialog
   Caption = 'Show RootKeys'

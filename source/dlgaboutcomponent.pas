@@ -14,8 +14,11 @@ uses
   Dialogs,
   ExtCtrls,
   StdCtrls,
-  Buttons,
-  DefaultTranslator;
+  Buttons;
+
+resourcestring
+  rsAboutFormCaption = 'About...';
+  rsLblAuthorCaption = 'Author:';
 
 type
 
@@ -32,9 +35,9 @@ type
     pnlBottom: TPanel;
     pnlClient: TPanel;
   private
-    { private declarations }
+    procedure SetCaptions;
   public
-    { public declarations }
+    function ShowModal: integer; override;
   end;
 
 procedure StartAbout;
@@ -52,6 +55,20 @@ begin
     if Assigned(about) then
       FreeAndNil(about);
   end;
+end;
+
+{ TAboutComponent }
+
+procedure TAboutComponent.SetCaptions;
+begin
+  Self.Caption := rsAboutFormCaption;
+  lblAuthor.Caption := rsLblAuthorCaption;
+end;
+
+function TAboutComponent.ShowModal: integer;
+begin
+  SetCaptions;
+  Result:=inherited ShowModal;
 end;
 
 {$R *.lfm}

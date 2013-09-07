@@ -9,12 +9,19 @@ uses
   ExtCtrls,
   Buttons,
   StdCtrls,
-  regtype,
-  DefaultTranslator;
+  regtype;
 
 resourcestring
   rsEditRootKeys = 'Edit RootKeys';
   rsShowRootKeys = 'Show RootKeys';
+  rsLblRootKey = 'RootKey';
+  rsLblRootKeyForDefaults = 'RootKey for Defaults';
+  rsLblRootForDefaults = 'Root for Defaults';
+  rsLblGUID = 'GUID';
+  rsLblOrganisation = 'Organisation';
+  rsLblProject = 'Project';
+  rsCbxReadDefaults = 'Read Defaults';
+  rsCbxWriteDefaults = 'Write Defaults';
 
 type
 
@@ -42,6 +49,7 @@ type
   private
     FEdit: boolean;
 
+    procedure SetCaptions;
     procedure SetEdit(aEdit: boolean);
   public
     procedure SetData(aRootKeys: TRootKeysStruct);
@@ -60,6 +68,18 @@ implementation
 {$R *.lfm}
 
 { TEditSettings }
+
+procedure TEditSettings.SetCaptions;
+begin
+  edtRootKey.EditLabel.Caption := rsLblRootKey;
+  edtRootKeyForDefaults.EditLabel.Caption := rsLblRootKeyForDefaults;
+  edtRootForDefaults.EditLabel.Caption := rsLblRootForDefaults;
+  edtGUID.EditLabel.Caption := rsLblGUID;
+  edtOrganisation.EditLabel.Caption := rsLblOrganisation;
+  edtProject.EditLabel.Caption := rsLblProject;
+  cbxReadDefaults.Caption := rsCbxReadDefaults;
+  cbxWriteDefaults.Caption := rsCbxWriteDefaults;
+end;
 
 procedure TEditSettings.SetEdit(aEdit: boolean);
 begin
@@ -109,6 +129,7 @@ end;
 
 function TEditSettings.ShowModalEx(aEdit: boolean): integer;
 begin
+  SetCaptions;
   SetEdit(aEdit);
   Result := ShowModal;
 end;

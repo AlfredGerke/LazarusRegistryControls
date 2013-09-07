@@ -38,6 +38,7 @@ type
     procedure ExecuteRefreshSettings;
     procedure ExecuteRefreshSyncProperty;
     procedure ExecuteRefreshWriteAdHocProperty;
+    procedure ExecuteRefreshMergeDataProperty;
   public
     procedure ExecuteVerb(Index: Integer); override;
     function GetVerb(Index: Integer): String; override;
@@ -65,7 +66,8 @@ uses
   dlgaboutcomponent,
   LMessages,
   regmsg,
-  ObjInspStrConsts;
+  ObjInspStrConsts,
+  regresstrings;
 
 { TRegistryControlComponentEditor }
 
@@ -103,8 +105,8 @@ begin
   case Index of
     0: Result := oisCreateDefaultEvent;
     1: Result := '-';
-    2: Result := 'About...';
-    3: Result := 'Show RootKeys';
+    2: Result := rsVerbAbout;
+    3: Result := rsVerbShowRootKeys;
   end;
 end;
 
@@ -156,7 +158,8 @@ begin
     2: ;
     3: ;
     4: ;
-    5: AddMenuItemsByClientList(aParentMenuItem, aRegistrySource);
+    5: ;
+    6: AddMenuItemsByClientList(aParentMenuItem, aRegistrySource);
   end;
 end;
 
@@ -199,11 +202,11 @@ begin
               Modified;
             end
           else
-            MessageDlg('Invalid Selection!', mtInformation, [mbOk], 0);
+            MessageDlg(rsExecuteInvalidSection, mtInformation, [mbOk], 0);
           end;
         end;
       else
-        MessageDlg('Request canceled!', mtInformation, [mbOk], 0);
+        MessageDlg(rsExecuteRequestCanceled, mtInformation, [mbOk], 0);
       end;
     end;
   finally
@@ -237,11 +240,49 @@ begin
               Modified;
             end
           else
-            MessageDlg('Invalid Selection!', mtInformation, [mbOk], 0);
+            MessageDlg(rsExecuteInvalidSection, mtInformation, [mbOk], 0);
           end;
         end;
       else
-        MessageDlg('Request canceled!', mtInformation, [mbOk], 0);
+        MessageDlg(rsExecuteRequestCanceled, mtInformation, [mbOk], 0);
+      end;
+    end;
+  finally
+    if Assigned(dlg_true_false) then
+      dlg_true_false.Release;
+  end;
+end;
+
+procedure TRegistrySourceComponentEditor.ExecuteRefreshMergeDataProperty;
+var
+  registry_source: TRegistrySource;
+  dlg_true_false: TSetMergeData;
+begin
+  dlg_true_false := TSetMergeData.Create(nil);
+  try
+    with dlg_true_false do
+    begin
+      case ShowModal of
+        mrOk:
+        begin
+          registry_source := Component as TRegistrySource;
+          case SelectedIndex of
+            0:
+            begin
+              registry_source.RefreshMergeDataProperty(False);
+              Modified;
+            end;
+            1:
+            begin
+              registry_source.RefreshMergeDataProperty(True);
+              Modified;
+            end
+          else
+            MessageDlg(rsExecuteInvalidSection, mtInformation, [mbOk], 0);
+          end;
+        end;
+      else
+        MessageDlg(rsExecuteRequestCanceled, mtInformation, [mbOk], 0);
       end;
     end;
   finally
@@ -257,24 +298,26 @@ begin
     2: ExecuteRefreshSettings;
     3: ExecuteRefreshWriteAdHocProperty;
     4: ExecuteRefreshSyncProperty;
+    5: ExecuteRefreshMergeDataProperty;
   end;
 end;
 
 function TRegistrySourceComponentEditor.GetVerb(Index: Integer): String;
 begin
   case Index of
-    0: Result := 'About...';
+    0: Result := rsVerbAbout;
     1: Result := '-';
-    2: Result := 'Refresh ClientSettings';
-    3: Result := 'Refresh DoWriteAdHoc';
-    4: Result := 'Refresh DoSyncData';
-    5: Result := 'Registered Clients';
+    2: Result := rsVerbRefreshClientSettings;
+    3: Result := rsVerbRefreshDoWriteAdHoc;
+    4: Result := rsVerbRefreshDoSyncData;
+    5: Result := rsVerbMergeData;
+    6: Result := rsVerbRegisteredClients;
   end;
 end;
 
 function TRegistrySourceComponentEditor.GetVerbCount: Integer;
 begin
-  Result := 6;
+  Result := 7;
 end;
 
 procedure TRegistrySourceComponentEditor.PrepareItem(Index: Integer;
@@ -289,7 +332,8 @@ begin
     2: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
     3: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
     4: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
-    5: if (assigned(registry_source) and (registry_source.ClientCount > 0)) then
+    5: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
+    6: if (assigned(registry_source) and (registry_source.ClientCount > 0)) then
          AddMenuItemsForComponent(Index, aItem, registry_source)
        else
          AItem.Enabled := False;

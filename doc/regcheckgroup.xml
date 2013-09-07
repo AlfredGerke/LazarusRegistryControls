@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fpdoc-descriptions>
+  <package name="RegistryControls">
+    <!--
+  ====================================================================
+    regcheckgroup
+  ====================================================================
+-->
+    <module name="regcheckgroup">
+      <short/>
+      <descr/>
+      <!-- class Visibility: default -->
+      <element name="TCustomRegCheckGroup">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegCheckGroup.FRegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegCheckGroup.FRegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegCheckGroup.FIsModified">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegCheckGroup.FLastChecked">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegCheckGroup.FOnOriginalItemCheck">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegCheckGroup.FOnCustomItemCheck">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: private -->
+      <element name="TCustomRegCheckGroup.OnHookedItemCheck">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.OnHookedItemCheck.Sender">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.OnHookedItemCheck.Index">
+        <short/>
+      </element>
+      <!-- procedure Visibility: private -->
+      <element name="TCustomRegCheckGroup.SetCheckedItemsByList">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.SetCheckedItemsByList.aList">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.SetCheckedItemsByList.aCheckOnly">
+        <short/>
+      </element>
+      <!-- function Visibility: private -->
+      <element name="TCustomRegCheckGroup.RefreshRegistrySettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegCheckGroup.RefreshRegistrySettings.Result">
+        <short/>
+      </element>
+      <!-- procedure Visibility: private -->
+      <element name="TCustomRegCheckGroup.ReadWriteInfo">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.ReadWriteInfo.aRead">
+        <short/>
+      </element>
+      <!-- function Visibility: private -->
+      <element name="TCustomRegCheckGroup.GetItemsByRegistry">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegCheckGroup.GetItemsByRegistry.Result">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.GetItemsByRegistry.aCheckOnly">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.RefreshMerge">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.RefreshMerge.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.ClearClientItems">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.ClearClientItems.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.ShowEditDialog">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.ShowEditDialog.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.FreeRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.FreeRegistrySource.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.RefreshWriteAdHoc">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.RefreshWriteAdHoc.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.RefreshSync">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.RefreshSync.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.RefreshSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.RefreshSettings.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.RefreshData">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.RefreshData.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.SetName">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.SetName.NewName">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.OnChangeSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.OnChangeSettings.Sender">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.SetRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.SetRegistrySource.aRegistrySource">
+        <short/>
+      </element>
+      <!-- function Visibility: protected -->
+      <element name="TCustomRegCheckGroup.GetEditDialog">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegCheckGroup.GetEditDialog.Result">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.GetEditDialog.aEdit">
+        <short/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegCheckGroup.RegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegCheckGroup.RegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.SetLastChecked">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.SetLastChecked.aLastChecked">
+        <short/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegCheckGroup.LastChecked">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegCheckGroup.OnCustomItemCheck">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TCustomRegCheckGroup.ClearItems">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.ClearItems.aAskFor">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.ClearItems.aMsg">
+        <short/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TCustomRegCheckGroup.Click">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TCustomRegCheckGroup.AfterConstruction">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TCustomRegCheckGroup.ReadFromReg">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegCheckGroup.ReadFromReg.Result">
+        <short/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TCustomRegCheckGroup.WriteToReg">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegCheckGroup.WriteToReg.Result">
+        <short/>
+      </element>
+      <!-- constructor Visibility: public -->
+      <element name="TCustomRegCheckGroup.Create">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegCheckGroup.Create.AOwner">
+        <short/>
+      </element>
+      <!-- destructor Visibility: public -->
+      <element name="TCustomRegCheckGroup.Destroy">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: public -->
+      <element name="TCustomRegCheckGroup.IsModified">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- class Visibility: default -->
+      <element name="TRegCheckGroup">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: published -->
+      <element name="TRegCheckGroup.RegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: published -->
+      <element name="TRegCheckGroup.RegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: published -->
+      <element name="TRegCheckGroup.OnCustomItemCheck">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: default -->
+      <element name="Register">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+    </module>
+    <!-- regcheckgroup -->
+  </package>
+</fpdoc-descriptions>

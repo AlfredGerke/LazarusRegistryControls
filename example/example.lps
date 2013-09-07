@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="87">
+    <Units Count="88">
       <Unit0>
         <Filename Value="example.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="179"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -24,9 +24,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="338"/>
-        <CursorPos X="130" Y="345"/>
-        <UsageCount Value="178"/>
+        <TopLine Value="29"/>
+        <CursorPos X="134" Y="349"/>
+        <UsageCount Value="179"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -67,9 +67,9 @@
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="3"/>
-        <CursorPos X="54" Y="30"/>
-        <UsageCount Value="44"/>
+        <TopLine Value="98"/>
+        <CursorPos X="108" Y="5"/>
+        <UsageCount Value="45"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -716,6 +716,15 @@
         <CursorPos X="62" Y="84"/>
         <UsageCount Value="10"/>
       </Unit86>
+      <Unit87>
+        <Filename Value="..\source\regresstrings.pas"/>
+        <UnitName Value="regresstrings"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="27" Y="9"/>
+        <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit87>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>

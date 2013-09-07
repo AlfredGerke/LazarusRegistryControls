@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fpdoc-descriptions>
+  <package name="RegistryControls">
+    <!--
+  ====================================================================
+    regedit
+  ====================================================================
+-->
+    <module name="regedit">
+      <short/>
+      <descr/>
+      <!-- class Visibility: default -->
+      <element name="TCustomRegEdit">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegEdit.FRegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TCustomRegEdit.FRegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: private -->
+      <element name="TCustomRegEdit.RefreshRegistrySettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegEdit.RefreshRegistrySettings.Result">
+        <short/>
+      </element>
+      <!-- procedure Visibility: private -->
+      <element name="TCustomRegEdit.ReadWriteInfo">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.ReadWriteInfo.aRead">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegEdit.ShowEditDialog">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.ShowEditDialog.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegEdit.FreeRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.FreeRegistrySource.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegEdit.RefreshWriteAdHoc">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.RefreshWriteAdHoc.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegEdit.RefreshSync">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.RefreshSync.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegEdit.RefreshSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.RefreshSettings.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegEdit.RefreshData">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.RefreshData.aMessage">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegEdit.Change">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegEdit.SetName">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.SetName.NewName">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegEdit.OnChangeSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.OnChangeSettings.Sender">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegEdit.SetRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.SetRegistrySource.aRegistrySource">
+        <short/>
+      </element>
+      <!-- function Visibility: protected -->
+      <element name="TCustomRegEdit.GetEditDialog">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegEdit.GetEditDialog.Result">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.GetEditDialog.aEdit">
+        <short/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegEdit.RegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TCustomRegEdit.RegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TCustomRegEdit.AfterConstruction">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TCustomRegEdit.ReadFromReg">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegEdit.ReadFromReg.Result">
+        <short/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TCustomRegEdit.WriteToReg">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TCustomRegEdit.WriteToReg.Result">
+        <short/>
+      </element>
+      <!-- constructor Visibility: public -->
+      <element name="TCustomRegEdit.Create">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TCustomRegEdit.Create.AOwner">
+        <short/>
+      </element>
+      <!-- destructor Visibility: public -->
+      <element name="TCustomRegEdit.Destroy">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- class Visibility: default -->
+      <element name="TRegEdit">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: published -->
+      <element name="TRegEdit.RegistrySettings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: published -->
+      <element name="TRegEdit.RegistrySource">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: default -->
+      <element name="Register">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+    </module>
+    <!-- regedit -->
+  </package>
+</fpdoc-descriptions>

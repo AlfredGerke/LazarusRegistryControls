@@ -1,5 +1,7 @@
 unit regutils;
 
+{$mode Delphi}{$H+}
+
 interface
 
 uses

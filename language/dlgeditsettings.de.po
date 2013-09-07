@@ -3,41 +3,41 @@ msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: dlgeditsettings.rscbxreaddefaults
 msgid "Read Defaults"
-msgstr ""
+msgstr "Standards laden"
 
 #: dlgeditsettings.rscbxwritedefaults
 msgid "Write Defaults"
-msgstr ""
+msgstr "Standards sichern"
 
 #: dlgeditsettings.rseditrootkeys
 msgid "Edit RootKeys"
-msgstr ""
+msgstr "RootKey bearbeiten"
 
 #: dlgeditsettings.rslblguid
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: dlgeditsettings.rslblorganisation
 msgid "Organisation"
-msgstr ""
+msgstr "Organisation"
 
 #: dlgeditsettings.rslblproject
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #: dlgeditsettings.rslblrootfordefaults
 msgid "Root for Defaults"
-msgstr ""
+msgstr "Root für Standards"
 
 #: dlgeditsettings.rslblrootkey
 msgid "RootKey"
-msgstr ""
+msgstr "RootKey"
 
 #: dlgeditsettings.rslblrootkeyfordefaults
 msgid "RootKey for Defaults"
-msgstr ""
+msgstr "RootKey für Standards"
 
 #: dlgeditsettings.rsshowrootkeys
 msgid "Show RootKeys"
-msgstr ""
+msgstr "RootKeys anzeigen"
 

@@ -15,9 +15,6 @@ uses
   regconst,
   regtype;
 
-resourcestring
-  rsClearItems = 'Clear Items?';
-
 type
 
   { TRegistrySettingsBooleanDefault }
