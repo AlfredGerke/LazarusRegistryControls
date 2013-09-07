@@ -18,7 +18,7 @@ type
     Value: string;
     Col: integer;
     Row: integer;
-
+    {$ifndef fpdoc}
     function IsEqual(aKey: string;
                      aValue: string;
                      aCol: integer;
@@ -28,6 +28,7 @@ type
                        aCol: integer;
                        aRow: integer);
     procedure Clear;
+    {$endif}
   end;
 
   { TKeyValues }
@@ -35,12 +36,13 @@ type
   TKeyValues = record
     OldKeyItems: TKeyValueItems;
     NewKeyItems: TKeyValueItems;
-
+    {$ifndef fpdoc}
     function IsEqual: boolean;
     function KeyValueDataChanged: boolean;
     function KeyDataChanged: boolean;
     function ValueDataChanged: boolean;
     procedure Clear;
+    {$endif}
   end;
 
   { TInfoKind }
@@ -123,7 +125,7 @@ type
     Project: string;
     Organisation: string;
     GUID: string;
-
+    {$ifndef fpdoc}
     procedure SetRootKeys(aRootKey: string;
                           aRootKeyForDefaults: string;
                           aReadDefaults: boolean;
@@ -133,10 +135,12 @@ type
                           aOrganisation: string;
                           aGUID: string);
     procedure Clear;
+    {$endif}
   end;
 
   { TCustomRegistrySettings }
-
+  
+  {$ifndef fpdoc}
   TCustomRegistrySettings<_T> = class(TCustomProperties)
   private
     FRootKey: string;
@@ -256,6 +260,7 @@ type
       read FOnBeforeRegistrySettingChange
       write FOnBeforeRegistrySettingChange;
   end;
+  {$endif}
 
 function _ChangeTokenForKey(aToken: string;
                             aTokenValue: string;

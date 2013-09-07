@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fpdoc-descriptions>
+  <package name="RegistrySource">
+    <!--
+  ====================================================================
+    regmsg
+  ====================================================================
+-->
+    <module name="regmsg">
+      <short/>
+      <descr/>
+      <!-- constant Visibility: default -->
+      <element name="LM_REGISTRY_CONTROL_REFRESH_DATA">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- constant Visibility: default -->
+      <element name="LM_REGISTRY_CONTROL_REFRESH_SETTINGS">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- constant Visibility: default -->
+      <element name="LM_REGISTRY_CONTROL_SET_SYNC">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- constant Visibility: default -->
+      <element name="LM_REGISTRY_CONTROL_SET_WRITEADHOC">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- constant Visibility: default -->
+      <element name="LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- constant Visibility: default -->
+      <element name="LM_REGISTRY_CONTROL_SHOW_EDITDIALOG">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- constant Visibility: default -->
+      <element name="LM_REGISTRY_CONTROL_CLEAR_LIST">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- constant Visibility: default -->
+      <element name="LM_REGISTRY_CONTROL_MERGE_LIST">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+    </module>
+    <!-- regmsg -->
+  </package>
+</fpdoc-descriptions>

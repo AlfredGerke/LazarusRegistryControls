@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fpdoc-descriptions>
+  <package name="RegistrySource">
+    <!--
+  ====================================================================
+    regconst
+  ====================================================================
+-->
+    <module name="regconst">
+      <short/>
+      <descr/>
+      <!-- enumeration type Visibility: default -->
+      <element name="TTokenType">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- enumeration value Visibility: default -->
+      <element name="TTokenType.ttUnknown">
+        <short/>
+      </element>
+      <!-- enumeration value Visibility: default -->
+      <element name="TTokenType.ttProject">
+        <short/>
+      </element>
+      <!-- enumeration value Visibility: default -->
+      <element name="TTokenType.ttOrganisation">
+        <short/>
+      </element>
+      <!-- enumeration value Visibility: default -->
+      <element name="TTokenType.ttGUID">
+        <short/>
+      </element>
+      <!-- constant Visibility: default -->
+      <element name="TokenTypeStr">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- constant Visibility: default -->
+      <element name="Read">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- constant Visibility: default -->
+      <element name="Write">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+    </module>
+    <!-- regconst -->
+  </package>
+</fpdoc-descriptions>

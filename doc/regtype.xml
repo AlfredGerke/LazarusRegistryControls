@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<fpdoc-descriptions>
+<package name="RegistrySource">
+
+<!--
+  ====================================================================
+    regtype
+  ====================================================================
+-->
+
+<module name="regtype">
+<short></short>
+<descr>
+</descr>
+
+<!-- record type Visibility: default -->
+<element name="TKeyValueItems">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TKeyValueItems.Found">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TKeyValueItems.Key">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TKeyValueItems.Value">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TKeyValueItems.Col">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TKeyValueItems.Row">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- record type Visibility: default -->
+<element name="TKeyValues">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TKeyValues.OldKeyItems">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TKeyValues.NewKeyItems">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- enumeration type Visibility: default -->
+<element name="TInfoKind">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TInfoKind.ikItemIndex">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TInfoKind.ikInfo">
+<short></short>
+</element>
+
+<!-- enumeration type Visibility: default -->
+<element name="TListSourceKind">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TListSourceKind.lskUnknown">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TListSourceKind.byKey">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TListSourceKind.byValue">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TListSourceKind.Both">
+<short></short>
+</element>
+
+<!-- class Visibility: default -->
+<element name="TCustomProperties">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomProperties.FOwner">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- procedure Visibility: protected -->
+<element name="TCustomProperties._Initialize">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- procedure Visibility: protected -->
+<element name="TCustomProperties._Finalize">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function Visibility: protected -->
+<element name="TCustomProperties.GetOwnerComponentState">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TCustomProperties.GetOwnerComponentState.Result">
+<short></short>
+</element>
+
+<!-- function Visibility: protected -->
+<element name="TCustomProperties.GetOwner">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TCustomProperties.GetOwner.Result">
+<short></short>
+</element>
+
+<!-- procedure Visibility: protected -->
+<element name="TCustomProperties.SetOwner">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomProperties.SetOwner.aOwner">
+<short></short>
+</element>
+
+<!-- function Visibility: protected -->
+<element name="TCustomProperties.GetOwnerIsLoading">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TCustomProperties.GetOwnerIsLoading.Result">
+<short></short>
+</element>
+
+<!-- property Visibility: protected -->
+<element name="TCustomProperties.OwnerIsLoading">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: public -->
+<element name="TCustomProperties.Owner">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- constructor Visibility: public -->
+<element name="TCustomProperties.Create">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomProperties.Create.aOwner">
+<short></short>
+</element>
+
+<!-- alias type Visibility: default -->
+<element name="TRegistrySettingString">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- enumeration type Visibility: default -->
+<element name="TRegistrySettingKind">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskUnknown">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskRootKey">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskRootKeyForDefault">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskSection">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskIdent">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskDefault">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskReadDefaults">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskWriteDefaults">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskRootForDefaults">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskCanRead">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskCanWrite">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskDoWriteAdHoc">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskDoSyncData">
+<short></short>
+</element>
+
+<!-- enumeration value Visibility: default -->
+<element name="TRegistrySettingKind.rskMergeData">
+<short></short>
+</element>
+
+<!-- record type Visibility: default -->
+<element name="TRegistrySettingValue">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.RootKey">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.RootKeyForDefault">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.Section">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.Ident">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.Default">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.ReadDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.WriteDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.RootForDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.CanRead">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.CanWrite">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.DoWriteAdHoc">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.DoSyncData">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRegistrySettingValue.MergeData">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- procedure type Visibility: default -->
+<element name="TOnRegistrySettingsChange">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TOnRegistrySettingsChange.aSettingInfo">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TOnRegistrySettingsChange.aIsOk">
+<short></short>
+</element>
+
+<!-- record type Visibility: default -->
+<element name="TRootKeysStruct">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRootKeysStruct.Found">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRootKeysStruct.RootKey">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRootKeysStruct.RootKeyForDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRootKeysStruct.ReadDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRootKeysStruct.WriteDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRootKeysStruct.RootForDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRootKeysStruct.Project">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRootKeysStruct.Organisation">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: default -->
+<element name="TRootKeysStruct.GUID">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- function Visibility: default -->
+<element name="_ChangeTokenForKey">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="_ChangeTokenForKey.Result">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="_ChangeTokenForKey.aToken">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="_ChangeTokenForKey.aTokenValue">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="_ChangeTokenForKey.aKey">
+<short></short>
+</element>
+
+</module> <!-- regtype -->
+
+</package>
+</fpdoc-descriptions>

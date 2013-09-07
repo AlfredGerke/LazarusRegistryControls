@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fpdoc-descriptions>
+  <package name="RegistrySource">
+    <!--
+  ====================================================================
+    regpropedits
+  ====================================================================
+-->
+    <module name="regpropedits">
+      <short/>
+      <descr/>
+      <!-- class Visibility: default -->
+      <element name="TRegistryControlComponentEditor">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TRegistryControlComponentEditor.ExecuteShowInfo">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TRegistryControlComponentEditor.ExecuteEditRootKeys">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TRegistryControlComponentEditor.ExecuteVerb">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistryControlComponentEditor.ExecuteVerb.Index">
+        <short/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TRegistryControlComponentEditor.GetVerb">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TRegistryControlComponentEditor.GetVerb.Result">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistryControlComponentEditor.GetVerb.Index">
+        <short/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TRegistryControlComponentEditor.GetVerbCount">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TRegistryControlComponentEditor.GetVerbCount.Result">
+        <short/>
+      </element>
+      <!-- class Visibility: default -->
+      <element name="TRegistrySourceComponentEditor">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TRegistrySourceComponentEditor.OnClientMenuItemClick">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.OnClientMenuItemClick.Sender">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TRegistrySourceComponentEditor.AddMenuItemsByClientList">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.AddMenuItemsByClientList.aParentMenuItem">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.AddMenuItemsByClientList.aRegistrySource">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TRegistrySourceComponentEditor.AddMenuItemsForComponent">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.AddMenuItemsForComponent.aIndex">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.AddMenuItemsForComponent.aParentMenuItem">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.AddMenuItemsForComponent.aRegistrySource">
+        <short/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TRegistrySourceComponentEditor.ExecuteShowInfo">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TRegistrySourceComponentEditor.ExecuteRefreshSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TRegistrySourceComponentEditor.ExecuteRefreshSyncProperty">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TRegistrySourceComponentEditor.ExecuteRefreshWriteAdHocProperty">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TRegistrySourceComponentEditor.ExecuteVerb">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.ExecuteVerb.Index">
+        <short/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TRegistrySourceComponentEditor.GetVerb">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.GetVerb.Result">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.GetVerb.Index">
+        <short/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TRegistrySourceComponentEditor.GetVerbCount">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.GetVerbCount.Result">
+        <short/>
+      </element>
+      <!-- procedure Visibility: public -->
+      <element name="TRegistrySourceComponentEditor.PrepareItem">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.PrepareItem.Index">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegistrySourceComponentEditor.PrepareItem.AItem">
+        <short/>
+      </element>
+      <!-- class Visibility: default -->
+      <element name="TRegistrySettingsPropertyEditor">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TRegistrySettingsPropertyEditor.GetFormMethodName">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TRegistrySettingsPropertyEditor.GetFormMethodName.Result">
+        <short/>
+      </element>
+    </module>
+    <!-- regpropedits -->
+  </package>
+</fpdoc-descriptions>

@@ -22,6 +22,7 @@ type
 
   { TRegistrySettingsBooleanDefault }
 
+  {$ifndef fpdoc}
   TRegistrySettingsBooleanDefault = class(TCustomRegistrySettings<boolean>)
   published
     property Default;
@@ -32,9 +33,11 @@ type
       read FIdent
       write SetIdent;
   end;
-
+ {$endif}
+ 
   { TRegistrySettingsIntegerDefault }
 
+  {$ifndef fpdoc}
   TRegistrySettingsIntegerDefault = class(TCustomRegistrySettings<integer>)
   published
     property Default;
@@ -45,9 +48,11 @@ type
       read FIdent
       write SetIdent;
   end;
-
+ {$endif}
+ 
   { TRegistrySettingsStringDefault }
 
+  {$ifndef fpdoc}
   TRegistrySettingsStringDefault = class(TCustomRegistrySettings<string>)
   published
     property Default;
@@ -58,11 +63,13 @@ type
       read FIdent
       write SetIdent;
   end;
-
+ {$endif}
+ 
   { TRegistrySettingsStringDefault }
 
   { TRegistrySettingsValueList }
-
+  
+  {$ifndef fpdoc}
   TRegistrySettingsValueList = class(TCustomRegistrySettings<string>)
   private
     FListSection: string;
@@ -79,6 +86,7 @@ type
       write FListSection;
     property MergeData;
   end;
+ {$endif}
 
   { TRegistrySettingsList }
 

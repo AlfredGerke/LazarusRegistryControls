@@ -1,0 +1,2 @@
+makeskel --input="-dfpdoc C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regtype.pas" --output="C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regtype.xml" --package=RegistrySource > _makeskel.log
+makeskel --input="-dfpdoc C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regsourcen.pas" --output="C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regsourcen.xml" --package=RegistrySource >> _makeskel.log

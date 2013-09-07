@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fpdoc-descriptions>
+  <package name="RegistrySource">
+    <!--
+  ====================================================================
+    dlgTrueFalse
+  ====================================================================
+-->
+    <module name="dlgTrueFalse">
+      <short/>
+      <descr/>
+      <!-- resource string Visibility: default -->
+      <element name="rsSetSyncDataProperty">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- resource string Visibility: default -->
+      <element name="rsSynchronisationOff">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- resource string Visibility: default -->
+      <element name="rsSynchronisationOn">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- resource string Visibility: default -->
+      <element name="rsSetWriteAdHocProperty">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- resource string Visibility: default -->
+      <element name="rsWriteAdHocOff">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- resource string Visibility: default -->
+      <element name="rsWriteAdHocOn">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- class Visibility: default -->
+      <element name="TTrueFalse">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: default -->
+      <element name="TTrueFalse.btnOk">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: default -->
+      <element name="TTrueFalse.btnCancel">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: default -->
+      <element name="TTrueFalse.pnlBottom">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: default -->
+      <element name="TTrueFalse.pnlClient">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: default -->
+      <element name="TTrueFalse.rbtnFalse">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: default -->
+      <element name="TTrueFalse.rbtnTrue">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TTrueFalse.SetCaptions">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: protected -->
+      <element name="TTrueFalse.GetSelectedIndex">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TTrueFalse.GetSelectedIndex.Result">
+        <short/>
+      </element>
+      <!-- property Visibility: protected -->
+      <element name="TTrueFalse.SelectedIndex">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: public -->
+      <element name="TTrueFalse.ShowModal">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TTrueFalse.ShowModal.Result">
+        <short/>
+      </element>
+      <!-- class Visibility: default -->
+      <element name="TSetSyncData">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TSetSyncData.SetCaptions">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: public -->
+      <element name="TSetSyncData.SelectedIndex">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- class Visibility: default -->
+      <element name="TSetWriteAdHoc">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- procedure Visibility: protected -->
+      <element name="TSetWriteAdHoc.SetCaptions">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- property Visibility: public -->
+      <element name="TSetWriteAdHoc.SelectedIndex">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+    </module>
+    <!-- dlgTrueFalse -->
+  </package>
+</fpdoc-descriptions>

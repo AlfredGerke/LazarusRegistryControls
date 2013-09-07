@@ -67,8 +67,8 @@
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="748"/>
-        <CursorPos X="21" Y="780"/>
+        <TopLine Value="3"/>
+        <CursorPos X="54" Y="30"/>
         <UsageCount Value="44"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>

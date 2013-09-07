@@ -1,489 +1,20 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <fpdoc-descriptions>
-<package name="MyPackage">
+<package name="RegistrySource">
 
 <!--
   ====================================================================
-    regutils
+    regsourcen
   ====================================================================
 -->
 
-<module name="regutils">
+<module name="regsourcen">
 <short></short>
 <descr>
 </descr>
 
-<!-- class Visibility: default -->
-<element name="TDefaultsForCurrentUser">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TDefaultsForCurrentUser.FRoot">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TDefaultsForCurrentUser.FDefaultKey">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TDefaultsForCurrentUser.FPrefereStrings">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- procedure Visibility: private -->
-<element name="TDefaultsForCurrentUser.ReadSectionValuesByKind">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aStrings">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aKind">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aMerge">
-<short></short>
-</element>
-
-<!-- function Visibility: protected -->
-<element name="TDefaultsForCurrentUser.GetDefaultKey">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TDefaultsForCurrentUser.GetDefaultKey.Result">
-<short></short>
-</element>
-
-<!-- function Visibility: protected -->
-<element name="TDefaultsForCurrentUser.GetHKeyRoot">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TDefaultsForCurrentUser.GetHKeyRoot.Result">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TDefaultsForCurrentUser.DeleteKey">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TDefaultsForCurrentUser.DeleteKey.Result">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.DeleteKey.aSection">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TDefaultsForCurrentUser.DeleteValue">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TDefaultsForCurrentUser.DeleteValue.Result">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.DeleteValue.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.DeleteValue.aKey">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDefaultsForCurrentUser.RenameKey">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.RenameKey.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.RenameKey.aOldKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.RenameKey.aNewKey">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TDefaultsForCurrentUser.ReadString">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadString.Result">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadString.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadString.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadString.aDefault">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TDefaultsForCurrentUser.ReadInteger">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadInteger.Result">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadInteger.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadInteger.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadInteger.aDefault">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TDefaultsForCurrentUser.ReadBool">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadBool.Result">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadBool.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadBool.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadBool.aDefault">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDefaultsForCurrentUser.ReadSectionValuesOnly">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aStrings">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aMerge">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDefaultsForCurrentUser.ReadSection">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSection.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSection.aStrings">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSection.aMerge">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDefaultsForCurrentUser.ReadSectionValues">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSectionValues.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSectionValues.aStrings">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.ReadSectionValues.aMerge">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDefaultsForCurrentUser.WriteString">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.WriteString.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.WriteString.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.WriteString.aString">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDefaultsForCurrentUser.WriteInteger">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.WriteInteger.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.WriteInteger.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.WriteInteger.aInteger">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDefaultsForCurrentUser.WriteBool">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.WriteBool.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.WriteBool.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.WriteBool.aBool">
-<short></short>
-</element>
-
-<!-- constructor Visibility: public -->
-<element name="TDefaultsForCurrentUser.Create">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.Create.aRoot">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.Create.aDefaultKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDefaultsForCurrentUser.Create.aPrefereString">
-<short></short>
-</element>
-
-<!-- destructor Visibility: public -->
-<element name="TDefaultsForCurrentUser.Destroy">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TDefaultsForCurrentUser.Root">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TDefaultsForCurrentUser.DefaultKey">
+<!-- resource string Visibility: default -->
+<element name="rsClearItems">
 <short></short>
 <descr>
 </descr>
@@ -492,7 +23,7 @@
 </element>
 
 <!-- class Visibility: default -->
-<element name="TDataByCurrentUser">
+<element name="TRegistrySettingsList">
 <short></short>
 <descr>
 </descr>
@@ -503,7 +34,321 @@
 </element>
 
 <!-- variable Visibility: private -->
-<element name="TDataByCurrentUser.FUseDefaults">
+<element name="TRegistrySettingsList.FItemsByRegistry">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TRegistrySettingsList.FListSection">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TRegistrySettingsList.FSourceKind">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySettingsList.Section">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySettingsList.Ident">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySettingsList.ItemsByRegistry">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySettingsList.ListSection">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySettingsList.SourceKind">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySettingsList.MergeData">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- class Visibility: default -->
+<element name="TRegistrySettingsCheckedList">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TRegistrySettingsCheckedList.FItemsByRegistry">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TRegistrySettingsCheckedList.FListSection">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TRegistrySettingsCheckedList.FSourceKind">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- procedure Visibility: protected -->
+<element name="TRegistrySettingsCheckedList._Initialize">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- procedure Visibility: protected -->
+<element name="TRegistrySettingsCheckedList._Finalize">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: public -->
+<element name="TRegistrySettingsCheckedList.SourceKind">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySettingsCheckedList.Section">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySettingsCheckedList.Ident">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySettingsCheckedList.ItemsByRegistry">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySettingsCheckedList.ListSection">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySettingsCheckedList.MergeData">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- class Visibility: default -->
+<element name="TCustomRegistrySource">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FRootKey">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FRootKeyForDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FRootKeyForCommon">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FProject">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FOrganisation">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FRootForDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FReadDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FWriteDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FGUID">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FClientList">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FDoSyncData">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FPrefereStrings">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- variable Visibility: private -->
+<element name="TCustomRegistrySource.FEditClientRootKeys">
 <short></short>
 <descr>
 </descr>
@@ -512,7 +357,7 @@
 </element>
 
 <!-- procedure Visibility: private -->
-<element name="TDataByCurrentUser.ReadSectionValuesByKind">
+<element name="TCustomRegistrySource.OnSyncData">
 <short></short>
 <descr>
 </descr>
@@ -523,22 +368,12 @@
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesByKind.aSection">
+<element name="TCustomRegistrySource.OnSyncData.aGroupIndex">
 <short></short>
 </element>
 
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesByKind.aStrings">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesByKind.aKind">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.EraseSectionForDefaults">
+<!-- procedure Visibility: private -->
+<element name="TCustomRegistrySource.DeliverMessage">
 <short></short>
 <descr>
 </descr>
@@ -549,153 +384,126 @@
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.EraseSectionForDefaults.aSection">
+<element name="TCustomRegistrySource.DeliverMessage.aMessageConst">
 <short></short>
 </element>
 
-<!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.DeleteKeyForDefaults">
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeliverMessage.aClientName">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeliverMessage.aGroupIndex">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeliverMessage.aWParam">
+<short></short>
+</element>
+
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.RootKey">
 <short></short>
 <descr>
 </descr>
-<errors>
-</errors>
 <seealso>
 </seealso>
 </element>
 
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.DeleteKeyForDefaults.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.DeleteKeyForDefaults.aKey">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.RenameKey">
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.RootKeyForDefaults">
 <short></short>
 <descr>
 </descr>
-<errors>
-</errors>
 <seealso>
 </seealso>
 </element>
 
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.RenameKey.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.RenameKey.aOldKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.RenameKey.aNewKey">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.RenameKeyForDefaults">
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.RootKeyForCommon">
 <short></short>
 <descr>
 </descr>
-<errors>
-</errors>
 <seealso>
 </seealso>
 </element>
 
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.RenameKeyForDefaults.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.RenameKeyForDefaults.aOldKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.RenameKeyForDefaults.aNewKey">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.ReadSectionValuesEx">
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.Project">
 <short></short>
 <descr>
 </descr>
-<errors>
-</errors>
 <seealso>
 </seealso>
 </element>
 
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesEx.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesEx.aStrings">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.ReadSectionValuesOnly">
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.Organisation">
 <short></short>
 <descr>
 </descr>
-<errors>
-</errors>
 <seealso>
 </seealso>
 </element>
 
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesOnly.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesOnly.aStrings">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults">
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.RootForDefaults">
 <short></short>
 <descr>
 </descr>
-<errors>
-</errors>
 <seealso>
 </seealso>
 </element>
 
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aSection">
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.ReadDefaults">
 <short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
 </element>
 
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aStrings">
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.WriteDefaults">
 <short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
 </element>
 
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aMerge">
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.GUID">
 <short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
 </element>
 
-<!-- function Visibility: public -->
-<element name="TDataByCurrentUser.ReadStringCheckForDefaults">
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.DoSyncData">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.PrefereStrings">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- function Visibility: protected -->
+<element name="TCustomRegistrySource.GetClientCount">
 <short></short>
 <descr>
 </descr>
@@ -706,27 +514,56 @@
 </element>
 
 <!-- function result Visibility: default -->
-<element name="TDataByCurrentUser.ReadStringCheckForDefaults.Result">
+<element name="TCustomRegistrySource.GetClientCount.Result">
+<short></short>
+</element>
+
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.ClientCount">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: protected -->
+<element name="TCustomRegistrySource.EditClientRootKeys">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.RefreshMergeDataProperty">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RefreshMergeDataProperty.aMergeData">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadStringCheckForDefaults.aSection">
+<element name="TCustomRegistrySource.RefreshMergeDataProperty.aClientName">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadStringCheckForDefaults.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadStringCheckForDefaults.aDefault">
+<element name="TCustomRegistrySource.RefreshMergeDataProperty.aGroupIndex">
 <short></short>
 </element>
 
 <!-- function Visibility: public -->
-<element name="TDataByCurrentUser.ReadIntegerCheckForDefaults">
+<element name="TCustomRegistrySource.GetClientList">
 <short></short>
 <descr>
 </descr>
@@ -737,27 +574,116 @@
 </element>
 
 <!-- function result Visibility: default -->
-<element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.Result">
+<element name="TCustomRegistrySource.GetClientList.Result">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.aSection">
+<element name="TCustomRegistrySource.GetClientList.aList">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.ClearClientItems">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ClearClientItems.aClientName">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.aIdent">
+<element name="TCustomRegistrySource.ClearClientItems.aAskFor">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.aDefault">
+<element name="TCustomRegistrySource.ClearClientItems.aMsg">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ClearClientItems.aGroupIndex">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.DeleteRootKey">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeleteRootKey.aRootKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeleteRootKey.aRootKeyForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeleteRootKey.aRootForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeleteRootKey.aUseDefaults">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.RenameClient">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RenameClient.aOldName">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RenameClient.aNewName">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.ShowClientEditDialog">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ShowClientEditDialog.aClientName">
 <short></short>
 </element>
 
 <!-- function Visibility: public -->
-<element name="TDataByCurrentUser.ReadBoolCheckForDefaults">
+<element name="TCustomRegistrySource.GetClientByName">
 <short></short>
 <descr>
 </descr>
@@ -768,27 +694,38 @@
 </element>
 
 <!-- function result Visibility: default -->
-<element name="TDataByCurrentUser.ReadBoolCheckForDefaults.Result">
+<element name="TCustomRegistrySource.GetClientByName.Result">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadBoolCheckForDefaults.aSection">
+<element name="TCustomRegistrySource.GetClientByName.aClientName">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TCustomRegistrySource.GetClientNameByIndex">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TCustomRegistrySource.GetClientNameByIndex.Result">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadBoolCheckForDefaults.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadBoolCheckForDefaults.aDefault">
+<element name="TCustomRegistrySource.GetClientNameByIndex.aIndex">
 <short></short>
 </element>
 
 <!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.ReadSectionCheckForDefaults">
+<element name="TCustomRegistrySource.FreeRegistrySource">
 <short></short>
 <descr>
 </descr>
@@ -799,22 +736,17 @@
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aSection">
+<element name="TCustomRegistrySource.FreeRegistrySource.aClientName">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aStrings">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aMerge">
+<element name="TCustomRegistrySource.FreeRegistrySource.aGroupIndex">
 <short></short>
 </element>
 
 <!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults">
+<element name="TCustomRegistrySource.RefreshWriteAdHocProperty">
 <short></short>
 <descr>
 </descr>
@@ -825,22 +757,22 @@
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aSection">
+<element name="TCustomRegistrySource.RefreshWriteAdHocProperty.aDoWriteAdHoc">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aStrings">
+<element name="TCustomRegistrySource.RefreshWriteAdHocProperty.aClientName">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aMerge">
+<element name="TCustomRegistrySource.RefreshWriteAdHocProperty.aGroupIndex">
 <short></short>
 </element>
 
 <!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.WriteStringCheckForDefaults">
+<element name="TCustomRegistrySource.RefreshSyncProperty">
 <short></short>
 <descr>
 </descr>
@@ -851,22 +783,22 @@
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.WriteStringCheckForDefaults.aSection">
+<element name="TCustomRegistrySource.RefreshSyncProperty.aDoSync">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.WriteStringCheckForDefaults.aIdent">
+<element name="TCustomRegistrySource.RefreshSyncProperty.aClientName">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.WriteStringCheckForDefaults.aString">
+<element name="TCustomRegistrySource.RefreshSyncProperty.aGroupIndex">
 <short></short>
 </element>
 
 <!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.WriteIntegerCheckForDefaults">
+<element name="TCustomRegistrySource.RefreshSettings">
 <short></short>
 <descr>
 </descr>
@@ -877,22 +809,12 @@
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aInteger">
+<element name="TCustomRegistrySource.RefreshSettings.aClientName">
 <short></short>
 </element>
 
 <!-- procedure Visibility: public -->
-<element name="TDataByCurrentUser.WriteBoolCheckForDefaults">
+<element name="TCustomRegistrySource.RefreshControlData">
 <short></short>
 <descr>
 </descr>
@@ -903,22 +825,592 @@
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aSection">
+<element name="TCustomRegistrySource.RefreshControlData.aClientName">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aIdent">
+<element name="TCustomRegistrySource.RefreshControlData.aGroupIndex">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.RegisterControl">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RegisterControl.aControl">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.UnRegisterControl">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.UnRegisterControl.aControl">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TCustomRegistrySource.GetRootKey">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TCustomRegistrySource.GetRootKey.Result">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TCustomRegistrySource.GetRootKeyForDefaults">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TCustomRegistrySource.GetRootKeyForDefaults.Result">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TCustomRegistrySource.GetRootKeyForCommon">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TCustomRegistrySource.GetRootKeyForCommon.Result">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TCustomRegistrySource.ReadString">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TCustomRegistrySource.ReadString.Result">
 <short></short>
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aBool">
+<element name="TCustomRegistrySource.ReadString.aRootKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadString.aRootKeyForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadString.aRootForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadString.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadString.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadString.aDefault">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadString.aUseDefaults">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TCustomRegistrySource.ReadInteger">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TCustomRegistrySource.ReadInteger.Result">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadInteger.aRootKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadInteger.aRootKeyForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadInteger.aRootForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadInteger.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadInteger.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadInteger.aDefault">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadInteger.aUseDefaults">
+<short></short>
+</element>
+
+<!-- function Visibility: public -->
+<element name="TCustomRegistrySource.ReadBool">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- function result Visibility: default -->
+<element name="TCustomRegistrySource.ReadBool.Result">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadBool.aRootKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadBool.aRootKeyForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadBool.aRootForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadBool.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadBool.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadBool.aDefault">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadBool.aUseDefaults">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.ReadSection">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadSection.aRootKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadSection.aRootKeyForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadSection.aRootForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadSection.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadSection.aStrings">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadSection.aMerge">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadSection.aUseDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.ReadSection.aListSource">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.WriteString">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteString.aRootKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteString.aRootKeyForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteString.aRootForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteString.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteString.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteString.aDefault">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteString.aUseDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteString.aGroupIndex">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.WriteInteger">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteInteger.aRootKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteInteger.aRootKeyForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteInteger.aRootForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteInteger.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteInteger.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteInteger.aDefault">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteInteger.aUseDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteInteger.aGroupIndex">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.WriteBool">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteBool.aRootKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteBool.aRootKeyForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteBool.aRootForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteBool.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteBool.aIdent">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteBool.aDefault">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteBool.aUseDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.WriteBool.aGroupIndex">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.RenameKey">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RenameKey.aRootKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RenameKey.aRootKeyForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RenameKey.aRootForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RenameKey.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RenameKey.aOldKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RenameKey.aNewKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RenameKey.aUseDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.RenameKey.aGroupIndex">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.DeleteKey">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeleteKey.aRootKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeleteKey.aRootKeyForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeleteKey.aRootForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeleteKey.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeleteKey.aKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeleteKey.aUseDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.DeleteKey.aGroupIndex">
+<short></short>
+</element>
+
+<!-- procedure Visibility: public -->
+<element name="TCustomRegistrySource.EraseSection">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.EraseSection.aRootKey">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.EraseSection.aRootKeyForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.EraseSection.aRootForDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.EraseSection.aSection">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.EraseSection.aUseDefaults">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TCustomRegistrySource.EraseSection.aGroupIndex">
 <short></short>
 </element>
 
 <!-- constructor Visibility: public -->
-<element name="TDataByCurrentUser.Create">
+<element name="TCustomRegistrySource.Create">
 <short></short>
 <descr>
 </descr>
@@ -929,38 +1421,52 @@
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.Create.aFileName">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.Create.aDefaultsRoot">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.Create.aDefaultKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TDataByCurrentUser.Create.aPrefereStrings">
+<element name="TCustomRegistrySource.Create.AOwner">
 <short></short>
 </element>
 
 <!-- destructor Visibility: public -->
-<element name="TDataByCurrentUser.Destroy">
+<element name="TCustomRegistrySource.Destroy">
 <short></short>
 <descr>
 </descr>
 <errors>
 </errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- class Visibility: default -->
+<element name="TRegistrySource">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: public -->
+<element name="TRegistrySource.ClientCount">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: public -->
+<element name="TRegistrySource.EditClientRootKeys">
+<short></short>
+<descr>
+</descr>
 <seealso>
 </seealso>
 </element>
 
 <!-- property Visibility: published -->
-<element name="TDataByCurrentUser.UseDefaults">
+<element name="TRegistrySource.RootKey">
 <short></short>
 <descr>
 </descr>
@@ -968,7 +1474,108 @@
 </seealso>
 </element>
 
-</module> <!-- regutils -->
+<!-- property Visibility: published -->
+<element name="TRegistrySource.RootKeyForDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySource.RootKeyForCommon">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySource.Project">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySource.Organisation">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySource.RootForDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySource.ReadDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySource.WriteDefaults">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySource.GUID">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySource.DoSyncData">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- property Visibility: published -->
+<element name="TRegistrySource.PrefereStrings">
+<short></short>
+<descr>
+</descr>
+<seealso>
+</seealso>
+</element>
+
+<!-- procedure Visibility: default -->
+<element name="Register">
+<short></short>
+<descr>
+</descr>
+<errors>
+</errors>
+<seealso>
+</seealso>
+</element>
+
+</module> <!-- regsourcen -->
 
 </package>
 </fpdoc-descriptions>
