@@ -1,1 +1,1 @@
-# Platzhalter für das Repositroy
+# Platzhalter fï¿½r das Repository
