@@ -1,0 +1,7 @@
+object RegBaseForm: TRegBaseForm
+  Left = 692
+  Height = 240
+  Top = 423
+  Width = 320
+  LCLVersion = '1.0.10.0'
+end

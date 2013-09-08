@@ -8,7 +8,8 @@ uses
   Forms,
   Buttons,
   ExtCtrls,
-  StdCtrls;
+  StdCtrls,
+  regbaseform;
 
 resourcestring
   rsSetMergeDataProperty = 'Set MergeData-Property';
@@ -25,7 +26,7 @@ type
 
   { TTrueFalse }
 
-  TTrueFalse = class(TForm)
+  TTrueFalse = class(TRegBaseForm)
     btnOk: TBitBtn;
     btnCancel: TBitBtn;
     pnlBottom: TPanel;
@@ -73,31 +74,35 @@ implementation
 
 {$R *.lfm}
 
+uses
+  FileUtil,
+  Classes;
+
 { TSetMergeData }
 
 procedure TSetMergeData.SetCaptions;
 begin
-  Self.Caption := rsSetMergeDataProperty;
-  Self.rbtnFalse.Caption := rsSetMergeDataOff;
-  Self.rbtnTrue.Caption := rsSetMergeDataOn;
+  Self.Caption := SetUTF8IfNeeded(rsSetMergeDataProperty);
+  Self.rbtnFalse.Caption := SetUTF8IfNeeded(rsSetMergeDataOff);
+  Self.rbtnTrue.Caption := SetUTF8IfNeeded(rsSetMergeDataOn);
 end;
 
 { TSetSyncData }
 
 procedure TSetSyncData.SetCaptions;
 begin
-  Self.Caption := rsSetSyncDataProperty;
-  Self.rbtnFalse.Caption := rsSynchronisationOff;
-  Self.rbtnTrue.Caption := rsSynchronisationOn;
+  Self.Caption := SetUTF8IfNeeded(rsSetSyncDataProperty);
+  Self.rbtnFalse.Caption := SetUTF8IfNeeded(rsSynchronisationOff);
+  Self.rbtnTrue.Caption := SetUTF8IfNeeded(rsSynchronisationOn);
 end;
 
 { TSetWriteAdHoc }
 
 procedure TSetWriteAdHoc.SetCaptions;
 begin
-  Self.Caption := rsSetWriteAdHocProperty;
-  Self.rbtnFalse.Caption := rsWriteAdHocOff;
-  Self.rbtnTrue.Caption := rsWriteAdHocOn;
+  Self.Caption := SetUTF8IfNeeded(rsSetWriteAdHocProperty);
+  Self.rbtnFalse.Caption := SetUTF8IfNeeded(rsWriteAdHocOff);
+  Self.rbtnTrue.Caption := SetUTF8IfNeeded(rsWriteAdHocOn);
 end;
 
 { TTrueFalse }

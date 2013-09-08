@@ -14,7 +14,8 @@ uses
   Dialogs,
   ExtCtrls,
   StdCtrls,
-  Buttons;
+  Buttons,
+  RegBaseForm;
 
 resourcestring
   rsAboutFormCaption = 'About...';
@@ -24,7 +25,7 @@ type
 
   { TAboutComponent }
 
-  TAboutComponent = class(TForm)
+  TAboutComponent = class(TRegBaseForm)
     btnOk: TBitBtn;
     imgPic: TImage;
     lblCompName1: TLabel;
@@ -40,15 +41,18 @@ type
     function ShowModal: integer; override;
   end;
 
-procedure StartAbout;
+procedure StartAbout(aAtDesignTime: boolean = True);
 
 implementation
 
-procedure StartAbout;
+{$R *.lfm}
+
+procedure StartAbout(aAtDesignTime: boolean = True);
 var
   about: TAboutComponent;
 begin
   about := TAboutComponent.Create(nil);
+  about.AtDesignTime := aAtDesignTime;
   try
     about.ShowModal;
   finally
@@ -61,8 +65,8 @@ end;
 
 procedure TAboutComponent.SetCaptions;
 begin
-  Self.Caption := rsAboutFormCaption;
-  lblAuthor.Caption := rsLblAuthorCaption;
+  Self.Caption := SetUTF8IfNeeded(rsAboutFormCaption);
+  lblAuthor.Caption := SetUTF8IfNeeded(rsLblAuthorCaption);
 end;
 
 function TAboutComponent.ShowModal: integer;
@@ -70,7 +74,5 @@ begin
   SetCaptions;
   Result:=inherited ShowModal;
 end;
-
-{$R *.lfm}
 
 end.

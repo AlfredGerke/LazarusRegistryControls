@@ -67,7 +67,8 @@ uses
   LMessages,
   regmsg,
   ObjInspStrConsts,
-  regresstrings;
+  regresstrings,
+  FileUtil;
 
 { TRegistryControlComponentEditor }
 
@@ -105,8 +106,8 @@ begin
   case Index of
     0: Result := oisCreateDefaultEvent;
     1: Result := '-';
-    2: Result := rsVerbAbout;
-    3: Result := rsVerbShowRootKeys;
+    2: Result := SysToUTF8(rsVerbAbout);
+    3: Result := SysToUTF8(rsVerbShowRootKeys);
   end;
 end;
 
@@ -305,13 +306,13 @@ end;
 function TRegistrySourceComponentEditor.GetVerb(Index: Integer): String;
 begin
   case Index of
-    0: Result := rsVerbAbout;
+    0: Result := SysToUTF8(rsVerbAbout);
     1: Result := '-';
-    2: Result := rsVerbRefreshClientSettings;
-    3: Result := rsVerbRefreshDoWriteAdHoc;
-    4: Result := rsVerbRefreshDoSyncData;
-    5: Result := rsVerbMergeData;
-    6: Result := rsVerbRegisteredClients;
+    2: Result := SysToUTF8(rsVerbRefreshClientSettings);
+    3: Result := SysToUTF8(rsVerbRefreshDoWriteAdHoc);
+    4: Result := SysToUTF8(rsVerbRefreshDoSyncData);
+    5: Result := SysToUTF8(rsVerbMergeData);
+    6: Result := SysToUTF8(rsVerbRegisteredClients);
   end;
 end;
 

@@ -1,4 +1,4 @@
-object AboutComponent: TAboutComponent
+inherited AboutComponent: TAboutComponent
   Left = 611
   Height = 145
   Top = 244
@@ -8,8 +8,7 @@ object AboutComponent: TAboutComponent
   ClientHeight = 145
   ClientWidth = 419
   Position = poScreenCenter
-  LCLVersion = '1.0.10.0'
-  object pnlClient: TPanel
+  object pnlClient: TPanel[0]
     Left = 0
     Height = 119
     Top = 0
@@ -574,7 +573,7 @@ object AboutComponent: TAboutComponent
       Transparent = True
     end
   end
-  object pnlBottom: TPanel
+  object pnlBottom: TPanel[1]
     Left = 0
     Height = 26
     Top = 119

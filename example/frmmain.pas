@@ -27,7 +27,8 @@ uses
   regchecklistbox,
   regradiogroup,
   regcheckbox,
-  regradiobutton;
+  regradiobutton,
+  DefaultTranslator;
 
 type
 
@@ -214,7 +215,11 @@ begin
   case aFlag of
     0: RegistrySource1.RefreshWriteAdHocProperty(aSet);
     1: RegistrySource2.RefreshWriteAdHocProperty(aSet);
-    2: RegistrySource3.RefreshWriteAdHocProperty(aSet);
+    2:
+    begin
+      RegistrySource3.RefreshWriteAdHocProperty(aSet);
+      RegistrySource3.RefreshWriteAdHocProperty(False, 'redtEditKombi');
+    end;
   end;
 end;
 
@@ -427,6 +432,9 @@ end;
 
 procedure TMain.acTestDeleteKeyExecute(Sender: TObject);
 begin
+  if (PageControl1.ActivePageIndex <> 1) then
+    PageControl1.ActivePageIndex := 1;
+
   RegistrySource2.DeleteKey('CheckGroupListe',
     'CheckGroup5Key',
     0);
@@ -434,12 +442,18 @@ end;
 
 procedure TMain.acTestEraseSectionExecute(Sender: TObject);
 begin
+  if (PageControl1.ActivePageIndex <> 1) then
+    PageControl1.ActivePageIndex := 1;
+
  RegistrySource2.EraseSection('CheckGroupListe',
    0);
 end;
 
 procedure TMain.acTestRenameKeyExecute(Sender: TObject);
 begin
+  if (PageControl1.ActivePageIndex <> 1) then
+    PageControl1.ActivePageIndex := 1;
+
   RegistrySource2.RenameKey('CheckGroupListe',
     'CheckGroup1Key',
     'CheckGroup1_1Key',

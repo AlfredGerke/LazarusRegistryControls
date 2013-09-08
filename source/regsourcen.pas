@@ -581,13 +581,19 @@ end;
 procedure TCustomRegistrySource.ShowClientEditDialog(aClientName: string);
 var
   w_param: integer;
+  l_param: cardinal;
 begin
   if FEditClientRootKeys then
     w_param := 1
   else
     w_param := 0;
 
-  DeliverMessage(LM_REGISTRY_CONTROL_SHOW_EDITDIALOG, aClientName, 0, w_param);
+  if (csDesigning in ComponentState) then
+    l_param := 1
+  else
+    l_param := 0;
+
+  DeliverMessage(LM_REGISTRY_CONTROL_SHOW_EDITDIALOG, aClientName, l_param, w_param);
 end;
 
 function TCustomRegistrySource.GetClientByName(aClientName: string): TComponent;

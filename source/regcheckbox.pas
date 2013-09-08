@@ -46,7 +46,8 @@ type
 
     procedure OnChangeSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
-    function GetEditDialog(aEdit: boolean): boolean; virtual;
+    function GetEditDialog(aEdit: boolean;
+                           aAtDesignTime: boolean = True): boolean; virtual;
 
     property RegistrySettings: TRegistrySettingsBooleanDefault
       read FRegistrySettings
@@ -279,7 +280,8 @@ begin
   end;
 end;
 
-function TCustomRegCheckBox.GetEditDialog(aEdit: boolean): boolean;
+function TCustomRegCheckBox.GetEditDialog(aEdit: boolean;
+  aAtDesignTime: boolean = True): boolean;
 var
   edit_settings: TEditSettings;
   root_keys: TRootKeysStruct;
@@ -289,6 +291,7 @@ begin
   root_keys.Clear;
 
   edit_settings := TEditSettings.Create(nil);
+  edit_settings.AtDesignTime := aAtDesignTime;
   try
     with edit_settings do
     begin

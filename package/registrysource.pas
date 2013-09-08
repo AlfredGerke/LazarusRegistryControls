@@ -8,7 +8,7 @@ interface
 
 uses
   regsourcen, regmsg, regconst, regtype, regpropedits, dlgTrueFalse, 
-  dlgeditsettings, dlgaboutcomponent, regresstrings, regutils, 
+  dlgeditsettings, dlgaboutcomponent, regresstrings, regutils, regbaseform, 
   LazarusPackageIntf;
 
 implementation
