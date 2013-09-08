@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fpdoc-descriptions>
+  <package name="RegistrySource">
+    <!--
+  ====================================================================
+    regbaseform
+  ====================================================================
+-->
+    <module name="regbaseform">
+      <short/>
+      <descr/>
+      <!-- class Visibility: default -->
+      <element name="TRegBaseForm">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- variable Visibility: private -->
+      <element name="TRegBaseForm.FAtDesignTime">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <!-- function Visibility: protected -->
+      <element name="TRegBaseForm.SetUTF8IfNeeded">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <!-- function result Visibility: default -->
+      <element name="TRegBaseForm.SetUTF8IfNeeded.Result">
+        <short/>
+      </element>
+      <!-- argument Visibility: default -->
+      <element name="TRegBaseForm.SetUTF8IfNeeded.aString">
+        <short/>
+      </element>
+      <!-- property Visibility: public -->
+      <element name="TRegBaseForm.AtDesignTime">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+    </module>
+    <!-- regbaseform -->
+  </package>
+</fpdoc-descriptions>
