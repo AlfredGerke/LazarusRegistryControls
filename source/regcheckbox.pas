@@ -184,13 +184,19 @@ end;
 procedure TCustomRegCheckBox.ShowEditDialog(var aMessage: TLMessage);
 var
   do_edit: boolean;
+  design_time: boolean;
 begin
   if (aMessage.wParam = 1) then
     do_edit:= True
   else
     do_edit := False;
 
-  aMessage.Result := LongInt(GetEditDialog(do_edit));
+  if (aMessage.lParam = 1) then
+    design_time := True
+  else
+    design_time := False;
+
+  aMessage.Result := LongInt(GetEditDialog(do_edit, design_time));
 end;
 
 procedure TCustomRegCheckBox.FreeRegistrySource(var aMessage: TLMessage);

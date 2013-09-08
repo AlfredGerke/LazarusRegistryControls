@@ -55,7 +55,8 @@ type
 
     procedure OnChangeSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
-    function GetEditDialog(aEdit: boolean): boolean; virtual;
+    function GetEditDialog(aEdit: boolean;
+                           aAtDesignTime: boolean = True): boolean; virtual;
 
     property RegistrySettings: TRegistrySettingsCheckedList
       read FRegistrySettings
@@ -325,13 +326,19 @@ end;
 procedure TCustomRegCheckListBox.ShowEditDialog(var aMessage: TLMessage);
 var
   do_edit: boolean;
+  design_time: boolean;
 begin
   if (aMessage.wParam = 1) then
     do_edit:= True
   else
     do_edit := False;
 
-  aMessage.Result := LongInt(GetEditDialog(do_edit));
+  if (aMessage.lParam = 1) then
+    design_time := True
+  else
+    design_time := False;
+
+  aMessage.Result := LongInt(GetEditDialog(do_edit, design_time));
 end;
 
 procedure TCustomRegCheckListBox.FreeRegistrySource(var aMessage: TLMessage);
@@ -451,7 +458,8 @@ begin
   end;
 end;
 
-function TCustomRegCheckListBox.GetEditDialog(aEdit: boolean): boolean;
+function TCustomRegCheckListBox.GetEditDialog(aEdit: boolean;
+  aAtDesignTime: boolean = True): boolean;
 var
   edit_settings: TEditSettings;
   root_keys: TRootKeysStruct;
@@ -461,6 +469,7 @@ begin
   root_keys.Clear;
 
   edit_settings := TEditSettings.Create(nil);
+  edit_settings.AtDesignTime := aAtDesignTime;
   try
     with edit_settings do
     begin

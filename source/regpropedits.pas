@@ -85,8 +85,11 @@ begin
   msg.Result:=0;
   FillChar(msg, SizeOf(msg), #0);
   msg.Msg := LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
-  msg.lParam:=0;
-  msg.wParam:=0;
+  // informiert den Dialog das er aus dem Designer heraus aufgerufen wird
+  msg.lParam := 1;
+  // bestimmt ob der Dialog nur im Ansichtsmodus =0 oder im Bearbeitungsmoduws =1
+  // gestartet wird
+  msg.wParam := 0;
 
   Component.Dispatch(msg);
 end;
