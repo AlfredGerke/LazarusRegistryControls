@@ -24,9 +24,7 @@ TMAIN.LBLCHECKLISTBOX3.CAPTION=CheckListBox (rlbCheckListBox2): statisch,
 ItemIndex u. Checkstatus verwalten
 TMAIN.LBLCHECKGROUP2.CAPTION=CheckListBox (rcgCheckGroup3): statisch, 
 ItemIndex u. Checkstatus verwalten
-TMAIN.REDTCONTROLNAME.HINT=wenn Leerstring, alle Steuerelemente aktualisieren
 TMAIN.TABLIST.CAPTION=Listen
-TMAIN.REDTCONTROLNAME1.HINT=wenn Leerstring, alle Steuerelemente aktualisieren
 TMAIN.RGRPRADIOGROUPLIST1.CAPTION= Radiogroup (rgrpRadioGroupList1) dynamisch
 TMAIN.LBLRADIOGROUPLIST.CAPTION=Radiogroup: Items laden, ItemIndex verwalten
 TMAIN.LBLISTBOXLIST.CAPTION=ListBox (rlbListBox2): Items laden, ItemIndex 
@@ -38,9 +36,14 @@ ItemIndex u. Checkstatus verwalten
 TMAIN.RCGCHECKGROUP1.CAPTION=CheckGroup (rcgCheckGroup1) dynamisch
 TMAIN.LBLCHECKGROUP.CAPTION=CheckGroup: Items laden, LastChecked u.
 Checkstatus verwalten
+TMAIN.LBLVALUEEDITLIST.CAPTION=ValueListEditor(rvlValueListEditor): Keys u. Values 
+laden und verwalten
 TMAIN.TABKOMBINATION.CAPTION=Kombinationen
-TMAIN.RCBXCHECKBOXKOMBI.CAPTION=Key1
+TMAIN.BTNSETMERGEPROPERTYOFF.CAPTION=Listen nicht mit Defaults mischen
+TMAIN.TABGROUPINDEX_1.CAPTION=GroupIndex = 1
+TMAIN.TABGROUPINDEX_2.CAPTION=GroupIndex = 2
 TMAIN.RCGCHECKEDGROUP.CAPTION= CheckedGroup 
+TMAIN.RCBXCHECKBOXKOMBI.CAPTION=Key1
 TMAIN.MNUFILE.CAPTION=Datei
 TMAIN.MENUITEM1.CAPTION=-
 TMAIN.MNUREFRESH.CAPTION=Aktualisieren

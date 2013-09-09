@@ -28,7 +28,7 @@ uses
   regradiogroup,
   regcheckbox,
   regradiobutton,
-  DefaultTranslator;
+  DefaultTranslator, regtype;
 
 type
 
@@ -64,6 +64,7 @@ type
     acWriteAdHocOnList: TAction;
     acSyncDataListOn: TAction;
     ActionList1: TActionList;
+    btnEraseValueEditList: TSpeedButton;
     btnSetMergePropertyOn: TButton;
     btnSetMergePropertyOff: TButton;
     btnShowClientDialog: TButton;
@@ -79,12 +80,14 @@ type
     btnWriteAdHocOff: TButton;
     btnSyncDataOf: TButton;
     btnWriteAdHocOnList: TButton;
-    cbxClientList: TComboBox;
+    cbxClientNameKombi: TComboBox;
+    cbxClientNameList: TRegComboBox;
     lblCheckListBox: TLabel;
     lblCheckListBox2: TLabel;
     lblCheckListBox3: TLabel;
     lblCheckGroup2: TLabel;
     lblComboBox2: TLabel;
+    lblValueEditList: TLabel;
     lblEditSingleValue1: TLabel;
     lblListBox2: TLabel;
     lblRadioGroup2: TLabel;
@@ -113,6 +116,7 @@ type
     mnuClose: TMenuItem;
     mnuFile: TMenuItem;
     PageControl1: TPageControl;
+    PageControl2: TPageControl;
     pnlClientKombination: TPanel;
     pnlClient1: TPanel;
     pnlClientList: TPanel;
@@ -122,23 +126,20 @@ type
     pnlTopKombination: TPanel;
     rcbxCheckBox1: TRegCheckBox;
     rcbxCheckBox2: TRegCheckBox;
+    rcbxCheckBoxKombi: TRegCheckBox;
+    rcgCheckedGroup: TRegCheckGroup;
     rcgCheckGroup3: TRegCheckGroup;
     redtComboBox2: TRegComboBox;
     redtComboBoxList1: TRegComboBox;
-    redtControlName: TRegEdit;
-    redtControlName1: TRegEdit;
     redtEdit: TRegEdit;
     redtComboBox1: TRegComboBox;
     rcgCheckGroup1: TRegCheckGroup;
     rcgCheckGroup2: TRegCheckGroup;
     redtEdit1: TRegEdit;
     redtEditKombi: TRegEdit;
-    rcbxCheckBoxKombi: TRegCheckBox;
-    rlbCheckedListBox: TRegCheckListBox;
-    rcgCheckedGroup: TRegCheckGroup;
+    cbxClientNameSingle: TRegComboBox;
     RegistrySource3: TRegistrySource;
-    rvlValueListEditorKombi2: TRegValueListEditor;
-    rvlValueListEditorKombi1: TRegValueListEditor;
+    rlbCheckedListBox: TRegCheckListBox;
     rvlValueListEditor: TRegValueListEditor;
     rgrpRadioGroup2: TRegRadioGroup;
     rlbCheckListBox2: TRegCheckListBox;
@@ -155,9 +156,12 @@ type
     rrbRadioButton2: TRegRadioButton;
     rrbRadioButton3: TRegRadioButton;
     rrbRadioButton4: TRegRadioButton;
+    rvlValueListEditorKombi1: TRegValueListEditor;
+    rvlValueListEditorKombi2: TRegValueListEditor;
     SpeedButton1: TSpeedButton;
-    btnEraseValueEditList: TSpeedButton;
     SpeedButton2: TSpeedButton;
+    tabGroupIndex_1: TTabSheet;
+    tabGroupIndex_2: TTabSheet;
     tabSingleValue: TTabSheet;
     tabList: TTabSheet;
     tabKombination: TTabSheet;
@@ -190,6 +194,8 @@ type
     procedure acSyncDataOnExecute(Sender: TObject);
     procedure acWriteAdHocOnListExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure rcbxCheckBoxKombiBeforeRegistrySettingChange(
+      aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
   private
     procedure RefreshWriteAdHocOnOff(aFlag: integer;
                                      aSet: boolean);
@@ -358,7 +364,7 @@ end;
 
 procedure TMain.acRefreshDataExecute(Sender: TObject);
 begin
-  RegistrySource1.RefreshControlData(Trim(redtControlName.Text));
+  RegistrySource1.RefreshControlData(Trim(cbxClientNameSingle.Text));
 end;
 
 procedure TMain.acRefreshDataKombiExecute(Sender: TObject);
@@ -368,7 +374,7 @@ end;
 
 procedure TMain.acRefreshDataListExecute(Sender: TObject);
 begin
-  RegistrySource2.RefreshControlData(Trim(redtControlName1.Text));
+  RegistrySource2.RefreshControlData(Trim(cbxClientNameList.Text));
 end;
 
 procedure TMain.acRefreshMergeDataOffExecute(Sender: TObject);
@@ -404,7 +410,7 @@ begin
   begin
     EditClientRootKeys := True;
     try
-      client_name := Trim(cbxClientList.Text);
+      client_name := Trim(cbxClientNameKombi.Text);
       if (client_name <> EmptyStr) then
         ShowClientEditDialog(client_name)
       else
@@ -493,12 +499,41 @@ begin
   RefreshSyncDataOnOff(1, True);
   RefreshWriteAdHocOnOff(2, True);
   RefreshSyncDataOnOff(2, True);
-  RegistrySource3.GetClientList(cbxClientList.Items);
-  if cbxClientList.Items.Count > 0 then
-    cbxClientList.ItemIndex := 0
+  RegistrySource1.GetClientList(cbxClientNameSingle.Items);
+  RegistrySource2.GetClientList(cbxClientNameList.Items);
+  RegistrySource3.GetClientList(cbxClientNameKombi.Items);
+  if cbxClientNameKombi.Items.Count > 0 then
+    cbxClientNameKombi.ItemIndex := 0
   else
-    cbxClientList.ItemIndex := -1;
+    cbxClientNameKombi.ItemIndex := -1;
 
+
+end;
+
+procedure TMain.rcbxCheckBoxKombiBeforeRegistrySettingChange(
+  aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
+begin
+  case aSettingInfo.Kind of
+    rskWriteDefaults:
+    begin
+      aIsOk := False;
+      MessageDlg('Das Ändern dieser Option ist verboten!',
+        mtWarning, [mbOk], 0);
+    end;
+    rskReadDefaults:
+    begin
+      if aSettingInfo.ReadDefaults then
+        aIsOk :=
+          (MessageDlg('Soll das Lesen von Standards eingeschaltet werden?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes)
+      else
+        aIsOk :=
+          (MessageDlg('Soll das Lesen von Standards abgeschaltet werden?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    end;
+  else
+    aIsOk := True;
+  end;
 end;
 
 function TMain.CheckForExampleSettings: boolean;

@@ -1,7 +1,7 @@
-msgid "Checkstatus verwaltenCheckstatus verwaltenCheckstatus verwaltenCheckstatus verwalten"
+msgid "Checkstatus verwaltenCheckstatus verwaltenCheckstatus verwaltenCheckstatus verwaltenCheckstatus verwaltenCheckstatus verwaltenCheckstatus verwaltenladen und verwaltenladen und verwalten"
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-msgid "Checkstatus verwalten"
+msgid "laden und verwalten"
 msgstr ""
 
 #: tmain.acaddvalue.caption
@@ -144,6 +144,10 @@ msgctxt "TMAIN.ACWRITEADHOCONLIST.HINT"
 msgid "alle Elemente auf dem Reiter werden eingestellt"
 msgstr ""
 
+#: tmain.btnsetmergepropertyoff.caption
+msgid "Listen nicht mit Defaults mischen"
+msgstr ""
+
 #: tmain.caption
 msgid "RegistryControls in Aktion"
 msgstr ""
@@ -220,6 +224,10 @@ msgstr ""
 msgid "Radiogroup: Items laden, ItemIndex verwalten"
 msgstr ""
 
+#: tmain.lblvalueeditlist.caption
+msgid "ValueListEditor(rvlValueListEditor): Keys u. Values "
+msgstr ""
+
 #: tmain.menuitem1.caption
 msgid "-"
 msgstr ""
@@ -268,16 +276,6 @@ msgctxt "TMAIN.RCGCHECKGROUP3.CAPTION"
 msgid " CheckGroup (rcgCheckGroup2): statisch"
 msgstr ""
 
-#: tmain.redtcontrolname.hint
-msgctxt "tmain.redtcontrolname.hint"
-msgid "wenn Leerstring, alle Steuerelemente aktualisieren"
-msgstr ""
-
-#: tmain.redtcontrolname1.hint
-msgctxt "TMAIN.REDTCONTROLNAME1.HINT"
-msgid "wenn Leerstring, alle Steuerelemente aktualisieren"
-msgstr ""
-
 #: tmain.rgrpradiogroup1.caption
 msgctxt "tmain.rgrpradiogroup1.caption"
 msgid "RadioGroup (rgrpRadioGroup1): statisch"
@@ -310,6 +308,14 @@ msgstr ""
 #: tmain.rrbradiobutton4.caption
 msgctxt "TMAIN.RRBRADIOBUTTON4.CAPTION"
 msgid "RadioButton (rrbRadioButton2): Checkstatus verw."
+msgstr ""
+
+#: tmain.tabgroupindex_1.caption
+msgid "GroupIndex = 1"
+msgstr ""
+
+#: tmain.tabgroupindex_2.caption
+msgid "GroupIndex = 2"
 msgstr ""
 
 #: tmain.tabkombination.caption
