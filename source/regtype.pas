@@ -110,7 +110,8 @@ type
 
   { TOnRegistrySettingsChange }
 
-  TOnRegistrySettingsChange = procedure(aSettingInfo: TRegistrySettingValue;
+  TOnRegistrySettingsChange = procedure(aOldSettingInfo: TRegistrySettingValue;
+                                        aNewSettingInfo: TRegistrySettingValue;
                                         var aIsOk: boolean) of object;
 
   { TRootKeysStruct }
@@ -426,36 +427,59 @@ function TCustomRegistrySettings<_T>.TriggerOnBeforeRegistrySettingChange(
   aKind: TRegistrySettingKind;
   aValue: variant): boolean;
 var
-  setting_value: TRegistrySettingValue;
+  old_setting_value: TRegistrySettingValue;
+  new_setting_value: TRegistrySettingValue;
   is_ok: boolean;
 begin
-  if Assigned(FOnBeforeRegistrySettingChange) then
+  if (Assigned(FOnBeforeRegistrySettingChange) and FTriggerEvents) then
   begin
     Result := False;
 
     if OwnerIsLoading then
       Exit;
 
-    setting_value.kind := aKind;
+    old_setting_value.kind := aKind;
     case aKind of
       rskUnknown: Exit;
-      rskRootKey: setting_value.RootKey := aValue;
-      rskRootKeyForDefault: setting_value.RootKeyForDefault := aValue;
-      rskSection: setting_value.Section := aValue;
-      rskIdent: setting_value.Ident := aValue;
-      rskDefault: setting_value.Default := aValue;
-      rskReadDefaults: setting_value.ReadDefaults := aValue;
-      rskWriteDefaults: setting_value.WriteDefaults := aValue;
-      rskRootForDefaults: setting_value.RootForDefaults := aValue;
-      rskCanRead: setting_value.CanRead := aValue;
-      rskCanWrite: setting_value.CanWrite := aValue;
-      rskDoWriteAdHoc: setting_value.DoWriteAdHoc := aValue;
-      rskDoSyncData: setting_value.DoSyncData := aValue;
-      rskMergeData: setting_value.MergeData := aValue;
+      rskRootKey: old_setting_value.RootKey := self.RootKey;
+      rskRootKeyForDefault: old_setting_value.RootKeyForDefault := self.RootKeyForDefaults;
+      rskSection: old_setting_value.Section := self.Section;
+      rskIdent: old_setting_value.Ident := self.Ident;
+      // auf Default sollte nicht zugegriffen werden
+      //rskDefault: old_setting_value.Default := self.Default;
+      rskDefault: old_setting_value.Default := EmptyStr;
+      rskReadDefaults: old_setting_value.ReadDefaults := self.ReadDefaults;
+      rskWriteDefaults: old_setting_value.WriteDefaults := self.WriteDefaults;
+      rskRootForDefaults: old_setting_value.RootForDefaults := self.RootForDefaults;
+      rskCanRead: old_setting_value.CanRead := self.CanRead;
+      rskCanWrite: old_setting_value.CanWrite := self.CanWrite;
+      rskDoWriteAdHoc: old_setting_value.DoWriteAdHoc := self.DoWriteAdHoc;
+      rskDoSyncData: old_setting_value.DoSyncData := self.DoSyncData;
+      rskMergeData: old_setting_value.MergeData := self.MergeData;
+    end;
+
+    new_setting_value.kind := aKind;
+    case aKind of
+      rskUnknown: Exit;
+      rskRootKey: new_setting_value.RootKey := aValue;
+      rskRootKeyForDefault: new_setting_value.RootKeyForDefault := aValue;
+      rskSection: new_setting_value.Section := aValue;
+      rskIdent: new_setting_value.Ident := aValue;
+      rskDefault: new_setting_value.Default := aValue;
+      rskReadDefaults: new_setting_value.ReadDefaults := aValue;
+      rskWriteDefaults: new_setting_value.WriteDefaults := aValue;
+      rskRootForDefaults: new_setting_value.RootForDefaults := aValue;
+      rskCanRead: new_setting_value.CanRead := aValue;
+      rskCanWrite: new_setting_value.CanWrite := aValue;
+      rskDoWriteAdHoc: new_setting_value.DoWriteAdHoc := aValue;
+      rskDoSyncData: new_setting_value.DoSyncData := aValue;
+      rskMergeData: new_setting_value.MergeData := aValue;
     end;
 
     is_ok:= True;
-    FOnBeforeRegistrySettingChange(setting_value, is_ok);
+    FOnBeforeRegistrySettingChange(old_setting_value,
+                                   new_setting_value,
+                                   is_ok);
     if not is_ok then
       Exit;
 
@@ -662,14 +686,14 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetRootKeys(aRootKeys: TRootKeysStruct);
 begin
-  FRootKey := aRootKeys.RootKey;
-  FRootKeyForDefaults := aRootKeys.RootKeyForDefaults;
-  FReadDefaults := aRootKeys.ReadDefaults;
-  FWriteDefaults := aRootKeys.WriteDefaults;
-  FRootForDefaults := aRootKeys.RootForDefaults;
-  FProject := aRootKeys.Project;
-  FOrganisation := aRootKeys.Organisation;
-  FGUID := aRootKeys.GUID;
+  RootKey := aRootKeys.RootKey;
+  RootKeyForDefaults := aRootKeys.RootKeyForDefaults;
+  ReadDefaults := aRootKeys.ReadDefaults;
+  WriteDefaults := aRootKeys.WriteDefaults;
+  RootForDefaults := aRootKeys.RootForDefaults;
+  Project := aRootKeys.Project;
+  Organisation := aRootKeys.Organisation;
+  GUID := aRootKeys.GUID;
 end;
 
 procedure TCustomRegistrySettings<_T>.BeginUpdate;

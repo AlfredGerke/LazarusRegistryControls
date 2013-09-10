@@ -1149,22 +1149,13 @@ object Main: TMain
           Action = acClearItems
           TabOrder = 1
         end
-        object cbxClientNameKombi: TComboBox
-          Left = 8
-          Height = 21
-          Top = 34
-          Width = 160
-          ItemHeight = 13
-          Style = csDropDownList
-          TabOrder = 2
-        end
         object btnShowClientDialog: TButton
           Left = 8
           Height = 25
           Top = 5
           Width = 160
           Action = acShowClientEditDialog
-          TabOrder = 3
+          TabOrder = 2
         end
         object btnSetMergePropertyOn: TButton
           Left = 348
@@ -1172,7 +1163,7 @@ object Main: TMain
           Top = 5
           Width = 176
           Action = acRefreshMergeDataOn
-          TabOrder = 4
+          TabOrder = 3
         end
         object btnSetMergePropertyOff: TButton
           Left = 348
@@ -1181,7 +1172,28 @@ object Main: TMain
           Width = 176
           Action = acRefreshMergeDataOff
           Caption = 'Listen nicht mit Defaults mischen'
+          TabOrder = 4
+        end
+        object cbxClientNameKombi: TRegComboBox
+          Left = 8
+          Height = 21
+          Top = 34
+          Width = 160
+          ItemHeight = 13
+          Style = csDropDownList
           TabOrder = 5
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
+          RegistrySettings.Default = 0
+          RegistrySettings.Section = 'Desktop'
+          RegistrySettings.Ident = 'ClientForSettings'
+          RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.SourceKind = lskUnknown
+          RegistrySettings.MergeData = False
+          RegistrySource = RegistrySource3
         end
       end
       object pnlClientKombination: TPanel

@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="190"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -24,9 +24,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="497"/>
-        <CursorPos X="1" Y="516"/>
-        <UsageCount Value="187"/>
+        <TopLine Value="505"/>
+        <CursorPos X="63" Y="531"/>
+        <UsageCount Value="190"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -51,8 +51,8 @@
       <Unit4>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\classesh.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1608"/>
-        <CursorPos X="38" Y="1625"/>
+        <TopLine Value="423"/>
+        <CursorPos X="3" Y="442"/>
         <UsageCount Value="10"/>
       </Unit4>
       <Unit5>
@@ -67,7 +67,7 @@
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="652"/>
+        <TopLine Value="5"/>
         <CursorPos X="3" Y="656"/>
         <UsageCount Value="46"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -205,8 +205,8 @@
         <Filename Value="..\source\regcheckbox.pas"/>
         <UnitName Value="regcheckbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="105"/>
-        <CursorPos X="3" Y="107"/>
+        <TopLine Value="348"/>
+        <CursorPos X="3" Y="351"/>
         <UsageCount Value="19"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit23>
@@ -407,9 +407,9 @@
         <Filename Value="..\source\regtype.pas"/>
         <UnitName Value="regtype"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="665"/>
-        <CursorPos X="3" Y="677"/>
-        <UsageCount Value="27"/>
+        <TopLine Value="429"/>
+        <CursorPos X="7" Y="450"/>
+        <UsageCount Value="28"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit48>
       <Unit49>
@@ -555,8 +555,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="dlgeditsettings"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="14" Y="13"/>
+        <TopLine Value="102"/>
+        <CursorPos X="1" Y="133"/>
         <UsageCount Value="11"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit66>
@@ -777,47 +777,23 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="10" HistoryIndex="9">
+    <JumpHistory Count="4" HistoryIndex="3">
       <Position1>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="516" Column="1" TopLine="507"/>
+        <Caret Line="513" Column="40" TopLine="495"/>
       </Position1>
       <Position2>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="535" Column="1" TopLine="507"/>
+        <Caret Line="510" Column="1" TopLine="493"/>
       </Position2>
       <Position3>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="537" Column="1" TopLine="507"/>
+        <Caret Line="514" Column="3" TopLine="507"/>
       </Position3>
       <Position4>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="516" Column="1" TopLine="507"/>
+        <Caret Line="532" Column="1" TopLine="508"/>
       </Position4>
-      <Position5>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="535" Column="1" TopLine="507"/>
-      </Position5>
-      <Position6>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="516" Column="1" TopLine="507"/>
-      </Position6>
-      <Position7>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="535" Column="1" TopLine="507"/>
-      </Position7>
-      <Position8>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="516" Column="1" TopLine="507"/>
-      </Position8>
-      <Position9>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="2" Column="158" TopLine="480"/>
-      </Position9>
-      <Position10>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="221" Column="3" TopLine="373"/>
-      </Position10>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

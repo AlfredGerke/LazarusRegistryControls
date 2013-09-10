@@ -80,7 +80,6 @@ type
     btnWriteAdHocOff: TButton;
     btnSyncDataOf: TButton;
     btnWriteAdHocOnList: TButton;
-    cbxClientNameKombi: TComboBox;
     cbxClientNameList: TRegComboBox;
     lblCheckListBox: TLabel;
     lblCheckListBox2: TLabel;
@@ -138,6 +137,7 @@ type
     redtEdit1: TRegEdit;
     redtEditKombi: TRegEdit;
     cbxClientNameSingle: TRegComboBox;
+    cbxClientNameKombi: TRegComboBox;
     RegistrySource3: TRegistrySource;
     rlbCheckedListBox: TRegCheckListBox;
     rvlValueListEditor: TRegValueListEditor;
@@ -195,7 +195,8 @@ type
     procedure acWriteAdHocOnListExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure rcbxCheckBoxKombiBeforeRegistrySettingChange(
-      aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
+      aOldSettingInfo: TRegistrySettingValue;
+      aNewSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
   private
     procedure RefreshWriteAdHocOnOff(aFlag: integer;
                                      aSet: boolean);
@@ -500,36 +501,44 @@ begin
   RefreshWriteAdHocOnOff(2, True);
   RefreshSyncDataOnOff(2, True);
   RegistrySource1.GetClientList(cbxClientNameSingle.Items);
+  cbxClientNameSingle.ReadFromReg;
   RegistrySource2.GetClientList(cbxClientNameList.Items);
+  cbxClientNameList.ReadFromReg;
   RegistrySource3.GetClientList(cbxClientNameKombi.Items);
-  if cbxClientNameKombi.Items.Count > 0 then
-    cbxClientNameKombi.ItemIndex := 0
-  else
-    cbxClientNameKombi.ItemIndex := -1;
-
-
+  cbxClientNameKombi.ReadFromReg;
 end;
 
 procedure TMain.rcbxCheckBoxKombiBeforeRegistrySettingChange(
-  aSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
+  aOldSettingInfo: TRegistrySettingValue;
+  aNewSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
 begin
-  case aSettingInfo.Kind of
+  case aNewSettingInfo.Kind of
     rskWriteDefaults:
     begin
-      aIsOk := False;
-      MessageDlg('Das Ändern dieser Option ist verboten!',
-        mtWarning, [mbOk], 0);
+      if (aOldSettingInfo.WriteDefaults <> aNewSettingInfo.WriteDefaults) then
+      begin
+        aIsOk := False;
+        if aNewSettingInfo.WriteDefaults then
+          MessageDlg('Das Schreiben von Standards ist nicht erlaubt!',
+            mtWarning, [mbOk], 0)
+        else
+          MessageDlg('Das Schreiben von Standards muss eingeschaltet bleiben!',
+            mtWarning, [mbOk], 0)
+      end;
     end;
     rskReadDefaults:
     begin
-      if aSettingInfo.ReadDefaults then
-        aIsOk :=
-          (MessageDlg('Soll das Lesen von Standards eingeschaltet werden?',
-             mtConfirmation, [mbYes, mbNo], 0) = mrYes)
-      else
-        aIsOk :=
-          (MessageDlg('Soll das Lesen von Standards abgeschaltet werden?',
-             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+      if (aOldSettingInfo.ReadDefaults <> aNewSettingInfo.ReadDefaults) then
+      begin
+        if aNewSettingInfo.ReadDefaults then
+          aIsOk :=
+            (MessageDlg('Soll das Lesen von Standards eingeschaltet werden?',
+               mtConfirmation, [mbYes, mbNo], 0) = mrYes)
+        else
+          aIsOk :=
+            (MessageDlg('Soll das Lesen von Standards abgeschaltet werden?',
+               mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+      end;
     end;
   else
     aIsOk := True;
