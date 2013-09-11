@@ -1,48 +1,35 @@
 TMAIN.CAPTION=RegistryControls in Aktion
 TMAIN.TABSINGLEVALUE.CAPTION=Einzelwerte
-TMAIN.LBLEDITSINGLEVALUE.CAPTION=Edit (redtEdit): Text verwalten
-TMAIN.RCBXCHECKBOX1.CAPTION=CheckBox (rcbxCheckBox1): ItemIndex verw.
-TMAIN.RRBRADIOBUTTON1.CAPTION=RadioButton (rrbRadioButton1): Checkstatus verw.
-TMAIN.RRBRADIOBUTTON2.CAPTION=RadioButton (rrbRadioButton2): Checkstatus verw.
-TMAIN.RGRPRADIOGROUP1.CAPTION=RadioGroup (rgrpRadioGroup1): statisch
-TMAIN.LBLLISTBOX1.CAPTION=ListBox (rlbListBox1): statisch, ItemIndex verwalten
-TMAIN.LBLRADIOGROUP1.CAPTION=RadioGroup: ItemIndex verwalten
-TMAIN.LBLCOMBOBOX1.CAPTION=ComboBox (redtComboBox1): ItemIndex verwalten
-TMAIN.RCGCHECKGROUP2.CAPTION= CheckGroup (rcgCheckGroup2): statisch
-TMAIN.LBLCHECKLISTBOX2.CAPTION=CheckListBox (rlbCheckListBox2): statisch, ItemIndex 
-u. Checkstatus verwalten
-TMAIN.LBLEDITSINGLEVALUE1.CAPTION=Edit (redtEdit): Text verwalten
-TMAIN.RCBXCHECKBOX2.CAPTION=CheckBox (rcbxCheckBox1): ItemIndex verw.
-TMAIN.RRBRADIOBUTTON3.CAPTION=RadioButton (rrbRadioButton1): Checkstatus verw.
-TMAIN.RRBRADIOBUTTON4.CAPTION=RadioButton (rrbRadioButton2): Checkstatus verw.
-TMAIN.RGRPRADIOGROUP2.CAPTION=RadioGroup (rgrpRadioGroup1): statisch
-TMAIN.LBLLISTBOX2.CAPTION=ListBox (rlbListBox1): statisch, ItemIndex verwalten
-TMAIN.LBLRADIOGROUP2.CAPTION=RadioGroup: ItemIndex verwalten
-TMAIN.LBLCOMBOBOX2.CAPTION=ComboBox (redtComboBox1): ItemIndex verwalten
-TMAIN.RCGCHECKGROUP3.CAPTION= CheckGroup (rcgCheckGroup2): statisch
-TMAIN.LBLCHECKLISTBOX3.CAPTION=CheckListBox (rlbCheckListBox2): statisch, 
-ItemIndex u. Checkstatus verwalten
-TMAIN.LBLCHECKGROUP2.CAPTION=CheckListBox (rcgCheckGroup3): statisch, 
-ItemIndex u. Checkstatus verwalten
-TMAIN.TABLIST.CAPTION=Listen
-TMAIN.RGRPRADIOGROUPLIST1.CAPTION= Radiogroup (rgrpRadioGroupList1) dynamisch
-TMAIN.LBLRADIOGROUPLIST.CAPTION=Radiogroup: Items laden, ItemIndex verwalten
-TMAIN.LBLISTBOXLIST.CAPTION=ListBox (rlbListBox2): Items laden, ItemIndex 
-verwalten
-TMAIN.LBLCOMBOBOX.CAPTION=ComboBox (redtComboBoxList1): Items laden,
-ItemIndex verwalten
-TMAIN.LBLCHECKLISTBOX.CAPTION=CheckListBox (rlbCheckListBox1): Items laden, 
-ItemIndex u. Checkstatus verwalten
-TMAIN.RCGCHECKGROUP1.CAPTION=CheckGroup (rcgCheckGroup1) dynamisch
-TMAIN.LBLCHECKGROUP.CAPTION=CheckGroup: Items laden, LastChecked u.
+TMAIN.LBLEDITSINGLEVALUE1.CAPTION=TRegEdit: Text verwalten
+TMAIN.RCBXCHECKBOXSTATIC.CAPTION=TRegCheckBox: ItemIndex verw.
+TMAIN.RRBRADIOBUTTONSTATIC1.CAPTION=TRegRadioButton: Checkstatus verw.
+TMAIN.RRBRADIOBUTTONSTATIC2.CAPTION=TRegRadioButton: Checkstatus verw.
+TMAIN.RGRPRADIOGROUPSTATIC.CAPTION= TRegRadioGroup: statisch 
+TMAIN.LBLLISTBOX2.CAPTION=TRegListBox: statisch, ItemIndex verwalten
+TMAIN.LBLRADIOGROUP2.CAPTION=TRegRadioGroup: ItemIndex verwalten
+TMAIN.LBLCOMBOBOX2.CAPTION=TRegComboBox: ItemIndex verwalten
+TMAIN.RCGCHECKGROUPSTATIC.CAPTION= TRegCheckGroup: statisch 
+TMAIN.LBLCHECKLISTBOX3.CAPTION=TRegCheckListBox: statisch, ItemIndex u. 
 Checkstatus verwalten
-TMAIN.LBLVALUEEDITLIST.CAPTION=ValueListEditor(rvlValueListEditor): Keys u. Values 
-laden und verwalten
+TMAIN.LBLCHECKGROUP2.CAPTION=TRegCheckListBox: statisch, ItemIndex u. 
+Checkstatus verwalten
+TMAIN.TABLIST.CAPTION=Listen
+TMAIN.RGRPRADIOGROUPDYNAMIC.CAPTION= TRegRadiogroup dynamisch 
+TMAIN.LBLRADIOGROUPLIST.CAPTION=TRegRadiogroup: Items laden, ItemIndex verwalten
+TMAIN.LBLISTBOXLIST.CAPTION=TRegListBox: Items laden, ItemIndex verwalten
+TMAIN.LBLCOMBOBOX.CAPTION=TRegComboBox: Items laden, ItemIndex verwalten
+TMAIN.LBLCHECKLISTBOX.CAPTION=TRegCheckListBox: Items laden, ItemIndex u. 
+Checkstatus verwalten
+TMAIN.RCGCHECKGROUPDYNAMIC.CAPTION= TRegCheckGroup dynamisch 
+TMAIN.LBLCHECKGROUP.CAPTION=TRegCheckGroup: Items laden, LastChecked u.
+Checkstatus verwalten
+TMAIN.LBLVALUEEDITLIST.CAPTION=TRegValueListEditor: Keys u. Values laden u.
+verwalten
 TMAIN.TABKOMBINATION.CAPTION=Kombinationen
 TMAIN.BTNSETMERGEPROPERTYOFF.CAPTION=Listen nicht mit Defaults mischen
 TMAIN.TABGROUPINDEX_1.CAPTION=GroupIndex = 1
 TMAIN.TABGROUPINDEX_2.CAPTION=GroupIndex = 2
-TMAIN.RCGCHECKEDGROUP.CAPTION= CheckedGroup 
+TMAIN.RCGCHECKEDGROUPKOMBI.CAPTION= CheckedGroup 
 TMAIN.RCBXCHECKBOXKOMBI.CAPTION=Key1
 TMAIN.MNUFILE.CAPTION=Datei
 TMAIN.MENUITEM1.CAPTION=-
@@ -77,6 +64,8 @@ TMAIN.ACREFRESHDATAKOMBI.CAPTION=Steuerelemente aktualisieren
 TMAIN.ACERASESECTIONVALUEEDIT2.CAPTION=Liste löschen
 TMAIN.ACDELETEROOTKEY.CAPTION=Beispieleinträge entfernen
 TMAIN.ACCLEARITEMS.CAPTION=Listen löschen
-TMAIN.ACSHOWCLIENTEDITDIALOG.CAPTION=RootKeys ändern
+TMAIN.ACSHOWCLIENTEDITDIALOGKOMBI.CAPTION=RootKeys ändern
 TMAIN.ACREFRESHMERGEDATAON.CAPTION=Listen mit Defaults mischen
 TMAIN.ACREFRESHMERGEDATAOFF.CAPTION=Listen nicht mir Defaults mischen
+TMAIN.ACSHOWCLIENTEDITDIALOGLIST.CAPTION=RootKeys ändern
+TMAIN.ACSHOWCLIENTEDITDIALOGSINGLE.CAPTION=RootKeys ändern

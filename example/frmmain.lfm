@@ -22,702 +22,6 @@ object Main: TMain
       Caption = 'Einzelwerte'
       ClientHeight = 443
       ClientWidth = 803
-      object pnlClient: TPanel
-        Left = 0
-        Height = 380
-        Top = 63
-        Width = 803
-        Align = alClient
-        ClientHeight = 380
-        ClientWidth = 803
-        TabOrder = 0
-        object lblEditSingleValue: TLabel
-          Left = 20
-          Height = 15
-          Top = 11
-          Width = 144
-          Caption = 'Edit (redtEdit): Text verwalten'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsUnderline]
-          ParentColor = False
-          ParentFont = False
-        end
-        object redtEdit: TRegEdit
-          Left = 20
-          Height = 21
-          Top = 46
-          Width = 248
-          TabOrder = 0
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = 'leerstring'
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'Edit'
-          RegistrySource = RegistrySource1
-        end
-        object rcbxCheckBox1: TRegCheckBox
-          Left = 20
-          Height = 18
-          Top = 123
-          Width = 240
-          Caption = 'CheckBox (rcbxCheckBox1): ItemIndex verw.'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          ParentFont = False
-          TabOrder = 1
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = False
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'CheckBox1'
-          RegistrySource = RegistrySource1
-        end
-        object rrbRadioButton1: TRegRadioButton
-          Left = 20
-          Height = 18
-          Top = 150
-          Width = 265
-          Caption = 'RadioButton (rrbRadioButton1): Checkstatus verw.'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          ParentFont = False
-          TabOrder = 2
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = False
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'RadioButton1'
-          RegistrySource = RegistrySource1
-        end
-        object rrbRadioButton2: TRegRadioButton
-          Left = 20
-          Height = 18
-          Top = 175
-          Width = 265
-          Caption = 'RadioButton (rrbRadioButton2): Checkstatus verw.'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          ParentFont = False
-          TabOrder = 3
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = False
-          RegistrySettings.Section = 'Einzelwerte'
-          RegistrySettings.Ident = 'RadioButton2'
-          RegistrySource = RegistrySource1
-        end
-        object rgrpRadioGroup1: TRegRadioGroup
-          Left = 284
-          Height = 129
-          Top = 225
-          Width = 248
-          AutoFill = True
-          Caption = 'RadioGroup (rgrpRadioGroup1): statisch'
-          ChildSizing.LeftRightSpacing = 6
-          ChildSizing.TopBottomSpacing = 6
-          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-          ChildSizing.EnlargeVertical = crsHomogenousChildResize
-          ChildSizing.ShrinkHorizontal = crsScaleChilds
-          ChildSizing.ShrinkVertical = crsScaleChilds
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
-          ChildSizing.ControlsPerLine = 1
-          ClientHeight = 111
-          ClientWidth = 244
-          Items.Strings = (
-            'RadioGroup statisch 1'
-            'RadioGroup statisch 2'
-            'RadioGroup statisch 3'
-            'RadioGroup statisch 4'
-            'RadioGroup statisch 5'
-          )
-          TabOrder = 4
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = 0
-          RegistrySettings.Section = 'RadioGroup1'
-          RegistrySettings.Ident = 'ItemIndex'
-          RegistrySettings.ItemsByRegistry = False
-          RegistrySettings.SourceKind = lskUnknown
-          RegistrySettings.MergeData = False
-          RegistrySource = RegistrySource1
-        end
-        object rlbListBox1: TRegListBox
-          Left = 284
-          Height = 128
-          Top = 46
-          Width = 248
-          Items.Strings = (
-            'statischer Eintrag 1'
-            'statischer Eintrag 2'
-            'statischer Eintrag 3'
-            'statischer Eintrag 4'
-            'statischer Eintrag 5'
-            'statischer Eintrag 6'
-          )
-          ItemHeight = 13
-          TabOrder = 5
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = 0
-          RegistrySettings.ItemsByRegistry = False
-          RegistrySettings.SourceKind = lskUnknown
-          RegistrySettings.MergeData = False
-          RegistrySource = RegistrySource1
-        end
-        object redtComboBox1: TRegComboBox
-          Left = 20
-          Height = 21
-          Top = 91
-          Width = 248
-          ItemHeight = 13
-          Items.Strings = (
-            'statischer Eintrag 1'
-            'statischer Eintrag 2'
-            'statischer Eintrag 3'
-            'statischer Eintrag 4'
-            'statischer Eintrag 5'
-            'statischer Eintrag 6'
-          )
-          TabOrder = 6
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = 0
-          RegistrySettings.Section = 'Combobox1'
-          RegistrySettings.Ident = 'ItemIndex'
-          RegistrySettings.ItemsByRegistry = False
-          RegistrySettings.SourceKind = lskUnknown
-          RegistrySettings.MergeData = False
-          RegistrySource = RegistrySource1
-        end
-        object lblListBox1: TLabel
-          Left = 284
-          Height = 15
-          Top = 11
-          Width = 249
-          Caption = 'ListBox (rlbListBox1): statisch, ItemIndex verwalten'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsUnderline]
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblRadioGroup1: TLabel
-          Left = 284
-          Height = 15
-          Top = 195
-          Width = 161
-          Caption = 'RadioGroup: ItemIndex verwalten'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsUnderline]
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblComboBox1: TLabel
-          Left = 20
-          Height = 15
-          Top = 75
-          Width = 244
-          Caption = 'ComboBox (redtComboBox1): ItemIndex verwalten'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsUnderline]
-          ParentColor = False
-          ParentFont = False
-        end
-        object rlbCheckListBox2: TRegCheckListBox
-          Left = 548
-          Height = 128
-          Top = 46
-          Width = 248
-          Items.Strings = (
-            'CheckListBox1Key'
-            'CheckListBox2Key'
-            'CheckListBox3Key'
-            'CheckListBox4Key'
-            'CheckListBox5Key'
-          )
-          ItemHeight = 15
-          TabOrder = 7
-          RegistrySettings.CanRead = True
-          RegistrySettings.CanWrite = True
-          RegistrySettings.DoWriteAdHoc = True
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
-          RegistrySettings.Default = 0
-          RegistrySettings.Section = 'CheckListBox2'
-          RegistrySettings.Ident = 'ItemIndex'
-          RegistrySettings.ItemsByRegistry = False
-          RegistrySettings.ListSection = 'CheckListBoxListe'
-          RegistrySettings.MergeData = False
-          RegistrySource = RegistrySource1
-          Data = {
-            050000000000000000
-          }
-        end
-        object rcgCheckGroup2: TRegCheckGroup
-          Left = 548
-          Height = 129
-          Top = 225
-          Width = 248
-          AutoFill = True
-          Caption = ' CheckGroup (rcgCheckGroup2): statisch'
-          ChildSizing.LeftRightSpacing = 6
-          ChildSizing.TopBottomSpacing = 6
-          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-          ChildSizing.EnlargeVertical = crsHomogenousChildResize
-          ChildSizing.ShrinkHorizontal = crsScaleChilds
-          ChildSizing.ShrinkVertical = crsScaleChilds
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
-          ChildSizing.ControlsPerLine = 1
-          ClientHeight = 111
-          ClientWidth = 244
-          Items.Strings = (
-            'CheckGroup1Key'
-            'CheckGroup2Key'
-            'CheckGroup3Key'
-            'CheckGroup4Key'
-            'CheckGroup5Key'
-          )
-          TabOrder = 8
-          RegistrySettings.CanRead = False
-          RegistrySettings.CanWrite = False
-          RegistrySettings.DoWriteAdHoc = False
-          RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = False
-          RegistrySettings.Default = 0
-          RegistrySettings.ItemsByRegistry = False
-          RegistrySettings.MergeData = False
-          Data = {
-            050000000202020202
-          }
-        end
-        object lblCheckListBox2: TLabel
-          Left = 548
-          Height = 29
-          Top = 11
-          Width = 260
-          Caption = 'CheckListBox (rlbCheckListBox2): statisch, ItemIndex '#13#10'u. Checkstatus verwalten'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsUnderline]
-          ParentColor = False
-          ParentFont = False
-        end
-        object pnlClient1: TPanel
-          Left = 1
-          Height = 378
-          Top = 1
-          Width = 801
-          Align = alClient
-          ClientHeight = 378
-          ClientWidth = 801
-          TabOrder = 9
-          object lblEditSingleValue1: TLabel
-            Left = 20
-            Height = 15
-            Top = 11
-            Width = 144
-            Caption = 'Edit (redtEdit): Text verwalten'
-            Font.CharSet = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Pitch = fpVariable
-            Font.Quality = fqDraft
-            Font.Style = [fsUnderline]
-            ParentColor = False
-            ParentFont = False
-          end
-          object redtEdit1: TRegEdit
-            Left = 20
-            Height = 21
-            Top = 46
-            Width = 248
-            TabOrder = 0
-            RegistrySettings.CanRead = True
-            RegistrySettings.CanWrite = True
-            RegistrySettings.DoWriteAdHoc = True
-            RegistrySettings.GroupIndex = 0
-            RegistrySettings.DoSyncData = True
-            RegistrySettings.Default = 'leerstring'
-            RegistrySettings.Section = 'Einzelwerte'
-            RegistrySettings.Ident = 'Edit'
-            RegistrySource = RegistrySource1
-          end
-          object rcbxCheckBox2: TRegCheckBox
-            Left = 20
-            Height = 18
-            Top = 123
-            Width = 240
-            Caption = 'CheckBox (rcbxCheckBox1): ItemIndex verw.'
-            Font.CharSet = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Pitch = fpVariable
-            Font.Quality = fqDraft
-            ParentFont = False
-            TabOrder = 2
-            RegistrySettings.CanRead = True
-            RegistrySettings.CanWrite = True
-            RegistrySettings.DoWriteAdHoc = True
-            RegistrySettings.GroupIndex = 0
-            RegistrySettings.DoSyncData = True
-            RegistrySettings.Default = False
-            RegistrySettings.Section = 'Einzelwerte'
-            RegistrySettings.Ident = 'CheckBox1'
-            RegistrySource = RegistrySource1
-          end
-          object rrbRadioButton3: TRegRadioButton
-            Left = 20
-            Height = 18
-            Top = 150
-            Width = 265
-            Caption = 'RadioButton (rrbRadioButton1): Checkstatus verw.'
-            Font.CharSet = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Pitch = fpVariable
-            Font.Quality = fqDraft
-            ParentFont = False
-            TabOrder = 3
-            RegistrySettings.CanRead = True
-            RegistrySettings.CanWrite = True
-            RegistrySettings.DoWriteAdHoc = True
-            RegistrySettings.GroupIndex = 0
-            RegistrySettings.DoSyncData = True
-            RegistrySettings.Default = False
-            RegistrySettings.Section = 'Einzelwerte'
-            RegistrySettings.Ident = 'RadioButton1'
-            RegistrySource = RegistrySource1
-          end
-          object rrbRadioButton4: TRegRadioButton
-            Left = 20
-            Height = 18
-            Top = 175
-            Width = 265
-            Caption = 'RadioButton (rrbRadioButton2): Checkstatus verw.'
-            Font.CharSet = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Pitch = fpVariable
-            Font.Quality = fqDraft
-            ParentFont = False
-            TabOrder = 4
-            RegistrySettings.CanRead = True
-            RegistrySettings.CanWrite = True
-            RegistrySettings.DoWriteAdHoc = True
-            RegistrySettings.GroupIndex = 0
-            RegistrySettings.DoSyncData = True
-            RegistrySettings.Default = False
-            RegistrySettings.Section = 'Einzelwerte'
-            RegistrySettings.Ident = 'RadioButton2'
-            RegistrySource = RegistrySource1
-          end
-          object rgrpRadioGroup2: TRegRadioGroup
-            Left = 285
-            Height = 129
-            Top = 225
-            Width = 248
-            AutoFill = True
-            Caption = 'RadioGroup (rgrpRadioGroup1): statisch'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.TopBottomSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 1
-            ClientHeight = 111
-            ClientWidth = 244
-            Items.Strings = (
-              'RadioGroup statisch 1'
-              'RadioGroup statisch 2'
-              'RadioGroup statisch 3'
-              'RadioGroup statisch 4'
-              'RadioGroup statisch 5'
-            )
-            TabOrder = 7
-            RegistrySettings.CanRead = True
-            RegistrySettings.CanWrite = True
-            RegistrySettings.DoWriteAdHoc = True
-            RegistrySettings.GroupIndex = 0
-            RegistrySettings.DoSyncData = True
-            RegistrySettings.Default = 0
-            RegistrySettings.Section = 'RadioGroup1'
-            RegistrySettings.Ident = 'ItemIndex'
-            RegistrySettings.ItemsByRegistry = False
-            RegistrySettings.SourceKind = lskUnknown
-            RegistrySettings.MergeData = False
-            RegistrySource = RegistrySource1
-          end
-          object rlbListBox3: TRegListBox
-            Left = 284
-            Height = 128
-            Top = 46
-            Width = 248
-            Items.Strings = (
-              'statischer Eintrag 1'
-              'statischer Eintrag 2'
-              'statischer Eintrag 3'
-              'statischer Eintrag 4'
-              'statischer Eintrag 5'
-              'statischer Eintrag 6'
-            )
-            ItemHeight = 13
-            TabOrder = 5
-            RegistrySettings.CanRead = True
-            RegistrySettings.CanWrite = True
-            RegistrySettings.DoWriteAdHoc = True
-            RegistrySettings.GroupIndex = 0
-            RegistrySettings.DoSyncData = True
-            RegistrySettings.Default = 0
-            RegistrySettings.Section = 'ListBox1'
-            RegistrySettings.Ident = 'ItemIndex'
-            RegistrySettings.ItemsByRegistry = False
-            RegistrySettings.SourceKind = lskUnknown
-            RegistrySettings.MergeData = False
-            RegistrySource = RegistrySource1
-          end
-          object redtComboBox2: TRegComboBox
-            Left = 20
-            Height = 21
-            Top = 91
-            Width = 248
-            ItemHeight = 13
-            Items.Strings = (
-              'statischer Eintrag 1'
-              'statischer Eintrag 2'
-              'statischer Eintrag 3'
-              'statischer Eintrag 4'
-              'statischer Eintrag 5'
-              'statischer Eintrag 6'
-            )
-            TabOrder = 1
-            RegistrySettings.CanRead = True
-            RegistrySettings.CanWrite = True
-            RegistrySettings.DoWriteAdHoc = True
-            RegistrySettings.GroupIndex = 0
-            RegistrySettings.DoSyncData = True
-            RegistrySettings.Default = 0
-            RegistrySettings.Section = 'Combobox1'
-            RegistrySettings.Ident = 'ItemIndex'
-            RegistrySettings.ItemsByRegistry = False
-            RegistrySettings.SourceKind = lskUnknown
-            RegistrySettings.MergeData = False
-            RegistrySource = RegistrySource1
-          end
-          object lblListBox2: TLabel
-            Left = 284
-            Height = 15
-            Top = 11
-            Width = 249
-            Caption = 'ListBox (rlbListBox1): statisch, ItemIndex verwalten'
-            Font.CharSet = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Pitch = fpVariable
-            Font.Quality = fqDraft
-            Font.Style = [fsUnderline]
-            ParentColor = False
-            ParentFont = False
-          end
-          object lblRadioGroup2: TLabel
-            Left = 284
-            Height = 15
-            Top = 195
-            Width = 161
-            Caption = 'RadioGroup: ItemIndex verwalten'
-            Font.CharSet = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Pitch = fpVariable
-            Font.Quality = fqDraft
-            Font.Style = [fsUnderline]
-            ParentColor = False
-            ParentFont = False
-          end
-          object lblComboBox2: TLabel
-            Left = 20
-            Height = 15
-            Top = 75
-            Width = 244
-            Caption = 'ComboBox (redtComboBox1): ItemIndex verwalten'
-            Font.CharSet = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Pitch = fpVariable
-            Font.Quality = fqDraft
-            Font.Style = [fsUnderline]
-            ParentColor = False
-            ParentFont = False
-          end
-          object rlbCheckListBox3: TRegCheckListBox
-            Left = 548
-            Height = 128
-            Top = 46
-            Width = 248
-            Items.Strings = (
-              'statischer Eintrag 1'
-              'statischer Eintrag 2'
-              'statischer Eintrag 3'
-              'statischer Eintrag 4'
-              'statischer Eintrag 5'
-            )
-            ItemHeight = 15
-            TabOrder = 6
-            RegistrySettings.CanRead = True
-            RegistrySettings.CanWrite = True
-            RegistrySettings.DoWriteAdHoc = True
-            RegistrySettings.GroupIndex = 0
-            RegistrySettings.DoSyncData = True
-            RegistrySettings.Default = 0
-            RegistrySettings.Section = 'CheckListBox2'
-            RegistrySettings.Ident = 'ItemIndex'
-            RegistrySettings.ItemsByRegistry = False
-            RegistrySettings.ListSection = 'CheckListBoxListe'
-            RegistrySettings.MergeData = False
-            RegistrySource = RegistrySource1
-            Data = {
-              050000000000000000
-            }
-          end
-          object rcgCheckGroup3: TRegCheckGroup
-            Left = 548
-            Height = 129
-            Top = 225
-            Width = 248
-            AutoFill = True
-            Caption = ' CheckGroup (rcgCheckGroup2): statisch'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.TopBottomSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 1
-            ClientHeight = 111
-            ClientWidth = 244
-            Items.Strings = (
-              'CheckGroup statisch 1'
-              'CheckGroup statisch 2'
-              'CheckGroup statisch 3'
-              'CheckGroup statisch 4'
-              'CheckGroup statisch 5'
-            )
-            TabOrder = 8
-            RegistrySettings.CanRead = True
-            RegistrySettings.CanWrite = True
-            RegistrySettings.DoWriteAdHoc = True
-            RegistrySettings.GroupIndex = 0
-            RegistrySettings.DoSyncData = True
-            RegistrySettings.Default = 0
-            RegistrySettings.Section = 'CheckGroup2'
-            RegistrySettings.Ident = 'ItemIndex'
-            RegistrySettings.ItemsByRegistry = False
-            RegistrySettings.ListSection = 'CheckGroupListe'
-            RegistrySettings.MergeData = False
-            RegistrySource = RegistrySource1
-            Data = {
-              050000000202020202
-            }
-          end
-          object lblCheckListBox3: TLabel
-            Left = 548
-            Height = 29
-            Top = 11
-            Width = 212
-            Caption = 'CheckListBox (rlbCheckListBox2): statisch, '#13#10'ItemIndex u. Checkstatus verwalten'
-            Font.CharSet = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Pitch = fpVariable
-            Font.Quality = fqDraft
-            Font.Style = [fsUnderline]
-            ParentColor = False
-            ParentFont = False
-          end
-          object lblCheckGroup2: TLabel
-            Left = 548
-            Height = 29
-            Top = 195
-            Width = 210
-            Caption = 'CheckListBox (rcgCheckGroup3): statisch, '#13#10'ItemIndex u. Checkstatus verwalten'
-            Font.CharSet = ANSI_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Pitch = fpVariable
-            Font.Quality = fqDraft
-            Font.Style = [fsUnderline]
-            ParentColor = False
-            ParentFont = False
-          end
-        end
-      end
       object pnlTop: TPanel
         Left = 0
         Height = 63
@@ -726,7 +30,7 @@ object Main: TMain
         Align = alTop
         ClientHeight = 63
         ClientWidth = 803
-        TabOrder = 1
+        TabOrder = 0
         object btnRefreshControls: TButton
           Left = 475
           Height = 25
@@ -767,7 +71,7 @@ object Main: TMain
           Action = acSyncDataOff
           TabOrder = 4
         end
-        object cbxClientNameSingle: TRegComboBox
+        object cbxClientNameStatic: TRegComboBox
           Left = 476
           Height = 21
           Top = 35
@@ -787,6 +91,373 @@ object Main: TMain
           RegistrySettings.SourceKind = lskUnknown
           RegistrySettings.MergeData = False
           RegistrySource = RegistrySource1
+        end
+        object btnShowClientDialogSingle: TButton
+          Left = 636
+          Height = 25
+          Top = 5
+          Width = 160
+          Action = acShowClientEditDialogSingle
+          TabOrder = 6
+        end
+      end
+      object pnlClient: TPanel
+        Left = 0
+        Height = 380
+        Top = 63
+        Width = 803
+        Align = alClient
+        ClientHeight = 380
+        ClientWidth = 803
+        TabOrder = 1
+        object lblEditSingleValue1: TLabel
+          Left = 20
+          Height = 15
+          Top = 11
+          Width = 122
+          Caption = 'TRegEdit: Text verwalten'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
+          ParentColor = False
+          ParentFont = False
+        end
+        object redtEditStatic: TRegEdit
+          Left = 20
+          Height = 21
+          Top = 46
+          Width = 248
+          TabOrder = 0
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 'leerstring'
+          RegistrySettings.Section = 'Einzelwerte'
+          RegistrySettings.Ident = 'Edit'
+          RegistrySource = RegistrySource1
+        end
+        object rcbxCheckBoxStatic: TRegCheckBox
+          Left = 20
+          Height = 18
+          Top = 123
+          Width = 177
+          Caption = 'TRegCheckBox: ItemIndex verw.'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          TabOrder = 2
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = False
+          RegistrySettings.Section = 'Einzelwerte'
+          RegistrySettings.Ident = 'CheckBox1'
+          RegistrySource = RegistrySource1
+        end
+        object rrbRadioButtonStatic1: TRegRadioButton
+          Left = 20
+          Height = 18
+          Top = 150
+          Width = 201
+          Caption = 'TRegRadioButton: Checkstatus verw.'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          TabOrder = 3
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = False
+          RegistrySettings.Section = 'Einzelwerte'
+          RegistrySettings.Ident = 'RadioButton1'
+          RegistrySource = RegistrySource1
+        end
+        object rrbRadioButtonStatic2: TRegRadioButton
+          Left = 20
+          Height = 18
+          Top = 175
+          Width = 201
+          Caption = 'TRegRadioButton: Checkstatus verw.'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          TabOrder = 4
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = False
+          RegistrySettings.Section = 'Einzelwerte'
+          RegistrySettings.Ident = 'RadioButton2'
+          RegistrySource = RegistrySource1
+        end
+        object rgrpRadioGroupStatic: TRegRadioGroup
+          Left = 285
+          Height = 129
+          Top = 225
+          Width = 248
+          AutoFill = True
+          Caption = ' TRegRadioGroup: statisch '
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.TopBottomSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 111
+          ClientWidth = 244
+          Items.Strings = (
+            'RadioGroup statisch 1'
+            'RadioGroup statisch 2'
+            'RadioGroup statisch 3'
+            'RadioGroup statisch 4'
+            'RadioGroup statisch 5'
+          )
+          TabOrder = 7
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.Section = 'RadioGroup1'
+          RegistrySettings.Ident = 'ItemIndex'
+          RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.SourceKind = lskUnknown
+          RegistrySettings.MergeData = False
+          RegistrySource = RegistrySource1
+        end
+        object rlbListBoxStatic: TRegListBox
+          Left = 283
+          Height = 128
+          Top = 46
+          Width = 248
+          Items.Strings = (
+            'statischer Eintrag 1'
+            'statischer Eintrag 2'
+            'statischer Eintrag 3'
+            'statischer Eintrag 4'
+            'statischer Eintrag 5'
+            'statischer Eintrag 6'
+          )
+          ItemHeight = 13
+          TabOrder = 5
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.Section = 'ListBox1'
+          RegistrySettings.Ident = 'ItemIndex'
+          RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.SourceKind = lskUnknown
+          RegistrySettings.MergeData = False
+          RegistrySource = RegistrySource1
+        end
+        object redtComboBoxStatic: TRegComboBox
+          Left = 20
+          Height = 21
+          Top = 91
+          Width = 248
+          ItemHeight = 13
+          Items.Strings = (
+            'statischer Eintrag 1'
+            'statischer Eintrag 2'
+            'statischer Eintrag 3'
+            'statischer Eintrag 4'
+            'statischer Eintrag 5'
+            'statischer Eintrag 6'
+          )
+          TabOrder = 1
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.Section = 'Combobox1'
+          RegistrySettings.Ident = 'ItemIndex'
+          RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.SourceKind = lskUnknown
+          RegistrySettings.MergeData = False
+          RegistrySource = RegistrySource1
+        end
+        object lblListBox2: TLabel
+          Left = 284
+          Height = 15
+          Top = 10
+          Width = 209
+          Caption = 'TRegListBox: statisch, ItemIndex verwalten'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblRadioGroup2: TLabel
+          Left = 284
+          Height = 15
+          Top = 195
+          Width = 186
+          Caption = 'TRegRadioGroup: ItemIndex verwalten'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblComboBox2: TLabel
+          Left = 20
+          Height = 15
+          Top = 75
+          Width = 181
+          Caption = 'TRegComboBox: ItemIndex verwalten'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
+          ParentColor = False
+          ParentFont = False
+        end
+        object rlbCheckListBoxStatic: TRegCheckListBox
+          Left = 548
+          Height = 128
+          Top = 46
+          Width = 248
+          Items.Strings = (
+            'statischer Eintrag 1'
+            'statischer Eintrag 2'
+            'statischer Eintrag 3'
+            'statischer Eintrag 4'
+            'statischer Eintrag 5'
+          )
+          ItemHeight = 15
+          TabOrder = 6
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.Section = 'CheckListBox2'
+          RegistrySettings.Ident = 'ItemIndex'
+          RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.ListSection = 'CheckListBoxListe'
+          RegistrySettings.MergeData = False
+          RegistrySource = RegistrySource1
+          Data = {
+            050000000000000000
+          }
+        end
+        object rcgCheckGroupStatic: TRegCheckGroup
+          Left = 548
+          Height = 129
+          Top = 225
+          Width = 248
+          AutoFill = True
+          Caption = ' TRegCheckGroup: statisch '
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.TopBottomSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 111
+          ClientWidth = 244
+          Items.Strings = (
+            'CheckGroup statisch 1'
+            'CheckGroup statisch 2'
+            'CheckGroup statisch 3'
+            'CheckGroup statisch 4'
+            'CheckGroup statisch 5'
+          )
+          TabOrder = 8
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 0
+          RegistrySettings.Section = 'CheckGroup2'
+          RegistrySettings.Ident = 'ItemIndex'
+          RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.ListSection = 'CheckGroupListe'
+          RegistrySettings.MergeData = False
+          RegistrySource = RegistrySource1
+          Data = {
+            050000000202020202
+          }
+        end
+        object lblCheckListBox3: TLabel
+          Left = 548
+          Height = 29
+          Top = 11
+          Width = 202
+          Caption = 'TRegCheckListBox: statisch, ItemIndex u. '#13#10'Checkstatus verwalten'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblCheckGroup2: TLabel
+          Left = 548
+          Height = 29
+          Top = 195
+          Width = 202
+          Caption = 'TRegCheckListBox: statisch, ItemIndex u. '#13#10'Checkstatus verwalten'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsUnderline]
+          ParentColor = False
+          ParentFont = False
         end
       end
     end
@@ -843,7 +514,7 @@ object Main: TMain
           Action = acWriteAdHocOffList
           TabOrder = 1
         end
-        object cbxClientNameList: TRegComboBox
+        object cbxClientNameDynamic: TRegComboBox
           Left = 475
           Height = 21
           Top = 34
@@ -864,6 +535,14 @@ object Main: TMain
           RegistrySettings.MergeData = False
           RegistrySource = RegistrySource2
         end
+        object btnShowClientDialogList: TButton
+          Left = 636
+          Height = 25
+          Top = 5
+          Width = 160
+          Action = acShowClientEditDialogList
+          TabOrder = 6
+        end
       end
       object pnlClientList: TPanel
         Left = 0
@@ -874,13 +553,13 @@ object Main: TMain
         ClientHeight = 380
         ClientWidth = 803
         TabOrder = 1
-        object rgrpRadioGroupList1: TRegRadioGroup
+        object rgrpRadioGroupDynamic: TRegRadioGroup
           Left = 284
           Height = 129
           Top = 225
           Width = 248
           AutoFill = True
-          Caption = ' Radiogroup (rgrpRadioGroupList1) dynamisch'
+          Caption = ' TRegRadiogroup dynamisch '
           ChildSizing.LeftRightSpacing = 6
           ChildSizing.TopBottomSpacing = 6
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -904,7 +583,7 @@ object Main: TMain
           RegistrySettings.MergeData = False
           RegistrySource = RegistrySource2
         end
-        object rlbListBox2: TRegListBox
+        object rlbListBoxDynamic: TRegListBox
           Left = 284
           Height = 128
           Top = 46
@@ -925,7 +604,7 @@ object Main: TMain
           RegistrySettings.MergeData = False
           RegistrySource = RegistrySource2
         end
-        object redtComboBoxList1: TRegComboBox
+        object redtComboBoxDynamic: TRegComboBox
           Left = 20
           Height = 21
           Top = 46
@@ -952,7 +631,7 @@ object Main: TMain
           Top = 195
           Width = 247
           AutoSize = False
-          Caption = 'Radiogroup: Items laden, ItemIndex verwalten'
+          Caption = 'TRegRadiogroup: Items laden, ItemIndex verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -969,7 +648,7 @@ object Main: TMain
           Top = 11
           Width = 248
           AutoSize = False
-          Caption = 'ListBox (rlbListBox2): Items laden, ItemIndex '#13#10'verwalten'
+          Caption = 'TRegListBox: Items laden, ItemIndex verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -986,7 +665,7 @@ object Main: TMain
           Top = 10
           Width = 247
           AutoSize = False
-          Caption = 'ComboBox (redtComboBoxList1): Items laden,'#13#10'ItemIndex verwalten'
+          Caption = 'TRegComboBox: Items laden, ItemIndex verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -997,7 +676,7 @@ object Main: TMain
           ParentColor = False
           ParentFont = False
         end
-        object rlbCheckListBox1: TRegCheckListBox
+        object rlbCheckListBoxDynamic: TRegCheckListBox
           Left = 548
           Height = 128
           Top = 46
@@ -1023,7 +702,7 @@ object Main: TMain
           Top = 11
           Width = 248
           AutoSize = False
-          Caption = 'CheckListBox (rlbCheckListBox1): Items laden, '#13#10'ItemIndex u. Checkstatus verwalten'
+          Caption = 'TRegCheckListBox: Items laden, ItemIndex u. '#13#10'Checkstatus verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1034,13 +713,13 @@ object Main: TMain
           ParentColor = False
           ParentFont = False
         end
-        object rcgCheckGroup1: TRegCheckGroup
+        object rcgCheckGroupDynamic: TRegCheckGroup
           Left = 548
           Height = 129
           Top = 225
           Width = 248
           AutoFill = True
-          Caption = 'CheckGroup (rcgCheckGroup1) dynamisch'
+          Caption = ' TRegCheckGroup dynamisch '
           ChildSizing.LeftRightSpacing = 6
           ChildSizing.TopBottomSpacing = 6
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -1069,7 +748,7 @@ object Main: TMain
           Top = 195
           Width = 247
           AutoSize = False
-          Caption = 'CheckGroup: Items laden, LastChecked u.'#13#10'Checkstatus verwalten'
+          Caption = 'TRegCheckGroup: Items laden, LastChecked u.'#13#10'Checkstatus verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1080,8 +759,8 @@ object Main: TMain
           ParentColor = False
           ParentFont = False
         end
-        object rvlValueListEditor: TRegValueListEditor
-          Left = 20
+        object rvlValueListEditorDynamic: TRegValueListEditor
+          Left = 19
           Height = 222
           Top = 116
           Width = 248
@@ -1107,7 +786,7 @@ object Main: TMain
           Top = 81
           Width = 247
           AutoSize = False
-          Caption = 'ValueListEditor(rvlValueListEditor): Keys u. Values '#13#10'laden und verwalten'
+          Caption = 'TRegValueListEditor: Keys u. Values laden u.'#13#10'verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1149,12 +828,12 @@ object Main: TMain
           Action = acClearItems
           TabOrder = 1
         end
-        object btnShowClientDialog: TButton
+        object btnShowClientDialogKombi: TButton
           Left = 8
           Height = 25
           Top = 5
           Width = 160
-          Action = acShowClientEditDialog
+          Action = acShowClientEditDialogKombi
           TabOrder = 2
         end
         object btnSetMergePropertyOn: TButton
@@ -1276,7 +955,7 @@ object Main: TMain
             Caption = 'GroupIndex = 2'
             ClientHeight = 352
             ClientWidth = 793
-            object rcgCheckedGroup: TRegCheckGroup
+            object rcgCheckedGroupKombi: TRegCheckGroup
               Left = 214
               Height = 138
               Top = 25
@@ -1305,7 +984,7 @@ object Main: TMain
               RegistrySettings.MergeData = False
               RegistrySource = RegistrySource3
             end
-            object rlbCheckedListBox: TRegCheckListBox
+            object rlbCheckedListBoxKombi: TRegCheckListBox
               Left = 6
               Height = 136
               Top = 28
@@ -1378,8 +1057,8 @@ object Main: TMain
     end
   end
   object MainMenu1: TMainMenu
-    left = 752
-    top = 264
+    left = 136
+    top = 344
     object mnuFile: TMenuItem
       Caption = 'Datei'
       object mnuCheckCreateSettings: TMenuItem
@@ -1424,8 +1103,8 @@ object Main: TMain
     end
   end
   object ActionList1: TActionList
-    left = 752
-    top = 184
+    left = 48
+    top = 344
     object acClose: TAction
       Category = 'General'
       Caption = 'Beenden'
@@ -1555,10 +1234,10 @@ object Main: TMain
       Caption = 'Listen löschen'
       OnExecute = acClearItemsExecute
     end
-    object acShowClientEditDialog: TAction
+    object acShowClientEditDialogKombi: TAction
       Category = 'ExecuteKombinationExcample'
       Caption = 'RootKeys ändern'
-      OnExecute = acShowClientEditDialogExecute
+      OnExecute = acShowClientEditDialogKombiExecute
     end
     object acRefreshMergeDataOn: TAction
       Category = 'ExecuteKombinationExcample'
@@ -1569,6 +1248,16 @@ object Main: TMain
       Category = 'ExecuteKombinationExcample'
       Caption = 'Listen nicht mir Defaults mischen'
       OnExecute = acRefreshMergeDataOffExecute
+    end
+    object acShowClientEditDialogList: TAction
+      Category = 'ExecuteListExample'
+      Caption = 'RootKeys ändern'
+      OnExecute = acShowClientEditDialogListExecute
+    end
+    object acShowClientEditDialogSingle: TAction
+      Category = 'ExecuteSingleValueExample'
+      Caption = 'RootKeys ändern'
+      OnExecute = acShowClientEditDialogSingleExecute
     end
   end
   object RegistrySource1: TRegistrySource
@@ -1583,8 +1272,8 @@ object Main: TMain
     GUID = '{7142DBAD-5BEA-4690-B64E-B17CA6553E81}'
     DoSyncData = True
     PrefereStrings = False
-    left = 672
-    top = 32
+    left = 48
+    top = 288
   end
   object RegistrySource2: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
@@ -1598,8 +1287,8 @@ object Main: TMain
     GUID = '{EC8199A8-A8FD-40D9-9ACA-C28D913C2E0B}'
     DoSyncData = True
     PrefereStrings = False
-    left = 752
-    top = 32
+    left = 136
+    top = 288
   end
   object RegistrySource3: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
@@ -1613,7 +1302,7 @@ object Main: TMain
     GUID = '{7CB5D48B-FCE3-414F-BB3A-BCB07BC5D25F}'
     DoSyncData = True
     PrefereStrings = False
-    left = 752
-    top = 104
+    left = 232
+    top = 288
   end
 end

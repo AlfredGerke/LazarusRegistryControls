@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-msgid "laden und verwalten"
+msgid "verwalten"
 msgstr ""
 
 #: tmain.acaddvalue.caption
@@ -72,7 +72,18 @@ msgstr ""
 msgid "Einstellungen (RegistrySource1)"
 msgstr ""
 
-#: tmain.acshowclienteditdialog.caption
+#: tmain.acshowclienteditdialogkombi.caption
+msgctxt "TMAIN.ACSHOWCLIENTEDITDIALOGKOMBI.CAPTION"
+msgid "RootKeys ändern"
+msgstr ""
+
+#: tmain.acshowclienteditdialoglist.caption
+msgctxt "TMAIN.ACSHOWCLIENTEDITDIALOGLIST.CAPTION"
+msgid "RootKeys ändern"
+msgstr ""
+
+#: tmain.acshowclienteditdialogsingle.caption
+msgctxt "TMAIN.ACSHOWCLIENTEDITDIALOGSINGLE.CAPTION"
 msgid "RootKeys ändern"
 msgstr ""
 
@@ -153,79 +164,57 @@ msgid "RegistryControls in Aktion"
 msgstr ""
 
 #: tmain.lblcheckgroup.caption
-msgid "CheckGroup: Items laden, LastChecked u."
+msgid "TRegCheckGroup: Items laden, LastChecked u."
 msgstr ""
 
 #: tmain.lblcheckgroup2.caption
-msgid "CheckListBox (rcgCheckGroup3): statisch, "
+msgctxt "tmain.lblcheckgroup2.caption"
+msgid "TRegCheckListBox: statisch, ItemIndex u. "
 msgstr ""
 
 #: tmain.lblchecklistbox.caption
-msgid "CheckListBox (rlbCheckListBox1): Items laden, "
-msgstr ""
-
-#: tmain.lblchecklistbox2.caption
-msgid "CheckListBox (rlbCheckListBox2): statisch, ItemIndex "
+msgid "TRegCheckListBox: Items laden, ItemIndex u. "
 msgstr ""
 
 #: tmain.lblchecklistbox3.caption
-msgid "CheckListBox (rlbCheckListBox2): statisch, "
+msgctxt "tmain.lblchecklistbox3.caption"
+msgid "TRegCheckListBox: statisch, ItemIndex u. "
 msgstr ""
 
 #: tmain.lblcombobox.caption
-msgid "ComboBox (redtComboBoxList1): Items laden,"
-msgstr ""
-
-#: tmain.lblcombobox1.caption
-msgctxt "tmain.lblcombobox1.caption"
-msgid "ComboBox (redtComboBox1): ItemIndex verwalten"
+msgid "TRegComboBox: Items laden, ItemIndex verwalten"
 msgstr ""
 
 #: tmain.lblcombobox2.caption
 msgctxt "TMAIN.LBLCOMBOBOX2.CAPTION"
-msgid "ComboBox (redtComboBox1): ItemIndex verwalten"
-msgstr ""
-
-#: tmain.lbleditsinglevalue.caption
-msgctxt "tmain.lbleditsinglevalue.caption"
-msgid "Edit (redtEdit): Text verwalten"
+msgid "TRegComboBox: ItemIndex verwalten"
 msgstr ""
 
 #: tmain.lbleditsinglevalue1.caption
 msgctxt "tmain.lbleditsinglevalue1.caption"
-msgid "Edit (redtEdit): Text verwalten"
+msgid "TRegEdit: Text verwalten"
 msgstr ""
 
 #: tmain.lblistboxlist.caption
-msgid "ListBox (rlbListBox2): Items laden, ItemIndex "
-msgstr ""
-
-#: tmain.lbllistbox1.caption
-msgctxt "tmain.lbllistbox1.caption"
-msgid "ListBox (rlbListBox1): statisch, ItemIndex verwalten"
+msgid "TRegListBox: Items laden, ItemIndex verwalten"
 msgstr ""
 
 #: tmain.lbllistbox2.caption
 msgctxt "TMAIN.LBLLISTBOX2.CAPTION"
-msgid "ListBox (rlbListBox1): statisch, ItemIndex verwalten"
-msgstr ""
-
-#: tmain.lblradiogroup1.caption
-msgctxt "tmain.lblradiogroup1.caption"
-msgid "RadioGroup: ItemIndex verwalten"
+msgid "TRegListBox: statisch, ItemIndex verwalten"
 msgstr ""
 
 #: tmain.lblradiogroup2.caption
 msgctxt "TMAIN.LBLRADIOGROUP2.CAPTION"
-msgid "RadioGroup: ItemIndex verwalten"
+msgid "TRegRadioGroup: ItemIndex verwalten"
 msgstr ""
 
 #: tmain.lblradiogrouplist.caption
-msgid "Radiogroup: Items laden, ItemIndex verwalten"
+msgid "TRegRadiogroup: Items laden, ItemIndex verwalten"
 msgstr ""
 
 #: tmain.lblvalueeditlist.caption
-msgid "ValueListEditor(rvlValueListEditor): Keys u. Values "
+msgid "TRegValueListEditor: Keys u. Values laden u."
 msgstr ""
 
 #: tmain.menuitem1.caption
@@ -244,70 +233,48 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: tmain.rcbxcheckbox1.caption
-msgctxt "tmain.rcbxcheckbox1.caption"
-msgid "CheckBox (rcbxCheckBox1): ItemIndex verw."
-msgstr ""
-
-#: tmain.rcbxcheckbox2.caption
-msgctxt "TMAIN.RCBXCHECKBOX2.CAPTION"
-msgid "CheckBox (rcbxCheckBox1): ItemIndex verw."
-msgstr ""
-
 #: tmain.rcbxcheckboxkombi.caption
 msgid "Key1"
 msgstr ""
 
-#: tmain.rcgcheckedgroup.caption
+#: tmain.rcbxcheckboxstatic.caption
+msgctxt "TMAIN.RCBXCHECKBOXSTATIC.CAPTION"
+msgid "TRegCheckBox: ItemIndex verw."
+msgstr ""
+
+#: tmain.rcgcheckedgroupkombi.caption
+msgctxt "TMAIN.RCGCHECKEDGROUPKOMBI.CAPTION"
 msgid " CheckedGroup "
 msgstr ""
 
-#: tmain.rcgcheckgroup1.caption
-msgid "CheckGroup (rcgCheckGroup1) dynamisch"
+#: tmain.rcgcheckgroupdynamic.caption
+msgctxt "TMAIN.RCGCHECKGROUPDYNAMIC.CAPTION"
+msgid " TRegCheckGroup dynamisch "
 msgstr ""
 
-#: tmain.rcgcheckgroup2.caption
-msgctxt "tmain.rcgcheckgroup2.caption"
-msgid " CheckGroup (rcgCheckGroup2): statisch"
+#: tmain.rcgcheckgroupstatic.caption
+msgctxt "TMAIN.RCGCHECKGROUPSTATIC.CAPTION"
+msgid " TRegCheckGroup: statisch "
 msgstr ""
 
-#: tmain.rcgcheckgroup3.caption
-msgctxt "TMAIN.RCGCHECKGROUP3.CAPTION"
-msgid " CheckGroup (rcgCheckGroup2): statisch"
+#: tmain.rgrpradiogroupdynamic.caption
+msgctxt "TMAIN.RGRPRADIOGROUPDYNAMIC.CAPTION"
+msgid " TRegRadiogroup dynamisch "
 msgstr ""
 
-#: tmain.rgrpradiogroup1.caption
-msgctxt "tmain.rgrpradiogroup1.caption"
-msgid "RadioGroup (rgrpRadioGroup1): statisch"
+#: tmain.rgrpradiogroupstatic.caption
+msgctxt "TMAIN.RGRPRADIOGROUPSTATIC.CAPTION"
+msgid " TRegRadioGroup: statisch "
 msgstr ""
 
-#: tmain.rgrpradiogroup2.caption
-msgctxt "TMAIN.RGRPRADIOGROUP2.CAPTION"
-msgid "RadioGroup (rgrpRadioGroup1): statisch"
+#: tmain.rrbradiobuttonstatic1.caption
+msgctxt "TMAIN.RRBRADIOBUTTONSTATIC1.CAPTION"
+msgid "TRegRadioButton: Checkstatus verw."
 msgstr ""
 
-#: tmain.rgrpradiogrouplist1.caption
-msgid " Radiogroup (rgrpRadioGroupList1) dynamisch"
-msgstr ""
-
-#: tmain.rrbradiobutton1.caption
-msgctxt "tmain.rrbradiobutton1.caption"
-msgid "RadioButton (rrbRadioButton1): Checkstatus verw."
-msgstr ""
-
-#: tmain.rrbradiobutton2.caption
-msgctxt "tmain.rrbradiobutton2.caption"
-msgid "RadioButton (rrbRadioButton2): Checkstatus verw."
-msgstr ""
-
-#: tmain.rrbradiobutton3.caption
-msgctxt "TMAIN.RRBRADIOBUTTON3.CAPTION"
-msgid "RadioButton (rrbRadioButton1): Checkstatus verw."
-msgstr ""
-
-#: tmain.rrbradiobutton4.caption
-msgctxt "TMAIN.RRBRADIOBUTTON4.CAPTION"
-msgid "RadioButton (rrbRadioButton2): Checkstatus verw."
+#: tmain.rrbradiobuttonstatic2.caption
+msgctxt "TMAIN.RRBRADIOBUTTONSTATIC2.CAPTION"
+msgid "TRegRadioButton: Checkstatus verw."
 msgstr ""
 
 #: tmain.tabgroupindex_1.caption

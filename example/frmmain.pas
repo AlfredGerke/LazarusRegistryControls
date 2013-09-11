@@ -52,9 +52,11 @@ type
     acEraseSectionValueEdit2: TAction;
     acDeleteRootKey: TAction;
     acClearItems: TAction;
-    acShowClientEditDialog: TAction;
+    acShowClientEditDialogKombi: TAction;
     acRefreshMergeDataOn: TAction;
     acRefreshMergeDataOff: TAction;
+    acShowClientEditDialogList: TAction;
+    acShowClientEditDialogSingle: TAction;
     acWriteAdHocOffList: TAction;
     acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
@@ -67,11 +69,13 @@ type
     btnEraseValueEditList: TSpeedButton;
     btnSetMergePropertyOn: TButton;
     btnSetMergePropertyOff: TButton;
-    btnShowClientDialog: TButton;
+    btnShowClientDialogKombi: TButton;
     btnRefreshControls: TButton;
     btnRefreshControlsList: TButton;
     btnRefreshControlsList1: TButton;
     btnClearItems: TButton;
+    btnShowClientDialogList: TButton;
+    btnShowClientDialogSingle: TButton;
     btnSyncDataOfList: TButton;
     btnSyncDataOnList: TButton;
     btnWriteAdHocOffList: TButton;
@@ -80,9 +84,8 @@ type
     btnWriteAdHocOff: TButton;
     btnSyncDataOf: TButton;
     btnWriteAdHocOnList: TButton;
-    cbxClientNameList: TRegComboBox;
+    cbxClientNameDynamic: TRegComboBox;
     lblCheckListBox: TLabel;
-    lblCheckListBox2: TLabel;
     lblCheckListBox3: TLabel;
     lblCheckGroup2: TLabel;
     lblComboBox2: TLabel;
@@ -91,10 +94,6 @@ type
     lblListBox2: TLabel;
     lblRadioGroup2: TLabel;
     lblRadioGroupList: TLabel;
-    lblEditSingleValue: TLabel;
-    lblListBox1: TLabel;
-    lblComboBox1: TLabel;
-    lblRadioGroup1: TLabel;
     lbListBoxList: TLabel;
     lblComboBox: TLabel;
     lblCheckGroup: TLabel;
@@ -117,45 +116,35 @@ type
     PageControl1: TPageControl;
     PageControl2: TPageControl;
     pnlClientKombination: TPanel;
-    pnlClient1: TPanel;
-    pnlClientList: TPanel;
     pnlClient: TPanel;
+    pnlClientList: TPanel;
     pnlTop: TPanel;
     pnlTopList: TPanel;
     pnlTopKombination: TPanel;
-    rcbxCheckBox1: TRegCheckBox;
-    rcbxCheckBox2: TRegCheckBox;
+    rcbxCheckBoxStatic: TRegCheckBox;
     rcbxCheckBoxKombi: TRegCheckBox;
-    rcgCheckedGroup: TRegCheckGroup;
-    rcgCheckGroup3: TRegCheckGroup;
-    redtComboBox2: TRegComboBox;
-    redtComboBoxList1: TRegComboBox;
-    redtEdit: TRegEdit;
-    redtComboBox1: TRegComboBox;
-    rcgCheckGroup1: TRegCheckGroup;
-    rcgCheckGroup2: TRegCheckGroup;
-    redtEdit1: TRegEdit;
+    rcgCheckedGroupKombi: TRegCheckGroup;
+    rcgCheckGroupStatic: TRegCheckGroup;
+    redtComboBoxStatic: TRegComboBox;
+    redtComboBoxDynamic: TRegComboBox;
+    rcgCheckGroupDynamic: TRegCheckGroup;
+    redtEditStatic: TRegEdit;
     redtEditKombi: TRegEdit;
-    cbxClientNameSingle: TRegComboBox;
+    cbxClientNameStatic: TRegComboBox;
     cbxClientNameKombi: TRegComboBox;
     RegistrySource3: TRegistrySource;
-    rlbCheckedListBox: TRegCheckListBox;
-    rvlValueListEditor: TRegValueListEditor;
-    rgrpRadioGroup2: TRegRadioGroup;
-    rlbCheckListBox2: TRegCheckListBox;
-    rlbCheckListBox1: TRegCheckListBox;
+    rlbCheckedListBoxKombi: TRegCheckListBox;
+    rvlValueListEditorDynamic: TRegValueListEditor;
+    rgrpRadioGroupStatic: TRegRadioGroup;
+    rlbCheckListBoxDynamic: TRegCheckListBox;
     RegistrySource1: TRegistrySource;
     RegistrySource2: TRegistrySource;
-    rlbCheckListBox3: TRegCheckListBox;
-    rlbListBox2: TRegListBox;
-    rlbListBox1: TRegListBox;
-    rgrpRadioGroup1: TRegRadioGroup;
-    rgrpRadioGroupList1: TRegRadioGroup;
-    rlbListBox3: TRegListBox;
-    rrbRadioButton1: TRegRadioButton;
-    rrbRadioButton2: TRegRadioButton;
-    rrbRadioButton3: TRegRadioButton;
-    rrbRadioButton4: TRegRadioButton;
+    rlbCheckListBoxStatic: TRegCheckListBox;
+    rlbListBoxDynamic: TRegListBox;
+    rgrpRadioGroupDynamic: TRegRadioGroup;
+    rlbListBoxStatic: TRegListBox;
+    rrbRadioButtonStatic1: TRegRadioButton;
+    rrbRadioButtonStatic2: TRegRadioButton;
     rvlValueListEditorKombi1: TRegValueListEditor;
     rvlValueListEditorKombi2: TRegValueListEditor;
     SpeedButton1: TSpeedButton;
@@ -181,7 +170,9 @@ type
     procedure acRefreshSettingListSourceExecute(Sender: TObject);
     procedure acRefreshSettingsKombinationExecute(Sender: TObject);
     procedure acRefreshSettingsSingleSourceExecute(Sender: TObject);
-    procedure acShowClientEditDialogExecute(Sender: TObject);
+    procedure acShowClientEditDialogListExecute(Sender: TObject);
+    procedure acShowClientEditDialogKombiExecute(Sender: TObject);
+    procedure acShowClientEditDialogSingleExecute(Sender: TObject);
     procedure acSyncDataListOffExecute(Sender: TObject);
     procedure acSyncDataListOnExecute(Sender: TObject);
     procedure acSyncDataOffExecute(Sender: TObject);
@@ -220,11 +211,19 @@ procedure TMain.RefreshWriteAdHocOnOff(aFlag: integer;
   aSet: boolean);
 begin
   case aFlag of
+    // Für alle Clients der Registrysource1 wird die Eigenschaft DoWriteAdHoc
+    // auf den Wert von aSet gesetzt
     0: RegistrySource1.RefreshWriteAdHocProperty(aSet);
+    // Für alle Clients der Registrysource2 wird die Eigenschaft DoWriteAdHoc
+    // auf den Wert von aSet gesetzt
     1: RegistrySource2.RefreshWriteAdHocProperty(aSet);
     2:
     begin
+      // Für alle Clients der Registrysource3 wird  wird die Eigenschaft DoWriteAdHoc
+      // auf den Wert von aSet gesetzt
       RegistrySource3.RefreshWriteAdHocProperty(aSet);
+      // Für den Client: redtEditKombi der Registrysource3  wird die Eigenschaft
+      // DoWriteAdHoc auf den Wert von False gesetzt
       RegistrySource3.RefreshWriteAdHocProperty(False, 'redtEditKombi');
     end;
   end;
@@ -234,9 +233,15 @@ procedure TMain.RefreshSyncDataOnOff(aFlag: integer;
   aSet: boolean);
 begin
   case aFlag of
+    // Für alle Clients der Registrysource1 wird die Eigenschaft DoSyncData
+    // auf den Wert von aSet gesetzt
     0: RegistrySource1.RefreshSyncProperty(aSet);
-    1: RegistrySource1.RefreshSyncProperty(aSet);
-    2: RegistrySource1.RefreshSyncProperty(aSet);
+    // Für alle Clients der Registrysource2 wird die Eigenschaft DoSyncData
+    // auf den Wert von aSet gesetzt
+    1: RegistrySource2.RefreshSyncProperty(aSet);
+    // Für alle Clients der Registrysource3 wird die Eigenschaft DoSyncData
+    // auf den Wert von aSet gesetzt
+    2: RegistrySource3.RefreshSyncProperty(aSet);
   end;
 end;
 
@@ -249,23 +254,23 @@ procedure TMain.acCheckExampleSettingsExecute(Sender: TObject);
 begin
   if CheckForExampleSettings then
     MessageDlg('Der Schlüssel "Desktop" ist vorhanden und gefüllt. Beispieleinträge sind grundsätzlich vorhanden!',
-      mtInformation,
-      [mbOK],
-      0)
+      mtInformation, [mbOK], 0)
   else
   begin
     MessageDlg('Der Schlüssel "Desktop" ist entweder nicht vorhanden oder nicht gefüllt. Beispieleinträge sind wahrscheinlich nicht vorhanden!',
-      mtWarning,
-      [mbOK],
-      0);
+      mtWarning, [mbOK], 0);
+
     CreateSettings;
   end;
 end;
 
 procedure TMain.acClearItemsExecute(Sender: TObject);
 begin
-  RegistrySource3.ClearClientItems('',
-    True,
+  // Allen Clients der Registrysource3 welche eine Liste anzeigen (z.B.: TRegListBox, etc.)
+  // wird nach positiver Beantwortung der Benutzeranfrage diese Liste gelöscht.
+  // Wenn die Eigenschaft ReadDefaults auf True steht, werden Standards aus der
+  // Registry nachgeladen, wenn vorhanden
+  RegistrySource3.ClearClientItems('', True,
     'Sollen die Listen gelöscht werden? (Wenn ReadDefaults=True werden sofort Defaults nachgeladen)');
 end;
 
@@ -273,15 +278,18 @@ procedure TMain.acAddValueExecute(Sender: TObject);
 var
   ident: string;
 begin
+  // Ident neu definieren
   ident := Format('Key%d', [rvlValueListEditorKombi1.Strings.Count]);
   // BeginUpdate verhindert das Triggern das OnChange der RegistrySettings
   redtEditKombi.RegistrySettings.BeginUpdate;
   try
+    // Ident neu setzen
     redtEditKombi.RegistrySettings.Ident := ident;
   finally
     // EndUpdate muss unbedingt aufgerufen werden
     redtEditKombi.RegistrySettings.EndUpdate;
   end;
+  // Daten in die Registry schreiben
   redtEditKombi.WriteToReg;
 end;
 
@@ -298,18 +306,23 @@ begin
   with RegistrySource1 do
   begin
     Screen.Cursor := crHourGlass;
+    // Aktuelle Einstellung für DoSyncData merken
     old_sync_data := DoSyncData;
+    // Aktuelle Einstellung für WriteDefaults merken
     old_write_defaults := WriteDefaults;
-    // schalten die Synchronisierung für Element Clients dieser RegistrySource aus
+    // Schalten die Synchronisierung für Element Clients dieser RegistrySource aus
     DoSyncData := False;
-    // ermöglicht das Schreiben/Löschen von Defaults in der Registry
+    // Ermöglicht das Schreiben/Löschen von Defaults in der Registry
     WriteDefaults := True;
 
+    // Ermittelt alle Sectionen unterhalb von RegistrySettings.RootKey und entfernt diese
     DeleteRootKey;
 
-    // aktualisiert alle Clients dieser RegistrySource
+    // Aktualisiert alle Clients dieser RegistrySource
     RefreshControlData('', 0);
+    // Alten Wert für WriteDefaults zurück setzen
     WriteDefaults := old_write_defaults;
+    // Alten Wert für DoSyncData zurück setzen
     DoSyncData := old_sync_data;
     Screen.Cursor := crDefault;
   end;
@@ -317,18 +330,23 @@ begin
   with RegistrySource2 do
   begin
     Screen.Cursor := crHourGlass;
+    // Aktuelle Einstellung für DoSyncData merken
     old_sync_data := DoSyncData;
+    // Aktuelle Einstellung für WriteDefaults merken
     old_write_defaults := WriteDefaults;
-    // schalten die Synchronisierung für Element Clients dieser RegistrySource aus
+    // Schalten die Synchronisierung für Element Clients dieser RegistrySource aus
     DoSyncData := False;
-    // ermöglicht das Schreiben/Löschen von Defaults in der Registry
+    // Ermöglicht das Schreiben/Löschen von Defaults in der Registry
     WriteDefaults := True;
 
+    // Ermittelt alle Sectionen unterhalb von RegistrySettings.RootKey und entfernt diese
     DeleteRootKey;
 
-    // aktualisiert alle Clients dieser RegistrySource
+    // Aktualisiert alle Clients dieser RegistrySource
     RefreshControlData('', 0);
+    // Alten Wert für WriteDefaults zurück setzen
     WriteDefaults := old_write_defaults;
+    // Alten Wert für DoSyncData zurück setzen
     DoSyncData := old_sync_data;
     Screen.Cursor := crDefault;
   end;
@@ -336,18 +354,23 @@ begin
   with RegistrySource3 do
   begin
     Screen.Cursor := crHourGlass;
+    // Aktuelle Einstellung für DoSyncData merken
     old_sync_data := DoSyncData;
+    // Aktuelle Einstellung für WriteDefaults merken
     old_write_defaults := WriteDefaults;
-    // schalten die Synchronisierung für Element Clients dieser RegistrySource aus
+    // Schalten die Synchronisierung für Element Clients dieser RegistrySource aus
     DoSyncData := False;
-    // ermöglicht das Schreiben/Löschen von Defaults in der Registry
+    // Ermöglicht das Schreiben/Löschen von Defaults in der Registry
     WriteDefaults := True;
 
+    // Ermittelt alle Sectionen unterhalb von RegistrySettings.RootKey und entfernt diese
     DeleteRootKey;
 
-    // aktualisiert alle Clients dieser RegistrySource
+    // Aktualisiert alle Clients dieser RegistrySource
     RefreshControlData('', 0);
+    // Alten Wert für WriteDefaults zurück setzen
     WriteDefaults := old_write_defaults;
+    // Alten Wert für DoSyncData zurück setzen
     DoSyncData := old_sync_data;
     Screen.Cursor := crDefault;
   end;
@@ -355,68 +378,155 @@ end;
 
 procedure TMain.acEraseSectionValueEdit2Execute(Sender: TObject);
 begin
+  // Löscht nach positiver Beantwortung der Benutzeranfrage die Liste des
+  // Steuerelementes (Client)
+  // Die Benutzeranfrage wird frei formuliert
   rvlValueListEditorKombi2.ClearItems(True, 'Soll die Liste gelöscht werden?');
 end;
 
 procedure TMain.acEraseSectionValueEditExecute(Sender: TObject);
 begin
+  // Löscht nach positiver Beantwortung der Benutzeranfrage die Liste des
+  // Steuerelementes (Client)
+  // Es wird eine Standardbenutzeranfrage formuliert
   rvlValueListEditorKombi1.ClearItems;
 end;
 
 procedure TMain.acRefreshDataExecute(Sender: TObject);
 begin
-  RegistrySource1.RefreshControlData(Trim(cbxClientNameSingle.Text));
+  // Aktualisert das Steuerelemente (Clients), dessen Name als String übergeben wurde
+  // Ein Leerstring wird alle Steuerelemente (Clients) der RegistrySource aktualisieren
+  RegistrySource1.RefreshControlData(Trim(cbxClientNameStatic.Text));
 end;
 
 procedure TMain.acRefreshDataKombiExecute(Sender: TObject);
 begin
+  // Aktualisert alle Steuerelemente (Clients) der RegistrySource
   RegistrySource3.RefreshControlData;
 end;
 
 procedure TMain.acRefreshDataListExecute(Sender: TObject);
 begin
-  RegistrySource2.RefreshControlData(Trim(cbxClientNameList.Text));
+  // Aktualisert das Steuerelemente (Clients), dessen Name als String übergeben wurde
+  // Ein Leerstring wird alle Steuerelemente (Clients) der RegistrySource aktualisieren
+  RegistrySource2.RefreshControlData(Trim(cbxClientNameDynamic.Text));
 end;
 
 procedure TMain.acRefreshMergeDataOffExecute(Sender: TObject);
 begin
+  // Schaltet die Eigenschaft MergeData aller Listenelemente der RegistrySource aus
+  // Wenn MergeData auf False steht, werden Listen nicht automatisch mit Standards
+  // aufgefüllt
+  // MergeData greift immer dann, wenn eine Liste nicht vollständig ist und durch
+  // Standards automatisch aufgefüllt werden könnte
+  // Ist die Liste komplett leer, werden Standards immer geladen unabhängig ob
+  // MergeData auf False steht
+  // Dieses Verhalten lässt sich auschalten in dem Man ReadDefaults auf False setzt
   RegistrySource3.RefreshMergeDataProperty(False);
 end;
 
 procedure TMain.acRefreshMergeDataOnExecute(Sender: TObject);
 begin
+  // Schaltet die Eigenschaft MergeData aller Listenelemente der RegistrySource an
+  // MergeData greift immer dann, wenn eine Liste nicht vollständig ist und durch
+  // Standards automatisch aufgefüllt werden könnte
+  // Ist die Liste komplett leer, werden Standards immer geladen unabhängig ob
+  // MergeData auf False steht
+  // Dieses Verhalten lässt sich auschalten in dem Man ReadDefaults auf False setzt
   RegistrySource3.RefreshMergeDataProperty(True);
 end;
 
 procedure TMain.acRefreshSettingListSourceExecute(Sender: TObject);
 begin
+  // Alle RootKeys der Steuerelemente (Clients) der RegistrySource werden mit aktuelle
+  // Schlüsseln versorgt
   RegistrySource2.RefreshSettings;
 end;
 
 procedure TMain.acRefreshSettingsKombinationExecute(Sender: TObject);
 begin
+  // Alle RootKeys der Steuerelemente (Clients) der RegistrySource werden mit aktuelle
+  // Schlüsseln versorgt
   RegistrySource3.RefreshSettings;
 end;
 
 procedure TMain.acRefreshSettingsSingleSourceExecute(Sender: TObject);
 begin
+  // Alle RootKeys der Steuerelemente (Clients) der RegistrySource werden mit aktuelle
+  // Schlüsseln versorgt
   RegistrySource1.RefreshSettings;
 end;
 
-procedure TMain.acShowClientEditDialogExecute(Sender: TObject);
+procedure TMain.acShowClientEditDialogListExecute(Sender: TObject);
 var
   client_name: string;
 begin
-  with RegistrySource3 do
+  // Mit diesem Code wird auf Eigenschaften (RootKeys) eines Steuerelementes (Client) zugegriffen,
+  // welche nicht in den RegistrySettings auftauchen
+  with RegistrySource2 do
   begin
+    // Sorgt dafür das der Dialog im Editiermodus erscheint und nicht im Ansichtsmodus
     EditClientRootKeys := True;
     try
-      client_name := Trim(cbxClientNameKombi.Text);
+      // Auswahl des Steuerelementes (Client), dessen RootKeys angepasst werden sollen
+      client_name := Trim(cbxClientNameDynamic.Text);
+      // Der Dialog kann nur für ein gültiges Steuerelement aufgerufen werden
       if (client_name <> EmptyStr) then
         ShowClientEditDialog(client_name)
       else
         MessageDlg('Ungültiger Clientname gewählt!', mtWarning, [mbOk], 0);
     finally
+      // Sorgt dafür der Editiermodus wieder auf False gesetzt wird
+      EditClientRootKeys := False;
+    end;
+  end;
+end;
+
+procedure TMain.acShowClientEditDialogKombiExecute(Sender: TObject);
+var
+  client_name: string;
+begin
+  // Mit diesem Code wird auf Eigenschaften (RootKeys) eines Steuerelementes (Client) zugegriffen,
+  // welche nicht in den RegistrySettings auftauchen
+  with RegistrySource3 do
+  begin
+    // Sorgt dafür das der Dialog im Editiermodus erscheint und nicht im Ansichtsmodus
+    EditClientRootKeys := True;
+    try
+      // Auswahl des Steuerelementes (Client), dessen RootKeys angepasst werden sollen
+      client_name := Trim(cbxClientNameKombi.Text);
+      // Der Dialog kann nur für ein gültiges Steuerelement aufgerufen werden
+      if (client_name <> EmptyStr) then
+        ShowClientEditDialog(client_name)
+      else
+        MessageDlg('Ungültiger Clientname gewählt!', mtWarning, [mbOk], 0);
+    finally
+      // Sorgt dafür der Editiermodus wieder auf False gesetzt wird
+      EditClientRootKeys := False;
+    end;
+  end;
+end;
+
+procedure TMain.acShowClientEditDialogSingleExecute(Sender: TObject);
+var
+  client_name: string;
+begin
+  // Mit diesem Code wird auf Eigenschaften (RootKeys) eines Steuerelementes (Client) zugegriffen,
+  // welche nicht in den RegistrySettings auftauchen
+  with RegistrySource1 do
+  begin
+    // Sorgt dafür das der Dialog im Editiermodus erscheint und nicht im Ansichtsmodus
+    EditClientRootKeys := True;
+    try
+      // Auswahl des Steuerelementes (Client), dessen RootKeys angepasst werden sollen
+      client_name := Trim(cbxClientNameStatic.Text);
+      // Der Dialog kann nur für ein gültiges Steuerelement aufgerufen werden
+      if (client_name <> EmptyStr) then
+        ShowClientEditDialog(client_name)
+      else
+        MessageDlg('Ungültiger Clientname gewählt!', mtWarning, [mbOk], 0);
+    finally
+      // Sorgt dafür der Editiermodus wieder auf False gesetzt wird
       EditClientRootKeys := False;
     end;
   end;
@@ -438,33 +548,63 @@ begin
 end;
 
 procedure TMain.acTestDeleteKeyExecute(Sender: TObject);
+var
+  section: string;
+  key: string;
 begin
   if (PageControl1.ActivePageIndex <> 1) then
     PageControl1.ActivePageIndex := 1;
 
-  RegistrySource2.DeleteKey('CheckGroupListe',
-    'CheckGroup5Key',
-    0);
+  section := 'CheckGroupListe';
+  key := 'CheckGroup5Key';
+
+  MessageDlg(Format('Datenwert: %s in Section: %s im Schlüssel: %s löschen!',
+    [key, section, RegistrySource1.GetRootKey]), mtInformation, [mbOk], 0);
+
+  // Löscht den Datenwerte (key) der Section (section)
+  // Der GroupIndex 0 sorgt dafür das alle zugehörigen Steuerelemente (Clients)
+  // synchronisiert werden
+  RegistrySource2.DeleteKey(section, key, 0);
 end;
 
 procedure TMain.acTestEraseSectionExecute(Sender: TObject);
+var
+  section: string;
 begin
   if (PageControl1.ActivePageIndex <> 1) then
     PageControl1.ActivePageIndex := 1;
 
- RegistrySource2.EraseSection('CheckGroupListe',
-   0);
+  section := 'CheckGroupListe';
+
+  MessageDlg(Format('Section: %s im Schlüssel: %s löschen!',
+    [section, RegistrySource1.GetRootKey]), mtInformation, [mbOk], 0);
+
+  //Löscht die Section (section)
+  // Der GroupIndex 0 sorgt dafür das alle zugehörigen Steuerelemente (Clients)
+  // synchronisiert werden
+  RegistrySource2.EraseSection(section, 0);
 end;
 
 procedure TMain.acTestRenameKeyExecute(Sender: TObject);
+var
+  section: string;
+  key_old: string;
+  key_new: string;
 begin
   if (PageControl1.ActivePageIndex <> 1) then
     PageControl1.ActivePageIndex := 1;
 
-  RegistrySource2.RenameKey('CheckGroupListe',
-    'CheckGroup1Key',
-    'CheckGroup1_1Key',
-    0);
+  section := 'CheckGroupListe';
+  key_old := 'CheckGroup1Key';
+  key_new := 'CheckGroup1_1Key';
+
+  MessageDlg(Format('Datenwert: %s in Section: %s im Schlüssel: %s in %s umbenennen!',
+    [key_old, section, RegistrySource1.GetRootKey, key_new]), mtInformation, [mbOk], 0);
+
+  // Der Datenwert key_old wird in key_new umbenannt
+  // Der GroupIndex 0 sorgt dafür das alle zugehörigen Steuerelemente (Clients)
+  // synchronisiert werden
+  RegistrySource2.RenameKey(section, key_old, key_new, 0);
 end;
 
 procedure TMain.acWriteAdHocOffExecute(Sender: TObject);
@@ -500,11 +640,17 @@ begin
   RefreshSyncDataOnOff(1, True);
   RefreshWriteAdHocOnOff(2, True);
   RefreshSyncDataOnOff(2, True);
-  RegistrySource1.GetClientList(cbxClientNameSingle.Items);
-  cbxClientNameSingle.ReadFromReg;
-  RegistrySource2.GetClientList(cbxClientNameList.Items);
-  cbxClientNameList.ReadFromReg;
+  // Liste aller zugehörigen Steuerelemente (Clients) ermitteln
+  RegistrySource1.GetClientList(cbxClientNameStatic.Items);
+  // Daten aus der Registry lesen
+  cbxClientNameStatic.ReadFromReg;
+  // Liste aller zugehörigen Steuerelemente (Clients) ermitteln
+  RegistrySource2.GetClientList(cbxClientNameDynamic.Items);
+  // Daten aus der Registry lesen
+  cbxClientNameDynamic.ReadFromReg;
+  // Liste aller zugehörigen Steuerelemente (Clients) ermitteln
   RegistrySource3.GetClientList(cbxClientNameKombi.Items);
+  // Daten aus der Registry lesen
   cbxClientNameKombi.ReadFromReg;
 end;
 
@@ -512,9 +658,17 @@ procedure TMain.rcbxCheckBoxKombiBeforeRegistrySettingChange(
   aOldSettingInfo: TRegistrySettingValue;
   aNewSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
 begin
+  // Mit diesem Code wird demonstriert wie man Eingaben in die RegistrySettings
+  // überprüfen und auf Wunsch ablehnen kann
+  // aNewSettingInfo.Kind Informiert welcher Eintrag geändert werden soll
   case aNewSettingInfo.Kind of
     rskWriteDefaults:
     begin
+      // aOldSettingInfo informiert über die aktuelle Einstellung
+      // aNewSettingInfo informiert über gewünscht Änderung
+      // Es kann immer nur die Eigenschaft abgefragt werden, welche durch
+      // aNewSettingInfo.Kind vorgegeben wird
+      // z.B.: rskWriteDefaults -> WriteDefaults; rsgReadDefaults -> ReadDefaults
       if (aOldSettingInfo.WriteDefaults <> aNewSettingInfo.WriteDefaults) then
       begin
         aIsOk := False;
@@ -554,6 +708,7 @@ begin
   begin
     list := TStringList.Create;
     try
+      // List die gesamte Section 'Desctop' aus
       ReadSection('Desktop', list, False);
       Result := (list.Count > 0);
     finally
