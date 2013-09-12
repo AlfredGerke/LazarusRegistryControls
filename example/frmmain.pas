@@ -1,6 +1,6 @@
 unit frmmain;
 
-{$mode objfpc}{$H+}
+{$mode Delphi}{$H+}
 
 interface
 
@@ -28,7 +28,8 @@ uses
   regradiogroup,
   regcheckbox,
   regradiobutton,
-  DefaultTranslator, regtype;
+  DefaultTranslator,
+  regtype;
 
 type
 
@@ -211,18 +212,18 @@ procedure TMain.RefreshWriteAdHocOnOff(aFlag: integer;
   aSet: boolean);
 begin
   case aFlag of
-    // Für alle Clients der Registrysource1 wird die Eigenschaft DoWriteAdHoc
+    // Für alle Clients der RegistrySource1 wird die Eigenschaft DoWriteAdHoc
     // auf den Wert von aSet gesetzt
     0: RegistrySource1.RefreshWriteAdHocProperty(aSet);
-    // Für alle Clients der Registrysource2 wird die Eigenschaft DoWriteAdHoc
+    // Für alle Clients der RegistrySource2 wird die Eigenschaft DoWriteAdHoc
     // auf den Wert von aSet gesetzt
     1: RegistrySource2.RefreshWriteAdHocProperty(aSet);
     2:
     begin
-      // Für alle Clients der Registrysource3 wird  wird die Eigenschaft DoWriteAdHoc
+      // Für alle Clients der RegistrySource3 wird  wird die Eigenschaft DoWriteAdHoc
       // auf den Wert von aSet gesetzt
       RegistrySource3.RefreshWriteAdHocProperty(aSet);
-      // Für den Client: redtEditKombi der Registrysource3  wird die Eigenschaft
+      // Für den Client: redtEditKombi der RegistrySource3  wird die Eigenschaft
       // DoWriteAdHoc auf den Wert von False gesetzt
       RegistrySource3.RefreshWriteAdHocProperty(False, 'redtEditKombi');
     end;
@@ -233,13 +234,13 @@ procedure TMain.RefreshSyncDataOnOff(aFlag: integer;
   aSet: boolean);
 begin
   case aFlag of
-    // Für alle Clients der Registrysource1 wird die Eigenschaft DoSyncData
+    // Für alle Clients der RegistrySource1 wird die Eigenschaft DoSyncData
     // auf den Wert von aSet gesetzt
     0: RegistrySource1.RefreshSyncProperty(aSet);
-    // Für alle Clients der Registrysource2 wird die Eigenschaft DoSyncData
+    // Für alle Clients der RegistrySource2 wird die Eigenschaft DoSyncData
     // auf den Wert von aSet gesetzt
     1: RegistrySource2.RefreshSyncProperty(aSet);
-    // Für alle Clients der Registrysource3 wird die Eigenschaft DoSyncData
+    // Für alle Clients der RegistrySource3 wird die Eigenschaft DoSyncData
     // auf den Wert von aSet gesetzt
     2: RegistrySource3.RefreshSyncProperty(aSet);
   end;
@@ -266,8 +267,8 @@ end;
 
 procedure TMain.acClearItemsExecute(Sender: TObject);
 begin
-  // Allen Clients der Registrysource3 welche eine Liste anzeigen (z.B.: TRegListBox, etc.)
-  // wird nach positiver Beantwortung der Benutzeranfrage diese Liste gelöscht.
+  // Allen Clients der RegistrySource3 welche eine Liste verwalten (z.B.: TRegListBox, etc.)
+  // wird nach positiver Beantwortung der Benutzeranfrage diese Liste gelöscht
   // Wenn die Eigenschaft ReadDefaults auf True steht, werden Standards aus der
   // Registry nachgeladen, wenn vorhanden
   RegistrySource3.ClearClientItems('', True,
@@ -280,16 +281,17 @@ var
 begin
   // Ident neu definieren
   ident := Format('Key%d', [rvlValueListEditorKombi1.Strings.Count]);
-  // BeginUpdate verhindert das Triggern das OnChange der RegistrySettings
+  // BeginUpdate verhindert das Triggern von OnChange-Events der RegistrySettings
   redtEditKombi.RegistrySettings.BeginUpdate;
   try
     // Ident neu setzen
     redtEditKombi.RegistrySettings.Ident := ident;
   finally
-    // EndUpdate muss unbedingt aufgerufen werden
+    // EndUpdate muss unbedingt aufgerufen werden damit OnChange-Events der RegistrySettings
+    // wider getriggert werden
     redtEditKombi.RegistrySettings.EndUpdate;
   end;
-  // Daten in die Registry schreiben
+  // Daten des Steuerelementes in die Registry schreiben
   redtEditKombi.WriteToReg;
 end;
 
@@ -306,11 +308,11 @@ begin
   with RegistrySource1 do
   begin
     Screen.Cursor := crHourGlass;
-    // Aktuelle Einstellung für DoSyncData merken
+    // Aktuelle Einstellung für DoSyncData sichern
     old_sync_data := DoSyncData;
-    // Aktuelle Einstellung für WriteDefaults merken
+    // Aktuelle Einstellung für WriteDefaults sichern
     old_write_defaults := WriteDefaults;
-    // Schalten die Synchronisierung für Element Clients dieser RegistrySource aus
+    // Schaltet die Synchronisierung von Clients dieser RegistrySource aus
     DoSyncData := False;
     // Ermöglicht das Schreiben/Löschen von Defaults in der Registry
     WriteDefaults := True;
@@ -320,9 +322,9 @@ begin
 
     // Aktualisiert alle Clients dieser RegistrySource
     RefreshControlData('', 0);
-    // Alten Wert für WriteDefaults zurück setzen
+    // Gesicherten Wert von WriteDefaults setzen
     WriteDefaults := old_write_defaults;
-    // Alten Wert für DoSyncData zurück setzen
+    // Gesicherten Wert von DoSyncData setzen
     DoSyncData := old_sync_data;
     Screen.Cursor := crDefault;
   end;
@@ -330,11 +332,11 @@ begin
   with RegistrySource2 do
   begin
     Screen.Cursor := crHourGlass;
-    // Aktuelle Einstellung für DoSyncData merken
+    // Aktuelle Einstellung für DoSyncData sichern
     old_sync_data := DoSyncData;
-    // Aktuelle Einstellung für WriteDefaults merken
+    // Aktuelle Einstellung für WriteDefaults sichern
     old_write_defaults := WriteDefaults;
-    // Schalten die Synchronisierung für Element Clients dieser RegistrySource aus
+    // Schalten die Synchronisierung von Clients dieser RegistrySource aus
     DoSyncData := False;
     // Ermöglicht das Schreiben/Löschen von Defaults in der Registry
     WriteDefaults := True;
@@ -344,9 +346,9 @@ begin
 
     // Aktualisiert alle Clients dieser RegistrySource
     RefreshControlData('', 0);
-    // Alten Wert für WriteDefaults zurück setzen
+    // Gesicherten Wert von WriteDefaults setzen
     WriteDefaults := old_write_defaults;
-    // Alten Wert für DoSyncData zurück setzen
+    // Gesicherten Wert von DoSyncData setzen
     DoSyncData := old_sync_data;
     Screen.Cursor := crDefault;
   end;
@@ -354,11 +356,11 @@ begin
   with RegistrySource3 do
   begin
     Screen.Cursor := crHourGlass;
-    // Aktuelle Einstellung für DoSyncData merken
+    // Aktuelle Einstellung für DoSyncData sichern
     old_sync_data := DoSyncData;
-    // Aktuelle Einstellung für WriteDefaults merken
+    // Aktuelle Einstellung für WriteDefaults sichern
     old_write_defaults := WriteDefaults;
-    // Schalten die Synchronisierung für Element Clients dieser RegistrySource aus
+    // Schalten die Synchronisierung von Clients dieser RegistrySource aus
     DoSyncData := False;
     // Ermöglicht das Schreiben/Löschen von Defaults in der Registry
     WriteDefaults := True;
@@ -368,9 +370,9 @@ begin
 
     // Aktualisiert alle Clients dieser RegistrySource
     RefreshControlData('', 0);
-    // Alten Wert für WriteDefaults zurück setzen
+    // Gesicherten Wert von WriteDefaults setzen
     WriteDefaults := old_write_defaults;
-    // Alten Wert für DoSyncData zurück setzen
+    // Gesicherten Wert von DoSyncData setzen
     DoSyncData := old_sync_data;
     Screen.Cursor := crDefault;
   end;
@@ -394,7 +396,7 @@ end;
 
 procedure TMain.acRefreshDataExecute(Sender: TObject);
 begin
-  // Aktualisert das Steuerelemente (Clients), dessen Name als String übergeben wurde
+  // Aktualisert das Steuerelement (Client), dessen Name als String übergeben wurde
   // Ein Leerstring wird alle Steuerelemente (Clients) der RegistrySource aktualisieren
   RegistrySource1.RefreshControlData(Trim(cbxClientNameStatic.Text));
 end;
@@ -407,7 +409,7 @@ end;
 
 procedure TMain.acRefreshDataListExecute(Sender: TObject);
 begin
-  // Aktualisert das Steuerelemente (Clients), dessen Name als String übergeben wurde
+  // Aktualisert das Steuerelement (Client), dessen Name als String übergeben wurde
   // Ein Leerstring wird alle Steuerelemente (Clients) der RegistrySource aktualisieren
   RegistrySource2.RefreshControlData(Trim(cbxClientNameDynamic.Text));
 end;
@@ -421,7 +423,7 @@ begin
   // Standards automatisch aufgefüllt werden könnte
   // Ist die Liste komplett leer, werden Standards immer geladen unabhängig ob
   // MergeData auf False steht
-  // Dieses Verhalten lässt sich auschalten in dem Man ReadDefaults auf False setzt
+  // Dieses Verhalten lässt sich auschalten in dem man ReadDefaults auf False setzt
   RegistrySource3.RefreshMergeDataProperty(False);
 end;
 
@@ -432,27 +434,27 @@ begin
   // Standards automatisch aufgefüllt werden könnte
   // Ist die Liste komplett leer, werden Standards immer geladen unabhängig ob
   // MergeData auf False steht
-  // Dieses Verhalten lässt sich auschalten in dem Man ReadDefaults auf False setzt
+  // Dieses Verhalten lässt sich auschalten in dem man ReadDefaults auf False setzt
   RegistrySource3.RefreshMergeDataProperty(True);
 end;
 
 procedure TMain.acRefreshSettingListSourceExecute(Sender: TObject);
 begin
-  // Alle RootKeys der Steuerelemente (Clients) der RegistrySource werden mit aktuelle
+  // Alle RootKeys der Steuerelemente (Clients) der RegistrySource werden mit aktuellen
   // Schlüsseln versorgt
   RegistrySource2.RefreshSettings;
 end;
 
 procedure TMain.acRefreshSettingsKombinationExecute(Sender: TObject);
 begin
-  // Alle RootKeys der Steuerelemente (Clients) der RegistrySource werden mit aktuelle
+  // Alle RootKeys der Steuerelemente (Clients) der RegistrySource werden mit aktuellen
   // Schlüsseln versorgt
   RegistrySource3.RefreshSettings;
 end;
 
 procedure TMain.acRefreshSettingsSingleSourceExecute(Sender: TObject);
 begin
-  // Alle RootKeys der Steuerelemente (Clients) der RegistrySource werden mit aktuelle
+  // Alle RootKeys der Steuerelemente (Clients) der RegistrySource werden mit aktuellen
   // Schlüsseln versorgt
   RegistrySource1.RefreshSettings;
 end;
@@ -462,7 +464,7 @@ var
   client_name: string;
 begin
   // Mit diesem Code wird auf Eigenschaften (RootKeys) eines Steuerelementes (Client) zugegriffen,
-  // welche nicht in den RegistrySettings auftauchen
+  // welche nicht in den RegistrySettings veröffentlicht wurden
   with RegistrySource2 do
   begin
     // Sorgt dafür das der Dialog im Editiermodus erscheint und nicht im Ansichtsmodus
@@ -487,7 +489,7 @@ var
   client_name: string;
 begin
   // Mit diesem Code wird auf Eigenschaften (RootKeys) eines Steuerelementes (Client) zugegriffen,
-  // welche nicht in den RegistrySettings auftauchen
+  // welche nicht in den RegistrySettings veröffentlicht wurden
   with RegistrySource3 do
   begin
     // Sorgt dafür das der Dialog im Editiermodus erscheint und nicht im Ansichtsmodus
@@ -512,7 +514,7 @@ var
   client_name: string;
 begin
   // Mit diesem Code wird auf Eigenschaften (RootKeys) eines Steuerelementes (Client) zugegriffen,
-  // welche nicht in den RegistrySettings auftauchen
+  // welche nicht in den RegistrySettings veröffentlicht wurden
   with RegistrySource1 do
   begin
     // Sorgt dafür das der Dialog im Editiermodus erscheint und nicht im Ansichtsmodus
@@ -579,7 +581,7 @@ begin
   MessageDlg(Format('Section: %s im Schlüssel: %s löschen!',
     [section, RegistrySource1.GetRootKey]), mtInformation, [mbOk], 0);
 
-  //Löscht die Section (section)
+  // Löscht die Section (section)
   // Der GroupIndex 0 sorgt dafür das alle zugehörigen Steuerelemente (Clients)
   // synchronisiert werden
   RegistrySource2.EraseSection(section, 0);
@@ -642,15 +644,15 @@ begin
   RefreshSyncDataOnOff(2, True);
   // Liste aller zugehörigen Steuerelemente (Clients) ermitteln
   RegistrySource1.GetClientList(cbxClientNameStatic.Items);
-  // Daten aus der Registry lesen
+  // Daten für das Stuerelement aus der Registry lesen
   cbxClientNameStatic.ReadFromReg;
   // Liste aller zugehörigen Steuerelemente (Clients) ermitteln
   RegistrySource2.GetClientList(cbxClientNameDynamic.Items);
-  // Daten aus der Registry lesen
+  // Daten für das Stuerelement aus der Registry lesen
   cbxClientNameDynamic.ReadFromReg;
   // Liste aller zugehörigen Steuerelemente (Clients) ermitteln
   RegistrySource3.GetClientList(cbxClientNameKombi.Items);
-  // Daten aus der Registry lesen
+  // Daten für das Stuerelement aus der Registry lesen
   cbxClientNameKombi.ReadFromReg;
 end;
 
@@ -660,17 +662,19 @@ procedure TMain.rcbxCheckBoxKombiBeforeRegistrySettingChange(
 begin
   // Mit diesem Code wird demonstriert wie man Eingaben in die RegistrySettings
   // überprüfen und auf Wunsch ablehnen kann
-  // aNewSettingInfo.Kind Informiert welcher Eintrag geändert werden soll
+  // aNewSettingInfo.Kind informiert welcher Eintrag geändert werden soll
   case aNewSettingInfo.Kind of
     rskWriteDefaults:
     begin
       // aOldSettingInfo informiert über die aktuelle Einstellung
-      // aNewSettingInfo informiert über gewünscht Änderung
+      // aNewSettingInfo informiert über die gewünscht Änderung
       // Es kann immer nur die Eigenschaft abgefragt werden, welche durch
       // aNewSettingInfo.Kind vorgegeben wird
       // z.B.: rskWriteDefaults -> WriteDefaults; rsgReadDefaults -> ReadDefaults
       if (aOldSettingInfo.WriteDefaults <> aNewSettingInfo.WriteDefaults) then
       begin
+        // Der Parameter wird an die aufrufende Methode übergeben und ausgewertet
+        // aIsOk := False verhindert das setzen der Eigenschaft auf den neuen Wert
         aIsOk := False;
         if aNewSettingInfo.WriteDefaults then
           MessageDlg('Das Schreiben von Standards ist nicht erlaubt!',
@@ -733,11 +737,21 @@ begin
          [mbYes, mbNo],
          0) = mrYes);
 
+    // Die RegistrySource ist mit Steuerelementen (Clients) verbunden, die nur
+    // Einzelwerte sicher wie den Text eines TRegEdit oder den ItemIndex einer
+    // TRegListbox
+    // Listen werden in diesem Beispielen nicht dynamisch geladen sondern zur
+    // statisch festgelegt
     with RegistrySource1 do
     begin
       Screen.Cursor := crHourGlass;
+      // Aktuallen Wert für DoSyncData sichern
       old_sync_data := DoSyncData;
       DoSyncData := False;
+      // Wenn use_defaults auf TRUE steht, werden Defaulteinträge (Standards) in
+      // der Registry eingerichtet
+      // In den RegistrySettings wird unter RootForDefaults und RootKeyForDefaults
+      // festgelegt wo diese Defaults hinterlegt werden
       WriteDefaults := use_defaults;
 
       WriteString('Desktop', 'Version', '1.0.0');
@@ -759,16 +773,25 @@ begin
       WriteInteger('Combobox1', 'ItemIndex', 1);
       WriteInteger('ListBox1', 'ItemIndex', 1);
 
+      // Aktualisiert alle mit der RegistrySource verbundenen Steuerelemente (Clients)
       RefreshControlData('', 0);
       DoSyncData := old_sync_data;
       Screen.Cursor := crDefault;
     end;
 
+    // Die RegistrySource ist mit Steuerelementen (Clients) verbunden, die
+    // demonstrieren sollen wie Listen dynamisch aus der Registry geladen und
+    // verwaltet werden (z.B.: TRegCheckListBox)
     with RegistrySource2 do
     begin
       Screen.Cursor := crHourGlass;
+      // Aktuallen Wert für DoSyncData sichern
       old_sync_data := DoSyncData;
       DoSyncData := False;
+      // Wenn use_defaults auf TRUE steht, werden Defaulteinträge (Standards) in
+      // der Registry eingerichtet
+      // In den RegistrySettings wird unter RootForDefaults und RootKeyForDefaults
+      // festgelegt wo diese Defaults hinterlegt werden
       WriteDefaults := use_defaults;
 
       WriteString('Desktop', 'Test', 'Listen');
@@ -817,7 +840,6 @@ begin
       WriteString('CheckListBoxListe2', 'CheckListBox4Key', 'True');
       WriteString('CheckListBoxListe2', 'CheckListBox5Key', 'False');
 
-
       // Section als Liste laden (Key=Value)
       WriteString('RegValueListe', 'Key1', 'Value1');
       WriteString('RegValueListe', 'Key2', 'Value2');
@@ -825,16 +847,24 @@ begin
       WriteString('RegValueListe', 'Key4', 'Value4');
       WriteString('RegValueListe', 'Key5', 'Value5');
 
+      // Aktualisiert alle mit der RegistrySource verbundenen Steuerelemente (Clients)
       RefreshControlData('', 0);
       DoSyncData := old_sync_data;
       Screen.Cursor := crDefault;
     end;
 
+    // Die RegistrySource ist mit Steuerelementen (Clients) verbunden, die die
+    // Kombination von verschiedenen Steuerelementen demonstrieren sollen
     with RegistrySource3 do
     begin
       Screen.Cursor := crHourGlass;
+      // Aktuallen Wert für DoSyncData sichern
       old_sync_data := DoSyncData;
       DoSyncData := False;
+      // Wenn use_defaults auf TRUE steht, werden Defaulteinträge (Standards) in
+      // der Registry eingerichtet
+      // In den RegistrySettings wird unter RootForDefaults und RootKeyForDefaults
+      // festgelegt wo diese Defaults hinterlegt werden
       WriteDefaults := use_defaults;
 
       WriteString('Desktop', 'Test', 'Kombinationen');
@@ -846,6 +876,7 @@ begin
       WriteBool('RegValueListe', 'Key4', True);
       WriteBool('RegValueListe', 'Key5', False);
 
+      // Aktualisiert alle mit der RegistrySource verbundenen Steuerelemente (Clients)
       RefreshControlData('', 0);
       DoSyncData := old_sync_data;
       Screen.Cursor := crDefault;

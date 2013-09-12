@@ -431,12 +431,12 @@ var
   new_setting_value: TRegistrySettingValue;
   is_ok: boolean;
 begin
-  if (Assigned(FOnBeforeRegistrySettingChange) and FTriggerEvents) then
+  if (Assigned(FOnBeforeRegistrySettingChange) and FTriggerEvents and not OwnerIsLoading) then
   begin
     Result := False;
 
-    if OwnerIsLoading then
-      Exit;
+    //if OwnerIsLoading then
+    //  Exit;
 
     old_setting_value.kind := aKind;
     case aKind of
