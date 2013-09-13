@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="10"/>
-        <UsageCount Value="195"/>
+        <UsageCount Value="200"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -24,10 +24,11 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="646"/>
-        <CursorPos X="1" Y="666"/>
-        <UsageCount Value="195"/>
+        <TopLine Value="2"/>
+        <CursorPos X="34" Y="35"/>
+        <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regconst.pas"/>
@@ -66,8 +67,8 @@
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="5"/>
-        <CursorPos X="3" Y="656"/>
+        <TopLine Value="1133"/>
+        <CursorPos X="1" Y="1164"/>
         <UsageCount Value="46"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
@@ -106,9 +107,9 @@
         <Filename Value="..\source\regradiogroup.pas"/>
         <UnitName Value="regradiogroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="291"/>
-        <CursorPos X="26" Y="305"/>
-        <UsageCount Value="23"/>
+        <TopLine Value="154"/>
+        <CursorPos X="3" Y="144"/>
+        <UsageCount Value="24"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
@@ -222,45 +223,45 @@
         <Filename Value="..\source\reglistbox.pas"/>
         <UnitName Value="reglistbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="284"/>
-        <CursorPos X="64" Y="300"/>
-        <UsageCount Value="24"/>
+        <TopLine Value="148"/>
+        <CursorPos X="3" Y="137"/>
+        <UsageCount Value="25"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit25>
       <Unit26>
         <Filename Value="..\source\regcombobox.pas"/>
         <UnitName Value="regcombobox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="285"/>
-        <CursorPos X="64" Y="301"/>
-        <UsageCount Value="19"/>
+        <TopLine Value="159"/>
+        <CursorPos X="3" Y="196"/>
+        <UsageCount Value="20"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit26>
       <Unit27>
         <Filename Value="..\source\regcheckgroup.pas"/>
         <UnitName Value="regcheckgroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="349"/>
-        <CursorPos X="64" Y="365"/>
-        <UsageCount Value="22"/>
+        <TopLine Value="140"/>
+        <CursorPos X="108" Y="154"/>
+        <UsageCount Value="23"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit27>
       <Unit28>
         <Filename Value="..\source\regchecklistbox.pas"/>
         <UnitName Value="regchecklistbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="318"/>
-        <CursorPos X="58" Y="341"/>
-        <UsageCount Value="28"/>
+        <TopLine Value="112"/>
+        <CursorPos X="38" Y="118"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
       <Unit29>
         <Filename Value="..\source\regvaluelisteditor.pas"/>
         <UnitName Value="regvaluelisteditor"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="316"/>
-        <CursorPos X="64" Y="332"/>
-        <UsageCount Value="23"/>
+        <TopLine Value="178"/>
+        <CursorPos X="41" Y="186"/>
+        <UsageCount Value="24"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
@@ -625,9 +626,9 @@
       <Unit75>
         <Filename Value="C:\lazarus\lcl\include\customcheckgroup.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="162"/>
-        <CursorPos X="3" Y="311"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="70"/>
+        <CursorPos X="1" Y="89"/>
+        <UsageCount Value="10"/>
       </Unit75>
       <Unit76>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\stringl.inc"/>
@@ -779,7 +780,7 @@
     <JumpHistory Count="1" HistoryIndex="0">
       <Position1>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="666" Column="1" TopLine="646"/>
+        <Caret Line="35" Column="34" TopLine="2"/>
       </Position1>
     </JumpHistory>
   </ProjectSession>

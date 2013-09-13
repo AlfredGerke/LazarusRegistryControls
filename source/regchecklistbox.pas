@@ -116,24 +116,35 @@ var
   res_str: string;
   res_bool: boolean;
   item_value: string;
+  index: integer;
 begin
   if not aCheckOnly then
-    Items.Clear;
+    Items.Clear
+  else
+    if (Items.Count = 0) then
+      Exit;
 
   for anz := 0 to aList.Count - 1 do
   begin
-    res_str := aList.ValueFromIndex[anz];
+    item_value := aList.Names[anz];
+    res_str := aList.Values[item_value];
 
     if not aCheckOnly then
     begin
-      item_value := aList.Names[anz];
       Items.Add(item_value);
+      index := anz;
+    end
+    else
+    begin
+      index := Items.IndexOf(item_value);
+      if (index = -1) then
+        Continue;
     end;
 
     if TryStrToBool(res_str, res_bool) then
-      Checked[anz] := res_bool
+      Checked[index] := res_bool
     else
-      Checked[anz] := False;
+      Checked[index] := False;
   end;
 end;
 
