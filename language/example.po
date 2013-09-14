@@ -38,9 +38,33 @@ msgctxt "TMAIN.ACERASESECTIONVALUEEDIT2.CAPTION"
 msgid "Liste löschen"
 msgstr ""
 
+#: tmain.acpostdatakombi.caption
+msgid "Daten in die Registry (RegistrySource3)"
+msgstr ""
+
+#: tmain.acpostdatalist.caption
+msgid "Daten in die Registry (RegistrySource2)"
+msgstr ""
+
+#: tmain.acpostdatasingle.caption
+msgid "Daten in die Registry (RegistrySource1)"
+msgstr ""
+
 #: tmain.acrefreshdata.caption
 msgctxt "tmain.acrefreshdata.caption"
 msgid "Steuerelement(e) aktualisieren"
+msgstr ""
+
+#: tmain.acrefreshdataallkombi.caption
+msgid "Daten aus der Registry (RegistrySource3)"
+msgstr ""
+
+#: tmain.acrefreshdataalllist.caption
+msgid "Daten aus der Registry (RegistrySource2)"
+msgstr ""
+
+#: tmain.acrefreshdataallsingle.caption
+msgid "Daten aus der Registry (RegistrySource1)"
 msgstr ""
 
 #: tmain.acrefreshdatakombi.caption
@@ -218,6 +242,17 @@ msgid "TRegValueListEditor: Keys u. Values laden u."
 msgstr ""
 
 #: tmain.menuitem1.caption
+msgctxt "tmain.menuitem1.caption"
+msgid "-"
+msgstr ""
+
+#: tmain.menuitem2.caption
+msgctxt "TMAIN.MENUITEM2.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tmain.menuitem3.caption
+msgctxt "TMAIN.MENUITEM3.CAPTION"
 msgid "-"
 msgstr ""
 

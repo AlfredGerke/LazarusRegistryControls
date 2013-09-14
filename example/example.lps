@@ -24,11 +24,10 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="2"/>
-        <CursorPos X="36" Y="9"/>
+        <TopLine Value="662"/>
+        <CursorPos X="58" Y="688"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regconst.pas"/>
@@ -43,9 +42,9 @@
         <Filename Value="..\source\regedit.pas"/>
         <UnitName Value="regedit"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="180"/>
-        <CursorPos X="64" Y="196"/>
-        <UsageCount Value="25"/>
+        <TopLine Value="251"/>
+        <CursorPos X="1" Y="287"/>
+        <UsageCount Value="27"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -67,9 +66,9 @@
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1133"/>
-        <CursorPos X="1" Y="1164"/>
-        <UsageCount Value="46"/>
+        <TopLine Value="198"/>
+        <CursorPos X="32" Y="239"/>
+        <UsageCount Value="48"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -107,9 +106,9 @@
         <Filename Value="..\source\regradiogroup.pas"/>
         <UnitName Value="regradiogroup"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="154"/>
-        <CursorPos X="1" Y="173"/>
-        <UsageCount Value="24"/>
+        <TopLine Value="361"/>
+        <CursorPos X="47" Y="393"/>
+        <UsageCount Value="26"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
@@ -205,67 +204,63 @@
         <Filename Value="..\source\regcheckbox.pas"/>
         <UnitName Value="regcheckbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="118"/>
-        <CursorPos X="1" Y="137"/>
-        <UsageCount Value="19"/>
+        <TopLine Value="261"/>
+        <CursorPos X="1" Y="281"/>
+        <UsageCount Value="21"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit23>
       <Unit24>
         <Filename Value="..\source\regradiobutton.pas"/>
         <UnitName Value="regradiobutton"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="183"/>
-        <CursorPos X="18" Y="194"/>
-        <UsageCount Value="17"/>
+        <TopLine Value="257"/>
+        <CursorPos X="7" Y="288"/>
+        <UsageCount Value="19"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit24>
       <Unit25>
         <Filename Value="..\source\reglistbox.pas"/>
         <UnitName Value="reglistbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="147"/>
-        <CursorPos X="3" Y="137"/>
-        <UsageCount Value="27"/>
+        <TopLine Value="356"/>
+        <CursorPos X="7" Y="390"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit25>
       <Unit26>
         <Filename Value="..\source\regcombobox.pas"/>
         <UnitName Value="regcombobox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="159"/>
-        <CursorPos X="3" Y="196"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="359"/>
+        <CursorPos X="7" Y="391"/>
+        <UsageCount Value="22"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit26>
       <Unit27>
         <Filename Value="..\source\regcheckgroup.pas"/>
         <UnitName Value="regcheckgroup"/>
-        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="236"/>
-        <CursorPos X="17" Y="269"/>
-        <UsageCount Value="23"/>
-        <Loaded Value="True"/>
+        <TopLine Value="130"/>
+        <CursorPos X="48" Y="148"/>
+        <UsageCount Value="25"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit27>
       <Unit28>
         <Filename Value="..\source\regchecklistbox.pas"/>
         <UnitName Value="regchecklistbox"/>
-        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="236"/>
-        <CursorPos X="17" Y="259"/>
-        <UsageCount Value="31"/>
-        <Loaded Value="True"/>
+        <TopLine Value="448"/>
+        <CursorPos X="1" Y="468"/>
+        <UsageCount Value="33"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
       <Unit29>
         <Filename Value="..\source\regvaluelisteditor.pas"/>
         <UnitName Value="regvaluelisteditor"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="178"/>
-        <CursorPos X="41" Y="186"/>
-        <UsageCount Value="26"/>
+        <TopLine Value="386"/>
+        <CursorPos X="7" Y="422"/>
+        <UsageCount Value="28"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
@@ -321,8 +316,8 @@
         <UnitName Value="regmsg"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="144" Y="2"/>
-        <UsageCount Value="12"/>
+        <CursorPos X="32" Y="19"/>
+        <UsageCount Value="14"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit36>
       <Unit37>
@@ -781,138 +776,26 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="30" HistoryIndex="29">
-      <Position1>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="113" Column="54" TopLine="81"/>
-      </Position1>
-      <Position2>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="259" Column="24" TopLine="231"/>
-      </Position2>
-      <Position3>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="123" Column="76" TopLine="113"/>
-      </Position3>
-      <Position4>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="120" Column="1" TopLine="113"/>
-      </Position4>
-      <Position5>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="122" Column="1" TopLine="113"/>
-      </Position5>
-      <Position6>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="123" Column="1" TopLine="113"/>
-      </Position6>
-      <Position7>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="126" Column="1" TopLine="113"/>
-      </Position7>
-      <Position8>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="127" Column="1" TopLine="113"/>
-      </Position8>
-      <Position9>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="130" Column="1" TopLine="113"/>
-      </Position9>
-      <Position10>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="131" Column="1" TopLine="113"/>
-      </Position10>
-      <Position11>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="120" Column="1" TopLine="113"/>
-      </Position11>
-      <Position12>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="122" Column="1" TopLine="113"/>
-      </Position12>
-      <Position13>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="123" Column="1" TopLine="113"/>
-      </Position13>
-      <Position14>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="126" Column="1" TopLine="113"/>
-      </Position14>
-      <Position15>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="127" Column="1" TopLine="113"/>
-      </Position15>
-      <Position16>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="130" Column="1" TopLine="113"/>
-      </Position16>
-      <Position17>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="131" Column="1" TopLine="113"/>
-      </Position17>
-      <Position18>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="125" Column="1" TopLine="113"/>
-      </Position18>
-      <Position19>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="154" Column="1" TopLine="136"/>
-      </Position19>
-      <Position20>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="223" Column="1" TopLine="215"/>
-      </Position20>
-      <Position21>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="120" Column="1" TopLine="101"/>
-      </Position21>
-      <Position22>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="122" Column="1" TopLine="101"/>
-      </Position22>
-      <Position23>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="123" Column="1" TopLine="101"/>
-      </Position23>
-      <Position24>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="126" Column="1" TopLine="101"/>
-      </Position24>
-      <Position25>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="127" Column="1" TopLine="101"/>
-      </Position25>
-      <Position26>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="130" Column="1" TopLine="101"/>
-      </Position26>
-      <Position27>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="131" Column="1" TopLine="101"/>
-      </Position27>
-      <Position28>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="113" Column="54" TopLine="101"/>
-      </Position28>
-      <Position29>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="29" Column="35" TopLine="9"/>
-      </Position29>
-      <Position30>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="113" Column="54" TopLine="81"/>
-      </Position30>
-    </JumpHistory>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="1">
+    <BreakPoints Count="2">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="..\source\regchecklistbox.pas"/>
-        <Line Value="120"/>
+        <InitialEnabled Value="False"/>
+        <Line Value="122"/>
       </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\source\regcheckgroup.pas"/>
+        <InitialEnabled Value="False"/>
+        <Line Value="496"/>
+      </Item2>
     </BreakPoints>
   </Debugging>
 </CONFIG>

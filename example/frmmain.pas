@@ -58,6 +58,12 @@ type
     acRefreshMergeDataOff: TAction;
     acShowClientEditDialogList: TAction;
     acShowClientEditDialogSingle: TAction;
+    acRefreshDataAllSingle: TAction;
+    acRefreshDataAllList: TAction;
+    acRefreshDataAllKombi: TAction;
+    acPostDataSingle: TAction;
+    acPostDataList: TAction;
+    acPostDataKombi: TAction;
     acWriteAdHocOffList: TAction;
     acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
@@ -101,6 +107,14 @@ type
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    mnuPostDataKombi: TMenuItem;
+    mnuPostDataSingle: TMenuItem;
+    mnuPostDataList: TMenuItem;
+    mnuRefreshDataKombi: TMenuItem;
+    mnuRefreshDataList: TMenuItem;
+    mnuSettingsKombi: TMenuItem;
+    MenuItem3: TMenuItem;
+    mnuRefreshDataSingle: TMenuItem;
     mnuDeleteRootKey: TMenuItem;
     mnuTestRenameKey: TMenuItem;
     mnuTestEraseSection: TMenuItem;
@@ -163,6 +177,12 @@ type
     procedure acDeleteRootKeyExecute(Sender: TObject);
     procedure acEraseSectionValueEdit2Execute(Sender: TObject);
     procedure acEraseSectionValueEditExecute(Sender: TObject);
+    procedure acPostDataKombiExecute(Sender: TObject);
+    procedure acPostDataListExecute(Sender: TObject);
+    procedure acPostDataSingleExecute(Sender: TObject);
+    procedure acRefreshDataAllKombiExecute(Sender: TObject);
+    procedure acRefreshDataAllListExecute(Sender: TObject);
+    procedure acRefreshDataAllSingleExecute(Sender: TObject);
     procedure acRefreshDataExecute(Sender: TObject);
     procedure acRefreshDataKombiExecute(Sender: TObject);
     procedure acRefreshDataListExecute(Sender: TObject);
@@ -321,7 +341,7 @@ begin
     DeleteRootKey;
 
     // Aktualisiert alle Clients dieser RegistrySource
-    RefreshControlData('', 0);
+    RefreshClientData('', 0);
     // Gesicherten Wert von WriteDefaults setzen
     WriteDefaults := old_write_defaults;
     // Gesicherten Wert von DoSyncData setzen
@@ -345,7 +365,7 @@ begin
     DeleteRootKey;
 
     // Aktualisiert alle Clients dieser RegistrySource
-    RefreshControlData('', 0);
+    RefreshClientData('', 0);
     // Gesicherten Wert von WriteDefaults setzen
     WriteDefaults := old_write_defaults;
     // Gesicherten Wert von DoSyncData setzen
@@ -369,7 +389,7 @@ begin
     DeleteRootKey;
 
     // Aktualisiert alle Clients dieser RegistrySource
-    RefreshControlData('', 0);
+    RefreshClientData('', 0);
     // Gesicherten Wert von WriteDefaults setzen
     WriteDefaults := old_write_defaults;
     // Gesicherten Wert von DoSyncData setzen
@@ -394,24 +414,105 @@ begin
   rvlValueListEditorKombi1.ClearItems;
 end;
 
+procedure TMain.acPostDataKombiExecute(Sender: TObject);
+var
+  old_sync_data_value: boolean;
+begin
+  // Daten aller Steuerelemente (Clients) der RegistrySource in die Registry
+  // schreiben
+  with RegistrySource3 do
+  begin
+    old_sync_data_value := DoSyncData;
+    // Das Sichern von Werten in die Registry für mehrere Clients bei DoWriteAdHoc=False
+    // kann nur dann erfolgreich geschehen, wenn die Synchronisierung ausgeschaltet wird
+    DoSyncData := False;
+    // Eingeschaltete Synchronisierung würde dafür sorgen, das nach dem Schreiben des ersten
+    // Clients alle anderen Clients mit Daten aus der Registry aktualisiert würden, was deren
+    // bis dahin eingestellte Werte verwerfen würde
+    PostClientData;
+    DoSyncData := old_sync_data_value;
+  end;
+end;
+
+procedure TMain.acPostDataListExecute(Sender: TObject);
+var
+  old_sync_data_value: boolean;
+begin
+  // Daten aller Steuerelemente (Clients) der RegistrySource in die Registry
+  // schreiben
+  with RegistrySource2 do
+  begin
+    old_sync_data_value := DoSyncData;
+    // Das Sichern von Werten in die Registry für mehrere Clients bei DoWriteAdHoc=False
+    // kann nur dann erfolgreich geschehen, wenn die Synchronisierung ausgeschaltet wird
+    DoSyncData := False;
+    // Eingeschaltete Synchronisierung würde dafür sorgen, das nach dem Schreiben des ersten
+    // Clients alle anderen Clients mit Daten aus der Registry aktualisiert würden, was deren
+    // bis dahin eingestellte Werte verwerfen würde
+    PostClientData;
+    DoSyncData := old_sync_data_value;
+  end;
+end;
+
+procedure TMain.acPostDataSingleExecute(Sender: TObject);
+var
+  old_sync_data_value: boolean;
+begin
+  // Daten aller Steuerelemente (Clients) der RegistrySource in die Registry
+  // schreiben
+  with RegistrySource1 do
+  begin
+    old_sync_data_value := DoSyncData;
+    // Das Sichern von Werten in die Registry für mehrere Clients bei DoWriteAdHoc=False
+    // kann nur dann erfolgreich geschehen, wenn die Synchronisierung ausgeschaltet wird
+    DoSyncData := False;
+    // Eingeschaltete Synchronisierung würde dafür sorgen, das nach dem Schreiben des ersten
+    // Clients alle anderen Clients mit Daten aus der Registry aktualisiert würden, was deren
+    // bis dahin eingestellte Werte verwerfen würde
+    PostClientData;
+    DoSyncData := old_sync_data_value;
+  end;
+end;
+
+procedure TMain.acRefreshDataAllKombiExecute(Sender: TObject);
+begin
+  // Alle Steuerelemente (Clients) der RegistrySource mit aktuellen Werten aus
+  // der Registry vesorgen
+  RegistrySource3.RefreshClientData;
+end;
+
+procedure TMain.acRefreshDataAllListExecute(Sender: TObject);
+begin
+  // Alle Steuerelemente (Clients) der RegistrySource mit aktuellen Werten aus
+  // der Registry vesorgen
+  RegistrySource2.RefreshClientData;
+end;
+
+procedure TMain.acRefreshDataAllSingleExecute(Sender: TObject);
+begin
+  // Alle Steuerelemente (Clients) der RegistrySource mit aktuellen Werten aus
+  // der Registry vesorgen
+  RegistrySource1.RefreshClientData;
+end;
+
 procedure TMain.acRefreshDataExecute(Sender: TObject);
 begin
   // Aktualisert das Steuerelement (Client), dessen Name als String übergeben wurde
   // Ein Leerstring wird alle Steuerelemente (Clients) der RegistrySource aktualisieren
-  RegistrySource1.RefreshControlData(Trim(cbxClientNameStatic.Text));
+  RegistrySource1.RefreshClientData(Trim(cbxClientNameStatic.Text));
 end;
 
 procedure TMain.acRefreshDataKombiExecute(Sender: TObject);
 begin
   // Aktualisert alle Steuerelemente (Clients) der RegistrySource
-  RegistrySource3.RefreshControlData;
+  RegistrySource3.RefreshClientData;
 end;
 
 procedure TMain.acRefreshDataListExecute(Sender: TObject);
 begin
   // Aktualisert das Steuerelement (Client), dessen Name als String übergeben wurde
   // Ein Leerstring wird alle Steuerelemente (Clients) der RegistrySource aktualisieren
-  RegistrySource2.RefreshControlData(Trim(cbxClientNameDynamic.Text));
+  RegistrySource2.RefreshClientData(Trim(cbxClientNameDynamic.Text));
 end;
 
 procedure TMain.acRefreshMergeDataOffExecute(Sender: TObject);
@@ -774,7 +875,7 @@ begin
       WriteInteger('ListBox1', 'ItemIndex', 1);
 
       // Aktualisiert alle mit der RegistrySource verbundenen Steuerelemente (Clients)
-      RefreshControlData('', 0);
+      RefreshClientData('', 0);
       DoSyncData := old_sync_data;
       Screen.Cursor := crDefault;
     end;
@@ -848,7 +949,7 @@ begin
       WriteString('RegValueListe', 'Key5', 'Value5');
 
       // Aktualisiert alle mit der RegistrySource verbundenen Steuerelemente (Clients)
-      RefreshControlData('', 0);
+      RefreshClientData('', 0);
       DoSyncData := old_sync_data;
       Screen.Cursor := crDefault;
     end;
@@ -877,7 +978,7 @@ begin
       WriteBool('RegValueListe', 'Key5', False);
 
       // Aktualisiert alle mit der RegistrySource verbundenen Steuerelemente (Clients)
-      RefreshControlData('', 0);
+      RefreshClientData('', 0);
       DoSyncData := old_sync_data;
       Screen.Cursor := crDefault;
     end;

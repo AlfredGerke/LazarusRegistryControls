@@ -206,6 +206,8 @@ type
       read FEditClientRootKeys
       write FEditClientRootKeys;
   public
+    procedure PostClientData(aClientName: string = '';
+                             aGroupIndex: cardinal = 0);
     procedure RefreshMergeDataProperty(aMergeData: boolean = False;
                                        aClientName: string = '';
                                        aGroupIndex: cardinal = 0);
@@ -233,10 +235,10 @@ type
                                   aClientName: string = '';
                                   aGroupIndex: cardinal = 0);
     procedure RefreshSettings(aClientName: string = '');
-    procedure RefreshControlData(aClientName: string = '';
-                                 aGroupIndex: cardinal = 0);
-    procedure RegisterControl(aControl: TComponent);
-    procedure UnRegisterControl(aControl: TComponent);
+    procedure RefreshClientData(aClientName: string = '';
+                                aGroupIndex: cardinal = 0);
+    procedure RegisterClient(aClient: TComponent);
+    procedure UnRegisterClient(aClient: TComponent);
     function GetRootKey: string;
     function GetRootKeyForDefaults: string;
     function GetRootKeyForCommon: string;
@@ -434,7 +436,7 @@ end;
 
 procedure TCustomRegistrySource.OnSyncData(aGroupIndex: cardinal = 0);
 begin
-  RefreshControlData('', aGroupIndex);
+  RefreshClientData('', aGroupIndex);
 end;
 
 procedure TCustomRegistrySource.DeliverMessage(aMessageConst: cardinal;
@@ -471,6 +473,12 @@ begin
     Result := FClientList.Count
   else
     Result := 0;
+end;
+
+procedure TCustomRegistrySource.PostClientData(aClientName: string = '';
+  aGroupIndex: cardinal = 0);
+begin
+  DeliverMessage(LM_REGISTRY_CONTROL_POST_DATA, aClientName, aGroupIndex);
 end;
 
 procedure TCustomRegistrySource.RefreshMergeDataProperty(aMergeData: boolean = False;
@@ -656,34 +664,34 @@ begin
   DeliverMessage(LM_REGISTRY_CONTROL_REFRESH_SETTINGS, aClientName);
 end;
 
-procedure TCustomRegistrySource.RefreshControlData(aClientName: string = '';
+procedure TCustomRegistrySource.RefreshClientData(aClientName: string = '';
   aGroupIndex: cardinal = 0);
 begin
   DeliverMessage(LM_REGISTRY_CONTROL_REFRESH_DATA, aClientName, aGroupIndex);
 end;
 
-procedure TCustomRegistrySource.RegisterControl(aControl: TComponent);
+procedure TCustomRegistrySource.RegisterClient(aClient: TComponent);
 var
   index: integer;
   name: string;
 begin
   if Assigned(FClientList) then
   begin
-    name := AControl.Name;
+    name := aClient.Name;
     index := FClientList.IndexOf(name);
     if (index = -1) then
-      FClientList.AddObject(name, AControl);
+      FClientList.AddObject(name, aClient);
   end;
 end;
 
-procedure TCustomRegistrySource.UnRegisterControl(aControl: TComponent);
+procedure TCustomRegistrySource.UnRegisterClient(aClient: TComponent);
 var
   index: integer;
   name: string;
 begin
   if Assigned(FClientList) then
   begin
-    name := AControl.Name;
+    name := aClient.Name;
     index := FClientList.IndexOf(name);
     if (index <> -1) then
       FClientList.Delete(index);

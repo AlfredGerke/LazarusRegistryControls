@@ -50,6 +50,8 @@ type
       message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
     procedure RefreshData(var aMessage: TLMessage);
       message LM_REGISTRY_CONTROL_REFRESH_DATA;
+    procedure PostData(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_POST_DATA;
 
     procedure SetName(const NewName: TComponentName); override;
     procedure ItemClick(const AIndex: integer); override;
@@ -391,7 +393,7 @@ end;
 procedure TCustomRegCheckListBox.FreeRegistrySource(var aMessage: TLMessage);
 begin
   if Assigned(FRegistrySource) then
-    FRegistrySource.UnRegisterControl(self);
+    FRegistrySource.UnRegisterClient(self);
   FRegistrySource := nil;
   RegistrySettings.CanWrite := False;
   RegistrySettings.CanRead := False;
@@ -459,6 +461,23 @@ begin
   end;
 end;
 
+procedure TCustomRegCheckListBox.PostData(var aMessage: TLMessage);
+var
+  group_index: cardinal;
+begin
+  if FRegistrySettings.DoSyncData then
+  begin
+    group_index := aMessage.lParam;
+    if (group_index > 0) then
+    begin
+      if group_index = FRegistrySettings.GroupIndex then
+        aMessage.Result := LongInt(WriteToReg(ikInfo))
+    end
+    else
+      aMessage.Result := LongInt(WriteToReg(ikInfo));
+  end;
+end;
+
 procedure TCustomRegCheckListBox.SetName(const NewName: TComponentName);
 var
   old_name: TComponentName;
@@ -494,12 +513,12 @@ begin
   if (FRegistrySource <> aRegistrySource) then
   begin
     if Assigned(FRegistrySource) then
-      FRegistrySource.UnRegisterControl(self);
+      FRegistrySource.UnRegisterClient(self);
 
     FRegistrySource := aRegistrySource;
     if Assigned(FRegistrySource) then
     begin
-      FRegistrySource.RegisterControl(self);
+      FRegistrySource.RegisterClient(self);
       RefreshRegistrySettings;
     end;
   end;
@@ -621,7 +640,7 @@ end;
 destructor TCustomRegCheckListBox.Destroy;
 begin
   if Assigned(FRegistrySource) then
-    FRegistrySource.UnRegisterControl(self);
+    FRegistrySource.UnRegisterClient(self);
 
   if Assigned(FRegistrySettings) then
     FreeAndNil(FRegistrySettings);

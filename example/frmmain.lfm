@@ -1085,8 +1085,32 @@ object Main: TMain
       object mnuSettingsList: TMenuItem
         Action = acRefreshSettingListSource
       end
-      object MenuItem2: TMenuItem
+      object mnuSettingsKombi: TMenuItem
         Action = acRefreshSettingsKombination
+      end
+      object MenuItem3: TMenuItem
+        Caption = '-'
+      end
+      object mnuRefreshDataSingle: TMenuItem
+        Action = acRefreshDataAllSingle
+      end
+      object mnuRefreshDataList: TMenuItem
+        Action = acRefreshDataAllList
+      end
+      object mnuRefreshDataKombi: TMenuItem
+        Action = acRefreshDataAllKombi
+      end
+      object MenuItem2: TMenuItem
+        Caption = '-'
+      end
+      object mnuPostDataSingle: TMenuItem
+        Action = acPostDataSingle
+      end
+      object mnuPostDataList: TMenuItem
+        Action = acPostDataList
+      end
+      object mnuPostDataKombi: TMenuItem
+        Action = acPostDataKombi
       end
     end
     object mnuTest: TMenuItem
@@ -1258,6 +1282,36 @@ object Main: TMain
       Category = 'ExecuteSingleValueExample'
       Caption = 'RootKeys ändern'
       OnExecute = acShowClientEditDialogSingleExecute
+    end
+    object acRefreshDataAllSingle: TAction
+      Category = 'ExecuteSingleValueExample'
+      Caption = 'Daten aus der Registry (RegistrySource1)'
+      OnExecute = acRefreshDataAllSingleExecute
+    end
+    object acRefreshDataAllList: TAction
+      Category = 'ExecuteListExample'
+      Caption = 'Daten aus der Registry (RegistrySource2)'
+      OnExecute = acRefreshDataAllListExecute
+    end
+    object acRefreshDataAllKombi: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = 'Daten aus der Registry (RegistrySource3)'
+      OnExecute = acRefreshDataAllKombiExecute
+    end
+    object acPostDataSingle: TAction
+      Category = 'ExecuteSingleValueExample'
+      Caption = 'Daten in die Registry (RegistrySource1)'
+      OnExecute = acPostDataSingleExecute
+    end
+    object acPostDataList: TAction
+      Category = 'ExecuteListExample'
+      Caption = 'Daten in die Registry (RegistrySource2)'
+      OnExecute = acPostDataListExecute
+    end
+    object acPostDataKombi: TAction
+      Category = 'ExecuteKombinationExcample'
+      Caption = 'Daten in die Registry (RegistrySource3)'
+      OnExecute = acPostDataKombiExecute
     end
   end
   object RegistrySource1: TRegistrySource
