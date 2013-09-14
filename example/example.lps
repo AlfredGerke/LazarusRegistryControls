@@ -28,6 +28,7 @@
         <CursorPos X="58" Y="688"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regconst.pas"/>
@@ -567,7 +568,7 @@
         <UnitName Value="dlgaboutcomponent"/>
         <WindowIndex Value="0"/>
         <TopLine Value="25"/>
-        <CursorPos X="38" Y="55"/>
+        <CursorPos X="21" Y="39"/>
         <UsageCount Value="12"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit67>

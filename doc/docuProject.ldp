@@ -1,19 +1,19 @@
 [Global]
 Package=RegistrySource
-Format=latex
+Format=html
 Output=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\documentation
 Content=1
 TargetOS=
 TargetCPU=
 HideProtected=0
-ShowPrivate=1
+ShowPrivate=0
 Import=
 
 [Descriptions]
 Count=1
-File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regutils.xml
+File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regbaseform.xml
 
 [Sources]
 Count=1
-File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regutils.pas
+File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regbaseform.pas
 Options1=

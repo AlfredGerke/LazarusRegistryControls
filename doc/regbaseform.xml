@@ -11,37 +11,37 @@
       <descr/>
       <!-- class Visibility: default -->
       <element name="TRegBaseForm">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
-      </element>
-      <!-- variable Visibility: private -->
-      <element name="TRegBaseForm.FAtDesignTime">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Grundklasse für alle Formulare der LRC</short>
       </element>
       <!-- function Visibility: protected -->
       <element name="TRegBaseForm.SetUTF8IfNeeded">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Wandelt einen String wenn nötig in UTF8 um</short>
+        <descr>Anhand der Eigenschaft AtDesignTime wird entschieden ob ein String in UTF8 gewandelt werden soll.</descr>
+        <seealso>
+          <link id="TRegBaseForm.AtDesignTime">AtDesignTime</link>
+        </seealso>
       </element>
       <!-- function result Visibility: default -->
       <element name="TRegBaseForm.SetUTF8IfNeeded.Result">
-        <short/>
+        <short>Gewandelter String</short>
+        <descr>Wenn AtDesginTime=True wurde der String aus dem Parameter aString in UTF8 gewandelt</descr>
+        <seealso>
+          <link id="TRegBaseForm.SetUTF8IfNeeded.aString">aString</link>
+          <link id="TRegBaseForm.AtDesignTime">AtDesignTime</link>
+        </seealso>
       </element>
       <!-- argument Visibility: default -->
       <element name="TRegBaseForm.SetUTF8IfNeeded.aString">
-        <short/>
+        <short>Zu wandelnder String</short>
+        <descr>String der zur Prüfung an die Methode übergeben werden soll. Steht AtDesignTime auf True dann wird der String in UTF8 gewandelt.</descr>
+        <seealso>
+          <link id="TRegBaseForm.AtDesignTime">AtDesignTime</link>
+        </seealso>
       </element>
       <!-- property Visibility: public -->
       <element name="TRegBaseForm.AtDesignTime">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Designstatus</short>
+        <descr>Designtime=True, Runtime=False</descr>
       </element>
     </module>
     <!-- regbaseform -->
