@@ -26,6 +26,7 @@ type
     FRegistrySettings: TRegistrySettingsCheckedList;
     FIsModified: boolean;
 
+    procedure SaveItemsStatesToReg(aOnlyByItemIndex: boolean = True);
     procedure SetCheckedItemsByList(aList: TStrings;
                                     aCheckOnly: boolean);
     function RefreshRegistrySettings: boolean;
@@ -109,6 +110,49 @@ end;
 
 { TCustomRegCheckListBox }
 
+procedure TCustomRegCheckListBox.SaveItemsStatesToReg(
+  aOnlyByItemIndex: boolean = True);
+var
+  ident_by_itemindex: String;
+  checked_by_itemindex: Boolean;
+  anz: Integer;
+begin
+  if aOnlyByItemIndex then
+  begin
+    ident_by_itemindex := Items.Strings[ItemIndex];
+    checked_by_itemindex := Checked[ItemIndex];
+    RegistrySource.WriteBool(FRegistrySettings.RootKey,
+      FRegistrySettings.RootKeyForDefaults,
+      FRegistrySettings.RootForDefaults,
+      FRegistrySettings.ListSection,
+      ident_by_itemindex,
+      checked_by_itemindex,
+      FRegistrySettings.WriteDefaults,
+      FRegistrySettings.GroupIndex);
+  end
+  else
+  begin
+    Items.BeginUpdate;
+    try
+      for anz := 0 to Items.Count-1 do
+      begin
+        ident_by_itemindex := Items.Strings[anz];
+        checked_by_itemindex := Checked[anz];
+        RegistrySource.WriteBool(FRegistrySettings.RootKey,
+          FRegistrySettings.RootKeyForDefaults,
+          FRegistrySettings.RootForDefaults,
+          FRegistrySettings.ListSection,
+          ident_by_itemindex,
+          checked_by_itemindex,
+          FRegistrySettings.WriteDefaults,
+          FRegistrySettings.GroupIndex);
+      end;
+    finally
+      Items.EndUpdate;
+    end;
+  end;
+end;
+
 procedure TCustomRegCheckListBox.SetCheckedItemsByList(aList: TStrings;
   aCheckOnly: boolean);
 var
@@ -176,8 +220,6 @@ procedure TCustomRegCheckListBox.ReadWriteInfo(aRead: boolean;
   aType: TInfoKind = ikItemIndex);
 var
   sync_state_by_default: boolean;
-  ident_by_itemindex: string;
-  checked_by_itemindex: boolean;
 begin
   if not (csDesigning in ComponentState) then
   begin
@@ -205,32 +247,26 @@ begin
               sync_state_by_default := FRegistrySettings.DoSyncData;
               FRegistrySettings.DoSyncData := False;
               try
+                RegistrySource.WriteInteger(FRegistrySettings.RootKey,
+                  FRegistrySettings.RootKeyForDefaults,
+                  FRegistrySettings.RootForDefaults,
+                  FRegistrySettings.Section,
+                  FRegistrySettings.Ident,
+                  ItemIndex,
+                  FRegistrySettings.WriteDefaults,
+                  FRegistrySettings.GroupIndex);
+
                 case aType of
                   ikInfo:
                   begin
                     if ((FRegistrySettings.ListSection <> '') and (Items.Count > 0)) then
                     begin
-                      ident_by_itemindex := Items.Strings[ItemIndex];
-                      checked_by_itemindex := Checked[ItemIndex];
-                      RegistrySource.WriteBool(FRegistrySettings.RootKey,
-                        FRegistrySettings.RootKeyForDefaults,
-                        FRegistrySettings.RootForDefaults,
-                        FRegistrySettings.ListSection,
-                        ident_by_itemindex,
-                        checked_by_itemindex,
-                        FRegistrySettings.WriteDefaults,
-                        FRegistrySettings.GroupIndex);
+                      if FRegistrySettings.DoWriteAdHoc then
+                        SaveItemsStatesToReg(True)
+                      else
+                        SaveItemsStatesToReg(False);
                     end;
                   end;
-                else
-                  RegistrySource.WriteInteger(FRegistrySettings.RootKey,
-                    FRegistrySettings.RootKeyForDefaults,
-                    FRegistrySettings.RootForDefaults,
-                    FRegistrySettings.Section,
-                    FRegistrySettings.Ident,
-                    ItemIndex,
-                    FRegistrySettings.WriteDefaults,
-                    FRegistrySettings.GroupIndex);
                 end;
                 FIsModified := False;
               finally

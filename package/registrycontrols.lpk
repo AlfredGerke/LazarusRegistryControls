@@ -81,14 +81,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
         <UnitName Value="regcombobox"/>
       </Item7>
       <Item8>
-        <Filename Value="..\source\regcheckgroup.pas"/>
-        <HasRegisterProc Value="True"/>
-        <UnitName Value="regcheckgroup"/>
-      </Item8>
-      <Item9>
         <Filename Value="..\source\regchecklistbox.pas"/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="regchecklistbox"/>
+      </Item8>
+      <Item9>
+        <Filename Value="..\source\regcheckgroup.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="regcheckgroup"/>
       </Item9>
       <Item10>
         <Filename Value="..\source\regvaluelisteditor.pas"/>

@@ -246,7 +246,9 @@ begin
                   FRegistrySettings.WriteDefaults,
                   FRegistrySettings.GroupIndex);
 
-                  if ((FRegistrySettings.ListSection <> '') and (Items.Count > 0) and (LastChecked > -1)) then
+                if ((FRegistrySettings.ListSection <> '') and (Items.Count > 0) and (LastChecked > -1)) then
+                begin
+                  if FRegistrySettings.DoWriteAdHoc then
                   begin
                     ident_by_itemindex := Items.Strings[LastChecked];
                     checked_by_itemindex := Checked[LastChecked];
@@ -258,7 +260,12 @@ begin
                       checked_by_itemindex,
                       FRegistrySettings.WriteDefaults,
                       FRegistrySettings.GroupIndex);
+                  end
+                  else
+                  begin
+                    //
                   end;
+                end;
                 FIsModified := False;
               finally
                 FRegistrySettings.DoSyncData := sync_state_by_default;
