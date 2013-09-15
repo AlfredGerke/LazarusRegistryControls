@@ -74,6 +74,7 @@ type
     acSyncDataListOn: TAction;
     ActionList1: TActionList;
     btnEraseValueEditList: TSpeedButton;
+    btnRefreshControls1: TButton;
     btnSetMergePropertyOn: TButton;
     btnSetMergePropertyOff: TButton;
     btnShowClientDialogKombi: TButton;
@@ -83,19 +84,31 @@ type
     btnClearItems: TButton;
     btnShowClientDialogList: TButton;
     btnShowClientDialogSingle: TButton;
+    btnShowClientDialogSingle1: TButton;
+    btnSyncDataOf1: TButton;
     btnSyncDataOfList: TButton;
+    btnSyncDataOn1: TButton;
     btnSyncDataOnList: TButton;
+    btnWriteAdHocOff1: TButton;
     btnWriteAdHocOffList: TButton;
     btnWriteAdHocOn: TButton;
     btnSyncDataOn: TButton;
     btnWriteAdHocOff: TButton;
     btnSyncDataOf: TButton;
+    btnWriteAdHocOn1: TButton;
     btnWriteAdHocOnList: TButton;
     cbxClientNameDynamic: TRegComboBox;
+    cbxClientNameStaticPS: TRegComboBox;
+    lblCheckGroup3: TLabel;
     lblCheckListBox: TLabel;
     lblCheckListBox3: TLabel;
     lblCheckGroup2: TLabel;
+    lblCheckListBox4: TLabel;
     lblComboBox2: TLabel;
+    lblComboBox3: TLabel;
+    lblEditSingleValue2: TLabel;
+    lblListBox3: TLabel;
+    lblRadioGroup3: TLabel;
     lblValueEditList: TLabel;
     lblEditSingleValue1: TLabel;
     lblListBox2: TLabel;
@@ -130,26 +143,38 @@ type
     mnuFile: TMenuItem;
     PageControl1: TPageControl;
     PageControl2: TPageControl;
+    pnlClientPrefereStrings: TPanel;
     pnlClientKombination: TPanel;
     pnlClient: TPanel;
     pnlClientList: TPanel;
     pnlTop: TPanel;
+    pnlTopPrefereStrings: TPanel;
     pnlTopList: TPanel;
     pnlTopKombination: TPanel;
     rcbxCheckBoxStatic: TRegCheckBox;
     rcbxCheckBoxKombi: TRegCheckBox;
+    rcbxCheckBoxStaticPS: TRegCheckBox;
     rcgCheckedGroupKombi: TRegCheckGroup;
     rcgCheckGroupStatic: TRegCheckGroup;
+    rcgCheckGroupStaticPS: TRegCheckGroup;
     redtComboBoxStatic: TRegComboBox;
     redtComboBoxDynamic: TRegComboBox;
     rcgCheckGroupDynamic: TRegCheckGroup;
+    redtComboBoxStaticPS: TRegComboBox;
     redtEditStatic: TRegEdit;
     redtEditKombi: TRegEdit;
     cbxClientNameStatic: TRegComboBox;
     cbxClientNameKombi: TRegComboBox;
     rcbxHintOnCustomItemCheck: TRegCheckBox;
+    redtEditStaticPS: TRegEdit;
     RegistrySource3: TRegistrySource;
+    RegistrySource4: TRegistrySource;
+    rgrpRadioGroupStaticPS: TRegRadioGroup;
     rlbCheckedListBoxKombi: TRegCheckListBox;
+    rlbCheckListBoxStaticPS: TRegCheckListBox;
+    rlbListBoxStaticPS: TRegListBox;
+    rrbRadioButtonStaticPS: TRegRadioButton;
+    rrbRadioButtonStaticPS2: TRegRadioButton;
     rvlValueListEditorDynamic: TRegValueListEditor;
     rgrpRadioGroupStatic: TRegRadioGroup;
     rlbCheckListBoxDynamic: TRegCheckListBox;
@@ -167,6 +192,7 @@ type
     SpeedButton2: TSpeedButton;
     tabGroupIndex_1: TTabSheet;
     tabGroupIndex_2: TTabSheet;
+    TabSheet1: TTabSheet;
     tabSingleValue: TTabSheet;
     tabList: TTabSheet;
     tabKombination: TTabSheet;
@@ -378,6 +404,30 @@ begin
   end;
 
   with RegistrySource3 do
+  begin
+    Screen.Cursor := crHourGlass;
+    // Aktuelle Einstellung für DoSyncData sichern
+    old_sync_data := DoSyncData;
+    // Aktuelle Einstellung für WriteDefaults sichern
+    old_write_defaults := WriteDefaults;
+    // Schalten die Synchronisierung von Clients dieser RegistrySource aus
+    DoSyncData := False;
+    // Ermöglicht das Schreiben/Löschen von Defaults in der Registry
+    WriteDefaults := True;
+
+    // Ermittelt alle Sectionen unterhalb von RegistrySettings.RootKey und entfernt diese
+    DeleteRootKey;
+
+    // Aktualisiert alle Clients dieser RegistrySource
+    RefreshClientData('', 0);
+    // Gesicherten Wert von WriteDefaults setzen
+    WriteDefaults := old_write_defaults;
+    // Gesicherten Wert von DoSyncData setzen
+    DoSyncData := old_sync_data;
+    Screen.Cursor := crDefault;
+  end;
+
+  with RegistrySource4 do
   begin
     Screen.Cursor := crHourGlass;
     // Aktuelle Einstellung für DoSyncData sichern
@@ -759,6 +809,10 @@ begin
   RegistrySource3.GetClientList(cbxClientNameKombi.Items);
   // Daten für das Stuerelement aus der Registry lesen
   cbxClientNameKombi.ReadFromReg;
+  // Liste aller zugehörigen Steuerelemente (Clients) ermitteln
+  RegistrySource4.GetClientList(cbxClientNameStaticPS.Items);
+  // Daten für das Stuerelement aus der Registry lesen
+  cbxClientNameStaticPS.ReadFromReg;
 end;
 
 procedure TMain.rcbxCheckBoxKombiBeforeRegistrySettingChange(
@@ -993,6 +1047,47 @@ begin
       WriteInteger('RegValueListe', 'Key3', 2);
       WriteBool('RegValueListe', 'Key4', True);
       WriteBool('RegValueListe', 'Key5', False);
+
+      // Aktualisiert alle mit der RegistrySource verbundenen Steuerelemente (Clients)
+      RefreshClientData('', 0);
+      DoSyncData := old_sync_data;
+      Screen.Cursor := crDefault;
+    end;
+
+    // Die RegistrySource ist mit Steuerelementen (Clients) verbunden, die nur
+    // Einzelwerte sicher wie den Text eines TRegEdit oder den ItemIndex einer
+    // TRegListbox
+    // Listen werden in diesem Beispielen nicht dynamisch geladen sondern zur
+    // statisch festgelegt
+    // Die Ergebnisse werden auschließlich als Strings in der Registry gesichert
+    with RegistrySource4 do
+    begin
+      Screen.Cursor := crHourGlass;
+      // Aktuallen Wert für DoSyncData sichern
+      old_sync_data := DoSyncData;
+      DoSyncData := False;
+      // Wenn use_defaults auf TRUE steht, werden Defaulteinträge (Standards) in
+      // der Registry eingerichtet
+      // In den RegistrySettings wird unter RootForDefaults und RootKeyForDefaults
+      // festgelegt wo diese Defaults hinterlegt werden
+      WriteDefaults := use_defaults;
+
+      WriteString('Desktop', 'Test', 'PrefereStrings');
+
+      // Einzelwerte an Controls übergeben
+      // Ergebnisse werden immer als Strings in der Registry gesichert
+      WriteBool('Einzelwerte', 'DoWriteAdHoc', False);
+      WriteString('Einzelwerte', 'Edit', 'Test für Edit');
+      WriteBool('Einzelwerte', 'CheckBox1', True);
+      WriteBool('Einzelwerte', 'CheckBox2', False);
+      WriteBool('Einzelwerte', 'RadioButton1', True);
+      WriteBool('Einzelwerte', 'RadioButton2', False);
+
+      // Index für Listen sichern
+      // Ergebnisse werden immer als Strings in der Registry gesichert
+      WriteInteger('RadioGroup1', 'ItemIndex', 1);
+      WriteInteger('Combobox1', 'ItemIndex', 1);
+      WriteInteger('ListBox1', 'ItemIndex', 1);
 
       // Aktualisiert alle mit der RegistrySource verbundenen Steuerelemente (Clients)
       RefreshClientData('', 0);

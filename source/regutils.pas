@@ -690,6 +690,7 @@ constructor TDataByCurrentUser.Create(aFileName: string;
 begin
   inherited Create(aFileName);
 
+  PreferStringValues := aPrefereStrings;
   FUseDefaults :=
     TDefaultsForCurrentUser.Create(aDefaultsRoot, aDefaultKey, aPrefereStrings);
 end;

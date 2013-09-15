@@ -28,6 +28,7 @@ type
     FLastChecked: integer;
     FOnOriginalItemCheck: TCheckGroupClicked;
     FOnCustomItemCheck: TCheckGroupClicked;
+    FCatchEvents: boolean;
 
     procedure SaveItemsStatesToReg(aOnlyByItemIndex: boolean = True);
     procedure OnHookedItemCheck(Sender: TObject; Index: integer);
@@ -47,7 +48,8 @@ type
       message LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE;
     procedure RefreshWriteAdHoc(var aMessage: TLMessage);
       message LM_REGISTRY_CONTROL_SET_WRITEADHOC;
-    procedure RefreshSync(var aMessage: TLMessage); message LM_REGISTRY_CONTROL_SET_SYNC;
+    procedure RefreshSync(var aMessage: TLMessage);
+      message LM_REGISTRY_CONTROL_SET_SYNC;
     procedure RefreshSettings(var aMessage: TLMessage);
       message LM_REGISTRY_CONTROL_REFRESH_SETTINGS;
     procedure RefreshData(var aMessage: TLMessage);
@@ -527,10 +529,16 @@ procedure TCustomRegCheckGroup.Loaded;
 begin
   inherited Loaded;
 
-  if Assigned(OnItemClick) then
-    FOnOriginalItemCheck := OnItemClick;
+  if not (csDesigning in ComponentState) then
+    if FCatchEvents then
+    begin
+      FCatchEvents := False;
 
-  OnItemClick := OnHookedItemCheck;
+      if Assigned(OnItemClick) then
+        FOnOriginalItemCheck := OnItemClick;
+
+      OnItemClick := OnHookedItemCheck;
+    end;
 end;
 
 procedure TCustomRegCheckGroup.OnChangeSettings(Sender: TObject);
@@ -668,6 +676,7 @@ constructor TCustomRegCheckGroup.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
 
+  FCatchEvents := True;
   FIsModified := False;
   FRegistrySettings := TRegistrySettingsCheckedList.Create(Self);
   FRegistrySettings.OnChange := OnChangeSettings;
