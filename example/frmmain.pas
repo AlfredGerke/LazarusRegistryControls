@@ -147,6 +147,7 @@ type
     redtEditKombi: TRegEdit;
     cbxClientNameStatic: TRegComboBox;
     cbxClientNameKombi: TRegComboBox;
+    rcbxHintOnCustomItemCheck: TRegCheckBox;
     RegistrySource3: TRegistrySource;
     rlbCheckedListBoxKombi: TRegCheckListBox;
     rvlValueListEditorDynamic: TRegValueListEditor;
@@ -209,6 +210,9 @@ type
     procedure rcbxCheckBoxKombiBeforeRegistrySettingChange(
       aOldSettingInfo: TRegistrySettingValue;
       aNewSettingInfo: TRegistrySettingValue; var aIsOk: boolean);
+    procedure rcgCheckGroupStaticCustomItemCheck(Sender: TObject; Index: integer
+      );
+    procedure rcgCheckGroupStaticItemClick(Sender: TObject; Index: integer);
   private
     procedure RefreshWriteAdHocOnOff(aFlag: integer;
                                      aSet: boolean);
@@ -802,6 +806,19 @@ begin
   else
     aIsOk := True;
   end;
+end;
+
+procedure TMain.rcgCheckGroupStaticCustomItemCheck(Sender: TObject;
+  Index: integer);
+begin
+  if rcbxHintOnCustomItemCheck.Checked then
+    ShowMessage('2. OnCustomItemCheck [Sender: ' + Self.Name + ' - Index: ' + IntToStr(index) + '] - Wenn möglich für OnItemClick verwenden!');
+end;
+
+procedure TMain.rcgCheckGroupStaticItemClick(Sender: TObject; Index: integer);
+begin
+  if rcbxHintOnCustomItemCheck.Checked then
+    ShowMessage('1. OnItemClick [Sender: ' + Self.Name + ' - Index: ' + IntToStr(index) + '] - Wenn möglich durch OnCustomItemCheck ersetzen!');
 end;
 
 function TMain.CheckForExampleSettings: boolean;

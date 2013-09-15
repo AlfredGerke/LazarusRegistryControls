@@ -56,6 +56,7 @@ type
       message LM_REGISTRY_CONTROL_POST_DATA;
 
     procedure SetName(const NewName: TComponentName); override;
+    procedure Loaded; override;
 
     procedure OnChangeSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
@@ -174,7 +175,8 @@ begin
   Click;
 
   if Assigned(FOnOriginalItemCheck) then
-    FOnOriginalItemCheck(Sender, Index);
+    if (@FOnOriginalItemCheck <> @OnItemClick) then
+      FOnOriginalItemCheck(Sender, Index);
 
   if Assigned(FOnCustomItemCheck) then
     FOnCustomItemCheck(Sender, Index);
@@ -521,6 +523,16 @@ begin
     FRegistrySource.RenameClient(old_name, new_name);
 end;
 
+procedure TCustomRegCheckGroup.Loaded;
+begin
+  inherited Loaded;
+
+  if Assigned(OnItemClick) then
+    FOnOriginalItemCheck := OnItemClick;
+
+  OnItemClick := OnHookedItemCheck;
+end;
+
 procedure TCustomRegCheckGroup.OnChangeSettings(Sender: TObject);
 begin
   ReadFromReg;
@@ -659,11 +671,6 @@ begin
   FIsModified := False;
   FRegistrySettings := TRegistrySettingsCheckedList.Create(Self);
   FRegistrySettings.OnChange := OnChangeSettings;
-
-  if Assigned(OnItemClick) then
-    FOnOriginalItemCheck := OnItemClick;
-
-  OnItemClick := OnHookedItemCheck;
 end;
 
 destructor TCustomRegCheckGroup.Destroy;

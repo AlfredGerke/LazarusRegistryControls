@@ -277,6 +277,10 @@ msgctxt "TMAIN.RCBXCHECKBOXSTATIC.CAPTION"
 msgid "TRegCheckBox: ItemIndex verw."
 msgstr ""
 
+#: tmain.rcbxhintoncustomitemcheck.caption
+msgid "Hinweise OnItemClick vs. OnCustomItemCheck"
+msgstr ""
+
 #: tmain.rcgcheckedgroupkombi.caption
 msgctxt "TMAIN.RCGCHECKEDGROUPKOMBI.CAPTION"
 msgid " CheckedGroup "

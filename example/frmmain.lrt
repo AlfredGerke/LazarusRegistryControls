@@ -13,6 +13,7 @@ TMAIN.LBLCHECKLISTBOX3.CAPTION=TRegCheckListBox: statisch, ItemIndex u.
 Checkstatus verwalten
 TMAIN.LBLCHECKGROUP2.CAPTION=TRegCheckListBox: statisch, ItemIndex u. 
 Checkstatus verwalten
+TMAIN.RCBXHINTONCUSTOMITEMCHECK.CAPTION=Hinweise OnItemClick vs. OnCustomItemCheck
 TMAIN.TABLIST.CAPTION=Listen
 TMAIN.RGRPRADIOGROUPDYNAMIC.CAPTION= TRegRadiogroup dynamisch 
 TMAIN.LBLRADIOGROUPLIST.CAPTION=TRegRadiogroup: Items laden, ItemIndex verwalten

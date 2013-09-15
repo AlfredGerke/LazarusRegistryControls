@@ -410,6 +410,7 @@ object Main: TMain
             'CheckGroup statisch 4'
             'CheckGroup statisch 5'
           )
+          OnItemClick = rcgCheckGroupStaticItemClick
           TabOrder = 8
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
@@ -423,6 +424,7 @@ object Main: TMain
           RegistrySettings.ListSection = 'CheckGroupListe'
           RegistrySettings.MergeData = False
           RegistrySource = RegistrySource1
+          OnCustomItemCheck = rcgCheckGroupStaticCustomItemCheck
           Data = {
             050000000202020202
           }
@@ -458,6 +460,23 @@ object Main: TMain
           Font.Style = [fsUnderline]
           ParentColor = False
           ParentFont = False
+        end
+        object rcbxHintOnCustomItemCheck: TRegCheckBox
+          Left = 548
+          Height = 17
+          Top = 179
+          Width = 244
+          Caption = 'Hinweise OnItemClick vs. OnCustomItemCheck'
+          TabOrder = 9
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = False
+          RegistrySettings.Default = False
+          RegistrySettings.Section = 'Desktop'
+          RegistrySettings.Ident = 'HintOnCustomItemCheck'
+          RegistrySource = RegistrySource1
         end
       end
     end
