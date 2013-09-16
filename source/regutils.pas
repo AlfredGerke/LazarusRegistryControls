@@ -131,6 +131,9 @@ type
                        aDefaultsRoot: string;
                        aDefaultKey: string;
                        aPrefereStrings: boolean = False); reintroduce; overload;
+    constructor Create(aFileName: string;
+                       aPrefereStrings: boolean = False); reintroduce; overload;
+
     destructor Destroy; override;
   published
     property UseDefaults: TDefaultsForCurrentUser
@@ -693,6 +696,14 @@ begin
   PreferStringValues := aPrefereStrings;
   FUseDefaults :=
     TDefaultsForCurrentUser.Create(aDefaultsRoot, aDefaultKey, aPrefereStrings);
+end;
+
+constructor TDataByCurrentUser.Create(aFileName: string;
+  aPrefereStrings: boolean = False);
+begin
+  inherited Create(aFileName);
+
+  PreferStringValues := aPrefereStrings;
 end;
 
 destructor TDataByCurrentUser.Destroy;

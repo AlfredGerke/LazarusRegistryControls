@@ -64,6 +64,15 @@ type
     acPostDataSingle: TAction;
     acPostDataList: TAction;
     acPostDataKombi: TAction;
+    acSyncDataPSOn: TAction;
+    acSyncDataPSOff: TAction;
+    acRefreshDataPS: TAction;
+    acShowClientEditDialogPS: TAction;
+    acPostDataPS: TAction;
+    acRefreshDataAllPS: TAction;
+    acRefreshSettingPS: TAction;
+    acWriteAdHocOffPS: TAction;
+    acWriteAdHocOnPS: TAction;
     acWriteAdHocOffList: TAction;
     acSyncDataListOff: TAction;
     acWriteAdHocOff: TAction;
@@ -120,6 +129,9 @@ type
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    mnuPostDataPS: TMenuItem;
+    mnuRefreshDataPS: TMenuItem;
+    mnuSettingsPS: TMenuItem;
     mnuPostDataKombi: TMenuItem;
     mnuPostDataSingle: TMenuItem;
     mnuPostDataList: TMenuItem;
@@ -206,32 +218,41 @@ type
     procedure acEraseSectionValueEditExecute(Sender: TObject);
     procedure acPostDataKombiExecute(Sender: TObject);
     procedure acPostDataListExecute(Sender: TObject);
+    procedure acPostDataPSExecute(Sender: TObject);
     procedure acPostDataSingleExecute(Sender: TObject);
     procedure acRefreshDataAllKombiExecute(Sender: TObject);
     procedure acRefreshDataAllListExecute(Sender: TObject);
+    procedure acRefreshDataAllPSExecute(Sender: TObject);
     procedure acRefreshDataAllSingleExecute(Sender: TObject);
     procedure acRefreshDataExecute(Sender: TObject);
     procedure acRefreshDataKombiExecute(Sender: TObject);
     procedure acRefreshDataListExecute(Sender: TObject);
+    procedure acRefreshDataPSExecute(Sender: TObject);
     procedure acRefreshMergeDataOffExecute(Sender: TObject);
     procedure acRefreshMergeDataOnExecute(Sender: TObject);
     procedure acRefreshSettingListSourceExecute(Sender: TObject);
+    procedure acRefreshSettingPSExecute(Sender: TObject);
     procedure acRefreshSettingsKombinationExecute(Sender: TObject);
     procedure acRefreshSettingsSingleSourceExecute(Sender: TObject);
     procedure acShowClientEditDialogListExecute(Sender: TObject);
     procedure acShowClientEditDialogKombiExecute(Sender: TObject);
+    procedure acShowClientEditDialogPSExecute(Sender: TObject);
     procedure acShowClientEditDialogSingleExecute(Sender: TObject);
     procedure acSyncDataListOffExecute(Sender: TObject);
     procedure acSyncDataListOnExecute(Sender: TObject);
     procedure acSyncDataOffExecute(Sender: TObject);
+    procedure acSyncDataPSOffExecute(Sender: TObject);
+    procedure acSyncDataPSOnExecute(Sender: TObject);
     procedure acTestDeleteKeyExecute(Sender: TObject);
     procedure acTestEraseSectionExecute(Sender: TObject);
     procedure acTestRenameKeyExecute(Sender: TObject);
     procedure acWriteAdHocOffExecute(Sender: TObject);
     procedure acWriteAdHocOffListExecute(Sender: TObject);
+    procedure acWriteAdHocOffPSExecute(Sender: TObject);
     procedure acWriteAdHocOnExecute(Sender: TObject);
     procedure acSyncDataOnExecute(Sender: TObject);
     procedure acWriteAdHocOnListExecute(Sender: TObject);
+    procedure acWriteAdHocOnPSExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure rcbxCheckBoxKombiBeforeRegistrySettingChange(
       aOldSettingInfo: TRegistrySettingValue;
@@ -277,6 +298,9 @@ begin
       // DoWriteAdHoc auf den Wert von False gesetzt
       RegistrySource3.RefreshWriteAdHocProperty(False, 'redtEditKombi');
     end;
+    // Für alle Clients der RegistrySource1 wird die Eigenschaft DoWriteAdHoc
+    // auf den Wert von aSet gesetzt
+    3: RegistrySource4.RefreshWriteAdHocProperty(aSet);
   end;
 end;
 
@@ -293,6 +317,9 @@ begin
     // Für alle Clients der RegistrySource3 wird die Eigenschaft DoSyncData
     // auf den Wert von aSet gesetzt
     2: RegistrySource3.RefreshSyncProperty(aSet);
+    // Für alle Clients der RegistrySource3 wird die Eigenschaft DoSyncData
+    // auf den Wert von aSet gesetzt
+    3: RegistrySource4.RefreshSyncProperty(aSet);
   end;
 end;
 
@@ -508,6 +535,26 @@ begin
   end;
 end;
 
+procedure TMain.acPostDataPSExecute(Sender: TObject);
+var
+  old_sync_data_value: boolean;
+begin
+  // Daten aller Steuerelemente (Clients) der RegistrySource in die Registry
+  // schreiben
+  with RegistrySource4 do
+  begin
+    old_sync_data_value := DoSyncData;
+    // Das Sichern von Werten in die Registry für mehrere Clients bei DoWriteAdHoc=False
+    // kann nur dann erfolgreich geschehen, wenn die Synchronisierung ausgeschaltet wird
+    DoSyncData := False;
+    // Eingeschaltete Synchronisierung würde dafür sorgen, das nach dem Schreiben des ersten
+    // Clients alle anderen Clients mit Daten aus der Registry aktualisiert würden, was deren
+    // bis dahin eingestellte Werte verwerfen würde
+    PostClientData;
+    DoSyncData := old_sync_data_value;
+  end;
+end;
+
 procedure TMain.acPostDataSingleExecute(Sender: TObject);
 var
   old_sync_data_value: boolean;
@@ -542,6 +589,13 @@ begin
   RegistrySource2.RefreshClientData;
 end;
 
+procedure TMain.acRefreshDataAllPSExecute(Sender: TObject);
+begin
+  // Alle Steuerelemente (Clients) der RegistrySource mit aktuellen Werten aus
+  // der Registry vesorgen
+  RegistrySource4.RefreshClientData;
+end;
+
 procedure TMain.acRefreshDataAllSingleExecute(Sender: TObject);
 begin
   // Alle Steuerelemente (Clients) der RegistrySource mit aktuellen Werten aus
@@ -567,6 +621,13 @@ begin
   // Aktualisert das Steuerelement (Client), dessen Name als String übergeben wurde
   // Ein Leerstring wird alle Steuerelemente (Clients) der RegistrySource aktualisieren
   RegistrySource2.RefreshClientData(Trim(cbxClientNameDynamic.Text));
+end;
+
+procedure TMain.acRefreshDataPSExecute(Sender: TObject);
+begin
+  // Aktualisert das Steuerelement (Client), dessen Name als String übergeben wurde
+  // Ein Leerstring wird alle Steuerelemente (Clients) der RegistrySource aktualisieren
+  RegistrySource4.RefreshClientData(Trim(cbxClientNameStaticPS.Text));
 end;
 
 procedure TMain.acRefreshMergeDataOffExecute(Sender: TObject);
@@ -598,6 +659,13 @@ begin
   // Alle RootKeys der Steuerelemente (Clients) der RegistrySource werden mit aktuellen
   // Schlüsseln versorgt
   RegistrySource2.RefreshSettings;
+end;
+
+procedure TMain.acRefreshSettingPSExecute(Sender: TObject);
+begin
+  // Alle RootKeys der Steuerelemente (Clients) der RegistrySource werden mit aktuellen
+  // Schlüsseln versorgt
+  RegistrySource4.RefreshSettings;
 end;
 
 procedure TMain.acRefreshSettingsKombinationExecute(Sender: TObject);
@@ -664,6 +732,31 @@ begin
   end;
 end;
 
+procedure TMain.acShowClientEditDialogPSExecute(Sender: TObject);
+var
+  client_name: string;
+begin
+  // Mit diesem Code wird auf Eigenschaften (RootKeys) eines Steuerelementes (Client) zugegriffen,
+  // welche nicht in den RegistrySettings veröffentlicht wurden
+  with RegistrySource4 do
+  begin
+    // Sorgt dafür das der Dialog im Editiermodus erscheint und nicht im Ansichtsmodus
+    EditClientRootKeys := True;
+    try
+      // Auswahl des Steuerelementes (Client), dessen RootKeys angepasst werden sollen
+      client_name := Trim(cbxClientNameStaticPS.Text);
+      // Der Dialog kann nur für ein gültiges Steuerelement aufgerufen werden
+      if (client_name <> EmptyStr) then
+        ShowClientEditDialog(client_name)
+      else
+        MessageDlg('Ungültiger Clientname gewählt!', mtWarning, [mbOk], 0);
+    finally
+      // Sorgt dafür der Editiermodus wieder auf False gesetzt wird
+      EditClientRootKeys := False;
+    end;
+  end;
+end;
+
 procedure TMain.acShowClientEditDialogSingleExecute(Sender: TObject);
 var
   client_name: string;
@@ -702,6 +795,16 @@ end;
 procedure TMain.acSyncDataOffExecute(Sender: TObject);
 begin
   RefreshSyncDataOnOff(0, False);
+end;
+
+procedure TMain.acSyncDataPSOffExecute(Sender: TObject);
+begin
+  RefreshSyncDataOnOff(3, False);
+end;
+
+procedure TMain.acSyncDataPSOnExecute(Sender: TObject);
+begin
+  RefreshSyncDataOnOff(3, True);
 end;
 
 procedure TMain.acTestDeleteKeyExecute(Sender: TObject);
@@ -774,6 +877,11 @@ begin
   RefreshWriteAdHocOnOff(1, False);
 end;
 
+procedure TMain.acWriteAdHocOffPSExecute(Sender: TObject);
+begin
+  RefreshWriteAdHocOnOff(3, False);
+end;
+
 procedure TMain.acWriteAdHocOnExecute(Sender: TObject);
 begin
   RefreshWriteAdHocOnOff(0, True);
@@ -787,6 +895,11 @@ end;
 procedure TMain.acWriteAdHocOnListExecute(Sender: TObject);
 begin
   RefreshWriteAdHocOnOff(1, True);
+end;
+
+procedure TMain.acWriteAdHocOnPSExecute(Sender: TObject);
+begin
+  RefreshWriteAdHocOnOff(3, True);
 end;
 
 procedure TMain.FormShow(Sender: TObject);
@@ -1006,12 +1119,6 @@ begin
       WriteBool('CheckListBoxListe', 'CheckListBox4Key', True);
       WriteBool('CheckListBoxListe', 'CheckListBox5Key', False);
 
-      WriteString('CheckListBoxListe2', 'CheckListBox1Key', '1');
-      WriteString('CheckListBoxListe2', 'CheckListBox2Key', '0');
-      WriteString('CheckListBoxListe2', 'CheckListBox3Key', '1');
-      WriteString('CheckListBoxListe2', 'CheckListBox4Key', 'True');
-      WriteString('CheckListBoxListe2', 'CheckListBox5Key', 'False');
-
       // Section als Liste laden (Key=Value)
       WriteString('RegValueListe', 'Key1', 'Value1');
       WriteString('RegValueListe', 'Key2', 'Value2');
@@ -1088,6 +1195,22 @@ begin
       WriteInteger('RadioGroup1', 'ItemIndex', 1);
       WriteInteger('Combobox1', 'ItemIndex', 1);
       WriteInteger('ListBox1', 'ItemIndex', 1);
+
+      // Section als Liste laden
+      // wenn als Value 1 oder True dann Ident gechecked
+      WriteInteger('CheckListBoxListe', 'CheckListBox1Key', 1);
+      WriteInteger('CheckListBoxListe', 'CheckListBox2Key', 0);
+      WriteInteger('CheckListBoxListe', 'CheckListBox3Key', 1);
+      WriteBool('CheckListBoxListe', 'CheckListBox4Key', True);
+      WriteBool('CheckListBoxListe', 'CheckListBox5Key', False);
+
+      // Section als Liste laden
+      // wenn als Value 1 oder True dann Ident gechecked
+      WriteInteger('CheckGroupListe', 'CheckGroup1Key', 1);
+      WriteInteger('CheckGroupListe', 'CheckGroup2Key', 1);
+      WriteInteger('CheckGroupListe', 'CheckGroup3Key', 0);
+      WriteBool('CheckGroupListe', 'CheckGroup4Key', True);
+      WriteBool('CheckGroupListe', 'CheckGroup5Key', False);
 
       // Aktualisiert alle mit der RegistrySource verbundenen Steuerelemente (Clients)
       RefreshClientData('', 0);

@@ -15,13 +15,13 @@ TMAIN.LBLCHECKGROUP2.CAPTION=TRegCheckListBox: statisch, ItemIndex u.
 Checkstatus verwalten
 TMAIN.RCBXHINTONCUSTOMITEMCHECK.CAPTION=Hinweise OnItemClick vs. OnCustomItemCheck
 TMAIN.TABLIST.CAPTION=Listen
-TMAIN.RGRPRADIOGROUPDYNAMIC.CAPTION= TRegRadiogroup dynamisch 
+TMAIN.RGRPRADIOGROUPDYNAMIC.CAPTION= TRegRadiogroup: dynamisch 
 TMAIN.LBLRADIOGROUPLIST.CAPTION=TRegRadiogroup: Items laden, ItemIndex verwalten
 TMAIN.LBLISTBOXLIST.CAPTION=TRegListBox: Items laden, ItemIndex verwalten
 TMAIN.LBLCOMBOBOX.CAPTION=TRegComboBox: Items laden, ItemIndex verwalten
 TMAIN.LBLCHECKLISTBOX.CAPTION=TRegCheckListBox: Items laden, ItemIndex u. 
 Checkstatus verwalten
-TMAIN.RCGCHECKGROUPDYNAMIC.CAPTION= TRegCheckGroup dynamisch 
+TMAIN.RCGCHECKGROUPDYNAMIC.CAPTION= TRegCheckGroup: dynamisch 
 TMAIN.LBLCHECKGROUP.CAPTION=TRegCheckGroup: Items laden, LastChecked u.
 Checkstatus verwalten
 TMAIN.LBLVALUEEDITLIST.CAPTION=TRegValueListEditor: Keys u. Values laden u.
@@ -39,11 +39,11 @@ TMAIN.RCBXCHECKBOXSTATICPS.CAPTION=TRegCheckBox: ItemIndex verw.
 TMAIN.RRBRADIOBUTTONSTATICPS.CAPTION=TRegRadioButton: Checkstatus verw.
 TMAIN.RRBRADIOBUTTONSTATICPS2.CAPTION=TRegRadioButton: Checkstatus verw.
 TMAIN.LBLLISTBOX3.CAPTION=TRegListBox: statisch, ItemIndex verwalten
-TMAIN.LBLCHECKLISTBOX4.CAPTION=TRegCheckListBox: statisch, ItemIndex u. 
+TMAIN.LBLCHECKLISTBOX4.CAPTION=TRegCheckListBox: Items laden, ItemIndex u. 
 Checkstatus verwalten
-TMAIN.LBLCHECKGROUP3.CAPTION=TRegCheckListBox: statisch, ItemIndex u. 
+TMAIN.LBLCHECKGROUP3.CAPTION=TRegCheckGroup: Items laden, LastChecked u.
 Checkstatus verwalten
-TMAIN.RCGCHECKGROUPSTATICPS.CAPTION= TRegCheckGroup: statisch 
+TMAIN.RCGCHECKGROUPSTATICPS.CAPTION= TRegCheckGroup: dynamisch 
 TMAIN.RGRPRADIOGROUPSTATICPS.CAPTION= TRegRadioGroup: statisch 
 TMAIN.LBLRADIOGROUP3.CAPTION=TRegRadioGroup: ItemIndex verwalten
 TMAIN.MNUFILE.CAPTION=Datei
@@ -92,3 +92,12 @@ TMAIN.ACREFRESHDATAALLKOMBI.CAPTION=Daten aus der Registry (RegistrySource3)
 TMAIN.ACPOSTDATASINGLE.CAPTION=Daten in die Registry (RegistrySource1)
 TMAIN.ACPOSTDATALIST.CAPTION=Daten in die Registry (RegistrySource2)
 TMAIN.ACPOSTDATAKOMBI.CAPTION=Daten in die Registry (RegistrySource3)
+TMAIN.ACWRITEADHOCONPS.CAPTION=Änderungen sofort in die Registry schreiben
+TMAIN.ACWRITEADHOCOFFPS.CAPTION=Änderungen nicht sofort in die Registry schreiben
+TMAIN.ACSYNCDATAPSON.CAPTION=Steuerelemente synchronisieren
+TMAIN.ACSYNCDATAPSOFF.CAPTION=Steuerelemente nicht synchronisieren
+TMAIN.ACREFRESHDATAPS.CAPTION=Steuerelement(e) aktualisieren
+TMAIN.ACSHOWCLIENTEDITDIALOGPS.CAPTION=RootKeys ändern
+TMAIN.ACPOSTDATAPS.CAPTION=Daten in die Registry (RegistrySource4)
+TMAIN.ACREFRESHDATAALLPS.CAPTION=Daten aus der Registry (RegistrySource4)
+TMAIN.ACREFRESHSETTINGPS.CAPTION=Einstellungen (RegistrySource4)

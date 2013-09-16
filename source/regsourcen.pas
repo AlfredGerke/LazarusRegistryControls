@@ -545,7 +545,8 @@ begin
                aRootKeyForDefaults,
                FPrefereStrings)
   else
-    streg := TDataByCurrentUser.Create(aRootKey);
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings);
 
   list := TStringlist.Create;
   try
@@ -785,7 +786,8 @@ begin
                aRootKeyForDefaults,
                FPrefereStrings)
   else
-    streg := TDataByCurrentUser.Create(aRootKey);
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings);
 
   try
     try
@@ -843,7 +845,8 @@ begin
                aRootKeyForDefaults,
                FPrefereStrings)
   else
-    streg := TDataByCurrentUser.Create(aRootKey);
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings);
 
   try
     try
@@ -903,7 +906,8 @@ begin
                aRootKeyForDefaults,
                FPrefereStrings)
   else
-    streg := TDataByCurrentUser.Create(aRootKey);
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings);
 
   try
     try
@@ -962,7 +966,8 @@ begin
                aRootKeyForDefaults,
                FPrefereStrings)
   else
-    streg := TDataByCurrentUser.Create(aRootKey);
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings);
 
   try
     try
@@ -1035,7 +1040,8 @@ begin
                aRootKeyForDefaults,
                FPrefereStrings)
   else
-    streg := TDataByCurrentUser.Create(aRootKey);
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings);
 
   try
     try
@@ -1093,7 +1099,8 @@ begin
                aRootKeyForDefaults,
                FPrefereStrings)
   else
-    streg := TDataByCurrentUser.Create(aRootKey);
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings);
 
   try
     try
@@ -1153,7 +1160,8 @@ begin
                aRootKeyForDefaults,
                FPrefereStrings)
   else
-    streg := TDataByCurrentUser.Create(aRootKey);
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings);
 
   try
     try
@@ -1211,7 +1219,8 @@ begin
                aRootKeyForDefaults,
                FPrefereStrings)
   else
-    streg := TDataByCurrentUser.Create(aRootKey);
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings);
 
   try
     try
@@ -1268,7 +1277,8 @@ begin
                aRootKeyForDefaults,
                FPrefereStrings)
   else
-    streg := TDataByCurrentUser.Create(aRootKey);
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings);
 
   try
     try
@@ -1322,7 +1332,8 @@ begin
                aRootKeyForDefaults,
                FPrefereStrings)
   else
-    streg := TDataByCurrentUser.Create(aRootKey);
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings);
 
   try
     try

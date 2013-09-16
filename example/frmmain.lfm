@@ -1,7 +1,7 @@
 object Main: TMain
-  Left = 565
+  Left = 763
   Height = 488
-  Top = 128
+  Top = 216
   Width = 811
   Caption = 'RegistryControls in Aktion'
   ClientHeight = 469
@@ -578,7 +578,7 @@ object Main: TMain
           Top = 225
           Width = 248
           AutoFill = True
-          Caption = ' TRegRadiogroup dynamisch '
+          Caption = ' TRegRadiogroup: dynamisch '
           ChildSizing.LeftRightSpacing = 6
           ChildSizing.TopBottomSpacing = 6
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -738,7 +738,7 @@ object Main: TMain
           Top = 225
           Width = 248
           AutoFill = True
-          Caption = ' TRegCheckGroup dynamisch '
+          Caption = ' TRegCheckGroup: dynamisch '
           ChildSizing.LeftRightSpacing = 6
           ChildSizing.TopBottomSpacing = 6
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -1092,7 +1092,7 @@ object Main: TMain
           Height = 25
           Top = 5
           Width = 259
-          Action = acWriteAdHocOn
+          Action = acWriteAdHocOnPS
           TabOrder = 0
         end
         object btnWriteAdHocOff1: TButton
@@ -1100,7 +1100,7 @@ object Main: TMain
           Height = 25
           Top = 31
           Width = 259
-          Action = acWriteAdHocOff
+          Action = acWriteAdHocOffPS
           TabOrder = 1
         end
         object btnSyncDataOf1: TButton
@@ -1108,7 +1108,7 @@ object Main: TMain
           Height = 25
           Top = 31
           Width = 200
-          Action = acSyncDataOff
+          Action = acSyncDataPSOff
           TabOrder = 2
         end
         object btnSyncDataOn1: TButton
@@ -1116,7 +1116,7 @@ object Main: TMain
           Height = 25
           Top = 5
           Width = 200
-          Action = acSyncDataOn
+          Action = acSyncDataPSOn
           TabOrder = 3
         end
         object btnRefreshControls1: TButton
@@ -1124,7 +1124,7 @@ object Main: TMain
           Height = 25
           Top = 5
           Width = 160
-          Action = acRefreshData
+          Action = acRefreshDataPS
           TabOrder = 4
         end
         object cbxClientNameStaticPS: TRegComboBox
@@ -1153,7 +1153,7 @@ object Main: TMain
           Height = 25
           Top = 5
           Width = 160
-          Action = acShowClientEditDialogSingle
+          Action = acShowClientEditDialogPS
           TabOrder = 6
         end
       end
@@ -1362,8 +1362,8 @@ object Main: TMain
           Left = 548
           Height = 29
           Top = 11
-          Width = 202
-          Caption = 'TRegCheckListBox: statisch, ItemIndex u. '#13#10'Checkstatus verwalten'
+          Width = 218
+          Caption = 'TRegCheckListBox: Items laden, ItemIndex u. '#13#10'Checkstatus verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1379,14 +1379,7 @@ object Main: TMain
           Height = 128
           Top = 46
           Width = 248
-          Items.Strings = (
-            'statischer Eintrag 1'
-            'statischer Eintrag 2'
-            'statischer Eintrag 3'
-            'statischer Eintrag 4'
-            'statischer Eintrag 5'
-          )
-          ItemHeight = 15
+          ItemHeight = 0
           TabOrder = 6
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
@@ -1396,20 +1389,17 @@ object Main: TMain
           RegistrySettings.Default = 0
           RegistrySettings.Section = 'CheckListBox2'
           RegistrySettings.Ident = 'ItemIndex'
-          RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'CheckListBoxListe'
           RegistrySettings.MergeData = False
           RegistrySource = RegistrySource4
-          Data = {
-            050000000000000000
-          }
         end
         object lblCheckGroup3: TLabel
           Left = 548
           Height = 29
           Top = 195
-          Width = 202
-          Caption = 'TRegCheckListBox: statisch, ItemIndex u. '#13#10'Checkstatus verwalten'
+          Width = 227
+          Caption = 'TRegCheckGroup: Items laden, LastChecked u.'#13#10'Checkstatus verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1426,7 +1416,7 @@ object Main: TMain
           Top = 225
           Width = 248
           AutoFill = True
-          Caption = ' TRegCheckGroup: statisch '
+          Caption = ' TRegCheckGroup: dynamisch '
           ChildSizing.LeftRightSpacing = 6
           ChildSizing.TopBottomSpacing = 6
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -1435,15 +1425,6 @@ object Main: TMain
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 111
-          ClientWidth = 244
-          Items.Strings = (
-            'CheckGroup statisch 1'
-            'CheckGroup statisch 2'
-            'CheckGroup statisch 3'
-            'CheckGroup statisch 4'
-            'CheckGroup statisch 5'
-          )
           OnItemClick = rcgCheckGroupStaticItemClick
           TabOrder = 7
           RegistrySettings.CanRead = True
@@ -1454,14 +1435,11 @@ object Main: TMain
           RegistrySettings.Default = 0
           RegistrySettings.Section = 'CheckGroup2'
           RegistrySettings.Ident = 'ItemIndex'
-          RegistrySettings.ItemsByRegistry = False
+          RegistrySettings.ItemsByRegistry = True
           RegistrySettings.ListSection = 'CheckGroupListe'
           RegistrySettings.MergeData = False
           RegistrySource = RegistrySource4
           OnCustomItemCheck = rcgCheckGroupStaticCustomItemCheck
-          Data = {
-            050000000202020202
-          }
         end
         object rgrpRadioGroupStaticPS: TRegRadioGroup
           Left = 285
@@ -1552,6 +1530,9 @@ object Main: TMain
       object mnuSettingsKombi: TMenuItem
         Action = acRefreshSettingsKombination
       end
+      object mnuSettingsPS: TMenuItem
+        Action = acRefreshSettingPS
+      end
       object MenuItem3: TMenuItem
         Caption = '-'
       end
@@ -1564,6 +1545,9 @@ object Main: TMain
       object mnuRefreshDataKombi: TMenuItem
         Action = acRefreshDataAllKombi
       end
+      object mnuRefreshDataPS: TMenuItem
+        Action = acRefreshDataAllPS
+      end
       object MenuItem2: TMenuItem
         Caption = '-'
       end
@@ -1575,6 +1559,9 @@ object Main: TMain
       end
       object mnuPostDataKombi: TMenuItem
         Action = acPostDataKombi
+      end
+      object mnuPostDataPS: TMenuItem
+        Action = acPostDataPS
       end
     end
     object mnuTest: TMenuItem
@@ -1776,6 +1763,51 @@ object Main: TMain
       Category = 'ExecuteKombinationExcample'
       Caption = 'Daten in die Registry (RegistrySource3)'
       OnExecute = acPostDataKombiExecute
+    end
+    object acWriteAdHocOnPS: TAction
+      Category = 'ExecutePSExample'
+      Caption = 'Änderungen sofort in die Registry schreiben'
+      OnExecute = acWriteAdHocOnPSExecute
+    end
+    object acWriteAdHocOffPS: TAction
+      Category = 'ExecutePSExample'
+      Caption = 'Änderungen nicht sofort in die Registry schreiben'
+      OnExecute = acWriteAdHocOffPSExecute
+    end
+    object acSyncDataPSOn: TAction
+      Category = 'ExecutePSExample'
+      Caption = 'Steuerelemente synchronisieren'
+      OnExecute = acSyncDataPSOnExecute
+    end
+    object acSyncDataPSOff: TAction
+      Category = 'ExecutePSExample'
+      Caption = 'Steuerelemente nicht synchronisieren'
+      OnExecute = acSyncDataPSOffExecute
+    end
+    object acRefreshDataPS: TAction
+      Category = 'ExecutePSExample'
+      Caption = 'Steuerelement(e) aktualisieren'
+      OnExecute = acRefreshDataPSExecute
+    end
+    object acShowClientEditDialogPS: TAction
+      Category = 'ExecutePSExample'
+      Caption = 'RootKeys ändern'
+      OnExecute = acShowClientEditDialogPSExecute
+    end
+    object acPostDataPS: TAction
+      Category = 'ExecutePSExample'
+      Caption = 'Daten in die Registry (RegistrySource4)'
+      OnExecute = acPostDataPSExecute
+    end
+    object acRefreshDataAllPS: TAction
+      Category = 'ExecutePSExample'
+      Caption = 'Daten aus der Registry (RegistrySource4)'
+      OnExecute = acRefreshDataAllPSExecute
+    end
+    object acRefreshSettingPS: TAction
+      Category = 'ExecutePSExample'
+      Caption = 'Einstellungen (RegistrySource4)'
+      OnExecute = acRefreshSettingPSExecute
     end
   end
   object RegistrySource1: TRegistrySource

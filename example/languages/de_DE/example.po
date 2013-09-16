@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-msgid "verwalten"
+msgid "Checkstatus verwalten"
 msgstr ""
 
 #: tmain.acaddvalue.caption
@@ -46,6 +46,10 @@ msgstr ""
 msgid "Daten in die Registry (RegistrySource2)"
 msgstr ""
 
+#: tmain.acpostdataps.caption
+msgid "Daten in die Registry (RegistrySource4)"
+msgstr ""
+
 #: tmain.acpostdatasingle.caption
 msgid "Daten in die Registry (RegistrySource1)"
 msgstr ""
@@ -63,6 +67,10 @@ msgstr ""
 msgid "Daten aus der Registry (RegistrySource2)"
 msgstr ""
 
+#: tmain.acrefreshdataallps.caption
+msgid "Daten aus der Registry (RegistrySource4)"
+msgstr ""
+
 #: tmain.acrefreshdataallsingle.caption
 msgid "Daten aus der Registry (RegistrySource1)"
 msgstr ""
@@ -76,6 +84,11 @@ msgctxt "TMAIN.ACREFRESHDATALIST.CAPTION"
 msgid "Steuerelement(e) aktualisieren"
 msgstr ""
 
+#: tmain.acrefreshdataps.caption
+msgctxt "TMAIN.ACREFRESHDATAPS.CAPTION"
+msgid "Steuerelement(e) aktualisieren"
+msgstr ""
+
 #: tmain.acrefreshmergedataoff.caption
 msgid "Listen nicht mir Defaults mischen"
 msgstr ""
@@ -86,6 +99,10 @@ msgstr ""
 
 #: tmain.acrefreshsettinglistsource.caption
 msgid "Einstellungen (RegistrySource2)"
+msgstr ""
+
+#: tmain.acrefreshsettingps.caption
+msgid "Einstellungen (RegistrySource4)"
 msgstr ""
 
 #: tmain.acrefreshsettingskombination.caption
@@ -106,16 +123,23 @@ msgctxt "TMAIN.ACSHOWCLIENTEDITDIALOGLIST.CAPTION"
 msgid "RootKeys ändern"
 msgstr ""
 
+#: tmain.acshowclienteditdialogps.caption
+msgctxt "TMAIN.ACSHOWCLIENTEDITDIALOGPS.CAPTION"
+msgid "RootKeys ändern"
+msgstr ""
+
 #: tmain.acshowclienteditdialogsingle.caption
 msgctxt "TMAIN.ACSHOWCLIENTEDITDIALOGSINGLE.CAPTION"
 msgid "RootKeys ändern"
 msgstr ""
 
 #: tmain.acsyncdatalistoff.caption
+msgctxt "tmain.acsyncdatalistoff.caption"
 msgid "Steuerelemente nicht synchronisieren"
 msgstr ""
 
 #: tmain.acsyncdataliston.caption
+msgctxt "tmain.acsyncdataliston.caption"
 msgid "Steuerelemente synchronisieren"
 msgstr ""
 
@@ -135,6 +159,16 @@ msgstr ""
 #: tmain.acsyncdataon.hint
 msgctxt "TMAIN.ACSYNCDATAON.HINT"
 msgid "alle Elemente auf dem Reiter werden eingestellt"
+msgstr ""
+
+#: tmain.acsyncdatapsoff.caption
+msgctxt "TMAIN.ACSYNCDATAPSOFF.CAPTION"
+msgid "Steuerelemente nicht synchronisieren"
+msgstr ""
+
+#: tmain.acsyncdatapson.caption
+msgctxt "TMAIN.ACSYNCDATAPSON.CAPTION"
+msgid "Steuerelemente synchronisieren"
 msgstr ""
 
 #: tmain.actestdeletekey.caption
@@ -159,6 +193,11 @@ msgctxt "TMAIN.ACWRITEADHOCOFFLIST.CAPTION"
 msgid "Änderungen nicht sofort in die Registry schreiben"
 msgstr ""
 
+#: tmain.acwriteadhocoffps.caption
+msgctxt "TMAIN.ACWRITEADHOCOFFPS.CAPTION"
+msgid "Änderungen nicht sofort in die Registry schreiben"
+msgstr ""
+
 #: tmain.acwriteadhocon.caption
 msgctxt "tmain.acwriteadhocon.caption"
 msgid "Änderungen sofort in die Registry schreiben"
@@ -179,6 +218,11 @@ msgctxt "TMAIN.ACWRITEADHOCONLIST.HINT"
 msgid "alle Elemente auf dem Reiter werden eingestellt"
 msgstr ""
 
+#: tmain.acwriteadhoconps.caption
+msgctxt "TMAIN.ACWRITEADHOCONPS.CAPTION"
+msgid "Änderungen sofort in die Registry schreiben"
+msgstr ""
+
 #: tmain.btnsetmergepropertyoff.caption
 msgid "Listen nicht mit Defaults mischen"
 msgstr ""
@@ -188,6 +232,7 @@ msgid "RegistryControls in Aktion"
 msgstr ""
 
 #: tmain.lblcheckgroup.caption
+msgctxt "tmain.lblcheckgroup.caption"
 msgid "TRegCheckGroup: Items laden, LastChecked u."
 msgstr ""
 
@@ -196,13 +241,24 @@ msgctxt "tmain.lblcheckgroup2.caption"
 msgid "TRegCheckListBox: statisch, ItemIndex u. "
 msgstr ""
 
+#: tmain.lblcheckgroup3.caption
+msgctxt "TMAIN.LBLCHECKGROUP3.CAPTION"
+msgid "TRegCheckGroup: Items laden, LastChecked u."
+msgstr ""
+
 #: tmain.lblchecklistbox.caption
+msgctxt "tmain.lblchecklistbox.caption"
 msgid "TRegCheckListBox: Items laden, ItemIndex u. "
 msgstr ""
 
 #: tmain.lblchecklistbox3.caption
 msgctxt "tmain.lblchecklistbox3.caption"
 msgid "TRegCheckListBox: statisch, ItemIndex u. "
+msgstr ""
+
+#: tmain.lblchecklistbox4.caption
+msgctxt "TMAIN.LBLCHECKLISTBOX4.CAPTION"
+msgid "TRegCheckListBox: Items laden, ItemIndex u. "
 msgstr ""
 
 #: tmain.lblcombobox.caption
@@ -214,8 +270,18 @@ msgctxt "TMAIN.LBLCOMBOBOX2.CAPTION"
 msgid "TRegComboBox: ItemIndex verwalten"
 msgstr ""
 
+#: tmain.lblcombobox3.caption
+msgctxt "TMAIN.LBLCOMBOBOX3.CAPTION"
+msgid "TRegComboBox: ItemIndex verwalten"
+msgstr ""
+
 #: tmain.lbleditsinglevalue1.caption
 msgctxt "tmain.lbleditsinglevalue1.caption"
+msgid "TRegEdit: Text verwalten"
+msgstr ""
+
+#: tmain.lbleditsinglevalue2.caption
+msgctxt "TMAIN.LBLEDITSINGLEVALUE2.CAPTION"
 msgid "TRegEdit: Text verwalten"
 msgstr ""
 
@@ -228,8 +294,18 @@ msgctxt "TMAIN.LBLLISTBOX2.CAPTION"
 msgid "TRegListBox: statisch, ItemIndex verwalten"
 msgstr ""
 
+#: tmain.lbllistbox3.caption
+msgctxt "TMAIN.LBLLISTBOX3.CAPTION"
+msgid "TRegListBox: statisch, ItemIndex verwalten"
+msgstr ""
+
 #: tmain.lblradiogroup2.caption
 msgctxt "TMAIN.LBLRADIOGROUP2.CAPTION"
+msgid "TRegRadioGroup: ItemIndex verwalten"
+msgstr ""
+
+#: tmain.lblradiogroup3.caption
+msgctxt "TMAIN.LBLRADIOGROUP3.CAPTION"
 msgid "TRegRadioGroup: ItemIndex verwalten"
 msgstr ""
 
@@ -277,6 +353,11 @@ msgctxt "TMAIN.RCBXCHECKBOXSTATIC.CAPTION"
 msgid "TRegCheckBox: ItemIndex verw."
 msgstr ""
 
+#: tmain.rcbxcheckboxstaticps.caption
+msgctxt "TMAIN.RCBXCHECKBOXSTATICPS.CAPTION"
+msgid "TRegCheckBox: ItemIndex verw."
+msgstr ""
+
 #: tmain.rcbxhintoncustomitemcheck.caption
 msgid "Hinweise OnItemClick vs. OnCustomItemCheck"
 msgstr ""
@@ -288,7 +369,7 @@ msgstr ""
 
 #: tmain.rcgcheckgroupdynamic.caption
 msgctxt "TMAIN.RCGCHECKGROUPDYNAMIC.CAPTION"
-msgid " TRegCheckGroup dynamisch "
+msgid " TRegCheckGroup: dynamisch "
 msgstr ""
 
 #: tmain.rcgcheckgroupstatic.caption
@@ -296,13 +377,23 @@ msgctxt "TMAIN.RCGCHECKGROUPSTATIC.CAPTION"
 msgid " TRegCheckGroup: statisch "
 msgstr ""
 
+#: tmain.rcgcheckgroupstaticps.caption
+msgctxt "TMAIN.RCGCHECKGROUPSTATICPS.CAPTION"
+msgid " TRegCheckGroup: dynamisch "
+msgstr ""
+
 #: tmain.rgrpradiogroupdynamic.caption
 msgctxt "TMAIN.RGRPRADIOGROUPDYNAMIC.CAPTION"
-msgid " TRegRadiogroup dynamisch "
+msgid " TRegRadiogroup: dynamisch "
 msgstr ""
 
 #: tmain.rgrpradiogroupstatic.caption
 msgctxt "TMAIN.RGRPRADIOGROUPSTATIC.CAPTION"
+msgid " TRegRadioGroup: statisch "
+msgstr ""
+
+#: tmain.rgrpradiogroupstaticps.caption
+msgctxt "TMAIN.RGRPRADIOGROUPSTATICPS.CAPTION"
 msgid " TRegRadioGroup: statisch "
 msgstr ""
 
@@ -313,6 +404,16 @@ msgstr ""
 
 #: tmain.rrbradiobuttonstatic2.caption
 msgctxt "TMAIN.RRBRADIOBUTTONSTATIC2.CAPTION"
+msgid "TRegRadioButton: Checkstatus verw."
+msgstr ""
+
+#: tmain.rrbradiobuttonstaticps.caption
+msgctxt "TMAIN.RRBRADIOBUTTONSTATICPS.CAPTION"
+msgid "TRegRadioButton: Checkstatus verw."
+msgstr ""
+
+#: tmain.rrbradiobuttonstaticps2.caption
+msgctxt "TMAIN.RRBRADIOBUTTONSTATICPS2.CAPTION"
 msgid "TRegRadioButton: Checkstatus verw."
 msgstr ""
 
@@ -330,6 +431,10 @@ msgstr ""
 
 #: tmain.tablist.caption
 msgid "Listen"
+msgstr ""
+
+#: tmain.tabsheet1.caption
+msgid "PreferStrings"
 msgstr ""
 
 #: tmain.tabsinglevalue.caption
@@ -376,7 +481,7 @@ msgstr "RootKey für Standards"
 msgid "Show RootKeys"
 msgstr "RootKeys anzeigen"
 
-                                                      #: lclstrconsts.hhshelpbrowsernotexecutable
+#: lclstrconsts.hhshelpbrowsernotexecutable
 msgid "Browser %s%s%s not executable."
 msgstr "Browser %s%s%s nicht ausführbar."
 
