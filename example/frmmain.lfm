@@ -184,7 +184,7 @@ object Main: TMain
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
+          RegistrySettings.DoSyncData = False
           RegistrySettings.Default = False
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.Ident = 'RadioButton1'
@@ -208,7 +208,7 @@ object Main: TMain
           RegistrySettings.CanWrite = True
           RegistrySettings.DoWriteAdHoc = True
           RegistrySettings.GroupIndex = 0
-          RegistrySettings.DoSyncData = True
+          RegistrySettings.DoSyncData = False
           RegistrySettings.Default = False
           RegistrySettings.Section = 'Einzelwerte'
           RegistrySettings.Ident = 'RadioButton2'

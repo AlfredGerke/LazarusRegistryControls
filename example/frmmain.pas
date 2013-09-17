@@ -310,7 +310,15 @@ begin
   case aFlag of
     // Für alle Clients der RegistrySource1 wird die Eigenschaft DoSyncData
     // auf den Wert von aSet gesetzt
-    0: RegistrySource1.RefreshSyncProperty(aSet);
+    0:
+    begin
+      RegistrySource1.RefreshSyncProperty(aSet);
+      //Das Synchronisieren von Radiobuttons untereinander, führt dazu, das der interne
+      //Sync-Mechanismus der Radibuttons das gewünschte Ergebnis wieder aufhebt.
+      //Radiobuttons im Regelfall nicht synchronisieren!
+      RegistrySource1.RefreshSyncProperty(False, 'rrbRadioButtonStatic1');
+      RegistrySource1.RefreshSyncProperty(False, 'rrbRadioButtonStatic2');
+    end;
     // Für alle Clients der RegistrySource2 wird die Eigenschaft DoSyncData
     // auf den Wert von aSet gesetzt
     1: RegistrySource2.RefreshSyncProperty(aSet);
@@ -319,7 +327,15 @@ begin
     2: RegistrySource3.RefreshSyncProperty(aSet);
     // Für alle Clients der RegistrySource3 wird die Eigenschaft DoSyncData
     // auf den Wert von aSet gesetzt
-    3: RegistrySource4.RefreshSyncProperty(aSet);
+    3:
+    begin
+      RegistrySource4.RefreshSyncProperty(aSet);
+      //Das Synchronisieren von Radiobuttons untereinander, führt dazu, das der interne
+      //Sync-Mechanismus der Radibuttons das gewünschte Ergebnis wieder aufhebt.
+      //Radiobuttons im Regelfall nicht synchronisieren!
+      RegistrySource4.RefreshSyncProperty(False, 'rrbRadioButtonStaticPS');
+      RegistrySource4.RefreshSyncProperty(False, 'rrbRadioButtonStaticPS2');
+    end;
   end;
 end;
 
@@ -910,21 +926,23 @@ begin
   RefreshSyncDataOnOff(1, True);
   RefreshWriteAdHocOnOff(2, True);
   RefreshSyncDataOnOff(2, True);
+  RefreshWriteAdHocOnOff(3, True);
+  RefreshSyncDataOnOff(3, True);
   // Liste aller zugehörigen Steuerelemente (Clients) ermitteln
   RegistrySource1.GetClientList(cbxClientNameStatic.Items);
-  // Daten für das Stuerelement aus der Registry lesen
+  // Daten für das Steuerelement aus der Registry lesen
   cbxClientNameStatic.ReadFromReg;
   // Liste aller zugehörigen Steuerelemente (Clients) ermitteln
   RegistrySource2.GetClientList(cbxClientNameDynamic.Items);
-  // Daten für das Stuerelement aus der Registry lesen
+  // Daten für das Steuerelement aus der Registry lesen
   cbxClientNameDynamic.ReadFromReg;
   // Liste aller zugehörigen Steuerelemente (Clients) ermitteln
   RegistrySource3.GetClientList(cbxClientNameKombi.Items);
-  // Daten für das Stuerelement aus der Registry lesen
+  // Daten für das Steuerelement aus der Registry lesen
   cbxClientNameKombi.ReadFromReg;
   // Liste aller zugehörigen Steuerelemente (Clients) ermitteln
   RegistrySource4.GetClientList(cbxClientNameStaticPS.Items);
-  // Daten für das Stuerelement aus der Registry lesen
+  // Daten für das Steuerelement aus der Registry lesen
   cbxClientNameStaticPS.ReadFromReg;
 end;
 
