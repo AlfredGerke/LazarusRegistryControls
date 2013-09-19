@@ -6,17 +6,20 @@ Content=1
 TargetOS=
 TargetCPU=
 HideProtected=0
-ShowPrivate=0
+ShowPrivate=1
 Import=
 
 [Descriptions]
-Count=2
+Count=3
 File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regbaseform.xml
 File2=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\dlgaboutcomponent.xml
+File3=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\dlgeditsettings.xml
 
 [Sources]
-Count=2
+Count=3
 File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regbaseform.pas
 Options1=
 File2=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\dlgaboutcomponent.pas
 Options2=
+File3=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\dlgeditsettings.pas
+Options3=

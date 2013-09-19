@@ -7,201 +7,223 @@
   ====================================================================
 -->
     <module name="dlgeditsettings">
-      <short/>
-      <descr/>
-      <!-- resource string Visibility: default -->
       <element name="rsEditRootKeys">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Ressource für eine Titel-Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
       </element>
-      <!-- resource string Visibility: default -->
       <element name="rsShowRootKeys">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Ressource für eine Titel-Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
       </element>
-      <!-- class Visibility: default -->
+      <element name="rsLblRootKey">
+        <short>Ressource für die   <link id="TEditSettings.lblRookKey">RootKey</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
+      </element>
+      <element name="rsLblRootKeyForDefaults">
+        <short>Ressource für die   <link id="TEditSettings.lblRootKeyForDefaults">RootKeyForDefaults</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
+      </element>
+      <element name="rsLblRootForDefaults">
+        <short>Ressource für die   <link id="TEditSettings.lblRootForDefaults">RootForDefaults</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
+      </element>
+      <element name="rsLblGUID">
+        <short>Ressource für die   <link id="TEditSettings.lblGUID">GUID</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
+      </element>
+      <element name="rsLblOrganisation">
+        <short>Ressource für die   <link id="TEditSettings.lblOrganisation">Organisation</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
+      </element>
+      <element name="rsLblProject">
+        <short>Ressource für die   <link id="TEditSettings.lblProject">Project</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
+      </element>
+      <element name="rsCbxReadDefaults">
+        <short>Ressource für die   <link id="TEditSettings.cbxReadDefaults">ReadDefaults</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
+      </element>
+      <element name="rsCbxWriteDefaults">
+        <short>Ressource für die   <link id="TEditSettings.cbxWriteDefaults">WriteDefaults</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
+      </element>
       <element name="TEditSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys eines Steuerelementes</short>
+        <descr>Das Formular ermöglicht die Ansicht bzw. das Bearbeiten von RootKeys. RootKeys sind Eigenschaften eines Steuerelementes, welche nicht über die RegistrySettings bearbeitet werden können. Dieser Dialog ermöglicht zu Entwurfszeit die Ansicht der RootKeys und zur Laufzeit deren Bearbeitung.
+
+SOFTWARE/%ORGANISATION%/%PROJECT%/%GUID/</descr>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.btnCancel">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.btnOk">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.cbxReadDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Lesen von Standards</short>
+        <descr>Für Schlüssel die nicht in der Registry vorhanden sind, benötigt ein Steuerelement einen Standardwert (Default). Dieser Wert kann statisch in den RegistrySettings festgelegt werden, oder aber in einem separaten Schlüssel in der Registry abgelegt werden. Wenn Standards aus der Registry ausgelesen werden sollen, muss ReadDefaults auf True stehen.</descr>
+        <seealso>
+          <link id="TEditSettings.cbxWriteDefaults">WriteDefaults</link>
+          <link id="TEditSettings.edtRootForDefaults">RootForDefaults</link>
+          <link id="TEditSettings.lblRootKeyForDefaults">RootKeyForDefaults</link>
+        </seealso>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.cbxWriteDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Schreiben von Standards</short>
+        <descr>Wenn WriteDefaults auf True steht, werden Standards immer aktualisiert. Gehen z.B. RootKeys verloren und ReadDefaults steht auf True, würden die aktuellen Werte wieder eingelesen.</descr>
+        <seealso>
+          <link id="TEditSettings.cbxReadDefaults">ReadDefaults</link>
+          <link id="TEditSettings.edtRootForDefaults">RootForDefaults</link>
+          <link id="TEditSettings.edtRootKeyForDefaults">RootKeyForDefaults</link>
+        </seealso>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.edtRootKey">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Grundschlüssel</short>
+        <descr>Dies ist der Schlüssel unter dem alle Einträge verschiedener Steuerelemente eingetragen werden.  Dabei kommen die Informationen aus den Eigenschaften 
+<link id="TEditSettings.edtOrganisation">Organisation</link>, 
+<link id="TEditSettings.edtProject">Project</link> und 
+<link id="TEditSettings.edtGUID">GUID</link> zum tragen. 
+z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.edtRootKeyForDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Grundschlüssel für Standards</short>
+        <descr>Werden Standards aus der Registry gelesen, dient diese Eigenschaft als Grundschlüssel für alle Standards. Er hat im Prinzip die selbe Funktion wie der Grundschlüssel <link id="TEditSettings.edtRootKey">RootKey</link>.
+z.B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%</descr>
+        <seealso>
+          <link id="TEditSettings.edtRootKey">RootKey</link>
+        </seealso>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.edtRootForDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Root für Standards</short>
+        <descr>Wenn Standards aus der Registry gelesen werden, muss hier das entsprechende Registry-Root eingetragen werden, z.B.: HKEY_LOCAL_MACHINE.</descr>
+        <seealso>
+          <link id="TEditSettings.edtRootKeyForDefaults">RootKeyForDefaults</link>
+          <link id="TEditSettings.cbxReadDefaults">ReadDefaults</link>
+          <link id="TEditSettings.cbxWriteDefaults">WriteDefaults</link>
+        </seealso>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.edtGUID">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Projekt-GUID</short>
+        <descr>Die Projekt-GUID soll es ermöglichen eine Projekt, verschiedener Versionen auf einem Client auszuführen, wobei jede Version eines Projektes seine eigene GUID besitzt und somit seine eigenen Schlüssel aus der Registry liest. Wenn man einen Schlüssel aufbaut wird der Platzhalter %%GUID%% durch den Wert dieser Eigenschaft ersetzt.
+z.B: HKEY_CURRENT_USER\SOFTWARE\ExampleFactory\LazarusRegistrycontrols\%%GUID%%</descr>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.edtOrganisation">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Organisation</short>
+        <descr>Der Name der Organisation sollte immer Teil eines Schlüssel sein. Wenn man einen Schlüssel aufbaut wird der Platzhalter %%ORGANISATION%% durch den Wert dieser Eigenschaft ersetzt.
+z.B.: HKEY_CURRENT_USER\SOFTWARE\%%ORGANISATION%%\LazarusRegistrycontrols\{7CB5D48B-FCE3-414F-BB3A-BCB07BC5D25F}</descr>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.edtProject">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Projekt</short>
+        <descr>Der Name des Projektes sollte immer Teil eines Schlüssel sein. Wenn man einen Schlüssel aufbaut wird der Platzhalter %%PROJECT%% durch den Wert dieser Eigenschaft ersetzt.
+z.B.: HKEY_CURRENT_USER\SOFTWARE\ExampleFactory\%%PROJECT%%\{7CB5D48B-FCE3-414F-BB3A-BCB07BC5D25F}</descr>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.lblGUID">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.lblOrganisation">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.lblProject">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.lblRookKey">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.lblRootForDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.lblRootKeyForDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.pnlBottom">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TEditSettings.pnlClient">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TEditSettings.FEdit">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. <link id="TEditSettings.Edit">Edit</link>
+        </short>
       </element>
-      <!-- procedure Visibility: private -->
+      <element name="TEditSettings.SetCaptions">
+        <short>Ressourcen zuweisen</short>
+        <descr>Die Methode wird von <link id="TEditSettings.ShowModalEx">ShowModalEx</link>  ausgeführt und soll alle Ressourcen zuweisen.</descr>
+        <seealso>
+          <link id="TEditSettings.ShowModalEx">ShowModalEx</link>
+        </seealso>
+      </element>
       <element name="TEditSettings.SetEdit">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Bearbeitungsmodus setzen</short>
+        <seealso>
+          <link id="TEditSettings.Edit">Edit</link>
+        </seealso>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TEditSettings.SetEdit.aEdit">
-        <short/>
+        <short>Bearbeitungsmodus</short>
+        <seealso>
+          <link id="TEditSettings.SetEdit">SetEdit</link>
+        </seealso>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TEditSettings.SetData">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys setzen</short>
+        <descr>Über diese Methode werden alle RootKeys in einer Struktur eingelesen.</descr>
+        <seealso>
+          <link id="TEditSettings.GetData">GetData</link>
+        </seealso>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TEditSettings.SetData.aRootKeys">
-        <short/>
+        <short>Struktur für alle RootKeys</short>
+        <seealso>
+          <link id="TEditSettings.GetData">GetData</link>
+          <link id="TEditSettings.SetData">SetData</link>
+        </seealso>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TEditSettings.GetData">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys auslesen</short>
+        <descr>Über diese Methode werden alle RootKeys in einer Struktur ausgelesen.</descr>
+        <seealso>
+          <link id="TEditSettings.SetData">SetData</link>
+        </seealso>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TEditSettings.GetData.aRootKeys">
-        <short/>
+        <short>Struktur für alle RootKeys</short>
+        <seealso>
+          <link id="TEditSettings.GetData">GetData</link>
+          <link id="TEditSettings.SetData">SetData</link>
+        </seealso>
       </element>
-      <!-- function Visibility: public -->
       <element name="TEditSettings.ShowModalEx">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Startet den Dialog</short>
+        <descr>Ruft <link id="TEditSettings.SetCaptions">SetCaptions</link> auf und setzt den <link id="TEditSettings.SetEdit">Bearbeitungsmodus</link>.</descr>
+        <seealso>
+          <link id="TEditSettings.SetCaptions">SetCaptions</link>
+          <link id="TEditSettings.SetEdit"/>
+        </seealso>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TEditSettings.ShowModalEx.Result">
-        <short/>
+        <short>s. LCL Documentation für ShowModal</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TEditSettings.ShowModalEx.aEdit">
-        <short/>
+        <short>Bearbeitungsmodus</short>
+        <descr>Der Bearbeitungsmodus wird direkt der Methode <link id="TEditSettings.ShowModalEx"/>  übergeben.</descr>
+        <seealso>
+          <link id="TEditSettings.ShowModalEx"/>
+        </seealso>
       </element>
-      <!-- property Visibility: public -->
       <element name="TEditSettings.Edit">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Bearbeitungsflag</short>
+        <descr>Steht diese Eigenschaft auf True wird der Dialog für die Bearbeitung eingerichtet.</descr>
       </element>
-      <!-- variable Visibility: default -->
       <element name="EditSettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Globale Variable für eine   <link id="TEditSettings">TEditSettings</link> Instanz</short>
       </element>
+      <short>Formular zum Bearbeiten von RootKeys</short>
+      <descr>Die RootKeys sind Einstellungen am Steuerelement, welche nicht über die RegistrySettings eingestellt werden können sondern von der RegistrySource gefüllt werden. Allerdings lassen sich die RootKeys zur Entwurfszeit einsehen und zur Laufzeit sogar ändern. 
+<link id="TEditSettings">TEditSettings</link> ermöglicht die Ansicht bzw. das Ändern von RootKeys.</descr>
+      <seealso>
+        <link id="TEditSettings">TEditSettings</link>
+        <link id="EditSettings">EditSettings</link>
+      </seealso>
     </module>
     <!-- dlgeditsettings -->
   </package>

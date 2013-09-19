@@ -554,8 +554,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="dlgeditsettings"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="102"/>
-        <CursorPos X="1" Y="133"/>
+        <TopLine Value="111"/>
+        <CursorPos X="3" Y="137"/>
         <UsageCount Value="11"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit66>

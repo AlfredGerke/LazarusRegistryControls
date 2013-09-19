@@ -9,13 +9,16 @@
     <module name="dlgaboutcomponent">
       <element name="rsAboutFormCaption">
         <short>Ressource für den Dialogtitel</short>
+        <descr>Ressource für die Lokalisierung (s. dlgaboutcomponent.po)</descr>
       </element>
       <element name="rsLblAuthorCaption">
-        <short>Ressource für das Label  <link id="TAboutComponent.lblAuthor">lblAuthor</link>
+        <short>Ressource für das Label    <link id="TAboutComponent.lblAuthor">lblAuthor</link>
         </short>
+        <descr>Ressource für die Lokalisierung (s. dlgaboutcomponent.po)</descr>
       </element>
       <element name="TAboutComponent">
-        <short>Das Formular zeigt Informationen zum Projekt und zum Entwickler</short>
+        <short>Informationen zur LRC</short>
+        <descr>Das Formular zeigt Informationen zum Projekt und zum Entwickler</descr>
       </element>
       <element name="TAboutComponent.btnOk">
         <short>s. LCL Documantation</short>
@@ -45,16 +48,15 @@
         <short>s. LCL Documantation</short>
       </element>
       <element name="TAboutComponent.SetCaptions">
-        <short>Setzt die Ressourcen für den Dialog</short>
-        <descr>Die Methode wird von der überschriebenen Methode <link id="TAboutComponent.ShowModal">ShowModal</link> ausgeführt.</descr>
+        <short>Ressourcen zuweisen</short>
+        <descr>Die Methode wird von der überschriebenen Methode <link id="TAboutComponent.ShowModal">ShowModal</link> ausgeführt und soll alle Ressourcen zuweisen.</descr>
         <seealso>
           <link id="TAboutComponent.ShowModal">ShowModal</link>
         </seealso>
       </element>
       <element name="TAboutComponent.ShowModal">
         <short>Startet den Dialog (s. LCL Documantation)</short>
-        <descr>Ruft  
-<link id="TAboutComponent.SetCaptions">SetCaption</link> auf und dann das geerbte ShowModal</descr>
+        <descr>Ruft <link id="TAboutComponent.SetCaptions">SetCaption</link> auf und dann das geerbte ShowModal</descr>
         <seealso>
           <link id="TAboutComponent.SetCaptions">SetCaptions</link>
         </seealso>
