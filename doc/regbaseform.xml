@@ -1,36 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <fpdoc-descriptions>
   <package name="RegistrySource">
-    <!--
-  ====================================================================
-    regbaseform
-  ====================================================================
--->
     <module name="regbaseform">
-      <short/>
-      <descr/>
-      <!-- class Visibility: default -->
       <element name="TRegBaseForm">
         <short>Grundklasse für alle Formulare der LRC</short>
+        <descr>Die Grundklasse soll Basis für alle aktuellen und zuküntigen Formulare der LRC sein.</descr>
       </element>
-      <!-- function Visibility: protected -->
       <element name="TRegBaseForm.SetUTF8IfNeeded">
         <short>Wandelt einen String wenn nötig in UTF8 um</short>
-        <descr>Anhand der Eigenschaft AtDesignTime wird entschieden ob ein String in UTF8 gewandelt werden soll.</descr>
+        <descr>Anhand der Eigenschaft <link id="TRegBaseForm.AtDesignTime">AtDesignTime</link> wird entschieden, ob ein String in UTF8 gewandelt werden soll. Wenn das Formular zur Entwurfszeit gestartet wird, wird diese Methode wenn notwendig einen String in UTF8 wandeln. Wird das Formular zur Laufzeit gestartet, müssen die Sprachdateien für eine mögliche Wandlung eines Strings sorgen.</descr>
         <seealso>
           <link id="TRegBaseForm.AtDesignTime">AtDesignTime</link>
         </seealso>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TRegBaseForm.SetUTF8IfNeeded.Result">
         <short>Gewandelter String</short>
-        <descr>Wenn AtDesginTime=True wurde der String aus dem Parameter aString in UTF8 gewandelt</descr>
+        <descr>Wenn AtDesginTime=True wurde der String aus dem Parameter aString in UTF8 gewandelt.</descr>
         <seealso>
           <link id="TRegBaseForm.SetUTF8IfNeeded.aString">aString</link>
           <link id="TRegBaseForm.AtDesignTime">AtDesignTime</link>
         </seealso>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegBaseForm.SetUTF8IfNeeded.aString">
         <short>Zu wandelnder String</short>
         <descr>String der zur Prüfung an die Methode übergeben werden soll. Steht AtDesignTime auf True dann wird der String in UTF8 gewandelt.</descr>
@@ -38,12 +28,18 @@
           <link id="TRegBaseForm.AtDesignTime">AtDesignTime</link>
         </seealso>
       </element>
-      <!-- property Visibility: public -->
       <element name="TRegBaseForm.AtDesignTime">
         <short>Designstatus</short>
         <descr>Designtime=True, Runtime=False</descr>
       </element>
+      <short>Grundklasse für alle Formulare der LRC</short>
+      <descr>Für jedes in der LRC verwendete Formular sollte die in diesem Modul beschriebene Grundklasse verwendet werden. Besonders die Methode <link id="TRegBaseForm.SetUTF8IfNeeded">SetUTF8IfNeeded</link> ist notwendig um Strings  für die IDE in UTF8 zu wandeln.</descr>
+      <seealso>
+        <link id="TRegBaseForm">TRegBaseForm</link>
+        <link id="TRegBaseForm.SetUTF8IfNeeded">SetUTF8IfNeeded</link>
+      </seealso>
     </module>
-    <!-- regbaseform -->
+    <short>Vorausetzungen für eine RegistrySource und für RegistryControls</short>
+    <descr>In diesem Packages wird TRegistrySource sowie deren Hilfsmittel hinterlegt. Hinzu kommen Konstanten, PropertyEditoren und Grundklassen die für die Einbindung in die IDE notwendig sind.</descr>
   </package>
 </fpdoc-descriptions>

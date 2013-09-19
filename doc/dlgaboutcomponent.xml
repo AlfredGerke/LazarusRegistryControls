@@ -7,76 +7,73 @@
   ====================================================================
 -->
     <module name="dlgaboutcomponent">
-      <short/>
-      <descr/>
-      <!-- class Visibility: default -->
+      <element name="rsAboutFormCaption">
+        <short>Ressource für den Dialogtitel</short>
+      </element>
+      <element name="rsLblAuthorCaption">
+        <short>Ressource für das Label  <link id="TAboutComponent.lblAuthor">lblAuthor</link>
+        </short>
+      </element>
       <element name="TAboutComponent">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Das Formular zeigt Informationen zum Projekt und zum Entwickler</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TAboutComponent.btnOk">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TAboutComponent.imgPic">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TAboutComponent.lblCompName1">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TAboutComponent.lblCompName2">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TAboutComponent.lblAuthor">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TAboutComponent.lblName">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TAboutComponent.lblGitHub">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TAboutComponent.pnlBottom">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TAboutComponent.pnlClient">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- procedure Visibility: default -->
+      <element name="TAboutComponent.SetCaptions">
+        <short>Setzt die Ressourcen für den Dialog</short>
+        <descr>Die Methode wird von der überschriebenen Methode <link id="TAboutComponent.ShowModal">ShowModal</link> ausgeführt.</descr>
+        <seealso>
+          <link id="TAboutComponent.ShowModal">ShowModal</link>
+        </seealso>
+      </element>
+      <element name="TAboutComponent.ShowModal">
+        <short>Startet den Dialog (s. LCL Documantation)</short>
+        <descr>Ruft  
+<link id="TAboutComponent.SetCaptions">SetCaption</link> auf und dann das geerbte ShowModal</descr>
+        <seealso>
+          <link id="TAboutComponent.SetCaptions">SetCaptions</link>
+        </seealso>
+      </element>
+      <element name="TAboutComponent.ShowModal.Result">
+        <short>s. LCL Documantation</short>
+      </element>
       <element name="StartAbout">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Procedure startet den About-Dialog</short>
       </element>
+      <element name="StartAbout.aAtDesignTime">
+        <short>Information über den IDE-Status</short>
+        <descr>Der Status wird beim Start durch die aufrufende Komponente ermittelt.</descr>
+      </element>
+      <short>Formular für einen About-Dialog</short>
+      <descr>In dem Modul wird ein About-Dialog angeboten, welcher zur Entwurfzeit über das Kontextmenü aufgerufen werden kann.</descr>
+      <seealso>
+        <link id="TAboutComponent">TAboutComponent</link>
+      </seealso>
     </module>
     <!-- dlgaboutcomponent -->
   </package>

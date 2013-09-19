@@ -10,10 +10,13 @@ ShowPrivate=0
 Import=
 
 [Descriptions]
-Count=1
+Count=2
 File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regbaseform.xml
+File2=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\dlgaboutcomponent.xml
 
 [Sources]
-Count=1
+Count=2
 File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regbaseform.pas
 Options1=
+File2=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\dlgaboutcomponent.pas
+Options2=
