@@ -7,56 +7,35 @@
   ====================================================================
 -->
     <module name="regmsg">
-      <short/>
-      <descr/>
-      <!-- constant Visibility: default -->
       <element name="LM_REGISTRY_CONTROL_REFRESH_DATA">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Daten lesen</short>
       </element>
-      <!-- constant Visibility: default -->
       <element name="LM_REGISTRY_CONTROL_REFRESH_SETTINGS">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>RootKeys aktualisieren</short>
       </element>
-      <!-- constant Visibility: default -->
       <element name="LM_REGISTRY_CONTROL_SET_SYNC">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>DoSyncData einstellen</short>
       </element>
-      <!-- constant Visibility: default -->
       <element name="LM_REGISTRY_CONTROL_SET_WRITEADHOC">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>DoWriteAdHoc einstellen</short>
       </element>
-      <!-- constant Visibility: default -->
       <element name="LM_REGISTRY_CONTROL_FREE_REGISTR_SOURCE">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>RegistrySource entfernen</short>
       </element>
-      <!-- constant Visibility: default -->
       <element name="LM_REGISTRY_CONTROL_SHOW_EDITDIALOG">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Bearbeitungsdialog starten</short>
       </element>
-      <!-- constant Visibility: default -->
       <element name="LM_REGISTRY_CONTROL_CLEAR_LIST">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Löschen einer Liste</short>
       </element>
-      <!-- constant Visibility: default -->
       <element name="LM_REGISTRY_CONTROL_MERGE_LIST">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Defaults in eine bestehende Liste mergen</short>
       </element>
+      <element name="LM_REGISTRY_CONTROL_POST_DATA">
+        <short>Daten schreiben</short>
+      </element>
+      <short>Messagekonstanten für die LRC</short>
+      <descr>Bestimmte Aktionen der Steuerelemente können direkt von der RegistrySource über die Clientliste gesamt oder getrennt nach Namen ausgeführt werden. Zu diesem Zweck sind an den Steuerelementen Messages definiert. In dieser Datei werden alle Messages/Messagekonstanten aufgelistet.</descr>
     </module>
     <!-- regmsg -->
   </package>

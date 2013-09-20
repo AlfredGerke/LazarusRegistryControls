@@ -7,162 +7,137 @@
   ====================================================================
 -->
     <module name="dlgTrueFalse">
-      <short/>
-      <descr/>
-      <!-- resource string Visibility: default -->
+      <element name="rsSetMergeDataProperty">
+        <short>Ressource für die <link id="TSetMergeData">TSetMergeData</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgtruefalse.po)</descr>
+      </element>
+      <element name="rsSetMergeDataOff">
+        <short>Ressource für die <link id="TTrueFalse.rbtnFalse">rbtnFalse</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgtruefalse.po)</descr>
+      </element>
+      <element name="rsSetMergeDataOn">
+        <short>Ressource für die <link id="TTrueFalse.rbtnTrue">rbtnTrue</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgtruefalse.po)</descr>
+      </element>
       <element name="rsSetSyncDataProperty">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Ressource für die <link id="TSetSyncData">TSetSyncData</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgtruefalse.po)</descr>
       </element>
-      <!-- resource string Visibility: default -->
       <element name="rsSynchronisationOff">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Ressource für die <link id="TTrueFalse.rbtnFalse">rbtnFalse</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgtruefalse.po)</descr>
       </element>
-      <!-- resource string Visibility: default -->
       <element name="rsSynchronisationOn">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Ressource für die     <link id="TTrueFalse.rbtnTrue">rbtnTrue</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgtruefalse.po)</descr>
       </element>
-      <!-- resource string Visibility: default -->
       <element name="rsSetWriteAdHocProperty">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Ressource für die <link id="TSetWriteAdHoc">TSetWriteAdHoc</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgtruefalse.po)</descr>
       </element>
-      <!-- resource string Visibility: default -->
       <element name="rsWriteAdHocOff">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Ressource für die   <link id="TTrueFalse.rbtnFalse">rbtnFalse</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgtruefalse.po)</descr>
       </element>
-      <!-- resource string Visibility: default -->
       <element name="rsWriteAdHocOn">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Ressource für die   <link id="TTrueFalse.rbtnTrue">rbtnTrue</link> Caption</short>
+        <descr>Ressource für die Lokalisierung (s. dlgtruefalse.po)</descr>
       </element>
-      <!-- class Visibility: default -->
       <element name="TTrueFalse">
-        <short/>
-        <descr/>
+        <short>Grundklasse für alle Einstellungsdialoge</short>
+        <descr>Für die Einstellung der Propertys wird immer das selbe Vorgehen gewählt. Die Vorgehensart wird in dieser Grundklasse implementiert. Die Instanzklassen sollen nur noch die Captions einstellen.</descr>
         <errors/>
-        <seealso/>
+        <seealso>
+          <link id="TSetMergeData">TSetMertData</link>
+          <link id="TSetSyncData">TSetSyncData</link>
+          <link id="TSetWriteAdHoc">TSetWriteAdHoc</link>
+        </seealso>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TTrueFalse.btnOk">
-        <short/>
+        <short>s. LCL Documantation</short>
         <descr/>
         <seealso/>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TTrueFalse.btnCancel">
-        <short/>
+        <short>s. LCL Documantation</short>
         <descr/>
         <seealso/>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TTrueFalse.pnlBottom">
-        <short/>
+        <short>s. LCL Documantation</short>
         <descr/>
         <seealso/>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TTrueFalse.pnlClient">
-        <short/>
+        <short>s. LCL Documantation</short>
         <descr/>
         <seealso/>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TTrueFalse.rbtnFalse">
-        <short/>
+        <short>s. LCL Documantation</short>
         <descr/>
         <seealso/>
       </element>
-      <!-- variable Visibility: default -->
       <element name="TTrueFalse.rbtnTrue">
-        <short/>
+        <short>s. LCL Documantation</short>
         <descr/>
         <seealso/>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TTrueFalse.SetCaptions">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Ressourcen setzen</short>
+        <descr>Die abstracte Methode muss in jeder Instanzklasse implementiert werden. Es sollen die jeweiligen Strings gesetzt werden. Die Methode wird von ShowModal aufgerufen.</descr>
       </element>
-      <!-- function Visibility: protected -->
       <element name="TTrueFalse.GetSelectedIndex">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Methodenzeiger für SelectedIndex</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TTrueFalse.GetSelectedIndex.Result">
-        <short/>
+        <short>Gewählte Index</short>
       </element>
-      <!-- property Visibility: protected -->
       <element name="TTrueFalse.SelectedIndex">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Gewählte Index</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TTrueFalse.ShowModal">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documantation</short>
+        <descr>ShoModal wird erste SetCaptions aufrufen und dann die geerbte Methode ShowModal</descr>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TTrueFalse.ShowModal.Result">
-        <short/>
+        <short>s. LCL Documantation</short>
       </element>
-      <!-- class Visibility: default -->
       <element name="TSetSyncData">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Instanzklasse für Eigenschaft DoSyncData</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TSetSyncData.SetCaptions">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. TTrueFalse.SetCaption</short>
       </element>
-      <!-- property Visibility: public -->
       <element name="TSetSyncData.SelectedIndex">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TTrueFalse.SelectedIndex</short>
       </element>
-      <!-- class Visibility: default -->
       <element name="TSetWriteAdHoc">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Instanzklasse für Eigenschaft DoWriteAdHoc</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TSetWriteAdHoc.SetCaptions">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. TTrueFalse.SetCaption</short>
       </element>
-      <!-- property Visibility: public -->
       <element name="TSetWriteAdHoc.SelectedIndex">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TTrueFalse.SelectedIndex</short>
       </element>
+      <element name="TSetMergeData">
+        <short>Instanzklasse für Eigenschaft MergeData</short>
+      </element>
+      <element name="TSetMergeData.SetCaptions">
+        <short>s. TTrueFalse.SetCaption</short>
+      </element>
+      <element name="TSetMergeData.SelectedIndex">
+        <short>s. TTrueFalse.SelectedIndex</short>
+      </element>
+      <short>Dialoge zum Ein-/Ausschalten von Eigenschaften</short>
+      <descr>Die Eigenschaften MergeData, SyncData und DoWriteAdHoc können über das Kontextmenü zur Entwurfszeit für alle angeschlossenen Clients einer RegistrySource gleichzeitig umgestellt werden. Zu diesem Zweck erscheint ein Dialog der die Möglichkeit zum Ein-/Ausschalten anbietet. In diesem Modul wird eine Grundklasse für alle dieser Dialoge zur Verfügung gestellt, sowie für jede Eigenschaft eine eigene Instanzklasse.</descr>
+      <seealso>
+        <link id="TTrueFalse">TTrueFalse</link>
+        <link id="TSetMergeData">TSetMertData</link>
+        <link id="TSetSyncData">TSetSyncData</link>
+        <link id="TSetWriteAdHoc">TSetWriteAdHoc</link>
+      </seealso>
     </module>
     <!-- dlgTrueFalse -->
   </package>

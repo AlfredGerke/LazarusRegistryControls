@@ -10,16 +10,28 @@ ShowPrivate=1
 Import=
 
 [Descriptions]
-Count=3
+Count=7
 File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regbaseform.xml
 File2=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\dlgaboutcomponent.xml
 File3=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\dlgeditsettings.xml
+File4=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\dlgtruefalse.xml
+File5=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regconst.xml
+File6=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regmsg.xml
+File7=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regpropedits.xml
 
 [Sources]
-Count=3
+Count=7
 File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regbaseform.pas
 Options1=
 File2=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\dlgaboutcomponent.pas
 Options2=
 File3=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\dlgeditsettings.pas
 Options3=
+File4=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\dlgtruefalse.pas
+Options4=
+File5=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regconst.pas
+Options5=
+File6=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regmsg.pas
+Options6=
+File7=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regpropedits.pas
+Options7=

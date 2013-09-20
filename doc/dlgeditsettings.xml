@@ -40,7 +40,7 @@
         <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
       </element>
       <element name="rsCbxReadDefaults">
-        <short>Ressource für die   <link id="TEditSettings.cbxReadDefaults">ReadDefaults</link> Caption</short>
+        <short>Ressource für die  <link id="TEditSettings.cbxReadDefaults">ReadDefaults</link> Caption</short>
         <descr>Ressource für die Lokalisierung (s. dlgeditsettings.po)</descr>
       </element>
       <element name="rsCbxWriteDefaults">

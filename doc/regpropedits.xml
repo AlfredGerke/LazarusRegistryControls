@@ -7,216 +7,126 @@
   ====================================================================
 -->
     <module name="regpropedits">
-      <short/>
-      <descr/>
-      <!-- class Visibility: default -->
       <element name="TRegistryControlComponentEditor">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>PropertyEditor für Steuerelemente</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TRegistryControlComponentEditor.ExecuteShowInfo">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>About-Dialog aufrufen</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TRegistryControlComponentEditor.ExecuteEditRootKeys">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys einsehen</short>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TRegistryControlComponentEditor.ExecuteVerb">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistryControlComponentEditor.ExecuteVerb.Index">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TRegistryControlComponentEditor.GetVerb">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TRegistryControlComponentEditor.GetVerb.Result">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistryControlComponentEditor.GetVerb.Index">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TRegistryControlComponentEditor.GetVerbCount">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TRegistryControlComponentEditor.GetVerbCount.Result">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- class Visibility: default -->
       <element name="TRegistrySourceComponentEditor">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>ComponentEditor für RegistrySource</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TRegistrySourceComponentEditor.OnClientMenuItemClick">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>OnClick-Ereignis der Clientliste</short>
+        <descr>Die Clientliste wird als Untermenüpunkt eingerichtet. Für jeden Untermenüpunkt wird dieses Ereignis auf OnClick gelegt.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistrySourceComponentEditor.OnClientMenuItemClick.Sender">
-        <short/>
+        <short>RegistrySource</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TRegistrySourceComponentEditor.AddMenuItemsByClientList">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Clientliste als Untermenü einrichten</short>
+        <descr>Die Clientliste wird als Untermenü eingerichtet. Mit einem Click auf jeden Untermenüpunkt wird der jeweilige Bearbeitungsdialog des Steuerelementes (Client) gestartet.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistrySourceComponentEditor.AddMenuItemsByClientList.aParentMenuItem">
-        <short/>
+        <short>Hauptmenüpunkt der Clientliste</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistrySourceComponentEditor.AddMenuItemsByClientList.aRegistrySource">
-        <short/>
+        <short>RegistrySource des Hauptmenüpunktes</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TRegistrySourceComponentEditor.AddMenuItemsForComponent">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Menüpunkte einrichten</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistrySourceComponentEditor.AddMenuItemsForComponent.aIndex">
-        <short/>
+        <short>Verb Index</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistrySourceComponentEditor.AddMenuItemsForComponent.aParentMenuItem">
-        <short/>
+        <short>Parentmenü</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistrySourceComponentEditor.AddMenuItemsForComponent.aRegistrySource">
-        <short/>
+        <short>RegistrySource der Menüpunkte</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TRegistrySourceComponentEditor.ExecuteShowInfo">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>About-Dialog aufrufen</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TRegistrySourceComponentEditor.ExecuteRefreshSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys aktualisieren</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TRegistrySourceComponentEditor.ExecuteRefreshSyncProperty">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoSyncData-Eigenschaften aktualisieren</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TRegistrySourceComponentEditor.ExecuteRefreshWriteAdHocProperty">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoWirteAdHoc-Eigenschaften aktualisieren</short>
       </element>
-      <!-- procedure Visibility: public -->
+      <element name="TRegistrySourceComponentEditor.ExecuteRefreshMergeDataProperty">
+        <short>MergeData-Eigenschaften aktualisieren</short>
+      </element>
       <element name="TRegistrySourceComponentEditor.ExecuteVerb">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>Aktionen ausführen</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistrySourceComponentEditor.ExecuteVerb.Index">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TRegistrySourceComponentEditor.GetVerb">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TRegistrySourceComponentEditor.GetVerb.Result">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistrySourceComponentEditor.GetVerb.Index">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TRegistrySourceComponentEditor.GetVerbCount">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TRegistrySourceComponentEditor.GetVerbCount.Result">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TRegistrySourceComponentEditor.PrepareItem">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistrySourceComponentEditor.PrepareItem.Index">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TRegistrySourceComponentEditor.PrepareItem.AItem">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- class Visibility: default -->
       <element name="TRegistrySettingsPropertyEditor">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>PropertyEditor für RegistrySettings</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TRegistrySettingsPropertyEditor.GetFormMethodName">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>Ermöglicht das Einrichten eines Methodenrumpfes aus einer eingebetteten Eigenschaft heraus.</descr>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TRegistrySettingsPropertyEditor.GetFormMethodName.Result">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
+      <short>Propertyeditoren für die LRC</short>
+      <descr>In diesem Modul werden alle notwendigen Propertyeditoren der LRC aufgeführt.</descr>
     </module>
     <!-- regpropedits -->
   </package>

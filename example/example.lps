@@ -510,7 +510,7 @@
         <UnitName Value="dlgTrueFalse"/>
         <WindowIndex Value="0"/>
         <TopLine Value="20"/>
-        <CursorPos X="14" Y="41"/>
+        <CursorPos X="26" Y="38"/>
         <UsageCount Value="22"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit61>
