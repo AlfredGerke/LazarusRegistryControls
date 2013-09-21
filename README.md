@@ -13,8 +13,9 @@ werden (lesen/schreiben)
 - 3     Installation
 - 3.1   Versionen
 - 3.2   Reihenfolge
+- 3.3   Absolute Pfade
 - 4     LazarusRegistryControls (LRC) Funktionalität
-- 4.1   HKEY_CURRENT_USER
+- 4.1   `HKEY_CURRENT_USER`
 - 4.2   Standardwerte
 - 4.3   Synchronisierung und Gruppierung
 - 4.3.1 Synchronisierung
@@ -56,9 +57,19 @@ Lazarus: 1.0.10
 FPC: 2.6.2     
 LazarusRegistryControls (LRC): *?.?.? (in Progress)*            
 
-## 3.2 Reihenfolge:    
+## 3.2 Reihenfolge    
 - registrysource.lpk
 - registrycontrols.lpk
+
+## 3.3 Absolute Pfade    
+Bei der Entwicklung wurde auf relative Pfadangaben für die IDE-Umgebung geachtet.
+Trotzdem haben sich in einigen Dateien absoulte Pfade eingefunden. Dabei handelt es sich immer um Pfadangaben für die Dokumentation.
+Der Pfadanteil C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\ muss in folgenden Dateien angepasst werden:        
+
+- docuProject.ldp in ..\doc\    
+- registrycontrols.lpk in ..\package\    
+- registrysource.lpk in ..\package\    
+- _makeskel.bat in ..\soruce\    
 
 
 4 LazarusRegistryControls (LRC) Funktionalität
@@ -70,9 +81,9 @@ Eigenschaften (RegistrySettings) der abgeleiteten Steuerelement können spezifis
 Informationen für Schlüssel der Registry hinterlegt werden, welche genutzt werden, 
 um Daten aus der Registry zu lesen und in die Registry zu schreiben. 
 
-## 4.1 HKEY_CURRENT_USER
+## 4.1 `HKEY_CURRENT_USER`
 
-Die Steuerelemente schreiben und lesen immer in das Registryroot: HKEY_CURRENT_USER.
+Die Steuerelemente schreiben und lesen immer in das Registryroot: `HKEY_CURRENT_USER`.
 
 ## 4.2 Standardwerte
 

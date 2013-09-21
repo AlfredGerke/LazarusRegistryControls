@@ -1,1581 +1,903 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <fpdoc-descriptions>
-<package name="RegistrySource">
-
-<!--
+  <package name="RegistrySource">
+    <!--
   ====================================================================
     regsourcen
   ====================================================================
 -->
-
-<module name="regsourcen">
-<short></short>
-<descr>
-</descr>
-
-<!-- resource string Visibility: default -->
-<element name="rsClearItems">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- class Visibility: default -->
-<element name="TRegistrySettingsList">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TRegistrySettingsList.FItemsByRegistry">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TRegistrySettingsList.FListSection">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TRegistrySettingsList.FSourceKind">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySettingsList.Section">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySettingsList.Ident">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySettingsList.ItemsByRegistry">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySettingsList.ListSection">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySettingsList.SourceKind">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySettingsList.MergeData">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- class Visibility: default -->
-<element name="TRegistrySettingsCheckedList">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TRegistrySettingsCheckedList.FItemsByRegistry">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TRegistrySettingsCheckedList.FListSection">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TRegistrySettingsCheckedList.FSourceKind">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- procedure Visibility: protected -->
-<element name="TRegistrySettingsCheckedList._Initialize">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- procedure Visibility: protected -->
-<element name="TRegistrySettingsCheckedList._Finalize">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: public -->
-<element name="TRegistrySettingsCheckedList.SourceKind">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySettingsCheckedList.Section">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySettingsCheckedList.Ident">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySettingsCheckedList.ItemsByRegistry">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySettingsCheckedList.ListSection">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySettingsCheckedList.MergeData">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- class Visibility: default -->
-<element name="TCustomRegistrySource">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FRootKey">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FRootKeyForDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FRootKeyForCommon">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FProject">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FOrganisation">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FRootForDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FReadDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FWriteDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FGUID">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FClientList">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FDoSyncData">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FPrefereStrings">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- variable Visibility: private -->
-<element name="TCustomRegistrySource.FEditClientRootKeys">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- procedure Visibility: private -->
-<element name="TCustomRegistrySource.OnSyncData">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.OnSyncData.aGroupIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: private -->
-<element name="TCustomRegistrySource.DeliverMessage">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeliverMessage.aMessageConst">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeliverMessage.aClientName">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeliverMessage.aGroupIndex">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeliverMessage.aWParam">
-<short></short>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.RootKey">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.RootKeyForDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.RootKeyForCommon">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.Project">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.Organisation">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.RootForDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.ReadDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.WriteDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.GUID">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.DoSyncData">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.PrefereStrings">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- function Visibility: protected -->
-<element name="TCustomRegistrySource.GetClientCount">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TCustomRegistrySource.GetClientCount.Result">
-<short></short>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.ClientCount">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: protected -->
-<element name="TCustomRegistrySource.EditClientRootKeys">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.RefreshMergeDataProperty">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshMergeDataProperty.aMergeData">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshMergeDataProperty.aClientName">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshMergeDataProperty.aGroupIndex">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TCustomRegistrySource.GetClientList">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TCustomRegistrySource.GetClientList.Result">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.GetClientList.aList">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.ClearClientItems">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ClearClientItems.aClientName">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ClearClientItems.aAskFor">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ClearClientItems.aMsg">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ClearClientItems.aGroupIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.DeleteRootKey">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeleteRootKey.aRootKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeleteRootKey.aRootKeyForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeleteRootKey.aRootForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeleteRootKey.aUseDefaults">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.RenameClient">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RenameClient.aOldName">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RenameClient.aNewName">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.ShowClientEditDialog">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ShowClientEditDialog.aClientName">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TCustomRegistrySource.GetClientByName">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TCustomRegistrySource.GetClientByName.Result">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.GetClientByName.aClientName">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TCustomRegistrySource.GetClientNameByIndex">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TCustomRegistrySource.GetClientNameByIndex.Result">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.GetClientNameByIndex.aIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.FreeRegistrySource">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.FreeRegistrySource.aClientName">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.FreeRegistrySource.aGroupIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.RefreshWriteAdHocProperty">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshWriteAdHocProperty.aDoWriteAdHoc">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshWriteAdHocProperty.aClientName">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshWriteAdHocProperty.aGroupIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.RefreshSyncProperty">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshSyncProperty.aDoSync">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshSyncProperty.aClientName">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshSyncProperty.aGroupIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.RefreshSettings">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshSettings.aClientName">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.RefreshControlData">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshControlData.aClientName">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RefreshControlData.aGroupIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.RegisterControl">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RegisterControl.aControl">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.UnRegisterControl">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.UnRegisterControl.aControl">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TCustomRegistrySource.GetRootKey">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TCustomRegistrySource.GetRootKey.Result">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TCustomRegistrySource.GetRootKeyForDefaults">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TCustomRegistrySource.GetRootKeyForDefaults.Result">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TCustomRegistrySource.GetRootKeyForCommon">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TCustomRegistrySource.GetRootKeyForCommon.Result">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TCustomRegistrySource.ReadString">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TCustomRegistrySource.ReadString.Result">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadString.aRootKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadString.aRootKeyForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadString.aRootForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadString.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadString.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadString.aDefault">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadString.aUseDefaults">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TCustomRegistrySource.ReadInteger">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TCustomRegistrySource.ReadInteger.Result">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadInteger.aRootKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadInteger.aRootKeyForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadInteger.aRootForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadInteger.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadInteger.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadInteger.aDefault">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadInteger.aUseDefaults">
-<short></short>
-</element>
-
-<!-- function Visibility: public -->
-<element name="TCustomRegistrySource.ReadBool">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- function result Visibility: default -->
-<element name="TCustomRegistrySource.ReadBool.Result">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadBool.aRootKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadBool.aRootKeyForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadBool.aRootForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadBool.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadBool.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadBool.aDefault">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadBool.aUseDefaults">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.ReadSection">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadSection.aRootKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadSection.aRootKeyForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadSection.aRootForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadSection.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadSection.aStrings">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadSection.aMerge">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadSection.aUseDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.ReadSection.aListSource">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.WriteString">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteString.aRootKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteString.aRootKeyForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteString.aRootForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteString.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteString.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteString.aDefault">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteString.aUseDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteString.aGroupIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.WriteInteger">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteInteger.aRootKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteInteger.aRootKeyForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteInteger.aRootForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteInteger.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteInteger.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteInteger.aDefault">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteInteger.aUseDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteInteger.aGroupIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.WriteBool">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteBool.aRootKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteBool.aRootKeyForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteBool.aRootForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteBool.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteBool.aIdent">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteBool.aDefault">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteBool.aUseDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.WriteBool.aGroupIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.RenameKey">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RenameKey.aRootKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RenameKey.aRootKeyForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RenameKey.aRootForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RenameKey.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RenameKey.aOldKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RenameKey.aNewKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RenameKey.aUseDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.RenameKey.aGroupIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.DeleteKey">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeleteKey.aRootKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeleteKey.aRootKeyForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeleteKey.aRootForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeleteKey.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeleteKey.aKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeleteKey.aUseDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.DeleteKey.aGroupIndex">
-<short></short>
-</element>
-
-<!-- procedure Visibility: public -->
-<element name="TCustomRegistrySource.EraseSection">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.EraseSection.aRootKey">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.EraseSection.aRootKeyForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.EraseSection.aRootForDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.EraseSection.aSection">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.EraseSection.aUseDefaults">
-<short></short>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.EraseSection.aGroupIndex">
-<short></short>
-</element>
-
-<!-- constructor Visibility: public -->
-<element name="TCustomRegistrySource.Create">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- argument Visibility: default -->
-<element name="TCustomRegistrySource.Create.AOwner">
-<short></short>
-</element>
-
-<!-- destructor Visibility: public -->
-<element name="TCustomRegistrySource.Destroy">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- class Visibility: default -->
-<element name="TRegistrySource">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: public -->
-<element name="TRegistrySource.ClientCount">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: public -->
-<element name="TRegistrySource.EditClientRootKeys">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySource.RootKey">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySource.RootKeyForDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySource.RootKeyForCommon">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySource.Project">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySource.Organisation">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySource.RootForDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySource.ReadDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySource.WriteDefaults">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySource.GUID">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySource.DoSyncData">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- property Visibility: published -->
-<element name="TRegistrySource.PrefereStrings">
-<short></short>
-<descr>
-</descr>
-<seealso>
-</seealso>
-</element>
-
-<!-- procedure Visibility: default -->
-<element name="Register">
-<short></short>
-<descr>
-</descr>
-<errors>
-</errors>
-<seealso>
-</seealso>
-</element>
-
-</module> <!-- regsourcen -->
-
-</package>
+    <module name="regsourcen">
+      <element name="TRegistrySettingsList">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsList.FItemsByRegistry">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsList.FListSection">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsList.FSourceKind">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsList.Section">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsList.Ident">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsList.ItemsByRegistry">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsList.ListSection">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsList.SourceKind">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsList.MergeData">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList.FItemsByRegistry">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList.FListSection">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList.FSourceKind">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList._Initialize">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList._Finalize">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList.SourceKind">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList.Section">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList.Ident">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList.ItemsByRegistry">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList.ListSection">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySettingsCheckedList.MergeData">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource">
+        <short>Custom-Klasse der RegistrySource</short>
+        <descr>Definiert alle Eigenschaften und Methoden, welche in den Instanzklassen zum Einsatz kommen.</descr>
+      </element>
+      <element name="TCustomRegistrySource.FRootKey">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FRootKeyForDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FRootKeyForCommon">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FProject">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FOrganisation">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FRootForDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FReadDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FWriteDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FGUID">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FClientList">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FDoSyncData">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FPrefereStrings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FEditClientRootKeys">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.OnSyncData">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.OnSyncData.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeliverMessage">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.DeliverMessage.aMessageConst">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeliverMessage.aClientName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeliverMessage.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeliverMessage.aWParam">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RootKey">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.RootKeyForDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.RootKeyForCommon">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.Project">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.Organisation">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.RootForDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.ReadDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.WriteDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.GUID">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.DoSyncData">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.PrefereStrings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.GetClientCount">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.GetClientCount.Result">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ClientCount">
+        <short>Anzahl angeschlossener Clients</short>
+      </element>
+      <element name="TCustomRegistrySource.EditClientRootKeys">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.PostClientData">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.PostClientData.aClientName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.PostClientData.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshMergeDataProperty">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshMergeDataProperty.aMergeData">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshMergeDataProperty.aClientName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshMergeDataProperty.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.GetClientList">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.GetClientList.Result">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.GetClientList.aList">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ClearClientItems">
+        <short>Löschte am Client eine Liste</short>
+        <descr>Steuerelemente welche Listen präsentieren (z.B.: TRegListBox), können über das Triggern einer Message gelöscht werden.</descr>
+      </element>
+      <element name="TCustomRegistrySource.ClearClientItems.aClientName">
+        <short>Name eines Clients</short>
+        <descr>Wenn nicht alle Listen-Clients einer RegistrySource gelöscht werden sollen, wird hier der konkrete Name eines Clients erwartet.</descr>
+      </element>
+      <element name="TCustomRegistrySource.ClearClientItems.aAskFor">
+        <short>Soll eine Benutzeranfrage gestellt werden</short>
+        <descr>Wenn True wird erst eine Benutzeranfrage gestellt, welche immer mit mrYES beantwortet werden muss.</descr>
+      </element>
+      <element name="TCustomRegistrySource.ClearClientItems.aMsg">
+        <short>Frei formulierte Benutzeranfrage</short>
+        <descr>Wenn vor dem Löschen eine Benutzeranfrage gestellt werden soll, kann ein freier Text formuliert werden. Die Anfrage muss so gestellt werden, das eine positiver Bescheid zum löschen mit mrYES beantwortet wird.</descr>
+      </element>
+      <element name="TCustomRegistrySource.ClearClientItems.aGroupIndex">
+        <short>Gruppierung</short>
+        <descr>Ein GroupIndex != 0 sorgt dafür, das nur Clients aktualisiert werden, welche den selben GroupIndex besitzen. Der GroupIndex=0 wird alle Clients aktualisieren.</descr>
+      </element>
+      <element name="TCustomRegistrySource.DeleteRootKey">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.DeleteRootKey.aRootKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeleteRootKey.aRootKeyForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeleteRootKey.aRootForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeleteRootKey.aUseDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RenameClient">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.RenameClient.aOldName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RenameClient.aNewName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ShowClientEditDialog">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.ShowClientEditDialog.aClientName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.GetClientByName">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.GetClientByName.Result">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.GetClientByName.aClientName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.GetClientNameByIndex">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.GetClientNameByIndex.Result">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.GetClientNameByIndex.aIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.FreeRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.FreeRegistrySource.aClientName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.FreeRegistrySource.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshWriteAdHocProperty">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshWriteAdHocProperty.aDoWriteAdHoc">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshWriteAdHocProperty.aClientName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshWriteAdHocProperty.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshSyncProperty">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshSyncProperty.aDoSync">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshSyncProperty.aClientName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshSyncProperty.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshSettings">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshSettings.aClientName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshClientData">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshClientData.aClientName">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RefreshClientData.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RegisterClient">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.RegisterClient.aClient">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.UnRegisterClient">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.UnRegisterClient.aClient">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.GetRootKey">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.GetRootKey.Result">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.GetRootKeyForDefaults">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.GetRootKeyForDefaults.Result">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.GetRootKeyForCommon">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.GetRootKeyForCommon.Result">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadString">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.ReadString.Result">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadString.aRootKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadString.aRootKeyForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadString.aRootForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadString.aSection">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadString.aIdent">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadString.aDefault">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadString.aUseDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadInteger">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.ReadInteger.Result">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadInteger.aRootKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadInteger.aRootKeyForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadInteger.aRootForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadInteger.aSection">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadInteger.aIdent">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadInteger.aDefault">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadInteger.aUseDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadBool">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.ReadBool.Result">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadBool.aRootKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadBool.aRootKeyForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadBool.aRootForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadBool.aSection">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadBool.aIdent">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadBool.aDefault">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadBool.aUseDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadSection">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.ReadSection.aRootKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadSection.aRootKeyForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadSection.aRootForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadSection.aSection">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadSection.aStrings">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadSection.aMerge">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadSection.aUseDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.ReadSection.aListSource">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteString">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.WriteString.aRootKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteString.aRootKeyForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteString.aRootForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteString.aSection">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteString.aIdent">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteString.aDefault">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteString.aUseDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteString.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteInteger">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.WriteInteger.aRootKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteInteger.aRootKeyForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteInteger.aRootForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteInteger.aSection">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteInteger.aIdent">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteInteger.aDefault">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteInteger.aUseDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteInteger.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteBool">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.WriteBool.aRootKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteBool.aRootKeyForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteBool.aRootForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteBool.aSection">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteBool.aIdent">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteBool.aDefault">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteBool.aUseDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.WriteBool.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RenameKey">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.RenameKey.aRootKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RenameKey.aRootKeyForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RenameKey.aRootForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RenameKey.aSection">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RenameKey.aOldKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RenameKey.aNewKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RenameKey.aUseDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.RenameKey.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeleteKey">
+        <short>Löscht einen Schlüssel</short>
+      </element>
+      <element name="TCustomRegistrySource.DeleteKey.aRootKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeleteKey.aRootKeyForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeleteKey.aRootForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeleteKey.aSection">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeleteKey.aKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeleteKey.aUseDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.DeleteKey.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.EraseSection">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TCustomRegistrySource.EraseSection.aRootKey">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.EraseSection.aRootKeyForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.EraseSection.aRootForDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.EraseSection.aSection">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.EraseSection.aUseDefaults">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.EraseSection.aGroupIndex">
+        <short/>
+      </element>
+      <element name="TCustomRegistrySource.Create">
+        <short>Erstellt die Instanz</short>
+      </element>
+      <element name="TCustomRegistrySource.Create.AOwner">
+        <short>Eigentümer der RegistrySource</short>
+      </element>
+      <element name="TCustomRegistrySource.Destroy">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource">
+        <short/>
+        <descr/>
+        <errors/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.ClientCount">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.EditClientRootKeys">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.RootKey">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.RootKeyForDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.RootKeyForCommon">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.Project">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.Organisation">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.RootForDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.ReadDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.WriteDefaults">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.GUID">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.DoSyncData">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="TRegistrySource.PrefereStrings">
+        <short/>
+        <descr/>
+        <seealso/>
+      </element>
+      <element name="Register">
+        <short>s. LCL Documentation</short>
+        <descr>RegistrySettings und RegistrySource, sowie PropertyEditoren registrieren</descr>
+      </element>
+      <short>RegistrySource und RegistrySettings</short>
+      <descr>In dem Modul werden zum einen RegistrySettings beschrieben welche in den verschiedenen Steuerelementen zum Einsatz kommen und zum anderen die RegistrySource zur Verfügung gestellt. 
+Die Dokumentation ist in diesem Bereich nicht vorllständig, da zum Zeitpunkt der Erstellung FPDoc und MakeSkel keine Gernrics unterstützen. Dies bezieht sich ausschließlich auf die RegistrySettings.</descr>
+    </module>
+    <!-- regsourcen -->
+  </package>
 </fpdoc-descriptions>

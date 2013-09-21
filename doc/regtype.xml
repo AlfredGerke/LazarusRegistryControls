@@ -506,7 +506,12 @@
 </element>
 
 <!-- argument Visibility: default -->
-<element name="TOnRegistrySettingsChange.aSettingInfo">
+<element name="TOnRegistrySettingsChange.aOldSettingInfo">
+<short></short>
+</element>
+
+<!-- argument Visibility: default -->
+<element name="TOnRegistrySettingsChange.aNewSettingInfo">
 <short></short>
 </element>
 

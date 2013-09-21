@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fpdoc-descriptions>
+  <package name="RegistrySource">
+    <!--
+  ====================================================================
+    regresstrings
+  ====================================================================
+-->
+    <module name="regresstrings">
+      <element name="rsClearItems">
+        <short>Ressource für die Lokalisierung (s. regresstrings.po)</short>
+        <descr>Ressource für die Lokalisierung (s. regresstrings.po)</descr>
+      </element>
+      <element name="rsVerbAbout">
+        <short>Ressource für die Lokalisierung (s. regresstrings.po)</short>
+        <descr>Ressource für die Lokalisierung (s. regresstrings.po)</descr>
+      </element>
+      <element name="rsVerbShowRootKeys">
+        <short>Ressource für die Lokalisierung (s. regresstrings.po)</short>
+        <descr>Ressource für die Lokalisierung (s. regresstrings.po)</descr>
+      </element>
+      <element name="rsExecuteInvalidSection">
+        <short>Ressource für die Lokalisierung (s. regresstrings.po)</short>
+        <descr>Ressource für die Lokalisierung (s. regresstrings.po)</descr>
+      </element>
+      <element name="rsExecuteRequestCanceled">
+        <short>Ressource für die Lokalisierung (s. regresstrings.po)</short>
+        <descr>Ressource für die Lokalisierung (s. regresstrings.po)</descr>
+      </element>
+      <element name="rsVerbRefreshClientSettings">
+        <short>Ressource für die Lokalisierung (s. regresstrings.po)</short>
+        <descr>Ressource für die Lokalisierung (s. regresstrings.po)</descr>
+      </element>
+      <element name="rsVerbRefreshDoWriteAdHoc">
+        <short>Ressource für die Lokalisierung (s. regresstrings.po)</short>
+        <descr>Ressource für die Lokalisierung (s. regresstrings.po)</descr>
+      </element>
+      <element name="rsVerbRefreshDoSyncData">
+        <short>Ressource für die Lokalisierung (s. regresstrings.po)</short>
+        <descr>Ressource für die Lokalisierung (s. regresstrings.po)</descr>
+      </element>
+      <element name="rsVerbRegisteredClients">
+        <short>Ressource für die Lokalisierung (s. regresstrings.po)</short>
+        <descr>Ressource für die Lokalisierung (s. regresstrings.po)</descr>
+      </element>
+      <element name="rsVerbMergeData">
+        <short>Ressource für die Lokalisierung (s. regresstrings.po)</short>
+        <descr>Ressource für die Lokalisierung (s. regresstrings.po)</descr>
+      </element>
+      <short>Ressourcen für die LRC</short>
+      <descr>Ressource für die Lokalisierung (s. regresstrings.po)</descr>
+    </module>
+    <!-- regresstrings -->
+  </package>
+</fpdoc-descriptions>
