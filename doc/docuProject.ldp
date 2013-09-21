@@ -39,5 +39,5 @@ File7=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regpropedits.pas
 Options7=
 File8=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regresstrings.pas
 Options8=
-File9=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regsourcen.pas
+File9="-dfpdoc C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regsourcen.pas"
 Options9=
