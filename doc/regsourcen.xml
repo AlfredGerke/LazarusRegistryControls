@@ -8,118 +8,101 @@
 -->
     <module name="regsourcen">
       <element name="TRegistrySettingsList">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RegistrySettings für Listen</short>
       </element>
       <element name="TRegistrySettingsList.FItemsByRegistry">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. ItemsByRegistry</short>
       </element>
       <element name="TRegistrySettingsList.FListSection">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. ListSection</short>
       </element>
       <element name="TRegistrySettingsList.FSourceKind">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. SourceKind</short>
       </element>
       <element name="TRegistrySettingsList.Section">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Sektion für Ident</short>
+        <descr>Der Ident wird unterhalb von Sektion eingerichtet. 
+Ident wird den ItemIndex sichern.
+Sektion muss unterschiedlich zu ListSection sein.</descr>
       </element>
       <element name="TRegistrySettingsList.Ident">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Ident eines Datenpaares</short>
+        <descr>Soll den ItemIndex der Liste sichern.
+Ident darf nicht in der Section von Listeneinträgen hinterlegt werden.</descr>
       </element>
       <element name="TRegistrySettingsList.ItemsByRegistry">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Listeneinträge aus der Registry</short>
+        <descr>Wenn True wird die Liste eines Steuerelementes aus der Registry gefüllt.</descr>
       </element>
       <element name="TRegistrySettingsList.ListSection">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Quelle der Listeneinträge</short>
+        <descr>Sektion aus der Daten für die Liste entnommen werden, wenn ItemsByRegistry = True.
+ListSection muss ungleich Section sein.</descr>
       </element>
       <element name="TRegistrySettingsList.SourceKind">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Zusammensetzung der Listendaten</short>
+        <descr>Über diesen Parameter wird bestimmt wie die Daten für ein Listenelement aussehen sollen.
+byKey: Es werden alle Idents in die Liste geladen 
+byValue: Es werden alle beigeordneten Werte der Idents in die Liste geladen
+Both: Es werden Ident und Value in folgender Syntax geladen: Ident=Value</descr>
       </element>
       <element name="TRegistrySettingsList.MergeData">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Listendaten auffüllen</short>
+        <descr>Wenn ReadDefaults = True und ItemsByRegistry = True, wenn Listendaten nicht vollständig und aus den Standards aufgefüllt werden können, dann auffüllen wenn MergeData = True.</descr>
       </element>
       <element name="TRegistrySettingsCheckedList">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RegistrySettings für Check-Listen</short>
+        <descr>Einstellungen für z.B.: TRegCheckListBox, TRegCheckGroup</descr>
       </element>
       <element name="TRegistrySettingsCheckedList.FItemsByRegistry">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. ItemsByRegistry</short>
       </element>
       <element name="TRegistrySettingsCheckedList.FListSection">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. ListSection</short>
       </element>
       <element name="TRegistrySettingsCheckedList.FSourceKind">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. SourceKind</short>
       </element>
       <element name="TRegistrySettingsCheckedList._Initialize">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Initialisierung</short>
+        <descr>SourceKind auf Both eistellen</descr>
       </element>
       <element name="TRegistrySettingsCheckedList._Finalize">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Finalisierung</short>
       </element>
       <element name="TRegistrySettingsCheckedList.SourceKind">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Zusammensetzung der Listendaten</short>
+        <descr>Über diesen Parameter wird bestimmt wie die Daten für ein Listenelement aussehen sollen.
+byKey: Es werden alle Idents in die Liste geladen 
+byValue: Es werden alle beigeordneten Werte der Idents in die Liste geladen
+Both: Es werden Ident und Value in folgender Syntax geladen: Ident=Value
+Für Check-Listen ist immer Both zu verwenden.
+Ident=Eintrag in die Liste
+Value=1 für Checked und 0 für Unchecked</descr>
       </element>
       <element name="TRegistrySettingsCheckedList.Section">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Sektion für Ident</short>
+        <descr>Der Ident wird unterhalb von Sektion eingerichtet. 
+Ident wird den ItemIndex sichern.
+Sektion muss unterschiedlich zu ListSection sein.</descr>
       </element>
       <element name="TRegistrySettingsCheckedList.Ident">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Ident eines Datenpaares</short>
+        <descr>Soll den ItemIndex der Liste sichern.
+Ident darf nicht in der Section von Listeneinträgen hinterlegt werden.</descr>
       </element>
       <element name="TRegistrySettingsCheckedList.ItemsByRegistry">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Listeneinträge aus der Registry</short>
+        <descr>Wenn True wird die Liste eines Steuerelementes aus der Registry gefüllt.</descr>
       </element>
       <element name="TRegistrySettingsCheckedList.ListSection">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Quelle der Listeneinträge</short>
+        <descr>Sektion aus der Daten für die Liste entnommen werden, wenn ItemsByRegistry = True.
+ListSection muss ungleich Section sein.</descr>
       </element>
       <element name="TRegistrySettingsCheckedList.MergeData">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Listendaten auffüllen</short>
+        <descr>Wenn ReadDefaults = True und ItemsByRegistry = True, wenn Listendaten nicht vollständig und aus den Standards aufgefüllt werden können, dann auffüllen wenn MergeData = True.</descr>
       </element>
       <element name="TCustomRegistrySource">
         <short>Custom-Klasse der RegistrySource</short>
@@ -199,14 +182,16 @@ Dabei kommen die Informationen aus den Eigenschaften Organisation, Project und G
 z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
       </element>
       <element name="TCustomRegistrySource.RootKeyForDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Grundschlüssel für Standards</short>
+        <descr>Der Grundschlüssel ist immer ein Schlüssel unterhalb von 
+<link id="TCustomRegistrySource.RootForDefaults">RootForDefaults</link>z.B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%</descr>
       </element>
       <element name="TCustomRegistrySource.RootKeyForCommon">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Grundschlüssel für Gemeinsame Daten</short>
+        <descr>Dieser Schlüssel wird derzeit von keinem Steuerelement verwendet. 
+Er soll Einträge sammeln, welche verschiedene Anwendungen gemeinsam haben.
+Dieser Schlüssel wird immer unter HKEY_CURRENT_USER eingerichtet.
+z.B.: SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%</descr>
       </element>
       <element name="TCustomRegistrySource.Project">
         <short>Projektname</short>
@@ -221,9 +206,8 @@ Die Organisation kann durch die Variable %%ORGANISATION%% repräsentiert werden.
 z.B.: SOFTWARE\%%ORGANISATION%%\LazarusRegistryControls\{7CB5D48B-FCE3-414F-BB3A-BCB07BC5D25F}</descr>
       </element>
       <element name="TCustomRegistrySource.RootForDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Root für Standards</short>
+        <descr>Wenn Standards aus der Registry gelesen werden (ReadDefaults=True), dann werden Schlüssel aus dem Grundschlüssel RootKeyForDefaults ausgelesen. Dieser Gundschlüssel wird unterhalb von RootForDefaults eingerichtet. z.B.: HKEY_LOCAL_MACHINE</descr>
       </element>
       <element name="TCustomRegistrySource.ReadDefaults">
         <short>Lesen von Standards</short>
@@ -487,7 +471,7 @@ SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%</descr>
         <short>Übersetzter Grundschlüssel für allgemeine Daten</short>
       </element>
       <element name="TCustomRegistrySource.ReadString">
-        <short>String ermitteln</short>
+        <short>String lesen</short>
         <descr>Anhand des RootKeys, innerhalb einer Section für einen Ident einen String ermittelt. 
 Wenn dieser Vorgang kein Ergebnis liefert:
 Wenn ReadDefaults auf True dann Wert anhand von RootKeyForDefaults, innerhalb einer Section für den Ident einen String ermitteln.
@@ -527,7 +511,7 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Standards benutzen?</short>
       </element>
       <element name="TCustomRegistrySource.ReadInteger">
-        <short>Integer ermitteln</short>
+        <short>Integer lesen</short>
         <descr>Anhand des RootKeys, innerhalb einer Section für einen Ident einen Integer Wert ermittelt. 
 Wenn dieser Vorgang kein Ergebnis liefert:
 Wenn ReadDefaults auf True dann Wert anhand von RootKeyForDefaults, innerhalb einer Section für den Ident einen Integer Wert ermitteln.
@@ -564,7 +548,7 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Standards benutzen?</short>
       </element>
       <element name="TCustomRegistrySource.ReadBool">
-        <short>Boolean ermitteln</short>
+        <short>Boolean lesen</short>
         <descr>Anhand des RootKeys, innerhalb einer Section für einen Ident einen boolscher Wert ermittelt. 
 Wenn dieser Vorgang kein Ergebnis liefert:
 Wenn ReadDefaults auf True dann Wert anhand von RootKeyForDefaults, innerhalb einer Section für den Ident einen boolschen Wert ermitteln.
@@ -645,10 +629,9 @@ byValue: Es werden alle beigeordneten Werte der Idents in die Liste geladen
 Both: Es werden Ident und Value in folgender Syntax geladen: Ident=Value</descr>
       </element>
       <element name="TCustomRegistrySource.WriteString">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>String schreiben</short>
+        <descr>Anhand des RootKeys, innerhalb einer Section für einen Ident einen String schreiben. 
+Wenn WriteDefaults auf True dann Wert anhand von RootKeyForDefaults, innerhalb einer Section für den Ident einen String schreiben.</descr>
       </element>
       <element name="TCustomRegistrySource.WriteString.aRootKey">
         <short>Grundschlüssel</short>
@@ -685,10 +668,9 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <descr>Ein GroupIndex != 0 sorgt dafür, das nur Clients aktualisiert werden, welche den selben GroupIndex besitzen. Der GroupIndex=0 wird alle Clients aktualisieren.</descr>
       </element>
       <element name="TCustomRegistrySource.WriteInteger">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Integer schreiben</short>
+        <descr>Anhand des RootKeys, innerhalb einer Section für einen Ident einen Integer schreiben. 
+Wenn WriteDefaults auf True dann Wert anhand von RootKeyForDefaults, innerhalb einer Section für den Ident einen Integer schreiben.</descr>
       </element>
       <element name="TCustomRegistrySource.WriteInteger.aRootKey">
         <short>Grundschlüssel</short>
@@ -725,10 +707,9 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <descr>Ein GroupIndex != 0 sorgt dafür, das nur Clients aktualisiert werden, welche den selben GroupIndex besitzen. Der GroupIndex=0 wird alle Clients aktualisieren.</descr>
       </element>
       <element name="TCustomRegistrySource.WriteBool">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Boolean schreiben</short>
+        <descr>Anhand des RootKeys, innerhalb einer Section für einen Ident einen Boolean schreiben. 
+Wenn WriteDefaults auf True dann Wert anhand von RootKeyForDefaults, innerhalb einer Section für den Ident einen Boolean schreiben.</descr>
       </element>
       <element name="TCustomRegistrySource.WriteBool.aRootKey">
         <short>Grundschlüssel</short>
@@ -873,75 +854,46 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Entfernt die RegistrySource</short>
       </element>
       <element name="TRegistrySource">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Instanzklasse für die LCL</short>
       </element>
       <element name="TRegistrySource.ClientCount">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.EditClientRootKeys">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.RootKey">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.RootKeyForDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.RootKeyForCommon">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.Project">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.Organisation">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.RootForDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.ReadDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.WriteDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.GUID">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.DoSyncData">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="TRegistrySource.PrefereStrings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySource</short>
       </element>
       <element name="Register">
         <short>s. LCL Documentation</short>
@@ -949,7 +901,12 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
       </element>
       <short>RegistrySource und RegistrySettings</short>
       <descr>In dem Modul werden zum einen RegistrySettings beschrieben welche in den verschiedenen Steuerelementen zum Einsatz kommen und zum anderen die RegistrySource zur Verfügung gestellt. 
-Die Dokumentation ist in diesem Bereich nicht vorllständig, da zum Zeitpunkt der Erstellung FPDoc und MakeSkel keine Gernrics unterstützen. Dies bezieht sich ausschließlich auf die RegistrySettings.</descr>
+Die Dokumentation ist in diesem Bereich nicht vorllständig, da zum Zeitpunkt der Erstellung FPDoc und MakeSkel keine Gernrics unterstützen. Dies bezieht sich ausschließlich auf die RegistrySettings.
+Folgende Klassen werde nicht Dokumentiert:
+TRegistrySettingsBooleanDefault
+TRegistrySettingsIntegerDefault
+TRegistrySettingsStringDefault
+TRegistrySettingsValueList</descr>
     </module>
     <!-- regsourcen -->
   </package>
