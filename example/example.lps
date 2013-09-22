@@ -24,8 +24,8 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="917"/>
-        <CursorPos X="33" Y="945"/>
+        <TopLine Value="924"/>
+        <CursorPos X="38" Y="918"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -67,8 +67,8 @@
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="666"/>
-        <CursorPos X="3" Y="671"/>
+        <TopLine Value="204"/>
+        <CursorPos X="24" Y="211"/>
         <UsageCount Value="48"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
@@ -223,8 +223,8 @@
         <Filename Value="..\source\reglistbox.pas"/>
         <UnitName Value="reglistbox"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="343"/>
-        <CursorPos X="1" Y="363"/>
+        <TopLine Value="194"/>
+        <CursorPos X="3" Y="230"/>
         <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit25>
@@ -406,8 +406,8 @@
         <Filename Value="..\source\regtype.pas"/>
         <UnitName Value="regtype"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="520"/>
-        <CursorPos X="1" Y="539"/>
+        <TopLine Value="36"/>
+        <CursorPos X="55" Y="54"/>
         <UsageCount Value="28"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit48>

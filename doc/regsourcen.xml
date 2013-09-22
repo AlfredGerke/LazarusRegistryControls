@@ -166,10 +166,8 @@
         <short>s. EditClientRootKeys</short>
       </element>
       <element name="TCustomRegistrySource.OnSyncData">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Synchronisation</short>
+        <descr>Wenn DoSyncData auf True steht, wird dieses Ereignis die Synchronisation der Clients einleiten.</descr>
       </element>
       <element name="TCustomRegistrySource.OnSyncData.aGroupIndex">
         <short>Gruppierung</short>
@@ -211,14 +209,16 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <seealso/>
       </element>
       <element name="TCustomRegistrySource.Project">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Projektname</short>
+        <descr>Ein Registryschlüssel sollte immer den Projektnamen mit im Aufbau aufnehmen.
+Die Organisation kann durch die Variable \%%PROJECT%% repräsentiert werden.
+z.B.: SOFTWARE\ExampleFactory\%%PROJECT%%\{7CB5D48B-FCE3-414F-BB3A-BCB07BC5D25F}</descr>
       </element>
       <element name="TCustomRegistrySource.Organisation">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Organisation</short>
+        <descr>Ein Registryschlüssel sollte immer die Organisation mit im Aufbau aufnehmen.
+Die Organisation kann durch die Variable %%ORGANISATION%% repräsentiert werden.
+z.B.: SOFTWARE\%%ORGANISATION%%\LazarusRegistryControls\{7CB5D48B-FCE3-414F-BB3A-BCB07BC5D25F}</descr>
       </element>
       <element name="TCustomRegistrySource.RootForDefaults">
         <short/>
@@ -226,37 +226,39 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <seealso/>
       </element>
       <element name="TCustomRegistrySource.ReadDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Lesen von Standards</short>
+        <descr>Wenn ReadDefaults auf True steht werden Standards aus der Registry ermittelt. Standards kommen immer dann zum Einsatz, wenn eine Abfrage kein Ergebnis liefert.
+Standards werden aus RootKeyForDefaults gelesen, wobei RootKeyForDefaults in RootForDefaults installiert wird.</descr>
       </element>
       <element name="TCustomRegistrySource.WriteDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Schreiben von Standards</short>
+        <descr>Wenn WriteDefaults auf True steht werden Standards in der Registry verändert. 
+Standards kommen immer dann zum Einsatz, wenn eine Abfrage kein Ergebnis liefert.
+Standards werden aus RootKeyForDefaults gelesen, wobei RootKeyForDefaults in RootForDefaults installiert wird.</descr>
       </element>
       <element name="TCustomRegistrySource.GUID">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Projekt-GUID</short>
+        <descr>Für jedes Projekt kann eine Projekt-GUID vergeben werden. 
+Diese GUID kann dazu genutzt werden, eine Anwendung unter verschiedenen Versionen auf einem Client auszuführen. 
+Voraussetzung ist, das jede Version ihre eigene Projekt-GUID besitzt. 
+Die Projekt-GUID kann durch die Variable %%GUID%% repräsentiert werden.
+z.B.: SOFTWARE\ExampleFactory\LazarusRegistryControls\%%GUID%%</descr>
       </element>
       <element name="TCustomRegistrySource.DoSyncData">
         <short>Synchronisierung</short>
         <descr>Die Eigenschaft bestimmt ob Clients überhaupt synchronisiert werden können. Die Synchronisierung wird immer dann ausgeführt, wenn ein Steuerlement Änderungen in der Registry vornimmt.</descr>
       </element>
       <element name="TCustomRegistrySource.PrefereStrings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Strings anwenden</short>
+        <descr>Wenn diese Eigenschaft auf True steht, werden alle Daten der Steuerelemente ausnahmslos als Strings in die Registry geschrieben.
+Dies gilt auch für die Standards, wenn WriteDefaults auf True steht.</descr>
       </element>
       <element name="TCustomRegistrySource.GetClientCount">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. CllientCount</short>
+        <descr>Methodenzeiger</descr>
       </element>
       <element name="TCustomRegistrySource.GetClientCount.Result">
-        <short/>
+        <short>s. ClientCount</short>
       </element>
       <element name="TCustomRegistrySource.ClientCount">
         <short>Anzahl angeschlossener Clients</short>
@@ -267,10 +269,8 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <descr>Wenn True, wird der Bearbeitungsdialog für RootKeys eines Clients im Bearbeitungsmodus gestartet.</descr>
       </element>
       <element name="TCustomRegistrySource.PostClientData">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten schreiben</short>
+        <descr>Mit dieser Methoden können Clients veranlasst werden, Daten in die Registry zu schreiben wenn DoWriteAdHoc auf False steht.</descr>
       </element>
       <element name="TCustomRegistrySource.PostClientData.aClientName">
         <short>Name eines Clients</short>
@@ -281,13 +281,11 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <descr>Ein GroupIndex != 0 sorgt dafür, das nur Clients aktualisiert werden, welche den selben GroupIndex besitzen. Der GroupIndex=0 wird alle Clients aktualisieren.</descr>
       </element>
       <element name="TCustomRegistrySource.RefreshMergeDataProperty">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Aktualisert MergeData-Eigenschaft</short>
+        <descr>Clienteigenschaft anpassen</descr>
       </element>
       <element name="TCustomRegistrySource.RefreshMergeDataProperty.aMergeData">
-        <short/>
+        <short>Neuer Wert (True/False)</short>
       </element>
       <element name="TCustomRegistrySource.RefreshMergeDataProperty.aClientName">
         <short>Name eines Clients</short>
@@ -298,19 +296,16 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <descr>Ein GroupIndex != 0 sorgt dafür, das nur Clients aktualisiert werden, welche den selben GroupIndex besitzen. Der GroupIndex=0 wird alle Clients aktualisieren.</descr>
       </element>
       <element name="TCustomRegistrySource.GetClientList">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Kopie der ClientListe erstellen</short>
       </element>
       <element name="TCustomRegistrySource.GetClientList.Result">
-        <short/>
+        <short>True wenn Clients gefunden</short>
       </element>
       <element name="TCustomRegistrySource.GetClientList.aList">
-        <short/>
+        <short>Kopie</short>
       </element>
       <element name="TCustomRegistrySource.ClearClientItems">
-        <short>Löschte am Client eine Liste</short>
+        <short>Löscht am Client eine Liste</short>
         <descr>Steuerelemente welche Listen präsentieren (z.B.: TRegListBox), können über das Triggern einer Message gelöscht werden.</descr>
       </element>
       <element name="TCustomRegistrySource.ClearClientItems.aClientName">
@@ -371,29 +366,25 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Name eines Client</short>
       </element>
       <element name="TCustomRegistrySource.GetClientByName">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Client-Komponente ermitteln</short>
+        <descr>Anhand des Clientnamens wird eine Client-Komponente aus der ClientList ermittelt.</descr>
       </element>
       <element name="TCustomRegistrySource.GetClientByName.Result">
-        <short/>
+        <short>Clientkomponente</short>
       </element>
       <element name="TCustomRegistrySource.GetClientByName.aClientName">
         <short>Name eines Clients</short>
         <descr>Wenn nicht alle Clients einer RegistrySource bearbeitet werden sollen, wird hier der konkrete Name eines Clients erwartet. Ein Leerstring wird alle Clients bearbeiten.</descr>
       </element>
       <element name="TCustomRegistrySource.GetClientNameByIndex">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Name des Clients ermitteln</short>
+        <descr>Name des Clients aus der ClientList anhand des Index ermitteln</descr>
       </element>
       <element name="TCustomRegistrySource.GetClientNameByIndex.Result">
-        <short/>
+        <short>Name des Clients</short>
       </element>
       <element name="TCustomRegistrySource.GetClientNameByIndex.aIndex">
-        <short/>
+        <short>Index</short>
       </element>
       <element name="TCustomRegistrySource.FreeRegistrySource">
         <short>Entfernen der RegistrySource</short>
@@ -408,13 +399,10 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <descr>Ein GroupIndex != 0 sorgt dafür, das nur Clients aktualisiert werden, welche den selben GroupIndex besitzen. Der GroupIndex=0 wird alle Clients aktualisieren.</descr>
       </element>
       <element name="TCustomRegistrySource.RefreshWriteAdHocProperty">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Clienteigenschaft aktualisieren</short>
       </element>
       <element name="TCustomRegistrySource.RefreshWriteAdHocProperty.aDoWriteAdHoc">
-        <short/>
+        <short>Neuer Wert (True/False)</short>
       </element>
       <element name="TCustomRegistrySource.RefreshWriteAdHocProperty.aClientName">
         <short>Name eines Clients</short>
@@ -425,13 +413,10 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <descr>Ein GroupIndex != 0 sorgt dafür, das nur Clients aktualisiert werden, welche den selben GroupIndex besitzen. Der GroupIndex=0 wird alle Clients aktualisieren.</descr>
       </element>
       <element name="TCustomRegistrySource.RefreshSyncProperty">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Clienteigenschaft aktualisieren</short>
       </element>
       <element name="TCustomRegistrySource.RefreshSyncProperty.aDoSync">
-        <short/>
+        <short>Neuer Wert (True/False)</short>
       </element>
       <element name="TCustomRegistrySource.RefreshSyncProperty.aClientName">
         <short>Name eines Clients</short>
@@ -442,20 +427,15 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <descr>Ein GroupIndex != 0 sorgt dafür, das nur Clients aktualisiert werden, welche den selben GroupIndex besitzen. Der GroupIndex=0 wird alle Clients aktualisieren.</descr>
       </element>
       <element name="TCustomRegistrySource.RefreshSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Rootkeys aktualisieren</short>
       </element>
       <element name="TCustomRegistrySource.RefreshSettings.aClientName">
         <short>Names eines Clients</short>
         <descr>Wenn nicht alle Clients einer RegistrySource bearbeitet werden sollen, wird hier der konkrete Name eines Clients erwartet. Ein Leerstring wird alle Clients bearbeiten.</descr>
       </element>
       <element name="TCustomRegistrySource.RefreshClientData">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Clients aktualisieren</short>
+        <descr>Aktualisiert die Clients mit Daten aus der Registry.</descr>
       </element>
       <element name="TCustomRegistrySource.RefreshClientData.aClientName">
         <short>Name eines Clients</short>
@@ -480,40 +460,41 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Client-Komponente</short>
       </element>
       <element name="TCustomRegistrySource.GetRootKey">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Grundschlüssel ermitteln</short>
+        <descr>Die Methode wird die Variablen %%PROJECT%%, %%ORGANISATION%% und %%GUID%% ersetzen und den Grundschlüssel ermitteln. 
+Der RootKey ist immer ein Schlüssel unterhalb von HKEY_CURRENT_USER.
+z.B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
       </element>
       <element name="TCustomRegistrySource.GetRootKey.Result">
-        <short/>
+        <short>Übersetzter Grundschlüssel</short>
       </element>
       <element name="TCustomRegistrySource.GetRootKeyForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Grundschlüssel für Standards</short>
+        <descr>Die Methode wird die Variablen %%PROJECT%%, %%ORGANISATION%% und %%GUID%% ersetzen und den Grundschlüssel für Standards ermitteln.
+Der RootKeyForDefaults ist immer ein Schlüssel unterhalb von <link id="TCustomRegistrySource.RootForDefaults">RootForDefaults</link>
+z.B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%</descr>
       </element>
       <element name="TCustomRegistrySource.GetRootKeyForDefaults.Result">
-        <short/>
+        <short>Übersetzter Grundschlüssel für Standards</short>
       </element>
       <element name="TCustomRegistrySource.GetRootKeyForCommon">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Grundschlüssel für allgemeine Daten</short>
+        <descr>Die Methode wird die Variablen %%PROJECT%%, %%ORGANISATION%% und %%GUID%% ersetzen und den Grundschlüssel für allgemeine Daten ermitteln.
+Der RootKeyForCommon ist immer ein Schlüssel unterhalb von HKEY_CURRENT_USER.
+SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%</descr>
       </element>
       <element name="TCustomRegistrySource.GetRootKeyForCommon.Result">
-        <short/>
+        <short>Übersetzter Grundschlüssel für allgemeine Daten</short>
       </element>
       <element name="TCustomRegistrySource.ReadString">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>String ermitteln</short>
+        <descr>Anhand des RootKeys, innerhalb einer Section für einen Ident einen String ermittelt. 
+Wenn dieser Vorgang kein Ergebnis liefert:
+Wenn ReadDefaults auf True dann Wert anhand von RootKeyForDefaults, innerhalb einer Section für den Ident einen String ermitteln.
+Wenn ReadDefaults auf False dann Wert aus Default ermitteln.</descr>
       </element>
       <element name="TCustomRegistrySource.ReadString.Result">
-        <short/>
+        <short>Ergebnis der Abfrage</short>
       </element>
       <element name="TCustomRegistrySource.ReadString.aRootKey">
         <short>Grundschlüssel</short>
@@ -535,22 +516,25 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Sektion für Datenpaare (Ident=Value)</short>
       </element>
       <element name="TCustomRegistrySource.ReadString.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
+        <descr>Identifizierung des Wertes in der Registry.</descr>
       </element>
       <element name="TCustomRegistrySource.ReadString.aDefault">
-        <short/>
+        <short>Standardwert</short>
+        <descr>Wenn ReadDefaults auf False steht, wird dieser Wert immer dann verwendet, wenn die Abfrage auf die Registry kein Ergebnis liefert.</descr>
       </element>
       <element name="TCustomRegistrySource.ReadString.aUseDefaults">
         <short>Standards benutzen?</short>
       </element>
       <element name="TCustomRegistrySource.ReadInteger">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Integer ermitteln</short>
+        <descr>Anhand des RootKeys, innerhalb einer Section für einen Ident einen Integer Wert ermittelt. 
+Wenn dieser Vorgang kein Ergebnis liefert:
+Wenn ReadDefaults auf True dann Wert anhand von RootKeyForDefaults, innerhalb einer Section für den Ident einen Integer Wert ermitteln.
+Wenn ReadDefaults auf False dann Wert aus Default ermitteln.</descr>
       </element>
       <element name="TCustomRegistrySource.ReadInteger.Result">
-        <short/>
+        <short>Ergebnis der Abfrage</short>
       </element>
       <element name="TCustomRegistrySource.ReadInteger.aRootKey">
         <short>Grundschlüssel</short>
@@ -569,22 +553,25 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Sektion für Datenpaare (Ident=Value)</short>
       </element>
       <element name="TCustomRegistrySource.ReadInteger.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
+        <descr>Identifizierung des Wertes in der Registry.</descr>
       </element>
       <element name="TCustomRegistrySource.ReadInteger.aDefault">
-        <short/>
+        <short>Standardwert</short>
+        <descr>Wenn ReadDefaults auf False steht, wird dieser Wert immer dann verwendet, wenn die Abfrage auf die Registry kein Ergebnis liefert.</descr>
       </element>
       <element name="TCustomRegistrySource.ReadInteger.aUseDefaults">
         <short>Standards benutzen?</short>
       </element>
       <element name="TCustomRegistrySource.ReadBool">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Boolean ermitteln</short>
+        <descr>Anhand des RootKeys, innerhalb einer Section für einen Ident einen boolscher Wert ermittelt. 
+Wenn dieser Vorgang kein Ergebnis liefert:
+Wenn ReadDefaults auf True dann Wert anhand von RootKeyForDefaults, innerhalb einer Section für den Ident einen boolschen Wert ermitteln.
+Wenn ReadDefaults auf False dann Wert aus Default ermitteln.</descr>
       </element>
       <element name="TCustomRegistrySource.ReadBool.Result">
-        <short/>
+        <short>Ergebnis der Abfrage</short>
       </element>
       <element name="TCustomRegistrySource.ReadBool.aRootKey">
         <short>Grundschlüssel</short>
@@ -606,19 +593,19 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Sektion für Datenpaare (Ident=Value)</short>
       </element>
       <element name="TCustomRegistrySource.ReadBool.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
+        <descr>Identifizierung des Wertes in der Registry.</descr>
       </element>
       <element name="TCustomRegistrySource.ReadBool.aDefault">
-        <short/>
+        <short>Standardwert</short>
+        <descr>Wenn ReadDefaults auf False steht, wird dieser Wert immer dann verwendet, wenn die Abfrage auf die Registry kein Ergebnis liefert.</descr>
       </element>
       <element name="TCustomRegistrySource.ReadBool.aUseDefaults">
         <short>Standards benutzen?</short>
       </element>
       <element name="TCustomRegistrySource.ReadSection">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Inhalt einer Sektion</short>
+        <descr>Liest alle Datenpaare einer Sektion in eine Liste ein. Diese Liste kann z.B. Quelle für eine Steuerlement sein, welches eine Liste repräsentiert (z.B.: TRegListBox).</descr>
       </element>
       <element name="TCustomRegistrySource.ReadSection.aRootKey">
         <short>Grundschlüssel</short>
@@ -638,18 +625,24 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
       </element>
       <element name="TCustomRegistrySource.ReadSection.aSection">
         <short>Sektion für Datenpaare (Ident=Value)</short>
+        <descr>Ein Steuerelement welches eine Liste repräsentiert, bekommt aus dieser Quelle seine Daten für die Liste.</descr>
       </element>
       <element name="TCustomRegistrySource.ReadSection.aStrings">
-        <short/>
+        <short>Quelle der Liste</short>
       </element>
       <element name="TCustomRegistrySource.ReadSection.aMerge">
-        <short/>
+        <short>Listendaten Mergen</short>
+        <descr>Wenn True dann wenn ReadDefaults auf True und Listendaten nicht vollständig dann Einträge aus den Standards ergänzen wenn möglich.</descr>
       </element>
       <element name="TCustomRegistrySource.ReadSection.aUseDefaults">
         <short>Standards benutzen?</short>
       </element>
       <element name="TCustomRegistrySource.ReadSection.aListSource">
-        <short/>
+        <short>Datenzusammensetzung</short>
+        <descr>Über diesen Parameter wird bestimmt wie die Daten für ein Listenelement aussehen sollen.
+byKey: Es werden alle Idents in die Liste geladen 
+byValue: Es werden alle beigeordneten Werte der Idents in die Liste geladen
+Both: Es werden Ident und Value in folgender Syntax geladen: Ident=Value</descr>
       </element>
       <element name="TCustomRegistrySource.WriteString">
         <short/>
@@ -677,10 +670,12 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Sektion für Datenpaare (Ident=Value)</short>
       </element>
       <element name="TCustomRegistrySource.WriteString.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
+        <descr>Identifizierung des Wertes in der Registry.</descr>
       </element>
       <element name="TCustomRegistrySource.WriteString.aDefault">
-        <short/>
+        <short>Übergabewert</short>
+        <descr>Wert wird in die Registry geschrieben</descr>
       </element>
       <element name="TCustomRegistrySource.WriteString.aUseDefaults">
         <short>Standards benutzen?</short>
@@ -715,10 +710,12 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Sektion für Datenpaare (Ident=Value)</short>
       </element>
       <element name="TCustomRegistrySource.WriteInteger.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
+        <descr>Identifizierung des Wertes in der Registry.</descr>
       </element>
       <element name="TCustomRegistrySource.WriteInteger.aDefault">
-        <short/>
+        <short>Übergabewert</short>
+        <descr>Wert wird in die Registry geschrieben</descr>
       </element>
       <element name="TCustomRegistrySource.WriteInteger.aUseDefaults">
         <short>Standards benutzen?</short>
@@ -753,10 +750,12 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Sektion für Datenpaare (Ident=Value)</short>
       </element>
       <element name="TCustomRegistrySource.WriteBool.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
+        <descr>Identifizierung des Wertes in der Registry.</descr>
       </element>
       <element name="TCustomRegistrySource.WriteBool.aDefault">
-        <short/>
+        <short>Übergabewert</short>
+        <descr>Wert wird in die Registry geschrieben</descr>
       </element>
       <element name="TCustomRegistrySource.WriteBool.aUseDefaults">
         <short>Standards benutzen?</short>
@@ -766,10 +765,8 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <descr>Ein GroupIndex != 0 sorgt dafür, das nur Clients aktualisiert werden, welche den selben GroupIndex besitzen. Der GroupIndex=0 wird alle Clients aktualisieren.</descr>
       </element>
       <element name="TCustomRegistrySource.RenameKey">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Ident umbenennen</short>
+        <descr>Unterhalb einer Section wird ein Ident umbenannt.</descr>
       </element>
       <element name="TCustomRegistrySource.RenameKey.aRootKey">
         <short>Grundschlüssel</short>
@@ -791,10 +788,10 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
         <short>Sektion für Datenpaare (Ident=Value)</short>
       </element>
       <element name="TCustomRegistrySource.RenameKey.aOldKey">
-        <short/>
+        <short>Alter Name</short>
       </element>
       <element name="TCustomRegistrySource.RenameKey.aNewKey">
-        <short/>
+        <short>Neuer Name</short>
       </element>
       <element name="TCustomRegistrySource.RenameKey.aUseDefaults">
         <short>Standards benutzen?</short>
