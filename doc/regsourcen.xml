@@ -901,12 +901,15 @@ z. B.: SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%</descr>
       </element>
       <short>RegistrySource und RegistrySettings</short>
       <descr>In dem Modul werden zum einen RegistrySettings beschrieben welche in den verschiedenen Steuerelementen zum Einsatz kommen und zum anderen die RegistrySource zur Verfügung gestellt. 
-Die Dokumentation ist in diesem Bereich nicht vorllständig, da zum Zeitpunkt der Erstellung FPDoc und MakeSkel keine Gernrics unterstützen. Dies bezieht sich ausschließlich auf die RegistrySettings.
-Folgende Klassen werde nicht Dokumentiert:
-TRegistrySettingsBooleanDefault
-TRegistrySettingsIntegerDefault
-TRegistrySettingsStringDefault
-TRegistrySettingsValueList</descr>
+Die Dokumentation ist in diesem Bereich nicht vorllständig, da zum Zeitpunkt der Erstellung FPDoc und MakeSkel keine Generics unterstützen. Dies bezieht sich ausschließlich auf die RegistrySettings.
+Folgende Klassen werden nicht Dokumentiert:
+<ul>
+          <li>TRegistrySettingsBooleanDefault</li>
+          <li>TRegistrySettingsIntegerDefault</li>
+          <li>TRegistrySettingsStringDefault</li>
+          <li>TRegistrySettingsValueList</li>
+        </ul>
+      </descr>
     </module>
     <!-- regsourcen -->
   </package>

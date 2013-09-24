@@ -11,11 +11,14 @@
         <short>Eintrag aus TRegValueListEditor</short>
         <descr>Um Einträger sicher im TRegValueListEdior bearbeiten zu können werden die Informationen von Key und Value in dieser Struktur zwischen gespeichert.
 Es gibt immer einen "Alten" Eintrag und einen "Neuen" Eintrag. Dieser Beide werden miteinander verglichen und im Fall von Differenzen in die Registry aufgenommen.
-Die Dokumentation ist in diesem Bereich nicht vorllständig, da zum Zeitpunkt der Erstellung FPDoc und MakeSkel keine Gernrics unterstützen.
+Die Dokumentation ist in diesem Bereich nicht vorllständig, da zum Zeitpunkt der Erstellung FPDoc und MakeSkel keine Generics bzw. Methoden in Strukturen unterstützen.
 Folgende Proceduren der Struktur werde nicht Dokumentiert:
-function IsEqual(aKey: string;  aValue: string;   aCol: integer;  aRow: integer): boolean;
-procedure SetItems(aKey: string;  aValue: string;  aCol: integer;  aRow: integer);
-procedure Clear;</descr>
+<ul>
+            <li>function IsEqual(aKey: string;  aValue: string;   aCol: integer;  aRow: integer): boolean;</li>
+            <li>procedure SetItems(aKey: string;  aValue: string;  aCol: integer;  aRow: integer);</li>
+            <li>procedure Clear;</li>
+          </ul>
+        </descr>
       </element>
       <element name="TKeyValueItems.Found">
         <short>Daten gefunden</short>
@@ -36,13 +39,16 @@ procedure Clear;</descr>
       <element name="TKeyValues">
         <short>Bearbeitungscache</short>
         <descr>Mit der Struktur wird ein "Alter" Eintrag mit einem "Neuen" Eintrag verglichen.
-Die Dokumentation ist in diesem Bereich nicht vorllständig, da zum Zeitpunkt der Erstellung FPDoc und MakeSkel keine Gernrics unterstützen.
-Folgende Proceduren der Struktur werde nicht Dokumentiert:
-function IsEqual: boolean;
-function KeyValueDataChanged: boolean;
-function KeyDataChanged: boolean;
-function ValueDataChanged: boolean;
-procedure Clear;</descr>
+Die Dokumentation ist in diesem Bereich nicht vorllständig, da zum Zeitpunkt der Erstellung FPDoc und MakeSkel keine Generics bzw. Methoden in Strukturen unterstützen.
+Folgende Proceduren der Struktur werden nicht Dokumentiert:
+<ul>
+            <li>function IsEqual: boolean;</li>
+            <li>function KeyValueDataChanged: boolean;</li>
+            <li>function KeyDataChanged: boolean;</li>
+            <li>function ValueDataChanged: boolean;</li>
+            <li>procedure Clear;</li>
+          </ul>
+        </descr>
       </element>
       <element name="TKeyValues.OldKeyItems">
         <short>"Alter" Eintrag</short>
@@ -126,190 +132,141 @@ procedure Clear;</descr>
         <short>Eingentümer</short>
       </element>
       <element name="TRegistrySettingString">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Aufzählungstyp</short>
+        <descr>Wird verwendet um im OnRegistrySettingChange zu ermitteln welcher Eintrag gändert werden soll.</descr>
       </element>
       <element name="TRegistrySettingKind.rskUnknown">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskRootKey">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskRootKeyForDefault">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskSection">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskIdent">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskDefault">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskReadDefaults">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskWriteDefaults">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskRootForDefaults">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskCanRead">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskCanWrite">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskDoWriteAdHoc">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskDoSyncData">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingKind.rskMergeData">
-        <short/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Datenübergabe</short>
+        <descr>Wird verwendet in TOnRegistrySettingChange um Daten zu prüfen und an die RegistrySettings weiter zu geben.</descr>
       </element>
       <element name="TRegistrySettingValue.RootKey">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.RootKeyForDefault">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.Section">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.Ident">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.Default">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.ReadDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.WriteDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.RootForDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.CanRead">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.CanWrite">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.DoWriteAdHoc">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.DoSyncData">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TRegistrySettingValue.MergeData">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. TCustomRegistrySettings</short>
       </element>
       <element name="TOnRegistrySettingsChange">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>OnChnange-Ereignis für RegistrySettings</short>
+        <descr>Über dieses Ereignis kann das Ändern von Einträgen an Bedinungen geknüpft werden. Wird die Bedingung nicht erfüllt, wird keine Änderung vorgenommen.</descr>
       </element>
       <element name="TOnRegistrySettingsChange.aOldSettingInfo">
-        <short/>
+        <short>Alter Eintrag</short>
       </element>
       <element name="TOnRegistrySettingsChange.aNewSettingInfo">
-        <short/>
+        <short>Neuer Eintrag</short>
       </element>
       <element name="TOnRegistrySettingsChange.aIsOk">
-        <short/>
+        <short>Verarbeitung OK</short>
+        <descr>Wird im Ereignis dieser Wert auf False gesetzt, dann wird eine weitere Verarbeitung unterbunden und der Eintrag wird nicht geändert.</descr>
       </element>
       <element name="TRootKeysStruct">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Struktur für RootKeys</short>
+        <descr>Wird verwendet um RootKeys zu importieren und exportieren.</descr>
       </element>
       <element name="TRootKeysStruct.Found">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Daten vorhanden</short>
       </element>
       <element name="TRootKeysStruct.RootKey">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Grundschlüssel</short>
       </element>
       <element name="TRootKeysStruct.RootKeyForDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Grundschlüssel für Standards</short>
       </element>
       <element name="TRootKeysStruct.ReadDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Standards lesen</short>
       </element>
       <element name="TRootKeysStruct.WriteDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Schreibe Standards</short>
       </element>
       <element name="TRootKeysStruct.RootForDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Root für Standards</short>
       </element>
       <element name="TRootKeysStruct.Project">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Projekt</short>
       </element>
       <element name="TRootKeysStruct.Organisation">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Organisation</short>
       </element>
       <element name="TRootKeysStruct.GUID">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Projekt-GUID</short>
       </element>
       <element name="_ChangeTokenForKey">
         <short>Variablen belegen</short>
@@ -329,25 +286,25 @@ procedure Clear;</descr>
       </element>
       <short>Typen der LRC</short>
       <descr>In diesem Modul werden Aufzählungen, Records, Typen und Klassen aufgeführt, welche zum Einsatz in der LRC kommen.
-Die Dokumentation ist in diesem Bereich nicht vorllständig, da zum Zeitpunkt der Erstellung FPDoc und MakeSkel keine Gernrics unterstützen. Dies bezieht sich ausschließlich auf die RegistrySettings und Proceduren bzw. Funktionen innerhalb von Structuren (Record).
-Folgende Klassen/Proceduren werde nicht Dokumentiert:
-aus TKeyValues:
-    function IsEqual: boolean;
-    function KeyValueDataChanged: boolean;
-    function KeyDataChanged: boolean;
-    function ValueDataChanged: boolean;
-    procedure Clear;
-aus TRootKeysStruct:
-    procedure SetRootKeys(aRootKey: string;
-                          aRootKeyForDefaults: string;
-                          aReadDefaults: boolean;
-                          aWriteDefaults: boolean;
-                          aRootForDefaults: string;
-                          aProject: string;
-                          aOrganisation: string;
-                          aGUID: string);
-    procedure Clear;
-TCustomRegistrySettings</descr>
+Die Dokumentation ist in diesem Bereich nicht vorllständig, da zum Zeitpunkt der Erstellung FPDoc und MakeSkel keine Generics unterstützen. Dies bezieht sich ausschließlich auf die RegistrySettings und Proceduren bzw. Funktionen innerhalb von Structuren (Record).
+Folgende Klassen/Proceduren werden nicht Dokumentiert:
+<p>
+          <b>aus TKeyValues:</b>
+        </p><ul>
+          <li>function IsEqual: boolean;</li>
+          <li>function KeyValueDataChanged: boolean;</li>
+          <li>function KeyDataChanged: boolean;</li>
+          <li>function ValueDataChanged: boolean;</li>
+          <li>procedure Clear;</li>
+        </ul><p>
+          <b>aus TRootKeysStruct:</b>
+        </p><ul>
+          <li>procedure SetRootKeys(...);</li>
+          <li>procedure Clear;</li>
+        </ul><p>
+          <b>TCustomRegistrySettings</b>
+        </p>
+      </descr>
     </module>
     <!-- regtype -->
   </package>

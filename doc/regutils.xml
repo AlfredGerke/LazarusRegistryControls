@@ -7,697 +7,538 @@
   ====================================================================
 -->
     <module name="regutils">
-      <short/>
-      <descr/>
-      <!-- class Visibility: default -->
       <element name="TDefaultsForCurrentUser">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Standards bearbeiten</short>
+        <descr>Die Klasse bietet alle Methoden um Standards in der Registry zu verwalten.</descr>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TDefaultsForCurrentUser.FRoot">
         <short/>
         <descr/>
         <seealso/>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TDefaultsForCurrentUser.FDefaultKey">
         <short/>
         <descr/>
         <seealso/>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TDefaultsForCurrentUser.FPrefereStrings">
         <short/>
         <descr/>
         <seealso/>
       </element>
-      <!-- procedure Visibility: private -->
       <element name="TDefaultsForCurrentUser.ReadSectionValuesByKind">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aStrings">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aKind">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aMerge">
         <short/>
       </element>
-      <!-- function Visibility: protected -->
       <element name="TDefaultsForCurrentUser.GetDefaultKey">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TDefaultsForCurrentUser.GetDefaultKey.Result">
         <short/>
       </element>
-      <!-- function Visibility: protected -->
       <element name="TDefaultsForCurrentUser.GetHKeyRoot">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TDefaultsForCurrentUser.GetHKeyRoot.Result">
         <short/>
       </element>
-      <!-- function Visibility: public -->
       <element name="TDefaultsForCurrentUser.DeleteKey">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TDefaultsForCurrentUser.DeleteKey.Result">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.DeleteKey.aSection">
         <short/>
       </element>
-      <!-- function Visibility: public -->
       <element name="TDefaultsForCurrentUser.DeleteValue">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TDefaultsForCurrentUser.DeleteValue.Result">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.DeleteValue.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.DeleteValue.aKey">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDefaultsForCurrentUser.RenameKey">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.RenameKey.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.RenameKey.aOldKey">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.RenameKey.aNewKey">
         <short/>
       </element>
-      <!-- function Visibility: public -->
       <element name="TDefaultsForCurrentUser.ReadString">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadString.Result">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadString.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadString.aIdent">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadString.aDefault">
         <short/>
       </element>
-      <!-- function Visibility: public -->
       <element name="TDefaultsForCurrentUser.ReadInteger">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadInteger.Result">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadInteger.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadInteger.aIdent">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadInteger.aDefault">
         <short/>
       </element>
-      <!-- function Visibility: public -->
       <element name="TDefaultsForCurrentUser.ReadBool">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadBool.Result">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadBool.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadBool.aIdent">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadBool.aDefault">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDefaultsForCurrentUser.ReadSectionValuesOnly">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aStrings">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aMerge">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDefaultsForCurrentUser.ReadSection">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSection.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSection.aStrings">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSection.aMerge">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDefaultsForCurrentUser.ReadSectionValues">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSectionValues.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSectionValues.aStrings">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.ReadSectionValues.aMerge">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDefaultsForCurrentUser.WriteString">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.WriteString.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.WriteString.aIdent">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.WriteString.aString">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDefaultsForCurrentUser.WriteInteger">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.WriteInteger.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.WriteInteger.aIdent">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.WriteInteger.aInteger">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDefaultsForCurrentUser.WriteBool">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.WriteBool.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.WriteBool.aIdent">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.WriteBool.aBool">
         <short/>
       </element>
-      <!-- constructor Visibility: public -->
       <element name="TDefaultsForCurrentUser.Create">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.Create.aRoot">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.Create.aDefaultKey">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDefaultsForCurrentUser.Create.aPrefereString">
         <short/>
       </element>
-      <!-- destructor Visibility: public -->
       <element name="TDefaultsForCurrentUser.Destroy">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- property Visibility: published -->
       <element name="TDefaultsForCurrentUser.Root">
         <short/>
         <descr/>
         <seealso/>
       </element>
-      <!-- property Visibility: published -->
       <element name="TDefaultsForCurrentUser.DefaultKey">
         <short/>
         <descr/>
         <seealso/>
       </element>
-      <!-- class Visibility: default -->
       <element name="TDataByCurrentUser">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>HKEY_CURRENT_USER bearbeiten</short>
+        <descr>Die Klasse bietet alle Methoden um den HKEY_CURRENT_USER zu bearbeiten. Es handelt sich dabei um eine Ableitung von TRegIniFile. Zusätzlich wird der Zugriff auf Standards über die Klasse TDefaultsVorCurrentUser ermöglicht.</descr>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TDataByCurrentUser.FUseDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. UseDefault</short>
       </element>
-      <!-- procedure Visibility: private -->
       <element name="TDataByCurrentUser.ReadSectionValuesByKind">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesByKind.aSection">
-        <short/>
+        <short>Sektion der Datenpaare</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesByKind.aStrings">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesByKind.aKind">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.EraseSectionForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Sektion löschen</short>
+        <descr>Die Sektion wird gelöscht, danach die Sektion in den Standards.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.EraseSectionForDefaults.aSection">
-        <short/>
+        <short>zu löschende Sektion</short>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.DeleteKeyForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenpaar löschen</short>
+        <descr>Es wird ein Datenpaar gelöscht, danach der entsprechende Key in den Standards</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.DeleteKeyForDefaults.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.DeleteKeyForDefaults.aKey">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.RenameKey">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.RenameKey.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.RenameKey.aOldKey">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.RenameKey.aNewKey">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.RenameKeyForDefaults">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.RenameKeyForDefaults.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.RenameKeyForDefaults.aOldKey">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.RenameKeyForDefaults.aNewKey">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.ReadSectionValuesEx">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesEx.aSection">
-        <short/>
+        <short>Sektion der Datenpaare</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesEx.aStrings">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.ReadSectionValuesOnly">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesOnly.aSection">
-        <short/>
+        <short>Sektion der Datenpaare</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesOnly.aStrings">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aSection">
-        <short/>
+        <short>Sektion der Datenpaare</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aStrings">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aMerge">
-        <short/>
+        <short>Liste auffüllen</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TDataByCurrentUser.ReadStringCheckForDefaults">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TDataByCurrentUser.ReadStringCheckForDefaults.Result">
-        <short/>
+        <short>Abfrageergebnis</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadStringCheckForDefaults.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadStringCheckForDefaults.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadStringCheckForDefaults.aDefault">
-        <short/>
+        <short>Standardwert</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TDataByCurrentUser.ReadIntegerCheckForDefaults">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.Result">
-        <short/>
+        <short>Abfrageergebnis</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.aDefault">
-        <short/>
+        <short>Standardwert</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TDataByCurrentUser.ReadBoolCheckForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Boolean lesen</short>
+        <descr>Wenn nicht gefunden, dann in den Standards suchen, wenn nicht gefunden dann Standardwert ausgeben.</descr>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TDataByCurrentUser.ReadBoolCheckForDefaults.Result">
-        <short/>
+        <short>Abfrageergebnis</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadBoolCheckForDefaults.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadBoolCheckForDefaults.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadBoolCheckForDefaults.aDefault">
-        <short/>
+        <short>Standardwert</short>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.ReadSectionCheckForDefaults">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aSection">
-        <short/>
+        <short>Sektion der Datenpaare</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aStrings">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aMerge">
-        <short/>
+        <short>Liste auffüllen</short>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aSection">
-        <short/>
+        <short>Sektion der Datenpaare</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aStrings">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aMerge">
-        <short/>
+        <short>Liste auffüllen</short>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.WriteStringCheckForDefaults">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.WriteStringCheckForDefaults.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.WriteStringCheckForDefaults.aIdent">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.WriteStringCheckForDefaults.aString">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.WriteIntegerCheckForDefaults">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aIdent">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aInteger">
         <short/>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TDataByCurrentUser.WriteBoolCheckForDefaults">
         <short/>
         <descr/>
         <errors/>
         <seealso/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aSection">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aIdent">
         <short/>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aBool">
         <short/>
       </element>
-      <!-- constructor Visibility: public -->
       <element name="TDataByCurrentUser.Create">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Erstellt die Instanz</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.Create.aFileName">
-        <short/>
+        <short>Grundschlüssel</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.Create.aDefaultsRoot">
-        <short/>
+        <short>Root für Standards</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.Create.aDefaultKey">
-        <short/>
+        <short>Grundschlüssel für Standards</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TDataByCurrentUser.Create.aPrefereStrings">
-        <short/>
+        <short>Daten immer als String speichern</short>
       </element>
-      <!-- destructor Visibility: public -->
       <element name="TDataByCurrentUser.Destroy">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Zerstört die Instanz</short>
       </element>
-      <!-- property Visibility: published -->
       <element name="TDataByCurrentUser.UseDefaults">
         <short/>
         <descr/>
         <seealso/>
       </element>
+      <short>Registry bearbeiten</short>
+      <descr>In diesem Modul werden alle Klassen und Methoden bereit gestellt, welche die LRC nutzt um Daten in der Registry zu bearbeiten.</descr>
     </module>
     <!-- regutils -->
   </package>
