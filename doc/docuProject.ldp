@@ -1,7 +1,7 @@
 [Global]
 Package=RegistrySource
 Format=html
-Output=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\documentation
+Output=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\documentation\registrysource
 Content=1
 TargetOS=
 TargetCPU=

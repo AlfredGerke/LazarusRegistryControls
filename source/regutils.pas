@@ -536,37 +536,8 @@ end;
 procedure TDefaultsForCurrentUser.ReadSection(aSection: string;
   aStrings: TStrings;
   aMerge: boolean);
-{
- var
-   reg: TRegistry;
-   key: string;
-}
 begin
   ReadSectionValuesByKind(aSection, aStrings, byKey, aMerge);
-  {
-   reg := TRegistry.Create;
-   try
-     try
-       aStrings.Clear;
-       with reg do
-       begin
-         RootKey := GetHKEYRoot;
-         key := concat(DefaultKey, aSection);
-
-         if OpenKeyReadOnly(key) then
-           GetValueNames(aStrings);
-
-         CloseKey;
-       end;
-     except
-       on E: Exception do
-         aStrings.Clear;
-     end;
-   finally
-     if Assigned(reg) then
-       FreeAndNil(reg);
-   end;
-  }
 end;
 
 procedure TDefaultsForCurrentUser.ReadSectionValues(aSection: string;

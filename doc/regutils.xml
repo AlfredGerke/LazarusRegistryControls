@@ -12,272 +12,220 @@
         <descr>Die Klasse bietet alle Methoden um Standards in der Registry zu verwalten.</descr>
       </element>
       <element name="TDefaultsForCurrentUser.FRoot">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. Root</short>
       </element>
       <element name="TDefaultsForCurrentUser.FDefaultKey">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. DefaultKey</short>
       </element>
       <element name="TDefaultsForCurrentUser.FPrefereStrings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. PrefereStrings</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValuesByKind">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus Sektion lesen</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aSection">
-        <short/>
+        <short>Sektion der Daten</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aStrings">
-        <short/>
+        <short>Liste der Daten</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aKind">
-        <short/>
+        <short>Art der Daten</short>
+        <descr>Legt fest welche Daten in die Liste aufgenommen werden.</descr>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValuesByKind.aMerge">
-        <short/>
+        <short>Listen auffüllen</short>
+        <descr>Liste wird nicht gelöschte, neue Daten werden zu den bestehenden Daten hinzugefügt.</descr>
       </element>
       <element name="TDefaultsForCurrentUser.GetDefaultKey">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. DefaultKey</short>
       </element>
       <element name="TDefaultsForCurrentUser.GetDefaultKey.Result">
-        <short/>
+        <short>s. DefaultKey</short>
       </element>
       <element name="TDefaultsForCurrentUser.GetHKeyRoot">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Root als HKEY</short>
       </element>
       <element name="TDefaultsForCurrentUser.GetHKeyRoot.Result">
-        <short/>
+        <short>HKEY</short>
       </element>
       <element name="TDefaultsForCurrentUser.DeleteKey">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Sektion löschen</short>
       </element>
       <element name="TDefaultsForCurrentUser.DeleteKey.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>True bei Erfolg.</descr>
       </element>
       <element name="TDefaultsForCurrentUser.DeleteKey.aSection">
-        <short/>
+        <short>Zu löschende Sektion</short>
       </element>
       <element name="TDefaultsForCurrentUser.DeleteValue">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenpaar löschen</short>
       </element>
       <element name="TDefaultsForCurrentUser.DeleteValue.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>True bei Erfolg.</descr>
       </element>
       <element name="TDefaultsForCurrentUser.DeleteValue.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.DeleteValue.aKey">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.RenameKey">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenpaar umbenennen</short>
       </element>
       <element name="TDefaultsForCurrentUser.RenameKey.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.RenameKey.aOldKey">
-        <short/>
+        <short>Alter Name</short>
       </element>
       <element name="TDefaultsForCurrentUser.RenameKey.aNewKey">
-        <short/>
+        <short>Neuer Name</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadString">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>String lesen</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadString.Result">
-        <short/>
+        <short>Abfrageergebnis</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadString.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadString.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadString.aDefault">
-        <short/>
+        <short>Standardwert</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadInteger">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Integer lesen</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadInteger.Result">
-        <short/>
+        <short>Abfrageergebnis</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadInteger.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadInteger.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadInteger.aDefault">
-        <short/>
+        <short>Standardwert</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadBool">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Boolean lesen</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadBool.Result">
-        <short/>
+        <short>Abfrageergebnis</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadBool.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadBool.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadBool.aDefault">
-        <short/>
+        <short>Standardwert</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValuesOnly">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwerte aus Sektion lesen</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aSection">
-        <short/>
+        <short>Sektion der Datenwerte</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aStrings">
-        <short/>
+        <short>Liste der Datenwerte</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValuesOnly.aMerge">
-        <short/>
+        <short>Listen auffüllen</short>
+        <descr>Liste wird nicht gelöschte, neue Daten werden zu den bestehenden Daten hinzugefügt.</descr>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSection">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Idents der Datenpaare aus Sektion lesen</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSection.aSection">
-        <short/>
+        <short>Sektion der Idents</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSection.aStrings">
-        <short/>
+        <short>Liste der Idents</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSection.aMerge">
-        <short/>
+        <short>Listen auffüllen</short>
+        <descr>Liste wird nicht gelöschte, neue Daten werden zu den bestehenden Daten hinzugefügt.</descr>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValues">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenpaare aus Sektion lesen</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValues.aSection">
-        <short/>
+        <short>Sektion der Datenpaare</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValues.aStrings">
-        <short/>
+        <short>Liste der Datenpaare</short>
       </element>
       <element name="TDefaultsForCurrentUser.ReadSectionValues.aMerge">
-        <short/>
+        <short>Liste auffüllen</short>
+        <descr>Liste wird nicht gelöschte, neue Daten werden zu den bestehenden Daten hinzugefügt.</descr>
       </element>
       <element name="TDefaultsForCurrentUser.WriteString">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>String schreiben</short>
       </element>
       <element name="TDefaultsForCurrentUser.WriteString.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.WriteString.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.WriteString.aString">
-        <short/>
+        <short>Stringwert</short>
       </element>
       <element name="TDefaultsForCurrentUser.WriteInteger">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Integer schreiben</short>
       </element>
       <element name="TDefaultsForCurrentUser.WriteInteger.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.WriteInteger.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.WriteInteger.aInteger">
-        <short/>
+        <short>Integerwert</short>
       </element>
       <element name="TDefaultsForCurrentUser.WriteBool">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Boolean schreiben</short>
       </element>
       <element name="TDefaultsForCurrentUser.WriteBool.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.WriteBool.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
       <element name="TDefaultsForCurrentUser.WriteBool.aBool">
-        <short/>
+        <short>Booleanwert</short>
       </element>
       <element name="TDefaultsForCurrentUser.Create">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Erstellt eine Instanz</short>
       </element>
       <element name="TDefaultsForCurrentUser.Create.aRoot">
-        <short/>
+        <short>Root für den Grundschlüssel</short>
       </element>
       <element name="TDefaultsForCurrentUser.Create.aDefaultKey">
-        <short/>
+        <short>Grundschlüssel</short>
       </element>
       <element name="TDefaultsForCurrentUser.Create.aPrefereString">
-        <short/>
+        <short>Strings bevorzugen</short>
+        <descr>Wenn True, werden Ergebnisse ausnahmslos als Strings gesichert.</descr>
       </element>
       <element name="TDefaultsForCurrentUser.Destroy">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Zerstört die Instanz</short>
       </element>
       <element name="TDefaultsForCurrentUser.Root">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Root eines Grundschlüssels</short>
       </element>
       <element name="TDefaultsForCurrentUser.DefaultKey">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Grundschlüssel</short>
+        <descr>Unter dem Grundschlüssel werden alle Einträge der Steuerelemente voergenommen.</descr>
       </element>
       <element name="TDataByCurrentUser">
         <short>HKEY_CURRENT_USER bearbeiten</short>
@@ -287,19 +235,17 @@
         <short>s. UseDefault</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesByKind">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus Sektion lesen</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesByKind.aSection">
         <short>Sektion der Datenpaare</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesByKind.aStrings">
-        <short/>
+        <short>Liste mit Daten</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesByKind.aKind">
-        <short/>
+        <short>Art der Daten</short>
+        <descr>Legt fest welche Daten in die Liste aufgenommen werden.</descr>
       </element>
       <element name="TDataByCurrentUser.EraseSectionForDefaults">
         <short>Sektion löschen</short>
@@ -319,79 +265,65 @@
         <short>Ident des Datenpaares</short>
       </element>
       <element name="TDataByCurrentUser.RenameKey">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenpaar umbenennen</short>
       </element>
       <element name="TDataByCurrentUser.RenameKey.aSection">
-        <short/>
+        <short>Sektions des Datenpaares</short>
       </element>
       <element name="TDataByCurrentUser.RenameKey.aOldKey">
-        <short/>
+        <short>Alter Name des Key</short>
       </element>
       <element name="TDataByCurrentUser.RenameKey.aNewKey">
-        <short/>
+        <short>Neuer Name des Key</short>
       </element>
       <element name="TDataByCurrentUser.RenameKeyForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenpaar umbenennen</short>
+        <descr>Wenn WriteDefaults=True dann Datenpaar in den Standards ändern.</descr>
       </element>
       <element name="TDataByCurrentUser.RenameKeyForDefaults.aSection">
         <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDataByCurrentUser.RenameKeyForDefaults.aOldKey">
-        <short/>
+        <short>Alter Name des Key</short>
       </element>
       <element name="TDataByCurrentUser.RenameKeyForDefaults.aNewKey">
-        <short/>
+        <short>Neuer Name des Key</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesEx">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenpaare aus Sektion lesen</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesEx.aSection">
         <short>Sektion der Datenpaare</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesEx.aStrings">
-        <short/>
+        <short>Liste mit Datenpaare</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesOnly">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwerte aus Sektion lesen</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesOnly.aSection">
         <short>Sektion der Datenpaare</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesOnly.aStrings">
-        <short/>
+        <short>Liste mit Datenwerten</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwerte aus Sektion lesen</short>
+        <descr>Wenn nicht gefunden, dann in den Standards suchen.</descr>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aSection">
         <short>Sektion der Datenpaare</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aStrings">
-        <short/>
+        <short>Liste mit Datenwerte</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesOnlyForDefaults.aMerge">
         <short>Liste auffüllen</short>
+        <descr>Wenn ReadDefaults=True und Liste unvollständig, dann aus den Standards fehlende Datenpaare auffüllen.</descr>
       </element>
       <element name="TDataByCurrentUser.ReadStringCheckForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>String lesen</short>
+        <descr>Wenn nicht gefunden, dann in den Standards suchen, wenn dort nicht gefunden dann Standardwert ausgeben.</descr>
       </element>
       <element name="TDataByCurrentUser.ReadStringCheckForDefaults.Result">
         <short>Abfrageergebnis</short>
@@ -406,10 +338,8 @@
         <short>Standardwert</short>
       </element>
       <element name="TDataByCurrentUser.ReadIntegerCheckForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Integer lesen</short>
+        <descr>Wenn nicht gefunden, dann in den Standards suchen, wenn dort nicht gefunden dann Standardwert ausgeben.</descr>
       </element>
       <element name="TDataByCurrentUser.ReadIntegerCheckForDefaults.Result">
         <short>Abfrageergebnis</short>
@@ -425,7 +355,7 @@
       </element>
       <element name="TDataByCurrentUser.ReadBoolCheckForDefaults">
         <short>Boolean lesen</short>
-        <descr>Wenn nicht gefunden, dann in den Standards suchen, wenn nicht gefunden dann Standardwert ausgeben.</descr>
+        <descr>Wenn nicht gefunden, dann in den Standards suchen, wenn dort nicht gefunden dann Standardwert ausgeben.</descr>
       </element>
       <element name="TDataByCurrentUser.ReadBoolCheckForDefaults.Result">
         <short>Abfrageergebnis</short>
@@ -440,79 +370,69 @@
         <short>Standardwert</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionCheckForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus Sektion lesen</short>
+        <descr>Wenn nicht gefunden, dann in den Standards suchen.</descr>
       </element>
       <element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aSection">
         <short>Sektion der Datenpaare</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aStrings">
-        <short/>
+        <short>Liste mit Daten</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionCheckForDefaults.aMerge">
         <short>Liste auffüllen</short>
+        <descr>Wenn ReadDefaults=True und Liste unvollständig, dann aus den Standards fehlende Datenpaare auffüllen.</descr>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenpaare aus Sektion lesen</short>
+        <descr>Wenn nicht gefunden, dann in den Standards suchen.</descr>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aSection">
         <short>Sektion der Datenpaare</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aStrings">
-        <short/>
+        <short>Liste mit Daten</short>
       </element>
       <element name="TDataByCurrentUser.ReadSectionValuesCheckForDefaults.aMerge">
         <short>Liste auffüllen</short>
+        <descr>Wenn ReadDefaults=True und Liste unvollständig, dann aus den Standards fehlende Datenpaare auffüllen.</descr>
       </element>
       <element name="TDataByCurrentUser.WriteStringCheckForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <descr>Wenn WriteDefaults=True, dann Standards ebenfalls bearbeiten.</descr>
       </element>
       <element name="TDataByCurrentUser.WriteStringCheckForDefaults.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDataByCurrentUser.WriteStringCheckForDefaults.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
       <element name="TDataByCurrentUser.WriteStringCheckForDefaults.aString">
-        <short/>
+        <short>Stringwert</short>
       </element>
       <element name="TDataByCurrentUser.WriteIntegerCheckForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <descr>Wenn WriteDefaults=True, dann Standards ebenfalls bearbeiten.</descr>
       </element>
       <element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
       <element name="TDataByCurrentUser.WriteIntegerCheckForDefaults.aInteger">
-        <short/>
+        <short>Integerwert</short>
       </element>
       <element name="TDataByCurrentUser.WriteBoolCheckForDefaults">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Boolean schreiben</short>
+        <descr>Wenn WriteDefaults=True, dann Standards ebenfalls bearbeiten.</descr>
       </element>
       <element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aSection">
-        <short/>
+        <short>Sektion des Datenpaares</short>
       </element>
       <element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aIdent">
-        <short/>
+        <short>Ident des Datenpaares</short>
       </element>
       <element name="TDataByCurrentUser.WriteBoolCheckForDefaults.aBool">
-        <short/>
+        <short>Booleanwert</short>
       </element>
       <element name="TDataByCurrentUser.Create">
         <short>Erstellt die Instanz</short>
@@ -533,9 +453,8 @@
         <short>Zerstört die Instanz</short>
       </element>
       <element name="TDataByCurrentUser.UseDefaults">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Standards verwenden</short>
+        <descr>Wenn UseDefaults=True werden fehlende Informationen aus den Standards ermittelt.</descr>
       </element>
       <short>Registry bearbeiten</short>
       <descr>In diesem Modul werden alle Klassen und Methoden bereit gestellt, welche die LRC nutzt um Daten in der Registry zu bearbeiten.</descr>

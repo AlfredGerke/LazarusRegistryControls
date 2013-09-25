@@ -8,7 +8,7 @@ interface
 
 uses
   regcheckbox, regradiobutton, regradiogroup, regedit, reglistbox, 
-  regcombobox, regchecklistbox, regcheckgroup, regvaluelisteditor, 
+  regcombobox, regchecklistbox, regcheckgroup, regvaluelisteditor, reglabel, 
   LazarusPackageIntf;
 
 implementation
@@ -24,6 +24,7 @@ begin
   RegisterUnit('regchecklistbox', @regchecklistbox.Register);
   RegisterUnit('regcheckgroup', @regcheckgroup.Register);
   RegisterUnit('regvaluelisteditor', @regvaluelisteditor.Register);
+  RegisterUnit('reglabel', @reglabel.Register);
 end;
 
 initialization
