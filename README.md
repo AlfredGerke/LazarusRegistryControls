@@ -38,12 +38,24 @@ für den Einsatz unter Windows sinnvoll.
 2 Packagenamen
 --------------
 
-- registrysource.lpk    
-  Inhalt: TRegistrySource, Erweiterung der Eigenschaften, Property- und Komponenteneditoren
+- registrysource.lpk:        
+  
+  * TRegistrySource
+  * Erweiterung der Eigenschaften
+  * Property- und Komponenteneditoren
 
-- registrycontrols.lpk    
-  Inhalt: TRegEdit, TRegComboBox, TRegCheckBox, TRegListBox, TRegRadioButton, 
-  TRegRadioGroup, TRegCheckListBox, TRegCheckGroup, TRegValueListEditor 
+- registrycontrols.lpk:        
+  
+  * TRegEdit
+  * TRegLabel
+  * TRegComboBox
+  * TRegCheckBox
+  * TRegListBox
+  * TRegRadioButton
+  * TRegRadioGroup
+  * TRegCheckListBox
+  * TRegCheckGroup
+  * TRegValueListEditor 
 
 
 3 Installation
@@ -53,7 +65,7 @@ Für die Installation sind keine zusätzlichen Packages (etc.) notwendig. In der
 vorliegenden Version nur unter Windows sinnvoll.   
 
 ## 3.1 Versionen       
-Lazarus: 1.0.10    
+Lazarus: 1.0.10 / 1.0.12   
 FPC: 2.6.2     
 LazarusRegistryControls (LRC): *?.?.? (in Progress)*            
 
@@ -63,8 +75,10 @@ LazarusRegistryControls (LRC): *?.?.? (in Progress)*
 
 ## 3.3 Absolute Pfade    
 Bei der Entwicklung wurde auf relative Pfadangaben für die IDE-Umgebung geachtet.
-Trotzdem haben sich in einigen Dateien absoulte Pfade eingefunden. Dabei handelt es sich immer um Pfadangaben für die Dokumentation.
-Der Pfadanteil C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\ muss in folgenden Dateien angepasst werden:        
+Trotzdem haben sich in einigen Dateien absoulte Pfade eingefunden. Dabei handelt 
+es sich immer um Pfadangaben für die Dokumentation. Der Pfadanteil 
+C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\ muss in folgenden Dateien angepasst 
+werden:        
 
 - docuProject.ldp in ..\doc\    
 - registrycontrols.lpk in ..\package\    
@@ -84,13 +98,42 @@ um Daten aus der Registry zu lesen und in die Registry zu schreiben.
 ## 4.1 `HKEY_CURRENT_USER`
 
 Die Steuerelemente schreiben und lesen immer in das Registryroot: `HKEY_CURRENT_USER`.
+Unterhalb vom Registryroot wird eine Grundschlüssel eingerichtet. Dieser Grundschlüssel
+sollte immer in den Schlüssel *Software* verweisen.     
+Unterhalb des Schlüssel *Software* sollte der Name der Firma oder der Organisation,
+welche das Projekt/Programm vertreibt aufgeführt werden.     
+Unterhalb des Schlüssels für die Firma/Organisation sollte eine Bezeichnung für das 
+Projekt eingeführt werden.     
+Um meherere Versionen eines Projektes unter Umständen mit verschiedenen Schlüssel 
+versorgen zu können sollte, unterhalb des Schlüssels für das Projekt eine eindeutige 
+Kennung angegeben werden. Eine solche eindeutige Kennung könnte eine GUID sein.
+In der RegistrySource (TRegistrySource) werden für diese Einzelelemente Eigenschaften
+angeboten *(Eigenschaften: GUID, ORGANISATION, PROJECT)*.     
+Diese Eigenschaften können in einem Grundschlüssel als Variablen hinterlegt werden. 
+*(Variablen: %%GUID%%, %%ORGANISATION%%, %%PROJECT%%)*    
+Ein Grundschlüssel könnte also wie folgt aussehen:    
+`SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%`    
+In dem Beispielprogramm wird daraus:    
+`Software\ExampleFactory\LazarusRegistryControls\{51D8EEB4-A549-4B08-BFCB-731DEC3E82AE}`    
+
 
 ## 4.2 Standardwerte
 
 Standardwerte für nicht erfolgreiche Zugriffe auf die Registry (in der Regel 
-Schlüssel nicht vorhanden) können zum einen statisch am Steuerelement definiert
-werden. Als zweite Möglichkeit kann man am Steuerelement einen Schlüsselpfad 
-definieren, über den Defaults in der Registry verwaltet werden können.
+Schlüssel nicht vorhanden) können direkt am Steuerelement in den RegistrySettings 
+(Eigenschaft: Default) definiert werden. Als zweite Möglichkeit kann man am 
+Steuerelement einen Schlüsselpfad definieren, über den Defaults in der Registry 
+verwaltet werden können. Dies ermöglicht personalisierte Standardwerte, die z.B. 
+durch die Installation oder einem Update eingerichtet werden. Ein Administarionswerkzeug 
+könnte ebenfalls diese Standards bearbeiten.    
+Der Grundschlüssel für Standards, sollte nach ähnlichen Regeln aufgebaut werden,
+wie der Grundschlüssel im `HKEY_CURRENT_USER`. Die Eigenschaften: *GUID, ORGANISATION, PROJECT* und
+deren Einsatz durch die entsprechenden Variablen stehen in gleichwer Weise zur Verfügung.       
+Ein Grundschlüssel könnte also wie folgt aussehen:        
+`SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%`        
+In dem Beispielprogramm wird daraus:        
+`Software\ExampleFactory\LazarusRegistryControls\DEFAULTS\{51D8EEB4-A549-4B08-BFCB-731DEC3E82AE}`       
+   
 
 ## 4.3 Synchronisierung und Gruppierung
 

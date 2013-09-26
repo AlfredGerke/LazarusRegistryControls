@@ -113,6 +113,10 @@ msgstr ""
 msgid "Einstellungen (RegistrySource1)"
 msgstr ""
 
+#: tmain.acsetlabeltextbyedit.caption
+msgid "TRegEdit Text übernehmen"
+msgstr ""
+
 #: tmain.acshowclienteditdialogkombi.caption
 msgctxt "TMAIN.ACSHOWCLIENTEDITDIALOGKOMBI.CAPTION"
 msgid "RootKeys ändern"
@@ -382,6 +386,10 @@ msgctxt "TMAIN.RCGCHECKGROUPSTATICPS.CAPTION"
 msgid " TRegCheckGroup: dynamisch "
 msgstr ""
 
+#: tmain.redtgroupindex3.text
+msgid "redtGroupIndex3"
+msgstr ""
+
 #: tmain.rgrpradiogroupdynamic.caption
 msgctxt "TMAIN.RGRPRADIOGROUPDYNAMIC.CAPTION"
 msgid " TRegRadiogroup: dynamisch "
@@ -395,6 +403,14 @@ msgstr ""
 #: tmain.rgrpradiogroupstaticps.caption
 msgctxt "TMAIN.RGRPRADIOGROUPSTATICPS.CAPTION"
 msgid " TRegRadioGroup: statisch "
+msgstr ""
+
+#: tmain.rlblgroupindex3.caption
+msgid "rlblGroupIndex3"
+msgstr ""
+
+#: tmain.rlbllabel1.caption
+msgid "Captionlabel"
 msgstr ""
 
 #: tmain.rrbradiobuttonstatic1.caption
@@ -423,6 +439,10 @@ msgstr ""
 
 #: tmain.tabgroupindex_2.caption
 msgid "GroupIndex = 2"
+msgstr ""
+
+#: tmain.tabgroupindex_3.caption
+msgid "GroupIndex = 3"
 msgstr ""
 
 #: tmain.tabkombination.caption

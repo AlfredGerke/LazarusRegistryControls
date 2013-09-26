@@ -29,7 +29,7 @@ uses
   regcheckbox,
   regradiobutton,
   DefaultTranslator,
-  regtype;
+  regtype, reglabel;
 
 type
 
@@ -71,6 +71,7 @@ type
     acPostDataPS: TAction;
     acRefreshDataAllPS: TAction;
     acRefreshSettingPS: TAction;
+    acSetLabelTextByEdit: TAction;
     acWriteAdHocOffPS: TAction;
     acWriteAdHocOnPS: TAction;
     acWriteAdHocOffList: TAction;
@@ -106,6 +107,7 @@ type
     btnSyncDataOf: TButton;
     btnWriteAdHocOn1: TButton;
     btnWriteAdHocOnList: TButton;
+    btnSetLblText: TButton;
     cbxClientNameDynamic: TRegComboBox;
     cbxClientNameStaticPS: TRegComboBox;
     lblCheckGroup3: TLabel;
@@ -179,8 +181,11 @@ type
     cbxClientNameKombi: TRegComboBox;
     rcbxHintOnCustomItemCheck: TRegCheckBox;
     redtEditStaticPS: TRegEdit;
+    redtGroupIndex3: TRegEdit;
     RegistrySource3: TRegistrySource;
     RegistrySource4: TRegistrySource;
+    rlblGroupIndex3: TRegLabel;
+    rlblLabel1: TRegLabel;
     rgrpRadioGroupStaticPS: TRegRadioGroup;
     rlbCheckedListBoxKombi: TRegCheckListBox;
     rlbCheckListBoxStaticPS: TRegCheckListBox;
@@ -205,6 +210,7 @@ type
     tabGroupIndex_1: TTabSheet;
     tabGroupIndex_2: TTabSheet;
     TabSheet1: TTabSheet;
+    tabGroupIndex_3: TTabSheet;
     tabSingleValue: TTabSheet;
     tabList: TTabSheet;
     tabKombination: TTabSheet;
@@ -234,6 +240,7 @@ type
     procedure acRefreshSettingPSExecute(Sender: TObject);
     procedure acRefreshSettingsKombinationExecute(Sender: TObject);
     procedure acRefreshSettingsSingleSourceExecute(Sender: TObject);
+    procedure acSetLabelTextByEditExecute(Sender: TObject);
     procedure acShowClientEditDialogListExecute(Sender: TObject);
     procedure acShowClientEditDialogKombiExecute(Sender: TObject);
     procedure acShowClientEditDialogPSExecute(Sender: TObject);
@@ -283,9 +290,15 @@ procedure TMain.RefreshWriteAdHocOnOff(aFlag: integer;
   aSet: boolean);
 begin
   case aFlag of
-    // Für alle Clients der RegistrySource1 wird die Eigenschaft DoWriteAdHoc
-    // auf den Wert von aSet gesetzt
-    0: RegistrySource1.RefreshWriteAdHocProperty(aSet);
+    0:
+    begin
+      // Für alle Clients der RegistrySource1 wird die Eigenschaft DoWriteAdHoc
+      // auf den Wert von aSet gesetzt
+      RegistrySource1.RefreshWriteAdHocProperty(aSet);
+      // Für den Client: rlblLabel1 der RegistrySource3  wird die Eigenschaft
+      // DoWriteAdHoc auf den Wert von False gesetzt
+      //  RegistrySource1.RefreshWriteAdHocProperty(False, 'rlblLabel1');
+    end;
     // Für alle Clients der RegistrySource2 wird die Eigenschaft DoWriteAdHoc
     // auf den Wert von aSet gesetzt
     1: RegistrySource2.RefreshWriteAdHocProperty(aSet);
@@ -698,6 +711,36 @@ begin
   RegistrySource1.RefreshSettings;
 end;
 
+procedure TMain.acSetLabelTextByEditExecute(Sender: TObject);
+var
+  do_write: boolean;
+begin
+  // EditText in die Caption übernehmen
+  rlblLabel1.Caption := redtEditStatic.Text;
+  // Wenn DoWirteAdHoc oder CanWrite auf False stehen, dann muss der Wert
+  // manuelle über WriteToReg in die Registry geschrieben werden
+  if (not rlblLabel1.RegistrySettings.DoWriteAdHoc or
+    not rlblLabel1.RegistrySettings.CanWrite) then
+  begin
+    // BeginUpdate verhindert das TriggerEvents beim setzen von Eigneschaften
+    // (Cz.B.: CanWirte) die Caption wieder überschreiben
+    rlblLabel1.RegistrySettings.BeginUpdate;
+    // Aktuelle Einstellung von CanWrite sichern
+    do_write := rlblLabel1.RegistrySettings.CanWrite;
+    try
+      // CanWirte aktivieren
+      rlblLabel1.RegistrySettings.CanWrite := True;
+      // Caption in die Registry übernehmen
+      rlblLabel1.WriteToReg;
+    finally
+      // Gesicherten Werte wieder einstellen
+      rlblLabel1.RegistrySettings.CanWrite := do_write;
+      // EndUpdate schaltet die TriggerEvents wieder ein
+      rlblLabel1.RegistrySettings.EndUpdate;
+    end;
+  end;
+end;
+
 procedure TMain.acShowClientEditDialogListExecute(Sender: TObject);
 var
   client_name: string;
@@ -1066,6 +1109,7 @@ begin
       // Einzelwerte an Controls übergeben
       WriteBool('Einzelwerte', 'DoWriteAdHoc', False);
       WriteString('Einzelwerte', 'Edit', 'Test für Edit');
+      WriteString('Einzelwerte', 'Label', 'Test für Label');
       WriteBool('Einzelwerte', 'CheckBox1', True);
       WriteBool('Einzelwerte', 'CheckBox2', False);
       WriteBool('Einzelwerte', 'RadioButton1', True);

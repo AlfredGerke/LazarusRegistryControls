@@ -478,6 +478,38 @@ object Main: TMain
           RegistrySettings.Ident = 'HintOnCustomItemCheck'
           RegistrySource = RegistrySource1
         end
+        object rlblLabel1: TRegLabel
+          Left = 20
+          Height = 23
+          Top = 211
+          Width = 106
+          Caption = 'Captionlabel'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentColor = False
+          ParentFont = False
+          RegistrySettings.CanRead = True
+          RegistrySettings.CanWrite = True
+          RegistrySettings.DoWriteAdHoc = True
+          RegistrySettings.GroupIndex = 0
+          RegistrySettings.DoSyncData = True
+          RegistrySettings.Default = 'TRegLabel'
+          RegistrySettings.Section = 'Einzelwerte'
+          RegistrySettings.Ident = 'Label'
+          RegistrySource = RegistrySource1
+        end
+        object btnSetLblText: TButton
+          Left = 20
+          Height = 25
+          Top = 235
+          Width = 168
+          Action = acSetLabelTextByEdit
+          TabOrder = 10
+        end
       end
     end
     object tabList: TTabSheet
@@ -917,9 +949,9 @@ object Main: TMain
             ClientHeight = 352
             ClientWidth = 793
             object redtEditKombi: TRegEdit
-              Left = 8
+              Left = 6
               Height = 21
-              Top = 7
+              Top = 4
               Width = 173
               TabOrder = 0
               RegistrySettings.CanRead = True
@@ -933,9 +965,9 @@ object Main: TMain
               RegistrySource = RegistrySource3
             end
             object rvlValueListEditorKombi1: TRegValueListEditor
-              Left = 9
-              Height = 297
-              Top = 33
+              Left = 6
+              Height = 302
+              Top = 28
               Width = 200
               FixedCols = 0
               RowCount = 2
@@ -954,7 +986,7 @@ object Main: TMain
               )
             end
             object btnEraseValueEditList: TSpeedButton
-              Left = 9
+              Left = 6
               Height = 22
               Top = 330
               Width = 199
@@ -962,9 +994,9 @@ object Main: TMain
               NumGlyphs = 0
             end
             object SpeedButton1: TSpeedButton
-              Left = 186
+              Left = 182
               Height = 22
-              Top = 7
+              Top = 4
               Width = 23
               Action = acAddValue
               NumGlyphs = 0
@@ -1069,6 +1101,52 @@ object Main: TMain
               Width = 200
               Action = acEraseSectionValueEdit2
               NumGlyphs = 0
+            end
+          end
+          object tabGroupIndex_3: TTabSheet
+            Caption = 'GroupIndex = 3'
+            ClientHeight = 352
+            ClientWidth = 793
+            object rlblGroupIndex3: TRegLabel
+              Left = 6
+              Height = 23
+              Top = 15
+              Width = 137
+              Caption = 'rlblGroupIndex3'
+              Font.CharSet = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -19
+              Font.Name = 'Arial'
+              Font.Pitch = fpVariable
+              Font.Quality = fqDraft
+              ParentColor = False
+              ParentFont = False
+              RegistrySettings.CanRead = True
+              RegistrySettings.CanWrite = False
+              RegistrySettings.DoWriteAdHoc = False
+              RegistrySettings.GroupIndex = 3
+              RegistrySettings.DoSyncData = True
+              RegistrySettings.Default = 'Kein Labeleintrag bis jetzt'
+              RegistrySettings.Section = 'Einzelwert'
+              RegistrySettings.Ident = 'TextToShare'
+              RegistrySource = RegistrySource3
+            end
+            object redtGroupIndex3: TRegEdit
+              Left = 6
+              Height = 21
+              Top = 51
+              Width = 216
+              TabOrder = 0
+              Text = 'redtGroupIndex3'
+              RegistrySettings.CanRead = True
+              RegistrySettings.CanWrite = True
+              RegistrySettings.DoWriteAdHoc = True
+              RegistrySettings.GroupIndex = 3
+              RegistrySettings.DoSyncData = True
+              RegistrySettings.Default = 'Kein Editeintrag bis jetzt'
+              RegistrySettings.Section = 'Einzelwert'
+              RegistrySettings.Ident = 'TextToShare'
+              RegistrySource = RegistrySource3
             end
           end
         end
@@ -1500,7 +1578,7 @@ object Main: TMain
   end
   object MainMenu1: TMainMenu
     left = 136
-    top = 344
+    top = 408
     object mnuFile: TMenuItem
       Caption = 'Datei'
       object mnuCheckCreateSettings: TMenuItem
@@ -1579,7 +1657,7 @@ object Main: TMain
   end
   object ActionList1: TActionList
     left = 48
-    top = 344
+    top = 408
     object acClose: TAction
       Category = 'General'
       Caption = 'Beenden'
@@ -1809,6 +1887,11 @@ object Main: TMain
       Caption = 'Einstellungen (RegistrySource4)'
       OnExecute = acRefreshSettingPSExecute
     end
+    object acSetLabelTextByEdit: TAction
+      Category = 'ExecuteSingleValueExample'
+      Caption = 'TRegEdit Text übernehmen'
+      OnExecute = acSetLabelTextByEditExecute
+    end
   end
   object RegistrySource1: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
@@ -1823,7 +1906,7 @@ object Main: TMain
     DoSyncData = True
     PrefereStrings = False
     left = 48
-    top = 288
+    top = 352
   end
   object RegistrySource2: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
@@ -1838,7 +1921,7 @@ object Main: TMain
     DoSyncData = True
     PrefereStrings = False
     left = 136
-    top = 288
+    top = 352
   end
   object RegistrySource3: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
@@ -1852,8 +1935,8 @@ object Main: TMain
     GUID = '{7CB5D48B-FCE3-414F-BB3A-BCB07BC5D25F}'
     DoSyncData = True
     PrefereStrings = False
-    left = 232
-    top = 288
+    left = 224
+    top = 352
   end
   object RegistrySource4: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
@@ -1867,7 +1950,7 @@ object Main: TMain
     GUID = '{51D8EEB4-A549-4B08-BFCB-731DEC3E82AE}'
     DoSyncData = True
     PrefereStrings = True
-    left = 232
-    top = 344
+    left = 224
+    top = 408
   end
 end
