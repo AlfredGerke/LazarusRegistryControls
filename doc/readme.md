@@ -1,26 +1,27 @@
-Dokumentation für die LRC
+Dokumentation fÃ¼r die LRC
 =========================
 
-In diesem Ordner werden alle notwendigen Dateien für die Erstellung einer 
-Dokumentation mit der Hilfe von FPDoc zur Verfügung gestellt.
+In diesem Ordner werden alle notwendigen Dateien fÃ¼r die Erstellung einer 
+Dokumentation mit der Hilfe von FPDoc zur VerfÃ¼gung gestellt.
 
-**Inhaltsübersicht:**    
+**InhaltsÃ¼bersicht:**    
 
 1. docuProject.ldp    
-2. *.xml    
+2. docuProjectCtrl.ldp
+3. *.xml    
 
 
-docuProject.ldp
+docuProject*.ldp
 ---------------
 
-Diese Projektdatei kann über den Dokumentations-Editor für Lazarus *lazde.exe* in der Funktion *Extras\Erstellen*
-geladen werden. Sie stellt alle Links zu den notwendigen Sourcen zur Verfügung.
+Diese Projektdateien kÃ¶nnen Ã¼ber den Dokumentations-Editor fÃ¼r Lazarus *lazde.exe* in der Funktion *Extras\Erstellen*
+geladen werden. Sie stellen alle Links zu den notwendigen Sourcen zur VerfÃ¼gung.
 ###Achtung: 
-Die Datei muss angepasst werden, da absolute Pfadeeinstellungen hinterlegt wurden 
-und diese mit der lokalen Installation nicht übereinstimmen müssen.
+Die Dateien mÃ¼ssen angepasst werden, da absolute Pfadeeinstellungen hinterlegt wurden 
+und diese mit der lokalen Installation nicht Ã¼bereinstimmen mÃ¼ssen.
 
 *.xml
 -----
 
 Die vorliegenden *`*.xml-Dateien`* sind die Beschreibungen, welche in Verbindung mit
-den Sourcen zu einer Dokumentation zusammengeführt werden.
+den Sourcen zu einer Dokumentation zusammengefÃ¼hrt werden.
