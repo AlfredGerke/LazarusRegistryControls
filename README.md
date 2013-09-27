@@ -83,7 +83,8 @@ werden:
 - docuProject.ldp in ..\doc\    
 - registrycontrols.lpk in ..\package\    
 - registrysource.lpk in ..\package\    
-- _makeskel.bat in ..\soruce\    
+- _makeskel.bat in ..\soruce\   
+- makeChm.bat in ..\documentation\ 
 
 
 4 LazarusRegistryControls (LRC) Funktionalität
