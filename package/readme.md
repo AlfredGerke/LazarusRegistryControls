@@ -38,4 +38,5 @@ Folgende Steuerelemente werden installiert:
 6. TRegRadioGroup
 7. TRegCheckListBox
 8. TRegCheckGroup
-9. TRegValueListEditor 
+9. TRegValueListEditor
+10. TRegLabel 

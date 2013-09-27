@@ -113,6 +113,10 @@ msgstr ""
 msgid "Einstellungen (RegistrySource1)"
 msgstr ""
 
+#: tmain.acrootkeysforreglabel.caption
+msgid "RootKeys"
+msgstr ""
+
 #: tmain.acsetlabeltextbyedit.caption
 msgid "TRegEdit Text übernehmen"
 msgstr ""

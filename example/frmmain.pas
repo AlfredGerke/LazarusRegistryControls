@@ -72,6 +72,7 @@ type
     acRefreshDataAllPS: TAction;
     acRefreshSettingPS: TAction;
     acSetLabelTextByEdit: TAction;
+    acRootKeysForRegLabel: TAction;
     acWriteAdHocOffPS: TAction;
     acWriteAdHocOnPS: TAction;
     acWriteAdHocOffList: TAction;
@@ -108,6 +109,7 @@ type
     btnWriteAdHocOn1: TButton;
     btnWriteAdHocOnList: TButton;
     btnSetLblText: TButton;
+    btnRootKeysForRegLabel: TButton;
     cbxClientNameDynamic: TRegComboBox;
     cbxClientNameStaticPS: TRegComboBox;
     lblCheckGroup3: TLabel;
@@ -240,6 +242,7 @@ type
     procedure acRefreshSettingPSExecute(Sender: TObject);
     procedure acRefreshSettingsKombinationExecute(Sender: TObject);
     procedure acRefreshSettingsSingleSourceExecute(Sender: TObject);
+    procedure acRootKeysForRegLabelExecute(Sender: TObject);
     procedure acSetLabelTextByEditExecute(Sender: TObject);
     procedure acShowClientEditDialogListExecute(Sender: TObject);
     procedure acShowClientEditDialogKombiExecute(Sender: TObject);
@@ -290,15 +293,9 @@ procedure TMain.RefreshWriteAdHocOnOff(aFlag: integer;
   aSet: boolean);
 begin
   case aFlag of
-    0:
-    begin
-      // Für alle Clients der RegistrySource1 wird die Eigenschaft DoWriteAdHoc
-      // auf den Wert von aSet gesetzt
-      RegistrySource1.RefreshWriteAdHocProperty(aSet);
-      // Für den Client: rlblLabel1 der RegistrySource3  wird die Eigenschaft
-      // DoWriteAdHoc auf den Wert von False gesetzt
-      //  RegistrySource1.RefreshWriteAdHocProperty(False, 'rlblLabel1');
-    end;
+    // Für alle Clients der RegistrySource1 wird die Eigenschaft DoWriteAdHoc
+    // auf den Wert von aSet gesetzt
+    0: RegistrySource1.RefreshWriteAdHocProperty(aSet);
     // Für alle Clients der RegistrySource2 wird die Eigenschaft DoWriteAdHoc
     // auf den Wert von aSet gesetzt
     1: RegistrySource2.RefreshWriteAdHocProperty(aSet);
@@ -711,19 +708,34 @@ begin
   RegistrySource1.RefreshSettings;
 end;
 
+procedure TMain.acRootKeysForRegLabelExecute(Sender: TObject);
+begin
+  // Wenn RootKeys bearbeitet werden sollen muss EditClientRootKeys auf True
+  // gestellt werden
+  rlblLabel1.RegistrySource.EditClientRootKeys := True;
+  try
+    // Bearbeitungsdialog für RootKeys aufrufen
+    rlblLabel1.RegistrySource.ShowClientEditDialog(rlblLabel1.Name);
+  finally
+    // In der Regels sollte das Bearbeiten von RootKeys nicht durch geführt werden,
+    // daher hier wieder auf False setzen
+    rlblLabel1.RegistrySource.EditClientRootKeys := False;
+  end;
+end;
+
 procedure TMain.acSetLabelTextByEditExecute(Sender: TObject);
 var
   do_write: boolean;
 begin
-  // EditText in die Caption übernehmen
+  // Edit-Text in die Caption übernehmen
   rlblLabel1.Caption := redtEditStatic.Text;
-  // Wenn DoWirteAdHoc oder CanWrite auf False stehen, dann muss der Wert
-  // manuelle über WriteToReg in die Registry geschrieben werden
+  // Wenn DoWriteAdHoc oder CanWrite auf False stehen, dann muss der Wert
+  // manuell über WriteToReg in die Registry geschrieben werden
   if (not rlblLabel1.RegistrySettings.DoWriteAdHoc or
     not rlblLabel1.RegistrySettings.CanWrite) then
   begin
     // BeginUpdate verhindert das TriggerEvents beim setzen von Eigneschaften
-    // (Cz.B.: CanWirte) die Caption wieder überschreiben
+    // (z.B.: CanWirte) die Caption wieder überschreiben
     rlblLabel1.RegistrySettings.BeginUpdate;
     // Aktuelle Einstellung von CanWrite sichern
     do_write := rlblLabel1.RegistrySettings.CanWrite;

@@ -510,6 +510,14 @@ object Main: TMain
           Action = acSetLabelTextByEdit
           TabOrder = 10
         end
+        object btnRootKeysForRegLabel: TButton
+          Left = 188
+          Height = 25
+          Top = 235
+          Width = 75
+          Action = acRootKeysForRegLabel
+          TabOrder = 11
+        end
       end
     end
     object tabList: TTabSheet
@@ -1891,6 +1899,11 @@ object Main: TMain
       Category = 'ExecuteSingleValueExample'
       Caption = 'TRegEdit Text übernehmen'
       OnExecute = acSetLabelTextByEditExecute
+    end
+    object acRootKeysForRegLabel: TAction
+      Category = 'ExecuteSingleValueExample'
+      Caption = 'RootKeys'
+      OnExecute = acRootKeysForRegLabelExecute
     end
   end
   object RegistrySource1: TRegistrySource

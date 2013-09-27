@@ -24,8 +24,8 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="709"/>
-        <CursorPos X="1" Y="737"/>
+        <TopLine Value="267"/>
+        <CursorPos X="31" Y="269"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -66,10 +66,12 @@
       <Unit6>
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1017"/>
-        <CursorPos X="1" Y="1036"/>
+        <TopLine Value="205"/>
+        <CursorPos X="33" Y="229"/>
         <UsageCount Value="48"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -204,10 +206,12 @@
       <Unit23>
         <Filename Value="..\source\regcheckbox.pas"/>
         <UnitName Value="regcheckbox"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="261"/>
-        <CursorPos X="1" Y="281"/>
-        <UsageCount Value="21"/>
+        <TopLine Value="190"/>
+        <CursorPos X="48" Y="204"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit23>
       <Unit24>
@@ -284,8 +288,8 @@
         <Filename Value="..\source\regutils.pas"/>
         <UnitName Value="regutils"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="186"/>
-        <CursorPos X="3" Y="223"/>
+        <TopLine Value="485"/>
+        <CursorPos X="36" Y="513"/>
         <UsageCount Value="26"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit32>
@@ -301,15 +305,15 @@
         <Filename Value="C:\lazarus\fpc\2.6.2\source\packages\fcl-registry\src\registry.pp"/>
         <UnitName Value="registry"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="117"/>
-        <CursorPos X="17" Y="136"/>
+        <TopLine Value="329"/>
+        <CursorPos X="3" Y="334"/>
         <UsageCount Value="14"/>
       </Unit34>
       <Unit35>
         <Filename Value="C:\lazarus\fpc\2.6.2\source\packages\fcl-registry\src\regini.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="118"/>
-        <CursorPos X="3" Y="158"/>
+        <TopLine Value="126"/>
+        <CursorPos X="1" Y="128"/>
         <UsageCount Value="12"/>
       </Unit35>
       <Unit36>
@@ -793,83 +797,43 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="19" HistoryIndex="18">
+    <JumpHistory Count="9" HistoryIndex="8">
       <Position1>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="720" Column="1" TopLine="701"/>
+        <Caret Line="296" Column="1" TopLine="11"/>
       </Position1>
       <Position2>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="721" Column="1" TopLine="701"/>
+        <Filename Value="..\source\regcheckbox.pas"/>
+        <Caret Line="193" Column="67" TopLine="173"/>
       </Position2>
       <Position3>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="722" Column="1" TopLine="701"/>
+        <Caret Line="296" Column="1" TopLine="235"/>
       </Position3>
       <Position4>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="719" Column="1" TopLine="701"/>
+        <Caret Line="297" Column="1" TopLine="259"/>
       </Position4>
       <Position5>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="720" Column="1" TopLine="701"/>
+        <Caret Line="299" Column="1" TopLine="261"/>
       </Position5>
       <Position6>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="721" Column="1" TopLine="701"/>
+        <Caret Line="715" Column="3" TopLine="711"/>
       </Position6>
       <Position7>
         <Filename Value="frmmain.pas"/>
-        <Caret Line="722" Column="1" TopLine="701"/>
+        <Caret Line="539" Column="19" TopLine="506"/>
       </Position7>
       <Position8>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="733" Column="55" TopLine="697"/>
+        <Filename Value="..\source\regcheckbox.pas"/>
+        <Caret Line="112" Column="32" TopLine="107"/>
       </Position8>
       <Position9>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="720" Column="91" TopLine="696"/>
+        <Filename Value="..\source\regcheckbox.pas"/>
+        <Caret Line="33" Column="33" TopLine="13"/>
       </Position9>
-      <Position10>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="721" Column="59" TopLine="705"/>
-      </Position10>
-      <Position11>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="722" Column="37" TopLine="703"/>
-      </Position11>
-      <Position12>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="719" Column="1" TopLine="703"/>
-      </Position12>
-      <Position13>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="721" Column="1" TopLine="703"/>
-      </Position13>
-      <Position14>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="722" Column="1" TopLine="703"/>
-      </Position14>
-      <Position15>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="719" Column="45" TopLine="709"/>
-      </Position15>
-      <Position16>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="729" Column="1" TopLine="709"/>
-      </Position16>
-      <Position17>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="730" Column="1" TopLine="709"/>
-      </Position17>
-      <Position18>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="732" Column="1" TopLine="709"/>
-      </Position18>
-      <Position19>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="734" Column="1" TopLine="709"/>
-      </Position19>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
