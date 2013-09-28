@@ -7,255 +7,198 @@
   ====================================================================
 -->
     <module name="regedit">
-      <short/>
-      <descr/>
-      <!-- class Visibility: default -->
       <element name="TCustomRegEdit">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Custom-Klasse für die Einführung des Registryzugriffes</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegEdit.FRegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegEdit.FRegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. RegistrySettings</short>
       </element>
-      <!-- function Visibility: private -->
       <element name="TCustomRegEdit.RefreshRegistrySettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys aus TRegistrySource aktualisieren</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegEdit.RefreshRegistrySettings.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- procedure Visibility: private -->
       <element name="TCustomRegEdit.ReadWriteInfo">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwerte lesen oder schreiben</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.ReadWriteInfo.aRead">
-        <short/>
+        <short>Vorgangsflag, (s. regconst.pas)</short>
+        <descr>Wenn aRead=Read dann Datenwert aus der Registry lesen. Wenn aRead=Write dann Datenwert in die Registry schreiben.</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegEdit.ShowEditDialog">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys bearbeiten</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.
+
+
+<p>Beispiel:</p><p>redtEdit1.RegistrySource.ShowClientEditDialog(redtEdit1.Name);</p><p>oder</p><p>RegistrySource1.ShowClientEditDialog(redtEdit1.Name);</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.ShowEditDialog.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegEdit.FreeRegistrySource">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RegistrySource entfernen</short>
+        <descr>Löscht den eigenen Eintrag aus der Clientliste des angebundenen TRegistrySource-Ojektes und entfernt das Object aus dem eignen Context.
+
+<p>Beispiel:</p><p>RegistrySource1.FreeRegistrySource(redtEdit.Name);</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.FreeRegistrySource.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegEdit.RefreshWriteAdHoc">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoWriteAdHoc-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird das automatische Schreiben von Daten ein- oder ausgeschaltet.
+
+
+<p>Beispiel:</p><p>redtEdit1.RegistrySource.RefreshWriteAdHocProperty(False, redtEdit1.Name);</p><p>oder</p><p>RegistrySource1.RefreshWriteAdHocProperty(False, redtEdit1.Name);</p><p>Ein Leerstring anstatt redtEdit1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.RefreshWriteAdHoc.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegEdit.RefreshSync">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoSyncData-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird die Synchronisation ein- oder ausgeschaltet.
+
+
+<p>Beispiel:</p><p>redtEdit1.RegistrySource.RefreshSyncProperty(False, redtEdit1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSyncProperty(False, redtEdit1.Name);</p><p>Ein Leerstring anstatt redtEdit1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.RefreshSync.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegEdit.RefreshSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys aktualiseren (s. RefreshRegistrySettings)</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle RootKeys aus der TRegistrySource aktualisiert.
+
+
+<p>Beispiel:</p><p>redtEdit1.RegistrySource.RefreshSettings(redtEdit1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSettings(redtEdit1.Name);</p><p>Ein Leerstring anstatt redtEdit1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.RefreshSettings.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegEdit.RefreshData">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus der Registry lesen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden Daten aus der Registry ausgelesen.
+
+
+<p>Beispiel:</p><p>redtEdit1.RegistrySource.RefreshClientData(redtEdit1.Name);</p><p>oder</p><p>RegistrySource1.RefreshClientData(redtEdit1.Name); </p><p>Ein Leerstring anstattredtEdit1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.RefreshData.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegEdit.PostData">
+        <short>Daten in die Registry schreiben</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle Daten, welche noch nicht in die Registry geschrieben wurden in die Registry geschrieben.
+
+<p>Beispiel:</p><p>redtEdit.RegistrySource.PostClientData(redtEdit.Name);</p><p>oder</p><p>RegistrySource1.PostClientData(redtEdit.Name);</p><p>Ein Leerstring anstatt redtEdit.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
+      </element>
+      <element name="TCustomRegEdit.PostData.aMessage">
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
+      </element>
       <element name="TCustomRegEdit.Change">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegEdit.SetName">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>Wird auch den Namen in der Clientliste des angebundenen TRegistrySource-Objektes anpassen.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.SetName.NewName">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegEdit.OnChangeSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.OnChangeSettings.Sender">
-        <short/>
+        <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegEdit.SetRegistrySource">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.SetRegistrySource.aRegistrySource">
-        <short/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- function Visibility: protected -->
       <element name="TCustomRegEdit.GetEditDialog">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Rootkeys bearbeiten (s. ShowEditDialog)</short>
+        <descr>Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.</descr>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegEdit.GetEditDialog.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.GetEditDialog.aEdit">
-        <short/>
+        <short>Bearbeitungsmodus</short>
+        <descr>s. EditClientRootKeys in TCustomRegistrySource</descr>
       </element>
-      <!-- property Visibility: protected -->
+      <element name="TCustomRegEdit.GetEditDialog.aAtDesignTime">
+        <short>Designstatus</short>
+        <descr>s. TRegBaseForm</descr>
+      </element>
       <element name="TCustomRegEdit.RegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Erweiterte Eigenschaften</short>
+        <descr>s. TCustomRegistrySettings in regtype.pas</descr>
       </element>
-      <!-- property Visibility: protected -->
       <element name="TCustomRegEdit.RegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Zugriff auf die Registry, Verwaltung von Grundschlüsseln, etc.</short>
+        <descr>s. TCustomRegistrySource in regsourcen.pas</descr>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TCustomRegEdit.AfterConstruction">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TCustomRegEdit.ReadFromReg">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwert aus der Registry lesen</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegEdit.ReadFromReg.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- function Visibility: public -->
       <element name="TCustomRegEdit.WriteToReg">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwert in die Registry schreiben</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegEdit.WriteToReg.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- constructor Visibility: public -->
       <element name="TCustomRegEdit.Create">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegEdit.Create.AOwner">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- destructor Visibility: public -->
       <element name="TCustomRegEdit.Destroy">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- class Visibility: default -->
       <element name="TRegEdit">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Instanzklasse für die LCL</short>
       </element>
-      <!-- property Visibility: published -->
       <element name="TRegEdit.RegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Eigenschaft veröffentlicht</short>
       </element>
-      <!-- property Visibility: published -->
       <element name="TRegEdit.RegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Eigenschaft veröffentlicht</short>
       </element>
-      <!-- procedure Visibility: default -->
       <element name="Register">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>TRegEdit und TRegistryControlComponentEditor für TRegEdit registrieren.</descr>
       </element>
+      <short>TRegEdit</short>
+      <descr>Das Modul stellt die TRegEdit der LazarusRegistrycontrols zur Verfügung.</descr>
     </module>
     <!-- regedit -->
   </package>

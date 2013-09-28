@@ -22,7 +22,7 @@
         <descr>Wenn erfolgreich dann True</descr>
       </element>
       <element name="TCustomRegCheckBox.ReadWriteInfo">
-        <short>Datenwerte lesen und schreiben</short>
+        <short>Datenwerte lesen oder schreiben</short>
       </element>
       <element name="TCustomRegCheckBox.ReadWriteInfo.aRead">
         <short>Vorgangsflag, (s. regconst.pas)</short>

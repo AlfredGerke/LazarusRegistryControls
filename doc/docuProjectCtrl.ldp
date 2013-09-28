@@ -10,10 +10,13 @@ ShowPrivate=1
 Import=
 
 [Descriptions]
-Count=1
+Count=2
 File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regcheckbox.xml
+File2=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regedit.xml
 
 [Sources]
-Count=1
+Count=2
 File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regcheckbox.pas
 Options1=
+File2=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regedit.pas
+Options2=

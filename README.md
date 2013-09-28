@@ -29,7 +29,7 @@ Die LazarusRegistryControls (LRC) sind direkte Ableitung einer Teilmenge aus den
 Standard- und den Additional-Steuerelemte der LCL von Lazarus. Sie werden auf einem 
 eigenen Reiter der Komponentenpalette "Registry Controls" installiert. Die Auswahl 
 der abgeleiteten Steuerelement richtet sich nach der Häufigkeit ihrer Nutzung 
-(TEdit, TComboBox, TCheckBox, TListBox, TRadioButton, TRadioGroup, TCheckListBox, 
+(TEdit, TLabel, TComboBox, TCheckBox, TListBox, TRadioButton, TRadioGroup, TCheckListBox, 
 TCheckGroup, TValueListEditor). Diese Steuerelemente sollten nur genutzt werden, 
 um Werte in der Registry zu verwalten. Sie sind in der vorliegenden Version nur
 für den Einsatz unter Windows sinnvoll.     
@@ -90,11 +90,42 @@ werden:
 4 LazarusRegistryControls (LRC) Funktionalität
 ----------------------------------------------  
 
-Die abgeleiteten Steuerelement werden über eine zentrale Komponente 
+Mit Hilfe der **LRC** soll Ordnung bezüglich des Registryzugriff in einem Projekt hergestellt werden.
+Dabei wurde darauf geachtet, das so wenig wie möglich an Quelltext vom Entwickler geschrieben werden muß,
+um auf Daten in der Registry zu zugreifen.           
+
+Die abgeleiteten Steuerelement werden über die zentrale Komponente 
 (TRegistrySource) mit der Registry verbunden. Über eine Erweiterung der
 Eigenschaften (RegistrySettings) der abgeleiteten Steuerelement können spezifische 
 Informationen für Schlüssel der Registry hinterlegt werden, welche genutzt werden, 
-um Daten aus der Registry zu lesen und in die Registry zu schreiben. 
+um Daten aus der Registry zu lesen und in die Registry zu schreiben.     
+
+Die TRegistrySource-Komponente stellt den gesamten Zugriff auf die Registry zur Verfügung.
+Sie kann auch direkt, unabhängig von Steuerelementen, verwendet werden, um einen Zugriff auf die Registry herzustellen:    
+
+    try        
+        Screen.Cursor := crHourGlass;        
+        // Zentraler Registryzugriff, eventuel auch verbunden mit Steuerlementen (z.B.: TRegEdit)        
+        // Alle notwendigen Einstellungen für den Zugriff auf die Registgry finden sich in den Eigenschaften dieser Komponente wieder        
+        with RegistrySource1 do        
+        begin               
+            // Schaltet die Synchronisierung von angebundenen Steuerelementen ab        
+            DoSyncData := False;        
+            // Veranlasst das ein Grundschlüssel mit Standardwerten aufgebaut wird        
+            WriteDefaults := True;        
+            // Schreibt einen String        
+            WriteString('Section1', 'Ident', 'Value');        
+            // Schreibt einen Integer`        
+            WriteInteger('Section2', 'Ident', 1);        
+            // Schreibt einen Boolean        
+            WriteBool('Section3', 'Ident', True);        
+            // Aktualisert alle angebundenene Steuerelemente        
+            RefreshClientData('', 0);        
+            DoSyncData := True;        
+        end;        
+    finally        
+        Screen.Cursor := crDefault;        
+    end;            
 
 ## 4.1 `HKEY_CURRENT_USER`
 
