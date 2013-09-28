@@ -3,212 +3,213 @@
   <package name="RegistryControls">
     <!--
   ====================================================================
-    regradiobutton
+    reglabel
   ====================================================================
 -->
-    <module name="regradiobutton">
-      <element name="TCustomRegRadioButton">
+    <module name="reglabel">
+      <element name="TCustomRegLabel">
         <short>Custom-Klasse für die Einführung des Registryzugriffes</short>
       </element>
-      <element name="TCustomRegRadioButton.FRegistrySource">
+      <element name="TCustomRegLabel.FRegistrySource">
         <short>s. RegistrySource</short>
       </element>
-      <element name="TCustomRegRadioButton.FRegistrySettings">
+      <element name="TCustomRegLabel.FRegistrySettings">
         <short>s. RegistrySettings</short>
       </element>
-      <element name="TCustomRegRadioButton.FIsModified">
+      <element name="TCustomRegLabel.FIsModified">
         <short>s. IsModified</short>
       </element>
-      <element name="TCustomRegRadioButton.RefreshRegistrySettings">
+      <element name="TCustomRegLabel.RefreshRegistrySettings">
         <short>RootKeys aus TRegistrySource aktualisieren</short>
       </element>
-      <element name="TCustomRegRadioButton.RefreshRegistrySettings.Result">
+      <element name="TCustomRegLabel.RefreshRegistrySettings.Result">
         <short>Ergebnis des Vorganges</short>
         <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <element name="TCustomRegRadioButton.ReadWriteInfo">
+      <element name="TCustomRegLabel.ReadWriteInfo">
         <short>Datenwerte lesen oder schreiben</short>
       </element>
-      <element name="TCustomRegRadioButton.ReadWriteInfo.aRead">
+      <element name="TCustomRegLabel.ReadWriteInfo.aRead">
         <short>Vorgangsflag, (s. regconst.pas)</short>
         <descr>Wenn aRead=Read dann Datenwert aus der Registry lesen. Wenn aRead=Write dann Datenwert in die Registry schreiben.</descr>
       </element>
-      <element name="TCustomRegRadioButton.ShowEditDialog">
+      <element name="TCustomRegLabel.ShowEditDialog">
         <short>RootKeys bearbeiten</short>
         <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.
 
 
-<p>Beispiel:</p><p>rrbtnRadioButton1.RegistrySource.ShowClientEditDialog(rrbtnRadioButton1.Name);</p><p>oder</p><p>RegistrySource1.ShowClientEditDialog(rrbtnRadioButton1.Name);</p>
+<p>Beispiel:</p><p>rlblLabel1.RegistrySource.ShowClientEditDialog(rlblLabel1.Name);</p><p>oder</p><p>RegistrySource1.ShowClientEditDialog(rlblLabel1.Name);</p>
         </descr>
       </element>
-      <element name="TCustomRegRadioButton.ShowEditDialog.aMessage">
+      <element name="TCustomRegLabel.ShowEditDialog.aMessage">
         <short>Von TRegistrySource gesendete Message</short>
         <descr>s. regmsg.pas</descr>
       </element>
-      <element name="TCustomRegRadioButton.FreeRegistrySource">
+      <element name="TCustomRegLabel.FreeRegistrySource">
         <short>RegistrySource entfernen</short>
         <descr>Löscht den eigenen Eintrag aus der Clientliste des angebundenen TRegistrySource-Ojektes und entfernt das Object aus dem eignen Context.
 
 
-<p>Beispiel:</p><p>RegistrySource1.FreeRegistrySource(rrbtnRadioButton1.Name);</p>
+<p>Beispiel:</p><p>RegistrySource1.FreeRegistrySource(rrlblLabel1.Name);</p>
         </descr>
       </element>
-      <element name="TCustomRegRadioButton.FreeRegistrySource.aMessage">
+      <element name="TCustomRegLabel.FreeRegistrySource.aMessage">
         <short>Von TRegistrySource gesendete Message</short>
         <descr>s. regmsg.pas</descr>
       </element>
-      <element name="TCustomRegRadioButton.RefreshWriteAdHoc">
+      <element name="TCustomRegLabel.RefreshWriteAdHoc">
         <short>DoWriteAdHoc-Eigenschaft setzen</short>
         <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird das automatische Schreiben von Daten ein- oder ausgeschaltet.
 
 
-<p>Beispiel:</p><p>rrbtnRadioButton1.RegistrySource.RefreshWriteAdHocProperty(False, rrbtnRadioButton1.Name);</p><p>oder</p><p>RegistrySource1.RefreshWriteAdHocProperty(False, rrbtnRadioButton1.Name);</p><p>Ein Leerstring anstatt rrbtnRadioButton1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+<p>Beispiel:</p><p>rlblLabel1.RegistrySource.RefreshWriteAdHocProperty(False, rlblLabel1.Name);</p><p>oder</p><p>RegistrySource1.RefreshWriteAdHocProperty(False, rlblLabel1.Name);</p><p>Ein Leerstring anstatt rlblLabel1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
         </descr>
       </element>
-      <element name="TCustomRegRadioButton.RefreshWriteAdHoc.aMessage">
+      <element name="TCustomRegLabel.RefreshWriteAdHoc.aMessage">
         <short>Von TRegistrySource gesendete Message</short>
         <descr>s. regmsg.pas</descr>
       </element>
-      <element name="TCustomRegRadioButton.RefreshSync">
+      <element name="TCustomRegLabel.RefreshSync">
         <short>DoSyncData-Eigenschaft setzen</short>
         <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird die Synchronisation ein- oder ausgeschaltet.
 
 
-<p>Beispiel:</p><p>rrbtnRadioButton1.RegistrySource.RefreshSyncProperty(False, rrbtnRadioButton1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSyncProperty(False, rrbtnRadioButton1.Name);</p><p>Ein Leerstring anstatt rrbtnRadioButton1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+<p>Beispiel:</p><p>rlblLabel1.RegistrySource.RefreshSyncProperty(False, rlblLabel1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSyncProperty(False, rlblLabel1.Name);</p><p>Ein Leerstring anstatt rlblLabel1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
         </descr>
       </element>
-      <element name="TCustomRegRadioButton.RefreshSync.aMessage">
+      <element name="TCustomRegLabel.RefreshSync.aMessage">
         <short>Von TRegistrySource gesendete Message</short>
         <descr>s. regmsg.pas</descr>
       </element>
-      <element name="TCustomRegRadioButton.RefreshSettings">
+      <element name="TCustomRegLabel.RefreshSettings">
         <short>RootKeys aktualiseren (s. RefreshRegistrySettings)</short>
         <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle RootKeys aus der TRegistrySource aktualisiert.
 
 
-<p>Beispiel:</p><p>rrbtnRadioButton1.RegistrySource.RefreshSettings(rrbtnRadioButton1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSettings(rrbtnRadioButton1.Name);</p><p>Ein Leerstring anstatt rrbtnRadioButton1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+<p>Beispiel:</p><p>rlblLabel1.RegistrySource.RefreshSettings(rlblLabel1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSettings(rlblLabel1.Name);</p><p>Ein Leerstring anstatt rlblLabel1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
         </descr>
       </element>
-      <element name="TCustomRegRadioButton.RefreshSettings.aMessage">
+      <element name="TCustomRegLabel.RefreshSettings.aMessage">
         <short>Von TRegistrySource gesendete Message</short>
         <descr>s. regmsg.pas</descr>
       </element>
-      <element name="TCustomRegRadioButton.RefreshData">
+      <element name="TCustomRegLabel.RefreshData">
         <short>Daten aus der Registry lesen</short>
         <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden Daten aus der Registry ausgelesen.
 
 
-<p>Beispiel:</p><p>rrbtnRadioButton1.RegistrySource.RefreshClientData(rrbtnRadioButton1.Name);</p><p>oder</p><p>RegistrySource1.RefreshClientData(rrbtnRadioButton1.Name); </p><p>Ein Leerstring anstatt rrbtnRadioButton1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+<p>Beispiel:</p><p>rlblLabel1.RegistrySource.RefreshClientData(rlblLabel1.Name);</p><p>oder</p><p>RegistrySource1.RefreshClientData(rlblLabel1.Name); </p><p>Ein Leerstring anstatt rlblLabel1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
         </descr>
       </element>
-      <element name="TCustomRegRadioButton.RefreshData.aMessage">
+      <element name="TCustomRegLabel.RefreshData.aMessage">
         <short>Von TRegistrySource gesendete Message</short>
         <descr>s. regmsg.pas</descr>
       </element>
-      <element name="TCustomRegRadioButton.PostData">
+      <element name="TCustomRegLabel.PostData">
         <short>Daten in die Registry schreiben</short>
         <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle Daten, welche noch nicht in die Registry geschrieben wurden in die Registry geschrieben.
 
 
-<p>Beispiel:</p><p>rrbtnRadioButton1.RegistrySource.PostClientData(rrbtnRadioButton1.Name);</p><p>oder</p><p>RegistrySource1.PostClientData(rrbtnRadioButton1.Name);</p><p>Ein Leerstring anstatt rrbtnRadioButton1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+<p>Beispiel:</p><p>rlblLabel1.RegistrySource.PostClientData(rlblLabel1.Name);</p><p>oder</p><p>RegistrySource1.PostClientData(rlblLabel1.Name);</p><p>Ein Leerstring anstatt rlblLabel1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
         </descr>
       </element>
-      <element name="TCustomRegRadioButton.PostData.aMessage">
+      <element name="TCustomRegLabel.PostData.aMessage">
         <short>Von TRegistrySource gesendete Message</short>
         <descr>s. regmsg.pas</descr>
       </element>
-      <element name="TCustomRegRadioButton.Click">
+      <element name="TCustomRegLabel.TextChanged">
         <short>s. LCL Documentation</short>
+        <descr>In dieser Ableitung wird das Bearbeitungsflag (s. IsModified) auf True gesetzt</descr>
       </element>
-      <element name="TCustomRegRadioButton.SetName">
+      <element name="TCustomRegLabel.SetName">
         <short>s. LCL Documentation</short>
         <descr>Wird auch den Namen in der Clientliste des angebundenen TRegistrySource-Objektes anpassen.</descr>
       </element>
-      <element name="TCustomRegRadioButton.SetName.NewName">
+      <element name="TCustomRegLabel.SetName.NewName">
         <short>s. LCL Documentation</short>
       </element>
-      <element name="TCustomRegRadioButton.OnChangeSettings">
+      <element name="TCustomRegLabel.OnChangeSettings">
         <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <element name="TCustomRegRadioButton.OnChangeSettings.Sender">
+      <element name="TCustomRegLabel.OnChangeSettings.Sender">
         <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <element name="TCustomRegRadioButton.SetRegistrySource">
+      <element name="TCustomRegLabel.SetRegistrySource">
         <short>s. RegistrySource</short>
       </element>
-      <element name="TCustomRegRadioButton.SetRegistrySource.aRegistrySource">
+      <element name="TCustomRegLabel.SetRegistrySource.aRegistrySource">
         <short>s. RegistrySource</short>
       </element>
-      <element name="TCustomRegRadioButton.GetEditDialog">
+      <element name="TCustomRegLabel.GetEditDialog">
         <short>Rootkeys bearbeiten (s. ShowEditDialog)</short>
         <descr>Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.</descr>
       </element>
-      <element name="TCustomRegRadioButton.GetEditDialog.Result">
+      <element name="TCustomRegLabel.GetEditDialog.Result">
         <short>Ergebnis des Vorganges</short>
         <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <element name="TCustomRegRadioButton.GetEditDialog.aEdit">
+      <element name="TCustomRegLabel.GetEditDialog.aEdit">
         <short>Bearbeitungsmodus</short>
         <descr>s. EditClientRootKeys in TCustomRegistrySource</descr>
       </element>
-      <element name="TCustomRegRadioButton.GetEditDialog.aAtDesignTime">
+      <element name="TCustomRegLabel.GetEditDialog.aAtDesignTime">
         <short>Designstatus</short>
         <descr>s. TRegBaseForm</descr>
       </element>
-      <element name="TCustomRegRadioButton.RegistrySettings">
+      <element name="TCustomRegLabel.RegistrySettings">
         <short>Erweiterte Eigenschaften</short>
         <descr>s. TCustomRegistrySettings in regtype.pas</descr>
       </element>
-      <element name="TCustomRegRadioButton.RegistrySource">
+      <element name="TCustomRegLabel.RegistrySource">
         <short>Zugriff auf die Registry, Verwaltung von Grundschlüsseln, etc.</short>
         <descr>s. TCustomRegistrySource in regsourcen.pas</descr>
       </element>
-      <element name="TCustomRegRadioButton.AfterConstruction">
+      <element name="TCustomRegLabel.AfterConstruction">
         <short>s. LCL Documentation</short>
       </element>
-      <element name="TCustomRegRadioButton.ReadFromReg">
+      <element name="TCustomRegLabel.ReadFromReg">
         <short>Datenwert aus der Registry lesen</short>
       </element>
-      <element name="TCustomRegRadioButton.ReadFromReg.Result">
+      <element name="TCustomRegLabel.ReadFromReg.Result">
         <short>Ergebnis des Vorganges</short>
         <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <element name="TCustomRegRadioButton.WriteToReg">
+      <element name="TCustomRegLabel.WriteToReg">
         <short>Datenwert in die Registry schreiben</short>
       </element>
-      <element name="TCustomRegRadioButton.WriteToReg.Result">
+      <element name="TCustomRegLabel.WriteToReg.Result">
         <short>Ergebnis des Vorganges</short>
         <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <element name="TCustomRegRadioButton.Create">
+      <element name="TCustomRegLabel.Create">
         <short>s. LCL Documentation</short>
       </element>
-      <element name="TCustomRegRadioButton.Create.AOwner">
+      <element name="TCustomRegLabel.Create.AOwner">
         <short>s. LCL Documentation</short>
       </element>
-      <element name="TCustomRegRadioButton.Destroy">
+      <element name="TCustomRegLabel.Destroy">
         <short>s. LCL Documentation</short>
       </element>
-      <element name="TCustomRegRadioButton.IsModified">
+      <element name="TCustomRegLabel.IsModified">
         <short>Bearbeitungsflag</short>
-        <descr>Wenn sich der Checkstatus geändert hat, wird bis zum schreiben in die Registry das Flag auf True gesetzt.</descr>
+        <descr>Wenn sich der Caption-Wert geändert hat, wird bis zum schreiben in die Registry das Flag auf True gesetzt.</descr>
       </element>
-      <element name="TRegRadioButton">
+      <element name="TRegLabel">
         <short>Instanzklasse für die LCL</short>
       </element>
-      <element name="TRegRadioButton.RegistrySettings">
+      <element name="TRegLabel.RegistrySettings">
         <short>Eigenschaft veröffentlicht</short>
       </element>
-      <element name="TRegRadioButton.RegistrySource">
+      <element name="TRegLabel.RegistrySource">
         <short>Eigenschaft veröffentlicht</short>
       </element>
       <element name="Register">
         <short>s. LCL Documentation</short>
-        <descr>TRegEdit und TRegistryControlComponentEditor für TRegEdit registrieren.</descr>
+        <descr>TRegLabel und TRegistryControlComponentEditor für TRegLabel registrieren.</descr>
       </element>
-      <short>TRegRadioButton</short>
-      <descr>Das Modul stellt die TRegRadioButton der LazarusRegistrycontrols zur Verfügung.</descr>
+      <short>TRegLabel</short>
+      <descr>Das Modul stellt die TRegLabel der LazarusRegistrycontrols zur Verfügung.</descr>
     </module>
-    <!-- regradiobutton -->
+    <!-- reglabel -->
   </package>
 </fpdoc-descriptions>
