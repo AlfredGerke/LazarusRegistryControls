@@ -106,7 +106,8 @@ Sie kann auch direkt, unabhängig von Steuerelementen, verwendet werden, um eine
     try        
         Screen.Cursor := crHourGlass;        
         // Zentraler Registryzugriff, eventuel auch verbunden mit Steuerlementen (z.B.: TRegEdit)        
-        // Alle notwendigen Einstellungen für den Zugriff auf die Registgry finden sich in den Eigenschaften dieser Komponente wieder        
+        // Alle notwendigen Einstellungen für den Zugriff auf die Registgry finden sich in den 
+        // Eigenschaften dieser Komponente wieder        
         with RegistrySource1 do        
         begin               
             // Schaltet die Synchronisierung von angebundenen Steuerelementen ab        
