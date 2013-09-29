@@ -258,7 +258,7 @@ Wenn ReadDefaults der RegistrySettings auf True steht wird die Liste aus den Sta
       </element>
       <element name="Register">
         <short>s. LCL Documentation</short>
-        <descr>TRegComboBox und TRegistryControlComponentEditor für TRegComboBox registrieren.</descr>
+        <descr>TRegListBox und TRegistryControlComponentEditor für TRegListBox registrieren.</descr>
       </element>
       <short>TRegListBox</short>
       <descr>Das Modul stellt die TRegListBox der LazarusRegistrycontrols zur Verfügung.</descr>

@@ -1,0 +1,2 @@
+makeDocu C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\documentation chm
+echo makeDocu C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\documentation html

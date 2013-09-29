@@ -7,395 +7,331 @@
   ====================================================================
 -->
     <module name="regcheckgroup">
-      <short/>
-      <descr/>
-      <!-- class Visibility: default -->
       <element name="TCustomRegCheckGroup">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Custom-Klasse für die Einführung des Registryzugriffes</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegCheckGroup.FRegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegCheckGroup.FRegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. RegistrySettings</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegCheckGroup.FIsModified">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. IsModified</short>
       </element>
-      <!-- variable Visibility: private -->
-      <element name="TCustomRegCheckGroup.FLastChecked">
-        <short/>
-        <descr/>
-        <seealso/>
-      </element>
-      <!-- variable Visibility: private -->
-      <element name="TCustomRegCheckGroup.FOnOriginalItemCheck">
-        <short/>
-        <descr/>
-        <seealso/>
-      </element>
-      <!-- variable Visibility: private -->
-      <element name="TCustomRegCheckGroup.FOnCustomItemCheck">
-        <short/>
-        <descr/>
-        <seealso/>
-      </element>
-      <!-- procedure Visibility: private -->
-      <element name="TCustomRegCheckGroup.OnHookedItemCheck">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckGroup.OnHookedItemCheck.Sender">
-        <short/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckGroup.OnHookedItemCheck.Index">
-        <short/>
-      </element>
-      <!-- procedure Visibility: private -->
-      <element name="TCustomRegCheckGroup.SetCheckedItemsByList">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckGroup.SetCheckedItemsByList.aList">
-        <short/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckGroup.SetCheckedItemsByList.aCheckOnly">
-        <short/>
-      </element>
-      <!-- function Visibility: private -->
       <element name="TCustomRegCheckGroup.RefreshRegistrySettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys aus TRegistrySource aktualisieren</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegCheckGroup.RefreshRegistrySettings.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- procedure Visibility: private -->
       <element name="TCustomRegCheckGroup.ReadWriteInfo">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwerte lesen oder schreiben</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.ReadWriteInfo.aRead">
-        <short/>
+        <short>Vorgangsflag, (s. regconst.pas)</short>
+        <descr>Wenn aRead=Read dann Datenwert aus der Registry lesen. Wenn aRead=Write dann Datenwert in die Registry schreiben.</descr>
       </element>
-      <!-- function Visibility: private -->
       <element name="TCustomRegCheckGroup.GetItemsByRegistry">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus Listen-Sektion einlesen</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegCheckGroup.GetItemsByRegistry.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckGroup.GetItemsByRegistry.aCheckOnly">
-        <short/>
-      </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckGroup.RefreshMerge">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>MergeData-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird das Merge von Listendaten ein- oder ausgeschaltet.
+Wenn Listendaten nicht vollständig sind und diese aus den Standards ergänzt werden können, kann mit MergeData=True dies durchgeführt werden.
+
+
+<p>Beispiel:</p><p>rcgrpCheckGroup1.RegistrySource.RefreshMergeDataProperty(False, rcgrpCheckGroup1.Name);</p><p>oder</p><p>RegistrySource1.RefreshMergeDataProperty(False, rcgrpCheckGroup1.Name);</p><p>Ein Leerstring anstatt rcgrpCheckGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.RefreshMerge.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckGroup.ClearClientItems">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Listen-Sektion der Daten für die Liste löschen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. 
+Wenn ItemsByRegistry der RegistrySettings auf True steht, werden die Daten der Listen-Section aus denen sich die Liste aufbaut gelöscht. 
+Wenn ReadDefaults der RegistrySettings auf True steht wird die Liste aus den Standards neu aufgebaut, ansonsten bleibt die Liste leer.
+
+
+<p>Beispiel:</p><p>rcgrpCheckGroup1.RegistrySource.ClearClientItems(rcgrpCheckGroup1.Name, True, 'Liste löschen?');</p><p>oder</p><p>RegistrySource1.ClearClientItems(rcgrpCheckGroup1.Name, True, 'Liste löschen?'); </p><p>Ein Leerstring anstatt rcgrpCheckGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.ClearClientItems.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckGroup.ShowEditDialog">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys bearbeiten</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.
+
+
+<p>Beispiel:</p><p>rcgrpCheckGroup1.RegistrySource.ShowClientEditDialog(rcgrpCheckGroup1.Name);</p><p>oder</p><p>RegistrySource1.ShowClientEditDialog(rcgrpCheckGroup1.Name);</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.ShowEditDialog.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckGroup.FreeRegistrySource">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RegistrySource entfernen</short>
+        <descr>Löscht den eigenen Eintrag aus der Clientliste des angebundenen TRegistrySource-Ojektes und entfernt das Object aus dem eignen Context.
+
+
+
+<p>Beispiel:</p><p>RegistrySource1.FreeRegistrySource(rcgrpCheckGroup1.Name);</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.FreeRegistrySource.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckGroup.RefreshWriteAdHoc">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoWriteAdHoc-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird das automatische Schreiben von Daten ein- oder ausgeschaltet.
+
+
+<p>Beispiel:</p><p>rcgrpCheckGroup1.RegistrySource.RefreshWriteAdHocProperty(False, rcgrpCheckGroup1.Name);</p><p>oder</p><p>RegistrySource1.RefreshWriteAdHocProperty(False, rcgrpCheckGroup1.Name);</p><p>Ein Leerstring anstatt rcgrpCheckGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.RefreshWriteAdHoc.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckGroup.RefreshSync">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoSyncData-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird die Synchronisation ein- oder ausgeschaltet.
+
+
+<p>Beispiel:</p><p>rcgrpCheckGroup1.RegistrySource.RefreshSyncProperty(False, rcgrpCheckGroup1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSyncProperty(False, rcgrpCheckGroup1.Name);</p><p>Ein Leerstring anstatt rcgrpCheckGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.RefreshSync.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckGroup.RefreshSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys aktualiseren (s. RefreshRegistrySettings)</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle RootKeys aus der TRegistrySource aktualisiert.
+
+
+<p>Beispiel:</p><p>rcgrpCheckGroup1.RegistrySource.RefreshSettings(rcgrpCheckGroup1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSettings(rcgrpCheckGroup1.Name);</p><p>Ein Leerstring anstatt rcgrpCheckGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.RefreshSettings.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckGroup.RefreshData">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus der Registry lesen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden Daten aus der Registry ausgelesen.
+
+
+
+<p>Beispiel:</p><p>rcgrpCheckGroup1.RegistrySource.RefreshClientData(rcgrpCheckGroup1.Name);</p><p>oder</p><p>RegistrySource1.RefreshClientData(rcgrpCheckGroup1.Name); </p><p>Ein Leerstring anstatt rcgrpCheckGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.RefreshData.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckGroup.PostData">
+        <short>Daten in die Registry schreiben</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle Daten, welche noch nicht in die Registry geschrieben wurden in die Registry geschrieben.
+
+
+
+<p>Beispiel:</p><p>rcgrpCheckGroup1.RegistrySource.PostClientData(rcgrpCheckGroup1.Name);</p><p>oder</p><p>RegistrySource1.PostClientData(rcgrpCheckGroup1.Name);</p><p>Ein Leerstring anstatt rcgrpCheckGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
+      </element>
+      <element name="TCustomRegCheckGroup.PostData.aMessage">
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
+      </element>
       <element name="TCustomRegCheckGroup.SetName">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>Wird auch den Namen in der Clientliste des angebundenen TRegistrySource-Objektes anpassen.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.SetName.NewName">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckGroup.OnChangeSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.OnChangeSettings.Sender">
-        <short/>
+        <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckGroup.SetRegistrySource">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.SetRegistrySource.aRegistrySource">
-        <short/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- function Visibility: protected -->
       <element name="TCustomRegCheckGroup.GetEditDialog">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Rootkeys bearbeiten (s. ShowEditDialog)</short>
+        <descr>Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.</descr>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegCheckGroup.GetEditDialog.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.GetEditDialog.aEdit">
-        <short/>
+        <short>Bearbeitungsmodus</short>
+        <descr>s. EditClientRootKeys in TCustomRegistrySource</descr>
       </element>
-      <!-- property Visibility: protected -->
+      <element name="TCustomRegCheckGroup.GetEditDialog.aAtDesignTime">
+        <short>Designstatus</short>
+        <descr>s. TRegBaseForm</descr>
+      </element>
       <element name="TCustomRegCheckGroup.RegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Erweiterte Eigenschaften</short>
+        <descr>s. TCustomRegistrySettings in regtype.pas</descr>
       </element>
-      <!-- property Visibility: protected -->
       <element name="TCustomRegCheckGroup.RegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Zugriff auf die Registry, Verwaltung von Grundschlüsseln, etc.</short>
+        <descr>s. TCustomRegistrySource in regsourcen.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
-      <element name="TCustomRegCheckGroup.SetLastChecked">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckGroup.SetLastChecked.aLastChecked">
-        <short/>
-      </element>
-      <!-- property Visibility: protected -->
-      <element name="TCustomRegCheckGroup.LastChecked">
-        <short/>
-        <descr/>
-        <seealso/>
-      </element>
-      <!-- property Visibility: protected -->
-      <element name="TCustomRegCheckGroup.OnCustomItemCheck">
-        <short/>
-        <descr/>
-        <seealso/>
-      </element>
-      <!-- procedure Visibility: public -->
       <element name="TCustomRegCheckGroup.ClearItems">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Listen-Sektion der Daten für die Liste löschen</short>
+        <descr>Wenn ItemsByRegistry der RegistrySettings auf True steht, werden die Daten der Listen-Section aus denen sich die Liste aufbaut gelöscht. 
+Wenn ReadDefaults der RegistrySettings auf True steht wird die Liste aus den Standards neu aufgebaut, ansonsten bleibt die Liste leer.
+
+
+<p>Beispiel:</p><p>rcgrpCheckGroup1.ClearItems(True, 'Liste löschen?');</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.ClearItems.aAskFor">
-        <short/>
+        <short>Bestätigungsabfrage stellen</short>
+        <descr>Wenn True wird eine Bestätigungsabfrage vor dem Löschen der Liste gestellt.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.ClearItems.aMsg">
-        <short/>
+        <short>Bestätigungsabfrage</short>
+        <descr>Die Bestätigungsabfrage muss so gestellt werden, das eine positve Antwort immer mit mrYes bestätigt wird.</descr>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TCustomRegCheckGroup.Click">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TCustomRegCheckGroup.AfterConstruction">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TCustomRegCheckGroup.ReadFromReg">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwert aus der Registry lesen</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegCheckGroup.ReadFromReg.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- function Visibility: public -->
       <element name="TCustomRegCheckGroup.WriteToReg">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwert in die Registry schreiben</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegCheckGroup.WriteToReg.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- constructor Visibility: public -->
       <element name="TCustomRegCheckGroup.Create">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckGroup.Create.AOwner">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- destructor Visibility: public -->
       <element name="TCustomRegCheckGroup.Destroy">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- property Visibility: public -->
       <element name="TCustomRegCheckGroup.IsModified">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Bearbeitungsflag</short>
+        <descr>Wenn sich der Itemindex geändert hat, wird bis zum schreiben in die Registry das Flag auf True gesetzt.</descr>
       </element>
-      <!-- class Visibility: default -->
       <element name="TRegCheckGroup">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Instanzklasse für die LCL</short>
       </element>
-      <!-- property Visibility: published -->
       <element name="TRegCheckGroup.RegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Eigenschaft veröffentlicht</short>
       </element>
-      <!-- property Visibility: published -->
       <element name="TRegCheckGroup.RegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Eigenschaft veröffentlicht</short>
       </element>
-      <!-- property Visibility: published -->
-      <element name="TRegCheckGroup.OnCustomItemCheck">
-        <short/>
-        <descr/>
-        <seealso/>
-      </element>
-      <!-- procedure Visibility: default -->
       <element name="Register">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>TRegCheckGroup und TRegistryControlComponentEditor für TRegCheckGroup registrieren.</descr>
+      </element>
+      <short>TRegCheckGroup</short>
+      <descr>Das Modul stellt die TRegCheckGroup der LazarusRegistrycontrols zur Verfügung.</descr>
+      <element name="TCustomRegCheckGroup.SetCheckedItemsByList">
+        <short>Checkstatus eines Eintrages setzen</short>
+      </element>
+      <element name="TCustomRegCheckGroup.SaveItemsStatesToReg">
+        <short>Zustand der Einträge sichern</short>
+      </element>
+      <element name="TCustomRegCheckGroup.SaveItemsStatesToReg.aOnlyByItemIndex">
+        <short>Art der Sicherung</short>
+        <descr>Wenn True, wird nur der ItemIndex gesichert, ansonsten wird auch der Checkstatus gesichert.</descr>
+      </element>
+      <element name="TCustomRegCheckGroup.SetCheckedItemsByList.aList">
+        <short>Einträge in der Liste</short>
+      </element>
+      <element name="TCustomRegCheckGroup.SetCheckedItemsByList.aCheckOnly">
+        <short>Art der Bearbeitung</short>
+      </element>
+      <element name="TCustomRegCheckGroup.ReadWriteInfo.aType">
+        <short>test</short>
+      </element>
+      <element name="TCustomRegCheckGroup.GetItemsByRegistry.aCheckOnly">
+        <short>test</short>
+      </element>
+      <element name="TCustomRegCheckGroup.ItemClick">
+        <short>s. LCL Documentation</short>
+      </element>
+      <element name="TCustomRegCheckGroup.ItemClick.AIndex">
+        <short>s. LCL Documentation</short>
+      </element>
+      <element name="TCustomRegCheckGroup.FLastChecked">
+        <short>s. LastChecked</short>
+      </element>
+      <element name="TCustomRegCheckGroup.FOnOriginalItemCheck">
+        <short>s. OnOriginalItemCheck</short>
+      </element>
+      <element name="TCustomRegCheckGroup.FOnCustomItemCheck">
+        <short>s. OnCustomItemCheck</short>
+      </element>
+      <element name="TCustomRegCheckGroup.FCatchEvents">
+        <short>Ereignis fangen</short>
+        <descr>Wenn True, kann zur Laufzeit das OnItemClick-Ereignis gefangen werden und durch OnHookedItemCheck ersetzt werden. (s. Loaded)</descr>
+      </element>
+      <element name="TCustomRegCheckGroup.OnHookedItemCheck">
+        <short>Erstetzt das original OnItemClick</short>
+        <descr>Um den Index für die Weiterverarbeitung zu ermitteln, wird das original OnItemClick gefangen und in FOnOriginalItemCheck überführt.</descr>
+      </element>
+      <element name="TCustomRegCheckGroup.OnHookedItemCheck.Sender">
+        <short>s. Sender in OnItemClick</short>
+      </element>
+      <element name="TCustomRegCheckGroup.OnHookedItemCheck.Index">
+        <short>s. Index in OnItemClick</short>
+      </element>
+      <element name="TCustomRegCheckGroup.Loaded">
+        <short>s. LCL Documentation</short>
+        <descr>Zur Laufzeit werden die Ereignisse OnItemClick und OnHookedItemCheck neu organisiert.</descr>
+      </element>
+      <element name="TCustomRegCheckGroup.SetLastChecked">
+        <short>s. LastChecked</short>
+      </element>
+      <element name="TCustomRegCheckGroup.SetLastChecked.aLastChecked">
+        <short>s. LastChecked</short>
+      </element>
+      <element name="TCustomRegCheckGroup.LastChecked">
+        <short>Index des zu letzt aktivierten/deaktiveren Eintrages</short>
+      </element>
+      <element name="TCustomRegCheckGroup.OnCustomItemCheck">
+        <short>Ersatzt für OnItemCheck</short>
+        <descr>Da das original OnItemClick gefangen wird, um es intern weiter zu bearbeiten, wird als Ersatzt dieses Ereignis angeboten.</descr>
+      </element>
+      <element name="TRegCheckGroup.OnCustomItemCheck">
+        <short>Ereignis veröffentlicht</short>
       </element>
     </module>
     <!-- regcheckgroup -->

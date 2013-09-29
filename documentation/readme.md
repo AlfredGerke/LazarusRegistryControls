@@ -4,8 +4,19 @@ Dokumentation für die LRC
 In diesem Ordner wird die generierte Dokumentation im CHM-Format hinterlegt,
 sowie Batchdateien zum Erstellen der CHM- und HTML-Dokumentation:    
   
-* makeChm.bat
-* makeHtm.bat
+* createDocu.bat
+* makeDocu.bat
+
+
+## createDocu.bat
+In dieser Batchdatei wird dei Batch *makeDocu.bat* mit den notwendigen Parametern aufgerufen.    
+Der Aufruf von *makeDocu.bat* muss wie folgt lauten: 
+   
+`makeDocu {Quelle der Beschreibungsdateien} {Quelle der Quelltextdateien} {Ziel der Dokumentation} {html | chm}`
+
+
+## makeDocu.bat
+Diese Batchdatei erstellt mit Hilfe von *FPDoc.exe* anhand der Übergabeparameter eine Dokumentation.
 
 
 ## FPDoc
@@ -22,5 +33,4 @@ es sich immer um Pfadangaben für die Dokumentation. Der Pfadanteil
 *`C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\`* muss in folgenden Dateien angepasst 
 werden:    
 
-* makeChm.bat
-* makeHtm.bat        
+* createDocu.bat       

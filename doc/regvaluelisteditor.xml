@@ -7,350 +7,287 @@
   ====================================================================
 -->
     <module name="regvaluelisteditor">
-      <short/>
-      <descr/>
-      <!-- class Visibility: default -->
       <element name="TCustomRegValueListEditor">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Custom-Klasse für die Einführung des Registryzugriffes</short>
       </element>
-      <!-- variable Visibility: private -->
-      <element name="TCustomRegValueListEditor.FCurrKeyValueItems">
-        <short/>
-        <descr/>
-        <seealso/>
-      </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegValueListEditor.FRegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegValueListEditor.FRegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. RegistrySettings</short>
       </element>
-      <!-- procedure Visibility: private -->
-      <element name="TCustomRegValueListEditor.UpdateKeyValueInfo">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+      <element name="TCustomRegValueListEditor.FIsModified">
+        <short>s. IsModified</short>
       </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegValueListEditor.UpdateKeyValueInfo.aCol">
-        <short/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegValueListEditor.UpdateKeyValueInfo.aRow">
-        <short/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegValueListEditor.UpdateKeyValueInfo.aDoBefore">
-        <short/>
-      </element>
-      <!-- procedure Visibility: private -->
-      <element name="TCustomRegValueListEditor.SetItemsByList">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegValueListEditor.SetItemsByList.aList">
-        <short/>
-      </element>
-      <!-- function Visibility: private -->
       <element name="TCustomRegValueListEditor.RefreshRegistrySettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys aus TRegistrySource aktualisieren</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegValueListEditor.RefreshRegistrySettings.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- procedure Visibility: private -->
       <element name="TCustomRegValueListEditor.ReadWriteInfo">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwerte lesen oder schreiben</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.ReadWriteInfo.aRead">
-        <short/>
+        <short>Vorgangsflag, (s. regconst.pas)</short>
+        <descr>Wenn aRead=Read dann Datenwert aus der Registry lesen. Wenn aRead=Write dann Datenwert in die Registry schreiben.</descr>
       </element>
-      <!-- function Visibility: private -->
       <element name="TCustomRegValueListEditor.GetItemsByRegistry">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus Listen-Sektion einlesen</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegValueListEditor.GetItemsByRegistry.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegValueListEditor.RefreshMerge">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>MergeData-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird das Merge von Listendaten ein- oder ausgeschaltet.
+Wenn Listendaten nicht vollständig sind und diese aus den Standards ergänzt werden können, kann mit MergeData=True dies durchgeführt werden.
+
+
+<p>Beispiel:</p><p>rvleValueListEditor1.RegistrySource.RefreshMergeDataProperty(False, rvleValueListEditor1.Name);</p><p>oder</p><p>RegistrySource1.RefreshMergeDataProperty(False, rvleValueListEditor1.Name);</p><p>Ein Leerstring anstatt rvleValueListEditor1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.RefreshMerge.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegValueListEditor.ClearClientItems">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Listen-Sektion der Daten für die Liste löschen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. 
+Wenn ItemsByRegistry der RegistrySettings auf True steht, werden die Daten der Listen-Section aus denen sich die Liste aufbaut gelöscht. 
+Wenn ReadDefaults der RegistrySettings auf True steht wird die Liste aus den Standards neu aufgebaut, ansonsten bleibt die Liste leer.
+
+
+<p>Beispiel:</p><p>rvleValueListEditor1.RegistrySource.ClearClientItems(rvleValueListEditor1.Name, True, 'Liste löschen?');</p><p>oder</p><p>RegistrySource1.ClearClientItems(rvleValueListEditor1.Name, True, 'Liste löschen?'); </p><p>Ein Leerstring anstatt rvleValueListEditor1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.ClearClientItems.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegValueListEditor.ShowEditDialog">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys bearbeiten</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.
+
+
+<p>Beispiel:</p><p>rvleValueListEditor1.RegistrySource.ShowClientEditDialog(rvleValueListEditor1.Name);</p><p>oder</p><p>RegistrySource1.ShowClientEditDialog(rvleValueListEditor1.Name);</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.ShowEditDialog.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegValueListEditor.FreeRegistrySource">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RegistrySource entfernen</short>
+        <descr>Löscht den eigenen Eintrag aus der Clientliste des angebundenen TRegistrySource-Ojektes und entfernt das Object aus dem eignen Context.
+
+
+
+<p>Beispiel:</p><p>RegistrySource1.FreeRegistrySource(rvleValueListEditor1.Name);</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.FreeRegistrySource.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegValueListEditor.RefreshWriteAdHoc">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoWriteAdHoc-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird das automatische Schreiben von Daten ein- oder ausgeschaltet.
+
+
+<p>Beispiel:</p><p>rvleValueListEditor1.RegistrySource.RefreshWriteAdHocProperty(False, rvleValueListEditor1.Name);</p><p>oder</p><p>RegistrySource1.RefreshWriteAdHocProperty(False, rvleValueListEditor1.Name);</p><p>Ein Leerstring anstatt rvleValueListEditor1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.RefreshWriteAdHoc.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegValueListEditor.RefreshSync">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoSyncData-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird die Synchronisation ein- oder ausgeschaltet.
+
+
+<p>Beispiel:</p><p>rvleValueListEditor1.RegistrySource.RefreshSyncProperty(False, rvleValueListEditor1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSyncProperty(False, rvleValueListEditor1.Name);</p><p>Ein Leerstring anstatt rvleValueListEditor1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.RefreshSync.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegValueListEditor.RefreshSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys aktualiseren (s. RefreshRegistrySettings)</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle RootKeys aus der TRegistrySource aktualisiert.
+
+
+<p>Beispiel:</p><p>rvleValueListEditor1.RegistrySource.RefreshSettings(rvleValueListEditor1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSettings(rvleValueListEditor1.Name);</p><p>Ein Leerstring anstatt rvleValueListEditor1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.RefreshSettings.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegValueListEditor.RefreshData">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus der Registry lesen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden Daten aus der Registry ausgelesen.
+
+
+
+<p>Beispiel:</p><p>rvleValueListEditor1.RegistrySource.RefreshClientData(rvleValueListEditor1.Name);</p><p>oder</p><p>RegistrySource1.RefreshClientData(rvleValueListEditor1.Name); </p><p>Ein Leerstring anstatt rvleValueListEditor1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.RefreshData.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
-      <element name="TCustomRegValueListEditor.OnChangeSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+      <element name="TCustomRegValueListEditor.PostData">
+        <short>Daten in die Registry schreiben</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle Daten, welche noch nicht in die Registry geschrieben wurden in die Registry geschrieben.
+
+
+
+<p>Beispiel:</p><p>rvleValueListEditor1.RegistrySource.PostClientData(rvleValueListEditor1.Name);</p><p>oder</p><p>RegistrySource1.PostClientData(rvleValueListEditor1.Name);</p><p>Ein Leerstring anstatt rvleValueListEditor1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegValueListEditor.OnChangeSettings.Sender">
-        <short/>
+      <element name="TCustomRegValueListEditor.PostData.aMessage">
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
-      <element name="TCustomRegValueListEditor.SetRegistrySource">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegValueListEditor.SetRegistrySource.aRegistrySource">
-        <short/>
-      </element>
-      <!-- function Visibility: protected -->
-      <element name="TCustomRegValueListEditor.GetEditDialog">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
-      </element>
-      <!-- function result Visibility: default -->
-      <element name="TCustomRegValueListEditor.GetEditDialog.Result">
-        <short/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegValueListEditor.GetEditDialog.aEdit">
-        <short/>
-      </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegValueListEditor.SetName">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>Wird auch den Namen in der Clientliste des angebundenen TRegistrySource-Objektes anpassen.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.SetName.NewName">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- procedure Visibility: protected -->
-      <element name="TCustomRegValueListEditor.SetEditText">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+      <element name="TCustomRegValueListEditor.OnChangeSettings">
+        <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegValueListEditor.SetEditText.ACol">
-        <short/>
+      <element name="TCustomRegValueListEditor.OnChangeSettings.Sender">
+        <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegValueListEditor.SetEditText.ARow">
-        <short/>
+      <element name="TCustomRegValueListEditor.SetRegistrySource">
+        <short>s. RegistrySource</short>
       </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegValueListEditor.SetEditText.Value">
-        <short/>
+      <element name="TCustomRegValueListEditor.SetRegistrySource.aRegistrySource">
+        <short>s. RegistrySource</short>
       </element>
-      <!-- property Visibility: protected -->
+      <element name="TCustomRegValueListEditor.GetEditDialog">
+        <short>Rootkeys bearbeiten (s. ShowEditDialog)</short>
+        <descr>Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.</descr>
+      </element>
+      <element name="TCustomRegValueListEditor.GetEditDialog.Result">
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
+      </element>
+      <element name="TCustomRegValueListEditor.GetEditDialog.aEdit">
+        <short>Bearbeitungsmodus</short>
+        <descr>s. EditClientRootKeys in TCustomRegistrySource</descr>
+      </element>
+      <element name="TCustomRegValueListEditor.GetEditDialog.aAtDesignTime">
+        <short>Designstatus</short>
+        <descr>s. TRegBaseForm</descr>
+      </element>
       <element name="TCustomRegValueListEditor.RegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Erweiterte Eigenschaften</short>
+        <descr>s. TCustomRegistrySettings in regtype.pas</descr>
       </element>
-      <!-- property Visibility: protected -->
       <element name="TCustomRegValueListEditor.RegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Zugriff auf die Registry, Verwaltung von Grundschlüsseln, etc.</short>
+        <descr>s. TCustomRegistrySource in regsourcen.pas</descr>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TCustomRegValueListEditor.ClearItems">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Listen-Sektion der Daten für die Liste löschen</short>
+        <descr>Wenn ItemsByRegistry der RegistrySettings auf True steht, werden die Daten der Listen-Section aus denen sich die Liste aufbaut gelöscht. 
+Wenn ReadDefaults der RegistrySettings auf True steht wird die Liste aus den Standards neu aufgebaut, ansonsten bleibt die Liste leer.
+
+
+<p>Beispiel:</p><p>rvleValueListEditor1.ClearItems(True, 'Liste löschen?');</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.ClearItems.aAskFor">
-        <short/>
+        <short>Bestätigungsabfrage stellen</short>
+        <descr>Wenn True wird eine Bestätigungsabfrage vor dem Löschen der Liste gestellt.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.ClearItems.aMsg">
-        <short/>
+        <short>Bestätigungsabfrage</short>
+        <descr>Die Bestätigungsabfrage muss so gestellt werden, das eine positve Antwort immer mit mrYes bestätigt wird.</descr>
       </element>
-      <!-- procedure Visibility: public -->
+      <element name="TCustomRegValueListEditor.Click">
+        <short>s. LCL Documentation</short>
+      </element>
       <element name="TCustomRegValueListEditor.AfterConstruction">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TCustomRegValueListEditor.ReadFromReg">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwert aus der Registry lesen</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegValueListEditor.ReadFromReg.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- function Visibility: public -->
       <element name="TCustomRegValueListEditor.WriteToReg">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwert in die Registry schreiben</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegValueListEditor.WriteToReg.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- constructor Visibility: public -->
       <element name="TCustomRegValueListEditor.Create">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegValueListEditor.Create.AOwner">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- destructor Visibility: public -->
       <element name="TCustomRegValueListEditor.Destroy">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- class Visibility: default -->
+      <element name="TCustomRegValueListEditor.IsModified">
+        <short>Bearbeitungsflag</short>
+        <descr>Wenn sich der Itemindex geändert hat, wird bis zum schreiben in die Registry das Flag auf True gesetzt.</descr>
+      </element>
       <element name="TRegValueListEditor">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Instanzklasse für die LCL</short>
       </element>
-      <!-- property Visibility: published -->
       <element name="TRegValueListEditor.RegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Eigenschaft veröffentlicht</short>
       </element>
-      <!-- property Visibility: published -->
       <element name="TRegValueListEditor.RegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Eigenschaft veröffentlicht</short>
       </element>
-      <!-- procedure Visibility: default -->
       <element name="Register">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>TRegValueListEditor und TRegistryControlComponentEditor für TRegValueListEditor registrieren.</descr>
+      </element>
+      <short>TRegValueListEditor</short>
+      <descr>Das Modul stellt die TRegValueListEditor der LazarusRegistrycontrols zur Verfügung.</descr>
+      <element name="TCustomRegValueListEditor.FCurrKeyValueItems">
+        <short>Verarbeitungscache</short>
+        <descr>Alter Eintrag und Neuer Eintrag miteinander vergleichen um eventuell Änderungen in die Registry zu schreiben</descr>
+      </element>
+      <element name="TCustomRegValueListEditor.UpdateKeyValueInfo">
+        <short>Verarbeitungscache aktualisieren</short>
+      </element>
+      <element name="TCustomRegValueListEditor.UpdateKeyValueInfo.aCol">
+        <short>Aktuell bearbeitete Spalte</short>
+      </element>
+      <element name="TCustomRegValueListEditor.UpdateKeyValueInfo.aRow">
+        <short>Aktuell bearbeitete Zeile</short>
+      </element>
+      <element name="TCustomRegValueListEditor.UpdateKeyValueInfo.aDoBefore">
+        <short>Reihenfolge für die Aktualisierung festlegen</short>
+        <descr>Wenn True, dann alten Eintrag in den Cache aktualisieren, ansonsten neuen Eintrag in den Cache aktualisieren.</descr>
+      </element>
+      <element name="TCustomRegValueListEditor.SetItemsByList">
+        <short>Datenwerte in die Liste schreiben</short>
+      </element>
+      <element name="TCustomRegValueListEditor.SetItemsByList.aList">
+        <short>Liste mit Datenwerten</short>
+      </element>
+      <element name="TCustomRegValueListEditor.SetEditText">
+        <short>s. LCL Documentation</short>
+        <descr>Wird auch den Verarbeitungscache bearbeiten.</descr>
       </element>
     </module>
     <!-- regvaluelisteditor -->
