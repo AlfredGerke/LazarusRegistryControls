@@ -7,352 +7,288 @@
   ====================================================================
 -->
     <module name="regchecklistbox">
-      <short/>
-      <descr/>
-      <!-- class Visibility: default -->
       <element name="TCustomRegCheckListBox">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Custom-Klasse für die Einführung des Registryzugriffes</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegCheckListBox.FRegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegCheckListBox.FRegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. RegistrySettings</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegCheckListBox.FIsModified">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. IsModified</short>
       </element>
-      <!-- procedure Visibility: private -->
-      <element name="TCustomRegCheckListBox.SetCheckedItemsByList">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckListBox.SetCheckedItemsByList.aList">
-        <short/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckListBox.SetCheckedItemsByList.aCheckOnly">
-        <short/>
-      </element>
-      <!-- function Visibility: private -->
       <element name="TCustomRegCheckListBox.RefreshRegistrySettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys aus TRegistrySource aktualisieren</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegCheckListBox.RefreshRegistrySettings.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- procedure Visibility: private -->
       <element name="TCustomRegCheckListBox.ReadWriteInfo">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwerte lesen oder schreiben</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.ReadWriteInfo.aRead">
-        <short/>
+        <short>Vorgangsflag, (s. regconst.pas)</short>
+        <descr>Wenn aRead=Read dann Datenwert aus der Registry lesen. Wenn aRead=Write dann Datenwert in die Registry schreiben.</descr>
       </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckListBox.ReadWriteInfo.aType">
-        <short/>
-      </element>
-      <!-- function Visibility: private -->
       <element name="TCustomRegCheckListBox.GetItemsByRegistry">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus Listen-Sektion einlesen</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegCheckListBox.GetItemsByRegistry.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckListBox.GetItemsByRegistry.aCheckOnly">
-        <short/>
-      </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckListBox.RefreshMerge">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>MergeData-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird das Merge von Listendaten ein- oder ausgeschaltet.
+Wenn Listendaten nicht vollständig sind und diese aus den Standards ergänzt werden können, kann mit MergeData=True dies durchgeführt werden.
+
+
+<p>Beispiel:</p><p>rlbxCheckListBox1.RegistrySource.RefreshMergeDataProperty(False, rlbxCheckListBox1.Name);</p><p>oder</p><p>RegistrySource1.RefreshMergeDataProperty(False, rlbxCheckListBox1.Name);</p><p>Ein Leerstring anstatt rlbxCheckListBox1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.RefreshMerge.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckListBox.ClearClientItems">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Listen-Sektion der Daten für die Liste löschen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. 
+Wenn ItemsByRegistry der RegistrySettings auf True steht, werden die Daten der Listen-Section aus denen sich die Liste aufbaut gelöscht. 
+Wenn ReadDefaults der RegistrySettings auf True steht wird die Liste aus den Standards neu aufgebaut, ansonsten bleibt die Liste leer.
+
+
+<p>Beispiel:</p><p>rlbxCheckListBox1.RegistrySource.ClearClientItems(rlbxCheckListBox1.Name, True, 'Liste löschen?');</p><p>oder</p><p>RegistrySource1.ClearClientItems(rlbxCheckListBox1.Name, True, 'Liste löschen?'); </p><p>Ein Leerstring anstatt rlbxCheckListBox1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.ClearClientItems.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckListBox.ShowEditDialog">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys bearbeiten</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.
+
+
+<p>Beispiel:</p><p>rlbxCheckListBox1.RegistrySource.ShowClientEditDialog(rlbxCheckListBox1.Name);</p><p>oder</p><p>RegistrySource1.ShowClientEditDialog(rlbxCheckListBox1.Name);</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.ShowEditDialog.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckListBox.FreeRegistrySource">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RegistrySource entfernen</short>
+        <descr>Löscht den eigenen Eintrag aus der Clientliste des angebundenen TRegistrySource-Ojektes und entfernt das Object aus dem eignen Context.
+
+
+
+<p>Beispiel:</p><p>RegistrySource1.FreeRegistrySource(rlbxCheckListBox1.Name);</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.FreeRegistrySource.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckListBox.RefreshWriteAdHoc">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoWriteAdHoc-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird das automatische Schreiben von Daten ein- oder ausgeschaltet.
+
+
+<p>Beispiel:</p><p>rlbxCheckListBox1.RegistrySource.RefreshWriteAdHocProperty(False, rlbxCheckListBox1.Name);</p><p>oder</p><p>RegistrySource1.RefreshWriteAdHocProperty(False, rlbxCheckListBox1.Name);</p><p>Ein Leerstring anstatt rlbxCheckListBox1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.RefreshWriteAdHoc.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckListBox.RefreshSync">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoSyncData-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird die Synchronisation ein- oder ausgeschaltet.
+
+
+<p>Beispiel:</p><p>rlbxCheckListBox1.RegistrySource.RefreshSyncProperty(False, rlbxCheckListBox1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSyncProperty(False, rlbxCheckListBox1.Name);</p><p>Ein Leerstring anstatt rlbxCheckListBox1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.RefreshSync.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckListBox.RefreshSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys aktualiseren (s. RefreshRegistrySettings)</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle RootKeys aus der TRegistrySource aktualisiert.
+
+
+<p>Beispiel:</p><p>rlbxCheckListBox1.RegistrySource.RefreshSettings(rlbxCheckListBox1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSettings(rlbxCheckListBox1.Name);</p><p>Ein Leerstring anstatt rlbxCheckListBox1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.RefreshSettings.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckListBox.RefreshData">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus der Registry lesen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden Daten aus der Registry ausgelesen.
+
+
+
+<p>Beispiel:</p><p>rlbxCheckListBox1.RegistrySource.RefreshClientData(rlbxCheckListBox1.Name);</p><p>oder</p><p>RegistrySource1.RefreshClientData(rlbxCheckListBox1.Name); </p><p>Ein Leerstring anstatt rlbxCheckListBox1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.RefreshData.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegCheckListBox.PostData">
+        <short>Daten in die Registry schreiben</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle Daten, welche noch nicht in die Registry geschrieben wurden in die Registry geschrieben.
+
+
+
+<p>Beispiel:</p><p>rlbxCheckListBox1.RegistrySource.PostClientData(rlbxCheckListBox1.Name);</p><p>oder</p><p>RegistrySource1.PostClientData(rlbxCheckListBox1.Name);</p><p>Ein Leerstring anstatt rlbxCheckListBox1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
+      </element>
+      <element name="TCustomRegCheckListBox.PostData.aMessage">
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
+      </element>
       <element name="TCustomRegCheckListBox.SetName">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>Wird auch den Namen in der Clientliste des angebundenen TRegistrySource-Objektes anpassen.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.SetName.NewName">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- procedure Visibility: protected -->
-      <element name="TCustomRegCheckListBox.ItemClick">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
-      </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckListBox.ItemClick.AIndex">
-        <short/>
-      </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckListBox.OnChangeSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.OnChangeSettings.Sender">
-        <short/>
+        <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegCheckListBox.SetRegistrySource">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.SetRegistrySource.aRegistrySource">
-        <short/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- function Visibility: protected -->
       <element name="TCustomRegCheckListBox.GetEditDialog">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Rootkeys bearbeiten (s. ShowEditDialog)</short>
+        <descr>Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.</descr>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegCheckListBox.GetEditDialog.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.GetEditDialog.aEdit">
-        <short/>
+        <short>Bearbeitungsmodus</short>
+        <descr>s. EditClientRootKeys in TCustomRegistrySource</descr>
       </element>
-      <!-- property Visibility: protected -->
+      <element name="TCustomRegCheckListBox.GetEditDialog.aAtDesignTime">
+        <short>Designstatus</short>
+        <descr>s. TRegBaseForm</descr>
+      </element>
       <element name="TCustomRegCheckListBox.RegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Erweiterte Eigenschaften</short>
+        <descr>s. TCustomRegistrySettings in regtype.pas</descr>
       </element>
-      <!-- property Visibility: protected -->
       <element name="TCustomRegCheckListBox.RegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Zugriff auf die Registry, Verwaltung von Grundschlüsseln, etc.</short>
+        <descr>s. TCustomRegistrySource in regsourcen.pas</descr>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TCustomRegCheckListBox.ClearItems">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Listen-Sektion der Daten für die Liste löschen</short>
+        <descr>Wenn ItemsByRegistry der RegistrySettings auf True steht, werden die Daten der Listen-Section aus denen sich die Liste aufbaut gelöscht. 
+Wenn ReadDefaults der RegistrySettings auf True steht wird die Liste aus den Standards neu aufgebaut, ansonsten bleibt die Liste leer.
+
+
+<p>Beispiel:</p><p>rlbxCheckListBox1.ClearItems(True, 'Liste löschen?');</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.ClearItems.aAskFor">
-        <short/>
+        <short>Bestätigungsabfrage stellen</short>
+        <descr>Wenn True wird eine Bestätigungsabfrage vor dem Löschen der Liste gestellt.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.ClearItems.aMsg">
-        <short/>
+        <short>Bestätigungsabfrage</short>
+        <descr>Die Bestätigungsabfrage muss so gestellt werden, das eine positve Antwort immer mit mrYes bestätigt wird.</descr>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TCustomRegCheckListBox.Click">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TCustomRegCheckListBox.AfterConstruction">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TCustomRegCheckListBox.ReadFromReg">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwert aus der Registry lesen</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegCheckListBox.ReadFromReg.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- function Visibility: public -->
       <element name="TCustomRegCheckListBox.WriteToReg">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwert in die Registry schreiben</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegCheckListBox.WriteToReg.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- argument Visibility: default -->
-      <element name="TCustomRegCheckListBox.WriteToReg.aType">
-        <short/>
-      </element>
-      <!-- constructor Visibility: public -->
       <element name="TCustomRegCheckListBox.Create">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegCheckListBox.Create.AOwner">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- destructor Visibility: public -->
       <element name="TCustomRegCheckListBox.Destroy">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- property Visibility: public -->
       <element name="TCustomRegCheckListBox.IsModified">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Bearbeitungsflag</short>
+        <descr>Wenn sich der Itemindex geändert hat, wird bis zum schreiben in die Registry das Flag auf True gesetzt.</descr>
       </element>
-      <!-- class Visibility: default -->
       <element name="TRegCheckListBox">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Instanzklasse für die LCL</short>
       </element>
-      <!-- property Visibility: published -->
       <element name="TRegCheckListBox.RegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Eigenschaft veröffentlicht</short>
       </element>
-      <!-- property Visibility: published -->
       <element name="TRegCheckListBox.RegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Eigenschaft veröffentlicht</short>
       </element>
-      <!-- procedure Visibility: default -->
       <element name="Register">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>TRegCheckListBox und TRegistryControlComponentEditor für TRegCheckListBox registrieren.</descr>
+      </element>
+      <short>TRegCheckListBox</short>
+      <descr>Das Modul stellt die TRegCheckListBox der LazarusRegistrycontrols zur Verfügung.</descr>
+      <element name="TCustomRegCheckListBox.SetCheckedItemsByList">
+        <short>Checkstatus eines Eintrages setzen</short>
+      </element>
+      <element name="TCustomRegCheckListBox.SaveItemsStatesToReg">
+        <short>Zustand der Einträge sichern</short>
+      </element>
+      <element name="TCustomRegCheckListBox.SaveItemsStatesToReg.aOnlyByItemIndex">
+        <short>Art der Sicherung</short>
+        <descr>Wenn True, wird nur der ItemIndex gesichert, ansonsten wird auch der Checkstatus gesichert.</descr>
+      </element>
+      <element name="TCustomRegCheckListBox.SetCheckedItemsByList.aList">
+        <short>Einträge in der Liste</short>
+      </element>
+      <element name="TCustomRegCheckListBox.SetCheckedItemsByList.aCheckOnly">
+        <short>Art der Bearbeitung</short>
+      </element>
+      <element name="TCustomRegCheckListBox.ReadWriteInfo.aType">
+        <short>test</short>
+      </element>
+      <element name="TCustomRegCheckListBox.GetItemsByRegistry.aCheckOnly">
+        <short>test</short>
+      </element>
+      <element name="TCustomRegCheckListBox.ItemClick">
+        <short>s. LCL Documentation</short>
+      </element>
+      <element name="TCustomRegCheckListBox.ItemClick.AIndex">
+        <short>s. LCL Documentation</short>
       </element>
     </module>
     <!-- regchecklistbox -->

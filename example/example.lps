@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="96">
+    <Units Count="97">
       <Unit0>
         <Filename Value="example.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -21,7 +21,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmmain"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="634"/>
@@ -249,10 +248,13 @@
       <Unit28>
         <Filename Value="..\source\regchecklistbox.pas"/>
         <UnitName Value="regchecklistbox"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="30"/>
-        <CursorPos X="1" Y="226"/>
-        <UsageCount Value="32"/>
+        <TopLine Value="1"/>
+        <CursorPos X="41" Y="29"/>
+        <UsageCount Value="34"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
       <Unit29>
@@ -789,11 +791,19 @@
         <CursorPos X="3" Y="163"/>
         <UsageCount Value="9"/>
       </Unit95>
+      <Unit96>
+        <Filename Value="..\doc\regchecklistbox.xml"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="XML"/>
+      </Unit96>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="26" HistoryIndex="25">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="frmmain.pas"/>
         <Caret Line="715" Column="3" TopLine="711"/>
@@ -898,6 +908,18 @@
         <Filename Value="frmmain.pas"/>
         <Caret Line="667" Column="45" TopLine="634"/>
       </Position26>
+      <Position27>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="29" Column="35" TopLine="11"/>
+      </Position27>
+      <Position28>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="115" Column="54" TopLine="83"/>
+      </Position28>
+      <Position29>
+        <Filename Value="..\source\regchecklistbox.pas"/>
+        <Caret Line="267" Column="45" TopLine="236"/>
+      </Position29>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

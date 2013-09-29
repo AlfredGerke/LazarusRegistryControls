@@ -60,8 +60,6 @@ Wenn ItemsByRegistry der RegistrySettings auf True steht, werden die Daten der L
 Wenn ReadDefaults der RegistrySettings auf True steht wird die Liste aus den Standards neu aufgebaut, ansonsten bleibt die Liste leer.
 
 
-
-
 <p>Beispiel:</p><p>rcobComboBox1.RegistrySource.ClearClientItems(rcobComboBox1.Name, True, 'Liste löschen?');</p><p>oder</p><p>RegistrySource1.ClearClientItems(rcobComboBox1.Name, True, 'Liste löschen?'); </p><p>Ein Leerstring anstatt rcobComboBox1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
         </descr>
       </element>
@@ -266,7 +264,7 @@ Wenn ReadDefaults der RegistrySettings auf True steht wird die Liste aus den Sta
         <descr>TRegComboBox und TRegistryControlComponentEditor für TRegComboBox registrieren.</descr>
       </element>
       <short>TRegComboBox</short>
-      <descr>Das Modul stellt die TRegComboBoxl der LazarusRegistrycontrols zur Verfügung.</descr>
+      <descr>Das Modul stellt die TRegComboBox der LazarusRegistrycontrols zur Verfügung.</descr>
     </module>
     <!-- regcombobox -->
   </package>

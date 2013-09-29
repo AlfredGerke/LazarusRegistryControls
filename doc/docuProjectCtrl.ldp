@@ -10,15 +10,18 @@ ShowPrivate=1
 Import=
 
 [Descriptions]
-Count=5
+Count=8
 File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regcheckbox.xml
 File2=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regedit.xml
 File3=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regradiobutton.xml
 File4=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\reglabel.xml
 File5=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regcombobox.xml
+File6=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\reglistbox.xml
+File7=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regradiogroup.xml
+File8=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regchecklistbox.xml
 
 [Sources]
-Count=5
+Count=8
 File1=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regcheckbox.pas
 Options1=
 File2=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regedit.pas
@@ -29,3 +32,9 @@ File4=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\reglabel.pas
 Options4=
 File5=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regcombobox.pas
 Options5=
+File6=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\reglistbox.pas
+Options6=
+File7=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regradiogroup.pas
+Options7=
+File8=C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regchecklistbox.pas
+Options8=

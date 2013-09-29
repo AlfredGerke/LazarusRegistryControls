@@ -7,322 +7,264 @@
   ====================================================================
 -->
     <module name="regradiogroup">
-      <short/>
-      <descr/>
-      <!-- class Visibility: default -->
       <element name="TCustomRegRadioGroup">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Custom-Klasse für die Einführung des Registryzugriffes</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegRadioGroup.FRegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. RegistrySoruce</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegRadioGroup.FRegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. RegistrySettings</short>
       </element>
-      <!-- variable Visibility: private -->
       <element name="TCustomRegRadioGroup.FIsModified">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>s. IsModified</short>
       </element>
-      <!-- function Visibility: private -->
       <element name="TCustomRegRadioGroup.RefreshRegistrySettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys aus TRegistrySource aktualisieren</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegRadioGroup.RefreshRegistrySettings.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- procedure Visibility: private -->
       <element name="TCustomRegRadioGroup.ReadWriteInfo">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwerte lesen oder schreiben</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.ReadWriteInfo.aRead">
-        <short/>
+        <short>Vorgangsflag, (s. regconst.pas)</short>
+        <descr>Wenn aRead=Read dann Datenwert aus der Registry lesen. Wenn aRead=Write dann Datenwert in die Registry schreiben.</descr>
       </element>
-      <!-- function Visibility: private -->
       <element name="TCustomRegRadioGroup.GetItemsByRegistry">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus Listen-Sektion einlesen</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegRadioGroup.GetItemsByRegistry.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegRadioGroup.RefreshMerge">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>MergeData-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird das Merge von Listendaten ein- oder ausgeschaltet.
+Wenn Listendaten nicht vollständig sind und diese aus den Standards ergänzt werden können, kann mit MergeData=True dies durchgeführt werden.
+
+
+<p>Beispiel:</p><p>rrgrpRadioGroup1.RegistrySource.RefreshMergeDataProperty(False, rrgrpRadioGroup1.Name);</p><p>oder</p><p>RegistrySource1.RefreshMergeDataProperty(False, rrgrpRadioGroup1.Name);</p><p>Ein Leerstring anstatt rrgrpRadioGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.RefreshMerge.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegRadioGroup.ClearClientItems">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Listen-Sektion der Daten für die Liste löschen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. 
+Wenn ItemsByRegistry der RegistrySettings auf True steht, werden die Daten der Listen-Section aus denen sich die Liste aufbaut gelöscht. 
+Wenn ReadDefaults der RegistrySettings auf True steht wird die Liste aus den Standards neu aufgebaut, ansonsten bleibt die Liste leer.
+
+
+<p>Beispiel:</p><p>rrgrpRadioGroup1.RegistrySource.ClearClientItems(rrgrpRadioGroup1.Name, True, 'Liste löschen?');</p><p>oder</p><p>RegistrySource1.ClearClientItems(rrgrpRadioGroup1.Name, True, 'Liste löschen?'); </p><p>Ein Leerstring anstatt rrgrpRadioGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.ClearClientItems.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegRadioGroup.ShowEditDialog">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys bearbeiten</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.
+
+
+
+<p>Beispiel:</p><p>rrgrpRadioGroup1.RegistrySource.ShowClientEditDialog(rrgrpRadioGroup1.Name);</p><p>oder</p><p>RegistrySource1.ShowClientEditDialog(rrgrpRadioGroup1.Name);</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.ShowEditDialog.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegRadioGroup.FreeRegistrySource">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RegistrySource entfernen</short>
+        <descr>Löscht den eigenen Eintrag aus der Clientliste des angebundenen TRegistrySource-Ojektes und entfernt das Object aus dem eignen Context.
+
+
+<p>Beispiel:</p><p>RegistrySource1.FreeRegistrySource(rrgrpRadioGroup1.Name);</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.FreeRegistrySource.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegRadioGroup.RefreshWriteAdHoc">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoWriteAdHoc-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird das automatische Schreiben von Daten ein- oder ausgeschaltet.
+
+
+
+<p>Beispiel:</p><p>rrgrpRadioGroup1.RegistrySource.RefreshWriteAdHocProperty(False, rrgrpRadioGroup1.Name);</p><p>oder</p><p>RegistrySource1.RefreshWriteAdHocProperty(False, rrgrpRadioGroup1.Name);</p><p>Ein Leerstring anstatt rrgrpRadioGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.RefreshWriteAdHoc.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegRadioGroup.RefreshSync">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>DoSyncData-Eigenschaft setzen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es wird die Synchronisation ein- oder ausgeschaltet.
+
+
+<p>Beispiel:</p><p>rrgrpRadioGroup1.RegistrySource.RefreshSyncProperty(False, rrgrpRadioGroup1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSyncProperty(False, rrgrpRadioGroup1.Name);</p><p>Ein Leerstring anstatt rrgrpRadioGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.RefreshSync.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegRadioGroup.RefreshSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>RootKeys aktualiseren (s. RefreshRegistrySettings)</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle RootKeys aus der TRegistrySource aktualisiert.
+
+
+
+<p>Beispiel:</p><p>rrgrpRadioGroup1.RegistrySource.RefreshSettings(rrgrpRadioGroup1.Name);</p><p>oder</p><p>RegistrySource1.RefreshSettings(rrgrpRadioGroup1.Name);</p><p>Ein Leerstring anstatt rrgrpRadioGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.RefreshSettings.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegRadioGroup.RefreshData">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Daten aus der Registry lesen</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden Daten aus der Registry ausgelesen.
+
+
+<p>Beispiel:</p><p>rrgrpRadioGroup1.RegistrySource.RefreshClientData(rrgrpRadioGroup1.Name);</p><p>oder</p><p>RegistrySource1.RefreshClientData(rrgrpRadioGroup1.Name); </p><p>Ein Leerstring anstatt rrgrpRadioGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.RefreshData.aMessage">
-        <short/>
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
-      <element name="TCustomRegRadioGroup.CheckItemIndexChanged">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+      <element name="TCustomRegRadioGroup.PostData">
+        <short>Daten in die Registry schreiben</short>
+        <descr>Die Methode wird von TRegistrySource über eine Message aufgerufen. Es werden alle Daten, welche noch nicht in die Registry geschrieben wurden in die Registry geschrieben.
+
+
+<p>Beispiel:</p><p>rrgrpRadioGroup1.RegistrySource.PostClientData(rrgrpRadioGroup1.Name);</p><p>oder</p><p>RegistrySource1.PostClientData(rrgrpRadioGroup1.Name);</p><p>Ein Leerstring anstatt rrgrpRadioGroup1.Name wird alle angebundenen Steuerelemente einer RegistrySource bearbeiten.</p>
+        </descr>
       </element>
-      <!-- procedure Visibility: protected -->
-      <element name="TCustomRegRadioGroup.Click">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+      <element name="TCustomRegRadioGroup.PostData.aMessage">
+        <short>Von TRegistrySource gesendete Message</short>
+        <descr>s. regmsg.pas</descr>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegRadioGroup.SetName">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>Wird auch den Namen in der Clientliste des angebundenen TRegistrySource-Objektes anpassen.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.SetName.NewName">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- procedure Visibility: protected -->
+      <element name="TCustomRegRadioGroup.Change">
+        <short>s. LCL Documentation</short>
+      </element>
       <element name="TCustomRegRadioGroup.OnChangeSettings">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.OnChangeSettings.Sender">
-        <short/>
+        <short>s. TOnRegistrySettingsChange in regtype.pas</short>
       </element>
-      <!-- procedure Visibility: protected -->
       <element name="TCustomRegRadioGroup.SetRegistrySource">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.SetRegistrySource.aRegistrySource">
-        <short/>
+        <short>s. RegistrySource</short>
       </element>
-      <!-- function Visibility: protected -->
       <element name="TCustomRegRadioGroup.GetEditDialog">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Rootkeys bearbeiten (s. ShowEditDialog)</short>
+        <descr>Es wird der Bearbeitungsdialog für die RootKeys zur Verfügung gestellt.</descr>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegRadioGroup.GetEditDialog.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.GetEditDialog.aEdit">
-        <short/>
+        <short>Bearbeitungsmodus</short>
+        <descr>s. EditClientRootKeys in TCustomRegistrySource</descr>
       </element>
-      <!-- property Visibility: protected -->
+      <element name="TCustomRegRadioGroup.GetEditDialog.aAtDesignTime">
+        <short>Designstatus</short>
+        <descr>s. TRegBaseForm</descr>
+      </element>
       <element name="TCustomRegRadioGroup.RegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Erweiterte Eigenschaften</short>
+        <descr>s. TCustomRegistrySettings in regtype.pas</descr>
       </element>
-      <!-- property Visibility: protected -->
       <element name="TCustomRegRadioGroup.RegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Zugriff auf die Registry, Verwaltung von Grundschlüsseln, etc.</short>
+        <descr>s. TCustomRegistrySource in regsourcen.pas</descr>
       </element>
-      <!-- procedure Visibility: public -->
       <element name="TCustomRegRadioGroup.ClearItems">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Listen-Sektion der Daten für die Liste löschen</short>
+        <descr>Wenn ItemsByRegistry der RegistrySettings auf True steht, werden die Daten der Listen-Section aus denen sich die Liste aufbaut gelöscht. 
+Wenn ReadDefaults der RegistrySettings auf True steht wird die Liste aus den Standards neu aufgebaut, ansonsten bleibt die Liste leer.
+
+
+<p>Beispiel:</p><p>rrgrpRadioGroup1.ClearItems(True, 'Liste löschen?');</p>
+        </descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.ClearItems.aAskFor">
-        <short/>
+        <short>Bestätigungsabfrage stellen</short>
+        <descr>Wenn True wird eine Bestätigungsabfrage vor dem Löschen der Liste gestellt.</descr>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.ClearItems.aMsg">
-        <short/>
+        <short>Bestätigungsabfrage</short>
+        <descr>Die Bestätigungsabfrage muss so gestellt werden, das eine positve Antwort immer mit mrYes bestätigt wird.</descr>
       </element>
-      <!-- procedure Visibility: public -->
+      <element name="TCustomRegRadioGroup.Click">
+        <short>s. LCL Documentation</short>
+      </element>
       <element name="TCustomRegRadioGroup.AfterConstruction">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- function Visibility: public -->
       <element name="TCustomRegRadioGroup.ReadFromReg">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwert aus der Registry lesen</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegRadioGroup.ReadFromReg.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- function Visibility: public -->
       <element name="TCustomRegRadioGroup.WriteToReg">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Datenwert in die Registry schreiben</short>
       </element>
-      <!-- function result Visibility: default -->
       <element name="TCustomRegRadioGroup.WriteToReg.Result">
-        <short/>
+        <short>Ergebnis des Vorganges</short>
+        <descr>Wenn erfolgreich dann True</descr>
       </element>
-      <!-- constructor Visibility: public -->
       <element name="TCustomRegRadioGroup.Create">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- argument Visibility: default -->
       <element name="TCustomRegRadioGroup.Create.AOwner">
-        <short/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- destructor Visibility: public -->
       <element name="TCustomRegRadioGroup.Destroy">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
       </element>
-      <!-- property Visibility: public -->
       <element name="TCustomRegRadioGroup.IsModified">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Bearbeitungsflag</short>
+        <descr>Wenn sich der Itemindex geändert hat, wird bis zum schreiben in die Registry das Flag auf True gesetzt.</descr>
       </element>
-      <!-- class Visibility: default -->
       <element name="TRegRadioGroup">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>Instanzklasse für die LCL</short>
       </element>
-      <!-- property Visibility: published -->
       <element name="TRegRadioGroup.RegistrySettings">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Eigenschaft veröffentlicht</short>
       </element>
-      <!-- property Visibility: published -->
       <element name="TRegRadioGroup.RegistrySource">
-        <short/>
-        <descr/>
-        <seealso/>
+        <short>Eigenschaft veröffentlicht</short>
       </element>
-      <!-- procedure Visibility: default -->
       <element name="Register">
-        <short/>
-        <descr/>
-        <errors/>
-        <seealso/>
+        <short>s. LCL Documentation</short>
+        <descr>TRegRadioGroup und TRegistryControlComponentEditor für TRegRadioGroup registrieren.</descr>
       </element>
+      <short>TRegRadioGroup</short>
+      <descr>Das Modul stellt die TRegRadioGroup der LazarusRegistrycontrols zur Verfügung.</descr>
     </module>
     <!-- regradiogroup -->
   </package>
