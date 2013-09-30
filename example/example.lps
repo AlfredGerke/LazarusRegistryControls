@@ -9,10 +9,13 @@
         <Filename Value="example.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="example"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="17" Y="10"/>
+        <CursorPos X="1" Y="19"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain.pas"/>
@@ -21,7 +24,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmmain"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="634"/>
@@ -801,7 +803,7 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="26" HistoryIndex="25">
+    <JumpHistory Count="27" HistoryIndex="26">
       <Position1>
         <Filename Value="frmmain.pas"/>
         <Caret Line="715" Column="3" TopLine="711"/>
@@ -906,6 +908,10 @@
         <Filename Value="frmmain.pas"/>
         <Caret Line="667" Column="45" TopLine="634"/>
       </Position26>
+      <Position27>
+        <Filename Value="example.lpr"/>
+        <Caret Line="10" Column="17" TopLine="1"/>
+      </Position27>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

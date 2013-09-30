@@ -9,6 +9,9 @@
       <Title Value="example"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
+      <XPManifest>
+        <ExecutionLevel Value="1"/>
+      </XPManifest>
       <Icon Value="0"/>
     </General>
     <i18n>
