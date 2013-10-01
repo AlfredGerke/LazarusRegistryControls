@@ -1,6 +1,6 @@
 program example;
 
-{$mode objfpc}{$H+}
+{$mode Delphi}{$H+}
 
 uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}

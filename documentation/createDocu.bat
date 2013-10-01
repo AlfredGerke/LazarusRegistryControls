@@ -1,2 +1,2 @@
-makeDocu C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\documentation chm
-echo makeDocu C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\documentation html
+echo makeDocu C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\doc C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\source C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\documentation chm
+makeDocu C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\doc C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\source C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\documentation html

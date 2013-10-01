@@ -4,14 +4,14 @@ object Main: TMain
   Top = 216
   Width = 811
   Caption = 'RegistryControls in Aktion'
-  ClientHeight = 469
+  ClientHeight = 468
   ClientWidth = 811
   Menu = MainMenu1
   OnShow = FormShow
-  LCLVersion = '1.0.10.0'
+  LCLVersion = '1.0.12.0'
   object PageControl1: TPageControl
     Left = 0
-    Height = 469
+    Height = 468
     Top = 0
     Width = 811
     ActivePage = tabSingleValue
@@ -20,7 +20,7 @@ object Main: TMain
     TabOrder = 0
     object tabSingleValue: TTabSheet
       Caption = 'Einzelwerte'
-      ClientHeight = 443
+      ClientHeight = 440
       ClientWidth = 803
       object pnlTop: TPanel
         Left = 0
@@ -37,6 +37,12 @@ object Main: TMain
           Top = 5
           Width = 160
           Action = acRefreshData
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 0
         end
         object btnWriteAdHocOn: TButton
@@ -45,6 +51,12 @@ object Main: TMain
           Top = 5
           Width = 259
           Action = acWriteAdHocOn
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 1
         end
         object btnSyncDataOn: TButton
@@ -53,6 +65,12 @@ object Main: TMain
           Top = 5
           Width = 200
           Action = acSyncDataOn
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 2
         end
         object btnWriteAdHocOff: TButton
@@ -61,6 +79,12 @@ object Main: TMain
           Top = 31
           Width = 259
           Action = acWriteAdHocOff
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 3
         end
         object btnSyncDataOf: TButton
@@ -69,14 +93,26 @@ object Main: TMain
           Top = 31
           Width = 200
           Action = acSyncDataOff
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 4
         end
         object cbxClientNameStatic: TRegComboBox
           Left = 476
-          Height = 21
+          Height = 22
           Top = 35
           Width = 159
-          ItemHeight = 13
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ItemHeight = 14
+          ParentFont = False
           Style = csDropDownList
           TabOrder = 5
           RegistrySettings.CanRead = True
@@ -98,23 +134,29 @@ object Main: TMain
           Top = 5
           Width = 160
           Action = acShowClientEditDialogSingle
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 6
         end
       end
       object pnlClient: TPanel
         Left = 0
-        Height = 380
+        Height = 377
         Top = 63
         Width = 803
         Align = alClient
-        ClientHeight = 380
+        ClientHeight = 377
         ClientWidth = 803
         TabOrder = 1
         object lblEditSingleValue1: TLabel
           Left = 20
           Height = 15
           Top = 11
-          Width = 122
+          Width = 121
           Caption = 'TRegEdit: Text verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
@@ -128,7 +170,7 @@ object Main: TMain
         end
         object redtEditStatic: TRegEdit
           Left = 20
-          Height = 21
+          Height = 23
           Top = 46
           Width = 248
           TabOrder = 0
@@ -144,7 +186,7 @@ object Main: TMain
         end
         object rcbxCheckBoxStatic: TRegCheckBox
           Left = 20
-          Height = 18
+          Height = 19
           Top = 123
           Width = 177
           Caption = 'TRegCheckBox: ItemIndex verw.'
@@ -168,7 +210,7 @@ object Main: TMain
         end
         object rrbRadioButtonStatic1: TRegRadioButton
           Left = 20
-          Height = 18
+          Height = 19
           Top = 150
           Width = 201
           Caption = 'TRegRadioButton: Checkstatus verw.'
@@ -192,7 +234,7 @@ object Main: TMain
         end
         object rrbRadioButtonStatic2: TRegRadioButton
           Left = 20
-          Height = 18
+          Height = 19
           Top = 175
           Width = 201
           Caption = 'TRegRadioButton: Checkstatus verw.'
@@ -265,7 +307,7 @@ object Main: TMain
             'statischer Eintrag 5'
             'statischer Eintrag 6'
           )
-          ItemHeight = 13
+          ItemHeight = 15
           TabOrder = 5
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
@@ -282,10 +324,10 @@ object Main: TMain
         end
         object redtComboBoxStatic: TRegComboBox
           Left = 20
-          Height = 21
+          Height = 23
           Top = 91
           Width = 248
-          ItemHeight = 13
+          ItemHeight = 15
           Items.Strings = (
             'statischer Eintrag 1'
             'statischer Eintrag 2'
@@ -368,7 +410,7 @@ object Main: TMain
             'statischer Eintrag 4'
             'statischer Eintrag 5'
           )
-          ItemHeight = 15
+          ItemHeight = 17
           TabOrder = 6
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
@@ -463,10 +505,16 @@ object Main: TMain
         end
         object rcbxHintOnCustomItemCheck: TRegCheckBox
           Left = 548
-          Height = 17
+          Height = 19
           Top = 179
-          Width = 244
+          Width = 243
           Caption = 'Hinweise OnItemClick vs. OnCustomItemCheck'
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 9
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
@@ -522,7 +570,7 @@ object Main: TMain
     end
     object tabList: TTabSheet
       Caption = 'Listen'
-      ClientHeight = 443
+      ClientHeight = 440
       ClientWidth = 803
       object pnlTopList: TPanel
         Left = 0
@@ -539,6 +587,12 @@ object Main: TMain
           Top = 5
           Width = 160
           Action = acRefreshDataList
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 4
         end
         object btnSyncDataOfList: TButton
@@ -547,6 +601,12 @@ object Main: TMain
           Top = 31
           Width = 200
           Action = acSyncDataListOff
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 3
         end
         object btnSyncDataOnList: TButton
@@ -555,6 +615,12 @@ object Main: TMain
           Top = 5
           Width = 200
           Action = acSyncDataListOn
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 2
         end
         object btnWriteAdHocOnList: TButton
@@ -563,6 +629,12 @@ object Main: TMain
           Top = 5
           Width = 259
           Action = acWriteAdHocOnList
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 0
         end
         object btnWriteAdHocOffList: TButton
@@ -571,14 +643,26 @@ object Main: TMain
           Top = 30
           Width = 259
           Action = acWriteAdHocOffList
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 1
         end
         object cbxClientNameDynamic: TRegComboBox
           Left = 475
-          Height = 21
+          Height = 22
           Top = 34
           Width = 160
-          ItemHeight = 13
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ItemHeight = 14
+          ParentFont = False
           Style = csDropDownList
           TabOrder = 5
           RegistrySettings.CanRead = True
@@ -600,16 +684,22 @@ object Main: TMain
           Top = 5
           Width = 160
           Action = acShowClientEditDialogList
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 6
         end
       end
       object pnlClientList: TPanel
         Left = 0
-        Height = 380
+        Height = 377
         Top = 63
         Width = 803
         Align = alClient
-        ClientHeight = 380
+        ClientHeight = 377
         ClientWidth = 803
         TabOrder = 1
         object rgrpRadioGroupDynamic: TRegRadioGroup
@@ -665,10 +755,10 @@ object Main: TMain
         end
         object redtComboBoxDynamic: TRegComboBox
           Left = 20
-          Height = 21
+          Height = 23
           Top = 46
           Width = 248
-          ItemHeight = 13
+          ItemHeight = 15
           TabOrder = 0
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True
@@ -860,7 +950,7 @@ object Main: TMain
     end
     object tabKombination: TTabSheet
       Caption = 'Kombinationen'
-      ClientHeight = 443
+      ClientHeight = 440
       ClientWidth = 803
       object pnlTopKombination: TPanel
         Left = 0
@@ -877,6 +967,12 @@ object Main: TMain
           Top = 30
           Width = 176
           Action = acRefreshDataKombi
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 0
         end
         object btnClearItems: TButton
@@ -885,6 +981,12 @@ object Main: TMain
           Top = 5
           Width = 176
           Action = acClearItems
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 1
         end
         object btnShowClientDialogKombi: TButton
@@ -893,6 +995,12 @@ object Main: TMain
           Top = 5
           Width = 160
           Action = acShowClientEditDialogKombi
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 2
         end
         object btnSetMergePropertyOn: TButton
@@ -901,6 +1009,12 @@ object Main: TMain
           Top = 5
           Width = 176
           Action = acRefreshMergeDataOn
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 3
         end
         object btnSetMergePropertyOff: TButton
@@ -910,14 +1024,26 @@ object Main: TMain
           Width = 176
           Action = acRefreshMergeDataOff
           Caption = 'Listen nicht mit Defaults mischen'
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 4
         end
         object cbxClientNameKombi: TRegComboBox
           Left = 8
-          Height = 21
+          Height = 22
           Top = 34
           Width = 160
-          ItemHeight = 13
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ItemHeight = 14
+          ParentFont = False
           Style = csDropDownList
           TabOrder = 5
           RegistrySettings.CanRead = True
@@ -936,16 +1062,16 @@ object Main: TMain
       end
       object pnlClientKombination: TPanel
         Left = 0
-        Height = 380
+        Height = 377
         Top = 63
         Width = 803
         Align = alClient
-        ClientHeight = 380
+        ClientHeight = 377
         ClientWidth = 803
         TabOrder = 1
         object PageControl2: TPageControl
           Left = 1
-          Height = 378
+          Height = 375
           Top = 1
           Width = 801
           ActivePage = tabGroupIndex_1
@@ -954,11 +1080,11 @@ object Main: TMain
           TabOrder = 0
           object tabGroupIndex_1: TTabSheet
             Caption = 'GroupIndex = 1'
-            ClientHeight = 352
+            ClientHeight = 347
             ClientWidth = 793
             object redtEditKombi: TRegEdit
               Left = 6
-              Height = 21
+              Height = 23
               Top = 4
               Width = 173
               TabOrder = 0
@@ -1012,7 +1138,7 @@ object Main: TMain
           end
           object tabGroupIndex_2: TTabSheet
             Caption = 'GroupIndex = 2'
-            ClientHeight = 352
+            ClientHeight = 347
             ClientWidth = 793
             object rcgCheckedGroupKombi: TRegCheckGroup
               Left = 214
@@ -1065,9 +1191,9 @@ object Main: TMain
             end
             object rcbxCheckBoxKombi: TRegCheckBox
               Left = 6
-              Height = 17
+              Height = 19
               Top = 4
-              Width = 44
+              Width = 45
               Caption = 'Key1'
               TabOrder = 2
               RegistrySettings.CanRead = True
@@ -1113,7 +1239,7 @@ object Main: TMain
           end
           object tabGroupIndex_3: TTabSheet
             Caption = 'GroupIndex = 3'
-            ClientHeight = 352
+            ClientHeight = 347
             ClientWidth = 793
             object rlblGroupIndex3: TRegLabel
               Left = 6
@@ -1141,7 +1267,7 @@ object Main: TMain
             end
             object redtGroupIndex3: TRegEdit
               Left = 6
-              Height = 21
+              Height = 23
               Top = 51
               Width = 216
               TabOrder = 0
@@ -1162,7 +1288,7 @@ object Main: TMain
     end
     object TabSheet1: TTabSheet
       Caption = 'PreferStrings'
-      ClientHeight = 443
+      ClientHeight = 440
       ClientWidth = 803
       object pnlTopPrefereStrings: TPanel
         Left = 0
@@ -1179,6 +1305,12 @@ object Main: TMain
           Top = 5
           Width = 259
           Action = acWriteAdHocOnPS
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 0
         end
         object btnWriteAdHocOff1: TButton
@@ -1187,6 +1319,12 @@ object Main: TMain
           Top = 31
           Width = 259
           Action = acWriteAdHocOffPS
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 1
         end
         object btnSyncDataOf1: TButton
@@ -1195,6 +1333,12 @@ object Main: TMain
           Top = 31
           Width = 200
           Action = acSyncDataPSOff
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 2
         end
         object btnSyncDataOn1: TButton
@@ -1203,6 +1347,12 @@ object Main: TMain
           Top = 5
           Width = 200
           Action = acSyncDataPSOn
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 3
         end
         object btnRefreshControls1: TButton
@@ -1211,14 +1361,26 @@ object Main: TMain
           Top = 5
           Width = 160
           Action = acRefreshDataPS
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 4
         end
         object cbxClientNameStaticPS: TRegComboBox
           Left = 476
-          Height = 21
+          Height = 22
           Top = 35
           Width = 159
-          ItemHeight = 13
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ItemHeight = 14
+          ParentFont = False
           Style = csDropDownList
           TabOrder = 5
           RegistrySettings.CanRead = True
@@ -1240,23 +1402,29 @@ object Main: TMain
           Top = 5
           Width = 160
           Action = acShowClientEditDialogPS
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 6
         end
       end
       object pnlClientPrefereStrings: TPanel
         Left = 0
-        Height = 380
+        Height = 377
         Top = 63
         Width = 803
         Align = alClient
-        ClientHeight = 380
+        ClientHeight = 377
         ClientWidth = 803
         TabOrder = 1
         object lblEditSingleValue2: TLabel
           Left = 20
           Height = 15
           Top = 11
-          Width = 122
+          Width = 121
           Caption = 'TRegEdit: Text verwalten'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
@@ -1270,7 +1438,7 @@ object Main: TMain
         end
         object redtEditStaticPS: TRegEdit
           Left = 20
-          Height = 21
+          Height = 23
           Top = 46
           Width = 248
           TabOrder = 0
@@ -1302,10 +1470,10 @@ object Main: TMain
         end
         object redtComboBoxStaticPS: TRegComboBox
           Left = 20
-          Height = 21
+          Height = 23
           Top = 91
           Width = 248
-          ItemHeight = 13
+          ItemHeight = 15
           Items.Strings = (
             'statischer Eintrag 1'
             'statischer Eintrag 2'
@@ -1330,7 +1498,7 @@ object Main: TMain
         end
         object rcbxCheckBoxStaticPS: TRegCheckBox
           Left = 20
-          Height = 18
+          Height = 19
           Top = 123
           Width = 177
           Caption = 'TRegCheckBox: ItemIndex verw.'
@@ -1354,7 +1522,7 @@ object Main: TMain
         end
         object rrbRadioButtonStaticPS: TRegRadioButton
           Left = 20
-          Height = 18
+          Height = 19
           Top = 150
           Width = 201
           Caption = 'TRegRadioButton: Checkstatus verw.'
@@ -1378,7 +1546,7 @@ object Main: TMain
         end
         object rrbRadioButtonStaticPS2: TRegRadioButton
           Left = 20
-          Height = 18
+          Height = 19
           Top = 175
           Width = 201
           Caption = 'TRegRadioButton: Checkstatus verw.'
@@ -1429,7 +1597,7 @@ object Main: TMain
             'statischer Eintrag 5'
             'statischer Eintrag 6'
           )
-          ItemHeight = 13
+          ItemHeight = 15
           TabOrder = 5
           RegistrySettings.CanRead = True
           RegistrySettings.CanWrite = True

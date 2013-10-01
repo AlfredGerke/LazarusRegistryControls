@@ -77,14 +77,14 @@ LazarusRegistryControls (LRC): *?.?.? (in Progress)*
 Bei der Entwicklung wurde auf relative Pfadangaben für die IDE-Umgebung geachtet.
 Trotzdem haben sich in einigen Dateien absoulte Pfade eingefunden. Dabei handelt 
 es sich immer um Pfadangaben für die Dokumentation. Der Pfadanteil 
-C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\ muss in folgenden Dateien angepasst 
+`C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\` muss in folgenden Dateien angepasst 
 werden:        
 
 - docuProject.ldp in ..\doc\    
 - registrycontrols.lpk in ..\package\    
 - registrysource.lpk in ..\package\    
 - _makeskel.bat in ..\soruce\   
-- makeChm.bat in ..\documentation\ 
+- createDocu.bat in ..\documentation\ 
 
 
 4 LazarusRegistryControls (LRC) Funktionalität

@@ -19,7 +19,9 @@
       <OutDir Value="..\language"/>
     </i18n>
     <VersionInfo>
-      <StringTable ProductVersion=""/>
+      <UseVersionInfo Value="True"/>
+      <MinorVersionNr Value="9"/>
+      <StringTable Comments="0.9 M1" CompanyName="ExampleFactory" FileDescription="Beispiel für die Anwendung der LRC" InternalName="example.exe" OriginalFilename="example.exe" ProductName="Example" ProductVersion=""/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>

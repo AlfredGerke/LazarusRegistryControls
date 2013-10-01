@@ -1,3 +1,3 @@
 echo ACHTUNG: Es besteht eine Dokumentation für regtype.pas und regsourcen.pas. Nachfolgende Einträge nicht ohne Prüfung dieser Docu auskommentieren
-echo makeskel --input="-dfpdoc C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regtype.pas" --output="C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regtype.xml" --package=RegistrySource > _makeskel.log
-echo makeskel --input="-dfpdoc C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\source\regsourcen.pas" --output="C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc\regsourcen.xml" --package=RegistrySource >> _makeskel.log
+echo makeskel --input="-dfpdoc C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\source\regtype.pas" --output="C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\doc\regtype.xml" --package=RegistrySource > _makeskel.log
+echo makeskel --input="-dfpdoc C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\source\regsourcen.pas" --output="C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\doc\regsourcen.xml" --package=RegistrySource >> _makeskel.log

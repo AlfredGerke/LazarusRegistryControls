@@ -17,7 +17,11 @@ Die Beispielanwendung *example.exe* soll demonstrieren, wie mit den LazarusRegis
 einfache Art und Weise ein Zugriff auf die Registry hergestellt werden kann, ohne dabei
 viel Code schreiben zu müssen (möglichst keinen).    
 Die notwendigen Beispieleinträge in der Registry werden über die Funktion *Datei\Beispieleinträge erstellen*
-angelegt und können über die Funktion *Datei\Beispieleinträge entfernen* entfernt werden.
+angelegt und können über die Funktion *Datei\Beispieleinträge entfernen* entfernt werden.     
+Das Beispiel ermöglicht das Analgen von Standards in `HKEY_LOCAL_MACHINE`. Zu diesem
+Zweck wurde für Windowsplattformen > **WinXP** für die UAC die höchst verfügbare Ausfürhungsebenene gewählt.
+Die Anwendung verlangt beim Start eine Autorisierung durch den Aufrufer. 
+
 
 Languages
 ---------

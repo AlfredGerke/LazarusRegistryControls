@@ -96,7 +96,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
         <UnitName Value="regbaseform"/>
       </Item12>
     </Files>
-    <LazDoc Paths="C:\Sourcen\Projekte\SaE\Lazarus\regcontrols\doc" PackageName="RegistrySource"/>
+    <LazDoc Paths="C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\doc" PackageName="RegistrySource"/>
     <i18n>
       <EnableI18N Value="True"/>
       <OutDir Value="..\language"/>
