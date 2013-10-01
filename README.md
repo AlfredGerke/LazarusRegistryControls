@@ -1,4 +1,4 @@
-***(in Progress...)***
+***(aktuell LRC 0.9 M1)***
 
 LazarusRegistryControls (LRC)
 =============================
@@ -67,7 +67,7 @@ vorliegenden Version nur unter Windows sinnvoll.
 ## 3.1 Versionen       
 Lazarus: 1.0.10 / 1.0.12   
 FPC: 2.6.2     
-LazarusRegistryControls (LRC): *?.?.? (in Progress)*            
+LazarusRegistryControls (LRC): *LRC 0.9 M1*            
 
 ## 3.2 Reihenfolge    
 - registrysource.lpk
