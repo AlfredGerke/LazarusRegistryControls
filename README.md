@@ -80,7 +80,8 @@ es sich immer um Pfadangaben für die Dokumentation. Der Pfadanteil
 `C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\` muss in folgenden Dateien angepasst 
 werden:        
 
-- docuProject.ldp in ..\doc\    
+- docuProject.ldp in ..\doc\   
+- docuProjectCtrl.ldp in ..\doc\ 
 - registrycontrols.lpk in ..\package\    
 - registrysource.lpk in ..\package\    
 - _makeskel.bat in ..\soruce\   
