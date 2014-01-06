@@ -65,7 +65,7 @@ Für die Installation sind keine zusätzlichen Packages (etc.) notwendig. In der
 vorliegenden Version nur unter Windows sinnvoll.   
 
 ## 3.1 Versionen       
-Lazarus: 1.0.10 / 1.0.12   
+Lazarus: 1.0.10 / 1.0.12  / 1.0.14 
 FPC: 2.6.2     
 LazarusRegistryControls (LRC): *LRC 0.9 M1*            
 
