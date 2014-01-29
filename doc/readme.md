@@ -11,7 +11,7 @@ Dokumentation mit der Hilfe von FPDoc zur Verfügung gestellt.
 3. *.xml    
 
 
-docuProject*.ldp
+docuProject.ldp
 ---------------
 
 Diese Projektdateien können über den Dokumentations-Editor für Lazarus *lazde.exe* in der Funktion *Extras\Erstellen*
