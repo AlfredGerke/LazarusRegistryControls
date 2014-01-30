@@ -1,4 +1,4 @@
-***(aktuell LRC 0.9 M1)***
+***(in Progress: Zielversion LRC 0.9 M2)***
 
 LazarusRegistryControls (LRC)
 =============================
@@ -8,6 +8,7 @@ werden (lesen/schreiben)
 
 **Inhaltsübersicht:**
 
+- 0     Anmerkung zur neuen Version
 - 1     Einleitung
 - 2     Packagenamen
 - 3     Installation
@@ -20,6 +21,21 @@ werden (lesen/schreiben)
 - 4.3   Synchronisierung und Gruppierung
 - 4.3.1 Synchronisierung
 - 4.3.2 Gruppierung
+
+
+0 Anmerkung zur neuen Version
+-----------------------------
+
+Die Änderungen zur Zielversion *LRC 0.9 M2* werden zentrale Bestandteile der aktuellen Version 
+*LRC 0.9 M1* betreffen. Die neue Version wird definitv nicht abwärtskompatibel sein. 
+
+Folgende Änderungen sind vorgesehen (s. Issues):
+
+* Packages umorganisieren
+* RegistrySettings überarbeiten
+* Neue Komponenten
+* Neue Methoden für TRegistrySource
+* Vorhandene Komponenten erweitern    
 
 
 1 Einleitung
