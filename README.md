@@ -26,8 +26,13 @@ werden (lesen/schreiben)
 0 Anmerkung zur neuen Version
 -----------------------------
 
+Mit der ersten Änderung für die *LRC 0.9 M2* wird die Beispielanwendung: `example.exe` nicht
+mehr lauffähig sein. Eine lauffähige Version der *LRC* mit Beispielanwendung finden sie unter folgendem Link:    
+
+* [Pre-release LRC 0.9 M1](https://github.com/AlfredGerke/LazarusRegistryControls/releases/tag/v0.9-M.1/ "Pre-release LRC 0.9 M1") 
+
 Die Änderungen zur Zielversion *LRC 0.9 M2* werden zentrale Bestandteile der aktuellen Version 
-*LRC 0.9 M1* betreffen. Die neue Version wird definitv nicht abwärtskompatibel sein. 
+*LRC 0.9 M1* betreffen. Die neue Version wird definitv nicht abwärtskompatibel sein.    
 
 Folgende Änderungen sind vorgesehen (s. Issues):
 
@@ -36,6 +41,7 @@ Folgende Änderungen sind vorgesehen (s. Issues):
 * Neue Komponenten
 * Neue Methoden für TRegistrySource
 * Vorhandene Komponenten erweitern    
+* Beispielanwendung überarbeiten
 
 
 1 Einleitung

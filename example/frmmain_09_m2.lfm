@@ -1,0 +1,8 @@
+object Main: TMain
+  Left = 640
+  Height = 442
+  Top = 182
+  Width = 873
+  Caption = 'Example (LRC 0.9 M2)'
+  LCLVersion = '1.0.14.0'
+end
