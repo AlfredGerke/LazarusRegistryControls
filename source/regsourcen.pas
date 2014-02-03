@@ -17,35 +17,37 @@ uses
 
 type
 
-  { TRegistrySettingsBooleanDefault }
+   { TRegistrySettingsBooleanDefault }
+
+   {$ifndef fpdoc}
+   TRegistrySettingsBooleanDefault = class(TCustomRegistrySettings<boolean>)
+   published
+     property Default;
+     property Section;
+     property Ident;
+   end;
+  {$endif}
+
+  { TRegistrySettingsItemIndexDefault }
 
   {$ifndef fpdoc}
-  TRegistrySettingsBooleanDefault = class(TCustomRegistrySettings<boolean>)
+  TRegistrySettingsItemIndexDefault = class(TCustomRegistrySettings<integer>)
   published
     property Default;
-    property Section: string
-      read FSection
-      write SetSection;
-    property Ident: string
-      read FIdent
-      write SetIdent;
+    property Section;
   end;
- {$endif}
- 
+  {$endif}
+
   { TRegistrySettingsIntegerDefault }
 
   {$ifndef fpdoc}
   TRegistrySettingsIntegerDefault = class(TCustomRegistrySettings<integer>)
   published
     property Default;
-    property Section: string
-      read FSection
-      write SetSection;
-    property Ident: string
-      read FIdent
-      write SetIdent;
+    property Section;
+    property Ident;
   end;
- {$endif}
+  {$endif}
  
   { TRegistrySettingsStringDefault }
 
@@ -53,17 +55,11 @@ type
   TRegistrySettingsStringDefault = class(TCustomRegistrySettings<string>)
   published
     property Default;
-    property Section: string
-      read FSection
-      write SetSection;
-    property Ident: string
-      read FIdent
-      write SetIdent;
+    property Section;
+    property Ident;
   end;
  {$endif}
  
-  { TRegistrySettingsStringDefault }
-
   { TRegistrySettingsValueList }
   
   {$ifndef fpdoc}
@@ -87,7 +83,7 @@ type
 
   { TRegistrySettingsList }
 
-  TRegistrySettingsList = class(TRegistrySettingsIntegerDefault)
+  TRegistrySettingsList = class(TRegistrySettingsItemIndexDefault)
   private
     FItemsByRegistry: boolean;
     FListSection: string;
@@ -95,12 +91,6 @@ type
   protected
   public
   published
-    property Section: string
-      read FSection
-      write SetSection;
-    property Ident: string
-      read FIdent
-      write SetIdent;
     property ItemsByRegistry: boolean
       read FItemsByRegistry
       write FItemsByRegistry;
@@ -115,7 +105,7 @@ type
 
   { TRegistrySettingsCheckedList }
 
-  TRegistrySettingsCheckedList = class(TRegistrySettingsIntegerDefault)
+  TRegistrySettingsCheckedList = class(TRegistrySettingsItemIndexDefault)
   private
     FItemsByRegistry: boolean;
     FListSection: string;
@@ -127,12 +117,6 @@ type
     property SourceKind: TListSourceKind
       read FSourceKind;
   published
-    property Section: string
-      read FSection
-      write SetSection;
-    property Ident: string
-      read FIdent
-      write SetIdent;
     property ItemsByRegistry: boolean
       read FItemsByRegistry
       write FItemsByRegistry;
@@ -393,6 +377,7 @@ begin
   RegisterComponents('Registry Controls', [TRegistrySource]);
   RegisterComponentEditor(TRegistrySource, TRegistrySourceComponentEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsStringDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsItemIndexDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsIntegerDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsBooleanDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);

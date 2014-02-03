@@ -14,9 +14,9 @@ object Main: TMain
     Height = 468
     Top = 0
     Width = 811
-    ActivePage = tabList
+    ActivePage = tabSingleValue
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     object tabSingleValue: TTabSheet
       Caption = 'Einzelwerte'
