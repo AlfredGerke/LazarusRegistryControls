@@ -13,6 +13,8 @@ const
   Read = True;
   Write = False;
 
+  _ItemIndex = 'ItemIndex';
+
 implementation
 
 end.

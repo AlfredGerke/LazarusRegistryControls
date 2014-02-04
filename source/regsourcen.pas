@@ -32,6 +32,8 @@ type
 
   {$ifndef fpdoc}
   TRegistrySettingsItemIndexDefault = class(TCustomRegistrySettings<integer>)
+  protected
+    procedure _Initialize; override;
   published
     property Default;
     property Section;
@@ -77,7 +79,7 @@ type
     property ListSection: string
       read FListSection
       write FListSection;
-    property MergeData;
+    property DoMergeData;
   end;
  {$endif}
 
@@ -100,7 +102,7 @@ type
     property SourceKind: TListSourceKind
       read FSourceKind
       write FSourceKind;
-    property MergeData;
+    property DoMergeData;
   end;
 
   { TRegistrySettingsCheckedList }
@@ -123,7 +125,7 @@ type
     property ListSection: string
       read FListSection
       write FListSection;
-    property MergeData;
+    property DoMergeData;
   end;
 
   { TCustomRegistrySource }
@@ -376,13 +378,36 @@ procedure Register;
 begin
   RegisterComponents('Registry Controls', [TRegistrySource]);
   RegisterComponentEditor(TRegistrySource, TRegistrySourceComponentEditor);
-  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsStringDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
-  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsItemIndexDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
-  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsIntegerDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
-  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsBooleanDefault, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
-  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
-  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsCheckedList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
-  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange), TRegistrySettingsValueList, 'OnBeforeRegistrySettingChange', TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
+    TRegistrySettingsStringDefault, 'OnBeforeRegistrySettingChange',
+    TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
+    TRegistrySettingsItemIndexDefault, 'OnBeforeRegistrySettingChange',
+    TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
+    TRegistrySettingsIntegerDefault, 'OnBeforeRegistrySettingChange',
+    TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
+    TRegistrySettingsBooleanDefault, 'OnBeforeRegistrySettingChange',
+    TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
+    TRegistrySettingsList, 'OnBeforeRegistrySettingChange',
+    TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
+    TRegistrySettingsCheckedList, 'OnBeforeRegistrySettingChange',
+    TRegistrySettingsPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
+    TRegistrySettingsValueList, 'OnBeforeRegistrySettingChange',
+    TRegistrySettingsPropertyEditor);
+end;
+
+{ TRegistrySettingsItemIndexDefault }
+
+procedure TRegistrySettingsItemIndexDefault._Initialize;
+begin
+  Ident := _ItemIndex;
+
+  inherited _Initialize;
 end;
 
 { TRegistrySettingsValueList }

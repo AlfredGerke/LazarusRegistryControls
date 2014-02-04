@@ -87,7 +87,7 @@ type
   TRegistrySettingKind = (rskUnknown, rskRootKey, rskRootKeyForDefault,
     rskSection, rskIdent, rskDefault, rskReadDefaults, rskWriteDefaults,
     rskRootForDefaults, rskCanRead, rskCanWrite, rskDoWriteAdHoc, rskDoSyncData,
-    rskMergeData);
+    rskDoMergeData);
 
   { TRegistrySettingValue }
 
@@ -105,7 +105,7 @@ type
       rskCanWrite: (CanWrite: boolean);
       rskDoWriteAdHoc: (DoWriteAdHoc: boolean);
       rskDoSyncData: (DoSyncData: boolean);
-      rskMergeData: (MergeData: boolean);
+      rskDoMergeData: (DoMergeData: boolean);
   end;
 
   { TOnRegistrySettingsChange }
@@ -163,7 +163,7 @@ type
     FOnChange: TNotifyEvent;
     FOnBeforeRegistrySettingChange: TOnRegistrySettingsChange;
     FTriggerEvents: boolean;
-    FMergeData: boolean;
+    FDoMergeData: boolean;
 
     function ChangeTokenForKey(aToken: TTokenType;
                                aKey: string): string;
@@ -189,7 +189,7 @@ type
     procedure SetOrganisation(aOrganisation: string);
     procedure SetGroupIndex(aGroupIndex: cardinal);
     procedure SetDoSyncData(aDoSyncData: boolean);
-    procedure SetMergeData(aMergeData: boolean);
+    procedure SetDoMergeData(aDoMergeData: boolean);
 
     property Default: _T
       read FDefault
@@ -200,9 +200,9 @@ type
     property Ident: string
       read FIdent
       write SetIdent;
-    property MergeData: boolean
-      read FMergeData
-      write SetMergeData;
+    property DoMergeData: boolean
+      read FDoMergeData
+      write SetDoMergeData;
   public
     procedure GetRootKeys(var aRootKeys: TRootKeysStruct);
     procedure SetRootKeys(aRootKeys: TRootKeysStruct);
@@ -431,49 +431,77 @@ var
   new_setting_value: TRegistrySettingValue;
   is_ok: boolean;
 begin
-  if (Assigned(FOnBeforeRegistrySettingChange) and FTriggerEvents and not OwnerIsLoading) then
+  if (Assigned(FOnBeforeRegistrySettingChange) and
+      FTriggerEvents and
+      not OwnerIsLoading)
+  then
   begin
     Result := False;
-
-    //if OwnerIsLoading then
-    //  Exit;
 
     old_setting_value.kind := aKind;
     case aKind of
       rskUnknown: Exit;
-      rskRootKey: old_setting_value.RootKey := self.RootKey;
-      rskRootKeyForDefault: old_setting_value.RootKeyForDefault := self.RootKeyForDefaults;
-      rskSection: old_setting_value.Section := self.Section;
-      rskIdent: old_setting_value.Ident := self.Ident;
+      rskRootKey:
+        old_setting_value.RootKey := self.RootKey;
+      rskRootKeyForDefault:
+        old_setting_value.RootKeyForDefault := self.RootKeyForDefaults;
+      rskSection:
+        old_setting_value.Section := self.Section;
+      rskIdent:
+        old_setting_value.Ident := self.Ident;
       // auf Default sollte nicht zugegriffen werden
-      //rskDefault: old_setting_value.Default := self.Default;
-      rskDefault: old_setting_value.Default := EmptyStr;
-      rskReadDefaults: old_setting_value.ReadDefaults := self.ReadDefaults;
-      rskWriteDefaults: old_setting_value.WriteDefaults := self.WriteDefaults;
-      rskRootForDefaults: old_setting_value.RootForDefaults := self.RootForDefaults;
-      rskCanRead: old_setting_value.CanRead := self.CanRead;
-      rskCanWrite: old_setting_value.CanWrite := self.CanWrite;
-      rskDoWriteAdHoc: old_setting_value.DoWriteAdHoc := self.DoWriteAdHoc;
-      rskDoSyncData: old_setting_value.DoSyncData := self.DoSyncData;
-      rskMergeData: old_setting_value.MergeData := self.MergeData;
+      //rskDefault:
+      //  old_setting_value.Default := self.Default;
+      rskDefault:
+        old_setting_value.Default := EmptyStr;
+      rskReadDefaults:
+        old_setting_value.ReadDefaults := self.ReadDefaults;
+      rskWriteDefaults:
+        old_setting_value.WriteDefaults := self.WriteDefaults;
+      rskRootForDefaults:
+        old_setting_value.RootForDefaults := self.RootForDefaults;
+      rskCanRead:
+        old_setting_value.CanRead := self.CanRead;
+      rskCanWrite:
+        old_setting_value.CanWrite := self.CanWrite;
+      rskDoWriteAdHoc:
+        old_setting_value.DoWriteAdHoc := self.DoWriteAdHoc;
+      rskDoSyncData:
+        old_setting_value.DoSyncData := self.DoSyncData;
+      rskDoMergeData:
+        old_setting_value.DoMergeData := self.DoMergeData;
     end;
 
     new_setting_value.kind := aKind;
     case aKind of
       rskUnknown: Exit;
-      rskRootKey: new_setting_value.RootKey := aValue;
-      rskRootKeyForDefault: new_setting_value.RootKeyForDefault := aValue;
-      rskSection: new_setting_value.Section := aValue;
-      rskIdent: new_setting_value.Ident := aValue;
-      rskDefault: new_setting_value.Default := aValue;
-      rskReadDefaults: new_setting_value.ReadDefaults := aValue;
-      rskWriteDefaults: new_setting_value.WriteDefaults := aValue;
-      rskRootForDefaults: new_setting_value.RootForDefaults := aValue;
-      rskCanRead: new_setting_value.CanRead := aValue;
-      rskCanWrite: new_setting_value.CanWrite := aValue;
-      rskDoWriteAdHoc: new_setting_value.DoWriteAdHoc := aValue;
-      rskDoSyncData: new_setting_value.DoSyncData := aValue;
-      rskMergeData: new_setting_value.MergeData := aValue;
+      rskRootKey:
+        new_setting_value.RootKey := aValue;
+      rskRootKeyForDefault:
+        new_setting_value.RootKeyForDefault := aValue;
+      rskSection:
+        new_setting_value.Section := aValue;
+      rskIdent:
+        new_setting_value.Ident := aValue;
+      // auf Default sollte nicht zugegriffen werden
+      //rskDefault:
+      //  new_setting_value.Default := aValue;
+      rskReadDefaults:
+        new_setting_value.ReadDefaults := aValue;
+      rskWriteDefaults:
+        new_setting_value.WriteDefaults := aValue;
+      rskRootForDefaults:
+        new_setting_value.RootForDefaults := aValue;
+      rskCanRead:
+        new_setting_value.CanRead := aValue;
+      rskCanWrite:
+        new_setting_value.CanWrite := aValue;
+      rskDoWriteAdHoc:
+        new_setting_value.DoWriteAdHoc := aValue;
+      rskDoSyncData:
+        new_setting_value.DoSyncData := aValue;
+      rskDoMergeData:
+        new_setting_value.DoMergeData := aValue;
     end;
 
     is_ok:= True;
@@ -664,12 +692,12 @@ begin
   FDoSyncData := aDoSyncData;
 end;
 
-procedure TCustomRegistrySettings<_T>.SetMergeData(aMergeData: boolean);
+procedure TCustomRegistrySettings<_T>.SetDoMergeData(aDoMergeData: boolean);
 begin
-  if not TriggerOnBeforeRegistrySettingChange(rskMergeData, aMergeData) then
+  if not TriggerOnBeforeRegistrySettingChange(rskDoMergeData, aDoMergeData) then
     Exit;
 
-  FMergeData := aMergeData;
+  FDoMergeData := aDoMergeData;
 end;
 
 procedure TCustomRegistrySettings<_T>.GetRootKeys(var aRootKeys: TRootKeysStruct);

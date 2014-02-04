@@ -220,7 +220,7 @@ begin
               FRegistrySettings.RootForDefaults,
               FRegistrySettings.ListSection,
               list,
-              FRegistrySettings.MergeData,
+              FRegistrySettings.DoMergeData,
               FRegistrySettings.ReadDefaults,
               FRegistrySettings.SourceKind);
             Items.AddStrings(list);
@@ -264,10 +264,10 @@ begin
   if (group_index > 0) then
   begin
     if (group_index = FRegistrySettings.GroupIndex) then
-      FRegistrySettings.MergeData := do_mergedata;
+      FRegistrySettings.DoMergeData := do_mergedata;
   end
   else
-    FRegistrySettings.MergeData := do_mergedata;
+    FRegistrySettings.DoMergeData := do_mergedata;
 end;
 
 procedure TCustomRegComboBox.ClearClientItems(var aMessage: TLMessage);
