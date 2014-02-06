@@ -87,7 +87,7 @@ type
   TRegistrySettingKind = (rskUnknown, rskRootKey, rskRootKeyForDefault,
     rskSection, rskIdent, rskDefault, rskReadDefaults, rskWriteDefaults,
     rskRootForDefaults, rskCanRead, rskCanWrite, rskDoWriteAdHoc, rskDoSyncData,
-    rskDoMergeData);
+    rskDoMergeData, rskSectionForCaption, rskIdentForCaption);
 
   { TRegistrySettingValue }
 
@@ -106,6 +106,8 @@ type
       rskDoWriteAdHoc: (DoWriteAdHoc: boolean);
       rskDoSyncData: (DoSyncData: boolean);
       rskDoMergeData: (DoMergeData: boolean);
+      rskSectionForCaption: (SectionForCaption: TRegistrySettingString);
+      rskIdentForCaption: (IdentForCaption: TRegistrySettingString);
   end;
 
   { TOnRegistrySettingsChange }
@@ -164,6 +166,9 @@ type
     FOnBeforeRegistrySettingChange: TOnRegistrySettingsChange;
     FTriggerEvents: boolean;
     FDoMergeData: boolean;
+    FSectionForCaption: string;
+    FIdentForCaption: string;
+    FCaptionByRegistry: boolean;
 
     function ChangeTokenForKey(aToken: TTokenType;
                                aKey: string): string;
@@ -191,6 +196,9 @@ type
     procedure SetDoSyncData(aDoSyncData: boolean);
     procedure SetDoMergeData(aDoMergeData: boolean);
 
+    procedure SetSectionForCaption(aSectionForCaption: string);
+    procedure SetIdentForCaption(aIdentForCaption: string);
+
     property Default: _T
       read FDefault
       write SetDefault;
@@ -203,6 +211,19 @@ type
     property DoMergeData: boolean
       read FDoMergeData
       write SetDoMergeData;
+
+    property SectionForCaption: string
+      read FSectionForCaption
+      write SetSectionForCaption;
+
+    property IdentForCaption: string
+      read FIdentForCaption
+      write SetIdentForCaption;
+
+    property CaptionByRegistry: boolean
+      read FCaptionByRegistry
+      write FCaptionByRegistry;
+
   public
     procedure GetRootKeys(var aRootKeys: TRootKeysStruct);
     procedure SetRootKeys(aRootKeys: TRootKeysStruct);
@@ -432,8 +453,7 @@ var
   is_ok: boolean;
 begin
   if (Assigned(FOnBeforeRegistrySettingChange) and
-      FTriggerEvents and
-      not OwnerIsLoading)
+      FTriggerEvents and not OwnerIsLoading)
   then
   begin
     Result := False;
@@ -470,6 +490,10 @@ begin
         old_setting_value.DoSyncData := self.DoSyncData;
       rskDoMergeData:
         old_setting_value.DoMergeData := self.DoMergeData;
+      rskSectionForCaption:
+        old_setting_value.SectionForCaption := self.SectionForCaption;
+      rskIdentForCaption:
+        old_setting_value.IdentForCaption := self.IdentForCaption;
     end;
 
     new_setting_value.kind := aKind;
@@ -502,6 +526,10 @@ begin
         new_setting_value.DoSyncData := aValue;
       rskDoMergeData:
         new_setting_value.DoMergeData := aValue;
+      rskSectionForCaption:
+        new_setting_value.SectionForCaption := aValue;
+      rskIdentForCaption:
+        new_setting_value.IdentForCaption := aValue;
     end;
 
     is_ok:= True;
@@ -698,6 +726,28 @@ begin
     Exit;
 
   FDoMergeData := aDoMergeData;
+end;
+
+procedure TCustomRegistrySettings<_T>.SetSectionForCaption(
+  aSectionForCaption: string);
+begin
+  if not TriggerOnBeforeRegistrySettingChange(rskSectionForCaption,
+    aSectionForCaption)
+  then
+    Exit;
+
+  FSectionForCaption := aSectionForCaption;
+end;
+
+procedure TCustomRegistrySettings<_T>.SetIdentForCaption(
+  aIdentForCaption: string);
+begin
+  if not TriggerOnBeforeRegistrySettingChange(rskIdentForCaption,
+    aIdentForCaption)
+  then
+    Exit;
+
+  FIdentForCaption := aIdentForCaption;
 end;
 
 procedure TCustomRegistrySettings<_T>.GetRootKeys(var aRootKeys: TRootKeysStruct);

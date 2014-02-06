@@ -9,7 +9,7 @@
         <Filename Value="example_09_M2.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="example_09_M2"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="24"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain_09_m2.pas"/>
@@ -21,28 +21,28 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="16" Y="3"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="24"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="74"/>
-        <CursorPos X="35" Y="96"/>
-        <UsageCount Value="11"/>
+        <TopLine Value="105"/>
+        <CursorPos X="67" Y="93"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
         <Filename Value="..\source\regtype.pas"/>
         <UnitName Value="regtype"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="128"/>
-        <CursorPos X="19" Y="158"/>
-        <UsageCount Value="11"/>
+        <TopLine Value="92"/>
+        <CursorPos X="67" Y="110"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
@@ -51,9 +51,9 @@
         <UnitName Value="regradiogroup"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="259"/>
-        <CursorPos X="25" Y="276"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="490"/>
+        <CursorPos X="33" Y="519"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
@@ -64,7 +64,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="252"/>
         <CursorPos X="25" Y="269"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
@@ -75,7 +75,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="253"/>
         <CursorPos X="25" Y="270"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
@@ -86,7 +86,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="340"/>
         <CursorPos X="25" Y="357"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
@@ -97,7 +97,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="372"/>
         <CursorPos X="25" Y="389"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
@@ -108,7 +108,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="284"/>
         <CursorPos X="25" Y="301"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit9>
@@ -119,7 +119,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="28" Y="16"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit10>
@@ -129,124 +129,124 @@
     </General>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="..\source\regtype.pas"/>
-        <Caret Line="108" Column="35" TopLine="91"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="336" Column="24" TopLine="308"/>
       </Position1>
       <Position2>
-        <Filename Value="..\source\regtype.pas"/>
-        <Caret Line="458" Column="12" TopLine="442"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="339" Column="22" TopLine="311"/>
       </Position2>
       <Position3>
-        <Filename Value="..\source\regtype.pas"/>
-        <Caret Line="476" Column="12" TopLine="459"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="354" Column="40" TopLine="326"/>
       </Position3>
       <Position4>
-        <Filename Value="..\source\regtype.pas"/>
-        <Caret Line="667" Column="53" TopLine="650"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="355" Column="24" TopLine="327"/>
       </Position4>
       <Position5>
-        <Filename Value="..\source\regtype.pas"/>
-        <Caret Line="669" Column="3" TopLine="666"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="358" Column="22" TopLine="330"/>
       </Position5>
       <Position6>
         <Filename Value="..\source\regradiogroup.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Caret Line="370" Column="23" TopLine="342"/>
       </Position6>
       <Position7>
         <Filename Value="..\source\regradiogroup.pas"/>
-        <Caret Line="231" Column="35" TopLine="213"/>
+        <Caret Line="375" Column="41" TopLine="347"/>
       </Position7>
       <Position8>
         <Filename Value="..\source\regradiogroup.pas"/>
-        <Caret Line="273" Column="27" TopLine="256"/>
+        <Caret Line="387" Column="23" TopLine="359"/>
       </Position8>
       <Position9>
         <Filename Value="..\source\regradiogroup.pas"/>
-        <Caret Line="568" Column="1" TopLine="534"/>
+        <Caret Line="392" Column="41" TopLine="364"/>
       </Position9>
       <Position10>
-        <Filename Value="..\source\reglistbox.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="457" Column="23" TopLine="429"/>
       </Position10>
       <Position11>
-        <Filename Value="..\source\reglistbox.pas"/>
-        <Caret Line="222" Column="35" TopLine="206"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="467" Column="23" TopLine="439"/>
       </Position11>
       <Position12>
-        <Filename Value="..\source\reglistbox.pas"/>
-        <Caret Line="266" Column="27" TopLine="249"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="492" Column="23" TopLine="464"/>
       </Position12>
       <Position13>
-        <Filename Value="..\source\regcombobox.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="496" Column="53" TopLine="468"/>
       </Position13>
       <Position14>
-        <Filename Value="..\source\regcombobox.pas"/>
-        <Caret Line="223" Column="35" TopLine="207"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="497" Column="26" TopLine="469"/>
       </Position14>
       <Position15>
-        <Filename Value="..\source\regcombobox.pas"/>
-        <Caret Line="267" Column="27" TopLine="250"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="498" Column="26" TopLine="470"/>
       </Position15>
       <Position16>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="499" Column="26" TopLine="471"/>
       </Position16>
       <Position17>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="310" Column="35" TopLine="294"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="500" Column="26" TopLine="472"/>
       </Position17>
       <Position18>
-        <Filename Value="..\source\regchecklistbox.pas"/>
-        <Caret Line="354" Column="27" TopLine="337"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="501" Column="26" TopLine="473"/>
       </Position18>
       <Position19>
-        <Filename Value="..\source\regcheckgroup.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="509" Column="20" TopLine="481"/>
       </Position19>
       <Position20>
-        <Filename Value="..\source\regcheckgroup.pas"/>
-        <Caret Line="342" Column="35" TopLine="326"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="510" Column="20" TopLine="482"/>
       </Position20>
       <Position21>
-        <Filename Value="..\source\regcheckgroup.pas"/>
-        <Caret Line="386" Column="27" TopLine="369"/>
+        <Filename Value="..\source\regradiogroup.pas"/>
+        <Caret Line="518" Column="32" TopLine="490"/>
       </Position21>
       <Position22>
-        <Filename Value="..\source\regvaluelisteditor.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="197" Column="17" TopLine="185"/>
       </Position22>
       <Position23>
-        <Filename Value="..\source\regvaluelisteditor.pas"/>
-        <Caret Line="266" Column="35" TopLine="250"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="736" Column="55" TopLine="708"/>
       </Position23>
       <Position24>
-        <Filename Value="..\source\regvaluelisteditor.pas"/>
-        <Caret Line="298" Column="27" TopLine="281"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="490" Column="25" TopLine="468"/>
       </Position24>
       <Position25>
         <Filename Value="..\source\regtype.pas"/>
-        <Caret Line="669" Column="46" TopLine="665"/>
+        <Caret Line="449" Column="3" TopLine="431"/>
       </Position25>
       <Position26>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="52" Column="33" TopLine="52"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="497" Column="51" TopLine="471"/>
       </Position26>
       <Position27>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="36" Column="37" TopLine="8"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="492" Column="59" TopLine="480"/>
       </Position27>
       <Position28>
         <Filename Value="..\source\regtype.pas"/>
-        <Caret Line="202" Column="19" TopLine="180"/>
+        <Caret Line="110" Column="51" TopLine="99"/>
       </Position28>
       <Position29>
         <Filename Value="..\source\regtype.pas"/>
-        <Caret Line="560" Column="46" TopLine="557"/>
+        <Caret Line="109" Column="55" TopLine="92"/>
       </Position29>
       <Position30>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="23" Column="35" TopLine="8"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="83" Column="3" TopLine="66"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
