@@ -1,0 +1,11 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tmain.caption
+msgid "Example (LRC 0.9 M2)"
+msgstr ""
+
+#: tmain.regcheckbox1.caption
+msgid "Defaultwert"
+msgstr ""
+

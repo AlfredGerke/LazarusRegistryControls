@@ -17,6 +17,17 @@ uses
 
 type
 
+  { TCaptionSettings }
+
+   TCaptionSettings = class(TCustomCaptionSettings)
+   public
+     property OnChange;
+   published
+     property Section;
+     property Ident;
+     property CaptionByRegistry;
+   end;
+
    { TRegistrySettingsBooleanDefault }
 
    {$ifndef fpdoc}
@@ -378,6 +389,7 @@ procedure Register;
 begin
   RegisterComponents('Registry Controls', [TRegistrySource]);
   RegisterComponentEditor(TRegistrySource, TRegistrySourceComponentEditor);
+
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
     TRegistrySettingsStringDefault, 'OnBeforeRegistrySettingChange',
     TRegistrySettingsPropertyEditor);
@@ -398,6 +410,10 @@ begin
     TRegistrySettingsPropertyEditor);
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
     TRegistrySettingsValueList, 'OnBeforeRegistrySettingChange',
+    TRegistrySettingsPropertyEditor);
+
+  RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
+    TCaptionSettings, 'OnBeforeCaptionSettingChange',
     TRegistrySettingsPropertyEditor);
 end;
 

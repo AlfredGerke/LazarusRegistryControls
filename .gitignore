@@ -1,0 +1,12 @@
+###########################
+## LazarusRegistryControls
+###########################
+
+lib/i386-win32/
+example/lib/i386-win32/
+example/example.exe
+example/example_09_M2.exe
+*.bak
+
+
+

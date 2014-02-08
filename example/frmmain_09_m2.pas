@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, regcombobox,
   reglistbox, regchecklistbox, regcheckgroup, regradiogroup, regcheckbox,
-  regradiobutton, reglabel, regvaluelisteditor;
+  regradiobutton, reglabel, regvaluelisteditor, regtype, regsourcen;
 
 type
 
@@ -15,14 +15,7 @@ type
 
   TMain = class(TForm)
     RegCheckBox1: TRegCheckBox;
-    RegCheckGroup1: TRegCheckGroup;
-    RegCheckListBox1: TRegCheckListBox;
-    RegComboBox1: TRegComboBox;
-    RegLabel1: TRegLabel;
-    RegListBox1: TRegListBox;
-    RegRadioButton1: TRegRadioButton;
-    RegRadioGroup1: TRegRadioGroup;
-    RegValueListEditor1: TRegValueListEditor;
+    RegistrySource1: TRegistrySource;
   private
     { private declarations }
   public
@@ -35,6 +28,9 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TMain }
+
 
 end.
 

@@ -82,6 +82,10 @@ type
 
   TRegistrySettingString = string[255];
 
+  { TReadSource }
+
+  TRegistryDataOrigin = (rdoUnknown, rdoGeneral, rdoCaption, rdoAll);
+
   { TRegistrySettingKind }
 
   TRegistrySettingKind = (rskUnknown, rskRootKey, rskRootKeyForDefault,
@@ -141,6 +145,53 @@ type
     {$endif}
   end;
 
+  { TCustomCaptionSettings }
+
+  TCustomCaptionSettings = class(TCustomProperties)
+  private
+    FSection: string;
+    FIdent: string;
+    FCaptionByRegistry: boolean;
+    FOnBeforeCaptionSettingChange: TOnRegistrySettingsChange;
+    FTriggerEvents: boolean;
+    FOnChange: TNotifyEvent;
+
+    function TriggerOnBeforeCaptionSettingChange(aKind: TRegistrySettingKind;
+                                                 aValue: variant): boolean;
+  protected
+    procedure _Initialize; override;
+    procedure _Finalize; override;
+
+    procedure SetSection(aSectionForCaption: string);
+    procedure SetIdent(aIdentForCaption: string);
+    procedure SetCaptionByRegistry(aCaptionByRegistry: boolean);
+
+    property Section: string
+      read FSection
+      write SetSection;
+    property Ident: string
+      read FIdent
+      write SetIdent;
+    property CaptionByRegistry: boolean
+      read FCaptionByRegistry
+      write SetCaptionByRegistry;
+    property OnChange: TNotifyEvent
+      read FOnChange
+      write FOnChange;
+  public
+    procedure BeginUpdate;
+    procedure EndUpdate;
+
+    constructor Create(aOwner: TPersistent); override;
+    destructor Destroy; override;
+
+    property Owner;
+  published
+    property OnBeforeCaptionSettingChange: TOnRegistrySettingsChange
+      read FOnBeforeCaptionSettingChange
+      write FOnBeforeCaptionSettingChange;
+  end;
+
   { TCustomRegistrySettings }
   
   {$ifndef fpdoc}
@@ -166,9 +217,6 @@ type
     FOnBeforeRegistrySettingChange: TOnRegistrySettingsChange;
     FTriggerEvents: boolean;
     FDoMergeData: boolean;
-    FSectionForCaption: string;
-    FIdentForCaption: string;
-    FCaptionByRegistry: boolean;
 
     function ChangeTokenForKey(aToken: TTokenType;
                                aKey: string): string;
@@ -196,9 +244,6 @@ type
     procedure SetDoSyncData(aDoSyncData: boolean);
     procedure SetDoMergeData(aDoMergeData: boolean);
 
-    procedure SetSectionForCaption(aSectionForCaption: string);
-    procedure SetIdentForCaption(aIdentForCaption: string);
-
     property Default: _T
       read FDefault
       write SetDefault;
@@ -211,19 +256,6 @@ type
     property DoMergeData: boolean
       read FDoMergeData
       write SetDoMergeData;
-
-    property SectionForCaption: string
-      read FSectionForCaption
-      write SetSectionForCaption;
-
-    property IdentForCaption: string
-      read FIdentForCaption
-      write SetIdentForCaption;
-
-    property CaptionByRegistry: boolean
-      read FCaptionByRegistry
-      write FCaptionByRegistry;
-
   public
     procedure GetRootKeys(var aRootKeys: TRootKeysStruct);
     procedure SetRootKeys(aRootKeys: TRootKeysStruct);
@@ -301,6 +333,130 @@ begin
     if ((Trim(aTokenValue) <> EmptyStr) and
       (aTokenValue <> aToken))then
       result := StringReplace(aKey, aToken, aTokenValue, [rfReplaceAll]);
+end;
+
+{ TCustomCaptionSettings }
+
+function TCustomCaptionSettings.TriggerOnBeforeCaptionSettingChange(
+  aKind: TRegistrySettingKind;
+  aValue: variant): boolean;
+var
+  old_setting_value: TRegistrySettingValue;
+  new_setting_value: TRegistrySettingValue;
+  is_ok: boolean;
+begin
+  if (Assigned(FOnBeforeCaptionSettingChange) and
+      FTriggerEvents and not OwnerIsLoading)
+  then
+  begin
+    Result := False;
+
+    old_setting_value.kind := aKind;
+    case aKind of
+      rskUnknown: Exit;
+      rskSectionForCaption:
+        old_setting_value.SectionForCaption := self.Section;
+      rskIdentForCaption:
+        old_setting_value.IdentForCaption := self.Ident;
+    end;
+
+    new_setting_value.kind := aKind;
+    case aKind of
+      rskUnknown: Exit;
+      rskSectionForCaption:
+        new_setting_value.SectionForCaption := aValue;
+      rskIdentForCaption:
+        new_setting_value.IdentForCaption := aValue;
+    end;
+
+    is_ok:= True;
+    FOnBeforeCaptionSettingChange(old_setting_value,
+                                  new_setting_value,
+                                  is_ok);
+    if not is_ok then
+      Exit;
+
+    Result := True;
+  end
+  else
+    Result := True;
+end;
+
+procedure TCustomCaptionSettings._Initialize;
+begin
+
+end;
+
+procedure TCustomCaptionSettings._Finalize;
+begin
+
+end;
+
+procedure TCustomCaptionSettings.SetSection(
+  aSectionForCaption: string);
+begin
+  if not TriggerOnBeforeCaptionSettingChange(rskSectionForCaption,
+    aSectionForCaption)
+  then
+    Exit;
+
+  FSection := aSectionForCaption;
+
+  if Assigned(FOnChange) and FTriggerEvents then
+    FOnChange(self);
+end;
+
+procedure TCustomCaptionSettings.SetIdent(aIdentForCaption: string);
+begin
+  if not TriggerOnBeforeCaptionSettingChange(rskIdentForCaption,
+    aIdentForCaption)
+  then
+    Exit;
+
+  FIdent := aIdentForCaption;
+
+  if Assigned(FOnChange) and FTriggerEvents then
+    FOnChange(self);
+end;
+
+procedure TCustomCaptionSettings.SetCaptionByRegistry(
+  aCaptionByRegistry: boolean);
+begin
+
+  if (FCaptionByRegistry <> aCaptionByRegistry) then
+    FCaptionByRegistry := aCaptionByRegistry;
+
+
+  if (FCaptionByRegistry and
+    Assigned(FOnChange) and
+    FTriggerEvents)
+  then
+    FOnChange(self);
+end;
+
+procedure TCustomCaptionSettings.BeginUpdate;
+begin
+  FTriggerEvents := False;
+end;
+
+procedure TCustomCaptionSettings.EndUpdate;
+begin
+  FTriggerEvents := True;
+end;
+
+constructor TCustomCaptionSettings.Create(aOwner: TPersistent);
+begin
+  SetOwner(aOwner);
+  FTriggerEvents := True;
+
+  _Initialize;
+end;
+
+destructor TCustomCaptionSettings.Destroy;
+begin
+  _Finalize;
+
+  inherited Destroy;
 end;
 
 { TKeyValues }
@@ -490,10 +646,6 @@ begin
         old_setting_value.DoSyncData := self.DoSyncData;
       rskDoMergeData:
         old_setting_value.DoMergeData := self.DoMergeData;
-      rskSectionForCaption:
-        old_setting_value.SectionForCaption := self.SectionForCaption;
-      rskIdentForCaption:
-        old_setting_value.IdentForCaption := self.IdentForCaption;
     end;
 
     new_setting_value.kind := aKind;
@@ -526,10 +678,6 @@ begin
         new_setting_value.DoSyncData := aValue;
       rskDoMergeData:
         new_setting_value.DoMergeData := aValue;
-      rskSectionForCaption:
-        new_setting_value.SectionForCaption := aValue;
-      rskIdentForCaption:
-        new_setting_value.IdentForCaption := aValue;
     end;
 
     is_ok:= True;
@@ -726,28 +874,6 @@ begin
     Exit;
 
   FDoMergeData := aDoMergeData;
-end;
-
-procedure TCustomRegistrySettings<_T>.SetSectionForCaption(
-  aSectionForCaption: string);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskSectionForCaption,
-    aSectionForCaption)
-  then
-    Exit;
-
-  FSectionForCaption := aSectionForCaption;
-end;
-
-procedure TCustomRegistrySettings<_T>.SetIdentForCaption(
-  aIdentForCaption: string);
-begin
-  if not TriggerOnBeforeRegistrySettingChange(rskIdentForCaption,
-    aIdentForCaption)
-  then
-    Exit;
-
-  FIdentForCaption := aIdentForCaption;
 end;
 
 procedure TCustomRegistrySettings<_T>.GetRootKeys(var aRootKeys: TRootKeysStruct);

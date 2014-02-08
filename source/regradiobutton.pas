@@ -13,7 +13,8 @@ uses
   LResources,
   regconst,
   regmsg,
-  LMessages;
+  LMessages,
+  regtype;
 
 type
 
@@ -23,10 +24,12 @@ type
   private
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsBooleanDefault;
+    FCaptionSettings: TCaptionSettings;
     FIsModified: boolean;
 
     function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
+    procedure ReadWriteCaption(aRead: boolean);
   protected
     procedure ShowEditDialog(var aMessage: TLMessage);
       message LM_REGISTRY_CONTROL_SHOW_EDITDIALOG;
@@ -47,6 +50,7 @@ type
     procedure SetName(const NewName: TComponentName); override;
 
     procedure OnChangeSettings(Sender: TObject); virtual;
+    procedure OnChangeCaptionSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
     function GetEditDialog(aEdit: boolean;
                            aAtDesignTime: boolean = True): boolean; virtual;
@@ -54,12 +58,15 @@ type
     property RegistrySettings: TRegistrySettingsBooleanDefault
       read FRegistrySettings
       write FRegistrySettings;
+    property CaptionSettings: TCaptionSettings
+      read FCaptionSettings
+      write FCaptionSettings;
     property RegistrySource: TRegistrySource
       read FRegistrySource
       write SetRegistrySource;
   public
     procedure AfterConstruction; override;
-    function ReadFromReg: boolean; virtual;
+    function ReadFromReg(aReadSource: TRegistryDataOrigin = rdoGeneral): boolean; virtual;
     function WriteToReg: boolean; virtual;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -76,6 +83,7 @@ type
   protected
   public
   published
+    property CaptionSettings;
     property RegistrySettings;
     property RegistrySource;
   end;
@@ -88,8 +96,7 @@ uses
   Forms,
   regpropedits,
   ComponentEditors,
-  dlgeditsettings,
-  regtype;
+  dlgeditsettings;
 
 procedure Register;
 begin
@@ -102,6 +109,11 @@ end;
 procedure TCustomRegRadioButton.OnChangeSettings(Sender: TObject);
 begin
   ReadFromReg;
+end;
+
+procedure TCustomRegRadioButton.OnChangeCaptionSettings(Sender: TObject);
+begin
+  ReadFromReg(rdoCaption);
 end;
 
 function TCustomRegRadioButton.RefreshRegistrySettings: boolean;
@@ -121,7 +133,7 @@ begin
       FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
       FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
 
-      Result := ReadFromReg;
+      Result := ReadFromReg(rdoAll);
     finally
       FRegistrySettings.EndUpdate
     end;
@@ -176,6 +188,37 @@ begin
               end;
             end;
           end;
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TCustomRegRadioButton.ReadWriteCaption(aRead: boolean);
+begin
+  if not (csDesigning in ComponentState) then
+  begin
+    if (assigned(RegistrySource) and FCaptionSettings.CaptionByRegistry) then
+    begin
+      if ((FRegistrySettings.RootKey <> '') and
+        (FRegistrySettings.RootKeyForDefaults <> '') and
+        (FRegistrySettings.RootForDefaults <> '') and
+        (FCaptionSettings.Section <> '') and
+        (FCaptionSettings.Ident <> '')) then
+      begin
+        case aRead of
+          Read:
+          begin
+            if FRegistrySettings.CanRead then
+              Caption := RegistrySource.ReadString(FRegistrySettings.RootKey,
+                           FRegistrySettings.RootKeyForDefaults,
+                           FRegistrySettings.RootForDefaults,
+                           FCaptionSettings.Section,
+                           FCaptionSettings.Ident,
+                           Caption,
+                           FRegistrySettings.ReadDefaults);
+          end;
+          Write:;
         end;
       end;
     end;
@@ -371,6 +414,9 @@ begin
   FIsModified := False;
   FRegistrySettings := TRegistrySettingsBooleanDefault.Create(Self);
   FRegistrySettings.OnChange:= OnChangeSettings;
+
+  FCaptionSettings := TCaptionSettings.Create(Self);
+  FCaptionSettings.OnChange := OnChangeCaptionSettings;
 end;
 
 destructor TCustomRegRadioButton.Destroy;
@@ -381,6 +427,9 @@ begin
   if Assigned(FRegistrySettings) then
     FreeAndNil(FRegistrySettings);
 
+  if Assigned(FCaptionSettings) then
+    FreeAndNil(FCaptionSettings);
+
   inherited Destroy;
 end;
 
@@ -390,15 +439,26 @@ begin
 
 end;
 
-function TCustomRegRadioButton.ReadFromReg: boolean;
+function TCustomRegRadioButton.ReadFromReg(aReadSource: TRegistryDataOrigin = rdoGeneral): boolean;
 begin
   Result := False;
 
-  if not Assigned(FRegistrySource) then
+  if (not Assigned(FRegistrySource) or (aReadSource = rdoUnknown)) then
     Exit;
 
   try
-    ReadWriteInfo(Read);
+    case aReadSource of
+      rdoGeneral:
+        ReadWriteInfo(Read);
+      rdoCaption:
+        ReadWriteCaption(Read);
+      rdoAll:
+      begin
+        ReadWriteInfo(Read);
+        ReadWriteCaption(Read);
+      end;
+    end;
+
     Application.ProcessMessages;
 
     Result := True;
