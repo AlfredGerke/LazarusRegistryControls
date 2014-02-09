@@ -13,7 +13,8 @@ uses
   LResources,
   regconst,
   LMessages,
-  regmsg;
+  regmsg,
+  regtype;
 
 type
 
@@ -23,11 +24,13 @@ type
   private
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsList;
+    FCaptionSettings: TCaptionSettings;
     FIsModified: boolean;
 
     function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
     function GetItemsByRegistry: boolean;
+    procedure ReadWriteCaption(aRead: boolean);
   protected
     procedure RefreshMerge(var aMessage: TLMessage);
       message LM_REGISTRY_CONTROL_MERGE_LIST;
@@ -55,6 +58,7 @@ type
     procedure SetName(const NewName: TComponentName); override;
 
     procedure OnChangeSettings(Sender: TObject); virtual;
+    procedure OnChangeCaptionSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
     function GetEditDialog(aEdit: boolean;
                            aAtDesignTime: boolean = True): boolean; virtual;
@@ -62,6 +66,9 @@ type
     property RegistrySettings: TRegistrySettingsList
       read FRegistrySettings
       write FRegistrySettings;
+    property CaptionSettings: TCaptionSettings
+      read FCaptionSettings
+      write FCaptionSettings;
     property RegistrySource: TRegistrySource
       read FRegistrySource
       write SetRegistrySource;
@@ -69,7 +76,7 @@ type
     procedure ClearItems(aAskFor: boolean = True;
                          aMsg: string = 'Clear Items?'); virtual;
     procedure AfterConstruction; override;
-    function ReadFromReg: boolean; virtual;
+    function ReadFromReg(aReadSource: TRegistryDataOrigin = rdoGeneral): boolean; virtual;
     function WriteToReg: boolean; virtual;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -86,6 +93,7 @@ type
   protected
   public
   published
+    property CaptionSettings;
     property RegistrySettings;
     property RegistrySource;
   end;
@@ -99,8 +107,7 @@ uses
   Dialogs,
   regpropedits,
   ComponentEditors,
-  dlgeditsettings,
-  regtype;
+  dlgeditsettings;
 
 procedure Register;
 begin
@@ -113,6 +120,11 @@ end;
 procedure TCustomRegRadioGroup.OnChangeSettings(Sender: TObject);
 begin
   ReadFromReg;
+end;
+
+procedure TCustomRegRadioGroup.OnChangeCaptionSettings(Sender: TObject);
+begin
+  ReadFromReg(rdoCaption);
 end;
 
 function TCustomRegRadioGroup.RefreshRegistrySettings: boolean;
@@ -132,7 +144,7 @@ begin
       FRegistrySettings.ReadDefaults := FRegistrySource.ReadDefaults;
       FRegistrySettings.WriteDefaults := FRegistrySource.WriteDefaults;
 
-      Result := ReadFromReg;
+      Result := ReadFromReg(rdoAll);
     finally
       FRegistrySettings.EndUpdate
     end;
@@ -254,6 +266,38 @@ begin
   finally
     if Assigned(list) then
       FreeAndNil(list);
+  end;
+end;
+
+procedure TCustomRegRadioGroup.ReadWriteCaption(aRead: boolean);
+begin
+  if not (csDesigning in ComponentState) then
+  begin
+    if (assigned(RegistrySource) and FCaptionSettings.CaptionByRegistry) then
+    begin
+      if ((FRegistrySettings.RootKey <> '') and
+        (FRegistrySettings.RootKeyForDefaults <> '') and
+        (FRegistrySettings.RootForDefaults <> '') and
+        (FCaptionSettings.Section <> '') and
+        (FCaptionSettings.Ident <> '')) then
+      begin
+        case aRead of
+          Read:
+          begin
+            if FRegistrySettings.CanRead then
+              Caption := RegistrySource.ReadString(FRegistrySettings.RootKey,
+                           FRegistrySettings.RootKeyForDefaults,
+                           FRegistrySettings.RootForDefaults,
+                           FCaptionSettings.Section,
+                           FCaptionSettings.Ident,
+                           Caption,
+                           FRegistrySettings.ReadDefaults);
+
+          end;
+          Write:;
+        end;
+      end;
+    end;
   end;
 end;
 
@@ -508,6 +552,9 @@ begin
   FIsModified := False;
   FRegistrySettings := TRegistrySettingsList.Create(Self);
   FRegistrySettings.OnChange:= OnChangeSettings;
+
+  FCaptionSettings := TCaptionSettings.Create(Self);
+  FCaptionSettings.OnChange := OnChangeCaptionSettings;
 end;
 
 destructor TCustomRegRadioGroup.Destroy;
@@ -518,6 +565,9 @@ begin
   if Assigned(FRegistrySettings) then
     FreeAndNil(FRegistrySettings);
 
+  if Assigned(FCaptionSettings) then
+    FreeAndNil(FCaptionSettings);
+
   inherited Destroy;
 end;
 
@@ -526,15 +576,26 @@ begin
   inherited;
 end;
 
-function TCustomRegRadioGroup.ReadFromReg: boolean;
+function TCustomRegRadioGroup.ReadFromReg(aReadSource: TRegistryDataOrigin = rdoGeneral): boolean;
 begin
   Result := False;
 
-  if not Assigned(FRegistrySource) then
+  if (not Assigned(FRegistrySource) or (aReadSource = rdoUnknown)) then
     Exit;
 
   try
-    ReadWriteInfo(Read);
+    case aReadSource of
+      rdoGeneral:
+        ReadWriteInfo(Read);
+      rdoCaption:
+        ReadWriteCaption(Read);
+      rdoAll:
+      begin
+        ReadWriteInfo(Read);
+        ReadWriteCaption(Read);
+      end;
+    end;
+
     Application.ProcessMessages;
 
     Result := True;
