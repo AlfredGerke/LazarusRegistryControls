@@ -36,7 +36,7 @@ object Main: TMain
     TabOrder = 1
     CaptionSettings.Section = 'Captions'
     CaptionSettings.Ident = 'RegRadioButton1'
-    CaptionSettings.CaptionByRegistry = True
+    CaptionSettings.CaptionByRegistry = False
     RegistrySettings.CanRead = True
     RegistrySettings.CanWrite = True
     RegistrySettings.DoWriteAdHoc = True

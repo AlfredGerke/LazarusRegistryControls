@@ -6,6 +6,7 @@ msgid "Example (LRC 0.9 M2)"
 msgstr ""
 
 #: tmain.regcheckbox1.caption
+msgctxt "TMAIN.REGCHECKBOX1.CAPTION"
 msgid "Statisch für RegCheckBox"
 msgstr ""
 
