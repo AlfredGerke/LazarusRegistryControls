@@ -17,6 +17,7 @@ type
     RegCheckBox1: TRegCheckBox;
     RegCheckGroup1: TRegCheckGroup;
     RegistrySource1: TRegistrySource;
+    RegListBox1: TRegListBox;
     RegRadioButton1: TRegRadioButton;
     RegRadioButton2: TRegRadioButton;
     RegRadioGroup1: TRegRadioGroup;

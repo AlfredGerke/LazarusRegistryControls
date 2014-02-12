@@ -128,6 +128,26 @@ object Main: TMain
     RegistrySettings.Ident = 'Value'
     RegistrySource = RegistrySource1
   end
+  object RegListBox1: TRegListBox
+    Left = 264
+    Height = 129
+    Top = 16
+    Width = 168
+    ItemHeight = 0
+    TabOrder = 5
+    RegistrySettings.CanRead = True
+    RegistrySettings.CanWrite = True
+    RegistrySettings.DoWriteAdHoc = True
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = False
+    RegistrySettings.Default = 0
+    RegistrySettings.Section = 'RegListBox1'
+    RegistrySettings.ItemsByRegistry = True
+    RegistrySettings.ListSection = 'Captions'
+    RegistrySettings.SourceKind = byValue
+    RegistrySettings.DoMergeData = False
+    RegistrySource = RegistrySource1
+  end
   object RegistrySource1: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
     RootKeyForDefaults = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%'

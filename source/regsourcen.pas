@@ -156,6 +156,7 @@ type
     FDoSyncData: boolean;
     FPrefereStrings: boolean;
     FEditClientRootKeys: boolean;
+    FCheckRTLAnsi: boolean;
 
     procedure OnSyncData(aGroupIndex: Cardinal);
     procedure DeliverMessage(aMessageConst: cardinal;
@@ -202,6 +203,9 @@ type
     property EditClientRootKeys: boolean
       read FEditClientRootKeys
       write FEditClientRootKeys;
+    property CheckRTLAnsi: boolean
+      read FCheckRTLAnsi
+      write FCheckRTLAnsi;
   public
     procedure PostClientData(aClientName: string = '';
                              aGroupIndex: cardinal = 0);
@@ -371,6 +375,7 @@ type
     property GUID;
     property DoSyncData;
     property PrefereStrings;
+    property CheckRTLAnsi;
   end;
 
 procedure Register;
@@ -569,10 +574,12 @@ begin
     streg := TDataByCurrentUser.Create(aRootKey,
                aRootForDefaults,
                aRootKeyForDefaults,
-               FPrefereStrings)
+               FPrefereStrings,
+               FCheckRTLAnsi)
   else
     streg := TDataByCurrentUser.Create(aRootKey,
-               FPrefereStrings);
+               FPrefereStrings,
+               FCheckRTLAnsi);
 
   list := TStringlist.Create;
   try
@@ -780,6 +787,7 @@ begin
   FDoSyncData := False;
   FPrefereStrings := False;
   FEditClientRootKeys := False;
+  FCheckRTLAnsi := True;
 
   FClientList := TStringList.Create;
 end;
@@ -810,10 +818,12 @@ begin
     streg := TDataByCurrentUser.Create(aRootKey,
                aRootForDefaults,
                aRootKeyForDefaults,
-               FPrefereStrings)
+               FPrefereStrings,
+               FCheckRTLAnsi)
   else
     streg := TDataByCurrentUser.Create(aRootKey,
-               FPrefereStrings);
+               FPrefereStrings,
+               FCheckRTLAnsi);
 
   try
     try
@@ -869,10 +879,12 @@ begin
                aRootKey,
                aRootForDefaults,
                aRootKeyForDefaults,
-               FPrefereStrings)
+               FPrefereStrings,
+               FCheckRTLAnsi)
   else
     streg := TDataByCurrentUser.Create(aRootKey,
-               FPrefereStrings);
+               FPrefereStrings,
+               FCheckRTLAnsi);
 
   try
     try
@@ -930,10 +942,12 @@ begin
     streg := TDataByCurrentUser.Create(aRootKey,
                aRootForDefaults,
                aRootKeyForDefaults,
-               FPrefereStrings)
+               FPrefereStrings,
+               FCheckRTLAnsi)
   else
     streg := TDataByCurrentUser.Create(aRootKey,
-               FPrefereStrings);
+               FPrefereStrings,
+               FCheckRTLAnsi);
 
   try
     try
@@ -990,10 +1004,12 @@ begin
     streg := TDataByCurrentUser.Create(aRootKey,
                aRootForDefaults,
                aRootKeyForDefaults,
-               FPrefereStrings)
+               FPrefereStrings,
+               FCheckRTLAnsi)
   else
     streg := TDataByCurrentUser.Create(aRootKey,
-               FPrefereStrings);
+               FPrefereStrings,
+               FCheckRTLAnsi);
 
   try
     try
@@ -1064,10 +1080,12 @@ begin
     streg := TDataByCurrentUser.Create(aRootKey,
                aRootForDefaults,
                aRootKeyForDefaults,
-               FPrefereStrings)
+               FPrefereStrings,
+               FCheckRTLAnsi)
   else
     streg := TDataByCurrentUser.Create(aRootKey,
-               FPrefereStrings);
+               FPrefereStrings,
+               FCheckRTLAnsi);
 
   try
     try
@@ -1123,10 +1141,12 @@ begin
     streg := TDataByCurrentUser.Create(aRootKey,
                aRootForDefaults,
                aRootKeyForDefaults,
-               FPrefereStrings)
+               FPrefereStrings,
+               FCheckRTLAnsi)
   else
     streg := TDataByCurrentUser.Create(aRootKey,
-               FPrefereStrings);
+               FPrefereStrings,
+               FCheckRTLAnsi);
 
   try
     try
@@ -1184,10 +1204,12 @@ begin
     streg := TDataByCurrentUser.Create(aRootKey,
                aRootForDefaults,
                aRootKeyForDefaults,
-               FPrefereStrings)
+               FPrefereStrings,
+               FCheckRTLAnsi)
   else
     streg := TDataByCurrentUser.Create(aRootKey,
-               FPrefereStrings);
+               FPrefereStrings,
+               FCheckRTLAnsi);
 
   try
     try
@@ -1243,10 +1265,12 @@ begin
     streg := TDataByCurrentUser.Create(aRootKey,
                aRootForDefaults,
                aRootKeyForDefaults,
-               FPrefereStrings)
+               FPrefereStrings,
+               FCheckRTLAnsi)
   else
     streg := TDataByCurrentUser.Create(aRootKey,
-               FPrefereStrings);
+               FPrefereStrings,
+               FCheckRTLAnsi);
 
   try
     try
@@ -1301,10 +1325,12 @@ begin
     streg := TDataByCurrentUser.Create(aRootKey,
                aRootForDefaults,
                aRootKeyForDefaults,
-               FPrefereStrings)
+               FPrefereStrings,
+               FCheckRTLAnsi)
   else
     streg := TDataByCurrentUser.Create(aRootKey,
-               FPrefereStrings);
+               FPrefereStrings,
+               FCheckRTLAnsi);
 
   try
     try
@@ -1356,10 +1382,12 @@ begin
     streg := TDataByCurrentUser.Create(aRootKey,
                aRootForDefaults,
                aRootKeyForDefaults,
-               FPrefereStrings)
+               FPrefereStrings,
+               FCheckRTLAnsi)
   else
     streg := TDataByCurrentUser.Create(aRootKey,
-               FPrefereStrings);
+               FPrefereStrings,
+               FCheckRTLAnsi);
 
   try
     try

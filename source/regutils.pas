@@ -18,6 +18,7 @@ type
     FRoot: string;
     FDefaultKey: string;
     FPrefereStrings: boolean;
+    FCheckRTLAnsi: boolean;
 
     procedure ReadSectionValuesByKind(aSection: string;
                                       aStrings: TStrings;
@@ -26,6 +27,10 @@ type
   protected
     function GetDefaultKey: string;
     function GetHKeyRoot: HKEY;
+
+    property CheckRTLAnsi: boolean
+      read FCheckRTLAnsi
+      write FCheckRTLAnsi;
   public
     function DeleteKey(aSection: string): boolean;
     function DeleteValue(aSection: string;
@@ -63,9 +68,9 @@ type
 
     constructor Create(aRoot: string;
                        aDefaultKey: string;
-                       aPrefereString: boolean = False); virtual;
+                       aPrefereString: boolean = False;
+                       aCheckRTLAnsi: boolean = True); virtual;
     destructor Destroy; override;
-
   published
     property Root: string
       read FRoot
@@ -80,12 +85,18 @@ type
   TDataByCurrentUser = class(TRegIniFile)
   private
     FUseDefaults: TDefaultsForCurrentUser;
+    FCheckRTLAnsi: boolean;
 
     procedure ReadSectionValuesByKind(aSection: string;
                                       aStrings: TStrings;
                                       aKind: TListSourceKind = Both);
   protected
+    property CheckRTLAnsi: boolean
+      read FCheckRTLAnsi
+      write FCheckRTLAnsi;
   public
+    function ReadString(const Section, Ident, Default: string): string;
+
     procedure EraseSectionForDefaults(aSection: string);
     procedure DeleteKeyForDefaults(aSection: string;
                                    aKey: string);
@@ -130,9 +141,11 @@ type
     constructor Create(aFileName: string;
                        aDefaultsRoot: string;
                        aDefaultKey: string;
-                       aPrefereStrings: boolean = False); reintroduce; overload;
+                       aPrefereStrings: boolean = False;
+                       aCheckRTLAnsi: boolean = True); reintroduce; overload;
     constructor Create(aFileName: string;
-                       aPrefereStrings: boolean = False); reintroduce; overload;
+                       aPrefereStrings: boolean = False;
+                       aCheckRTLAnsi: boolean = True); reintroduce; overload;
 
     destructor Destroy; override;
   published
@@ -144,7 +157,8 @@ type
 implementation
 
 uses
-  SysUtils;
+  SysUtils,
+  FileUtil;
 
 { TDefaultsForCurrentUser }
 
@@ -399,13 +413,15 @@ end;
 
 constructor TDefaultsForCurrentUser.Create(aRoot: string;
   aDefaultKey: string;
-  aPrefereString: boolean = False);
+  aPrefereString: boolean = False;
+  aCheckRTLAnsi: boolean = True);
 begin
   inherited Create;
 
   FRoot := aRoot;
   FDefaultKey := aDefaultKey;
   FPrefereStrings := aPrefereString;
+  FCheckRTLAnsi := aCheckRTLAnsi;
 end;
 
 destructor TDefaultsForCurrentUser.Destroy;
@@ -660,20 +676,24 @@ end;
 constructor TDataByCurrentUser.Create(aFileName: string;
   aDefaultsRoot: string;
   aDefaultKey: string;
-  aPrefereStrings: boolean = False);
+  aPrefereStrings: boolean = False;
+  aCheckRTLAnsi: boolean = True);
 begin
   inherited Create(aFileName);
 
+  CheckRTLAnsi := aCheckRTLAnsi;
   PreferStringValues := aPrefereStrings;
   FUseDefaults :=
     TDefaultsForCurrentUser.Create(aDefaultsRoot, aDefaultKey, aPrefereStrings);
 end;
 
 constructor TDataByCurrentUser.Create(aFileName: string;
-  aPrefereStrings: boolean = False);
+  aPrefereStrings: boolean = False;
+  aCheckRTLAnsi: boolean = True);
 begin
   inherited Create(aFileName);
 
+  CheckRTLAnsi := aCheckRTLAnsi;
   PreferStringValues := aPrefereStrings;
 end;
 
@@ -747,6 +767,19 @@ begin
     if Assigned(list) then
       FreeAndNil(list);
   end;
+end;
+
+function TDataByCurrentUser.ReadString(const Section: string;
+  const Ident: string;
+  const Default: string): string;
+var
+  value: string;
+begin
+  value := inherited ReadString(Section, Ident, Default);
+  if CheckRTLAnsi then
+    if NeedRTLAnsi then
+      value:= SysToUTF8(value);
+  Result := value;
 end;
 
 procedure TDataByCurrentUser.EraseSectionForDefaults(aSection: string);
