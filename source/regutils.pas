@@ -87,6 +87,7 @@ type
     FUseDefaults: TDefaultsForCurrentUser;
     FCheckRTLAnsi: boolean;
 
+    procedure SysToUTF8Strings(aStrings: TStrings);
     procedure ReadSectionValuesByKind(aSection: string;
                                       aStrings: TStrings;
                                       aKind: TListSourceKind = Both);
@@ -95,6 +96,8 @@ type
       read FCheckRTLAnsi
       write FCheckRTLAnsi;
   public
+    procedure ReadSection(const Section: string; Strings: TStrings);
+    procedure WriteString(const Section, Ident, Value: String);
     function ReadString(const Section, Ident, Default: string): string;
 
     procedure EraseSectionForDefaults(aSection: string);
@@ -704,6 +707,27 @@ begin
   inherited Destroy;
 end;
 
+procedure TDataByCurrentUser.SysToUTF8Strings(aStrings: TStrings);
+var
+  anz: integer;
+  list: TStrings;
+  item: string;
+begin
+  list := TStringList.Create;
+  try
+    list.AddStrings(aStrings);
+    aStrings.Clear;
+    for anz := 0 to list.count-1 do
+    begin
+      item := SysToUTF8(list.strings[anz]);
+      aStrings.add(item);
+    end;
+  finally
+    if Assigned(list) then
+      FreeAndNil(list);
+  end;
+end;
+
 procedure TDataByCurrentUser.ReadSectionValuesByKind(aSection: string;
   aStrings: TStrings;
   aKind: TListSourceKind);
@@ -769,9 +793,22 @@ begin
   end;
 end;
 
-function TDataByCurrentUser.ReadString(const Section: string;
-  const Ident: string;
-  const Default: string): string;
+procedure TDataByCurrentUser.ReadSection(const Section: string;
+  Strings: TStrings);
+begin
+  inherited ReadSection(Section, Strings);
+  if CheckRTLAnsi then
+    if NeedRTLAnsi then
+      SysToUTF8Strings(Strings);
+end;
+
+procedure TDataByCurrentUser.WriteString(const Section, Ident, Value: String);
+begin
+  inherited WriteString(Section, Ident, Value);
+end;
+
+function TDataByCurrentUser.ReadString(const Section, Ident, Default: string
+  ): string;
 var
   value: string;
 begin

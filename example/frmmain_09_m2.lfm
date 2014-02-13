@@ -144,7 +144,7 @@ object Main: TMain
     RegistrySettings.Section = 'RegListBox1'
     RegistrySettings.ItemsByRegistry = True
     RegistrySettings.ListSection = 'Captions'
-    RegistrySettings.SourceKind = byValue
+    RegistrySettings.SourceKind = byKey
     RegistrySettings.DoMergeData = False
     RegistrySource = RegistrySource1
   end
@@ -160,6 +160,7 @@ object Main: TMain
     GUID = '{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}'
     DoSyncData = True
     PrefereStrings = False
+    CheckRTLAnsi = True
     left = 776
     top = 24
   end

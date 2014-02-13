@@ -197,8 +197,6 @@ begin
 end;
 
 procedure TCustomRegCheckBox.ReadWriteCaption(aRead: boolean);
-var
-  cap: string;
 begin
   if not (csDesigning in ComponentState) then
   begin
@@ -214,7 +212,7 @@ begin
           Read:
           begin
             if FRegistrySettings.CanRead then
-              cap := RegistrySource.ReadString(FRegistrySettings.RootKey,
+              Caption := RegistrySource.ReadString(FRegistrySettings.RootKey,
                            FRegistrySettings.RootKeyForDefaults,
                            FRegistrySettings.RootForDefaults,
                            FCaptionSettings.Section,
@@ -226,11 +224,6 @@ begin
           Write:;
         end;
       end;
-
-      if NeedRTLAnsi then
-        Caption := SysToUTF8(cap)
-      else
-        Caption := cap;
     end;
   end;
 end;
