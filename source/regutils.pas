@@ -258,32 +258,44 @@ begin
         begin
           GetValueNames(list);
 
- 	 for anz := 0 to list.Count-1 do
- 	 begin
-           value_name := list.Strings[anz];
-           value_data_type := GetDataType(value_name);
+          // Aus dieser Liste werden die Idents entnommen,
+          // eventuell besser auf eine Umwandlung verzichten
+          if CheckRTLAnsi then
+            if NeedRTLAnsi then
+              SysToUTF8Strings(list);
 
-           case value_data_type of
-             rdString:
-               value := reg.ReadString(value_name);
-             rdExpandString:
-               value := reg.ReadString(value_name);
-             rdBinary:
-               Continue;
-             rdInteger:
-               value := IntToStr(ReadInteger(value_name));
-           else
-             Continue;
-           end;
+          for anz := 0 to list.Count-1 do
+  	  begin
+            value_name := list.Strings[anz];
+            value_data_type := GetDataType(value_name);
 
-           case aKind of
-             byValue: AddString(aStrings, value, aMerge);
-             byKey: AddString(aStrings, value_name, aMerge);
-             Both: AddString(aStrings, value_name + '=' + value, aMerge);
-           else
-             Break;
-           end;
- 	 end;
+            case value_data_type of
+              rdString,
+              rdExpandString:
+              begin
+                value := reg.ReadString(value_name);
+
+                if CheckRTLAnsi then
+                  if NeedRTLAnsi then
+                    value := SysToUTF8(value);
+
+              end;
+              rdBinary:
+                Continue;
+              rdInteger:
+                value := IntToStr(ReadInteger(value_name));
+            else
+              Continue;
+            end;
+
+            case aKind of
+              byValue: AddString(aStrings, value, aMerge);
+              byKey: AddString(aStrings, value_name, aMerge);
+              Both: AddString(aStrings, value_name + '=' + value, aMerge);
+            else
+              Break;
+            end;
+  	  end;
         end;
 
         CloseKey;
@@ -426,10 +438,15 @@ begin
         value_data_type := reg.GetDataType(aOldKey);
 
         case value_data_type of
-          rdString:
-            value_str := ReadString(aOldKey);
+          rdString,
           rdExpandString:
+          begin
             value_str := ReadString(aOldKey);
+
+            if CheckRTLAnsi then
+              if NeedRTLAnsi then
+                value_str := SysToUTF8(value_str);
+          end;
           rdInteger:
             value_int := ReadInteger(aOldKey);
         end;
@@ -438,10 +455,15 @@ begin
       DeleteValue(aOldKey);
 
       case value_data_type of
-        rdString:
-          WriteString(aNewKey, value_str);
+        rdString,
         rdExpandString:
+        begin
+          if CheckRTLAnsi then
+            if NeedRTLAnsi then
+              value_str := UTF8ToSys(value_str);
+
           WriteString(aNewKey, value_str);
+        end;
         rdInteger:
           WriteInteger(aNewKey, value_int);
       end;
@@ -493,7 +515,13 @@ begin
 
         if OpenKeyReadOnly(key) then
           if ValueExists(aIdent) then
+          begin
             Result := ReadString(aIdent);
+
+            if CheckRTLAnsi then
+              if NeedRTLAnsi then
+                Result := SysToUTF8(Result);
+          end;
 
         CloseKey;
       end;
@@ -622,7 +650,13 @@ begin
         key := concat(DefaultKey, aSection);
 
         if OpenKey(key, True) then
+        begin
+          if CheckRTLAnsi then
+            if NeedRTLAnsi then
+              aString := UTF8ToSys(aString);
+
           WriteString(aIdent, aString);
+        end;
 
         CloseKey;
       end;
@@ -770,6 +804,12 @@ begin
       begin
         ReadSection(aSection, list);
 
+        // Aus dieser Liste werden die Idents entnommen,
+        // eventuell besser auf eine Umwandlung verzichten
+        if CheckRTLAnsi then
+          if NeedRTLAnsi then
+            SysToUTF8Strings(list);
+
         reg := TRegistry.Create;
         reg.RootKey := HKEY_CURRENT_USER;
         key := Concat(FileName + aSection);
@@ -782,10 +822,15 @@ begin
             value_data_type := reg.GetDataType(value_name);
 
             case value_data_type of
-              rdString:
-                value := ReadString(aSection, value_name, EmptyStr);
+              rdString,
               rdExpandString:
+              begin
                 value := ReadString(aSection, value_name, EmptyStr);
+
+                if CheckRTLAnsi then
+                  if NeedRTLAnsi then
+                    value := SysToUTF8(value);
+              end;
               rdBinary:
                 Continue;
               rdInteger:
@@ -816,14 +861,23 @@ procedure TDataByCurrentUser.ReadSection(const Section: string;
   Strings: TStrings);
 begin
   inherited ReadSection(Section, Strings);
+
   if CheckRTLAnsi then
     if NeedRTLAnsi then
       SysToUTF8Strings(Strings);
 end;
 
 procedure TDataByCurrentUser.WriteString(const Section, Ident, Value: String);
+var
+  value_str: string;
 begin
-  inherited WriteString(Section, Ident, Value);
+  value_str := Value;
+
+  if CheckRTLAnsi then
+    if NeedRTLAnsi then
+      value_str := UTF8ToSys(value_str);
+
+    inherited WriteString(Section, Ident, value_str);
 end;
 
 function TDataByCurrentUser.ReadString(const Section, Ident, Default: string
@@ -832,9 +886,11 @@ var
   value: string;
 begin
   value := inherited ReadString(Section, Ident, Default);
+
   if CheckRTLAnsi then
     if NeedRTLAnsi then
       value:= SysToUTF8(value);
+
   Result := value;
 end;
 
@@ -871,10 +927,15 @@ begin
       value_data_type := reg.GetDataType(aOldKey);
 
       case value_data_type of
-        rdString:
-          value_str := ReadString(aSection, aOldKey, EmptyStr);
+        rdString,
         rdExpandString:
+        begin
           value_str := ReadString(aSection, aOldKey, EmptyStr);
+
+          if CheckRTLAnsi then
+            if NeedRTLAnsi then
+              value_str := SysToUTF8(value_str);
+        end;
         rdInteger:
           value_int := ReadInteger(aSection, aOldKey, $FFFFFF);
       end;
@@ -884,10 +945,15 @@ begin
     DeleteKey(aSection, aOldKey);
 
     case value_data_type of
-      rdString:
-        WriteString(aSection, aNewKey, value_str);
+      rdString,
       rdExpandString:
+      begin
+        if CheckRTLAnsi then
+          if NeedRTLAnsi then
+            value_str := UTF8ToSys(value_str);
+
         WriteString(aSection, aNewKey, value_str);
+      end;
       rdInteger:
         WriteInteger(aSection, aNewKey, value_int);
     end;

@@ -148,6 +148,23 @@ object Main: TMain
     RegistrySettings.DoMergeData = False
     RegistrySource = RegistrySource1
   end
+  object RegEdit1: TRegEdit
+    Left = 264
+    Height = 23
+    Top = 160
+    Width = 216
+    TabOrder = 6
+    Text = 'RegEdit1'
+    RegistrySettings.CanRead = True
+    RegistrySettings.CanWrite = True
+    RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = False
+    RegistrySettings.Default = 'Bla bla'
+    RegistrySettings.Section = 'Captions'
+    RegistrySettings.Ident = 'Tüäßv-ident'
+    RegistrySource = RegistrySource1
+  end
   object RegistrySource1: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
     RootKeyForDefaults = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%'
