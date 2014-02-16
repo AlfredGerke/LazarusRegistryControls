@@ -10,6 +10,10 @@ uses
 
 type
 
+  { TStrConvertTarget }
+
+  TStrConvertTarget = (sctUnknown, sctToUTF8, sctToAnsi);
+
   { TKeyValueItems }
 
   TKeyValueItems = record
