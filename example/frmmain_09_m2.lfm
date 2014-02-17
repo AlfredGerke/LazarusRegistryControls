@@ -162,7 +162,7 @@ object Main: TMain
     RegistrySettings.DoSyncData = False
     RegistrySettings.Default = 'Bla bla'
     RegistrySettings.Section = 'Captions'
-    RegistrySettings.Ident = 'Tüäßv-ident'
+    RegistrySettings.Ident = 'Tv-ident'
     RegistrySource = RegistrySource1
   end
   object RegistrySource1: TRegistrySource

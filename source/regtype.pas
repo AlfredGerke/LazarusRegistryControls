@@ -10,10 +10,6 @@ uses
 
 type
 
-  { TStrConvertTarget }
-
-  TStrConvertTarget = (sctUnknown, sctToUTF8, sctToAnsi);
-
   { TKeyValueItems }
 
   TKeyValueItems = record
@@ -62,6 +58,7 @@ type
   TCustomProperties = class(TPersistent)
   private
     FOwner: TPersistent;
+    FCheckRTLAnsi: boolean;
   protected
     procedure _Initialize; virtual; abstract;
     procedure _Finalize; virtual; abstract;
@@ -74,11 +71,16 @@ type
     function GetOwnerIsLoading: boolean;
     property OwnerIsLoading: boolean
       read GetOwnerIsLoading;
+
+    property CheckRTLAnsi: boolean
+      read FCheckRTLAnsi
+      write FCheckRTLAnsi;
   public
     property Owner: TPersistent
       read GetOwner;
 
-    constructor Create(aOwner: TPersistent); virtual; abstract;
+    constructor Create(aOwner: TPersistent;
+                       aCheckRTLAnsi: boolean = True); virtual; abstract;
   published
   end;
 
@@ -186,7 +188,8 @@ type
     procedure BeginUpdate;
     procedure EndUpdate;
 
-    constructor Create(aOwner: TPersistent); override;
+    constructor Create(aOwner: TPersistent;
+                       aCheckRTLAnsi: boolean = True); override;
     destructor Destroy; override;
 
     property Owner;
@@ -248,6 +251,15 @@ type
     procedure SetDoSyncData(aDoSyncData: boolean);
     procedure SetDoMergeData(aDoMergeData: boolean);
 
+    function GetSection: string;
+    function GetDefault: _T;
+    function GetIdent: string;
+
+    function GetGUID: string;
+    function GetRootKey: string;
+    function GetRootKeyForDefaults: string;
+    function GetRootForDefaults: string;
+
     property Default: _T
       read FDefault
       write SetDefault;
@@ -265,7 +277,8 @@ type
     procedure SetRootKeys(aRootKeys: TRootKeysStruct);
     procedure BeginUpdate;
     procedure EndUpdate;
-    constructor Create(aOwner: TPersistent); override;
+    constructor Create(aOwner: TPersistent;
+                       aCheckRTLAnsi: boolean = True); override;
     destructor Destroy; override;
 
     property Owner;
@@ -327,7 +340,8 @@ function _ChangeTokenForKey(aToken: string;
 implementation
 
 uses
-  SysUtils;
+  SysUtils,
+  regconvutils;
 
 function _ChangeTokenForKey(aToken: string;
   aTokenValue: string;
@@ -448,10 +462,12 @@ begin
   FTriggerEvents := True;
 end;
 
-constructor TCustomCaptionSettings.Create(aOwner: TPersistent);
+constructor TCustomCaptionSettings.Create(aOwner: TPersistent;
+  aCheckRTLAnsi: boolean = True);
 begin
   SetOwner(aOwner);
   FTriggerEvents := True;
+  CheckRTLAnsi := aCheckRTLAnsi;
 
   _Initialize;
 end;
@@ -459,6 +475,8 @@ end;
 destructor TCustomCaptionSettings.Destroy;
 begin
   _Finalize;
+
+  CheckRTLAnsi := True;
 
   inherited Destroy;
 end;
@@ -880,6 +898,41 @@ begin
   FDoMergeData := aDoMergeData;
 end;
 
+function TCustomRegistrySettings<_T>.GetSection: string;
+begin
+  Result := UTF8ToSysIfNeeded(FSection, CheckRTLAnsi);
+end;
+
+function TCustomRegistrySettings<_T>.GetDefault: _T;
+begin
+  Result := FDefault;
+end;
+
+function TCustomRegistrySettings<_T>.GetIdent: string;
+begin
+  Result := UTF8ToSysIfNeeded(FIdent, CheckRTLAnsi);
+end;
+
+function TCustomRegistrySettings<_T>.GetGUID: string;
+begin
+  Result := UTF8ToSysIfNeeded(FGUID, CheckRTLAnsi);
+end;
+
+function TCustomRegistrySettings<_T>.GetRootKey: string;
+begin
+  Result := UTF8ToSysIfNeeded(FSection, CheckRTLAnsi);
+end;
+
+function TCustomRegistrySettings<_T>.GetRootKeyForDefaults: string;
+begin
+  Result := UTF8ToSysIfNeeded(FRootKeyForDefaults, CheckRTLAnsi);
+end;
+
+function TCustomRegistrySettings<_T>.GetRootForDefaults: string;
+begin
+  Result := UTF8ToSysIfNeeded(FRootForDefaults, CheckRTLAnsi);
+end;
+
 procedure TCustomRegistrySettings<_T>.GetRootKeys(var aRootKeys: TRootKeysStruct);
 begin
   aRootKeys.RootKey := FRootKey;
@@ -914,12 +967,14 @@ begin
   FTriggerEvents := True;
 end;
 
-constructor TCustomRegistrySettings<_T>.Create(aOwner: TPersistent);
+constructor TCustomRegistrySettings<_T>.Create(aOwner: TPersistent;
+  aCheckRTLAnsi: boolean = True);
 begin
   SetOwner(aOwner);
   FTriggerEvents := True;
   FDoSyncData := False;
   FGroupIndex := 0;
+  CheckRTLAnsi := ACheckRTLAnsi;
 
   _Initialize;
 end;
@@ -928,6 +983,7 @@ destructor TCustomRegistrySettings<_T>.Destroy;
 begin
   _Finalize;
 
+  CheckRTLAnsi := True;
   inherited;
 end;
 

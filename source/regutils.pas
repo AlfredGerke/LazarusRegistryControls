@@ -156,52 +156,13 @@ type
       write FUseDefaults;
   end;
 
-procedure SysToUTF8Strings(aStrings: TStrings);
-procedure UTF8ToSysStrings(aStrings: TStrings);
 
 implementation
 
 uses
   SysUtils,
-  FileUtil;
-
-procedure ConvertStrings(aStrings: TStrings;
-  aTarget: TStrConvertTarget);
-var
-  anz: integer;
-  list: TStrings;
-  item: string;
-begin
-  list := TStringList.Create;
-  try
-    list.AddStrings(aStrings);
-    aStrings.Clear;
-    for anz := 0 to list.count-1 do
-    begin
-      case aTarget of
-        sctToUTF8: item := SysToUTF8(list.strings[anz]);
-        sctToAnsi: item := UTF8ToSys(list.strings[anz]);
-      else
-        item := list.strings[anz];
-      end;
-
-      aStrings.add(item);
-    end;
-  finally
-    if Assigned(list) then
-      FreeAndNil(list);
-  end;
-end;
-
-procedure SysToUTF8Strings(aStrings: TStrings);
-begin
-  ConvertStrings(aStrings, sctToUTF8);
-end;
-
-procedure UTF8ToSysStrings(aStrings: TStrings);
-begin
-  ConvertStrings(aStrings, sctToAnsi);
-end;
+  FileUtil,
+  regconvutils;
 
 { TDefaultsForCurrentUser }
 

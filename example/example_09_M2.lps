@@ -4,12 +4,12 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="29">
+    <Units Count="31">
       <Unit0>
         <Filename Value="example_09_M2.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="example_09_M2"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="42"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmmain_09_m2.pas"/>
@@ -18,11 +18,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmmain_09_M2"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="2"/>
         <CursorPos X="128" Y="4"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="42"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -31,20 +31,20 @@
         <UnitName Value="regsourcen"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="986"/>
-        <CursorPos X="1" Y="1003"/>
-        <UsageCount Value="19"/>
+        <TopLine Value="242"/>
+        <CursorPos X="14" Y="258"/>
+        <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
         <Filename Value="..\source\regtype.pas"/>
         <UnitName Value="regtype"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="29"/>
-        <CursorPos X="115" Y="29"/>
-        <UsageCount Value="19"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="12"/>
+        <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
@@ -60,11 +60,11 @@
       <Unit5>
         <Filename Value="..\source\reglistbox.pas"/>
         <UnitName Value="reglistbox"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="202"/>
         <CursorPos X="1" Y="218"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
@@ -125,11 +125,11 @@
       <Unit12>
         <Filename Value="..\source\regcheckbox.pas"/>
         <UnitName Value="regcheckbox"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="202"/>
-        <CursorPos X="22" Y="215"/>
-        <UsageCount Value="16"/>
+        <TopLine Value="144"/>
+        <CursorPos X="52" Y="208"/>
+        <UsageCount Value="17"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit12>
@@ -145,12 +145,11 @@
       <Unit14>
         <Filename Value="..\source\regutils.pas"/>
         <UnitName Value="regutils"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="871"/>
-        <CursorPos X="32" Y="886"/>
-        <UsageCount Value="13"/>
+        <TopLine Value="136"/>
+        <CursorPos X="15" Y="165"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit14>
@@ -213,12 +212,10 @@
       <Unit22>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-registry\src\registry.pp"/>
         <UnitName Value="registry"/>
-        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="121"/>
         <CursorPos X="24" Y="138"/>
         <UsageCount Value="12"/>
-        <Loaded Value="True"/>
       </Unit22>
       <Unit23>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\rtl\inc\objpash.inc"/>
@@ -229,12 +226,10 @@
       </Unit23>
       <Unit24>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-registry\src\regini.inc"/>
-        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="132"/>
         <CursorPos X="3" Y="158"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit24>
       <Unit25>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-registry\src\winreg.inc"/>
@@ -261,149 +256,171 @@
       <Unit28>
         <Filename Value="..\source\regedit.pas"/>
         <UnitName Value="regedit"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="129"/>
         <CursorPos X="1" Y="152"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
+      <Unit29>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="regconvutils"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="8"/>
+        <CursorPos X="1" Y="15"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\rtl\objpas\sysutils\sysutilh.inc"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="273"/>
+        <CursorPos X="13" Y="290"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit30>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="534" Column="1" TopLine="517"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="904" Column="38" TopLine="887"/>
       </Position1>
       <Position2>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="536" Column="1" TopLine="517"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="914" Column="38" TopLine="897"/>
       </Position2>
       <Position3>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="887" Column="1" TopLine="869"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="919" Column="38" TopLine="902"/>
       </Position3>
       <Position4>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="888" Column="1" TopLine="869"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="924" Column="38" TopLine="907"/>
       </Position4>
       <Position5>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="890" Column="1" TopLine="869"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="929" Column="38" TopLine="912"/>
       </Position5>
       <Position6>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="891" Column="1" TopLine="869"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="262" Column="14" TopLine="248"/>
       </Position6>
       <Position7>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="892" Column="1" TopLine="869"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="258" Column="14" TopLine="242"/>
       </Position7>
       <Position8>
-        <Filename Value="..\source\reglistbox.pas"/>
-        <Caret Line="218" Column="1" TopLine="202"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="934" Column="38" TopLine="917"/>
       </Position8>
       <Position9>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="1003" Column="1" TopLine="986"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="910" Column="3" TopLine="887"/>
       </Position9>
       <Position10>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="888" Column="1" TopLine="869"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="348" Column="12" TopLine="332"/>
       </Position10>
       <Position11>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="1003" Column="1" TopLine="986"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position11>
       <Position12>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="796" Column="1" TopLine="779"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="348" Column="11" TopLine="336"/>
       </Position12>
       <Position13>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="888" Column="1" TopLine="871"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="347" Column="11" TopLine="329"/>
       </Position13>
       <Position14>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="152" Column="1" TopLine="129"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="906" Column="30" TopLine="889"/>
       </Position14>
       <Position15>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="888" Column="1" TopLine="871"/>
+        <Filename Value="..\source\regtype.pas"/>
+        <Caret Line="945" Column="30" TopLine="911"/>
       </Position15>
       <Position16>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="887" Column="29" TopLine="871"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="3" Column="20" TopLine="1"/>
       </Position16>
       <Position17>
-        <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-registry\src\regini.inc"/>
-        <Caret Line="158" Column="3" TopLine="132"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="265" Column="26" TopLine="236"/>
       </Position17>
       <Position18>
-        <Filename Value="..\source\reglistbox.pas"/>
-        <Caret Line="218" Column="1" TopLine="202"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="23" Column="11" TopLine="1"/>
       </Position18>
       <Position19>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="1003" Column="1" TopLine="986"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="9" Column="10" TopLine="1"/>
       </Position19>
       <Position20>
         <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="888" Column="1" TopLine="871"/>
+        <Caret Line="269" Column="12" TopLine="236"/>
       </Position20>
       <Position21>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="1003" Column="1" TopLine="986"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="56" Column="17" TopLine="37"/>
       </Position21>
       <Position22>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="796" Column="1" TopLine="779"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="22" Column="11" TopLine="20"/>
       </Position22>
       <Position23>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="888" Column="1" TopLine="871"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="13" Column="24" TopLine="8"/>
       </Position23>
       <Position24>
-        <Filename Value="..\source\regedit.pas"/>
-        <Caret Line="152" Column="1" TopLine="129"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="80" Column="41" TopLine="60"/>
       </Position24>
       <Position25>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="888" Column="1" TopLine="871"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="24" Column="10" TopLine="7"/>
       </Position25>
       <Position26>
-        <Filename Value="..\source\reglistbox.pas"/>
-        <Caret Line="218" Column="1" TopLine="202"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="48" Column="50" TopLine="38"/>
       </Position26>
       <Position27>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="1003" Column="1" TopLine="986"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="38" Column="21" TopLine="20"/>
       </Position27>
       <Position28>
         <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="888" Column="1" TopLine="871"/>
+        <Caret Line="269" Column="12" TopLine="236"/>
       </Position28>
       <Position29>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="1003" Column="1" TopLine="986"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="38" Column="24" TopLine="21"/>
       </Position29>
       <Position30>
-        <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="796" Column="1" TopLine="779"/>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="48" Column="13" TopLine="28"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="6">
+    <BreakPoints Count="5">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="..\source\regutils.pas"/>
-        <Line Value="796"/>
+        <Line Value="757"/>
       </Item1>
       <Item2>
         <Kind Value="bpkSource"/>
@@ -430,16 +447,9 @@
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
-        <Source Value="..\source\regutils.pas"/>
-        <Line Value="888"/>
-      </Item5>
-      <Item6>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
         <Source Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-registry\src\regini.inc"/>
         <Line Value="158"/>
-      </Item6>
+      </Item5>
     </BreakPoints>
   </Debugging>
 </CONFIG>
