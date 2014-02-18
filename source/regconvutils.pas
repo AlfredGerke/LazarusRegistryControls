@@ -16,8 +16,10 @@ function UTF8ToSysIfNeeded(aString: string;
   aCheckRTLAnsi: boolean): string;
 function SysToUTF8IfNeeded(aString: string;
   aCheckRTLAnsi: boolean): string;
-procedure SysToUTF8Strings(aStrings: TStrings);
-procedure UTF8ToSysStrings(aStrings: TStrings);
+procedure SysToUTF8Strings(aStrings: TStrings;
+  aCheckRTLAnsi: boolean);
+procedure UTF8ToSysStrings(aStrings: TStrings;
+  aCheckRTLAnsi: boolean);
 
 implementation
 
@@ -55,41 +57,47 @@ begin
 end;
 
 procedure ConvertStrings(aStrings: TStrings;
+  aCheckRTLAnsi: boolean;
   aTarget: TStrConvertTarget);
 var
   anz: integer;
   list: TStrings;
   item: string;
 begin
-  list := TStringList.Create;
-  try
-    list.AddStrings(aStrings);
-    aStrings.Clear;
-    for anz := 0 to list.count-1 do
-    begin
-      case aTarget of
-        sctToUTF8: item := SysToUTF8(list.strings[anz]);
-        sctToAnsi: item := UTF8ToSys(list.strings[anz]);
-      else
-        item := list.strings[anz];
-      end;
+  if (aCheckRTLAnsi and NeedRTLAnsi) then
+  begin
+    list := TStringList.Create;
+    try
+      list.AddStrings(aStrings);
+      aStrings.Clear;
+      for anz := 0 to list.count-1 do
+      begin
+        case aTarget of
+          sctToUTF8: item := SysToUTF8(list.strings[anz]);
+          sctToAnsi: item := UTF8ToSys(list.strings[anz]);
+        else
+          item := list.strings[anz];
+        end;
 
-      aStrings.add(item);
+        aStrings.add(item);
+      end;
+    finally
+      if Assigned(list) then
+        FreeAndNil(list);
     end;
-  finally
-    if Assigned(list) then
-      FreeAndNil(list);
   end;
 end;
 
-procedure SysToUTF8Strings(aStrings: TStrings);
+procedure SysToUTF8Strings(aStrings: TStrings;
+  aCheckRTLAnsi: boolean);
 begin
-  ConvertStrings(aStrings, sctToUTF8);
+  ConvertStrings(aStrings, aCheckRTLAnsi, sctToUTF8);
 end;
 
-procedure UTF8ToSysStrings(aStrings: TStrings);
+procedure UTF8ToSysStrings(aStrings: TStrings;
+  aCheckRTLAnsi: boolean);
 begin
-  ConvertStrings(aStrings, sctToAnsi);
+  ConvertStrings(aStrings, aCheckRTLAnsi, sctToAnsi);
 end;
 
 end.

@@ -129,6 +129,7 @@ type
   { TRootKeysStruct }
 
   TRootKeysStruct = record
+    { TODO 1 -oAlfred Gerke -cUTF8 : Wahlweise in UTF8 oder Ansi ausgeben }
     Found: boolean;
     RootKey: string;
     RootKeyForDefaults: string;
@@ -168,15 +169,17 @@ type
     procedure _Initialize; override;
     procedure _Finalize; override;
 
-    procedure SetSection(aSectionForCaption: string);
-    procedure SetIdent(aIdentForCaption: string);
+    function GetSection: string;
+    procedure SetSection(aSection: string);
+    function GetIdent: string;
+    procedure SetIdent(aIdent: string);
     procedure SetCaptionByRegistry(aCaptionByRegistry: boolean);
 
     property Section: string
-      read FSection
+      read GetSection
       write SetSection;
     property Ident: string
-      read FIdent
+      read GetIdent
       write SetIdent;
     property CaptionByRegistry: boolean
       read FCaptionByRegistry
@@ -261,13 +264,13 @@ type
     function GetRootForDefaults: string;
 
     property Default: _T
-      read FDefault
+      read GetDefault
       write SetDefault;
     property Section: string
-      read FSection
+      read GetSection
       write SetSection;
     property Ident: string
-      read FIdent
+      read GetIdent
       write SetIdent;
     property DoMergeData: boolean
       read FDoMergeData
@@ -402,36 +405,46 @@ end;
 
 procedure TCustomCaptionSettings._Initialize;
 begin
-
+  // wird als letztes im Create aufgerufen
 end;
 
 procedure TCustomCaptionSettings._Finalize;
 begin
+  // wird als erstes im Destroy aufgerufen
+end;
 
+function TCustomCaptionSettings.GetSection: string;
+begin
+  result := UTF8ToSysIfNeeded(FSection, CheckRTLAnsi);
 end;
 
 procedure TCustomCaptionSettings.SetSection(
-  aSectionForCaption: string);
+  aSection: string);
 begin
   if not TriggerOnBeforeCaptionSettingChange(rskSectionForCaption,
-    aSectionForCaption)
+    aSection)
   then
     Exit;
 
-  FSection := aSectionForCaption;
+  FSection := SysToUTF8IfNeeded(aSection, CheckRTLAnsi);
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
 
-procedure TCustomCaptionSettings.SetIdent(aIdentForCaption: string);
+function TCustomCaptionSettings.GetIdent: string;
+begin
+  result := UTF8ToSysIfNeeded(FIdent, CheckRTLAnsi);
+end;
+
+procedure TCustomCaptionSettings.SetIdent(aIdent: string);
 begin
   if not TriggerOnBeforeCaptionSettingChange(rskIdentForCaption,
-    aIdentForCaption)
+    aIdent)
   then
     Exit;
 
-  FIdent := aIdentForCaption;
+  FIdent := SysToUTF8IfNeeded(aIdent, CheckRTLAnsi);
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -440,10 +453,8 @@ end;
 procedure TCustomCaptionSettings.SetCaptionByRegistry(
   aCaptionByRegistry: boolean);
 begin
-
   if (FCaptionByRegistry <> aCaptionByRegistry) then
     FCaptionByRegistry := aCaptionByRegistry;
-
 
   if (FCaptionByRegistry and
     Assigned(FOnChange) and
@@ -736,6 +747,8 @@ begin
   FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
   FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
 
+  FRootKey := SysToUTF8IfNeeded(FRootKey, CheckRTLAnsi);
+
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -752,6 +765,8 @@ begin
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
   FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
 
+  FRootKeyForDefaults := SysToUTF8IfNeeded(FRootKeyForDefaults, CheckRTLAnsi);
+
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
 end;
@@ -761,7 +776,7 @@ begin
   if not TriggerOnBeforeRegistrySettingChange(rskSection, aSection) then
     Exit;
 
-  FSection := aSection;
+  FSection := SysToUTF8IfNeeded(aSection, CheckRTLAnsi);
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -772,7 +787,7 @@ begin
   if not TriggerOnBeforeRegistrySettingChange(rskIdent, aIdent) then
     Exit;
 
-  FIdent := aIdent;
+  FIdent := SysToUTF8IfNeeded(aIdent, CheckRTLAnsi);
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -806,7 +821,7 @@ begin
   if not TriggerOnBeforeRegistrySettingChange(rskRootForDefaults, aRootForDefaults) then
     Exit;
 
-  FRootForDefaults := aRootForDefaults;
+  FRootForDefaults := SysToUTF8IfNeeded(aRootForDefaults, CheckRTLAnsi);
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -855,7 +870,7 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetGUID(aGUID: string);
 begin
-  FGUID := aGUID;
+  FGUID := SysToUTF8IfNeeded(aGUID, CheckRTLAnsi);
 
   FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
   FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
@@ -863,7 +878,7 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetProject(aProject: string);
 begin
-  FProject := aProject;
+  FProject := SysToUTF8IfNeeded(aProject, CheckRTLAnsi);
 
   FRootKey := ChangeTokenForKey(ttProject, FRootKey);
   FRootKeyForDefaults := ChangeTokenForKey(ttProject, FRootKeyForDefaults);
@@ -871,7 +886,7 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetOrganisation(aOrganisation: string);
 begin
-  FOrganisation := aOrganisation;
+  FOrganisation := SysToUTF8IfNeeded(aOrganisation, CheckRTLAnsi);
 
   FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);

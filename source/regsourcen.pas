@@ -66,6 +66,8 @@ type
 
   {$ifndef fpdoc}
   TRegistrySettingsStringDefault = class(TCustomRegistrySettings<string>)
+  protected
+    function GetDefault: string;
   published
     property Default;
     property Section;
@@ -388,7 +390,8 @@ uses
   LMessages,
   PropEdits,
   ComponentEditors,
-  regpropedits;
+  regpropedits,
+  regconvutils;
 
 procedure Register;
 begin
@@ -420,6 +423,17 @@ begin
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
     TCaptionSettings, 'OnBeforeCaptionSettingChange',
     TRegistrySettingsPropertyEditor);
+end;
+
+{ TRegistrySettingsStringDefault }
+
+function TRegistrySettingsStringDefault.GetDefault: string;
+var
+  value: string;
+begin
+  value := inherited GetDefault;
+
+  Result:= UTF8ToSysIfNeeded(value, CheckRTLAnsi);
 end;
 
 { TRegistrySettingsItemIndexDefault }

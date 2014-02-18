@@ -221,9 +221,7 @@ begin
 
           // Aus dieser Liste werden die Idents entnommen,
           // eventuell besser auf eine Umwandlung verzichten
-          if CheckRTLAnsi then
-            if NeedRTLAnsi then
-              SysToUTF8Strings(list);
+          SysToUTF8Strings(list, CheckRTLAnsi);
 
           for anz := 0 to list.Count-1 do
   	  begin
@@ -767,9 +765,7 @@ begin
 
         // Aus dieser Liste werden die Idents entnommen,
         // eventuell besser auf eine Umwandlung verzichten
-        if CheckRTLAnsi then
-          if NeedRTLAnsi then
-            SysToUTF8Strings(list);
+        SysToUTF8Strings(list, CheckRTLAnsi);
 
         reg := TRegistry.Create;
         reg.RootKey := HKEY_CURRENT_USER;
@@ -823,9 +819,7 @@ procedure TDataByCurrentUser.ReadSection(const Section: string;
 begin
   inherited ReadSection(Section, Strings);
 
-  if CheckRTLAnsi then
-    if NeedRTLAnsi then
-      SysToUTF8Strings(Strings);
+  SysToUTF8Strings(Strings, CheckRTLAnsi);
 end;
 
 procedure TDataByCurrentUser.WriteString(const Section, Ident, Value: String);
