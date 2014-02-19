@@ -11,7 +11,7 @@ msgid "Statisch für RegCheckBox"
 msgstr ""
 
 #: tmain.regcheckgroup1.caption
-msgid " Statisch für RegCheckGroup"
+msgid "Statisch für RegCheckGroup"
 msgstr ""
 
 #: tmain.regedit1.text
@@ -29,6 +29,6 @@ msgid "Statisch für RegRadioButton"
 msgstr ""
 
 #: tmain.regradiogroup1.caption
-msgid " Statisch für RegRadioGroup "
+msgid "Statisch für RegRadioGroup "
 msgstr ""
 

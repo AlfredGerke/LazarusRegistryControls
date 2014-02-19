@@ -53,7 +53,7 @@ object Main: TMain
     Top = 126
     Width = 185
     AutoFill = True
-    Caption = ' Statisch für RegRadioGroup '
+    Caption = 'Statisch für RegRadioGroup '
     ChildSizing.LeftRightSpacing = 6
     ChildSizing.TopBottomSpacing = 6
     ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -84,7 +84,7 @@ object Main: TMain
     Top = 246
     Width = 185
     AutoFill = True
-    Caption = ' Statisch für RegCheckGroup'
+    Caption = 'Statisch für RegCheckGroup'
     ChildSizing.LeftRightSpacing = 6
     ChildSizing.TopBottomSpacing = 6
     ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -157,12 +157,12 @@ object Main: TMain
     Text = 'RegEdit1'
     RegistrySettings.CanRead = True
     RegistrySettings.CanWrite = True
-    RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.DoWriteAdHoc = True
     RegistrySettings.GroupIndex = 0
     RegistrySettings.DoSyncData = False
     RegistrySettings.Default = 'Bla bla'
     RegistrySettings.Section = 'Captions'
-    RegistrySettings.Ident = 'T���-ident'
+    RegistrySettings.Ident = 'Tüäßv-ident'
     RegistrySource = RegistrySource1
   end
   object RegistrySource1: TRegistrySource
