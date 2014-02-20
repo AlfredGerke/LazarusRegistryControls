@@ -96,8 +96,12 @@ type
       write FCheckRTLAnsi;
   public
     procedure ReadSection(const Section: string; Strings: TStrings);
-    procedure WriteString(const Section, Ident, Value: String);
-    function ReadString(const Section, Ident, Default: string): string;
+    procedure WriteString(const Section: String;
+                          const Ident: String;
+                          const Value: String);
+    function ReadString(const Section: string;
+                        const Ident: string;
+                        const Default: string): string;
 
     procedure EraseSectionForDefaults(aSection: string);
     procedure DeleteKeyForDefaults(aSection: string;
@@ -470,6 +474,10 @@ begin
       with reg do
       begin
         RootKey := GetHKEYRoot;
+
+        aSection := SysToUTF8IfNeeded(aSection, CheckRTLAnsi);
+        aIdent := SysToUTF8IfNeeded(aIdent, CheckRTLAnsi);
+
         key := concat(DefaultKey, aSection);
 
         if OpenKeyReadOnly(key) then
@@ -477,9 +485,7 @@ begin
           begin
             Result := ReadString(aIdent);
 
-            if CheckRTLAnsi then
-              if NeedRTLAnsi then
-                Result := SysToUTF8(Result);
+            Result := SysToUTF8IfNeeded(Result, CheckRTLAnsi)
           end;
 
         CloseKey;
@@ -606,13 +612,15 @@ begin
       with reg do
       begin
         RootKey := GetHKEYRoot;
+
+        aSection := SysToUTF8IfNeeded(aSection, CheckRTLAnsi);
+
         key := concat(DefaultKey, aSection);
 
         if OpenKey(key, True) then
         begin
-          if CheckRTLAnsi then
-            if NeedRTLAnsi then
-              aString := UTF8ToSys(aString);
+          aIdent := SysToUTF8IfNeeded(aIdent, CheckRTLAnsi);
+          aString := SysToUTF8IfNeeded(aString, CheckRTLAnsi);
 
           WriteString(aIdent, aString);
         end;
@@ -816,37 +824,45 @@ end;
 
 procedure TDataByCurrentUser.ReadSection(const Section: string;
   Strings: TStrings);
+var
+  section_str: string;
 begin
-  inherited ReadSection(Section, Strings);
+  section_str := SysToUTF8IfNeeded(Section, CheckRTLAnsi);
+
+  inherited ReadSection(section_str, Strings);
 
   SysToUTF8Strings(Strings, CheckRTLAnsi);
 end;
 
-procedure TDataByCurrentUser.WriteString(const Section, Ident, Value: String);
+procedure TDataByCurrentUser.WriteString(const Section: string;
+  const Ident: string;
+  const Value: String);
 var
+  section_str: string;
+  ident_str: string;
   value_str: string;
 begin
-  value_str := Value;
+  section_str := SysToUTF8IfNeeded(Section, CheckRTLAnsi);
+  ident_str := SysToUTF8IfNeeded(Ident, CheckRTLAnsi);
+  value_str := SysToUTF8IfNeeded(Value, CheckRTLAnsi);
 
-  if CheckRTLAnsi then
-    if NeedRTLAnsi then
-      value_str := UTF8ToSys(value_str);
-
-    inherited WriteString(Section, Ident, value_str);
+  inherited WriteString(section_str, ident_str, value_str);
 end;
 
-function TDataByCurrentUser.ReadString(const Section, Ident, Default: string
-  ): string;
+function TDataByCurrentUser.ReadString(const Section: string;
+  const Ident: string;
+  const Default: string): string;
 var
+  section_str: string;
+  ident_str: string;
   value: string;
 begin
-  value := inherited ReadString(Section, Ident, Default);
+  section_str := SysToUTF8IfNeeded(Section, CheckRTLAnsi);
+  ident_str := SysToUTF8IfNeeded(Ident, CheckRTLAnsi);
 
-  if CheckRTLAnsi then
-    if NeedRTLAnsi then
-      value:= SysToUTF8(value);
+  value := inherited ReadString(section_str, ident_str, Default);
 
-  Result := value;
+  Result := SysToUTF8IfNeeded(value, CheckRTLAnsi);
 end;
 
 procedure TDataByCurrentUser.EraseSectionForDefaults(aSection: string);
