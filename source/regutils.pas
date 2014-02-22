@@ -217,6 +217,8 @@ begin
       with reg do
       begin
         RootKey := GetHKEYRoot;
+
+        aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
         key := concat(DefaultKey, aSection);
 
         if OpenKeyReadOnly(key) then
@@ -225,7 +227,7 @@ begin
 
           // Aus dieser Liste werden die Idents entnommen,
           // eventuell besser auf eine Umwandlung verzichten
-          SysToUTF8Strings(list, CheckRTLAnsi);
+          SysToUTF8StringsIfNeeded(list, CheckRTLAnsi);
 
           for anz := 0 to list.Count-1 do
   	  begin
@@ -394,6 +396,8 @@ begin
     with reg do
     begin
       RootKey := GetHKEYRoot;
+
+      aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
       key := concat(DefaultKey, aSection);
 
       if OpenKey(key, True) then
@@ -475,8 +479,8 @@ begin
       begin
         RootKey := GetHKEYRoot;
 
-        aSection := SysToUTF8IfNeeded(aSection, CheckRTLAnsi);
-        aIdent := SysToUTF8IfNeeded(aIdent, CheckRTLAnsi);
+        aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+        aIdent := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
 
         key := concat(DefaultKey, aSection);
 
@@ -613,14 +617,14 @@ begin
       begin
         RootKey := GetHKEYRoot;
 
-        aSection := SysToUTF8IfNeeded(aSection, CheckRTLAnsi);
+        aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
 
         key := concat(DefaultKey, aSection);
 
         if OpenKey(key, True) then
         begin
-          aIdent := SysToUTF8IfNeeded(aIdent, CheckRTLAnsi);
-          aString := SysToUTF8IfNeeded(aString, CheckRTLAnsi);
+          aIdent := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+          aString := UTF8DecodeIfNeeded(aString, CheckRTLAnsi);
 
           WriteString(aIdent, aString);
         end;
@@ -763,6 +767,8 @@ begin
   aStrings.Clear;
   list := TStringlist.Create;
   try
+    aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+
     case aKind of
       byKey:
         ReadSection(aSection, aStrings);
@@ -773,7 +779,7 @@ begin
 
         // Aus dieser Liste werden die Idents entnommen,
         // eventuell besser auf eine Umwandlung verzichten
-        SysToUTF8Strings(list, CheckRTLAnsi);
+        SysToUTF8StringsIfNeeded(list, CheckRTLAnsi);
 
         reg := TRegistry.Create;
         reg.RootKey := HKEY_CURRENT_USER;
@@ -827,11 +833,11 @@ procedure TDataByCurrentUser.ReadSection(const Section: string;
 var
   section_str: string;
 begin
-  section_str := SysToUTF8IfNeeded(Section, CheckRTLAnsi);
+  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
 
   inherited ReadSection(section_str, Strings);
 
-  SysToUTF8Strings(Strings, CheckRTLAnsi);
+  SysToUTF8StringsIfNeeded(Strings, CheckRTLAnsi);
 end;
 
 procedure TDataByCurrentUser.WriteString(const Section: string;
@@ -842,9 +848,9 @@ var
   ident_str: string;
   value_str: string;
 begin
-  section_str := SysToUTF8IfNeeded(Section, CheckRTLAnsi);
-  ident_str := SysToUTF8IfNeeded(Ident, CheckRTLAnsi);
-  value_str := SysToUTF8IfNeeded(Value, CheckRTLAnsi);
+  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+  value_str := UTF8DecodeIfNeeded(Value, CheckRTLAnsi);
 
   inherited WriteString(section_str, ident_str, value_str);
 end;
@@ -857,8 +863,8 @@ var
   ident_str: string;
   value: string;
 begin
-  section_str := SysToUTF8IfNeeded(Section, CheckRTLAnsi);
-  ident_str := SysToUTF8IfNeeded(Ident, CheckRTLAnsi);
+  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
 
   value := inherited ReadString(section_str, ident_str, Default);
 

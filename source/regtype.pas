@@ -439,9 +439,7 @@ end;
 
 procedure TCustomCaptionSettings.SetIdent(aIdent: string);
 begin
-  if not TriggerOnBeforeCaptionSettingChange(rskIdentForCaption,
-    aIdent)
-  then
+  if not TriggerOnBeforeCaptionSettingChange(rskIdentForCaption, aIdent) then
     Exit;
 
   FIdent := SysToUTF8IfNeeded(aIdent, CheckRTLAnsi);

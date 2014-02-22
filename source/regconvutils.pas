@@ -16,10 +16,13 @@ function UTF8ToSysIfNeeded(aString: string;
   aCheckRTLAnsi: boolean): string;
 function SysToUTF8IfNeeded(aString: string;
   aCheckRTLAnsi: boolean): string;
-procedure SysToUTF8Strings(aStrings: TStrings;
+procedure SysToUTF8StringsIfNeeded(aStrings: TStrings;
   aCheckRTLAnsi: boolean);
-procedure UTF8ToSysStrings(aStrings: TStrings;
+procedure UTF8ToSysStringsIfNeeded(aStrings: TStrings;
   aCheckRTLAnsi: boolean);
+
+function UTF8DecodeIfNeeded(aString: string;
+  aCheckRTLAnsi: boolean): string;
 
 implementation
 
@@ -88,16 +91,25 @@ begin
   end;
 end;
 
-procedure SysToUTF8Strings(aStrings: TStrings;
+procedure SysToUTF8StringsIfNeeded(aStrings: TStrings;
   aCheckRTLAnsi: boolean);
 begin
   ConvertStrings(aStrings, aCheckRTLAnsi, sctToUTF8);
 end;
 
-procedure UTF8ToSysStrings(aStrings: TStrings;
+procedure UTF8ToSysStringsIfNeeded(aStrings: TStrings;
   aCheckRTLAnsi: boolean);
 begin
   ConvertStrings(aStrings, aCheckRTLAnsi, sctToAnsi);
+end;
+
+function UTF8DecodeIfNeeded(aString: string;
+  aCheckRTLAnsi: boolean): string;
+begin
+  if (aCheckRTLAnsi and NeedRTLAnsi) then
+    Result := UTF8Decode(aString)
+  else
+    Result := aString;
 end;
 
 end.
