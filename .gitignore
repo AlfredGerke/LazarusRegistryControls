@@ -4,8 +4,10 @@
 
 lib/i386-win32/
 example/lib/i386-win32/
+test/lib/i386-win32/
 example/example.exe
 example/example_09_M2.exe
+test/LazarusRegistryControlsTest.exe
 *.bak
 
 
