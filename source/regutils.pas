@@ -95,14 +95,33 @@ type
       read FCheckRTLAnsi
       write FCheckRTLAnsi;
   public
-    procedure ReadSection(const Section: string; Strings: TStrings);
+    // überschrieben aus TRegIniFile/TRegistgry
+    //!<--
+    procedure EraseSection(const Section: string);
+    procedure DeleteKey(const Section: String;
+                        const Ident: String);
+
+    procedure ReadSection(const Section: string;
+                          Strings: TStrings);
     procedure WriteString(const Section: String;
                           const Ident: String;
                           const Value: String);
     function ReadString(const Section: string;
                         const Ident: string;
                         const Default: string): string;
-
+    function ReadInteger(const Section: string;
+                         const Ident: string;
+                         Default: Longint): Longint;
+    function ReadBool(const Section: string;
+                      const Ident: string;
+                      Default: Boolean): Boolean;
+    procedure WriteBool(const Section: string;
+                        const Ident: string;
+                        Value: Boolean);
+    procedure WriteInteger(const Section: string;
+                           const Ident: string;
+                           Value: Longint);
+    //!-->
     procedure EraseSectionForDefaults(aSection: string);
     procedure DeleteKeyForDefaults(aSection: string;
                                    aKey: string);
@@ -206,6 +225,7 @@ var
   anz: integer;
   value: string;
   value_name: string;
+  value_name_utf8_decoded: string;
   value_data_type: TRegDataType;
 begin
   reg := TRegistry.Create;
@@ -232,13 +252,16 @@ begin
           for anz := 0 to list.Count-1 do
   	  begin
             value_name := list.Strings[anz];
+            value_name_utf8_decoded := UTF8ToSysIfNeeded(value_name, CheckRTLAnsi);
+            value_name_utf8_decoded := UTF8DecodeIfNeeded(value_name_utf8_decoded, CheckRTLAnsi);
+
             value_data_type := GetDataType(value_name);
 
             case value_data_type of
               rdString,
               rdExpandString:
               begin
-                value := reg.ReadString(value_name);
+                value := reg.ReadString(value_name_utf8_decoded);
 
                 if CheckRTLAnsi then
                   if NeedRTLAnsi then
@@ -325,6 +348,7 @@ function TDefaultsForCurrentUser.DeleteKey(aSection: string): boolean;
 var
   reg: TRegistry;
   key: string;
+  section_utf8_decoded: string;
 begin
   Result := False;
   reg := TRegistry.Create;
@@ -333,7 +357,9 @@ begin
       with reg do
       begin
         RootKey := GetHKEYRoot;
-        key := concat(DefaultKey, aSection);
+
+        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+        key := concat(DefaultKey, section_utf8_decoded);
 
         if KeyExists(key) then
           Result := DeleteKey(key);
@@ -356,6 +382,7 @@ function TDefaultsForCurrentUser.DeleteValue(aSection: string;
 var
   reg: TRegistry;
   key: string;
+  section_utf8_decoded: string;
 begin
   Result := False;
   reg := TRegistry.Create;
@@ -364,7 +391,9 @@ begin
       with reg do
       begin
         RootKey := GetHKEYRoot;
-        key := concat(DefaultKey, aSection);
+
+        section_utf8_decoded :=  UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+        key := concat(DefaultKey, section_utf8_decoded);
 
         if OpenKey(key, True) then
           Result := DeleteValue(aKey);
@@ -400,6 +429,9 @@ begin
       aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
       key := concat(DefaultKey, aSection);
 
+      aOldKey := UTF8DecodeIfNeeded(aOldKey, CheckRTLAnsi);
+      aNewKey := UTF8DecodeIfNeeded(aNewKey, CheckRTLAnsi);
+
       if OpenKey(key, True) then
       begin
         value_data_type := reg.GetDataType(aOldKey);
@@ -410,9 +442,8 @@ begin
           begin
             value_str := ReadString(aOldKey);
 
-            if CheckRTLAnsi then
-              if NeedRTLAnsi then
-                value_str := SysToUTF8(value_str);
+            // wird nicht benötigt
+            //value_str := SysToUTF8IfNeeded(value_str, CheckRTLAnsi);
           end;
           rdInteger:
             value_int := ReadInteger(aOldKey);
@@ -425,9 +456,8 @@ begin
         rdString,
         rdExpandString:
         begin
-          if CheckRTLAnsi then
-            if NeedRTLAnsi then
-              value_str := UTF8ToSys(value_str);
+          // wird nicht benötigt
+          //value_str := UTF8ToSysIfNeeded(value_str);
 
           WriteString(aNewKey, value_str);
         end;
@@ -510,6 +540,8 @@ function TDefaultsForCurrentUser.ReadInteger(aSection: string;
 var
   reg: TRegistry;
   key: string;
+  section_utf8_decoded: string;
+  ident_utf8_decoded: string;
 begin
   Result := aDefault;
   reg := TRegistry.Create;
@@ -518,16 +550,19 @@ begin
       with reg do
       begin
         RootKey := GetHKEYRoot;
-        key := concat(DefaultKey, aSection);
+
+        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+        ident_utf8_decoded := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+        key := concat(DefaultKey, section_utf8_decoded);
 
         if OpenKeyReadOnly(key) then
         begin
-          if ValueExists(aIdent) then
+          if ValueExists(ident_utf8_decoded) then
           begin
             if FPrefereStrings then
-              Result := StrToInt(ReadString(aIdent))
+              Result := StrToInt(ReadString(ident_utf8_decoded))
             else
-              Result := ReadInteger(aIdent);
+              Result := ReadInteger(ident_utf8_decoded);
           end;
         end;
 
@@ -549,6 +584,8 @@ function TDefaultsForCurrentUser.ReadBool(aSection: string;
 var
   reg: TRegistry;
   key: string;
+  section_utf8_decoded : string;
+  ident_utf8_decoded : string;
 begin
   Result := aDefault;
   reg := TRegistry.Create;
@@ -557,16 +594,20 @@ begin
       with reg do
       begin
         RootKey := GetHKEYRoot;
-        key := concat(DefaultKey, aSection);
+
+        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+        ident_utf8_decoded := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+
+        key := concat(DefaultKey, section_utf8_decoded);
 
         if OpenKeyReadOnly(key) then
         begin
-          if ValueExists(aIdent) then
+          if ValueExists(ident_utf8_decoded) then
           begin
             if FPrefereStrings then
-              Result := StrToInt(ReadString(aIdent)) <> 0
+              Result := StrToInt(ReadString(ident_utf8_decoded)) <> 0
             else
-              Result := ReadBool(aIdent);
+              Result := ReadBool(ident_utf8_decoded);
           end;
         end;
 
@@ -648,6 +689,8 @@ procedure TDefaultsForCurrentUser.WriteInteger(aSection: string;
 var
   reg: TRegistry;
   key: string;
+  section_utf8_decoded : string;
+  ident_utf8_decoded : string;
 begin
   reg := TRegistry.Create;
   try
@@ -655,14 +698,18 @@ begin
       with reg do
       begin
         RootKey := GetHKEYRoot;
-        key := concat(DefaultKey, aSection);
+
+        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+        ident_utf8_decoded := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+
+        key := concat(DefaultKey, section_utf8_decoded);
 
         if OpenKey(key, True) then
         begin
           if FPrefereStrings then
-            WriteString(aIdent, IntToStr(aInteger))
+            WriteString(ident_utf8_decoded, IntToStr(aInteger))
           else
-            WriteInteger(aIdent, aInteger);
+            WriteInteger(ident_utf8_decoded, aInteger);
         end;
 
         CloseKey;
@@ -684,6 +731,8 @@ procedure TDefaultsForCurrentUser.WriteBool(aSection: string;
 var
   reg: TRegistry;
   key: string;
+  section_utf8_decoded : string;
+  ident_utf8_decoded : string;
 begin
   reg := TRegistry.Create;
   try
@@ -691,19 +740,23 @@ begin
       with reg do
       begin
         RootKey := GetHKEYRoot;
-        key := concat(DefaultKey, aSection);
+
+        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+        ident_utf8_decoded := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+
+        key := concat(DefaultKey, section_utf8_decoded);
 
         if OpenKey(key, True) then
         begin
           if FPrefereStrings then
           begin
             if aBool then
-              WriteString(aIdent, '1')
+              WriteString(ident_utf8_decoded, '1')
             else
-              WriteString(aIdent, '0');
+              WriteString(ident_utf8_decoded, '0');
             end
           else
-            WriteBool(aIdent, aBool);
+            WriteBool(ident_utf8_decoded, aBool);
         end;
 
         CloseKey;
@@ -758,8 +811,10 @@ procedure TDataByCurrentUser.ReadSectionValuesByKind(aSection: string;
 var
   list: TStringList;
   anz: Integer;
+  section_utf8_decoded: string;
   value: String;
   value_name: string;
+  value_name_utf8_decoded: string;
   value_data_type: TRegDataType;
   reg: TRegistry;
   key: string;
@@ -767,8 +822,6 @@ begin
   aStrings.Clear;
   list := TStringlist.Create;
   try
-    aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-
     case aKind of
       byKey:
         ReadSection(aSection, aStrings);
@@ -777,35 +830,31 @@ begin
       begin
         ReadSection(aSection, list);
 
-        // Aus dieser Liste werden die Idents entnommen,
-        // eventuell besser auf eine Umwandlung verzichten
-        SysToUTF8StringsIfNeeded(list, CheckRTLAnsi);
-
         reg := TRegistry.Create;
         reg.RootKey := HKEY_CURRENT_USER;
-        key := Concat(FileName + aSection);
+
+        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+
+        key := Concat(FileName + section_utf8_decoded);
 
         if reg.OpenKeyReadOnly(key) then
         begin
           for anz := 0 to list.Count-1 do
           begin
             value_name := list[anz];
-            value_data_type := reg.GetDataType(value_name);
+            value_name_utf8_decoded := UTF8ToSysIfNeeded(value_name, CheckRTLAnsi);
+            value_name_utf8_decoded := UTF8DecodeIfNeeded(value_name_utf8_decoded, CheckRTLAnsi);
+
+            value_data_type := reg.GetDataType(value_name_utf8_decoded);
 
             case value_data_type of
               rdString,
               rdExpandString:
-              begin
-                value := ReadString(aSection, value_name, EmptyStr);
-
-                if CheckRTLAnsi then
-                  if NeedRTLAnsi then
-                    value := SysToUTF8(value);
-              end;
+                value := ReadString(aSection, UTF8ToSysIfNeeded(value_name, CheckRTLAnsi), EmptyStr);
               rdBinary:
                 Continue;
               rdInteger:
-                value := IntToStr(ReadInteger(aSection, value_name, $FFFFFF));
+                value := IntToStr(ReadInteger(aSection, UTF8ToSysIfNeeded(value_name, CheckRTLAnsi), $FFFFFF));
             else
               Continue;
             end;
@@ -826,6 +875,27 @@ begin
     if Assigned(list) then
       FreeAndNil(list);
   end;
+end;
+
+procedure TDataByCurrentUser.EraseSection(const Section: string);
+var
+  section_str: string;
+begin
+  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
+
+  inherited EraseSection(section_str);
+end;
+
+procedure TDataByCurrentUser.DeleteKey(const Section: String;
+  const Ident: String);
+var
+  section_str: string;
+  ident_str: string;
+begin
+  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+
+  inherited DeleteKey(section_str, ident_str);
 end;
 
 procedure TDataByCurrentUser.ReadSection(const Section: string;
@@ -869,6 +939,58 @@ begin
   value := inherited ReadString(section_str, ident_str, Default);
 
   Result := SysToUTF8IfNeeded(value, CheckRTLAnsi);
+end;
+
+function TDataByCurrentUser.ReadInteger(const Section: string;
+  const Ident: string;
+  Default: Longint): Longint;
+var
+  section_str: string;
+  ident_str: string;
+begin
+  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+
+  Result := inherited ReadInteger(section_str, ident_str, Default);
+end;
+
+function TDataByCurrentUser.ReadBool(const Section: string;
+  const Ident: string;
+  Default: Boolean): Boolean;
+var
+  section_str: string;
+  ident_str: string;
+begin
+  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+
+  Result := inherited ReadBool(section_str, ident_str, Default);
+end;
+
+procedure TDataByCurrentUser.WriteBool(const Section: string;
+  const Ident: string;
+  Value: Boolean);
+var
+  section_str: string;
+  ident_str: string;
+begin
+  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+
+  inherited WriteBool(section_str, ident_str, Value);
+end;
+
+procedure TDataByCurrentUser.WriteInteger(const Section: string;
+  const Ident: string;
+  Value: Longint);
+var
+  section_str: string;
+  ident_str: string;
+begin
+  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+
+  inherited WriteInteger(section_str, ident_str, Value);
 end;
 
 procedure TDataByCurrentUser.EraseSectionForDefaults(aSection: string);
