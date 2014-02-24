@@ -32,23 +32,25 @@ implementation
 
 procedure TRegistrySourceTest.CheckPublishedProperties;
 begin
-  AssertEquals('RootKey', FRegistrySource.RootKey,
-    'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%');
-  AssertEquals('RootKeyForDefaults', FRegistrySource.RootKeyForDefaults,
-    'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%');
-  AssertEquals('RootKeyForCommon', FRegistrySource.RootKeyForCommon,
-    'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%');
-  AssertEquals('Project', FRegistrySource.Project, 'LazarusRegistryControls');
-  AssertEquals('Organisation', FRegistrySource.Organisation, 'ExampleFactory');
-  AssertEquals('RootForDefaults', FRegistrySource.RootForDefaults,
-    'HKEY_LOCAL_MACHINE');
-  AssertEquals('ReadDefaults', FRegistrySource.ReadDefaults, True);
-  AssertEquals('WriteDefaults', FRegistrySource.WriteDefaults, False);
-  AssertEquals('GUID', FRegistrySource.GUID,
-    '{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}');
-  AssertEquals('DoSyncData', FRegistrySource.DoSyncData, True);
-  AssertEquals('PrefereStrings', FRegistrySource.PrefereStrings, False);
-  AssertEquals('CheckRTLAnsi', FRegistrySource.CheckRTLAnsi, True);
+  AssertEquals('RootKey', 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%',
+    FRegistrySource.RootKey);
+  AssertEquals('RootKeyForDefaults',
+    'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%',
+    FRegistrySource.RootKeyForDefaults);
+  AssertEquals('RootKeyForCommon',
+    'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%',
+    FRegistrySource.RootKeyForCommon);
+  AssertEquals('Project', 'LazarusRegistryControls', FRegistrySource.Project);
+  AssertEquals('Organisation', 'ExampleFactory', FRegistrySource.Organisation);
+  AssertEquals('RootForDefaults', 'HKEY_LOCAL_MACHINE',
+  FRegistrySource.RootForDefaults);
+  AssertEquals('ReadDefaults', True, FRegistrySource.ReadDefaults);
+  AssertEquals('WriteDefaults', False, FRegistrySource.WriteDefaults);
+  AssertEquals('GUID', '{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}',
+    FRegistrySource.GUID);
+  AssertEquals('DoSyncData', True, FRegistrySource.DoSyncData);
+  AssertEquals('PrefereStrings', False, FRegistrySource.PrefereStrings);
+  AssertEquals('CheckRTLAnsi', True, FRegistrySource.CheckRTLAnsi);
 end;
 
 procedure TRegistrySourceTest.SetRegistrySource;
@@ -82,8 +84,5 @@ begin
     FreeAndNil(FRegistrySource);
 end;
 
-initialization
-
-  RegisterTest(TRegistrySourceTest);
 end.
 
