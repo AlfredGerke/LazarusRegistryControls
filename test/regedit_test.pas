@@ -5,15 +5,13 @@ unit regedit_test;
 interface
 
 uses
-  Classes,
   SysUtils,
   fpcunit,
-  testutils,
-  testregistry,
   regedit,
   regsourcen,
   regtype,
-  regconst;
+  regconst,
+  regconvutils;
 
 type
 
@@ -39,6 +37,11 @@ implementation
 procedure TRegEditTest.CheckPublishedProperties;
 var
   regsettings_rootkey: string;
+  regsettings_rootkeyfordefaults: string;
+  regsettings_guid: string;
+  regsettings_project: string;
+  regsettings_organisation: string;
+  check_rtl_ansi: boolean;
 begin
   // Properties von TRegistrysource
   AssertEquals('TRegistrySource.RootKey',
@@ -68,33 +71,59 @@ begin
   AssertEquals('TRegistrySource.CheckRTLAnsi', True,
     FRegistrySource.CheckRTLAnsi);
 
-  regsettings_rootkey := IncludeTrailingPathDelimiter(FRegistrySource.RootKey);
+  check_rtl_ansi := FRegistrySource.CheckRTLAnsi;
+  regsettings_rootkey :=
+    IncludeTrailingPathDelimiter(FRegistrySource.RootKey);
   regsettings_rootkey :=
     _ChangeTokenForKey(TokenTypeStr[ttOrganisation],
-      FRegEdit.RegistrySettings.Organisation,
+      FRegistrySource.Organisation,
       regsettings_rootkey);
   regsettings_rootkey :=
     _ChangeTokenForKey(TokenTypeStr[ttProject],
-      FRegEdit.RegistrySettings.Project,
+      FRegistrySource.Project,
       regsettings_rootkey);
   regsettings_rootkey :=
-    _ChangeTokenForKey(TokenTypeStr[ttGUID], FRegEdit.RegistrySettings.GUID,
+    _ChangeTokenForKey(TokenTypeStr[ttGUID], FRegistrySource.GUID,
       regsettings_rootkey);
 
+  regsettings_rootkeyfordefaults :=
+    IncludeTrailingPathDelimiter(FRegistrySource.RootKeyForDefaults);
+  regsettings_rootkeyfordefaults :=
+    _ChangeTokenForKey(TokenTypeStr[ttOrganisation],
+      FRegistrySource.Organisation,
+      regsettings_rootkeyfordefaults);
+  regsettings_rootkeyfordefaults :=
+    _ChangeTokenForKey(TokenTypeStr[ttProject],
+      FRegistrySource.Project,
+      regsettings_rootkeyfordefaults);
+  regsettings_rootkeyfordefaults :=
+    _ChangeTokenForKey(TokenTypeStr[ttGUID], FRegistrySource.GUID,
+      regsettings_rootkeyfordefaults);
+
+  regsettings_guid := FRegistrySource.GUID;
+  regsettings_project := FRegistrySource.Project;
+  regsettings_organisation := FRegistrySource.Organisation;
+
   // Properties von TRegEdit
+  // Jeder Getter für ein String-Property besitzt ein UTF8ToSysIfNeeded
   AssertEquals('TRegEdit.RegistrySettings.RootKey',
-    regsettings_rootkey, FRegEdit.RegistrySettings.RootKey);
+    UTF8ToSysIfNeeded(regsettings_rootkey, check_rtl_ansi),
+    FRegEdit.RegistrySettings.RootKey);
   AssertEquals('TRegEdit.RegistrySettings.RootKeyForDefaults',
-    FRegistrySource.RootKeyForDefaults,
+    UTF8ToSysIfNeeded(regsettings_rootkeyfordefaults, check_rtl_ansi),
     FRegEdit.RegistrySettings.RootKeyForDefaults);
   AssertEquals('TRegEdit.RegistrySettings.RootForDefaults',
-    FRegistrySource.RootForDefaults, FRegEdit.RegistrySettings.RootForDefaults);
+    FRegistrySource.RootForDefaults,
+    FRegEdit.RegistrySettings.RootForDefaults);
   AssertEquals('TRegEdit.RegistrySettings.Project',
-    FRegistrySource.Project, FRegEdit.RegistrySettings.Project);
+    UTF8ToSysIfNeeded(regsettings_project, check_rtl_ansi),
+    FRegEdit.RegistrySettings.Project);
   AssertEquals('TRegEdit.RegistrySettings.Organisation',
-    FRegistrySource.Organisation, FRegEdit.RegistrySettings.Organisation);
+    UTF8ToSysIfNeeded(regsettings_organisation, check_rtl_ansi),
+    FRegEdit.RegistrySettings.Organisation);
   AssertEquals('TRegEdit.RegistrySettings.GUID',
-    FRegistrySource.GUID, FRegEdit.RegistrySettings.GUID);
+    UTF8ToSysIfNeeded(regsettings_guid, check_rtl_ansi),
+    FRegEdit.RegistrySettings.GUID);
   AssertEquals('TRegEdit.RegistrySettings.ReadDefaults',
     FRegistrySource.ReadDefaults, FRegEdit.RegistrySettings.ReadDefaults);
   AssertEquals('TRegEdit.RegistrySettings.WriteDefaults',

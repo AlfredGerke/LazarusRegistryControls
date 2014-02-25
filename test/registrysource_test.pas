@@ -5,11 +5,8 @@ unit registrysource_test;
 interface
 
 uses
-  Classes,
   SysUtils,
   fpcunit,
-  testutils,
-  testregistry,
   regsourcen;
 
 type
