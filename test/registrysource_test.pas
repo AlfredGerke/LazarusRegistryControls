@@ -7,7 +7,7 @@ interface
 uses
   SysUtils,
   fpcunit,
-  regsourcen;
+  registrysource_wrapper;
 
 type
 
@@ -15,9 +15,7 @@ type
 
   TRegistrySourceTest= class(TTestCase)
   private
-    FRegistrySource: TRegistrySource;
-
-    procedure SetRegistrySource;
+    FRegSrcWrapper: TRegistrySourceWrapper;
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -30,55 +28,42 @@ implementation
 procedure TRegistrySourceTest.CheckPublishedProperties;
 begin
   AssertEquals('RootKey', 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%',
-    FRegistrySource.RootKey);
+    FRegSrcWrapper.RegistrySource.RootKey);
   AssertEquals('RootKeyForDefaults',
     'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%',
-    FRegistrySource.RootKeyForDefaults);
+    FRegSrcWrapper.RegistrySource.RootKeyForDefaults);
   AssertEquals('RootKeyForCommon',
     'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%',
-    FRegistrySource.RootKeyForCommon);
-  AssertEquals('Project', 'LazarusRegistryControls', FRegistrySource.Project);
-  AssertEquals('Organisation', 'ExampleFactory', FRegistrySource.Organisation);
+    FRegSrcWrapper.RegistrySource.RootKeyForCommon);
+  AssertEquals('Project', 'LazarusRegistryControls',
+    FRegSrcWrapper.RegistrySource.Project);
+  AssertEquals('Organisation', 'ExampleFactory',
+    FRegSrcWrapper.RegistrySource.Organisation);
   AssertEquals('RootForDefaults', 'HKEY_LOCAL_MACHINE',
-  FRegistrySource.RootForDefaults);
-  AssertEquals('ReadDefaults', True, FRegistrySource.ReadDefaults);
-  AssertEquals('WriteDefaults', False, FRegistrySource.WriteDefaults);
+    FRegSrcWrapper.RegistrySource.RootForDefaults);
+  AssertEquals('ReadDefaults', True,
+    FRegSrcWrapper.RegistrySource.ReadDefaults);
+  AssertEquals('WriteDefaults', False,
+    FRegSrcWrapper.RegistrySource.WriteDefaults);
   AssertEquals('GUID', '{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}',
-    FRegistrySource.GUID);
-  AssertEquals('DoSyncData', True, FRegistrySource.DoSyncData);
-  AssertEquals('PrefereStrings', False, FRegistrySource.PrefereStrings);
-  AssertEquals('CheckRTLAnsi', True, FRegistrySource.CheckRTLAnsi);
-end;
-
-procedure TRegistrySourceTest.SetRegistrySource;
-begin
-  FRegistrySource.RootKey :=
-    'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%';
-  FRegistrySource.RootKeyForDefaults :=
-    'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%';
-  FRegistrySource.RootKeyForCommon :=
-    'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%';
-  FRegistrySource.Project := 'LazarusRegistryControls';
-  FRegistrySource.Organisation := 'ExampleFactory';
-  FRegistrySource.RootForDefaults := 'HKEY_LOCAL_MACHINE';
-  FRegistrySource.ReadDefaults := True;
-  FRegistrySource.WriteDefaults := False;
-  FRegistrySource.GUID := '{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}';
-  FRegistrySource.DoSyncData := True;
-  FRegistrySource.PrefereStrings := False;
-  FRegistrySource.CheckRTLAnsi := True;
+    FRegSrcWrapper.RegistrySource.GUID);
+  AssertEquals('DoSyncData', True,
+    FRegSrcWrapper.RegistrySource.DoSyncData);
+  AssertEquals('PrefereStrings', False,
+    FRegSrcWrapper.RegistrySource.PrefereStrings);
+  AssertEquals('CheckRTLAnsi', True,
+    FRegSrcWrapper.RegistrySource.CheckRTLAnsi);
 end;
 
 procedure TRegistrySourceTest.SetUp;
 begin
-  FRegistrySource := TRegistrySource.Create(nil);
-  SetRegistrySource;
+  FRegSrcWrapper := TRegistrySourceWrapper.Create;
 end;
 
 procedure TRegistrySourceTest.TearDown;
 begin
-  if Assigned(FRegistrySource) then
-    FreeAndNil(FRegistrySource);
+  if Assigned(FRegSrcWrapper) then
+    FreeAndNil(FRegSrcWrapper);
 end;
 
 end.

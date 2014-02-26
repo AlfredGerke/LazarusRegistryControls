@@ -7,8 +7,8 @@ interface
 uses
   SysUtils,
   fpcunit,
-  regedit,
-  regsourcen,
+  registrysource_wrapper,
+  regedit_wrapper,
   regtype,
   regconst,
   regconvutils;
@@ -19,13 +19,10 @@ type
 
   TRegEditTest= class(TTestCase)
   private
-    FRegEdit: TRegEdit;
-    FRegistrySource: TRegistrySource;
+    FRegSrcWrapper: TRegistrySourceWrapper;
+    FRegEditWrapper: TRegEditWrapper;
 
-    procedure SetRegEdit;
-    procedure SetRegistrySource;
   protected
-
     procedure SetUp; override;
     procedure TearDown; override;
   published
@@ -46,139 +43,106 @@ begin
   // Properties von TRegistrysource
   AssertEquals('TRegistrySource.RootKey',
     'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%',
-    FRegistrySource.RootKey);
+    FRegSrcWrapper.RegistrySource.RootKey);
   AssertEquals('TRegistrySource.RootKeyForDefaults',
     'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%',
-    FRegistrySource.RootKeyForDefaults);
+    FRegSrcWrapper.RegistrySource.RootKeyForDefaults);
   AssertEquals('TRegistrySource.RootKeyForCommon',
     'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%',
-    FRegistrySource.RootKeyForCommon);
+    FRegSrcWrapper.RegistrySource.RootKeyForCommon);
   AssertEquals('TRegistrySource.Project', 'LazarusRegistryControls',
-    FRegistrySource.Project);
+    FRegSrcWrapper.RegistrySource.Project);
   AssertEquals('TRegistrySource.Organisation', 'ExampleFactory',
-    FRegistrySource.Organisation);
+    FRegSrcWrapper.RegistrySource.Organisation);
   AssertEquals('TRegistrySource.RootForDefaults', 'HKEY_LOCAL_MACHINE',
-    FRegistrySource.RootForDefaults);
+    FRegSrcWrapper.RegistrySource.RootForDefaults);
   AssertEquals('TRegistrySource.ReadDefaults', True,
-    FRegistrySource.ReadDefaults);
+    FRegSrcWrapper.RegistrySource.ReadDefaults);
   AssertEquals('TRegistrySource.WriteDefaults', False,
-    FRegistrySource.WriteDefaults);
+    FRegSrcWrapper.RegistrySource.WriteDefaults);
   AssertEquals('TRegistrySource.GUID', '{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}',
-    FRegistrySource.GUID);
-  AssertEquals('TRegistrySource.DoSyncData', True, FRegistrySource.DoSyncData);
+    FRegSrcWrapper.RegistrySource.GUID);
+  AssertEquals('TRegistrySource.DoSyncData', True,
+    FRegSrcWrapper.RegistrySource.DoSyncData);
   AssertEquals('TRegistrySource.PrefereStrings', False,
-    FRegistrySource.PrefereStrings);
+    FRegSrcWrapper.RegistrySource.PrefereStrings);
   AssertEquals('TRegistrySource.CheckRTLAnsi', True,
-    FRegistrySource.CheckRTLAnsi);
+    FRegSrcWrapper.RegistrySource.CheckRTLAnsi);
 
-  check_rtl_ansi := FRegistrySource.CheckRTLAnsi;
+  check_rtl_ansi := FRegSrcWrapper.RegistrySource.CheckRTLAnsi;
   regsettings_rootkey :=
-    IncludeTrailingPathDelimiter(FRegistrySource.RootKey);
+    IncludeTrailingPathDelimiter(FRegSrcWrapper.RegistrySource.RootKey);
   regsettings_rootkey :=
     _ChangeTokenForKey(TokenTypeStr[ttOrganisation],
-      FRegistrySource.Organisation,
+      FRegSrcWrapper.RegistrySource.Organisation,
       regsettings_rootkey);
   regsettings_rootkey :=
     _ChangeTokenForKey(TokenTypeStr[ttProject],
-      FRegistrySource.Project,
+      FRegSrcWrapper.RegistrySource.Project,
       regsettings_rootkey);
   regsettings_rootkey :=
-    _ChangeTokenForKey(TokenTypeStr[ttGUID], FRegistrySource.GUID,
+    _ChangeTokenForKey(TokenTypeStr[ttGUID], FRegSrcWrapper.RegistrySource.GUID,
       regsettings_rootkey);
 
   regsettings_rootkeyfordefaults :=
-    IncludeTrailingPathDelimiter(FRegistrySource.RootKeyForDefaults);
+    IncludeTrailingPathDelimiter(FRegSrcWrapper.RegistrySource.RootKeyForDefaults);
   regsettings_rootkeyfordefaults :=
     _ChangeTokenForKey(TokenTypeStr[ttOrganisation],
-      FRegistrySource.Organisation,
+      FRegSrcWrapper.RegistrySource.Organisation,
       regsettings_rootkeyfordefaults);
   regsettings_rootkeyfordefaults :=
     _ChangeTokenForKey(TokenTypeStr[ttProject],
-      FRegistrySource.Project,
+      FRegSrcWrapper.RegistrySource.Project,
       regsettings_rootkeyfordefaults);
   regsettings_rootkeyfordefaults :=
-    _ChangeTokenForKey(TokenTypeStr[ttGUID], FRegistrySource.GUID,
+    _ChangeTokenForKey(TokenTypeStr[ttGUID], FRegSrcWrapper.RegistrySource.GUID,
       regsettings_rootkeyfordefaults);
 
-  regsettings_guid := FRegistrySource.GUID;
-  regsettings_project := FRegistrySource.Project;
-  regsettings_organisation := FRegistrySource.Organisation;
+  regsettings_guid := FRegSrcWrapper.RegistrySource.GUID;
+  regsettings_project := FRegSrcWrapper.RegistrySource.Project;
+  regsettings_organisation := FRegSrcWrapper.RegistrySource.Organisation;
 
   // Properties von TRegEdit
   // Jeder Getter für ein String-Property besitzt ein UTF8ToSysIfNeeded
   AssertEquals('TRegEdit.RegistrySettings.RootKey',
     UTF8ToSysIfNeeded(regsettings_rootkey, check_rtl_ansi),
-    FRegEdit.RegistrySettings.RootKey);
+    FRegEditWrapper.RegEdit.RegistrySettings.RootKey);
   AssertEquals('TRegEdit.RegistrySettings.RootKeyForDefaults',
     UTF8ToSysIfNeeded(regsettings_rootkeyfordefaults, check_rtl_ansi),
-    FRegEdit.RegistrySettings.RootKeyForDefaults);
+    FRegEditWrapper.RegEdit.RegistrySettings.RootKeyForDefaults);
   AssertEquals('TRegEdit.RegistrySettings.RootForDefaults',
-    FRegistrySource.RootForDefaults,
-    FRegEdit.RegistrySettings.RootForDefaults);
+    FRegSrcWrapper.RegistrySource.RootForDefaults,
+    FRegEditWrapper.RegEdit.RegistrySettings.RootForDefaults);
   AssertEquals('TRegEdit.RegistrySettings.Project',
     UTF8ToSysIfNeeded(regsettings_project, check_rtl_ansi),
-    FRegEdit.RegistrySettings.Project);
+    FRegEditWrapper.RegEdit.RegistrySettings.Project);
   AssertEquals('TRegEdit.RegistrySettings.Organisation',
     UTF8ToSysIfNeeded(regsettings_organisation, check_rtl_ansi),
-    FRegEdit.RegistrySettings.Organisation);
+    FRegEditWrapper.RegEdit.RegistrySettings.Organisation);
   AssertEquals('TRegEdit.RegistrySettings.GUID',
     UTF8ToSysIfNeeded(regsettings_guid, check_rtl_ansi),
-    FRegEdit.RegistrySettings.GUID);
+    FRegEditWrapper.RegEdit.RegistrySettings.GUID);
   AssertEquals('TRegEdit.RegistrySettings.ReadDefaults',
-    FRegistrySource.ReadDefaults, FRegEdit.RegistrySettings.ReadDefaults);
+    FRegSrcWrapper.RegistrySource.ReadDefaults,
+    FRegEditWrapper.RegEdit.RegistrySettings.ReadDefaults);
   AssertEquals('TRegEdit.RegistrySettings.WriteDefaults',
-    FRegistrySource.WriteDefaults, FRegEdit.RegistrySettings.WriteDefaults);
-end;
-
-procedure TRegEditTest.SetRegEdit;
-begin
-  FRegEdit.RegistrySource := FRegistrySource;
-
-  FRegEdit.RegistrySettings.CanRead := True;
-  FRegEdit.RegistrySettings.CanWrite := True;
-  FRegEdit.RegistrySettings.DoWriteAdHoc := True;
-  FRegEdit.RegistrySettings.GroupIndex := 0;
-  FRegEdit.RegistrySettings.DoSyncData := False;
-  FRegEdit.RegistrySettings.Default := 'Default-Eintrag';
-  FRegEdit.RegistrySettings.Section := 'Captions';
-  FRegEdit.RegistrySettings.Ident := 'Tüäßv-ident';
-  FRegEdit.RegistrySource := FRegistrySource;
-end;
-
-procedure TRegEditTest.SetRegistrySource;
-begin
-  FRegistrySource.RootKey :=
-    'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%';
-  FRegistrySource.RootKeyForDefaults :=
-    'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%';
-  FRegistrySource.RootKeyForCommon :=
-    'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%';
-  FRegistrySource.Project := 'LazarusRegistryControls';
-  FRegistrySource.Organisation := 'ExampleFactory';
-  FRegistrySource.RootForDefaults := 'HKEY_LOCAL_MACHINE';
-  FRegistrySource.ReadDefaults := True;
-  FRegistrySource.WriteDefaults := False;
-  FRegistrySource.GUID := '{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}';
-  FRegistrySource.DoSyncData := True;
-  FRegistrySource.PrefereStrings := False;
-  FRegistrySource.CheckRTLAnsi := True;
+    FRegSrcWrapper.RegistrySource.WriteDefaults,
+    FRegEditWrapper.RegEdit.RegistrySettings.WriteDefaults);
 end;
 
 procedure TRegEditTest.SetUp;
 begin
-  FRegistrySource := TRegistrySource.Create(nil);
-  SetRegistrySource;
-  FRegEdit := TRegEdit.Create(nil);
-  SetRegEdit;
+  FRegSrcWrapper := TRegistrySourceWrapper.Create;
+  FRegEditWrapper := TRegEditWrapper.Create(FRegSrcWrapper.RegistrySource);
 end;
 
 procedure TRegEditTest.TearDown;
 begin
-  if Assigned(FRegEdit) then
-    FreeAndNil(FREgEdit);
+  if Assigned(FRegEditWrapper) then
+    FreeAndNil(FRegEditWrapper);
 
-  if Assigned(FRegistrySource) then
-    FreeAndNil(FRegistrySource);
+  if Assigned(FRegSrcWrapper) then
+    FreeAndNil(FRegSrcWrapper);
 end;
 
 end.
