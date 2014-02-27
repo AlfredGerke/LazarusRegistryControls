@@ -1,31 +1,25 @@
 unit regedit_wrapper;
 
-{$mode delphi}
+{$mode Delphi}{$H+}
 
 interface
 
 uses
-  Classes,
-  SysUtils,
   regedit,
-  regsourcen;
+  regsourcen,
+  test_wrapper;
 
 type
 
   { TRegEditWrapper }
 
-  TRegEditWrapper = class
+  TRegEditWrapper = class(TWrapper<TRegEdit>)
   private
-    FRegEdit: TRegEdit;
   protected
-    procedure SetRegistryEntries; virtual;
-    procedure SetRegistrySettings(aRegistrySource: TRegistrySource); virtual;
+    procedure SetRegistryEntries; override;
+    procedure SetRegistrySettings(aRegistrySource: TRegistrySource); override;
   public
-    constructor Create(aRegistrySource: TRegistrySource); virtual;
-    destructor Destroy; override;
   public
-    property RegEdit : TRegEdit
-      read FRegEdit;
   end;
 
 implementation
@@ -37,39 +31,17 @@ uses
 
 procedure TRegEditWrapper.SetRegistryEntries;
 begin
-  FRegEdit.RegistrySource.WriteString(SEC_TREGEDIT, IDENT_TEXT_PROPERTY,
+  RegControl.RegistrySource.WriteString(SEC_TREGEDIT, IDENT_TEXT_PROPERTY,
     _TEXT_ENTRY);
 end;
 
 procedure TRegEditWrapper.SetRegistrySettings(aRegistrySource: TRegistrySource);
 begin
-  FRegEdit.RegistrySource := aRegistrySource;
+  inherited SetRegistrySettings(aRegistrySource);
 
-  FRegEdit.RegistrySettings.CanRead := True;
-  FRegEdit.RegistrySettings.CanWrite := True;
-  FRegEdit.RegistrySettings.DoWriteAdHoc := True;
-  FRegEdit.RegistrySettings.GroupIndex := 0;
-  FRegEdit.RegistrySettings.DoSyncData := False;
-  FRegEdit.RegistrySettings.Default := DEFAULT_TEXT_ENTRY;
-  FRegEdit.RegistrySettings.Section := SEC_TREGEDIT;
-  FRegEdit.RegistrySettings.Ident := IDENT_TEXT_PROPERTY;
-end;
-
-constructor TRegEditWrapper.Create(aRegistrySource: TRegistrySource);
-begin
-  FRegEdit := TRegEdit.Create(nil);
-  SetRegistrySettings(aRegistrySource);
-  SetRegistryEntries;
-end;
-
-destructor TRegEditWrapper.Destroy;
-begin
-  FRegEdit.RegistrySource := nil;
-
-  if Assigned(FRegEdit) then
-    FreeAndNil(FRegEdit);
-
-  inherited Destroy;
+  RegControl.RegistrySettings.Default := DEFAULT_TEXT_ENTRY;
+  RegControl.RegistrySettings.Section := SEC_TREGEDIT;
+  RegControl.RegistrySettings.Ident := IDENT_TEXT_PROPERTY;
 end;
 
 end.

@@ -106,28 +106,28 @@ begin
   // Jeder Getter für ein String-Property besitzt ein UTF8ToSysIfNeeded
   AssertEquals('TRegEdit.RegistrySettings.RootKey',
     UTF8ToSysIfNeeded(regsettings_rootkey, check_rtl_ansi),
-    FRegEditWrapper.RegEdit.RegistrySettings.RootKey);
+    FRegEditWrapper.RegControl.RegistrySettings.RootKey);
   AssertEquals('TRegEdit.RegistrySettings.RootKeyForDefaults',
     UTF8ToSysIfNeeded(regsettings_rootkeyfordefaults, check_rtl_ansi),
-    FRegEditWrapper.RegEdit.RegistrySettings.RootKeyForDefaults);
+    FRegEditWrapper.RegControl.RegistrySettings.RootKeyForDefaults);
   AssertEquals('TRegEdit.RegistrySettings.RootForDefaults',
     FRegSrcWrapper.RegistrySource.RootForDefaults,
-    FRegEditWrapper.RegEdit.RegistrySettings.RootForDefaults);
+    FRegEditWrapper.RegControl.RegistrySettings.RootForDefaults);
   AssertEquals('TRegEdit.RegistrySettings.Project',
     UTF8ToSysIfNeeded(regsettings_project, check_rtl_ansi),
-    FRegEditWrapper.RegEdit.RegistrySettings.Project);
+    FRegEditWrapper.RegControl.RegistrySettings.Project);
   AssertEquals('TRegEdit.RegistrySettings.Organisation',
     UTF8ToSysIfNeeded(regsettings_organisation, check_rtl_ansi),
-    FRegEditWrapper.RegEdit.RegistrySettings.Organisation);
+    FRegEditWrapper.RegControl.RegistrySettings.Organisation);
   AssertEquals('TRegEdit.RegistrySettings.GUID',
     UTF8ToSysIfNeeded(regsettings_guid, check_rtl_ansi),
-    FRegEditWrapper.RegEdit.RegistrySettings.GUID);
+    FRegEditWrapper.RegControl.RegistrySettings.GUID);
   AssertEquals('TRegEdit.RegistrySettings.ReadDefaults',
     FRegSrcWrapper.RegistrySource.ReadDefaults,
-    FRegEditWrapper.RegEdit.RegistrySettings.ReadDefaults);
+    FRegEditWrapper.RegControl.RegistrySettings.ReadDefaults);
   AssertEquals('TRegEdit.RegistrySettings.WriteDefaults',
     FRegSrcWrapper.RegistrySource.WriteDefaults,
-    FRegEditWrapper.RegEdit.RegistrySettings.WriteDefaults);
+    FRegEditWrapper.RegControl.RegistrySettings.WriteDefaults);
 end;
 
 procedure TRegEditTest.SetUp;

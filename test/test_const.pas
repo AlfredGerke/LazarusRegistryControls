@@ -1,6 +1,6 @@
 unit test_const;
 
-{$mode delphi}
+{$mode Delphi}{$H+}
 
 interface
 
@@ -19,6 +19,11 @@ const
   DEFAULT_TEXT_ENTRY = 'Default-Eintrag';
   _TEXT_ENTRY = 'Text-Eintrag';
   IDENT_TEXT_PROPERTY = 'Text-Property';
+
+  SEC_TREGCHECKBOX = 'TRegCheckBox';
+  IDENT_CHECK_PROPERTY = 'Checked-Property';
+  _CHECKED_ENTRY = True;
+  DEFAULT_CHECKED_ENTRY = False;
 
 implementation
 

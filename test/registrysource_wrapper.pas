@@ -1,11 +1,10 @@
 unit registrysource_wrapper;
 
-{$mode delphi}
+{$mode Delphi}{$H+}
 
 interface
 
 uses
-  Classes,
   SysUtils,
   regsourcen,
   test_const;

@@ -5,8 +5,6 @@ unit lrc_test;
 interface
 
 uses
-  Classes,
-  SysUtils,
   testregistry,
   registrysource_test,
   regedit_test;
