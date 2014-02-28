@@ -1,6 +1,6 @@
-unit regedit_test;
+unit regcheckbox_test;
 
-{$mode Delphi}{$H+}
+{$mode objfpc}{$H+}
 
 interface
 
@@ -8,49 +8,47 @@ uses
   SysUtils,
   fpcunit,
   registrysource_wrapper,
-  regedit_wrapper,
+  regcheckbox_wrapper,
   regtype;
 
 type
 
-  { TRegEditTest }
-
-  TRegEditTest= class(TTestCase)
-  private
-    FRegSrcWrapper: TRegistrySourceWrapper;
-    FRegEditWrapper: TRegEditWrapper;
-
+  TRegCheckBoxTest= class(TTestCase)
   protected
+    FRegSrcWrapper: TRegistrySourceWrapper;
+    FRegCheckBoxWrapper: TRegCheckBoxWrapper;
+
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure CheckRootKeys;
+    procedure CheckRookKeys;
   end;
 
 implementation
 
-procedure TRegEditTest.CheckRootKeys;
+procedure TRegCheckBoxTest.CheckRookKeys;
 var
   check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
 begin
   FRegSrcWrapper.GetRootKeys(check_rtl_ansi, root_keys_struct);
 
-  // Properties von TRegEdit
-  FRegEditWrapper.CheckRootKeys('TRegEdit',
+  // Properties von TRegCheckBox
+  FRegCheckBoxWrapper.CheckRootKeys('TRegCheckBox',
     FRegSrcWrapper.RegistrySource, root_keys_struct, check_rtl_ansi);
 end;
 
-procedure TRegEditTest.SetUp;
+procedure TRegCheckBoxTest.SetUp;
 begin
   FRegSrcWrapper := TRegistrySourceWrapper.Create;
-  FRegEditWrapper := TRegEditWrapper.Create(FRegSrcWrapper.RegistrySource);
+  FRegCheckBoxWrapper :=
+    TRegCheckBoxWrapper.Create(FRegSrcWrapper.RegistrySource);
 end;
 
-procedure TRegEditTest.TearDown;
+procedure TRegCheckBoxTest.TearDown;
 begin
-  if Assigned(FRegEditWrapper) then
-    FreeAndNil(FRegEditWrapper);
+  if Assigned(FRegCheckBoxWrapper) then
+    FreeAndNil(FRegCheckBoxWrapper);
 
   if Assigned(FRegSrcWrapper) then
     FreeAndNil(FRegSrcWrapper);
