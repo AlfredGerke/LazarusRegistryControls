@@ -24,20 +24,19 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure CheckRootKeys;
+    procedure RootKeys;
   end;
 
 implementation
 
-procedure TRegEditTest.CheckRootKeys;
+procedure TRegEditTest.RootKeys;
 var
   check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
 begin
   FRegSrcWrapper.GetRootKeys(check_rtl_ansi, root_keys_struct);
 
-  // Properties von TRegEdit
-  FRegEditWrapper.CheckRootKeys('TRegEdit',
+  FRegEditWrapper.RootKeys('TRegEdit',
     FRegSrcWrapper.RegistrySource, root_keys_struct, check_rtl_ansi);
 end;
 

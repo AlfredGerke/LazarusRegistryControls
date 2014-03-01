@@ -21,11 +21,12 @@ type
   protected
     procedure SetRegistryEntries; virtual;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource); virtual;
+    procedure SetCaptionSettings; virtual;
   public
-    procedure CheckRootKeys(aTypeName: string;
-                            aRegistrySource: TRegistrySource;
-                            aRootKeys: TRootKeysStruct;
-                            aCheckRTLAnsi: boolean); virtual;
+    procedure RootKeys(aTypeName: string;
+                       aRegistrySource: TRegistrySource;
+                       aRootKeys: TRootKeysStruct;
+                       aCheckRTLAnsi: boolean); virtual;
 
     constructor Create(aRegistrySource: TRegistrySource); virtual;
     destructor Destroy; override;
@@ -55,7 +56,12 @@ begin
   RegControl.RegistrySettings.DoSyncData := False;
 end;
 
-procedure TWrapper<_T>.CheckRootKeys(aTypeName: string;
+procedure TWrapper<_T>.SetCaptionSettings;
+begin
+  //
+end;
+
+procedure TWrapper<_T>.RootKeys(aTypeName: string;
   aRegistrySource: TRegistrySource;
   aRootKeys: TRootKeysStruct;
   aCheckRTLAnsi: boolean);
@@ -101,6 +107,7 @@ constructor TWrapper<_T>.Create(aRegistrySource: TRegistrySource);
 begin
   FRegControl := _T.Create(nil);
   SetRegistrySettings(aRegistrySource);
+  SetCaptionSettings;
   SetRegistryEntries;
 end;
 

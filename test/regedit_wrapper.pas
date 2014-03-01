@@ -31,6 +31,8 @@ uses
 
 procedure TRegEditWrapper.SetRegistryEntries;
 begin
+  inherited SetRegistryEntries;
+
   RegControl.RegistrySource.WriteString(SEC_TREGEDIT, IDENT_TEXT_PROPERTY,
     _TEXT_ENTRY);
 end;

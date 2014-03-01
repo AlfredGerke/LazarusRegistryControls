@@ -31,6 +31,8 @@ uses
 
 procedure TRegCheckBoxWrapper.SetRegistryEntries;
 begin
+  inherited SetRegistryEntries;
+
   RegControl.RegistrySource.WriteBool(SEC_TREGCHECKBOX, IDENT_CHECK_PROPERTY,
     _CHECKED_ENTRY);
 end;

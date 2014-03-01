@@ -13,7 +13,8 @@ uses
   regedit_wrapper,
   test_const,
   test_wrapper,
-  regcheckbox_wrapper, regcheckbox_test;
+  regcheckbox_wrapper, regcheckbox_test, regradiobutton_wrapper, 
+regradiobutton_test;
 
 {$R *.res}
 

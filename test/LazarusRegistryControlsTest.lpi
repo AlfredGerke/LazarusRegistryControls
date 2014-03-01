@@ -46,7 +46,7 @@
         <PackageName Value="FCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="10">
+    <Units Count="12">
       <Unit0>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -97,6 +97,16 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="regcheckbox_test"/>
       </Unit9>
+      <Unit10>
+        <Filename Value="regradiobutton_wrapper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="regradiobutton_wrapper"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="regradiobutton_test.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="regradiobutton_test"/>
+      </Unit11>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -123,7 +133,7 @@
     </Other>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="3">
+    <Exceptions Count="4">
       <Item1>
         <Name Value="EAbort"/>
       </Item1>
@@ -133,6 +143,9 @@
       <Item3>
         <Name Value="EFOpenError"/>
       </Item3>
+      <Item4>
+        <Name Value="EAssertionFailedError"/>
+      </Item4>
     </Exceptions>
   </Debugging>
 </CONFIG>

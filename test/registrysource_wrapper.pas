@@ -25,7 +25,24 @@ type
   public
     procedure GetRootKeys(var ACheckRTLAnsi: boolean;
                           var ARootKeysStruct: TRootKeysStruct);
-    procedure CheckPublishedProperties;
+    procedure PublishedProperties;
+
+    { TODO 1 -oAlfred Gerke -cGUI-Test : Folgende Testroutinen können nur in einer GUI getestet werden:}
+    procedure PostClientData;
+    procedure RefreshMergeDataProperty;
+    procedure GetClientList;
+    procedure ClearClientItems;
+    procedure RenameClient;
+    procedure ShowClientEditDialog;
+    procedure GetClientByName;
+    procedure GetClientNameByIndex;
+    procedure FreeRegistrySource;
+    procedure RefreshWriteAdHocProperty;
+    procedure RefreshSyncProperty;
+    procedure RefreshSettings;
+    procedure RefreshClientData;
+    procedure RegisterClient;
+    procedure UnRegisterClient;
 
     constructor Create; virtual;
     destructor Destroy; override;
@@ -107,7 +124,7 @@ begin
   ARootKeysStruct.Organisation := FRegistrySource.Organisation;
 end;
 
-procedure TRegistrySourceWrapper.CheckPublishedProperties;
+procedure TRegistrySourceWrapper.PublishedProperties;
 begin
   TAssert.AssertEquals('TRegistrySource.RootKey',
     'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%',
@@ -147,6 +164,81 @@ begin
 
   TAssert.AssertEquals('TRegistrySource.CheckRTLAnsi', True,
     FRegistrySource.CheckRTLAnsi);
+end;
+
+procedure TRegistrySourceWrapper.PostClientData;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.RefreshMergeDataProperty;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.GetClientList;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.ClearClientItems;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.RenameClient;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.ShowClientEditDialog;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.GetClientByName;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.GetClientNameByIndex;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.FreeRegistrySource;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.RefreshWriteAdHocProperty;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.RefreshSyncProperty;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.RefreshSettings;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.RefreshClientData;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.RegisterClient;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
+end;
+
+procedure TRegistrySourceWrapper.UnRegisterClient;
+begin
+  TAssert.Fail('GUI-Test nocht nicht implementiert!');
 end;
 
 constructor TRegistrySourceWrapper.Create;

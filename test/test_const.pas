@@ -25,6 +25,15 @@ const
   _CHECKED_ENTRY = True;
   DEFAULT_CHECKED_ENTRY = False;
 
+  SEC_TREGRADIOBUTTON = 'TRegRadioButton';
+  _TREGRADIOBUTTON_CAPTION_VALUE = 'Dynamsich';
+  DEFAULT_CAPTION_VALUE = 'Statisch';
+
+  IDENT_CAPTION = 'Caption';
+
+
+
+
 implementation
 
 end.

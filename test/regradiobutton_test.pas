@@ -1,4 +1,4 @@
-unit regcheckbox_test;
+unit regradiobutton_test;
 
 {$mode objfpc}{$H+}
 
@@ -6,48 +6,47 @@ interface
 
 uses
   SysUtils,
-  fpcunit,
+  FPCUnit,
   registrysource_wrapper,
-  regcheckbox_wrapper,
+  regradiobutton_wrapper,
   regtype;
 
 type
 
-  TRegCheckBoxTest= class(TTestCase)
-  protected
+  TRegRadioButtonTest= class(TTestCase)
+  private
     FRegSrcWrapper: TRegistrySourceWrapper;
-    FRegCheckBoxWrapper: TRegCheckBoxWrapper;
-
+    FRegRadioButtonWrapper: TRegRaidoButtonWrapper;
+  protected
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure RookKeys;
+    procedure RootKeys;
   end;
 
 implementation
 
-procedure TRegCheckBoxTest.RookKeys;
+procedure TRegRadioButtonTest.RootKeys;
 var
   check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
 begin
   FRegSrcWrapper.GetRootKeys(check_rtl_ansi, root_keys_struct);
 
-  FRegCheckBoxWrapper.RootKeys('TRegCheckBox',
+  FRegRadioButtonWrapper.RootKeys('TRegRadioButton',
     FRegSrcWrapper.RegistrySource, root_keys_struct, check_rtl_ansi);
 end;
 
-procedure TRegCheckBoxTest.SetUp;
+procedure TRegRadioButtonTest.SetUp;
 begin
   FRegSrcWrapper := TRegistrySourceWrapper.Create;
-  FRegCheckBoxWrapper :=
-    TRegCheckBoxWrapper.Create(FRegSrcWrapper.RegistrySource);
+  FRegRadioButtonWrapper := TRegRaidoButtonWrapper.Create(FRegSrcWrapper.RegistrySource);
 end;
 
-procedure TRegCheckBoxTest.TearDown;
+procedure TRegRadioButtonTest.TearDown;
 begin
-  if Assigned(FRegCheckBoxWrapper) then
-    FreeAndNil(FRegCheckBoxWrapper);
+  if Assigned(FRegRadioButtonWrapper) then
+    FreeAndNil(FRegRadioButtonWrapper);
 
   if Assigned(FRegSrcWrapper) then
     FreeAndNil(FRegSrcWrapper);
