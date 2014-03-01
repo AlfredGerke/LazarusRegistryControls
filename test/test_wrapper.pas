@@ -27,6 +27,10 @@ type
                        aRegistrySource: TRegistrySource;
                        aRootKeys: TRootKeysStruct;
                        aCheckRTLAnsi: boolean); virtual;
+    procedure ReadFromReg(aExpected: boolean;
+                          aMsg: string = ''); virtual;
+    procedure WriteToReg(aExpected: boolean;
+                         aMsg: string = ''); virtual;
 
     constructor Create(aRegistrySource: TRegistrySource); virtual;
     destructor Destroy; override;
@@ -35,8 +39,19 @@ type
       read FRegControl;
   end;
 
+function _IfEmptyThen(aString: string;
+                      aDefault: string): string;
 
 implementation
+
+function _IfEmptyThen(aString: string;
+  aDefault: string): string;
+begin
+  if (Trim(aString) = EmptyStr) then
+    Result := aDefault
+  else
+    Result := aString;
+end;
 
 { TWrapper<_T> }
 
@@ -101,6 +116,38 @@ begin
   TAssert.AssertEquals(Format('%s.RegistrySettings.WriteDefaults', [aTypeName]),
     aRegistrySource.WriteDefaults,
     RegControl.RegistrySettings.WriteDefaults);
+end;
+
+procedure TWrapper<_T>.ReadFromReg(aExpected: boolean;
+  aMsg: string = '');
+var
+  success: boolean;
+  msg: string;
+begin
+  msg := _IfEmptyThen(aMsg, 'ReadFromReg');
+
+  success := FRegControl.ReadFromReg;
+
+  if aExpected then
+    TAssert.AssertTrue(msg, success)
+  else
+    TAssert.AssertFalse(msg, success);
+end;
+
+procedure TWrapper<_T>.WriteToReg(aExpected: boolean;
+  aMsg: string = '');
+var
+  success: boolean;
+  msg: string;
+begin
+  msg := _IfEmptyThen(aMsg, 'WriteToReg');
+
+  success := FRegControl.WriteToReg;
+
+  if aExpected then
+    TAssert.AssertTrue(msg, success)
+  else
+    TAssert.AssertFalse(msg, success);
 end;
 
 constructor TWrapper<_T>.Create(aRegistrySource: TRegistrySource);
