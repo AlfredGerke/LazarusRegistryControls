@@ -18,6 +18,7 @@ type
   protected
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource); override;
+    procedure SetCaptionSettings; override;
   public
   public
   end;
@@ -44,6 +45,17 @@ begin
   RegControl.RegistrySettings.Default := DEFAULT_CHECKED_ENTRY;
   RegControl.RegistrySettings.Section := SEC_TREGCHECKBOX;
   RegControl.RegistrySettings.Ident := IDENT_CHECK_PROPERTY;
+end;
+
+procedure TRegCheckBoxWrapper.SetCaptionSettings;
+begin
+  inherited SetCaptionSettings;
+
+  RegControl.CaptionSettings.Section := SEC_TREGCHECKBOX;
+  RegControl.CaptionSettings.Ident := IDENT_CAPTION;
+  RegControl.CaptionSettings.CaptionByRegistry := True;
+
+  RegControl.Caption := DEFAULT_CAPTION_VALUE;
 end;
 
 end.

@@ -9,9 +9,12 @@ uses
   fpcunit,
   registrysource_wrapper,
   regcheckbox_wrapper,
-  regtype;
+  regtype,
+  test_const;
 
 type
+
+  { TRegCheckBoxTest }
 
   TRegCheckBoxTest= class(TTestCase)
   protected
@@ -22,6 +25,7 @@ type
     procedure TearDown; override;
   published
     procedure RookKeys;
+    procedure ReadCaptionSettings;
   end;
 
 implementation
@@ -35,6 +39,18 @@ begin
 
   FRegCheckBoxWrapper.RootKeys('TRegCheckBox',
     FRegSrcWrapper.RegistrySource, root_keys_struct, check_rtl_ansi);
+end;
+
+procedure TRegCheckBoxTest.ReadCaptionSettings;
+var
+  caption_by_default: string;
+  caption_by_registry: string;
+begin
+  caption_by_registry := _TREGCHECKBOX_CAPTION_VALUE;
+  caption_by_default := DEFAULT_CAPTION_VALUE;
+
+  FRegCheckBoxWrapper.ReadCaption(FRegCheckBoxWrapper.RegControl.CaptionSettings,
+    caption_by_default, caption_by_registry,  'TRegCheckBox.CaptionSettings');
 end;
 
 procedure TRegCheckBoxTest.SetUp;

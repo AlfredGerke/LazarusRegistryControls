@@ -22,6 +22,7 @@ const
 
   SEC_TREGCHECKBOX = 'TRegCheckBox';
   IDENT_CHECK_PROPERTY = 'Checked-Property';
+  _TREGCHECKBOX_CAPTION_VALUE = 'Dynamsich';
   _CHECKED_ENTRY = True;
   DEFAULT_CHECKED_ENTRY = False;
 

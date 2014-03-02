@@ -28,9 +28,31 @@ type
                        aRootKeys: TRootKeysStruct;
                        aCheckRTLAnsi: boolean); virtual;
     procedure ReadFromReg(aExpected: boolean;
+                          aRegistryDataOrigin: TRegistryDataOrigin;
                           aMsg: string = ''); virtual;
     procedure WriteToReg(aExpected: boolean;
                          aMsg: string = ''); virtual;
+
+    { TODO 1 -oAlfred Gerke -cRegistrySettings lesen/schreiben : Lesen von Registrywerten testen:
+1. Fall CanRead = False
+2. Fall CanRead = True
+Schreiben von Registrywerten testen:
+3. Fall DoWriteAdHoc = True
+3.1 Fall CanWrite = False
+3.2 Fall Can Write = True
+4. Fall DoWriteAdHoc = False
+4.1 Fall CanWrite = False
+4.2 Fall Can Write = True
+Lesen von CaptionSettings:
+5. Fall CaptionByRegistry = True
+6. Fall CaptionByRegistry = False}
+
+    procedure ReadRegistry;
+    procedure WriteRegistry;
+    procedure ReadCaption(aCaptionSettings: TCaptionSettings;
+                          aCaptionByDefault: string;
+                          aCaptionByRegistry: string;
+                          aMsg: string);
 
     constructor Create(aRegistrySource: TRegistrySource); virtual;
     destructor Destroy; override;
@@ -119,6 +141,7 @@ begin
 end;
 
 procedure TWrapper<_T>.ReadFromReg(aExpected: boolean;
+  aRegistryDataOrigin: TRegistryDataOrigin;
   aMsg: string = '');
 var
   success: boolean;
@@ -126,7 +149,7 @@ var
 begin
   msg := _IfEmptyThen(aMsg, 'ReadFromReg');
 
-  success := FRegControl.ReadFromReg;
+  success := FRegControl.ReadFromReg(aRegistryDataOrigin);
 
   if aExpected then
     TAssert.AssertTrue(msg, success)
@@ -148,6 +171,38 @@ begin
     TAssert.AssertTrue(msg, success)
   else
     TAssert.AssertFalse(msg, success);
+end;
+
+procedure TWrapper<_T>.ReadRegistry;
+begin
+
+end;
+
+procedure TWrapper<_T>.WriteRegistry;
+begin
+
+end;
+
+procedure TWrapper<_T>.ReadCaption(aCaptionSettings: TCaptionSettings;
+  aCaptionByDefault: string;
+  aCaptionByRegistry: string;
+  aMsg: string);
+begin
+  aCaptionSettings.CaptionByRegistry := True;
+  // Caption zurücksetzten auf Default
+  RegControl.Caption := aCaptionByDefault;
+  ReadFromReg(True, rdoCaption, aMsg);
+
+  // Nach lesen aus der Registry: Caption muss Registryeintrag anzeigen
+  TAssert.AssertEquals(aMsg, aCaptionByRegistry, RegControl.Caption);
+
+  aCaptionSettings.CaptionByRegistry := False;
+  // Caption zurücksetzten auf Default
+  RegControl.Caption := aCaptionByDefault;
+  ReadFromReg(True, rdoCaption, aMsg);
+
+  // Nach lesen aus der Registry: Caption muss Defaulteintrag anzeigen
+  TAssert.AssertEquals(aMsg, aCaptionByDefault, RegControl.Caption);
 end;
 
 constructor TWrapper<_T>.Create(aRegistrySource: TRegistrySource);
