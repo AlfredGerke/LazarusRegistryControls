@@ -28,7 +28,6 @@ type
                        aRootKeys: TRootKeysStruct;
                        aCheckRTLAnsi: boolean); virtual;
     procedure ReadFromReg(aExpected: boolean;
-                          aRegistryDataOrigin: TRegistryDataOrigin;
                           aMsg: string = ''); virtual;
     procedure WriteToReg(aExpected: boolean;
                          aMsg: string = ''); virtual;
@@ -49,16 +48,24 @@ Lesen von CaptionSettings:
 
     procedure ReadRegistry;
     procedure WriteRegistry;
-    procedure ReadCaption(aCaptionSettings: TCaptionSettings;
-                          aCaptionByDefault: string;
-                          aCaptionByRegistry: string;
-                          aMsg: string);
 
     constructor Create(aRegistrySource: TRegistrySource); virtual;
     destructor Destroy; override;
   public
     property RegControl : _T
       read FRegControl;
+  end;
+
+  { TWrapperCS }
+
+  TWrapperCS<_T> = class(TWrapper<_T>)
+  private
+  protected
+    procedure DeleteCaptionEntries; virtual;
+    procedure ReadCaption(aCaptionByDefault: string;
+                          aCaptionByRegistry: string;
+                          aMsg: string);
+  public
   end;
 
 function _IfEmptyThen(aString: string;
@@ -102,46 +109,62 @@ procedure TWrapper<_T>.RootKeys(aTypeName: string;
   aRegistrySource: TRegistrySource;
   aRootKeys: TRootKeysStruct;
   aCheckRTLAnsi: boolean);
+//var
+//  root_keys: TRootKeysStruct;
 begin
   // Jeder Getter für ein String-Property besitzt ein UTF8ToSysIfNeeded
 
+  // 1. Fall: RootKeys aus dem Control mit den RootKeys aus TRegistrySource
+  // vergleichen; dabei geht dieser Test davon aus das per Standard die RootKeys
+  // des Controls mit den RootKeys der TRegistrySource identisch sind
   TAssert.AssertNotNull('TypeName', aTypeName);
 
-  TAssert.AssertEquals(Format('%s.RegistrySettings.RootKey', [aTypeName]),
-    UTF8ToSysIfNeeded(aRootKeys.RootKey, aCheckRTLAnsi),
+  TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.RootKey',
+    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.RootKey, aCheckRTLAnsi),
     RegControl.RegistrySettings.RootKey);
 
-  TAssert.AssertEquals(Format('%s.RegistrySettings.RootKeyForDefaults', [aTypeName]),
-    UTF8ToSysIfNeeded(aRootKeys.RootKeyForDefaults, aCheckRTLAnsi),
+  TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.RootKeyForDefaults',
+    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.RootKeyForDefaults, aCheckRTLAnsi),
     RegControl.RegistrySettings.RootKeyForDefaults);
 
-  TAssert.AssertEquals(Format('%s.RegistrySettings.RootForDefaults', [aTypeName]),
-    aRegistrySource.RootForDefaults,
+  TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.RootForDefaults',
+    [aTypeName]), aRegistrySource.RootForDefaults,
     RegControl.RegistrySettings.RootForDefaults);
 
-  TAssert.AssertEquals(Format('%s.RegistrySettings.Project', [aTypeName]),
-    UTF8ToSysIfNeeded(aRootKeys.Project, aCheckRTLAnsi),
+  TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.Project',
+    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.Project, aCheckRTLAnsi),
     RegControl.RegistrySettings.Project);
 
-  TAssert.AssertEquals(Format('%s.RegistrySettings.Organisation', [aTypeName]),
-    UTF8ToSysIfNeeded(aRootKeys.Organisation, aCheckRTLAnsi),
+  TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.Organisation',
+    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.Organisation, aCheckRTLAnsi),
     RegControl.RegistrySettings.Organisation);
 
-  TAssert.AssertEquals(Format('%s.RegistrySettings.GUID', [aTypeName]),
+  TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.GUID', [aTypeName]),
     UTF8ToSysIfNeeded(aRootKeys.GUID, aCheckRTLAnsi),
     RegControl.RegistrySettings.GUID);
 
-  TAssert.AssertEquals(Format('%s.RegistrySettings.ReadDefaults', [aTypeName]),
-    aRegistrySource.ReadDefaults,
+  TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.ReadDefaults',
+    [aTypeName]), aRegistrySource.ReadDefaults,
     RegControl.RegistrySettings.ReadDefaults);
 
-  TAssert.AssertEquals(Format('%s.RegistrySettings.WriteDefaults', [aTypeName]),
-    aRegistrySource.WriteDefaults,
+  TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.WriteDefaults',
+    [aTypeName]), aRegistrySource.WriteDefaults,
     RegControl.RegistrySettings.WriteDefaults);
+
+  // 2. Fall: von TRegistrySource unterschiedliche RootKeys
+  //root_keys.Clear;
+  //
+  // hier neur RootKeys eintragen
+  //
+  // RegControl.RegistrySettings.SetRootKesy(rook_keys);
+  //
+  // hier RootKeys vergleichen
+
+  // 3. Fall: RootKeys des Controls mit den RootKeys von TRegistrySource
+  // synchronisieren
 end;
 
 procedure TWrapper<_T>.ReadFromReg(aExpected: boolean;
-  aRegistryDataOrigin: TRegistryDataOrigin;
   aMsg: string = '');
 var
   success: boolean;
@@ -149,7 +172,7 @@ var
 begin
   msg := _IfEmptyThen(aMsg, 'ReadFromReg');
 
-  success := FRegControl.ReadFromReg(aRegistryDataOrigin);
+  success := FRegControl.ReadFromReg;
 
   if aExpected then
     TAssert.AssertTrue(msg, success)
@@ -183,28 +206,6 @@ begin
 
 end;
 
-procedure TWrapper<_T>.ReadCaption(aCaptionSettings: TCaptionSettings;
-  aCaptionByDefault: string;
-  aCaptionByRegistry: string;
-  aMsg: string);
-begin
-  aCaptionSettings.CaptionByRegistry := True;
-  // Caption zurücksetzten auf Default
-  RegControl.Caption := aCaptionByDefault;
-  ReadFromReg(True, rdoCaption, aMsg);
-
-  // Nach lesen aus der Registry: Caption muss Registryeintrag anzeigen
-  TAssert.AssertEquals(aMsg, aCaptionByRegistry, RegControl.Caption);
-
-  aCaptionSettings.CaptionByRegistry := False;
-  // Caption zurücksetzten auf Default
-  RegControl.Caption := aCaptionByDefault;
-  ReadFromReg(True, rdoCaption, aMsg);
-
-  // Nach lesen aus der Registry: Caption muss Defaulteintrag anzeigen
-  TAssert.AssertEquals(aMsg, aCaptionByDefault, RegControl.Caption);
-end;
-
 constructor TWrapper<_T>.Create(aRegistrySource: TRegistrySource);
 begin
   FRegControl := _T.Create(nil);
@@ -220,6 +221,69 @@ begin
   FreeAndNil(FRegControl);
 
   inherited Destroy;
+end;
+
+{ TWrapperCS<_T> }
+
+procedure TWrapperCS<_T>.DeleteCaptionEntries;
+begin
+  //
+end;
+
+procedure TWrapperCS<_T>.ReadCaption(aCaptionByDefault: string;
+  aCaptionByRegistry: string;
+  aMsg: string);
+var
+  success: boolean;
+begin
+  //--- 1. Fall: Caption aus der Registry lesen
+  RegControl.CaptionSettings.CaptionByRegistry := True;
+
+  // Caption zurücksetzten auf Default
+  RegControl.Caption := aCaptionByDefault;
+
+  success := RegControl.ReadFromReg(rdoCaption);
+
+  // War der Aufruf von ReadFromReg erfolgreich
+  TAssert.AssertTrue('1. Fall [ReadFromReg]', success);
+
+  // Nach lesen aus der Registry: Caption muss Registryeintrag anzeigen
+  TAssert.AssertEquals(Format('1. Fall [Compare] - %s', [aMsg]),
+    aCaptionByRegistry, RegControl.Caption);
+
+  //--- 2. Fall: Voreinstellung in dem Property Caption anzeigen
+  RegControl.CaptionSettings.CaptionByRegistry := False;
+
+  // Caption zurücksetzten auf Default
+  RegControl.Caption := aCaptionByDefault;
+
+  success := RegControl.ReadFromReg(rdoCaption);
+
+  // War der Aufruf von ReadFromReg erfolgreich
+  TAssert.AssertTrue('2. Fall [ReadFromReg]', success);
+
+  // Nach lesen aus der Registry: Caption muss Defaulteintrag anzeigen
+  TAssert.AssertEquals(Format('2. Fall [Compare] - %s', [aMsg]),
+    aCaptionByDefault, RegControl.Caption);
+
+  //--- 3. Fall: Caption aus der Registry lesen
+  RegControl.CaptionSettings.CaptionByRegistry := True;
+
+  // Captionsettings in der Registry entfernen
+  DeleteCaptionEntries;
+
+  // Caption zurücksetzten auf Default
+  RegControl.Caption := aCaptionByDefault;
+
+  success := RegControl.ReadFromReg(rdoCaption);
+
+  // War der Aufruf von ReadFromReg erfolgreich
+  TAssert.AssertTrue('3. Fall [ReadFromReg]', success);
+
+  // Nach lesen aus der Registry: Da keine Captionsettings vorhanden
+  // Defaulteintrag anzeigen
+  TAssert.AssertEquals(Format('3. Fall [Compare] - %s', [aMsg]),
+    aCaptionByDefault, RegControl.Caption);
 end;
 
 end.

@@ -13,9 +13,10 @@ type
 
   { TRegCheckBoxWrapper }
 
-  TRegCheckBoxWrapper = class(TWrapper<TRegCheckBox>)
+  TRegCheckBoxWrapper = class(TWrapperCS<TRegCheckBox>)
   private
   protected
+    procedure DeleteCaptionEntries; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource); override;
     procedure SetCaptionSettings; override;
@@ -30,12 +31,22 @@ uses
 
 { TRegCheckBoxWrapper }
 
+procedure TRegCheckBoxWrapper.DeleteCaptionEntries;
+begin
+  inherited DeleteCaptionEntries;
+
+  RegControl.RegistrySource.DeleteKey(SEC_TREGCHECKBOX, IDENT_CAPTION);
+end;
+
 procedure TRegCheckBoxWrapper.SetRegistryEntries;
 begin
   inherited SetRegistryEntries;
 
   RegControl.RegistrySource.WriteBool(SEC_TREGCHECKBOX, IDENT_CHECK_PROPERTY,
     _CHECKED_ENTRY);
+
+  RegControl.RegistrySource.WriteString(SEC_TREGCHECKBOX, IDENT_CAPTION,
+    _TREGCHECKBOX_CAPTION_VALUE);
 end;
 
 procedure TRegCheckBoxWrapper.SetRegistrySettings(aRegistrySource: TRegistrySource);

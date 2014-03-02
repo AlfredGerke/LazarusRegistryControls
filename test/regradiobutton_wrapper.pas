@@ -13,9 +13,10 @@ type
 
   { TRegRaidoButtonWrapper }
 
-  TRegRaidoButtonWrapper = class(TWrapper<TRegRadioButton>)
+  TRegRaidoButtonWrapper = class(TWrapperCS<TRegRadioButton>)
   private
   protected
+    procedure DeleteCaptionEntries; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource); override;
     procedure SetCaptionSettings; override;
@@ -29,6 +30,13 @@ uses
   test_const;
 
 { TRegRaidoButtonWrapper }
+
+procedure TRegRaidoButtonWrapper.DeleteCaptionEntries;
+begin
+  inherited DeleteCaptionEntries;
+
+  RegControl.RegistrySource.DeleteKey(SEC_TREGRADIOBUTTON, IDENT_CAPTION);
+end;
 
 procedure TRegRaidoButtonWrapper.SetRegistryEntries;
 begin

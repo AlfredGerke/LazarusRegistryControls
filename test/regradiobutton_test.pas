@@ -49,15 +49,15 @@ begin
   caption_by_registry := _TREGCHECKBOX_CAPTION_VALUE;
   caption_by_default := DEFAULT_CAPTION_VALUE;
 
-  FRegRadioButtonWrapper.ReadCaption(FRegRadioButtonWrapper.
-    RegControl.CaptionSettings,  caption_by_default, caption_by_registry,
-    'TRegRadioButton.CaptionSettings');
+  FRegRadioButtonWrapper.ReadCaption(caption_by_default, caption_by_registry,
+    'Caption');
 end;
 
 procedure TRegRadioButtonTest.SetUp;
 begin
   FRegSrcWrapper := TRegistrySourceWrapper.Create;
-  FRegRadioButtonWrapper := TRegRaidoButtonWrapper.Create(FRegSrcWrapper.RegistrySource);
+  FRegRadioButtonWrapper :=
+    TRegRaidoButtonWrapper.Create(FRegSrcWrapper.RegistrySource);
 end;
 
 procedure TRegRadioButtonTest.TearDown;

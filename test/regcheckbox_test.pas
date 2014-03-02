@@ -49,8 +49,8 @@ begin
   caption_by_registry := _TREGCHECKBOX_CAPTION_VALUE;
   caption_by_default := DEFAULT_CAPTION_VALUE;
 
-  FRegCheckBoxWrapper.ReadCaption(FRegCheckBoxWrapper.RegControl.CaptionSettings,
-    caption_by_default, caption_by_registry,  'TRegCheckBox.CaptionSettings');
+  FRegCheckBoxWrapper.ReadCaption(caption_by_default, caption_by_registry,
+    'Caption');
 end;
 
 procedure TRegCheckBoxTest.SetUp;
