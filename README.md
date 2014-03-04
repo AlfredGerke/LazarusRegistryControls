@@ -42,6 +42,7 @@ Folgende Änderungen sind vorgesehen (s. Issues):
 * Neue Methoden für TRegistrySource
 * Vorhandene Komponenten erweitern    
 * Beispielanwendung überarbeiten
+* Automatisierter Test
 
 
 1 Einleitung

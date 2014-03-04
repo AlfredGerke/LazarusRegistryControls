@@ -35,6 +35,9 @@ var
   check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
 begin
+  check_rtl_ansi := False;
+  {%H-}root_keys_struct.Clear;
+
   FRegSrcWrapper.GetRootKeys(check_rtl_ansi, root_keys_struct);
 
   FRegCheckBoxWrapper.RootKeys('TRegCheckBox',

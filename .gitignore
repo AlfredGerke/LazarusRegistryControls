@@ -9,6 +9,5 @@ example/example.exe
 example/example_09_M2.exe
 test/LazarusRegistryControlsTest.exe
 *.bak
-
-
-
+link.res
+ppas.bat

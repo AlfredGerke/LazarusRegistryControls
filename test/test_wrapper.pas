@@ -41,10 +41,7 @@ Schreiben von Registrywerten testen:
 3.2 Fall Can Write = True
 4. Fall DoWriteAdHoc = False
 4.1 Fall CanWrite = False
-4.2 Fall Can Write = True
-Lesen von CaptionSettings:
-5. Fall CaptionByRegistry = True
-6. Fall CaptionByRegistry = False}
+4.2 Fall Can Write = True}
 
     procedure ReadRegistry;
     procedure WriteRegistry;
@@ -109,8 +106,8 @@ procedure TWrapper<_T>.RootKeys(aTypeName: string;
   aRegistrySource: TRegistrySource;
   aRootKeys: TRootKeysStruct;
   aCheckRTLAnsi: boolean);
-//var
-//  root_keys: TRootKeysStruct;
+var
+  root_keys: TRootKeysStruct;
 begin
   // Jeder Getter für ein String-Property besitzt ein UTF8ToSysIfNeeded
 
@@ -152,16 +149,72 @@ begin
     RegControl.RegistrySettings.WriteDefaults);
 
   // 2. Fall: von TRegistrySource unterschiedliche RootKeys
-  //root_keys.Clear;
-  //
-  // hier neur RootKeys eintragen
-  //
-  // RegControl.RegistrySettings.SetRootKesy(rook_keys);
-  //
-  // hier RootKeys vergleichen
+  {%H-}root_keys.Clear;
+  root_keys.SetRootKeys('RootKey', 'RootKeyForDefaults', True, True,
+    'RootForDefaults', '%%PROJECT%%', '%%ORGANISATION%%', '%%GUID%%');
+
+  RegControl.RegistrySettings.SetRootKeys(root_keys);
+
+  TAssert.AssertEquals(Format('2. Fall - %s.RegistrySettings.RootKey',
+    [aTypeName]), 'RootKey\', RegControl.RegistrySettings.RootKey);
+
+  TAssert.AssertEquals(Format('2. Fall - %s.RegistrySettings.RootKeyForDefaults',
+    [aTypeName]), 'RootKeyForDefaults\',
+    RegControl.RegistrySettings.RootKeyForDefaults);
+
+  TAssert.AssertEquals(Format('2. Fall - %s.RegistrySettings.RootForDefaults',
+    [aTypeName]), 'RootForDefaults', RegControl.RegistrySettings.RootForDefaults);
+
+  TAssert.AssertEquals(Format('2. Fall - %s.RegistrySettings.Project',
+    [aTypeName]), '%%PROJECT%%', RegControl.RegistrySettings.Project);
+
+  TAssert.AssertEquals(Format('2. Fall - %s.RegistrySettings.Organisation',
+    [aTypeName]), '%%ORGANISATION%%', RegControl.RegistrySettings.Organisation);
+
+  TAssert.AssertEquals(Format('2. Fall - %s.RegistrySettings.GUID', [aTypeName]),
+    '%%GUID%%', RegControl.RegistrySettings.GUID);
+
+  TAssert.AssertEquals(Format('2. Fall - %s.RegistrySettings.ReadDefaults',
+    [aTypeName]), True, RegControl.RegistrySettings.ReadDefaults);
+
+  TAssert.AssertEquals(Format('2. Fall - %s.RegistrySettings.WriteDefaults',
+    [aTypeName]), True, RegControl.RegistrySettings.WriteDefaults);
 
   // 3. Fall: RootKeys des Controls mit den RootKeys von TRegistrySource
   // synchronisieren
+  RegControl.RegistrySource.RefreshSettings;
+
+  TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.RootKey',
+    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.RootKey, aCheckRTLAnsi),
+    RegControl.RegistrySettings.RootKey);
+
+  TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.RootKeyForDefaults',
+    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.RootKeyForDefaults, aCheckRTLAnsi),
+    RegControl.RegistrySettings.RootKeyForDefaults);
+
+  TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.RootForDefaults',
+    [aTypeName]), aRegistrySource.RootForDefaults,
+    RegControl.RegistrySettings.RootForDefaults);
+
+  TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.Project',
+    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.Project, aCheckRTLAnsi),
+    RegControl.RegistrySettings.Project);
+
+  TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.Organisation',
+    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.Organisation, aCheckRTLAnsi),
+    RegControl.RegistrySettings.Organisation);
+
+  TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.GUID', [aTypeName]),
+    UTF8ToSysIfNeeded(aRootKeys.GUID, aCheckRTLAnsi),
+    RegControl.RegistrySettings.GUID);
+
+  TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.ReadDefaults',
+    [aTypeName]), aRegistrySource.ReadDefaults,
+    RegControl.RegistrySettings.ReadDefaults);
+
+  TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.WriteDefaults',
+    [aTypeName]), aRegistrySource.WriteDefaults,
+    RegControl.RegistrySettings.WriteDefaults);
 end;
 
 procedure TWrapper<_T>.ReadFromReg(aExpected: boolean;
