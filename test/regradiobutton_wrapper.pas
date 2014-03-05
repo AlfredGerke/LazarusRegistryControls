@@ -18,7 +18,8 @@ type
   protected
     procedure DeleteCaptionEntries; override;
     procedure SetRegistryEntries; override;
-    procedure SetRegistrySettings(aRegistrySource: TRegistrySource); override;
+    procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
+                                  aSetRegSrc: boolean = True); override;
     procedure SetCaptionSettings; override;
   public
   public
@@ -49,9 +50,11 @@ begin
     _TREGRADIOBUTTON_CAPTION_VALUE);
 end;
 
-procedure TRegRaidoButtonWrapper.SetRegistrySettings(aRegistrySource: TRegistrySource);
+procedure TRegRaidoButtonWrapper.SetRegistrySettings(
+  aRegistrySource: TRegistrySource;
+  aSetRegSrc: boolean = True);
 begin
-  inherited SetRegistrySettings(aRegistrySource);
+  inherited SetRegistrySettings(aRegistrySource, aSetRegSrc);
 
   RegControl.RegistrySettings.Default := DEFAULT_CHECKED_ENTRY;
   RegControl.RegistrySettings.Section := SEC_TREGRADIOBUTTON;

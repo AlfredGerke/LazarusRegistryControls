@@ -15,13 +15,14 @@ type
 
   { TWrapper }
 
+  // Grundklasse für alle spezialisierten Wrapper
   TWrapper<_T> = class
   private
     FRegControl: _T;
   protected
     procedure SetRegistryEntries; virtual;
-    procedure SetRegistrySettings(aRegistrySource: TRegistrySource); virtual;
-    procedure SetCaptionSettings; virtual;
+    procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
+                                  aSetRegSrc: boolean = True); virtual;
   public
     procedure RootKeys(aTypeName: string;
                        aRegistrySource: TRegistrySource;
@@ -43,8 +44,9 @@ Schreiben von Registrywerten testen:
 4.1 Fall CanWrite = False
 4.2 Fall Can Write = True}
 
-    procedure ReadRegistry;
-    procedure WriteRegistry;
+    procedure PublishedProperties(aMsg: string); virtual;
+    procedure ReadRegistry; virtual;
+    procedure WriteRegistry; virtual;
 
     constructor Create(aRegistrySource: TRegistrySource); virtual;
     destructor Destroy; override;
@@ -55,29 +57,39 @@ Schreiben von Registrywerten testen:
 
   { TWrapperCS }
 
+  // Grundklasse für alle spezialisierten Wrapper mit CaptionSettings
   TWrapperCS<_T> = class(TWrapper<_T>)
   private
   protected
+    procedure SetCaptionSettings; virtual;
     procedure DeleteCaptionEntries; virtual;
+  public
     procedure ReadCaption(aCaptionByDefault: string;
                           aCaptionByRegistry: string;
                           aMsg: string);
+
+    constructor Create(aRegistrySource: TRegistrySource); override;
+  end;
+
+  // Grundklasse für alle spezialisierten Wrapper mit Listen-Control
+  TWrapperLST<_T> = class(TWrapper<_T>)
+  private
+  protected
   public
   end;
 
-function _IfEmptyThen(aString: string;
-                      aDefault: string): string;
+  // Grundklasse für alle spezialisierten Wrapper mit Listen-Control und
+  // CaptionSettings
+  TWrapperCSLST<_T> = class(TWrapperCS<_T>)
+  private
+  protected
+  public
+  end;
 
 implementation
 
-function _IfEmptyThen(aString: string;
-  aDefault: string): string;
-begin
-  if (Trim(aString) = EmptyStr) then
-    Result := aDefault
-  else
-    Result := aString;
-end;
+uses
+  test_utils;
 
 { TWrapper<_T> }
 
@@ -86,20 +98,17 @@ begin
   //
 end;
 
-procedure TWrapper<_T>.SetRegistrySettings(aRegistrySource: TRegistrySource);
+procedure TWrapper<_T>.SetRegistrySettings(aRegistrySource: TRegistrySource;
+  aSetRegSrc: boolean = True);
 begin
-  FRegControl.RegistrySource := aRegistrySource;
+  if aSetRegSrc then
+    FRegControl.RegistrySource := aRegistrySource;
 
   RegControl.RegistrySettings.CanRead := True;
   RegControl.RegistrySettings.CanWrite := True;
   RegControl.RegistrySettings.DoWriteAdHoc := True;
   RegControl.RegistrySettings.GroupIndex := 0;
   RegControl.RegistrySettings.DoSyncData := False;
-end;
-
-procedure TWrapper<_T>.SetCaptionSettings;
-begin
-  //
 end;
 
 procedure TWrapper<_T>.RootKeys(aTypeName: string;
@@ -249,21 +258,44 @@ begin
     TAssert.AssertFalse(msg, success);
 end;
 
+procedure TWrapper<_T>.PublishedProperties(aMsg: string);
+begin
+  TAssert.AssertEquals(Format('%s.RegistrySettings.CanRead', [aMsg]), True,
+    RegControl.RegistrySettings.CanRead);
+  TAssert.AssertEquals(Format('%s.RegistrySettings.CanWrite', [aMsg]), True,
+    RegControl.RegistrySettings.CanWrite);
+  TAssert.AssertEquals(Format('%s.RegistrySettings.DoWriteAdHoc', [aMsg]), True,
+    RegControl.RegistrySettings.DoWriteAdHoc);
+  TAssert.AssertEquals(Format('%s.RegistrySettings.GroupIndex', [aMsg]), 0,
+    RegControl.RegistrySettings.GroupIndex);
+  TAssert.AssertEquals(Format('%s.RegistrySettings.DoSyncData', [aMsg]), False,
+    RegControl.RegistrySettings.DoSyncData);
+end;
+
 procedure TWrapper<_T>.ReadRegistry;
 begin
+  //1. Fall CanRead = False
 
+  //2. Fall CanRead = True
 end;
 
 procedure TWrapper<_T>.WriteRegistry;
 begin
+  //1. Fall DoWriteAdHoc = True
+  //1.1 Fall CanWrite = False
 
+  //1.2 Fall Can Write = True
+
+  //2. Fall DoWriteAdHoc = False
+  //2.1 Fall CanWrite = False
+
+  //2.2 Fall Can Write = True}
 end;
 
 constructor TWrapper<_T>.Create(aRegistrySource: TRegistrySource);
 begin
   FRegControl := _T.Create(nil);
   SetRegistrySettings(aRegistrySource);
-  SetCaptionSettings;
   SetRegistryEntries;
 end;
 
@@ -337,6 +369,18 @@ begin
   // Defaulteintrag anzeigen
   TAssert.AssertEquals(Format('3. Fall [Compare] - %s', [aMsg]),
     aCaptionByDefault, RegControl.Caption);
+end;
+
+constructor TWrapperCS<_T>.Create(aRegistrySource: TRegistrySource);
+begin
+  inherited Create(aRegistrySource);
+
+  SetCaptionSettings;
+end;
+
+procedure TWrapperCS<_T>.SetCaptionSettings;
+begin
+  //
 end;
 
 end.

@@ -16,9 +16,12 @@ die LazarusRegistryControls zur Verfügung zu stellen.
 1 Zielvorgabe
 -------------
 Der automatisierte Test überprüft alle Eigenschaften der LR-Controls, angefangen
-mit der TRegistrySource und den Zugriff auf die darunter liegende Verarbeitung-Unit, 
+mit der TRegistrySource und den Zugriff auf die darunter liegende Verarbeitungs-Unit, 
 bis hin zu jedem einzelnem Property eines jeden LR-Controls, welches im Zusammenhang 
-mit der Verarbeitung von Daten aus der Registry zusammenhängt.       
+mit der Verarbeitung von Daten aus der Registry zusammenhängt. 
+
+Der Test erlaubt es, jeden einzelnen Verarbeitungschritt in der LRC mit dem Debugger
+zu begutachten.       
 
 Zusätzlich sollen Bugs ebenfalls als eigenständige Tests in das Projekt aufgenommen 
 werden.      

@@ -14,7 +14,7 @@ uses
   test_const,
   test_wrapper,
   regcheckbox_wrapper, regcheckbox_test, regradiobutton_wrapper, 
-regradiobutton_test;
+regradiobutton_test, test_utils;
 
 {$R *.res}
 

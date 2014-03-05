@@ -25,7 +25,8 @@ type
     procedure TearDown; override;
   published
     procedure RootKeys;
-    procedure ReadCaptionSettings;
+    procedure PublishedProperties;
+    procedure ReadByCaptionSettings;
   end;
 
 implementation
@@ -44,7 +45,12 @@ begin
     FRegSrcWrapper.RegistrySource, root_keys_struct, check_rtl_ansi);
 end;
 
-procedure TRegRadioButtonTest.ReadCaptionSettings;
+procedure TRegRadioButtonTest.PublishedProperties;
+begin
+  FRegRadioButtonWrapper.PublishedProperties('TRegRadioButton');
+end;
+
+procedure TRegRadioButtonTest.ReadByCaptionSettings;
 var
   caption_by_default: string;
   caption_by_registry: string;

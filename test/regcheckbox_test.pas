@@ -25,7 +25,8 @@ type
     procedure TearDown; override;
   published
     procedure RookKeys;
-    procedure ReadCaptionSettings;
+    procedure PublishedProperties;
+    procedure ReadByCaptionSettings;
   end;
 
 implementation
@@ -44,7 +45,12 @@ begin
     FRegSrcWrapper.RegistrySource, root_keys_struct, check_rtl_ansi);
 end;
 
-procedure TRegCheckBoxTest.ReadCaptionSettings;
+procedure TRegCheckBoxTest.PublishedProperties;
+begin
+  FRegCheckBoxWrapper.PublishedProperties('TRegCheckBox');
+end;
+
+procedure TRegCheckBoxTest.ReadByCaptionSettings;
 var
   caption_by_default: string;
   caption_by_registry: string;

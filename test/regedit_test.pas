@@ -25,6 +25,7 @@ type
     procedure TearDown; override;
   published
     procedure RootKeys;
+    procedure PublishedProperties;
   end;
 
 implementation
@@ -41,6 +42,11 @@ begin
 
   FRegEditWrapper.RootKeys('TRegEdit',
     FRegSrcWrapper.RegistrySource, root_keys_struct, check_rtl_ansi);
+end;
+
+procedure TRegEditTest.PublishedProperties;
+begin
+  FRegEditWrapper.PublishedProperties('TRegEdit');
 end;
 
 procedure TRegEditTest.SetUp;

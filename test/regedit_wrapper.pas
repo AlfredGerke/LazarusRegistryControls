@@ -17,7 +17,8 @@ type
   private
   protected
     procedure SetRegistryEntries; override;
-    procedure SetRegistrySettings(aRegistrySource: TRegistrySource); override;
+    procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
+                                  aSetRegSrc: boolean = True); override;
   public
   public
   end;
@@ -37,9 +38,10 @@ begin
     _TEXT_ENTRY);
 end;
 
-procedure TRegEditWrapper.SetRegistrySettings(aRegistrySource: TRegistrySource);
+procedure TRegEditWrapper.SetRegistrySettings(aRegistrySource: TRegistrySource;
+  aSetRegSrc: boolean = True);
 begin
-  inherited SetRegistrySettings(aRegistrySource);
+  inherited SetRegistrySettings(aRegistrySource, aSetRegSrc);
 
   RegControl.RegistrySettings.Default := DEFAULT_TEXT_ENTRY;
   RegControl.RegistrySettings.Section := SEC_TREGEDIT;
