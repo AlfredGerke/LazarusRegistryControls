@@ -20,33 +20,21 @@ type
   private
     FRegControl: _T;
   protected
+    procedure SetRegControl; virtual;
     procedure SetRegistryEntries; virtual;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); virtual;
   public
-    procedure RootKeys(aTypeName: string;
-                       aRegistrySource: TRegistrySource;
-                       aRootKeys: TRootKeysStruct;
-                       aCheckRTLAnsi: boolean); virtual;
     procedure ReadFromReg(aExpected: boolean;
                           aMsg: string = ''); virtual;
     procedure WriteToReg(aExpected: boolean;
                          aMsg: string = ''); virtual;
 
-    { TODO 1 -oAlfred Gerke -cRegistrySettings lesen/schreiben : Lesen von Registrywerten testen:
-1. Fall CanRead = False
-2. Fall CanRead = True
-Schreiben von Registrywerten testen:
-3. Fall DoWriteAdHoc = True
-3.1 Fall CanWrite = False
-3.2 Fall Can Write = True
-4. Fall DoWriteAdHoc = False
-4.1 Fall CanWrite = False
-4.2 Fall Can Write = True}
-
+    procedure RootKeys(aTypeName: string;
+                       aRegistrySource: TRegistrySource;
+                       aRootKeys: TRootKeysStruct;
+                       aCheckRTLAnsi: boolean); virtual;
     procedure PublishedProperties(aMsg: string); virtual;
-    procedure ReadRegistry; virtual;
-    procedure WriteRegistry; virtual;
 
     constructor Create(aRegistrySource: TRegistrySource); virtual;
     destructor Destroy; override;
@@ -64,6 +52,9 @@ Schreiben von Registrywerten testen:
     procedure SetCaptionSettings; virtual;
     procedure DeleteCaptionEntries; virtual;
   public
+    procedure ReadFromReg(aExpected: boolean;
+                          aOrigin: TRegistryDataOrigin;
+                          aMsg: string = ''); overload;
     procedure ReadCaption(aCaptionByDefault: string;
                           aCaptionByRegistry: string;
                           aMsg: string);
@@ -93,9 +84,14 @@ uses
 
 { TWrapper<_T> }
 
+procedure TWrapper<_T>.SetRegControl;
+begin
+  // Wird im spezialisierten Wrapper überschrieben
+end;
+
 procedure TWrapper<_T>.SetRegistryEntries;
 begin
-  //
+  // Wird im spezialisierten Wrapper überschrieben
 end;
 
 procedure TWrapper<_T>.SetRegistrySettings(aRegistrySource: TRegistrySource;
@@ -272,29 +268,10 @@ begin
     RegControl.RegistrySettings.DoSyncData);
 end;
 
-procedure TWrapper<_T>.ReadRegistry;
-begin
-  //1. Fall CanRead = False
-
-  //2. Fall CanRead = True
-end;
-
-procedure TWrapper<_T>.WriteRegistry;
-begin
-  //1. Fall DoWriteAdHoc = True
-  //1.1 Fall CanWrite = False
-
-  //1.2 Fall Can Write = True
-
-  //2. Fall DoWriteAdHoc = False
-  //2.1 Fall CanWrite = False
-
-  //2.2 Fall Can Write = True}
-end;
-
 constructor TWrapper<_T>.Create(aRegistrySource: TRegistrySource);
 begin
   FRegControl := _T.Create(nil);
+  SetRegControl;
   SetRegistrySettings(aRegistrySource);
   SetRegistryEntries;
 end;
@@ -312,7 +289,24 @@ end;
 
 procedure TWrapperCS<_T>.DeleteCaptionEntries;
 begin
-  //
+  // Wird im spezialisierten Wrapper überschrieben
+end;
+
+procedure TWrapperCS<_T>.ReadFromReg(aExpected: boolean;
+  aOrigin: TRegistryDataOrigin;
+  aMsg: string = '');
+var
+  success: boolean;
+  msg: string;
+begin
+  msg := _IfEmptyThen(aMsg, 'ReadFromReg');
+
+  success := FRegControl.ReadFromReg(aOrigin);
+
+  if aExpected then
+    TAssert.AssertTrue(msg, success)
+  else
+    TAssert.AssertFalse(msg, success);
 end;
 
 procedure TWrapperCS<_T>.ReadCaption(aCaptionByDefault: string;
@@ -380,7 +374,7 @@ end;
 
 procedure TWrapperCS<_T>.SetCaptionSettings;
 begin
-  //
+  // Wird im spezialisierten Wrapper überschrieben
 end;
 
 end.

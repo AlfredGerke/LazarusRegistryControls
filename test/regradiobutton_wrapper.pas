@@ -16,6 +16,7 @@ type
   TRegRaidoButtonWrapper = class(TWrapperCS<TRegRadioButton>)
   private
   protected
+    procedure SetRegControl; override;
     procedure DeleteCaptionEntries; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
@@ -31,6 +32,14 @@ uses
   test_const;
 
 { TRegRaidoButtonWrapper }
+
+procedure TRegRaidoButtonWrapper.SetRegControl;
+begin
+  inherited SetRegControl;
+
+  RegControl.Name := 'TRegRadioButton1';
+  RegControl.Checked := False;
+end;
 
 procedure TRegRaidoButtonWrapper.DeleteCaptionEntries;
 begin

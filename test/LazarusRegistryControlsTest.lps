@@ -12,19 +12,17 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="3" Y="19"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="58"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
         <Filename Value="registrysource_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="registrysource_test"/>
-        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="44"/>
+        <TopLine Value="43"/>
         <CursorPos X="37" Y="46"/>
-        <UsageCount Value="55"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="58"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
@@ -35,7 +33,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="80" Y="18"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="56"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
@@ -43,47 +41,41 @@
         <Filename Value="regedit_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regedit_test"/>
-        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="32"/>
         <CursorPos X="51" Y="49"/>
-        <UsageCount Value="52"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="55"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
         <Filename Value="registrysource_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="registrysource_wrapper"/>
-        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="117"/>
         <CursorPos X="3" Y="129"/>
-        <UsageCount Value="48"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="51"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
         <Filename Value="regedit_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regedit_wrapper"/>
-        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="17"/>
         <CursorPos X="60" Y="44"/>
-        <UsageCount Value="47"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="50"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
       <Unit6>
         <Filename Value="test_const.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="test_const"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="6"/>
-        <CursorPos X="30" Y="25"/>
-        <UsageCount Value="46"/>
+        <CursorPos X="24" Y="27"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
@@ -91,11 +83,12 @@
         <Filename Value="test_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="test_wrapper"/>
-        <EditorIndex Value="9"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="249"/>
-        <CursorPos X="5" Y="272"/>
-        <UsageCount Value="45"/>
+        <TopLine Value="19"/>
+        <CursorPos X="1" Y="27"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
@@ -103,35 +96,31 @@
         <Filename Value="regcheckbox_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regcheckbox_wrapper"/>
-        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="39"/>
-        <CursorPos X="60" Y="56"/>
-        <UsageCount Value="43"/>
-        <Loaded Value="True"/>
+        <TopLine Value="9"/>
+        <CursorPos X="15" Y="38"/>
+        <UsageCount Value="46"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
       <Unit9>
         <Filename Value="regcheckbox_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regcheckbox_test"/>
-        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="48"/>
         <CursorPos X="56" Y="50"/>
-        <UsageCount Value="42"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="45"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit9>
       <Unit10>
         <Filename Value="regradiobutton_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regradiobutton_wrapper"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="21"/>
-        <CursorPos X="29" Y="22"/>
-        <UsageCount Value="38"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="25"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit10>
@@ -139,58 +128,65 @@
         <Filename Value="regradiobutton_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regradiobutton_test"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="48"/>
-        <CursorPos X="1" Y="50"/>
-        <UsageCount Value="36"/>
+        <TopLine Value="62"/>
+        <CursorPos X="1" Y="75"/>
+        <UsageCount Value="39"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
+        <Filename Value="test_utils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="test_utils"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="5" Y="22"/>
+        <UsageCount Value="25"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit12>
+      <Unit13>
         <Filename Value="..\..\..\..\Programme\lazarus\components\fpcunit\guitestrunner.pas"/>
         <UnitName Value="GuiTestRunner"/>
         <WindowIndex Value="0"/>
         <TopLine Value="230"/>
         <CursorPos X="97" Y="234"/>
         <UsageCount Value="10"/>
-      </Unit12>
-      <Unit13>
+      </Unit13>
+      <Unit14>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-fpcunit\src\fpcunit.pp"/>
         <UnitName Value="fpcunit"/>
         <WindowIndex Value="0"/>
         <TopLine Value="448"/>
         <CursorPos X="12" Y="461"/>
         <UsageCount Value="10"/>
-      </Unit13>
-      <Unit14>
+      </Unit14>
+      <Unit15>
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
-        <EditorIndex Value="12"/>
         <WindowIndex Value="0"/>
         <TopLine Value="37"/>
         <CursorPos X="1" Y="1"/>
         <UsageCount Value="16"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit14>
-      <Unit15>
+      </Unit15>
+      <Unit16>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\rtl\objpas\classes\classesh.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1655"/>
         <CursorPos X="17" Y="1740"/>
         <UsageCount Value="11"/>
-      </Unit15>
-      <Unit16>
+      </Unit16>
+      <Unit17>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-fpcunit\src\testregistry.pp"/>
         <UnitName Value="testregistry"/>
         <WindowIndex Value="0"/>
         <TopLine Value="15"/>
         <CursorPos X="11" Y="32"/>
         <UsageCount Value="10"/>
-      </Unit16>
-      <Unit17>
+      </Unit17>
+      <Unit18>
         <Filename Value="..\source\regedit.pas"/>
         <UnitName Value="regedit"/>
         <WindowIndex Value="0"/>
@@ -198,19 +194,19 @@
         <CursorPos X="3" Y="194"/>
         <UsageCount Value="11"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit17>
-      <Unit18>
-        <Filename Value="..\source\regtype.pas"/>
-        <UnitName Value="regtype"/>
-        <EditorIndex Value="13"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="406"/>
-        <CursorPos X="1" Y="425"/>
-        <UsageCount Value="17"/>
-        <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit18>
       <Unit19>
+        <Filename Value="..\source\regtype.pas"/>
+        <UnitName Value="regtype"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="76"/>
+        <CursorPos X="22" Y="93"/>
+        <UsageCount Value="18"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit19>
+      <Unit20>
         <Filename Value="..\source\regconst.pas"/>
         <UnitName Value="regconst"/>
         <WindowIndex Value="0"/>
@@ -218,89 +214,79 @@
         <CursorPos X="1" Y="1"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit19>
-      <Unit20>
+      </Unit20>
+      <Unit21>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-fpcunit\src\testutils.pp"/>
         <UnitName Value="testutils"/>
         <WindowIndex Value="0"/>
         <TopLine Value="8"/>
         <CursorPos X="1" Y="1"/>
         <UsageCount Value="10"/>
-      </Unit20>
-      <Unit21>
+      </Unit21>
+      <Unit22>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\rtl\objpas\fgl.pp"/>
         <UnitName Value="fgl"/>
         <WindowIndex Value="0"/>
         <TopLine Value="138"/>
         <CursorPos X="15" Y="155"/>
         <UsageCount Value="10"/>
-      </Unit21>
-      <Unit22>
+      </Unit22>
+      <Unit23>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\rtl\win32\classes.pp"/>
         <UnitName Value="Classes"/>
         <WindowIndex Value="0"/>
         <TopLine Value="170"/>
         <CursorPos X="1" Y="1"/>
         <UsageCount Value="10"/>
-      </Unit22>
-      <Unit23>
+      </Unit23>
+      <Unit24>
         <Filename Value="..\..\..\..\Programme\lazarus\lcl\utf8process.pp"/>
         <UnitName Value="UTF8Process"/>
         <WindowIndex Value="0"/>
         <TopLine Value="44"/>
         <CursorPos X="1" Y="1"/>
         <UsageCount Value="10"/>
-      </Unit23>
-      <Unit24>
-        <Filename Value="..\source\regradiobutton.pas"/>
-        <UnitName Value="regradiobutton"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="8" Y="392"/>
-        <UsageCount Value="11"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit24>
       <Unit25>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <UnitName Value="regradiobutton"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="179"/>
+        <CursorPos X="1" Y="195"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit25>
+      <Unit26>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\rtl\win\sysutils.pp"/>
         <UnitName Value="sysutils"/>
         <WindowIndex Value="0"/>
         <TopLine Value="144"/>
         <CursorPos X="69" Y="155"/>
         <UsageCount Value="10"/>
-      </Unit25>
-      <Unit26>
+      </Unit26>
+      <Unit27>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\rtl\objpas\sysutils\sysstrh.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="38"/>
         <CursorPos X="3" Y="55"/>
         <UsageCount Value="10"/>
-      </Unit26>
-      <Unit27>
+      </Unit27>
+      <Unit28>
         <Filename Value="..\..\..\..\Programme\lazarus\lcl\include\control.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="3248"/>
         <CursorPos X="1" Y="3264"/>
         <UsageCount Value="10"/>
-      </Unit27>
-      <Unit28>
+      </Unit28>
+      <Unit29>
         <Filename Value="..\source\regcheckbox.pas"/>
         <UnitName Value="regcheckbox"/>
         <WindowIndex Value="0"/>
         <TopLine Value="447"/>
         <CursorPos X="1" Y="471"/>
         <UsageCount Value="11"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit28>
-      <Unit29>
-        <Filename Value="test_utils.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="test_utils"/>
-        <EditorIndex Value="10"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="5" Y="22"/>
-        <UsageCount Value="22"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
     </Units>
@@ -309,124 +295,124 @@
     </General>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="..\source\regtype.pas"/>
-        <Caret Line="423" Column="1" TopLine="406"/>
+        <Filename Value="test_wrapper.pas"/>
+        <Caret Line="294" Column="1" TopLine="287"/>
       </Position1>
       <Position2>
-        <Filename Value="..\source\regtype.pas"/>
-        <Caret Line="425" Column="1" TopLine="406"/>
+        <Filename Value="test_wrapper.pas"/>
+        <Caret Line="295" Column="1" TopLine="287"/>
       </Position2>
       <Position3>
-        <Filename Value="regradiobutton_test.pas"/>
-        <Caret Line="28" Column="25" TopLine="11"/>
+        <Filename Value="test_wrapper.pas"/>
+        <Caret Line="297" Column="1" TopLine="287"/>
       </Position3>
       <Position4>
-        <Filename Value="regcheckbox_test.pas"/>
-        <Caret Line="28" Column="34" TopLine="23"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="444" Column="1" TopLine="427"/>
       </Position4>
       <Position5>
-        <Filename Value="test_wrapper.pas"/>
-        <Caret Line="80" Column="21" TopLine="52"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="446" Column="1" TopLine="427"/>
       </Position5>
       <Position6>
-        <Filename Value="test_wrapper.pas"/>
-        <Caret Line="85" Column="51" TopLine="53"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="449" Column="1" TopLine="427"/>
       </Position6>
       <Position7>
-        <Filename Value="test_wrapper.pas"/>
-        <Caret Line="81" Column="41" TopLine="64"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="450" Column="1" TopLine="427"/>
       </Position7>
       <Position8>
-        <Filename Value="test_wrapper.pas"/>
-        <Caret Line="47" Column="28" TopLine="16"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="452" Column="1" TopLine="427"/>
       </Position8>
       <Position9>
-        <Filename Value="test_wrapper.pas"/>
-        <Caret Line="25" Column="35" TopLine="1"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="146" Column="1" TopLine="129"/>
       </Position9>
       <Position10>
-        <Filename Value="regcheckbox_wrapper.pas"/>
-        <Caret Line="38" Column="55" TopLine="34"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="147" Column="1" TopLine="129"/>
       </Position10>
       <Position11>
-        <Filename Value="regradiobutton_wrapper.pas"/>
-        <Caret Line="65" Column="1" TopLine="38"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="149" Column="1" TopLine="129"/>
       </Position11>
       <Position12>
-        <Filename Value="regradiobutton_wrapper.pas"/>
-        <Caret Line="21" Column="15" TopLine="4"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="151" Column="1" TopLine="129"/>
       </Position12>
       <Position13>
-        <Filename Value="regradiobutton_wrapper.pas"/>
-        <Caret Line="38" Column="75" TopLine="4"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="152" Column="1" TopLine="129"/>
       </Position13>
       <Position14>
-        <Filename Value="regradiobutton_wrapper.pas"/>
-        <Caret Line="21" Column="15" TopLine="4"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="153" Column="1" TopLine="129"/>
       </Position14>
       <Position15>
-        <Filename Value="regedit_wrapper.pas"/>
-        <Caret Line="16" Column="3" TopLine="1"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="154" Column="1" TopLine="129"/>
       </Position15>
       <Position16>
-        <Filename Value="regedit_wrapper.pas"/>
-        <Caret Line="22" Column="36" TopLine="3"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="155" Column="1" TopLine="129"/>
       </Position16>
       <Position17>
-        <Filename Value="regedit_wrapper.pas"/>
-        <Caret Line="20" Column="22" TopLine="3"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="157" Column="1" TopLine="129"/>
       </Position17>
       <Position18>
-        <Filename Value="regradiobutton_wrapper.pas"/>
-        <Caret Line="56" Column="60" TopLine="35"/>
+        <Filename Value="..\source\regradiobutton.pas"/>
+        <Caret Line="160" Column="1" TopLine="143"/>
       </Position18>
       <Position19>
-        <Filename Value="regcheckbox_wrapper.pas"/>
-        <Caret Line="21" Column="29" TopLine="4"/>
+        <Filename Value="regradiobutton_test.pas"/>
+        <Caret Line="78" Column="32" TopLine="68"/>
       </Position19>
       <Position20>
-        <Filename Value="registrysource_test.pas"/>
-        <Caret Line="52" Column="93" TopLine="42"/>
+        <Filename Value="test_wrapper.pas"/>
+        <Caret Line="23" Column="38" TopLine="15"/>
       </Position20>
       <Position21>
-        <Filename Value="test_wrapper.pas"/>
-        <Caret Line="48" Column="15" TopLine="32"/>
+        <Filename Value="regradiobutton_test.pas"/>
+        <Caret Line="24" Column="38" TopLine="8"/>
       </Position21>
       <Position22>
-        <Filename Value="regedit_test.pas"/>
-        <Caret Line="28" Column="32" TopLine="11"/>
+        <Filename Value="regradiobutton_wrapper.pas"/>
+        <Caret Line="19" Column="39" TopLine="3"/>
       </Position22>
       <Position23>
-        <Filename Value="regcheckbox_test.pas"/>
-        <Caret Line="28" Column="24" TopLine="10"/>
+        <Filename Value="regradiobutton_wrapper.pas"/>
+        <Caret Line="41" Column="30" TopLine="36"/>
       </Position23>
       <Position24>
-        <Filename Value="regradiobutton_test.pas"/>
-        <Caret Line="28" Column="18" TopLine="11"/>
+        <Filename Value="test_wrapper.pas"/>
+        <Caret Line="27" Column="17" TopLine="21"/>
       </Position24>
       <Position25>
-        <Filename Value="regradiobutton_test.pas"/>
-        <Caret Line="50" Column="37" TopLine="48"/>
+        <Filename Value="regradiobutton_wrapper.pas"/>
+        <Caret Line="25" Column="40" TopLine="12"/>
       </Position25>
       <Position26>
-        <Filename Value="regedit_test.pas"/>
-        <Caret Line="49" Column="30" TopLine="32"/>
+        <Filename Value="regradiobutton_wrapper.pas"/>
+        <Caret Line="87" Column="20" TopLine="61"/>
       </Position26>
       <Position27>
-        <Filename Value="regradiobutton_test.pas"/>
-        <Caret Line="50" Column="26" TopLine="33"/>
+        <Filename Value="regradiobutton_wrapper.pas"/>
+        <Caret Line="85" Column="53" TopLine="66"/>
       </Position27>
       <Position28>
-        <Filename Value="regradiobutton_test.pas"/>
-        <Caret Line="58" Column="3" TopLine="48"/>
+        <Filename Value="test_wrapper.pas"/>
+        <Caret Line="27" Column="33" TopLine="10"/>
       </Position28>
       <Position29>
         <Filename Value="test_wrapper.pas"/>
-        <Caret Line="261" Column="43" TopLine="259"/>
+        <Caret Line="115" Column="32" TopLine="111"/>
       </Position29>
       <Position30>
-        <Filename Value="regradiobutton_test.pas"/>
-        <Caret Line="50" Column="63" TopLine="33"/>
+        <Filename Value="regradiobutton_wrapper.pas"/>
+        <Caret Line="27" Column="64" TopLine="24"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

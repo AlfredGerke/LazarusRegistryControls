@@ -27,6 +27,7 @@ type
     procedure RootKeys;
     procedure PublishedProperties;
     procedure ReadByCaptionSettings;
+    procedure ReadRegistry;
   end;
 
 implementation
@@ -60,6 +61,34 @@ begin
 
   FRegRadioButtonWrapper.ReadCaption(caption_by_default, caption_by_registry,
     'Caption');
+end;
+
+procedure TRegRadioButtonTest.ReadRegistry;
+begin
+  // 1. Fall: check Section, Ident, Default
+  AssertEquals('TRegRadioButton.RegistrySection.Section', SEC_TREGRADIOBUTTON,
+    FRegRadioButtonWrapper.RegControl.RegistrySettings.Section);
+  AssertEquals('TRegRadioButton.RegistrySection.Ident', IDENT_CHECK_PROPERTY,
+    FRegRadioButtonWrapper.RegControl.RegistrySettings.Ident);
+  AssertEquals('TRegRadioButton.RegistrySection.Default', DEFAULT_CHECKED_ENTRY,
+    FRegRadioButtonWrapper.RegControl.RegistrySettings.Default);
+
+  // 1. Fall CanRead = False: DEFAULT_CHECKED_ENTRY muss in Checked eingetragen
+  // werden
+  FRegRadioButtonWrapper.RegControl.Checked := DEFAULT_CHECKED_ENTRY;
+  FRegRadioButtonWrapper.RegControl.RegistrySettings.CanRead := False;
+  FRegRadioButtonWrapper.ReadFromReg(True, rdoGeneral, 'TRegRadioButton');
+
+  AssertEquals('TRegRadioButton.RegistrySection.Default', DEFAULT_CHECKED_ENTRY,
+    FRegRadioButtonWrapper.RegControl.Checked);
+
+  // 2. Fall CanRead = True: _CHECKED_ENTRY muss in Checked eingetragen werden
+  FRegRadioButtonWrapper.RegControl.Checked := DEFAULT_CHECKED_ENTRY;
+  FRegRadioButtonWrapper.RegControl.RegistrySettings.CanRead := True;
+  FRegRadioButtonWrapper.ReadFromReg(True, rdoGeneral, 'TRegRadioButton');
+
+  AssertEquals('TRegRadioButton.RegistrySection.Default', _CHECKED_ENTRY,
+    FRegRadioButtonWrapper.RegControl.Checked);
 end;
 
 procedure TRegRadioButtonTest.SetUp;
