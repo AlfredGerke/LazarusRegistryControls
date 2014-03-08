@@ -165,6 +165,59 @@ object Main: TMain
     RegistrySettings.Ident = 'Tüäßv-ident'
     RegistrySource = RegistrySource1
   end
+  object RegComboBox1: TRegComboBox
+    Left = 299
+    Height = 23
+    Top = 242
+    Width = 213
+    ItemHeight = 15
+    TabOrder = 7
+    Text = 'RegComboBox1'
+    RegistrySettings.CanRead = False
+    RegistrySettings.CanWrite = False
+    RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = False
+    RegistrySettings.Default = 0
+    RegistrySettings.ItemsByRegistry = False
+    RegistrySettings.SourceKind = lskUnknown
+    RegistrySettings.DoMergeData = False
+  end
+  object RegCheckListBox1: TRegCheckListBox
+    Left = 477
+    Height = 80
+    Top = 45
+    Width = 100
+    ItemHeight = 0
+    TabOrder = 8
+    RegistrySettings.CanRead = False
+    RegistrySettings.CanWrite = False
+    RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = False
+    RegistrySettings.Default = 0
+    RegistrySettings.ItemsByRegistry = False
+    RegistrySettings.DoMergeData = False
+  end
+  object RegValueListEditor1: TRegValueListEditor
+    Left = 584
+    Height = 100
+    Top = 160
+    Width = 200
+    FixedCols = 0
+    RowCount = 2
+    TabOrder = 9
+    RegistrySettings.CanRead = False
+    RegistrySettings.CanWrite = False
+    RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = False
+    RegistrySettings.DoMergeData = False
+    ColWidths = (
+      64
+      132
+    )
+  end
   object RegistrySource1: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
     RootKeyForDefaults = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%'

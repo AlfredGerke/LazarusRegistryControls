@@ -9,6 +9,8 @@ uses
   SysUtils;
 
 const
+  DO_MERGE_DATA_PROPERTY_NAME = 'DoMergeData';
+  MERGE_DATA_PROPERTY_NAME = 'MergeData';
 
   SEC_FPCUNIT_TEST = 'FPCUnit-Test';
   IDENT_VERSION = 'Version';

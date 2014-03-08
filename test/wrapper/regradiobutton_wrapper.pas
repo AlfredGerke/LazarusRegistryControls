@@ -23,13 +23,14 @@ type
                                   aSetRegSrc: boolean = True); override;
     procedure SetCaptionSettings; override;
   public
-  public
+    procedure SectionIdentDefault;
   end;
 
 implementation
 
 uses
-  test_const;
+  test_const,
+  fpcunit;
 
 { TRegRaidoButtonWrapper }
 
@@ -79,6 +80,16 @@ begin
   RegControl.CaptionSettings.CaptionByRegistry := True;
 
   RegControl.Caption := DEFAULT_CAPTION_VALUE;
+end;
+
+procedure TRegRaidoButtonWrapper.SectionIdentDefault;
+begin
+  TAssert.AssertEquals('TRegRadioButton.RegistrySection.Section',
+    SEC_TREGRADIOBUTTON, FRegControl.RegistrySettings.Section);
+  TAssert.AssertEquals('TRegRadioButton.RegistrySection.Ident',
+    IDENT_CHECK_PROPERTY, FRegControl.RegistrySettings.Ident);
+  TAssert.AssertEquals('TRegRadioButton.RegistrySection.Default',
+    DEFAULT_CHECKED_ENTRY, FRegControl.RegistrySettings.Default);
 end;
 
 end.

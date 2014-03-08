@@ -46,7 +46,7 @@
         <PackageName Value="FCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="13">
+    <Units Count="20">
       <Unit0>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -112,6 +112,40 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="test_utils"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="lrc_0-9_m2_issue_30.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="reglistbox_wrapper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="reglistbox_wrapper"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="regchecklistbox_wrapper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="regchecklistbox_wrapper"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="regcombobox_wrapper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="regcombobox_wrapper"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="regradiogroup_wrapper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="regradiogroup_wrapper"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="regcheckgroup_wrapper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="regcheckgroup_wrapper"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="regvaluelisteditor_wrapper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="regvaluelisteditor_wrapper"/>
+      </Unit19>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -122,7 +156,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\source"/>
+      <OtherUnitFiles Value="..\source;wrapper;issues;basistest;units"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
@@ -138,7 +172,7 @@
     </Other>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="4">
+    <Exceptions Count="5">
       <Item1>
         <Name Value="EAbort"/>
       </Item1>
@@ -151,6 +185,9 @@
       <Item4>
         <Name Value="EAssertionFailedError"/>
       </Item4>
+      <Item5>
+        <Name Value="EPropertyError"/>
+      </Item5>
     </Exceptions>
   </Debugging>
 </CONFIG>

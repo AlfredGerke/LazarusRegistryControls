@@ -1,6 +1,6 @@
 program LazarusRegistryControlsTest;
 
-{$mode objfpc}{$H+}
+{$mode Delphi}{$H+}
 
 uses
   Interfaces,
@@ -13,8 +13,18 @@ uses
   regedit_wrapper,
   test_const,
   test_wrapper,
-  regcheckbox_wrapper, regcheckbox_test, regradiobutton_wrapper, 
-regradiobutton_test, test_utils;
+  regcheckbox_wrapper,
+  regcheckbox_test,
+  regradiobutton_wrapper,
+  regradiobutton_test,
+  test_utils,
+  issue00030_test,
+  reglistbox_wrapper,
+  regchecklistbox_wrapper,
+  regcombobox_wrapper,
+  regradiogroup_wrapper,
+  regcheckgroup_wrapper,
+  regvaluelisteditor_wrapper;
 
 {$R *.res}
 

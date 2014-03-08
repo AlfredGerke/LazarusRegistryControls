@@ -7,9 +7,7 @@ interface
 uses
   SysUtils,
   regsourcen,
-  regtype,
-  fpcunit,
-  regconvutils;
+  regtype;
 
 type
 
@@ -80,7 +78,9 @@ type
 implementation
 
 uses
-  test_utils;
+  test_utils,
+  fpcunit,
+  regconvutils;
 
 { TWrapper<_T> }
 
