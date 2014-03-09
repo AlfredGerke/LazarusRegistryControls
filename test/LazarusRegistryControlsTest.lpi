@@ -46,7 +46,7 @@
         <PackageName Value="FCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="20">
+    <Units Count="22">
       <Unit0>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -146,6 +146,16 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="regvaluelisteditor_wrapper"/>
       </Unit19>
+      <Unit20>
+        <Filename Value="issues\issues00035_test.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="issues00035_test"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="issues\issue00035_test.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="issue00035_test"/>
+      </Unit21>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -26,11 +26,49 @@ type
     procedure SectionIdentDefault;
   end;
 
+  { TRegRaidoButtonWrapperUTF8 }
+
+  TRegRaidoButtonWrapperUTF8 = class(TRegRaidoButtonWrapper)
+  private
+  protected
+    procedure DeleteCaptionEntries; override;
+    procedure SetRegistryEntries; override;
+    procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
+                                  aSetRegSrc: boolean = True); override;
+    procedure SetCaptionSettings; override;
+  public
+  end;
+
+
 implementation
 
 uses
   test_const,
   fpcunit;
+
+{ TRegRaidoButtonWrapperUTF8 }
+
+procedure TRegRaidoButtonWrapperUTF8.DeleteCaptionEntries;
+begin
+  inherited DeleteCaptionEntries;
+end;
+
+procedure TRegRaidoButtonWrapperUTF8.SetRegistryEntries;
+begin
+  inherited SetRegistryEntries;
+end;
+
+procedure TRegRaidoButtonWrapperUTF8.SetRegistrySettings(
+  aRegistrySource: TRegistrySource;
+  aSetRegSrc: boolean = True);
+begin
+  inherited SetRegistrySettings(aRegistrySource, aSetRegSrc);
+end;
+
+procedure TRegRaidoButtonWrapperUTF8.SetCaptionSettings;
+begin
+  inherited SetCaptionSettings;
+end;
 
 { TRegRaidoButtonWrapper }
 

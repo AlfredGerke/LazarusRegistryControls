@@ -24,7 +24,8 @@ uses
   regcombobox_wrapper,
   regradiogroup_wrapper,
   regcheckgroup_wrapper,
-  regvaluelisteditor_wrapper;
+  regvaluelisteditor_wrapper,
+  issue00035_test;
 
 {$R *.res}
 

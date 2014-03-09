@@ -1,6 +1,6 @@
 unit regcheckbox_test;
 
-{$mode objfpc}{$H+}
+{$mode Delphi}{$H+}
 
 interface
 
@@ -14,13 +14,13 @@ uses
 
 type
 
-  { TRegCheckBoxTest }
+  { TRegCheckBoxGenericTest }
 
-  TRegCheckBoxTest= class(TTestCase)
+  TRegCheckBoxGenericTest<_T1,_T2>= class(TTestCase)
+  private
+    FRegSrcWrapper: _T1;
+    FRegCheckBoxWrapper: _T2;
   protected
-    FRegSrcWrapper: TRegistrySourceWrapper;
-    FRegCheckBoxWrapper: TRegCheckBoxWrapper;
-
     procedure SetUp; override;
     procedure TearDown; override;
   published
@@ -29,11 +29,21 @@ type
     procedure ReadByCaptionSettings;
   end;
 
+  { TRegCheckBoxTest }
+
+  TRegCheckBoxTest= class(TRegCheckBoxGenericTest<TRegistrySourceWrapper,TRegCheckBoxWrapper>)
+  end;
+
+  { TRegCheckBoxUTF8Test }
+
+  TRegCheckBoxUTF8Test= class(TRegCheckBoxGenericTest<TRegistrySourceWrapperUTF8,TRegCheckBoxWrapperUTF8>)
+  end;
+
 implementation
 
-procedure TRegCheckBoxTest.RookKeys;
+procedure TRegCheckBoxGenericTest<_T1,_T2>.RookKeys;
 var
-  check_rtl_ansi: boolean;
+  {%H-}check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
 begin
   check_rtl_ansi := False;
@@ -45,15 +55,15 @@ begin
     FRegSrcWrapper.RegistrySource, root_keys_struct, check_rtl_ansi);
 end;
 
-procedure TRegCheckBoxTest.PublishedProperties;
+procedure TRegCheckBoxGenericTest<_T1,_T2>.PublishedProperties;
 begin
   FRegCheckBoxWrapper.PublishedProperties('TRegCheckBox');
 end;
 
-procedure TRegCheckBoxTest.ReadByCaptionSettings;
+procedure TRegCheckBoxGenericTest<_T1,_T2>.ReadByCaptionSettings;
 var
-  caption_by_default: string;
-  caption_by_registry: string;
+  {%H-}caption_by_default: string;
+  {%H-}caption_by_registry: string;
 begin
   caption_by_registry := _TREGCHECKBOX_CAPTION_VALUE;
   caption_by_default := DEFAULT_CAPTION_VALUE;
@@ -62,20 +72,16 @@ begin
     'Caption');
 end;
 
-procedure TRegCheckBoxTest.SetUp;
+procedure TRegCheckBoxGenericTest<_T1,_T2>.SetUp;
 begin
-  FRegSrcWrapper := TRegistrySourceWrapper.Create;
-  FRegCheckBoxWrapper :=
-    TRegCheckBoxWrapper.Create(FRegSrcWrapper.RegistrySource);
+  FRegSrcWrapper := _T1.Create;
+  FRegCheckBoxWrapper := _T2.Create(FRegSrcWrapper.RegistrySource);
 end;
 
-procedure TRegCheckBoxTest.TearDown;
+procedure TRegCheckBoxGenericTest<_T1,_T2>.TearDown;
 begin
-  if Assigned(FRegCheckBoxWrapper) then
-    FreeAndNil(FRegCheckBoxWrapper);
-
-  if Assigned(FRegSrcWrapper) then
-    FreeAndNil(FRegSrcWrapper);
+  FreeAndNil(FRegCheckBoxWrapper);
+  FreeAndNil(FRegSrcWrapper);
 end;
 
 end.

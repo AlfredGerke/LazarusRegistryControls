@@ -51,7 +51,27 @@ type
       read FRegistrySource;
   end;
 
+  { TRegistrySourceWrapperUTF8 }
+
+  TRegistrySourceWrapperUTF8 = class(TRegistrySourceWrapper)
+  protected
+    procedure SetRegistryEntries; override;
+    procedure SetRegistrySettings; override;
+  end;
+
 implementation
+
+{ TRegistrySourceWrapperUTF8 }
+
+procedure TRegistrySourceWrapperUTF8.SetRegistryEntries;
+begin
+  inherited SetRegistryEntries;
+end;
+
+procedure TRegistrySourceWrapperUTF8.SetRegistrySettings;
+begin
+  inherited SetRegistrySettings;
+end;
 
 { TRegistrySourceWrapper }
 

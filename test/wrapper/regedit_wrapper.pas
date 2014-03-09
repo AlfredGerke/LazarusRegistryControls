@@ -23,10 +23,36 @@ type
   public
   end;
 
+  { TRegEditWrapperUTF8 }
+
+  TRegEditWrapperUTF8 = class(TRegEditWrapper)
+  private
+  protected
+    procedure SetRegistryEntries; override;
+    procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
+                                  aSetRegSrc: boolean = True); override;
+  public
+  public
+  end;
+
+
 implementation
 
 uses
   test_const;
+
+{ TRegEditWrapperUTF8 }
+
+procedure TRegEditWrapperUTF8.SetRegistryEntries;
+begin
+  inherited SetRegistryEntries;
+end;
+
+procedure TRegEditWrapperUTF8.SetRegistrySettings(
+  aRegistrySource: TRegistrySource; aSetRegSrc: boolean);
+begin
+  inherited SetRegistrySettings(aRegistrySource, aSetRegSrc);
+end;
 
 { TRegEditWrapper }
 

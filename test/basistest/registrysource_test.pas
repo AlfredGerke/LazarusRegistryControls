@@ -12,14 +12,17 @@ uses
 
 type
 
-  { TRegistrySourceTest }
+  { TRegistrySourceGenericTest }
 
-  TRegistrySourceTest= class(TTestCase)
+  TRegistrySourceGenericTest<_T1>= class(TTestCase)
   private
-    FRegSrcWrapper: TRegistrySourceWrapper;
+    FRegSrcWrapper: _T1;
   protected
     procedure SetUp; override;
     procedure TearDown; override;
+
+    property RegSrcWrapper: _T1
+      read FRegSrcWrapper;
   published
     procedure PublishedProperties;
     procedure RootKeysStruct;
@@ -39,14 +42,23 @@ type
     procedure EraseSection;
   end;
 
+  { TRegistrySourceGenericTest }
+
+  TRegistrySourceTest = class(TRegistrySourceGenericTest<TRegistrySourceWrapper>)
+  end;
+
+  { TRegistrySourceUTF8Test }
+  TRegistrySourceUTF8Test = class(TRegistrySourceGenericTest<TRegistrySourceWrapperUTF8>)
+  end;
+
 implementation
 
-procedure TRegistrySourceTest.PublishedProperties;
+procedure TRegistrySourceGenericTest<_T1>.PublishedProperties;
 begin
   FRegSrcWrapper.PublishedProperties;
 end;
 
-procedure TRegistrySourceTest.RootKeysStruct;
+procedure TRegistrySourceGenericTest<_T1>.RootKeysStruct;
 var
   root_key_struct: TRootKeysStruct;
 begin
@@ -111,85 +123,84 @@ begin
   AssertEquals('TRootKeysStruct.GUID', 'GUID', root_key_struct.GUID);
 end;
 
-procedure TRegistrySourceTest.DeleteRootKey;
+procedure TRegistrySourceGenericTest<_T1>.DeleteRootKey;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.GetRootKey;
+procedure TRegistrySourceGenericTest<_T1>.GetRootKey;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.GetRootKeyForDefaults;
+procedure TRegistrySourceGenericTest<_T1>.GetRootKeyForDefaults;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.GetRootKeyForCommon;
+procedure TRegistrySourceGenericTest<_T1>.GetRootKeyForCommon;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.ReadString;
+procedure TRegistrySourceGenericTest<_T1>.ReadString;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.ReadInteger;
+procedure TRegistrySourceGenericTest<_T1>.ReadInteger;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.ReadBool;
+procedure TRegistrySourceGenericTest<_T1>.ReadBool;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.ReadSection;
+procedure TRegistrySourceGenericTest<_T1>.ReadSection;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.WriteString;
+procedure TRegistrySourceGenericTest<_T1>.WriteString;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.WriteInteger;
+procedure TRegistrySourceGenericTest<_T1>.WriteInteger;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.WriteBool;
+procedure TRegistrySourceGenericTest<_T1>.WriteBool;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.RenameKey;
+procedure TRegistrySourceGenericTest<_T1>.RenameKey;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.DeleteKey;
+procedure TRegistrySourceGenericTest<_T1>.DeleteKey;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.EraseSection;
+procedure TRegistrySourceGenericTest<_T1>.EraseSection;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceTest.SetUp;
+procedure TRegistrySourceGenericTest<_T1>.SetUp;
 begin
-  FRegSrcWrapper := TRegistrySourceWrapper.Create;
+  FRegSrcWrapper := _T1.Create;
 end;
 
-procedure TRegistrySourceTest.TearDown;
+procedure TRegistrySourceGenericTest<_T1>.TearDown;
 begin
-  if Assigned(FRegSrcWrapper) then
-    FreeAndNil(FRegSrcWrapper);
+  FreeAndNil(FRegSrcWrapper);
 end;
 
 end.

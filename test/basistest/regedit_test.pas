@@ -13,13 +13,12 @@ uses
 
 type
 
-  { TRegEditTest }
+  { TRegEditGenericTest }
 
-  TRegEditTest= class(TTestCase)
+  TRegEditGenericTest<_T1,_T2>= class(TTestCase)
   private
-    FRegSrcWrapper: TRegistrySourceWrapper;
-    FRegEditWrapper: TRegEditWrapper;
-
+    FRegSrcWrapper: _T1;
+    FRegEditWrapper: _T2;
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -28,11 +27,22 @@ type
     procedure PublishedProperties;
   end;
 
+  { TRegEditTest }
+  TRegEditTest= class(TRegEditGenericTest<TRegistrySourceWrapper, TRegEditWrapper>)
+  end;
+
+  { TRegEditUTF8Test }
+  TRegEditUTF8Test= class(TRegEditGenericTest<TRegistrySourceWrapperUTF8, TRegEditWrapperUTF8>)
+  end;
+
+
 implementation
 
-procedure TRegEditTest.RootKeys;
+{ TRegEditGenericTest }
+
+procedure TRegEditGenericTest<_T1,_T2>.RootKeys;
 var
-  check_rtl_ansi: boolean;
+  {%H-}check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
 begin
   check_rtl_ansi := False;
@@ -44,24 +54,21 @@ begin
     FRegSrcWrapper.RegistrySource, root_keys_struct, check_rtl_ansi);
 end;
 
-procedure TRegEditTest.PublishedProperties;
+procedure TRegEditGenericTest<_T1,_T2>.PublishedProperties;
 begin
   FRegEditWrapper.PublishedProperties('TRegEdit');
 end;
 
-procedure TRegEditTest.SetUp;
+procedure TRegEditGenericTest<_T1,_T2>.SetUp;
 begin
-  FRegSrcWrapper := TRegistrySourceWrapper.Create;
-  FRegEditWrapper := TRegEditWrapper.Create(FRegSrcWrapper.RegistrySource);
+  FRegSrcWrapper := _T1.Create;
+  FRegEditWrapper := _T2.Create(FRegSrcWrapper.RegistrySource);
 end;
 
-procedure TRegEditTest.TearDown;
+procedure TRegEditGenericTest<_T1,_T2>.TearDown;
 begin
-  if Assigned(FRegEditWrapper) then
-    FreeAndNil(FRegEditWrapper);
-
-  if Assigned(FRegSrcWrapper) then
-    FreeAndNil(FRegSrcWrapper);
+  FreeAndNil(FRegEditWrapper);
+  FreeAndNil(FRegSrcWrapper);
 end;
 
 end.

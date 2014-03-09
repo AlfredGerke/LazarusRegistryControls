@@ -25,10 +25,47 @@ type
   public
   end;
 
+  { TRegCheckBoxWrapperUTF8 }
+
+  TRegCheckBoxWrapperUTF8 = class(TRegCheckBoxWrapper)
+  private
+  protected
+    procedure DeleteCaptionEntries; override;
+    procedure SetRegistryEntries; override;
+    procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
+                                  aSetRegSrc: boolean = True); override;
+    procedure SetCaptionSettings; override;
+  public
+  public
+  end;
+
 implementation
 
 uses
   test_const;
+
+{ TRegCheckBoxWrapperUTF8 }
+
+procedure TRegCheckBoxWrapperUTF8.DeleteCaptionEntries;
+begin
+  inherited DeleteCaptionEntries;
+end;
+
+procedure TRegCheckBoxWrapperUTF8.SetRegistryEntries;
+begin
+  inherited SetRegistryEntries;
+end;
+
+procedure TRegCheckBoxWrapperUTF8.SetRegistrySettings(
+  aRegistrySource: TRegistrySource; aSetRegSrc: boolean);
+begin
+  inherited SetRegistrySettings(aRegistrySource, aSetRegSrc);
+end;
+
+procedure TRegCheckBoxWrapperUTF8.SetCaptionSettings;
+begin
+  inherited SetCaptionSettings;
+end;
 
 { TRegCheckBoxWrapper }
 

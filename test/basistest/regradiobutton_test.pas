@@ -1,6 +1,6 @@
 unit regradiobutton_test;
 
-{$mode objfpc}{$H+}
+{$mode Delphi}{$H+}
 
 interface
 
@@ -14,9 +14,9 @@ uses
 
 type
 
-  { TRegRadioButtonTest }
+  { TRegRadioButtonGenericTest }
 
-  TRegRadioButtonTest= class(TTestCase)
+  TRegRadioButtonGenericTest<_T1,_T2>= class(TTestCase)
   private
     FRegSrcWrapper: TRegistrySourceWrapper;
     FRegRadioButtonWrapper: TRegRaidoButtonWrapper;
@@ -30,9 +30,19 @@ type
     procedure ReadRegistry;
   end;
 
+  { TRegRadioButtonTest }
+
+  TRegRadioButtonTest= class(TRegRadioButtonGenericTest<TRegistrySourceWrapper,TRegRaidoButtonWrapper>)
+  end;
+
+  { TRegRadioButtonUTF8Test }
+
+  TRegRadioButtonUTF8Test= class(TRegRadioButtonGenericTest<TRegistrySourceWrapperUTF8,TRegRaidoButtonWrapperUTF8>)
+  end;
+
 implementation
 
-procedure TRegRadioButtonTest.RootKeys;
+procedure TRegRadioButtonGenericTest<_T1,_T2>.RootKeys;
 var
   check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
@@ -46,12 +56,12 @@ begin
     FRegSrcWrapper.RegistrySource, root_keys_struct, check_rtl_ansi);
 end;
 
-procedure TRegRadioButtonTest.PublishedProperties;
+procedure TRegRadioButtonGenericTest<_T1,_T2>.PublishedProperties;
 begin
   FRegRadioButtonWrapper.PublishedProperties('TRegRadioButton');
 end;
 
-procedure TRegRadioButtonTest.ReadByCaptionSettings;
+procedure TRegRadioButtonGenericTest<_T1,_T2>.ReadByCaptionSettings;
 var
   caption_by_default: string;
   caption_by_registry: string;
@@ -63,7 +73,7 @@ begin
     'Caption');
 end;
 
-procedure TRegRadioButtonTest.ReadRegistry;
+procedure TRegRadioButtonGenericTest<_T1,_T2>.ReadRegistry;
 begin
   // 1. Fall: check Section, Ident, Default
   FRegRadioButtonWrapper.SectionIdentDefault;
@@ -86,20 +96,16 @@ begin
     FRegRadioButtonWrapper.RegControl.Checked);
 end;
 
-procedure TRegRadioButtonTest.SetUp;
+procedure TRegRadioButtonGenericTest<_T1,_T2>.SetUp;
 begin
-  FRegSrcWrapper := TRegistrySourceWrapper.Create;
-  FRegRadioButtonWrapper :=
-    TRegRaidoButtonWrapper.Create(FRegSrcWrapper.RegistrySource);
+  FRegSrcWrapper := _T1.Create;
+  FRegRadioButtonWrapper := _T2.Create(FRegSrcWrapper.RegistrySource);
 end;
 
-procedure TRegRadioButtonTest.TearDown;
+procedure TRegRadioButtonGenericTest<_T1,_T2>.TearDown;
 begin
-  if Assigned(FRegRadioButtonWrapper) then
-    FreeAndNil(FRegRadioButtonWrapper);
-
-  if Assigned(FRegSrcWrapper) then
-    FreeAndNil(FRegSrcWrapper);
+  FreeAndNil(FRegRadioButtonWrapper);
+  FreeAndNil(FRegSrcWrapper);
 end;
 
 end.

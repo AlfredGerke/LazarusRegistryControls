@@ -63,6 +63,28 @@ Hinzu kommen beliebig viele Testmethoden, die nur ein einziges Mal überprüft w
 müssen und somit in den Wrappern nicht aufgeführt werden sollen. Diese Tests stellen 
 die Grundlage des automatisierten Test dar.     
 
+Für diverse Grund-Testfälle ist es denkbar, das vererbte Wrapper in den Testfällen zum
+Einsatz kommen sollen. Um zu vermeiden, das diese Testfälle pro abgeleiteten Wrapper 
+komplett neu definiert werden müssen, werden generische Testfälle eingeführt.
+      
+Beispiel: Der UTF8-Bug (Issues #35) erfordert für jede String-Eigenschaft welche
+mit der Registry in Verbindung steht, einen Eintrag mit Umlauten (wie sinnvoll das auch immer sein mag).
+Die bestehenden Wrapper werden abtgeleitet und die Methoden zum belegen der RegistrySettings
+werden überschrieben. Diese abgeleiteten UTF8-Wrapper können nun unter zuhilfenahme
+des zugehörigen generischen Testfalles zu einen neuen UTF8-Testfall erstellt werden.
+    
+    TRegEditGenericTest<_T1,_T2>= class(TTestCase)
+    ...
+    end;
+    
+    { TRegEditTest }
+    TRegEditTest= class(TRegEditGenericTest<TRegistrySourceWrapper, TRegEditWrapper>)
+    end;
+    
+    { TRegEditUTF8Test }
+    TRegEditUTF8Test= class(TRegEditGenericTest<TRegistrySourceWrapperUTF8, TRegEditWrapperUTF8>)
+    end;
+      
 Zusätzlich zu den Grund-Testfällen für ein Control sollen erweiterte Testfälle 
 geschaffen werden, die die LR-Controls in Kombination miteinander und mit fremden 
 Controls testen sollen. 
