@@ -22,10 +22,26 @@ type
     procedure CheckSettings;
   end;
 
+procedure RegisterIssue00035Tests(aSuitePath: string = 'LRC 09 M2.Issue #35');
+
 implementation
 
 uses
-  Registry;
+  Registry,
+  registrysource_test,
+  regedit_test,
+  regcheckbox_test,
+  regradiobutton_test,
+  testregistry;
+
+procedure RegisterIssue00035Tests(aSuitePath: string = 'LRC 09 M2.Issue #35');
+begin
+  RegisterTest(aSuitePath, TCheckRTLAnsiTest);
+  RegisterTest(aSuitePath, TRegistrySourceUTF8Test);
+  RegisterTest(aSuitePath, TRegEditUTF8Test);
+  RegisterTest(aSuitePath, TRegCheckBoxUTF8Test);
+  RegisterTest(aSuitePath, TRegRadioButtonUTF8Test);
+end;
 
 procedure TCheckRTLAnsiTest.SetRegistryEntries;
 var
@@ -36,13 +52,12 @@ end;
 
 procedure TCheckRTLAnsiTest.SetUp;
 begin
-  // 1. Registryknoten aufbauen um jede String-Eigenschaft mit Umlauten zu
-  // testen. Dies muss vor dem Aufruf dem Erstellen der Controls geschehen
   SetRegistryEntries;
 end;
 
 procedure TCheckRTLAnsiTest.TearDown;
 begin
+  //
 end;
 
 procedure TCheckRTLAnsiTest.CheckSettings;

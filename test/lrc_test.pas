@@ -35,11 +35,7 @@ initialization
   // (s. GitHub: https://github.com/AlfredGerke/LazarusRegistryControls/issues)
   //!<--
   RegisterTest('LRC 09 M2.Issue #30', TDoMergeDataTest);
-  RegisterTest('LRC 09 M2.Issue #35', TCheckRTLAnsiTest);
-  RegisterTest('LRC 09 M2.Issue #35', TRegistrySourceUTF8Test);
-  RegisterTest('LRC 09 M2.Issue #35', TRegEditUTF8Test);
-  RegisterTest('LRC 09 M2.Issue #35', TRegCheckBoxUTF8Test);
-  RegisterTest('LRC 09 M2.Issue #35', TRegRadioButtonUTF8Test);
+  RegisterIssue00035Tests('LRC 09 M2.Issue #35');
   //-->
 end.
 

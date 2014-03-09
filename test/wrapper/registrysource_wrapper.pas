@@ -25,9 +25,10 @@ type
   public
     procedure GetRootKeys(var ACheckRTLAnsi: boolean;
                           var ARootKeysStruct: TRootKeysStruct);
-    procedure PublishedProperties;
+    procedure PublishedProperties; virtual;
 
-    { TODO 1 -oAlfred Gerke -cGUI-Test : Folgende Testroutinen können nur in einer GUI getestet werden:}
+    // Folgende Methoden sollten in einer GUI getestet werden
+    //!<--
     procedure PostClientData;
     procedure RefreshMergeDataProperty;
     procedure GetClientList;
@@ -43,6 +44,7 @@ type
     procedure RefreshClientData;
     procedure RegisterClient;
     procedure UnRegisterClient;
+    //-->
 
     constructor Create; virtual;
     destructor Destroy; override;
@@ -57,6 +59,8 @@ type
   protected
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings; override;
+  public
+    procedure PublishedProperties; override;
   end;
 
 implementation
@@ -65,12 +69,70 @@ implementation
 
 procedure TRegistrySourceWrapperUTF8.SetRegistryEntries;
 begin
-  inherited SetRegistryEntries;
+  FRegistrySource.WriteString(SEC_FPCUNIT_URF8TEST, IDENT_LRC_VERSION_UTF8TEST,
+    _VERSION);
 end;
 
 procedure TRegistrySourceWrapperUTF8.SetRegistrySettings;
 begin
-  inherited SetRegistrySettings;
+  FRegistrySource.RootKey :=
+    'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%';
+  FRegistrySource.RootKeyForDefaults :=
+    'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%';
+  FRegistrySource.RootKeyForCommon :=
+    'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%';
+  FRegistrySource.Project := 'Project_mit_ßÜÖÄüöä';
+  FRegistrySource.Organisation := 'Organisation_mit_ßÜÖÄüöä';
+  FRegistrySource.RootForDefaults := 'HKEY_LOCAL_MACHINE';
+  FRegistrySource.ReadDefaults := True;
+  FRegistrySource.WriteDefaults := False;
+  FRegistrySource.GUID := '{2CD0EB3F-A81E-4F0D-AE9B-1548DC65F930}';
+  FRegistrySource.DoSyncData := True;
+  FRegistrySource.PrefereStrings := False;
+  FRegistrySource.CheckRTLAnsi := True;
+end;
+
+procedure TRegistrySourceWrapperUTF8.PublishedProperties;
+begin
+  TAssert.AssertEquals('TRegistrySource.RootKey',
+    'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%',
+    FRegistrySource.RootKey);
+
+  TAssert.AssertEquals('TRegistrySource.RootKeyForDefaults',
+    'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%',
+    FRegistrySource.RootKeyForDefaults);
+
+  TAssert.AssertEquals('TRegistrySource.RootKeyForCommon',
+    'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%',
+    FRegistrySource.RootKeyForCommon);
+
+  TAssert.AssertEquals('TRegistrySource.Project', 'Project_mit_ßÜÖÄüöä',
+    FRegistrySource.Project);
+
+  TAssert.AssertEquals('TRegistrySource.Organisation', 'Organisation_mit_ßÜÖÄüöä',
+    FRegistrySource.Organisation);
+
+  TAssert.AssertEquals('TRegistrySource.RootForDefaults', 'HKEY_LOCAL_MACHINE',
+    FRegistrySource.RootForDefaults);
+
+  TAssert.AssertEquals('TRegistrySource.ReadDefaults', True,
+    FRegistrySource.ReadDefaults);
+
+  TAssert.AssertEquals('TRegistrySource.WriteDefaults', False,
+    FRegistrySource.WriteDefaults);
+
+  TAssert.AssertEquals('TRegistrySource.GUID',
+    '{2CD0EB3F-A81E-4F0D-AE9B-1548DC65F930}',
+    FRegistrySource.GUID);
+
+  TAssert.AssertEquals('TRegistrySource.DoSyncData', True,
+    FRegistrySource.DoSyncData);
+
+  TAssert.AssertEquals('TRegistrySource.PrefereStrings', False,
+    FRegistrySource.PrefereStrings);
+
+  TAssert.AssertEquals('TRegistrySource.CheckRTLAnsi', True,
+    FRegistrySource.CheckRTLAnsi);
 end;
 
 { TRegistrySourceWrapper }
@@ -173,7 +235,8 @@ begin
   TAssert.AssertEquals('TRegistrySource.WriteDefaults', False,
     FRegistrySource.WriteDefaults);
 
-  TAssert.AssertEquals('TRegistrySource.GUID', '{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}',
+  TAssert.AssertEquals('TRegistrySource.GUID',
+    '{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}',
     FRegistrySource.GUID);
 
   TAssert.AssertEquals('TRegistrySource.DoSyncData', True,

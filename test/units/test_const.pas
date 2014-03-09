@@ -9,6 +9,10 @@ uses
   SysUtils;
 
 const
+  SEC_FPCUNIT_URF8TEST = 'UTF8Bug_mit_ßÖÜÄöüä';
+  IDENT_LRC_VERSION_UTF8TEST = 'Version_mit_ßÖÜÄöüä';
+
+
   DO_MERGE_DATA_PROPERTY_NAME = 'DoMergeData';
   MERGE_DATA_PROPERTY_NAME = 'MergeData';
 
