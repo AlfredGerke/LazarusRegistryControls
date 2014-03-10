@@ -780,10 +780,15 @@ constructor TDataByCurrentUser.Create(aFileName: string;
   aPrefereStrings: boolean = False;
   aCheckRTLAnsi: boolean = True);
 begin
+  // wenn das läuft Kommentar entfernen
+  {
   inherited Create(aFileName);
 
   CheckRTLAnsi := aCheckRTLAnsi;
   PreferStringValues := aPrefereStrings;
+  }
+  Create(aFileName, aPrefereStrings, aCheckRTLAnsi);
+
   FUseDefaults :=
     TDefaultsForCurrentUser.Create(aDefaultsRoot, aDefaultKey, aPrefereStrings);
 end;
@@ -791,8 +796,12 @@ end;
 constructor TDataByCurrentUser.Create(aFileName: string;
   aPrefereStrings: boolean = False;
   aCheckRTLAnsi: boolean = True);
+var
+  file_name: string;
 begin
-  inherited Create(aFileName);
+  file_name := UTF8DecodeIfNeeded(aFileName, aCheckRTLAnsi);
+
+  inherited Create(file_name);
 
   CheckRTLAnsi := aCheckRTLAnsi;
   PreferStringValues := aPrefereStrings;
@@ -931,10 +940,12 @@ function TDataByCurrentUser.ReadString(const Section: string;
 var
   section_str: string;
   ident_str: string;
+  default_str: string;
   value: string;
 begin
   section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
   ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+  default_str := UTF8DecodeIfNeeded(Default, CheckRTLAnsi);
 
   value := inherited ReadString(section_str, ident_str, Default);
 

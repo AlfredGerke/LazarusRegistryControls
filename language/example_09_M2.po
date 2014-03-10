@@ -14,6 +14,10 @@ msgstr ""
 msgid "Statisch für RegCheckGroup"
 msgstr ""
 
+#: tmain.regcombobox1.text
+msgid "RegComboBox1"
+msgstr ""
+
 #: tmain.regedit1.text
 msgid "RegEdit1"
 msgstr ""

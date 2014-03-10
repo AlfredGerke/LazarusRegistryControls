@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="62">
+    <Units Count="63">
       <Unit0>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -13,7 +13,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="3"/>
         <CursorPos X="3" Y="28"/>
-        <UsageCount Value="71"/>
+        <UsageCount Value="73"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
@@ -24,7 +24,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="43"/>
         <CursorPos X="37" Y="46"/>
-        <UsageCount Value="71"/>
+        <UsageCount Value="73"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
@@ -35,7 +35,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="7"/>
         <CursorPos X="28" Y="39"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
@@ -46,7 +46,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="32"/>
         <CursorPos X="51" Y="49"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="70"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -56,7 +56,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="22"/>
         <CursorPos X="13" Y="11"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="66"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
@@ -66,7 +66,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="17"/>
         <CursorPos X="1" Y="25"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="65"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
       <Unit6>
@@ -76,7 +76,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="27" Y="13"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="64"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -86,7 +86,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="54"/>
         <CursorPos X="1" Y="95"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="63"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
@@ -96,7 +96,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="9"/>
         <CursorPos X="15" Y="38"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
       <Unit9>
@@ -106,7 +106,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="48"/>
         <CursorPos X="56" Y="50"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="60"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit9>
       <Unit10>
@@ -116,7 +116,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="10" Y="33"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="56"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit10>
       <Unit11>
@@ -126,7 +126,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="32" Y="102"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="54"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
@@ -136,7 +136,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="31"/>
         <CursorPos X="47" Y="58"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit12>
       <Unit13>
@@ -145,7 +145,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="25" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit13>
       <Unit14>
@@ -155,7 +155,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="2"/>
         <CursorPos X="14" Y="10"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="32"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit14>
       <Unit15>
@@ -165,7 +165,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="32" Y="3"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit15>
       <Unit16>
@@ -175,7 +175,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="26" Y="20"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit16>
       <Unit17>
@@ -185,7 +185,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="20" Y="3"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit17>
       <Unit18>
@@ -195,7 +195,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="11"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit18>
       <Unit19>
@@ -205,7 +205,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="8"/>
         <CursorPos X="3" Y="32"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit19>
       <Unit20>
@@ -215,7 +215,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="3"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit20>
       <Unit21>
@@ -226,7 +226,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="12"/>
         <CursorPos X="1" Y="60"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit21>
@@ -242,17 +242,19 @@
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-fpcunit\src\fpcunit.pp"/>
         <UnitName Value="fpcunit"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="75"/>
-        <CursorPos X="21" Y="97"/>
+        <TopLine Value="1"/>
+        <CursorPos X="3" Y="239"/>
         <UsageCount Value="10"/>
       </Unit23>
       <Unit24>
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="220"/>
-        <CursorPos X="14" Y="246"/>
+        <TopLine Value="1113"/>
+        <CursorPos X="1" Y="1139"/>
         <UsageCount Value="17"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit24>
       <Unit25>
@@ -266,8 +268,8 @@
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-fpcunit\src\testregistry.pp"/>
         <UnitName Value="testregistry"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="18"/>
-        <CursorPos X="19" Y="26"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
         <UsageCount Value="10"/>
       </Unit26>
       <Unit27>
@@ -283,8 +285,8 @@
         <Filename Value="..\source\regtype.pas"/>
         <UnitName Value="regtype"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="335"/>
-        <CursorPos X="1" Y="357"/>
+        <TopLine Value="932"/>
+        <CursorPos X="3" Y="936"/>
         <UsageCount Value="18"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
@@ -476,11 +478,10 @@
       <Unit51>
         <Filename Value="wrapper\registrysource_wrapper.pas"/>
         <UnitName Value="registrysource_wrapper"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="52"/>
-        <CursorPos X="4" Y="67"/>
+        <TopLine Value="93"/>
+        <CursorPos X="1" Y="110"/>
         <UsageCount Value="12"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -537,8 +538,8 @@
         <UnitName Value="test_wrapper"/>
         <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="15"/>
-        <CursorPos X="24" Y="32"/>
+        <TopLine Value="36"/>
+        <CursorPos X="15" Y="53"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -568,8 +569,8 @@
         <UnitName Value="regconvutils"/>
         <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="10" Y="15"/>
+        <TopLine Value="82"/>
+        <CursorPos X="1" Y="113"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -577,45 +578,152 @@
       <Unit61>
         <Filename Value="..\source\regutils.pas"/>
         <UnitName Value="regutils"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="9"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="777"/>
-        <CursorPos X="1" Y="795"/>
+        <TopLine Value="178"/>
+        <CursorPos X="3" Y="212"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit61>
+      <Unit62>
+        <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-fpcunit\src\testdecorator.pp"/>
+        <UnitName Value="testdecorator"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="11"/>
+        <CursorPos X="3" Y="111"/>
+        <UsageCount Value="10"/>
+      </Unit62>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="6" HistoryIndex="5">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="wrapper\registrysource_wrapper.pas"/>
-        <Caret Line="113" Column="1" TopLine="96"/>
+        <Caret Line="113" Column="1" TopLine="74"/>
       </Position1>
       <Position2>
-        <Filename Value="wrapper\registrysource_wrapper.pas"/>
-        <Caret Line="76" Column="1" TopLine="59"/>
+        <Filename Value="basistest\registrysource_test.pas"/>
+        <Caret Line="51" Column="3" TopLine="31"/>
       </Position2>
       <Position3>
         <Filename Value="wrapper\registrysource_wrapper.pas"/>
-        <Caret Line="113" Column="1" TopLine="74"/>
+        <Caret Line="69" Column="3" TopLine="52"/>
       </Position3>
       <Position4>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="51" Column="3" TopLine="31"/>
+        <Filename Value="lrc_test.pas"/>
+        <Caret Line="39" Column="28" TopLine="7"/>
       </Position4>
       <Position5>
-        <Filename Value="wrapper\registrysource_wrapper.pas"/>
-        <Caret Line="58" Column="3" TopLine="94"/>
+        <Filename Value="wrapper\test_wrapper.pas"/>
+        <Caret Line="32" Column="24" TopLine="15"/>
       </Position5>
       <Position6>
-        <Filename Value="wrapper\registrysource_wrapper.pas"/>
-        <Caret Line="69" Column="3" TopLine="52"/>
+        <Filename Value="wrapper\test_wrapper.pas"/>
+        <Caret Line="54" Column="27" TopLine="37"/>
       </Position6>
+      <Position7>
+        <Filename Value="wrapper\test_wrapper.pas"/>
+        <Caret Line="53" Column="15" TopLine="36"/>
+      </Position7>
+      <Position8>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="1130" Column="1" TopLine="1113"/>
+      </Position8>
+      <Position9>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="1138" Column="1" TopLine="1113"/>
+      </Position9>
+      <Position10>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="1139" Column="1" TopLine="1113"/>
+      </Position10>
+      <Position11>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="794" Column="1" TopLine="777"/>
+      </Position11>
+      <Position12>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="799" Column="1" TopLine="777"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="795" Column="1" TopLine="777"/>
+      </Position13>
+      <Position14>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="797" Column="1" TopLine="777"/>
+      </Position14>
+      <Position15>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="69" Column="17" TopLine="54"/>
+      </Position15>
+      <Position16>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="1136" Column="68" TopLine="1113"/>
+      </Position16>
+      <Position17>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="1130" Column="32" TopLine="1113"/>
+      </Position17>
+      <Position18>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="783" Column="41" TopLine="775"/>
+      </Position18>
+      <Position19>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="481" Column="61" TopLine="474"/>
+      </Position19>
+      <Position20>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="1130" Column="1" TopLine="1113"/>
+      </Position20>
+      <Position21>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="1138" Column="1" TopLine="1113"/>
+      </Position21>
+      <Position22>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="1139" Column="1" TopLine="1113"/>
+      </Position22>
+      <Position23>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="801" Column="1" TopLine="784"/>
+      </Position23>
+      <Position24>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="808" Column="1" TopLine="784"/>
+      </Position24>
+      <Position25>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="802" Column="1" TopLine="784"/>
+      </Position25>
+      <Position26>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="108" Column="1" TopLine="82"/>
+      </Position26>
+      <Position27>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="109" Column="1" TopLine="82"/>
+      </Position27>
+      <Position28>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="110" Column="1" TopLine="82"/>
+      </Position28>
+      <Position29>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="113" Column="1" TopLine="82"/>
+      </Position29>
+      <Position30>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="804" Column="1" TopLine="784"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="5">
+    <BreakPoints Count="3">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -628,29 +736,15 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="wrapper\registrysource_wrapper.pas"/>
-        <Line Value="109"/>
+        <Line Value="142"/>
       </Item2>
       <Item3>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
-        <Source Value="wrapper\registrysource_wrapper.pas"/>
-        <Line Value="142"/>
-      </Item3>
-      <Item4>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="wrapper\registrysource_wrapper.pas"/>
-        <Line Value="73"/>
-      </Item4>
-      <Item5>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
         <Source Value="..\source\regsourcen.pas"/>
-        <Line Value="1093"/>
-      </Item5>
+        <Line Value="1130"/>
+      </Item3>
     </BreakPoints>
   </Debugging>
 </CONFIG>
