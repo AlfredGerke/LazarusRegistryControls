@@ -230,6 +230,8 @@ type
 
     function ChangeTokenForKey(aToken: TTokenType;
                                aKey: string): string;
+    function GetOrganisation: string;
+    function GetProject: string;
     function TriggerOnBeforeRegistrySettingChange(aKind: TRegistrySettingKind;
                                                   aValue: variant): boolean;
   protected
@@ -303,13 +305,13 @@ type
       write SetRootForDefaults;
 
     property GUID: string
-      read FGUID
+      read GetGUID
       write SetGUID;
     property Project: string
-      read FProject
+      read GetProject
       write SetProject;
     property Organisation: string
-      read FOrganisation
+      read GetOrganisation
       write SetOrganisation;
     property OnChange: TNotifyEvent
       read FOnChange
@@ -631,6 +633,16 @@ begin
   Result := _ChangeTokenForKey(token, value_for_token, aKey);
 end;
 
+function TCustomRegistrySettings<_T>.GetOrganisation: string;
+begin
+  Result := UTF8ToSysIfNeeded(FOrganisation, CheckRTLAnsi);
+end;
+
+function TCustomRegistrySettings<_T>.GetProject: string;
+begin
+  Result := UTF8ToSysIfNeeded(FProject, CheckRTLAnsi);
+end;
+
 function TCustomRegistrySettings<_T>.TriggerOnBeforeRegistrySettingChange(
   aKind: TRegistrySettingKind;
   aValue: variant): boolean;
@@ -741,11 +753,14 @@ begin
 
   FRootKey := IncludeTrailingPathDelimiter(aRootKey);
 
+  FRootKey := SysToUTF8IfNeeded(FRootKey, CheckRTLAnsi);
+
   FRootKey := ChangeTokenForKey(ttProject, FRootKey);
   FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
   FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
 
-  FRootKey := SysToUTF8IfNeeded(FRootKey, CheckRTLAnsi);
+  // FStrings werden immer in UTF8 gespeichert
+  //FRootKey := SysToUTF8IfNeeded(FRootKey, CheckRTLAnsi);
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -759,11 +774,13 @@ begin
 
   FRootKeyForDefaults := IncludeTrailingPathDelimiter(aRootKeyForDefaults);
 
+  FRootKeyForDefaults := SysToUTF8IfNeeded(FRootKeyForDefaults, CheckRTLAnsi);
+
   FRootKeyForDefaults := ChangeTokenForKey(ttProject, FRootKeyForDefaults);
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
   FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
 
-  FRootKeyForDefaults := SysToUTF8IfNeeded(FRootKeyForDefaults, CheckRTLAnsi);
+  //FRootKeyForDefaults := SysToUTF8IfNeeded(FRootKeyForDefaults, CheckRTLAnsi);
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);

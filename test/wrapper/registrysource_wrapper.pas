@@ -20,12 +20,18 @@ type
   private
     FRegistrySource: TRegistrySource;
   protected
+    procedure SetRootKeysStruct(aRootKey: string;
+                                aRootKeyForDefaults: string;
+                                aProject: string;
+                                aOrganisation: string;
+                                aGUID: string);
     procedure SetRegistryEntries; virtual;
     procedure SetRegistrySettings; virtual;
   public
     procedure GetRootKeys(var ACheckRTLAnsi: boolean;
                           var ARootKeysStruct: TRootKeysStruct);
     procedure PublishedProperties; virtual;
+    procedure RootKeysStruct; virtual;
 
     // Folgende Methoden sollten in einer GUI getestet werden
     //!<--
@@ -61,6 +67,7 @@ type
     procedure SetRegistrySettings; override;
   public
     procedure PublishedProperties; override;
+    procedure RootKeysStruct; override;
   end;
 
 implementation
@@ -133,6 +140,12 @@ begin
 
   TAssert.AssertEquals('TRegistrySource.CheckRTLAnsi', True,
     FRegistrySource.CheckRTLAnsi);
+end;
+
+procedure TRegistrySourceWrapperUTF8.RootKeysStruct;
+begin
+  SetRootKeysStruct('RootKey_mit_ÄÖÜßäöü', 'RootKeyForDefaults_mit_ÄÖÜßäöü',
+    'Project_mit_ÄÖÜßäöü', 'Organisation_mit_ÄÖÜßäöü', 'GUID_mit_ÄÖÜßäöü');
 end;
 
 { TRegistrySourceWrapper }
@@ -247,6 +260,117 @@ begin
 
   TAssert.AssertEquals('TRegistrySource.CheckRTLAnsi', True,
     FRegistrySource.CheckRTLAnsi);
+end;
+
+procedure TRegistrySourceWrapper.RootKeysStruct;
+begin
+  SetRootKeysStruct('RootKey', 'RootKeyForDefaults', 'Project', 'Organisation',
+    'GUID');
+end;
+
+procedure TRegistrySourceWrapper.SetRootKeysStruct(aRootKey: string;
+  aRootKeyForDefaults: string;
+  aProject: string;
+  aOrganisation: string;
+  aGUID: string);
+var
+  root_key_struct: TRootKeysStruct;
+begin
+  root_key_struct.Found := True;
+  root_key_struct.RootKey := aRootKey;
+  root_key_struct.RootKeyForDefaults := aRootKeyForDefaults;
+  root_key_struct.ReadDefaults := True;
+  root_key_struct.WriteDefaults := True;
+  root_key_struct.RootForDefaults := 'RootForDefaults';
+  root_key_struct.Project := aProject;
+  root_key_struct.Organisation := aOrganisation;
+  root_key_struct.GUID := aGUID;
+
+  TAssert.AssertEquals('TRootKeysStruct.Found', True,
+    root_key_struct.Found);
+
+  TAssert.AssertEquals('TRootKeysStruct.RootKey', aRootKey,
+    root_key_struct.RootKey);
+
+  TAssert.AssertEquals('TRootKeysStruct.RootKeyForDefaults',
+    aRootKeyForDefaults, root_key_struct.RootKeyForDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.ReadDefaults', True,
+    root_key_struct.ReadDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.WriteDefaults', True,
+    root_key_struct.WriteDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.RootForDefaults', 'RootForDefaults',
+    root_key_struct.RootForDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.Project', aProject,
+    root_key_struct.Project);
+
+  TAssert.AssertEquals('TRootKeysStruct.Organisation', aOrganisation,
+    root_key_struct.Organisation);
+
+  TAssert.AssertEquals('TRootKeysStruct.GUID', aGUID,
+    root_key_struct.GUID);
+
+  root_key_struct.Clear;
+
+  TAssert.AssertEquals('TRootKeysStruct.Found', False,
+    root_key_struct.Found);
+
+  TAssert.AssertEquals('TRootKeysStruct.RootKey', EmptyStr,
+    root_key_struct.RootKey);
+
+  TAssert.AssertEquals('TRootKeysStruct.RootKeyForDefaults', EmptyStr,
+    root_key_struct.RootKeyForDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.ReadDefaults', False,
+    root_key_struct.ReadDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.WriteDefaults', False,
+    root_key_struct.WriteDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.RootForDefaults', EmptyStr,
+    root_key_struct.RootForDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.Project', EmptyStr,
+    root_key_struct.Project);
+
+  TAssert.AssertEquals('TRootKeysStruct.Organisation', EmptyStr,
+    root_key_struct.Organisation);
+
+  TAssert.AssertEquals('TRootKeysStruct.GUID', EmptyStr,
+    root_key_struct.GUID);
+
+  root_key_struct.SetRootKeys(aRootKey, aRootKeyForDefaults, True, True,
+    'RootForDefaults', aProject, aOrganisation, aGUID);
+
+  TAssert.AssertEquals('TRootKeysStruct.Found', True,
+    root_key_struct.Found);
+
+  TAssert.AssertEquals('TRootKeysStruct.RootKey', aRootKey,
+    root_key_struct.RootKey);
+
+  TAssert.AssertEquals('TRootKeysStruct.RootKeyForDefaults',
+    aRootKeyForDefaults, root_key_struct.RootKeyForDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.ReadDefaults', True,
+    root_key_struct.ReadDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.WriteDefaults', True,
+    root_key_struct.WriteDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.RootForDefaults', 'RootForDefaults',
+    root_key_struct.RootForDefaults);
+
+  TAssert.AssertEquals('TRootKeysStruct.Project', aProject,
+    root_key_struct.Project);
+
+  TAssert.AssertEquals('TRootKeysStruct.Organisation', aOrganisation,
+    root_key_struct.Organisation);
+
+  TAssert.AssertEquals('TRootKeysStruct.GUID', aGUID,
+    root_key_struct.GUID);
 end;
 
 procedure TRegistrySourceWrapper.PostClientData;

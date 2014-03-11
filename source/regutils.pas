@@ -947,7 +947,7 @@ begin
   ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
   default_str := UTF8DecodeIfNeeded(Default, CheckRTLAnsi);
 
-  value := inherited ReadString(section_str, ident_str, Default);
+  value := inherited ReadString(section_str, ident_str, default_str);
 
   Result := SysToUTF8IfNeeded(value, CheckRTLAnsi);
 end;
