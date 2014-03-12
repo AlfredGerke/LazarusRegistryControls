@@ -166,14 +166,17 @@ type
                              aGroupIndex: cardinal = 0;
                              aWParam: integer = 0);
   protected
+    { TODO 1 -oAlfred Gerke -cEntwicklung : Setter und Getter einführen }
     property RootKey: string
       read FRootKey
       write FRootKey;
 
+    { TODO 1 -oAlfred Gerke -cEntwicklung : Setter und Getter einführen }
     property RootKeyForDefaults: string
       read FRootKeyForDefaults
       write FRootKeyForDefaults;
 
+    { TODO 1 -oAlfred Gerke -cEntwicklung : Setter und Getter einführen }
     property RootKeyForCommon: string
       read FRootKeyForCommon
       write FRootKeyForCommon;
@@ -202,6 +205,7 @@ type
       read FWriteDefaults
       write FWriteDefaults;
 
+    { TODO 1 -oAlfred Gerke -cEntwicklung : Setter und Getter einführen }
     property GUID: string
       read FGUID
       write FGUID;
@@ -259,9 +263,11 @@ type
                                 aGroupIndex: cardinal = 0);
     procedure RegisterClient(aClient: TComponent);
     procedure UnRegisterClient(aClient: TComponent);
+    { TODO 1 -oAlfred Gerke -cEntwicklung : Umbennenen: ???? }
     function GetRootKey: string;
     function GetRootKeyForDefaults: string;
     function GetRootKeyForCommon: string;
+
     function ReadString(aRootKey: string;
                         aRootKeyForDefaults: string;
                         aRootForDefaults: string;

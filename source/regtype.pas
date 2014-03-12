@@ -230,50 +230,61 @@ type
 
     function ChangeTokenForKey(aToken: TTokenType;
                                aKey: string): string;
-    function GetOrganisation: string;
-    function GetProject: string;
     function TriggerOnBeforeRegistrySettingChange(aKind: TRegistrySettingKind;
                                                   aValue: variant): boolean;
   protected
     procedure _Initialize; override;
     procedure _Finalize; override;
 
+    function GetRootKey: string;
     procedure SetRootKey(aRootKey: string);
+
+    function GetRootKeyForDefaults: string;
     procedure SetRootKeyForDefaults(aRootKeyForDefaults: string);
-    procedure SetSection(aSection: string);
-    procedure SetIdent(aIdent: string);
+
     procedure SetReadDefaults(aReadDefaults: boolean);
+
     procedure SetWriteDefaults(aWriteDefaults: boolean);
+
+    function GetRootForDefaults: string;
     procedure SetRootForDefaults(aRootForDefaults: string);
+
     procedure SetCanRead(aCanRead: boolean);
     procedure SetCanWrite(aCanWrite: boolean);
+
     procedure SetDoWriteAdHoc(aDoWriteAdHoc: boolean);
-    procedure SetDefault(aDefault: _T);
+
+    function GetGUID: string;
     procedure SetGUID(aGUID: string);
+
+    function GetProject: string;
     procedure SetProject(aProject: string);
-    procedure SetOrganisation(aOrganisation: string);
+
     procedure SetGroupIndex(aGroupIndex: cardinal);
     procedure SetDoSyncData(aDoSyncData: boolean);
     procedure SetDoMergeData(aDoMergeData: boolean);
 
-    function GetSection: string;
+    function GetOrganisation: string;
+    procedure SetOrganisation(aOrganisation: string);
+
     function GetDefault: _T;
-    function GetIdent: string;
-
-    function GetGUID: string;
-    function GetRootKey: string;
-    function GetRootKeyForDefaults: string;
-    function GetRootForDefaults: string;
-
+    procedure SetDefault(aDefault: _T);
     property Default: _T
       read GetDefault
       write SetDefault;
+
+    function GetSection: string;
+    procedure SetSection(aSection: string);
     property Section: string
       read GetSection
       write SetSection;
+
+    function GetIdent: string;
+    procedure SetIdent(aIdent: string);
     property Ident: string
       read GetIdent
       write SetIdent;
+
     property DoMergeData: boolean
       read FDoMergeData
       write SetDoMergeData;
@@ -282,6 +293,7 @@ type
     procedure SetRootKeys(aRootKeys: TRootKeysStruct);
     procedure BeginUpdate;
     procedure EndUpdate;
+
     constructor Create(aOwner: TPersistent;
                        aCheckRTLAnsi: boolean = True); override;
     destructor Destroy; override;
@@ -289,30 +301,37 @@ type
     property Owner;
 
     property RootKey: string
-      read FRootKey
+      read GetRootKey
       write SetRootKey;
+
     property RootKeyForDefaults: string
-      read FRootKeyForDefaults
+      read GetRootKeyForDefaults
       write SetRootKeyForDefaults;
+
     property ReadDefaults: boolean
       read FReadDefaults
       write SetReadDefaults;
+
     property WriteDefaults: boolean
       read FWriteDefaults
       write SetWriteDefaults;
+
     property RootForDefaults: string
-      read FRootForDefaults
+      read GetRootForDefaults
       write SetRootForDefaults;
 
     property GUID: string
       read GetGUID
       write SetGUID;
+
     property Project: string
       read GetProject
       write SetProject;
+
     property Organisation: string
       read GetOrganisation
       write SetOrganisation;
+
     property OnChange: TNotifyEvent
       read FOnChange
       write FOnChange;
@@ -320,18 +339,23 @@ type
     property CanRead: boolean
       read FCanRead
       write SetCanRead;
+
     property CanWrite: boolean
       read FCanWrite
       write SetCanWrite;
+
     property DoWriteAdHoc: boolean
       read FDoWriteAdHoc
       write SetDoWriteAdHoc;
+
     property GroupIndex: cardinal
       read FGroupIndex
       write SetGroupIndex;
+
     property DoSyncData: boolean
       read FDoSyncData
       write SetDoSyncData;
+
     property OnBeforeRegistrySettingChange: TOnRegistrySettingsChange
       read FOnBeforeRegistrySettingChange
       write FOnBeforeRegistrySettingChange;
@@ -950,7 +974,7 @@ end;
 
 function TCustomRegistrySettings<_T>.GetRootKey: string;
 begin
-  Result := UTF8ToSysIfNeeded(FSection, CheckRTLAnsi);
+  Result := UTF8ToSysIfNeeded(FRootKey, CheckRTLAnsi);
 end;
 
 function TCustomRegistrySettings<_T>.GetRootKeyForDefaults: string;
