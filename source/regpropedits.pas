@@ -12,6 +12,13 @@ uses
 
 type
 
+  { TGUIDStringProperty }
+
+  TGUIDStringProperty = class(TStringPropertyEditor)
+  public
+    procedure Edit; override;
+  end;
+
   { TRegistryControlComponentEditor }
 
   TRegistryControlComponentEditor = class(TDefaultComponentEditor)
@@ -69,6 +76,13 @@ uses
   ObjInspStrConsts,
   regresstrings,
   FileUtil;
+
+{ TGUIDStringProperty }
+
+procedure TGUIDStringProperty.Edit;
+begin
+  inherited Edit;
+end;
 
 { TRegistryControlComponentEditor }
 
@@ -333,11 +347,20 @@ begin
   case Index of
     0:;
     1:;
-    2: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
-    3: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
-    4: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
-    5: AItem.Enabled := (assigned(registry_source) and (registry_source.ClientCount > 0));
-    6: if (assigned(registry_source) and (registry_source.ClientCount > 0)) then
+    2:
+      AItem.Enabled :=
+        (assigned(registry_source) and (registry_source.ClientCount > 0));
+    3:
+      AItem.Enabled :=
+        (assigned(registry_source) and (registry_source.ClientCount > 0));
+    4:
+      AItem.Enabled :=
+        (assigned(registry_source) and (registry_source.ClientCount > 0));
+    5:
+      AItem.Enabled :=
+        (assigned(registry_source) and (registry_source.ClientCount > 0));
+    6:
+      if (assigned(registry_source) and (registry_source.ClientCount > 0)) then
          AddMenuItemsForComponent(Index, aItem, registry_source)
        else
          AItem.Enabled := False;

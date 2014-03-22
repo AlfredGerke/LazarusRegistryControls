@@ -166,20 +166,23 @@ type
                              aGroupIndex: cardinal = 0;
                              aWParam: integer = 0);
   protected
-    { TODO 1 -oAlfred Gerke -cEntwicklung : Setter und Getter einführen }
+    function GetRootKey: string;
+    procedure SetRootKey(aRootKey: string);
     property RootKey: string
-      read FRootKey
-      write FRootKey;
+      read GetRootKey
+      write SetRootKey;
 
-    { TODO 1 -oAlfred Gerke -cEntwicklung : Setter und Getter einführen }
+    function GetRootKeyForDefaults: string;
+    procedure SetRootKeyForDefaults(aRootKeyForDefaults: string);
     property RootKeyForDefaults: string
-      read FRootKeyForDefaults
-      write FRootKeyForDefaults;
+      read GetRootKeyForDefaults
+      write SetRootKeyForDefaults;
 
-    { TODO 1 -oAlfred Gerke -cEntwicklung : Setter und Getter einführen }
+    function GetRootKeyForCommon: string;
+    procedure SetRootKeyForCommon(aRootKeyForCommon: string);
     property RootKeyForCommon: string
-      read FRootKeyForCommon
-      write FRootKeyForCommon;
+      read GetRootKeyForCommon
+      write SetRootKeyForCommon;
 
     function GetProject: string;
     procedure SetProject(AValue: string);
@@ -206,9 +209,11 @@ type
       write FWriteDefaults;
 
     { TODO 1 -oAlfred Gerke -cEntwicklung : Setter und Getter einführen }
+    function GetGUID: string;
+    procedure SetGUID(aGUID: string);
     property GUID: string
-      read FGUID
-      write FGUID;
+      read GetGUID
+      write SetGUID;
 
     property DoSyncData: boolean
       read FDoSyncData
@@ -264,9 +269,9 @@ type
     procedure RegisterClient(aClient: TComponent);
     procedure UnRegisterClient(aClient: TComponent);
     { TODO 1 -oAlfred Gerke -cEntwicklung : Umbennenen: ???? }
-    function GetRootKey: string;
-    function GetRootKeyForDefaults: string;
-    function GetRootKeyForCommon: string;
+    function GetComposedRootKey: string;
+    function GetComposedRootKeyForDefaults: string;
+    function GetComposedRootKeyForCommon: string;
 
     function ReadString(aRootKey: string;
                         aRootKeyForDefaults: string;
@@ -424,21 +429,27 @@ begin
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
     TRegistrySettingsStringDefault, 'OnBeforeRegistrySettingChange',
     TRegistrySettingsPropertyEditor);
+
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
     TRegistrySettingsItemIndexDefault, 'OnBeforeRegistrySettingChange',
     TRegistrySettingsPropertyEditor);
+
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
     TRegistrySettingsIntegerDefault, 'OnBeforeRegistrySettingChange',
     TRegistrySettingsPropertyEditor);
+
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
     TRegistrySettingsBooleanDefault, 'OnBeforeRegistrySettingChange',
     TRegistrySettingsPropertyEditor);
+
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
     TRegistrySettingsList, 'OnBeforeRegistrySettingChange',
     TRegistrySettingsPropertyEditor);
+
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
     TRegistrySettingsCheckedList, 'OnBeforeRegistrySettingChange',
     TRegistrySettingsPropertyEditor);
+
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
     TRegistrySettingsValueList, 'OnBeforeRegistrySettingChange',
     TRegistrySettingsPropertyEditor);
@@ -446,6 +457,8 @@ begin
   RegisterPropertyEditor(TypeInfo(TOnRegistrySettingsChange),
     TCaptionSettings, 'OnBeforeCaptionSettingChange',
     TRegistrySettingsPropertyEditor);
+
+  //RegisterPropertyEditor(TypeInfo();
 end;
 
 { TRegistrySettingsStringDefault }
@@ -507,6 +520,11 @@ begin
   RefreshClientData('', aGroupIndex);
 end;
 
+function TCustomRegistrySource.GetRootKeyForDefaults: string;
+begin
+  Result := UTF8ToSysIfNeeded(FRootKeyForDefaults, FCheckRTLAnsi);
+end;
+
 function TCustomRegistrySource.GetOrganisation: string;
 begin
   Result := UTF8ToSysIfNeeded(FOrganisation, FCheckRTLAnsi);
@@ -545,9 +563,45 @@ begin
   end;
 end;
 
+function TCustomRegistrySource.GetRootKey: string;
+begin
+  Result := UTF8ToSysIfNeeded(FRootKey, FCheckRTLAnsi);
+end;
+
+procedure TCustomRegistrySource.SetRootKey(aRootKey: string);
+begin
+  FRootKey := SysToUTF8IfNeeded(aRootKey, FCheckRTLAnsi);
+end;
+
+procedure TCustomRegistrySource.SetRootKeyForDefaults(
+  aRootKeyForDefaults: string);
+begin
+  FRootKeyForDefaults := SysToUTF8IfNeeded(aRootKeyForDefaults, FCheckRTLAnsi);
+end;
+
+function TCustomRegistrySource.GetRootKeyForCommon: string;
+begin
+  Result := UTF8ToSysIfNeeded(FRootKeyForCommon, FCheckRTLAnsi);
+end;
+
+procedure TCustomRegistrySource.SetRootKeyForCommon(aRootKeyForCommon: string);
+begin
+  FRootKeyForCommon := SysToUTF8IfNeeded(aRootKeyForCommon, FCheckRTLAnsi);
+end;
+
 procedure TCustomRegistrySource.SetOrganisation(AValue: string);
 begin
   FOrganisation := SysToUTF8IfNeeded(AValue, FCheckRTLAnsi);
+end;
+
+function TCustomRegistrySource.GetGUID: string;
+begin
+  Result := UTF8ToSysIfNeeded(FGUID, CheckRTLAnsi);
+end;
+
+procedure TCustomRegistrySource.SetGUID(aGUID: string);
+begin
+  FGUID := SysToUTF8IfNeeded(aGUID, FCheckRTLAnsi);
 end;
 
 procedure TCustomRegistrySource.SetProject(AValue: string);
@@ -607,8 +661,8 @@ end;
 procedure TCustomRegistrySource.DeleteRootKey;
 begin
   try
-    DeleteRootKey(GetRootKey,
-      GetRootKeyForDefaults,
+    DeleteRootKey(GetComposedRootKey,
+      GetComposedRootKeyForDefaults,
       RootForDefaults,
       WriteDefaults);
   except
@@ -789,7 +843,7 @@ begin
   end;
 end;
 
-function TCustomRegistrySource.GetRootKey: string;
+function TCustomRegistrySource.GetComposedRootKey: string;
 var
   root_key: string;
 begin
@@ -802,7 +856,7 @@ begin
   Result := UTF8ToSysIfNeeded(root_key, FCheckRTLAnsi);
 end;
 
-function TCustomRegistrySource.GetRootKeyForDefaults: string;
+function TCustomRegistrySource.GetComposedRootKeyForDefaults: string;
 var
   root_key: string;
 begin
@@ -815,7 +869,7 @@ begin
   Result := UTF8ToSysIfNeeded(root_key, FCheckRTLAnsi);
 end;
 
-function TCustomRegistrySource.GetRootKeyForCommon: string;
+function TCustomRegistrySource.GetComposedRootKeyForCommon: string;
 var
   root_key: string;
 begin
@@ -906,8 +960,8 @@ function TCustomRegistrySource.ReadString(aSection: string;
   aDefault: string): string;
 begin
   try
-    Result := ReadString(GetRootKey,
-                GetRootKeyForDefaults,
+    Result := ReadString(GetComposedRootKey,
+                GetComposedRootKeyForDefaults,
                 RootForDefaults,
                 aSection,
                 aIdent,
@@ -967,8 +1021,8 @@ function TCustomRegistrySource.ReadInteger(aSection: string;
   aDefault: integer): integer;
 begin
   try
-    Result := ReadInteger(GetRootKey,
-                GetRootKeyForDefaults,
+    Result := ReadInteger(GetComposedRootKey,
+                GetComposedRootKeyForDefaults,
                 RootForDefaults,
                 aSection,
                 aIdent,
@@ -1030,8 +1084,8 @@ function TCustomRegistrySource.ReadBool(aSection: string;
   aDefault: boolean): boolean;
 begin
   try
-    Result := ReadBool(GetRootKey,
-                GetRootKeyForDefaults,
+    Result := ReadBool(GetComposedRootKey,
+                GetComposedRootKeyForDefaults,
                 RootForDefaults,
                 aSection,
                 aIdent,
@@ -1108,8 +1162,8 @@ procedure TCustomRegistrySource.ReadSection(aSection: string;
   aMerge: boolean = False);
 begin
   try
-    ReadSection(GetRootKey,
-      GetRootKeyForDefaults,
+    ReadSection(GetComposedRootKey,
+      GetComposedRootKeyForDefaults,
       RootForDefaults,
       aSection,
       aStrings,
@@ -1169,8 +1223,8 @@ procedure TCustomRegistrySource.WriteString(aSection: string;
   aGroupIndex: Cardinal = 0);
 begin
   try
-    WriteString(GetRootKey,
-      GetRootKeyForDefaults,
+    WriteString(GetComposedRootKey,
+      GetComposedRootKeyForDefaults,
       RootForDefaults,
       aSection,
       aIdent,
@@ -1230,8 +1284,8 @@ procedure TCustomRegistrySource.WriteInteger(aSection: string;
   aGroupIndex: Cardinal = 0);
 begin
   try
-    WriteInteger(GetRootKey,
-      GetRootKeyForDefaults,
+    WriteInteger(GetComposedRootKey,
+      GetComposedRootKeyForDefaults,
       RootForDefaults,
       aSection,
       aIdent,
@@ -1293,8 +1347,8 @@ procedure TCustomRegistrySource.WriteBool(aSection: string;
   aGroupIndex: Cardinal = 0);
 begin
   try
-    WriteBool(GetRootKey,
-      GetRootKeyForDefaults,
+    WriteBool(GetComposedRootKey,
+      GetComposedRootKeyForDefaults,
       RootForDefaults,
       aSection,
       aIdent,
@@ -1354,8 +1408,8 @@ procedure TCustomRegistrySource.RenameKey(aSection: string;
   aGroupIndex: Cardinal);
 begin
   try
-    RenameKey(GetRootKey,
-      GetRootKeyForDefaults,
+    RenameKey(GetComposedRootKey,
+      GetComposedRootKeyForDefaults,
       RootForDefaults,
       aSection,
       aOldKey,
@@ -1413,8 +1467,8 @@ procedure TCustomRegistrySource.DeleteKey(aSection: string;
   aGroupIndex: Cardinal);
 begin
   try
-    DeleteKey(GetRootKey,
-      GetRootKeyForDefaults,
+    DeleteKey(GetComposedRootKey,
+      GetComposedRootKeyForDefaults,
       RootForDefaults,
       aSection,
       aKey,
@@ -1469,8 +1523,8 @@ procedure TCustomRegistrySource.EraseSection(aSection: string;
   aGroupIndex: Cardinal);
 begin
   try
-    EraseSection(GetRootKey,
-      GetRootKeyForDefaults,
+    EraseSection(GetComposedRootKey,
+      GetComposedRootKeyForDefaults,
       RootForDefaults,
       aSection,
       WriteDefaults,
