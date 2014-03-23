@@ -458,7 +458,8 @@ begin
     TCaptionSettings, 'OnBeforeCaptionSettingChange',
     TRegistrySettingsPropertyEditor);
 
-  //RegisterPropertyEditor(TypeInfo();
+  RegisterPropertyEditor(TypeInfo(string),
+    TRegistrySource, 'GUID', TGUIDStringProperty);
 end;
 
 { TRegistrySettingsStringDefault }

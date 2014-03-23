@@ -30,12 +30,12 @@ implementation
 
 {$R *.lfm}
 
+uses
+  regconvutils;
+
 function TRegBaseForm.SetUTF8IfNeeded(const aString: string): string;
 begin
-  if FAtDesignTime then
-    Result := SysToUTF8(aString)
-  else
-    Result := aString;
+  result := UTF8ToSysIfNeeded(aString, FAtDesignTime);
 end;
 
 end.

@@ -179,6 +179,7 @@ type
       write FUseDefaults;
   end;
 
+function _GenGUIDAsStr(var aGUIDAsStr: string): integer;
 
 implementation
 
@@ -186,6 +187,18 @@ uses
   SysUtils,
   FileUtil,
   regconvutils;
+
+function _GenGUIDAsStr(var aGUIDAsStr: string): integer;
+var
+  guid: TGUID;
+  error: integer;
+begin
+  aGUIDAsStr := EmptyStr;
+  error:= CreateGUID(guid);
+  if (error = 0) then
+    aGUIDAsStr := GUIDToString(guid);
+  Result := error;
+end;
 
 { TDefaultsForCurrentUser }
 

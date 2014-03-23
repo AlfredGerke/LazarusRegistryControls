@@ -1,0 +1,15 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: dlgguid.rseditguid
+msgid "Edit GUID"
+msgstr ""
+
+#: dlgguid.rserrorcreateguid_fmt
+msgid "Error by creating GUID [%d]"
+msgstr ""
+
+#: dlgguid.rsguid
+msgid "GUID"
+msgstr ""
+

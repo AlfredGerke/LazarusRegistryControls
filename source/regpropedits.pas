@@ -17,6 +17,7 @@ type
   TGUIDStringProperty = class(TStringPropertyEditor)
   public
     procedure Edit; override;
+    function GetAttributes: TPropertyAttributes; override;
   end;
 
   { TRegistryControlComponentEditor }
@@ -75,13 +76,19 @@ uses
   regmsg,
   ObjInspStrConsts,
   regresstrings,
-  FileUtil;
+  FileUtil,
+  dlgguid;
 
 { TGUIDStringProperty }
 
 procedure TGUIDStringProperty.Edit;
 begin
   inherited Edit;
+end;
+
+function TGUIDStringProperty.GetAttributes: TPropertyAttributes;
+begin
+  Result := [paMultiSelect, paDialog, paReadOnly];
 end;
 
 { TRegistryControlComponentEditor }
