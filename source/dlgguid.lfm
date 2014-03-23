@@ -1,4 +1,4 @@
-object EditGUID: TEditGUID
+inherited EditGUID: TEditGUID
   Left = 928
   Height = 92
   Top = 294
@@ -8,8 +8,7 @@ object EditGUID: TEditGUID
   ClientHeight = 92
   ClientWidth = 438
   Position = poScreenCenter
-  LCLVersion = '1.0.14.0'
-  object pnlClient: TPanel
+  object pnlClient: TPanel[0]
     Left = 0
     Height = 66
     Top = 0
@@ -46,7 +45,7 @@ object EditGUID: TEditGUID
       OnClick = btnGUIDClick
     end
   end
-  object pnlBottom: TPanel
+  object pnlBottom: TPanel[1]
     Left = 0
     Height = 26
     Top = 66

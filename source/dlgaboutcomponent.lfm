@@ -2,21 +2,21 @@ inherited AboutComponent: TAboutComponent
   Left = 611
   Height = 145
   Top = 244
-  Width = 419
+  Width = 445
   BorderStyle = bsDialog
   Caption = 'About...'
   ClientHeight = 145
-  ClientWidth = 419
+  ClientWidth = 445
   Position = poScreenCenter
   object pnlClient: TPanel[0]
     Left = 0
     Height = 119
     Top = 0
-    Width = 419
+    Width = 445
     Align = alClient
     BevelOuter = bvNone
     ClientHeight = 119
-    ClientWidth = 419
+    ClientWidth = 445
     TabOrder = 0
     object lblCompName1: TLabel
       Left = 118
@@ -66,9 +66,9 @@ inherited AboutComponent: TAboutComponent
     end
     object lblGitHub: TLabel
       Left = 118
-      Height = 14
+      Height = 16
       Top = 53
-      Width = 289
+      Width = 318
       Caption = 'https://github.com/AlfredGerke/LazarusRegistryControls.git'
       ParentColor = False
     end
@@ -577,16 +577,16 @@ inherited AboutComponent: TAboutComponent
     Left = 0
     Height = 26
     Top = 119
-    Width = 419
+    Width = 445
     Align = alBottom
     BevelOuter = bvNone
     ClientHeight = 26
-    ClientWidth = 419
+    ClientWidth = 445
     TabOrder = 1
     object btnOk: TBitBtn
-      Left = 335
+      Left = 359
       Height = 24
-      Top = 0
+      Top = -2
       Width = 81
       Default = True
       DefaultCaption = True

@@ -227,7 +227,7 @@ object Main: TMain
     RootForDefaults = 'HKEY_LOCAL_MACHINE'
     ReadDefaults = True
     WriteDefaults = False
-    GUID = '{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}'
+    GUID = '{B1A24532-0976-4773-A70A-BD027A7536D6}'
     DoSyncData = True
     PrefereStrings = False
     CheckRTLAnsi = True

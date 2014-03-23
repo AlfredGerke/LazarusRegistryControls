@@ -108,6 +108,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
     <i18n>
       <EnableI18N Value="True"/>
       <OutDir Value="..\language"/>
+      <EnableI18NForLFM Value="True"/>
     </i18n>
     <Type Value="RunAndDesignTime"/>
     <RequiredPkgs Count="2">

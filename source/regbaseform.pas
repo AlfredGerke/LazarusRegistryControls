@@ -35,7 +35,7 @@ uses
 
 function TRegBaseForm.SetUTF8IfNeeded(const aString: string): string;
 begin
-  result := UTF8ToSysIfNeeded(aString, FAtDesignTime);
+  result := SysToUTF8IfNeeded(aString, FAtDesignTime);
 end;
 
 end.

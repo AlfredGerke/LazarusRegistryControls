@@ -82,8 +82,12 @@ uses
 { TGUIDStringProperty }
 
 procedure TGUIDStringProperty.Edit;
+var
+  guid: string;
 begin
-  inherited Edit;
+  guid := GetValue;
+  if ShowGUIDDlg(guid) then;
+    SetValue(guid)
 end;
 
 function TGUIDStringProperty.GetAttributes: TPropertyAttributes;

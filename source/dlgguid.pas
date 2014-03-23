@@ -5,15 +5,10 @@ unit dlgguid;
 interface
 
 uses
-  Classes,
   SysUtils,
-  FileUtil,
-  Forms,
   Controls,
-  Graphics,
   Dialogs,
   ExtCtrls,
-  StdCtrls,
   Buttons,
   RegBaseForm;
 
@@ -39,6 +34,7 @@ type
     procedure SetCaptions;
   public
     function GetGUID: string;
+    procedure SetGUID(aGUID: string);
     function ShowModal: integer; override;
   end;
 
@@ -57,21 +53,26 @@ function ShowGUIDDlg(var aGUID: string;
 var
   dlg_guid: TEditGUID;
   guid: TGuid;
+  guid_str: string;
 begin
+  guid_str := EmptyStr;
   dlg_guid := TEditGUID.Create(nil);
   try
     with dlg_guid do
     begin
-      AtDesignTime := AtDesignTime;
+      AtDesignTime := aAtDesignTime;
+      SetGUID(aGUID);
       case ShowModal of
-        mrOK: aGUID := GetGUID;
+        mrOK: guid_str := GetGUID;
       end;
     end;
   finally
     if Assigned(dlg_guid) then
       FreeAndNil(dlg_guid);
 
-    Result := TryStringToGUID(aGUID, guid);
+    Result := TryStringToGUID(guid_str, guid);
+    if Result then
+      aGUID := guid_str;
   end;
 end;
 
@@ -104,6 +105,11 @@ end;
 function TEditGUID.GetGUID: string;
 begin
   Result := edtGUID.Text;
+end;
+
+procedure TEditGUID.SetGUID(aGUID: string);
+begin
+  edtGUID.Text := aGUID;
 end;
 
 function TEditGUID.ShowModal: integer;
