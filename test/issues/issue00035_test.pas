@@ -22,7 +22,7 @@ type
     procedure CheckSettings;
   end;
 
-procedure RegisterIssue00035Tests(aSuitePath: string = 'LRC 09 M2.Issue #35');
+procedure RegisterIssue00035Tests(aSuitePath: string = 'LRC 09 M2.Issue #35 - UTF8-Bug');
 
 implementation
 
@@ -34,7 +34,7 @@ uses
   regradiobutton_test,
   testregistry;
 
-procedure RegisterIssue00035Tests(aSuitePath: string = 'LRC 09 M2.Issue #35');
+procedure RegisterIssue00035Tests(aSuitePath: string = 'LRC 09 M2.Issue #35 - UTF8-Bug');
 begin
   RegisterTest(aSuitePath, TCheckRTLAnsiTest);
   RegisterTest(aSuitePath, TRegistrySourceUTF8Test);
@@ -46,8 +46,21 @@ end;
 procedure TCheckRTLAnsiTest.SetRegistryEntries;
 var
   {%H-}ini: TRegIniFile;
+  root_key: string;
 begin
-  ini := TRegIniFile.Create('');
+  root_key :=
+    'SOFTWARE\Organisation_mit_ßÜÖÄüöä\Project_mit_ßÜÖÄüöä\{2CD0EB3F-A81E-4F0D-'
+    + 'AE9B-1548DC65F930}';
+  ini := TRegIniFile.Create(root_key);
+  try
+    with ini do
+    begin
+
+    end;
+  finally
+    if Assigned(ini) then
+      FreeAndNil(ini);
+  end;
 end;
 
 procedure TCheckRTLAnsiTest.SetUp;

@@ -25,10 +25,9 @@ type
   published
     procedure PublishedProperties;
     procedure RootKeysStruct;
-    procedure DeleteRootKey;
-    procedure GetRootKey;
-    procedure GetRootKeyForDefaults;
-    procedure GetRootKeyForCommon;
+    procedure GetComposedRootKey;
+    procedure GetComposedRootKeyForDefaults;
+    procedure GetComposedRootKeyForCommon;
     procedure ReadString;
     procedure ReadInteger;
     procedure ReadBool;
@@ -39,6 +38,7 @@ type
     procedure RenameKey;
     procedure DeleteKey;
     procedure EraseSection;
+    procedure DeleteRootKey;
   end;
 
   { TRegistrySourceGenericTest }
@@ -67,17 +67,17 @@ begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceGenericTest<_T1>.GetRootKey;
+procedure TRegistrySourceGenericTest<_T1>.GetComposedRootKey;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceGenericTest<_T1>.GetRootKeyForDefaults;
+procedure TRegistrySourceGenericTest<_T1>.GetComposedRootKeyForDefaults;
 begin
   Fail('Test noch nicht implementiert!');
 end;
 
-procedure TRegistrySourceGenericTest<_T1>.GetRootKeyForCommon;
+procedure TRegistrySourceGenericTest<_T1>.GetComposedRootKeyForCommon;
 begin
   Fail('Test noch nicht implementiert!');
 end;

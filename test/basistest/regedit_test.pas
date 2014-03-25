@@ -35,7 +35,6 @@ type
   TRegEditUTF8Test= class(TRegEditGenericTest<TRegistrySourceWrapperUTF8, TRegEditWrapperUTF8>)
   end;
 
-
 implementation
 
 { TRegEditGenericTest }

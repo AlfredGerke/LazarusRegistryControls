@@ -79,8 +79,7 @@ implementation
 
 uses
   test_utils,
-  fpcunit,
-  regconvutils;
+  fpcunit;
 
 { TWrapper<_T> }
 
@@ -122,11 +121,11 @@ begin
   TAssert.AssertNotNull('TypeName', aTypeName);
 
   TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.RootKey',
-    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.RootKey, aCheckRTLAnsi),
+    [aTypeName]), aRootKeys.RootKey,
     RegControl.RegistrySettings.RootKey);
 
   TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.RootKeyForDefaults',
-    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.RootKeyForDefaults, aCheckRTLAnsi),
+    [aTypeName]), aRootKeys.RootKeyForDefaults,
     RegControl.RegistrySettings.RootKeyForDefaults);
 
   TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.RootForDefaults',
@@ -134,15 +133,15 @@ begin
     RegControl.RegistrySettings.RootForDefaults);
 
   TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.Project',
-    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.Project, aCheckRTLAnsi),
+    [aTypeName]), aRootKeys.Project,
     RegControl.RegistrySettings.Project);
 
   TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.Organisation',
-    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.Organisation, aCheckRTLAnsi),
+    [aTypeName]), aRootKeys.Organisation,
     RegControl.RegistrySettings.Organisation);
 
-  TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.GUID', [aTypeName]),
-    UTF8ToSysIfNeeded(aRootKeys.GUID, aCheckRTLAnsi),
+  TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.GUID',
+    [aTypeName]), aRootKeys.GUID,
     RegControl.RegistrySettings.GUID);
 
   TAssert.AssertEquals(Format('1. Fall - %s.RegistrySettings.ReadDefaults',
@@ -190,11 +189,11 @@ begin
   RegControl.RegistrySource.RefreshSettings;
 
   TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.RootKey',
-    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.RootKey, aCheckRTLAnsi),
+    [aTypeName]), aRootKeys.RootKey,
     RegControl.RegistrySettings.RootKey);
 
   TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.RootKeyForDefaults',
-    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.RootKeyForDefaults, aCheckRTLAnsi),
+    [aTypeName]), aRootKeys.RootKeyForDefaults,
     RegControl.RegistrySettings.RootKeyForDefaults);
 
   TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.RootForDefaults',
@@ -202,15 +201,15 @@ begin
     RegControl.RegistrySettings.RootForDefaults);
 
   TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.Project',
-    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.Project, aCheckRTLAnsi),
+    [aTypeName]), aRootKeys.Project,
     RegControl.RegistrySettings.Project);
 
   TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.Organisation',
-    [aTypeName]), UTF8ToSysIfNeeded(aRootKeys.Organisation, aCheckRTLAnsi),
+    [aTypeName]), aRootKeys.Organisation,
     RegControl.RegistrySettings.Organisation);
 
-  TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.GUID', [aTypeName]),
-    UTF8ToSysIfNeeded(aRootKeys.GUID, aCheckRTLAnsi),
+  TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.GUID',
+    [aTypeName]), aRootKeys.GUID,
     RegControl.RegistrySettings.GUID);
 
   TAssert.AssertEquals(Format('3. Fall - %s.RegistrySettings.ReadDefaults',
