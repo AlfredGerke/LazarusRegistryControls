@@ -100,7 +100,7 @@ type
     procedure EraseSection(const Section: string);
     procedure DeleteKey(const Section: String;
                         const Ident: String);
-
+    procedure ReadSections(Strings: TStrings);
     procedure ReadSection(const Section: string;
                           Strings: TStrings);
     procedure WriteString(const Section: String;
@@ -918,6 +918,13 @@ begin
   ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
 
   inherited DeleteKey(section_str, ident_str);
+end;
+
+procedure TDataByCurrentUser.ReadSections(Strings: TStrings);
+begin
+  inherited ReadSections(Strings);
+
+  SysToUTF8StringsIfNeeded(Strings, CheckRTLAnsi);
 end;
 
 procedure TDataByCurrentUser.ReadSection(const Section: string;
