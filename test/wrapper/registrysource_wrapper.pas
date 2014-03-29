@@ -72,12 +72,61 @@ type
 
 implementation
 
+uses
+  Registry;
+
 { TRegistrySourceWrapperUTF8 }
 
 procedure TRegistrySourceWrapperUTF8.SetRegistryEntries;
+var
+  {%H-}ini: TRegIniFile;
+  root_key: string;
 begin
-  FRegistrySource.WriteString(SEC_FPCUNIT_URF8TEST, IDENT_LRC_VERSION_UTF8TEST,
-    _VERSION);
+  root_key :=
+    UTF8Decode(
+      'SOFTWARE\Organisation_mit_ßÜÖÄüöä\Project_mit_ßÜÖÄüöä\{2CD0EB3F-A81E-4F0D-'
+    + 'AE9B-1548DC65F930}');
+
+  ini := TRegIniFile.Create(root_key);
+  try
+    with ini do
+    begin
+      WriteString(UTF8Decode('ReadSection_mit_ßÜÖÄüöä'),
+        UTF8Decode('String_Ident_mit_ßÜÖÄüöä'),
+        UTF8Decode('String_Value_mit_ßÜÖÄüöä'));
+
+      WriteInteger(UTF8Decode('ReadSection_mit_ßÜÖÄüöä'),
+        UTF8Decode('Integer_Ident_mit_ßÜÖÄüöä'),
+        12345);
+
+      WriteBool(UTF8Decode('ReadSection_mit_ßÜÖÄüöä'),
+        UTF8Decode('Boolean_Ident_mit_ßÜÖÄüöä'),
+        True);
+
+      WriteString(UTF8Decode('WriteSection_mit_ßÜÖÄüöä'),
+        UTF8Decode('String_Ident_mit_ßÜÖÄüöä'),
+        UTF8Decode('String_Value_mit_ßÜÖÄüöä'));
+
+      WriteInteger(UTF8Decode('WriteSection_mit_ßÜÖÄüöä'),
+        UTF8Decode('Integer_Ident_mit_ßÜÖÄüöä'),
+        12345);
+
+      WriteBool(UTF8Decode('WriteSection_mit_ßÜÖÄüöä'),
+        UTF8Decode('Boolean_Ident_mit_ßÜÖÄüöä'),
+        True);
+
+      WriteString(UTF8Decode('RenameSection_mit_ßÜÖÄüöä'),
+        UTF8Decode('String_Ident_mit_ßÜÖÄüöä'),
+        UTF8Decode('String_Value_mit_ßÜÖÄüöä'));
+
+      WriteString(UTF8Decode(SEC_FPCUNIT_URF8TEST),
+        UTF8Decode(IDENT_LRC_VERSION_UTF8TEST),
+        UTF8Decode(_VERSION));
+    end;
+  finally
+    if Assigned(ini) then
+      FreeAndNil(ini);
+  end;
 end;
 
 procedure TRegistrySourceWrapperUTF8.SetRegistrySettings;
@@ -151,8 +200,37 @@ end;
 { TRegistrySourceWrapper }
 
 procedure TRegistrySourceWrapper.SetRegistryEntries;
+var
+  {%H-}ini: TRegIniFile;
+  root_key: string;
 begin
-  FRegistrySource.WriteString(SEC_FPCUNIT_TEST, IDENT_LRC_VERSION, _VERSION);
+  root_key :=
+    'SOFTWARE\ExampleFactory\LazarusRegistryControls\{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}';
+
+  ini := TRegIniFile.Create(root_key);
+  try
+    with ini do
+    begin
+      WriteString('ReadSection', 'String_Ident', 'String_Value');
+
+      WriteInteger('ReadSection', 'Integer_Ident', 12345);
+
+      WriteBool('ReadSection', 'Boolean_Ident', True);
+
+      WriteString('WriteSection', 'String_Ident', 'String_Value');
+
+      WriteInteger('WriteSection', 'Integer_Ident', 12345);
+
+      WriteBool('WriteSection', 'Boolean_Ident', True);
+
+      WriteString('RenameSection', 'String_Ident', 'String_Value');
+
+      WriteString(SEC_FPCUNIT_TEST, IDENT_LRC_VERSION, _VERSION);
+    end;
+  finally
+    if Assigned(ini) then
+      FreeAndNil(ini);
+  end;
 end;
 
 procedure TRegistrySourceWrapper.SetRegistrySettings;

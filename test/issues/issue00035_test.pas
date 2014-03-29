@@ -15,7 +15,6 @@ type
   TCheckRTLAnsiTest= class(TTestCase)
   private
     function GetRookKey: string;
-    procedure SetRegistryEntries;
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -51,54 +50,9 @@ begin
     + 'AE9B-1548DC65F930}');
 end;
 
-procedure TCheckRTLAnsiTest.SetRegistryEntries;
-var
-  {%H-}ini: TRegIniFile;
-  root_key: string;
-begin
-  root_key := GetRookKey;
-
-  ini := TRegIniFile.Create(root_key);
-  try
-    with ini do
-    begin
-      WriteString(UTF8Decode('ReadSection_mit_ßÜÖÄüöä'),
-        UTF8Decode('String_Ident_mit_ßÜÖÄüöä'),
-        UTF8Decode('String_Value_mit_ßÜÖÄüöä'));
-
-      WriteInteger(UTF8Decode('ReadSection_mit_ßÜÖÄüöä'),
-        UTF8Decode('Integer_Ident_mit_ßÜÖÄüöä'),
-        12345);
-
-      WriteBool(UTF8Decode('ReadSection_mit_ßÜÖÄüöä'),
-        UTF8Decode('Boolean_Ident_mit_ßÜÖÄüöä'),
-        True);
-
-      WriteString(UTF8Decode('WriteSection_mit_ßÜÖÄüöä'),
-        UTF8Decode('String_Ident_mit_ßÜÖÄüöä'),
-        UTF8Decode('String_Value_mit_ßÜÖÄüöä'));
-
-      WriteInteger(UTF8Decode('WriteSection_mit_ßÜÖÄüöä'),
-        UTF8Decode('Integer_Ident_mit_ßÜÖÄüöä'),
-        12345);
-
-      WriteBool(UTF8Decode('WriteSection_mit_ßÜÖÄüöä'),
-        UTF8Decode('Boolean_Ident_mit_ßÜÖÄüöä'),
-        True);
-
-      WriteString(UTF8Decode('RenameSection_mit_ßÜÖÄüöä'),
-        UTF8Decode('String_Ident_mit_ßÜÖÄüöä'),
-        UTF8Decode('String_Value_mit_ßÜÖÄüöä'));
-    end;
-  finally
-    if Assigned(ini) then
-      FreeAndNil(ini);
-  end;
-end;
-
 procedure TCheckRTLAnsiTest.SetUp;
 begin
-  SetRegistryEntries;
+  //
 end;
 
 procedure TCheckRTLAnsiTest.TearDown;
