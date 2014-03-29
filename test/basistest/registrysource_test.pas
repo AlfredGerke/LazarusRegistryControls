@@ -23,6 +23,9 @@ type
     FStringIdent: string;
     FIntegerIdent: string;
     FBooleanIdent: string;
+    FComposedRookKeyForCheck: string;
+    FComposedRootKeyForDefaultsForCheck: string;
+    FComposedRootKeyForCommonForCheck: string;
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -55,6 +58,18 @@ type
     property BooleanIdent: string
       read FBooleanIdent
       write FBooleanIdent;
+
+    property ComposedRookKeyForCheck: string
+      read FComposedRookKeyForCheck
+      write FComposedRookKeyForCheck;
+
+    property ComposedRootKeyForDefaultsForCheck: string
+      read FComposedRootKeyForDefaultsForCheck
+      write FComposedRootKeyForDefaultsForCheck;
+
+    property ComposedRootKeyForCommonForCheck: string
+      read FComposedRootKeyForCommonForCheck
+      write FComposedRootKeyForCommonForCheck;
   published
     procedure PublishedProperties;
     procedure RootKeysStruct;
@@ -115,7 +130,8 @@ var
 begin
   sections := TStringList.Create;
   root_key := RegSrcWrapper.RegistrySource.GetComposedRootKey;
-  ini := TRegIniFile.Create(root_key);
+
+  ini := TRegIniFile.Create(UTF8Decode(root_key));
   try
     with ini do
     begin
@@ -138,23 +154,40 @@ begin
       FreeAndNil(sections);
   end;
 
-    AssertEquals('Vor dem Löschen des RootKey', 3, count1);
-    AssertEquals('Nach dem Löschen des RootKey', 0, count2);
+    AssertTrue('Schlüssel im RootKey vorhanden', (count1 > 0));
+    AssertTrue('Schlüssel im RootKey gelöscht', (count2 = 0));
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.GetComposedRootKey;
+var
+  key_by_regsrc: string;
+  key_for_check: string;
 begin
-  Fail('Test noch nicht implementiert!');
+  key_by_regsrc := RegSrcWrapper.RegistrySource.GetComposedRootKey;
+  key_for_check := IncludeTrailingPathDelimiter(ComposedRookKeyForCheck);
+  AssertEquals('GetComposedRootKey', key_for_check, key_by_regsrc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.GetComposedRootKeyForDefaults;
+var
+  key_by_regsrc: string;
+  key_for_check: string;
 begin
-  Fail('Test noch nicht implementiert!');
+  key_by_regsrc := RegSrcWrapper.RegistrySource.GetComposedRootKeyForDefaults;
+  key_for_check :=
+    IncludeTrailingPathDelimiter(ComposedRootKeyForDefaultsForCheck);
+  AssertEquals('GetComposedRootKeyForDefaults', key_for_check, key_by_regsrc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.GetComposedRootKeyForCommon;
+var
+  key_by_regsrc: string;
+  key_for_check: string;
 begin
-  Fail('Test noch nicht implementiert!');
+  key_by_regsrc := RegSrcWrapper.RegistrySource.GetComposedRootKeyForCommon;
+  key_for_check :=
+    IncludeTrailingPathDelimiter(ComposedRootKeyForCommonForCheck);
+  AssertEquals('GetComposedRootKeyForCommon', key_for_check, key_by_regsrc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.ReadString;
@@ -210,6 +243,7 @@ end;
 procedure TRegistrySourceGenericTest<_T1>.SetUp;
 begin
   FRegSrcWrapper := _T1.Create;
+  SetSectionsAndIdents;
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.TearDown;
@@ -232,6 +266,12 @@ begin
   StringIdent := 'String_Ident';
   IntegerIdent := 'Integer_Ident';
   BooleanIdent := 'Boolean_Ident';
+  ComposedRookKeyForCheck :=
+    'SOFTWARE\ExampleFactory\LazarusRegistryControls\{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}';
+  ComposedRootKeyForDefaultsForCheck :=
+    'SOFTWARE\ExampleFactory\LazarusRegistryControls\DEFAULTS\{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}';
+  ComposedRootKeyForCommonForCheck :=
+    'SOFTWARE\ExampleFactory\GEMEINSAME DATEN\LazarusRegistryControls\{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}';
 end;
 
 { TRegistrySourceUTF8Test }
@@ -244,6 +284,12 @@ begin
   StringIdent := 'String_Ident_mit_ßÜÖÄüöä';
   IntegerIdent := 'Integer_Ident_mit_ßÜÖÄüöä';
   BooleanIdent := 'Boolean_Ident_mit_ßÜÖÄüöä';
+  ComposedRookKeyForCheck :=
+    'SOFTWARE\Organisation_mit_ßÜÖÄüöä\Project_mit_ßÜÖÄüöä\{2CD0EB3F-A81E-4F0D-AE9B-1548DC65F930}';
+  ComposedRootKeyForDefaultsForCheck :=
+    'SOFTWARE\Organisation_mit_ßÜÖÄüöä\Project_mit_ßÜÖÄüöä\DEFAULTS\{2CD0EB3F-A81E-4F0D-AE9B-1548DC65F930}';
+  ComposedRootKeyForCommonForCheck :=
+    'SOFTWARE\Organisation_mit_ßÜÖÄüöä\GEMEINSAME DATEN\Project_mit_ßÜÖÄüöä\{2CD0EB3F-A81E-4F0D-AE9B-1548DC65F930}';
 end;
 
 end.
