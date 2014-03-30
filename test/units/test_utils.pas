@@ -5,7 +5,14 @@ unit test_utils;
 interface
 
 uses
-  SysUtils;
+  SysUtils,
+  Registry;
+
+type
+  TManageRegIniFile = procedure(aIni: TRegIniFile) of object;
+
+procedure GetRegIniFile(aRootKey: string;
+                        aProc: TManageRegIniFile);
 
 function _IfEmptyThen(aString: string;
                       aDefault: string): string;
@@ -19,6 +26,24 @@ implementation
 uses
   fpcunit,
   typinfo;
+
+procedure GetRegIniFile(aRootKey: string;
+  aProc: TManageRegIniFile);
+var
+  ini: TRegIniFile;
+begin
+  ini := TRegIniFile.Create(UTF8Decode(aRootKey));
+  try
+    with ini do
+    begin
+      if Assigned(aProc) then
+        aProc(ini);
+    end;
+  finally
+    if Assigned(ini) then
+      FreeAndNil(ini);
+  end;
+end;
 
 function _IfEmptyThen(aString: string;
   aDefault: string): string;

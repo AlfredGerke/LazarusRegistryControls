@@ -15,9 +15,6 @@ type
   { TRegistrySourceGenericTest }
 
   TRegistrySourceGenericTest<_T1>= class(TTestCase)
-  strict private
-  type
-    TManageRegIniFile = procedure(aIni: TRegIniFile) of object;
   private
     FRegSrcWrapper: _T1;
 
@@ -30,6 +27,9 @@ type
     FComposedRookKeyForCheck: string;
     FComposedRootKeyForDefaultsForCheck: string;
     FComposedRootKeyForCommonForCheck: string;
+    FTestString: string;
+    FTestInteger: integer;
+    FTestBoolean: boolean;
 
     procedure DeleteRootKeyProc(aIni: TRegIniFile);
     procedure ReadStringProc(aIni: TRegIniFile);
@@ -42,8 +42,6 @@ type
     procedure RenameKeyProc(aIni: TRegIniFile);
     procedure DeleteKeyProc(aIni: TRegIniFile);
     procedure EraseSectionProc(aIni: TRegIniFile);
-
-    procedure GetRegIniFile(aProc: TManageRegIniFile);
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -88,6 +86,18 @@ type
     property ComposedRootKeyForCommonForCheck: string
       read FComposedRootKeyForCommonForCheck
       write FComposedRootKeyForCommonForCheck;
+
+    property TestString: string
+      read FTestString
+      write FTestString;
+
+    property TestInteger: integer
+    read FTestInteger
+    write FTestInteger;
+
+    property TestBoolean: boolean
+      read FTestBoolean
+      write FTestBoolean;
   published
     procedure PublishedProperties;
     procedure RootKeysStruct;
@@ -125,29 +135,10 @@ type
 implementation
 
 uses
-  Classes;
+  Classes,
+  test_utils;
 
 { TRegistrySourceGenericTest }
-
-procedure TRegistrySourceGenericTest<_T1>.GetRegIniFile(aProc: TManageRegIniFile);
-var
-  ini: TRegIniFile;
-  root_key: string;
-begin
-  root_key := RegSrcWrapper.RegistrySource.GetComposedRootKey;
-
-  ini := TRegIniFile.Create(UTF8Decode(root_key));
-  try
-    with ini do
-    begin
-      if Assigned(aProc) then
-        aProc(ini);
-    end;
-  finally
-    if Assigned(ini) then
-      FreeAndNil(ini);
-  end;
-end;
 
 procedure TRegistrySourceGenericTest<_T1>.DeleteRootKeyProc(aIni: TRegIniFile);
 var
@@ -155,24 +146,29 @@ var
   count1: integer;
   count2: integer;
 begin
-  //UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
-  //oder geschrieben werden
-  //TRegistrySource soll dies automatisch können
+  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // oder geschrieben werden
+  // TRegistrySource soll dies automatisch können
 
   sections := TStringList.Create;
   try
     with aIni do
     begin
+      // 1. Anzahl Sectionen unterhalb von RootKey mit TRegIniFile (Registry.pas)
+      // ermitteln: Anzahl <> 0
       ReadSections(sections);
       count1 := sections.count;
-      AssertTrue('Es wurden keine Schlüssel im RookKey gefunden', (count1 > 0));
+      AssertTrue('DeleteRootKey: Es wurden keine Schlüssel im RookKey gefunden', (count1 > 0));
 
+      // 2. RootKey über TRegistrySource löschen
       RegSrcWrapper.RegistrySource.DeleteRootKey;
       sections.Clear;
 
+      // 3. Anzahl Sectionen unterhalb von RootKey erneut mit TRegIniFile
+      // (Registry.pas) ermitteln: Anzahl = 0
       ReadSections(sections);
       count2 := sections.count;
-      AssertTrue('Nach Löschen des RootKey dürfen keine Sections gefunden werden', (count2 = 0));
+      AssertTrue('DeleteRootKey: Nach Löschen des RootKey dürfen keine Sections gefunden werden', (count2 = 0));
     end;
   finally
     if Assigned(sections) then
@@ -185,18 +181,21 @@ var
   value_by_regini: string;
   value_by_regsrc: string;
 begin
-  //UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
-  //oder geschrieben werden
-  //TRegistrySource soll dies automatisch können
+  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // oder geschrieben werden
+  // TRegistrySource soll dies automatisch können
 
+  // 1. String mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
     aIni.ReadString(UTF8Decode(ReadSectionName), UTF8Decode(StringIdent),
       'String1');
 
+  // 2. String mit TRegistrySource ermitteln
   value_by_regsrc :=
     RegSrcWrapper.RegistrySource.ReadString(ReadSectionName, StringIdent,
       'String2');
 
+  // 1. und 2. müssen den selben Wert ermitteln
   AssertEquals('ReadString: RegistrySource liefert falschen Wert',
     UTF8Encode(value_by_regini), value_by_regsrc);
 end;
@@ -206,18 +205,21 @@ var
   value_by_regini: integer;
   value_by_regsrc: integer;
 begin
-  //UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
-  //oder geschrieben werden
-  //TRegistrySource soll dies automatisch können
+  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // oder geschrieben werden
+  // TRegistrySource soll dies automatisch können
 
+  // 1. Integer mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
     aIni.ReadInteger(UTF8Decode(ReadSectionName), UTF8Decode(IntegerIdent),
       0);
 
+  // 2. Integer mit TRegistrySource ermitteln
   value_by_regsrc :=
     RegSrcWrapper.RegistrySource.ReadInteger(ReadSectionName, IntegerIdent,
       1);
 
+  // 1. und 2. müssen den selben Wert ermitteln
   AssertEquals('ReadInteger: RegistrySource liefert falschen Wert',
     value_by_regini, value_by_regsrc);
 end;
@@ -227,18 +229,21 @@ var
   value_by_regini: boolean;
   value_by_regsrc: boolean;
 begin
-  //UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
-  //oder geschrieben werden
-  //TRegistrySource soll dies automatisch können
+  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // oder geschrieben werden
+  // TRegistrySource soll dies automatisch können
 
+  // 1. Integer mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
     aIni.ReadBool(UTF8Decode(ReadSectionName), UTF8Decode(BooleanIdent),
       False);
 
+  // 2. Integer mit TRegistrySource ermitteln
   value_by_regsrc :=
     RegSrcWrapper.RegistrySource.ReadBool(ReadSectionName, BooleanIdent,
       True);
 
+  // 1. und 2. müssen den selben Wert ermitteln
   AssertEquals('ReadBool: RegistrySource liefert falschen Wert',
     value_by_regini, value_by_regsrc);
 end;
@@ -249,20 +254,24 @@ var
   value_by_regsrc: TStrings;
   anz: integer;
 begin
-  //UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
-  //oder geschrieben werden
-  //TRegistrySource soll dies automatisch können
+  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // oder geschrieben werden
+  // TRegistrySource soll dies automatisch können
 
   value_by_regini := TStringlist.Create;
   value_by_regsrc := TStringlist.Create;
   try
+    // 1. Datenwerte einer Section mit TRegIniFile (Registry.pas) ermitteln
     aIni.ReadSection(UTF8Decode(ReadSectionName), value_by_regini);
 
+    // 2. Datenwerte einer Section mit TRegistrySource ermitteln
     RegSrcWrapper.RegistrySource.ReadSection(ReadSectionName, value_by_regsrc);
 
+    // Anzahl aus 1. und 2. muss gleich sein
     AssertTrue('ReadSection: RegistrySource liefert falsche Anzahl von Sektionen',
       (value_by_regini.Count = value_by_regsrc.Count));
 
+    // Jeder Wert aus 1. muss identisch sein mit jedem Wert aus 2.
     for anz := 0 to value_by_regini.Count-1 do
     begin
       AssertEquals('ReadSection: Registry liefert falsche Einträge in der Liste',
@@ -278,32 +287,117 @@ begin
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.WriteStringProc(aIni: TRegIniFile);
+const
+  TEST_STRING = 'Beispiel1';
+var
+  value_by_regini: string;
 begin
-  Fail('Test wurde noch nicht implementiert');
+  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // oder geschrieben werden
+  // TRegistrySource soll dies automatisch können
+
+  // Prüfen ob die Test-Strings unterschiedlich sind
+  AssertFalse('WriteString: Test nicht durchführbar, Test-Strings sind identisch',
+    (CompareStr(TestString, TEST_STRING) = 0));
+
+  // 1. Test-String mit TRegIniFile (Registry.pas) setzen
+  aIni.WriteString(UTF8Decode(WriteSectionName), UTF8Decode(StringIdent),
+    TEST_STRING);
+
+  // 2. Test-String mit TRegIniFile (Registry.pas) ermitteln
+  value_by_regini :=
+    aIni.ReadString(UTF8Decode(WriteSectionName), UTF8Decode(StringIdent),
+      EmptyStr);
+
+  // Prüfen ob der Test-String eingerichtet wurde
+  AssertTrue('WriteString: Test nicht durchführbar, Test-String falsch initialisiert',
+    (CompareStr(UTF8Encode(value_by_regini), TEST_STRING) = 0));
+
+  // 3. Test-String aus 1. mit neuem Teststring mit TRegistrySource überschreiben
+  RegSrcWrapper.RegistrySource.WriteString(WriteSectionName, StringIdent,
+    TestString);
+
+  // 4. Neuer Test-String mit TRegIniFile (Registry.pas) ermitteln
+  value_by_regini :=
+    aIni.ReadString(UTF8Decode(WriteSectionName), UTF8Decode(StringIdent),
+      EmptyStr);
+
+  // Prüfen ob der Test-String eingerichtet wurde
+  AssertEquals('WriteString: Test-Strings falsch', TestString,
+    UTF8Encode(value_by_regini));
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.WriteIntegerProc(aIni: TRegIniFile);
+const
+  TEST_INTEGER = -1;
+var
+  value_by_regini: integer;
 begin
-  Fail('Test wurde noch nicht implementiert');
+  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // oder geschrieben werden
+  // TRegistrySource soll dies automatisch können
+
+  // Prüfen ob die Test-Integer unterschiedlich sind
+  AssertFalse('WriteInteger: Test nicht durchführbar, Test-Integer sind identisch',
+    (TEST_INTEGER = TestInteger));
+
+  // 1. Test-Integer mit TRegIniFile (Registry.pas) setzen
+  aIni.WriteInteger(UTF8Decode(WriteSectionName), UTF8Decode(IntegerIdent),
+    TEST_INTEGER);
+
+  // 2. Test-Integer mit TRegIniFile (Registry.pas) ermitteln
+  value_by_regini :=
+    aIni.ReadInteger(UTF8Decode(WriteSectionName), UTF8Decode(IntegerIdent), 0);
+
+  // Prüfen ob der Test-Integer eingerichtet wurde
+  AssertTrue('WriteInteger: Test nicht durchführbar, Test-Integer falsch initialisiert',
+    (value_by_regini = TEST_INTEGER));
+
+  // 3. Test-Integer aus 1. mit neuem Test-Integer mit TRegistrySource überschreiben
+  RegSrcWrapper.RegistrySource.WriteInteger(WriteSectionName, IntegerIdent,
+    TestInteger);
+
+  // 4. Neuer Test-Integer mit TRegIniFile (Registry.pas) ermitteln
+  value_by_regini :=
+    aIni.ReadInteger(UTF8Decode(WriteSectionName), UTF8Decode(IntegerIdent), 0);
+
+  // Prüfen ob der Test-Integer eingerichtet wurde
+  AssertEquals('WriteInteger: Test-Integer falsch', TestInteger, value_by_regini);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.WriteBoolProc(aIni: TRegIniFile);
 begin
+  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // oder geschrieben werden
+  // TRegistrySource soll dies automatisch können
+
   Fail('Test wurde noch nicht implementiert');
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.RenameKeyProc(aIni: TRegIniFile);
 begin
+  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // oder geschrieben werden
+  // TRegistrySource soll dies automatisch können
+
   Fail('Test wurde noch nicht implementiert');
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.DeleteKeyProc(aIni: TRegIniFile);
 begin
+  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // oder geschrieben werden
+  // TRegistrySource soll dies automatisch können
+
   Fail('Test wurde noch nicht implementiert');
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.EraseSectionProc(aIni: TRegIniFile);
 begin
+  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // oder geschrieben werden
+  // TRegistrySource soll dies automatisch können
+
   Fail('Test wurde noch nicht implementiert');
 end;
 
@@ -319,7 +413,8 @@ end;
 
 procedure TRegistrySourceGenericTest<_T1>.DeleteRootKey;
 begin
-  GetRegIniFile(DeleteRootKeyProc);
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    DeleteRootKeyProc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.GetComposedRootKey;
@@ -359,52 +454,61 @@ end;
 
 procedure TRegistrySourceGenericTest<_T1>.ReadString;
 begin
-  GetRegIniFile(ReadStringProc);
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey, ReadStringProc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.ReadInteger;
 begin
-  GetRegIniFile(ReadIntegerProc);
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    ReadIntegerProc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.ReadBool;
 begin
-  GetRegIniFile(ReadBoolProc);
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    ReadBoolProc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.ReadSection;
 begin
-  GetRegIniFile(ReadSectionProc);
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    ReadSectionProc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.WriteString;
 begin
-  GetRegIniFile(WriteStringProc);
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    WriteStringProc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.WriteInteger;
 begin
-  GetRegIniFile(WriteIntegerProc);
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    WriteIntegerProc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.WriteBool;
 begin
-  GetRegIniFile(WriteBoolProc);
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    WriteBoolProc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.RenameKey;
 begin
-  GetRegIniFile(RenameKeyProc);
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    RenameKeyProc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.DeleteKey;
 begin
-  GetRegIniFile(DeleteKeyProc);
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    DeleteKeyProc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.EraseSection;
 begin
-  GetRegIniFile(EraseSectionProc);
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    EraseSectionProc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.SetUp;
@@ -439,6 +543,9 @@ begin
     'SOFTWARE\ExampleFactory\LazarusRegistryControls\DEFAULTS\{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}';
   ComposedRootKeyForCommonForCheck :=
     'SOFTWARE\ExampleFactory\GEMEINSAME DATEN\LazarusRegistryControls\{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}';
+  TestString := 'BeispielForTest';
+  TestInteger := 123456;
+  TestBoolean := True;
 end;
 
 { TRegistrySourceUTF8Test }
@@ -457,6 +564,9 @@ begin
     'SOFTWARE\Organisation_mit_ßÜÖÄüöä\Project_mit_ßÜÖÄüöä\DEFAULTS\{2CD0EB3F-A81E-4F0D-AE9B-1548DC65F930}';
   ComposedRootKeyForCommonForCheck :=
     'SOFTWARE\Organisation_mit_ßÜÖÄüöä\GEMEINSAME DATEN\Project_mit_ßÜÖÄüöä\{2CD0EB3F-A81E-4F0D-AE9B-1548DC65F930}';
+  TestString := 'BeispielForTest_mit_ßÜÖÄüöä';
+  TestInteger := 123456;
+  TestBoolean := True;
 end;
 
 end.
