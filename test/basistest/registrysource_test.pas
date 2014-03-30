@@ -30,6 +30,7 @@ type
     FTestString: string;
     FTestInteger: integer;
     FTestBoolean: boolean;
+    FNewStringIdent: string;
 
     procedure DeleteRootKeyProc(aIni: TRegIniFile);
     procedure ReadStringProc(aIni: TRegIniFile);
@@ -98,6 +99,10 @@ type
     property TestBoolean: boolean
       read FTestBoolean
       write FTestBoolean;
+
+    property NewStringIdent: string
+      read FNewStringIdent
+      write FNewStringIdent;
   published
     procedure PublishedProperties;
     procedure RootKeysStruct;
@@ -366,21 +371,89 @@ begin
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.WriteBoolProc(aIni: TRegIniFile);
+const
+  TEST_BOOLEAN = False;
+var
+  value_by_regini: boolean;
 begin
   // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
-  Fail('Test wurde noch nicht implementiert');
+  // Prüfen ob die Test-Boolean unterschiedlich sind
+  AssertFalse('WriteBool: Test nicht durchführbar, Test-Boolean sind identisch',
+    (TEST_BOOLEAN = TestBoolean));
+
+  // 1. Test-Boolean mit TRegIniFile (Registry.pas) setzen
+  aIni.WriteBool(UTF8Decode(WriteSectionName), UTF8Decode(BooleanIdent),
+    TEST_BOOLEAN);
+
+  // 2. Test-Boolean mit TRegIniFile (Registry.pas) ermitteln
+  value_by_regini :=
+    aIni.ReadBool(UTF8Decode(WriteSectionName), UTF8Decode(BooleanIdent), False);
+
+  // Prüfen ob der Test-Boolean eingerichtet wurde
+  AssertTrue('WriteBool: Test nicht durchführbar, Test-Boolean falsch initialisiert',
+    (value_by_regini = TEST_BOOLEAN));
+
+  // 3. Test-Boolean aus 1. mit neuem Test-Boolean mit TRegistrySource überschreiben
+  RegSrcWrapper.RegistrySource.WriteBool(WriteSectionName, BooleanIdent,
+    TestBoolean);
+
+  // 4. Neuer Test-Boolean mit TRegIniFile (Registry.pas) ermitteln
+  value_by_regini :=
+    aIni.ReadBool(UTF8Decode(WriteSectionName), UTF8Decode(BooleanIdent), False);
+
+  // Prüfen ob der Test-Boolean eingerichtet wurde
+  AssertEquals('WriteBool: Test-Boolean falsch', TestBoolean, value_by_regini);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.RenameKeyProc(aIni: TRegIniFile);
+var
+  value_by_regini: string;
 begin
   // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
-  Fail('Test wurde noch nicht implementiert');
+  // Prüfen ob der Test-String kein Leerstring ist
+  AssertTrue('RenameKey: Test nicht durchführbar, TestString ist ein Leerstring',
+    (Trim(TestString) <> EmptyStr));
+
+  // Vorhandenen Test-String mit TRegIniFile (Registry.pas) auslesen,
+  // Ergebnis darf kein Leerstring sein
+  value_by_regini := aIni.ReadString(UTF8Decode(RenameSectionName),
+    UTF8Decode(StringIdent), EmptyStr);
+
+  // Prüfen ob die Initialisierung mit dem TestString nicht übereinstimmt
+  AssertFalse('RenameKey: Test nicht durchführbar, Test-Strings sind identisch',
+    (CompareStr(TestString, UTF8Encode(value_by_regini)) = 0));
+
+  // 1. Den Test-String mit TRegIniFile (Registry.pas) in den vorhandnen Ident
+  // einfügen
+  aIni.WriteString(UTF8Decode(RenameSectionName), UTF8Decode(StringIdent),
+    UTF8Decode(TestString));
+
+  // 2. Den Test-String mit TRegIniFile (Registry.pas) aus dem vorhandenen Ident
+  // wieder auslesen
+  // Ergebnis darf kein Leerstring sein
+  value_by_regini := aIni.ReadString(UTF8Decode(RenameSectionName),
+    UTF8Decode(StringIdent), EmptyStr);
+
+  AssertTrue('RenameKey: Test nicht durchführbar, Test-Strings sind nicht identisch',
+    (CompareStr(TestString, UTF8Encode(value_by_regini)) = 0));
+
+  // 3. Aktuellen Ident mit TRegistrySource umbenennen
+  RegSrcWrapper.RegistrySource.RenameKey(RenameSectionName, StringIdent, NewStringIdent);
+
+  // 4. Den Test-String mit TRegIniFile (Registry.pas) aus dem umbenannten Ident
+  // auslesen
+  // Ergebnis muss der Wert aus 1.
+  value_by_regini := aIni.ReadString(UTF8Decode(RenameSectionName),
+    UTF8Decode(NewStringIdent), EmptyStr);
+
+  AssertEquals('RenameKey: Test-Strings sind nicht identisch', TestString,
+    UTF8Encode(value_by_regini));
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.DeleteKeyProc(aIni: TRegIniFile);
@@ -546,6 +619,7 @@ begin
   TestString := 'BeispielForTest';
   TestInteger := 123456;
   TestBoolean := True;
+  NewStringIdent := 'New_String_Ident';
 end;
 
 { TRegistrySourceUTF8Test }
@@ -567,6 +641,7 @@ begin
   TestString := 'BeispielForTest_mit_ßÜÖÄüöä';
   TestInteger := 123456;
   TestBoolean := True;
+  NewStringIdent := 'New_String_Ident_mit_ßÜÖÄüöä';
 end;
 
 end.

@@ -1046,15 +1046,19 @@ var
   value_data_type: TRegDataType;
   reg: TRegistry;
   key: string;
+  sec: string;
+  old_key: string;
 begin
+  sec := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  old_key := UTF8DecodeIfNeeded(aOldKey, CheckRTLAnsi);
   reg := TRegistry.Create;
   try
     reg.RootKey := HKEY_CURRENT_USER;
-    key := Concat(FileName + aSection);
+    key := Concat(FileName + sec);
 
     if reg.OpenKeyReadOnly(key) then
     begin
-      value_data_type := reg.GetDataType(aOldKey);
+      value_data_type := reg.GetDataType(old_key);
 
       case value_data_type of
         rdString,

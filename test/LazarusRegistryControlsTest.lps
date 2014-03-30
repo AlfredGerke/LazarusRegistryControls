@@ -13,7 +13,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="3"/>
         <CursorPos X="28" Y="7"/>
-        <UsageCount Value="103"/>
+        <UsageCount Value="106"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
@@ -24,7 +24,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="43"/>
         <CursorPos X="37" Y="46"/>
-        <UsageCount Value="103"/>
+        <UsageCount Value="106"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
@@ -34,8 +34,8 @@
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="7"/>
-        <CursorPos X="54" Y="24"/>
-        <UsageCount Value="101"/>
+        <CursorPos X="58" Y="38"/>
+        <UsageCount Value="104"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
@@ -46,7 +46,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="32"/>
         <CursorPos X="51" Y="49"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="103"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -56,7 +56,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="22"/>
         <CursorPos X="13" Y="11"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="99"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
@@ -66,7 +66,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="17"/>
         <CursorPos X="1" Y="25"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="98"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
       <Unit6>
@@ -76,7 +76,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="27" Y="13"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="97"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -86,7 +86,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="54"/>
         <CursorPos X="1" Y="95"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="96"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
@@ -96,7 +96,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="9"/>
         <CursorPos X="15" Y="38"/>
-        <UsageCount Value="91"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
       <Unit9>
@@ -106,7 +106,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="48"/>
         <CursorPos X="56" Y="50"/>
-        <UsageCount Value="90"/>
+        <UsageCount Value="93"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit9>
       <Unit10>
@@ -116,7 +116,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="10" Y="33"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="89"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit10>
       <Unit11>
@@ -126,7 +126,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="32" Y="102"/>
-        <UsageCount Value="84"/>
+        <UsageCount Value="87"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
@@ -136,7 +136,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="31"/>
         <CursorPos X="47" Y="58"/>
-        <UsageCount Value="70"/>
+        <UsageCount Value="73"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit12>
       <Unit13>
@@ -145,7 +145,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="25" Y="1"/>
-        <UsageCount Value="65"/>
+        <UsageCount Value="68"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit13>
       <Unit14>
@@ -155,7 +155,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="2"/>
         <CursorPos X="14" Y="10"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="65"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit14>
       <Unit15>
@@ -165,7 +165,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="32" Y="3"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="63"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit15>
       <Unit16>
@@ -175,7 +175,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="26" Y="20"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="63"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit16>
       <Unit17>
@@ -185,7 +185,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="20" Y="3"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="62"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit17>
       <Unit18>
@@ -195,7 +195,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="17" Y="11"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="62"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit18>
       <Unit19>
@@ -205,7 +205,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="8"/>
         <CursorPos X="3" Y="32"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="62"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit19>
       <Unit20>
@@ -215,18 +215,19 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="3"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit20>
       <Unit21>
         <Filename Value="issues\issue00035_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="issue00035_test"/>
-        <EditorIndex Value="5"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
+        <TopLine Value="12"/>
         <CursorPos X="26" Y="5"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit21>
@@ -249,11 +250,11 @@
       <Unit24>
         <Filename Value="..\source\regsourcen.pas"/>
         <UnitName Value="regsourcen"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="798"/>
-        <CursorPos X="1" Y="816"/>
-        <UsageCount Value="26"/>
+        <TopLine Value="1370"/>
+        <CursorPos X="33" Y="1388"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit24>
@@ -464,7 +465,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="15"/>
         <CursorPos X="1" Y="43"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit49>
@@ -480,11 +481,11 @@
       <Unit51>
         <Filename Value="wrapper\registrysource_wrapper.pas"/>
         <UnitName Value="registrysource_wrapper"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="112" Y="109"/>
-        <UsageCount Value="27"/>
+        <TopLine Value="10"/>
+        <CursorPos X="1" Y="72"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit51>
@@ -509,12 +510,11 @@
       <Unit54>
         <Filename Value="basistest\registrysource_test.pas"/>
         <UnitName Value="registrysource_test"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="337"/>
-        <CursorPos X="1" Y="365"/>
-        <UsageCount Value="26"/>
+        <TopLine Value="404"/>
+        <CursorPos X="1" Y="421"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit54>
@@ -575,11 +575,11 @@
       <Unit61>
         <Filename Value="..\source\regutils.pas"/>
         <UnitName Value="regutils"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="931"/>
-        <CursorPos X="1" Y="955"/>
-        <UsageCount Value="15"/>
+        <TopLine Value="1033"/>
+        <CursorPos X="1" Y="1054"/>
+        <UsageCount Value="17"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit61>
@@ -742,12 +742,10 @@
       <Unit79>
         <Filename Value="..\..\..\..\Programme\lazarus\components\lazutils\ttmemory.pas"/>
         <UnitName Value="TTMemory"/>
-        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="204"/>
         <CursorPos X="4" Y="221"/>
-        <UsageCount Value="11"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="12"/>
       </Unit79>
     </Units>
     <General>
@@ -756,128 +754,128 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="..\source\regutils.pas"/>
-        <Caret Line="955" Column="1" TopLine="931"/>
+        <Caret Line="1052" Column="1" TopLine="1036"/>
       </Position1>
       <Position2>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="1209" Column="1" TopLine="1182"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1053" Column="1" TopLine="1036"/>
       </Position2>
       <Position3>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="1210" Column="1" TopLine="1182"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1054" Column="1" TopLine="1036"/>
       </Position3>
       <Position4>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="521" Column="1" TopLine="503"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1055" Column="1" TopLine="1036"/>
       </Position4>
       <Position5>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="815" Column="1" TopLine="798"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1056" Column="1" TopLine="1036"/>
       </Position5>
       <Position6>
-        <Filename Value="..\source\regsourcen.pas"/>
-        <Caret Line="816" Column="1" TopLine="798"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1057" Column="1" TopLine="1036"/>
       </Position6>
       <Position7>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="326" Column="5" TopLine="300"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1058" Column="1" TopLine="1036"/>
       </Position7>
       <Position8>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="301" Column="1" TopLine="295"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1059" Column="1" TopLine="1036"/>
       </Position8>
       <Position9>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="304" Column="1" TopLine="295"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1061" Column="1" TopLine="1036"/>
       </Position9>
       <Position10>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="308" Column="1" TopLine="295"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1063" Column="1" TopLine="1036"/>
       </Position10>
       <Position11>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="313" Column="1" TopLine="295"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1065" Column="1" TopLine="1037"/>
       </Position11>
       <Position12>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="317" Column="1" TopLine="295"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1069" Column="1" TopLine="1042"/>
       </Position12>
       <Position13>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="321" Column="1" TopLine="295"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1071" Column="1" TopLine="1043"/>
       </Position13>
       <Position14>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="366" Column="29" TopLine="336"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="966" Column="3" TopLine="956"/>
       </Position14>
       <Position15>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="332" Column="20" TopLine="324"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1081" Column="28" TopLine="1052"/>
       </Position15>
       <Position16>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="350" Column="9" TopLine="334"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1106" Column="30" TopLine="1072"/>
       </Position16>
       <Position17>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="356" Column="1" TopLine="333"/>
+        <Filename Value="..\source\regutils.pas"/>
+        <Caret Line="1054" Column="1" TopLine="1033"/>
       </Position17>
       <Position18>
         <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="342" Column="1" TopLine="333"/>
+        <Caret Line="421" Column="1" TopLine="415"/>
       </Position18>
       <Position19>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="345" Column="1" TopLine="333"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="1389" Column="1" TopLine="1370"/>
       </Position19>
       <Position20>
         <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="350" Column="1" TopLine="333"/>
+        <Caret Line="421" Column="1" TopLine="415"/>
       </Position20>
       <Position21>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="354" Column="1" TopLine="333"/>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <Caret Line="1389" Column="1" TopLine="1370"/>
       </Position21>
       <Position22>
         <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="358" Column="1" TopLine="333"/>
+        <Caret Line="421" Column="1" TopLine="415"/>
       </Position22>
       <Position23>
         <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="362" Column="1" TopLine="334"/>
+        <Caret Line="474" Column="44" TopLine="119"/>
       </Position23>
       <Position24>
         <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="365" Column="1" TopLine="337"/>
+        <Caret Line="44" Column="29" TopLine="27"/>
       </Position24>
       <Position25>
         <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="342" Column="1" TopLine="336"/>
+        <Caret Line="45" Column="32" TopLine="28"/>
       </Position25>
       <Position26>
         <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="345" Column="1" TopLine="336"/>
+        <Caret Line="44" Column="29" TopLine="27"/>
       </Position26>
       <Position27>
         <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="350" Column="1" TopLine="336"/>
+        <Caret Line="45" Column="32" TopLine="28"/>
       </Position27>
       <Position28>
         <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="354" Column="1" TopLine="336"/>
+        <Caret Line="44" Column="29" TopLine="27"/>
       </Position28>
       <Position29>
         <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="358" Column="1" TopLine="336"/>
+        <Caret Line="45" Column="32" TopLine="28"/>
       </Position29>
       <Position30>
-        <Filename Value="basistest\registrysource_test.pas"/>
-        <Caret Line="362" Column="1" TopLine="336"/>
+        <Filename Value="issues\issue00035_test.pas"/>
+        <Caret Line="5" Column="26" TopLine="1"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="2">
+    <BreakPoints Count="1">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -885,13 +883,6 @@
         <Source Value="lrc_09_m2_issue_30.pas"/>
         <Line Value="44"/>
       </Item1>
-      <Item2>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="basistest\registrysource_test.pas"/>
-        <Line Value="341"/>
-      </Item2>
     </BreakPoints>
   </Debugging>
 </CONFIG>
