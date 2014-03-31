@@ -18,8 +18,8 @@ type
 
   TRegRadioButtonGenericTest<_T1,_T2>= class(TTestCase)
   private
-    FRegSrcWrapper: TRegistrySourceWrapper;
-    FRegRadioButtonWrapper: TRegRaidoButtonWrapper;
+    FRegSrcWrapper: _T1;
+    FRegRadioButtonWrapper: _T2;
   protected
     procedure SetUp; override;
     procedure TearDown; override;
