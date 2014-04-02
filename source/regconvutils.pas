@@ -24,6 +24,9 @@ procedure UTF8ToSysStringsIfNeeded(aStrings: TStrings;
 function UTF8DecodeIfNeeded(aString: string;
   aCheckRTLAnsi: boolean): string;
 
+function UTF8EncodeIfNeeded(aString: string;
+  aCheckRTLAnsi: boolean): string;
+
 implementation
 
 uses
@@ -108,6 +111,14 @@ function UTF8DecodeIfNeeded(aString: string;
 begin
   if (aCheckRTLAnsi and NeedRTLAnsi) then
     Result := UTF8Decode(aString)
+  else
+    Result := aString;
+end;
+
+function UTF8EncodeIfNeeded(aString: string; aCheckRTLAnsi: boolean): string;
+begin
+  if (aCheckRTLAnsi and NeedRTLAnsi) then
+    Result := UTF8Encode(aString)
   else
     Result := aString;
 end;

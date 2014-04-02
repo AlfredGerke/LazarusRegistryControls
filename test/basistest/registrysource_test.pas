@@ -31,6 +31,8 @@ type
     FTestInteger: integer;
     FTestBoolean: boolean;
     FNewStringIdent: string;
+    FGroupIdx: integer;
+    FCheckRTLNeeded: boolean;
 
     procedure DeleteRootKeyProc(aIni: TRegIniFile);
     procedure ReadStringProc(aIni: TRegIniFile);
@@ -103,6 +105,14 @@ type
     property NewStringIdent: string
       read FNewStringIdent
       write FNewStringIdent;
+
+    property GroupIdx: integer
+      read FGroupIdx
+      write FGroupIdx;
+
+    property CheckRTLNeeded: boolean
+      read FCheckRTLNeeded
+      write FCheckRTLNeeded;
   published
     procedure PublishedProperties;
     procedure RootKeysStruct;
@@ -141,7 +151,8 @@ implementation
 
 uses
   Classes,
-  test_utils;
+  test_utils,
+  regconvutils;
 
 { TRegistrySourceGenericTest }
 
@@ -151,7 +162,7 @@ var
   count1: integer;
   count2: integer;
 begin
-  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
@@ -186,13 +197,14 @@ var
   value_by_regini: string;
   value_by_regsrc: string;
 begin
-  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
   // 1. String mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
-    aIni.ReadString(UTF8Decode(ReadSectionName), UTF8Decode(StringIdent),
+    aIni.ReadString(UTF8DecodeIfNeeded(ReadSectionName, CheckRTLNeeded),
+      UTF8DecodeIfNeeded(StringIdent, CheckRTLNeeded),
       'String1');
 
   // 2. String mit TRegistrySource ermitteln
@@ -202,7 +214,7 @@ begin
 
   // 1. und 2. müssen den selben Wert ermitteln
   AssertEquals('ReadString: RegistrySource liefert falschen Wert',
-    UTF8Encode(value_by_regini), value_by_regsrc);
+    UTF8EncodeIfNeeded(value_by_regini, CheckRTLNeeded), value_by_regsrc);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.ReadIntegerProc(aIni: TRegIniFile);
@@ -210,14 +222,14 @@ var
   value_by_regini: integer;
   value_by_regsrc: integer;
 begin
-  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
   // 1. Integer mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
-    aIni.ReadInteger(UTF8Decode(ReadSectionName), UTF8Decode(IntegerIdent),
-      0);
+    aIni.ReadInteger(UTF8DecodeIfNeeded(ReadSectionName, CheckRTLNeeded),
+      UTF8DecodeIfNeeded(IntegerIdent, CheckRTLNeeded), 0);
 
   // 2. Integer mit TRegistrySource ermitteln
   value_by_regsrc :=
@@ -234,14 +246,14 @@ var
   value_by_regini: boolean;
   value_by_regsrc: boolean;
 begin
-  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
   // 1. Integer mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
-    aIni.ReadBool(UTF8Decode(ReadSectionName), UTF8Decode(BooleanIdent),
-      False);
+    aIni.ReadBool(UTF8DecodeIfNeeded(ReadSectionName, CheckRTLNeeded),
+      UTF8DecodeIfNeeded(BooleanIdent, CheckRTLNeeded), False);
 
   // 2. Integer mit TRegistrySource ermitteln
   value_by_regsrc :=
@@ -259,7 +271,7 @@ var
   value_by_regsrc: TStrings;
   anz: integer;
 begin
-  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
@@ -267,7 +279,7 @@ begin
   value_by_regsrc := TStringlist.Create;
   try
     // 1. Datenwerte einer Section mit TRegIniFile (Registry.pas) ermitteln
-    aIni.ReadSection(UTF8Decode(ReadSectionName), value_by_regini);
+    aIni.ReadSection(UTF8DecodeIfNeeded(ReadSectionName, CheckRTLNeeded), value_by_regini);
 
     // 2. Datenwerte einer Section mit TRegistrySource ermitteln
     RegSrcWrapper.RegistrySource.ReadSection(ReadSectionName, value_by_regsrc);
@@ -280,7 +292,7 @@ begin
     for anz := 0 to value_by_regini.Count-1 do
     begin
       AssertEquals('ReadSection: Registry liefert falsche Einträge in der Liste',
-        UTF8Encode(value_by_regini.strings[anz]), value_by_regsrc.strings[anz]);
+        UTF8EncodeIfNeeded(value_by_regini.strings[anz], CheckRTLNeeded), value_by_regsrc.strings[anz]);
     end;
   finally
     if Assigned(value_by_regini) then
@@ -297,7 +309,7 @@ const
 var
   value_by_regini: string;
 begin
-  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
@@ -306,17 +318,18 @@ begin
     (CompareStr(TestString, TEST_STRING) = 0));
 
   // 1. Test-String mit TRegIniFile (Registry.pas) setzen
-  aIni.WriteString(UTF8Decode(WriteSectionName), UTF8Decode(StringIdent),
-    TEST_STRING);
+  aIni.WriteString(UTF8DecodeIfNeeded(WriteSectionName, CheckRTLNeeded),
+    UTF8DecodeIfNeeded(StringIdent, CheckRTLNeeded), TEST_STRING);
 
   // 2. Test-String mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
-    aIni.ReadString(UTF8Decode(WriteSectionName), UTF8Decode(StringIdent),
-      EmptyStr);
+    aIni.ReadString(UTF8DecodeIfNeeded(WriteSectionName, CheckRTLNeeded),
+      UTF8DecodeIfNeeded(StringIdent, CheckRTLNeeded), EmptyStr);
 
   // Prüfen ob der Test-String eingerichtet wurde
   AssertTrue('WriteString: Test nicht durchführbar, Test-String falsch initialisiert',
-    (CompareStr(UTF8Encode(value_by_regini), TEST_STRING) = 0));
+    (CompareStr(UTF8EncodeIfNeeded(value_by_regini, CheckRTLNeeded),
+      TEST_STRING) = 0));
 
   // 3. Test-String aus 1. mit neuem Teststring mit TRegistrySource überschreiben
   RegSrcWrapper.RegistrySource.WriteString(WriteSectionName, StringIdent,
@@ -324,12 +337,12 @@ begin
 
   // 4. Neuer Test-String mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
-    aIni.ReadString(UTF8Decode(WriteSectionName), UTF8Decode(StringIdent),
-      EmptyStr);
+    aIni.ReadString(UTF8DecodeIfNeeded(WriteSectionName, CheckRTLNeeded),
+      UTF8DecodeIfNeeded(StringIdent, CheckRTLNeeded), EmptyStr);
 
   // Prüfen ob der Test-String eingerichtet wurde
   AssertEquals('WriteString: Test-Strings falsch', TestString,
-    UTF8Encode(value_by_regini));
+    UTF8EncodeIfNeeded(value_by_regini, CheckRTLNeeded));
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.WriteIntegerProc(aIni: TRegIniFile);
@@ -338,7 +351,7 @@ const
 var
   value_by_regini: integer;
 begin
-  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
@@ -347,12 +360,13 @@ begin
     (TEST_INTEGER = TestInteger));
 
   // 1. Test-Integer mit TRegIniFile (Registry.pas) setzen
-  aIni.WriteInteger(UTF8Decode(WriteSectionName), UTF8Decode(IntegerIdent),
-    TEST_INTEGER);
+  aIni.WriteInteger(UTF8DecodeIfNeeded(WriteSectionName, CheckRTLNeeded),
+    UTF8DecodeIfNeeded(IntegerIdent, CheckRTLNeeded), TEST_INTEGER);
 
   // 2. Test-Integer mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
-    aIni.ReadInteger(UTF8Decode(WriteSectionName), UTF8Decode(IntegerIdent), 0);
+    aIni.ReadInteger(UTF8DecodeIfNeeded(WriteSectionName, CheckRTLNeeded),
+      UTF8DecodeIfNeeded(IntegerIdent, CheckRTLNeeded), 0);
 
   // Prüfen ob der Test-Integer eingerichtet wurde
   AssertTrue('WriteInteger: Test nicht durchführbar, Test-Integer falsch initialisiert',
@@ -364,7 +378,8 @@ begin
 
   // 4. Neuer Test-Integer mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
-    aIni.ReadInteger(UTF8Decode(WriteSectionName), UTF8Decode(IntegerIdent), 0);
+    aIni.ReadInteger(UTF8DecodeIfNeeded(WriteSectionName, CheckRTLNeeded),
+      UTF8DecodeIfNeeded(IntegerIdent, CheckRTLNeeded), 0);
 
   // Prüfen ob der Test-Integer eingerichtet wurde
   AssertEquals('WriteInteger: Test-Integer falsch', TestInteger, value_by_regini);
@@ -376,7 +391,7 @@ const
 var
   value_by_regini: boolean;
 begin
-  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
@@ -385,12 +400,13 @@ begin
     (TEST_BOOLEAN = TestBoolean));
 
   // 1. Test-Boolean mit TRegIniFile (Registry.pas) setzen
-  aIni.WriteBool(UTF8Decode(WriteSectionName), UTF8Decode(BooleanIdent),
-    TEST_BOOLEAN);
+  aIni.WriteBool(UTF8DecodeIfNeeded(WriteSectionName, CheckRTLNeeded),
+    UTF8DecodeIfNeeded(BooleanIdent, CheckRTLNeeded), TEST_BOOLEAN);
 
   // 2. Test-Boolean mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
-    aIni.ReadBool(UTF8Decode(WriteSectionName), UTF8Decode(BooleanIdent), False);
+    aIni.ReadBool(UTF8DecodeIfNeeded(WriteSectionName, CheckRTLNeeded),
+      UTF8DecodeIfNeeded(BooleanIdent, CheckRTLNeeded), False);
 
   // Prüfen ob der Test-Boolean eingerichtet wurde
   AssertTrue('WriteBool: Test nicht durchführbar, Test-Boolean falsch initialisiert',
@@ -402,7 +418,8 @@ begin
 
   // 4. Neuer Test-Boolean mit TRegIniFile (Registry.pas) ermitteln
   value_by_regini :=
-    aIni.ReadBool(UTF8Decode(WriteSectionName), UTF8Decode(BooleanIdent), False);
+    aIni.ReadBool(UTF8DecodeIfNeeded(WriteSectionName, CheckRTLNeeded),
+      UTF8DecodeIfNeeded(BooleanIdent, CheckRTLNeeded), False);
 
   // Prüfen ob der Test-Boolean eingerichtet wurde
   AssertEquals('WriteBool: Test-Boolean falsch', TestBoolean, value_by_regini);
@@ -412,7 +429,7 @@ procedure TRegistrySourceGenericTest<_T1>.RenameKeyProc(aIni: TRegIniFile);
 var
   value_by_regini: string;
 begin
-  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
@@ -422,26 +439,31 @@ begin
 
   // Vorhandenen Test-String mit TRegIniFile (Registry.pas) auslesen,
   // Ergebnis darf kein Leerstring sein
-  value_by_regini := aIni.ReadString(UTF8Decode(RenameSectionName),
-    UTF8Decode(StringIdent), EmptyStr);
+  value_by_regini :=
+    aIni.ReadString(UTF8DecodeIfNeeded(RenameSectionName, CheckRTLNeeded),
+    UTF8DecodeIfNeeded(StringIdent, CheckRTLNeeded), EmptyStr);
 
   // Prüfen ob die Initialisierung mit dem TestString nicht übereinstimmt
   AssertFalse('RenameKey: Test nicht durchführbar, Test-Strings sind identisch',
-    (CompareStr(TestString, UTF8Encode(value_by_regini)) = 0));
+    (CompareStr(TestString, UTF8EncodeIfNeeded(value_by_regini, CheckRTLNeeded))
+      = 0));
 
   // 1. Den Test-String mit TRegIniFile (Registry.pas) in den vorhandnen Ident
   // einfügen
-  aIni.WriteString(UTF8Decode(RenameSectionName), UTF8Decode(StringIdent),
-    UTF8Decode(TestString));
+  aIni.WriteString(UTF8DecodeIfNeeded(RenameSectionName, CheckRTLNeeded),
+    UTF8DecodeIfNeeded(StringIdent, CheckRTLNeeded),
+    UTF8DecodeIfNeeded(TestString, CheckRTLNeeded));
 
   // 2. Den Test-String mit TRegIniFile (Registry.pas) aus dem vorhandenen Ident
   // wieder auslesen
   // Ergebnis darf kein Leerstring sein
-  value_by_regini := aIni.ReadString(UTF8Decode(RenameSectionName),
-    UTF8Decode(StringIdent), EmptyStr);
+  value_by_regini :=
+    aIni.ReadString(UTF8DecodeIfNeeded(RenameSectionName, CheckRTLNeeded),
+    UTF8DecodeIfNeeded(StringIdent, CheckRTLNeeded), EmptyStr);
 
   AssertTrue('RenameKey: Test nicht durchführbar, Test-Strings sind nicht identisch',
-    (CompareStr(TestString, UTF8Encode(value_by_regini)) = 0));
+    (CompareStr(TestString, UTF8EncodeIfNeeded(value_by_regini, CheckRTLNeeded))
+      = 0));
 
   // 3. Aktuellen Ident mit TRegistrySource umbenennen
   RegSrcWrapper.RegistrySource.RenameKey(RenameSectionName, StringIdent, NewStringIdent);
@@ -449,29 +471,67 @@ begin
   // 4. Den Test-String mit TRegIniFile (Registry.pas) aus dem umbenannten Ident
   // auslesen
   // Ergebnis muss der Wert aus 1.
-  value_by_regini := aIni.ReadString(UTF8Decode(RenameSectionName),
-    UTF8Decode(NewStringIdent), EmptyStr);
+  value_by_regini :=
+    aIni.ReadString(UTF8DecodeIfNeeded(RenameSectionName, CheckRTLNeeded),
+    UTF8DecodeIfNeeded(NewStringIdent, CheckRTLNeeded), EmptyStr);
 
   AssertEquals('RenameKey: Test-Strings sind nicht identisch', TestString,
-    UTF8Encode(value_by_regini));
+    UTF8EncodeIfNeeded(value_by_regini, CheckRTLNeeded));
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.DeleteKeyProc(aIni: TRegIniFile);
+var
+  key_for_check: string;
+  ident_is_present: boolean;
 begin
-  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
-  Fail('Test wurde noch nicht implementiert');
+  ident_is_present := False;
+  key_for_check :=
+    UTF8DecodeIfNeeded(ComposedRookKeyForCheck  + '\' + RenameSectionName,
+      CheckRTLNeeded);
+
+  try
+    if aIni.OpenKeyReadOnly(key_for_check) then
+      ident_is_present :=
+        aIni.ValueExists(UTF8DecodeIfNeeded(StringIdent, CheckRTLNeeded));
+
+    // Prüfen ob der Test-Ident vorhanden ist
+    // Zu Beginn des Test muss der Test-Ident vorhanden sein
+    AssertTrue('DeleteKey: Test nicht durchführbar, TestIdent ist nicht vorhanden',
+      ident_is_present);
+  finally
+    aIni.CloseKey;
+  end;
+
+  // 1. Aktuellen Ident mit TRegistrySource löschen
+  RegSrcWrapper.RegistrySource.DeleteKey(RenameSectionName, StringIdent,
+    GroupIdx);
+
+  try
+    if aIni.OpenKeyReadOnly(key_for_check) then
+      ident_is_present := aIni.ValueExists(StringIdent);
+
+    // Prüfen ob der Test-Ident vorhanden ist
+    // Nach dem Test darg der Test-Ident nicht mehr vorhanden sein
+    AssertFalse('DeleteKey: Test-Ident wurde nicht gelöscht',
+      ident_is_present);
+  finally
+    aIni.CloseKey;
+  end;
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.EraseSectionProc(aIni: TRegIniFile);
 begin
-  // UTF8Decode, UTF8Encode sind notwendig, wenn Umlaute über TRegIniFile gelesen
+  // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
   Fail('Test wurde noch nicht implementiert');
+
+  RegSrcWrapper.RegistrySource.EraseSection(RenameSectionName, GroupIdx);
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.PublishedProperties;
@@ -620,6 +680,8 @@ begin
   TestInteger := 123456;
   TestBoolean := True;
   NewStringIdent := 'New_String_Ident';
+  GroupIdx := 0;
+  CheckRTLNeeded := False;
 end;
 
 { TRegistrySourceUTF8Test }
@@ -642,6 +704,8 @@ begin
   TestInteger := 123456;
   TestBoolean := True;
   NewStringIdent := 'New_String_Ident_mit_ßÜÖÄüöä';
+  GroupIdx := 0;
+  CheckRTLNeeded := True;
 end;
 
 end.

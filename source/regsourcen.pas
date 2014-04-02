@@ -333,11 +333,11 @@ type
                            aIdent: string;
                            aDefault: integer;
                            aUseDefaults: boolean;
-                          aGroupIndex: Cardinal = 0); reintroduce; overload;
+                           aGroupIndex: Cardinal = 0); reintroduce; overload;
     procedure WriteInteger(aSection: string;
                            aIdent: string;
                            aDefault: integer;
-                          aGroupIndex: Cardinal = 0); reintroduce; overload;
+                           aGroupIndex: Cardinal = 0); reintroduce; overload;
     procedure WriteBool(aRootKey: string;
                         aRootKeyForDefaults: string;
                         aRootForDefaults: string;
@@ -1369,7 +1369,7 @@ procedure TCustomRegistrySource.RenameKey(aRootKey: string;
   aOldKey: string;
   aNewKey: string;
   aUseDefaults: boolean;
-  aGroupIndex: Cardinal);
+  aGroupIndex: Cardinal = 0);
 var
   streg: TDataByCurrentUser;
 begin
@@ -1406,7 +1406,7 @@ end;
 procedure TCustomRegistrySource.RenameKey(aSection: string;
   aOldKey: string;
   aNewKey: string;
-  aGroupIndex: Cardinal);
+  aGroupIndex: Cardinal = 0);
 begin
   try
     RenameKey(GetComposedRootKey,
@@ -1429,7 +1429,7 @@ procedure TCustomRegistrySource.DeleteKey(aRootKey: string;
   aSection: string;
   aKey: string;
   aUseDefaults: boolean;
-  aGroupIndex: Cardinal);
+  aGroupIndex: Cardinal = 0);
 var
   streg: TDataByCurrentUser;
 begin
@@ -1465,7 +1465,7 @@ end;
 
 procedure TCustomRegistrySource.DeleteKey(aSection: string;
   aKey: string;
-  aGroupIndex: Cardinal);
+  aGroupIndex: Cardinal = 0);
 begin
   try
     DeleteKey(GetComposedRootKey,
@@ -1486,7 +1486,7 @@ procedure TCustomRegistrySource.EraseSection(aRootKey: string;
   aRootForDefaults: string;
   aSection: string;
   aUseDefaults: boolean;
-  aGroupIndex: Cardinal);
+  aGroupIndex: Cardinal = 0);
 var
   streg: TDataByCurrentUser;
 begin
@@ -1521,7 +1521,7 @@ begin
 end;
 
 procedure TCustomRegistrySource.EraseSection(aSection: string;
-  aGroupIndex: Cardinal);
+  aGroupIndex: Cardinal = 0);
 begin
   try
     EraseSection(GetComposedRootKey,
