@@ -32,6 +32,7 @@ uses
   regedit_test,
   regcheckbox_test,
   regradiobutton_test,
+  reglabel_test,
   testregistry;
 
 procedure RegisterIssue00035Tests(aSuitePath: string = 'LRC 09 M2.Issue #35 - UTF8-Bug');
@@ -41,6 +42,7 @@ begin
   RegisterTest(aSuitePath, TRegEditUTF8Test);
   RegisterTest(aSuitePath, TRegCheckBoxUTF8Test);
   RegisterTest(aSuitePath, TRegRadioButtonUTF8Test);
+  RegisterTest(aSuitePath, TRegLabelUTF8Test);
 end;
 
 function TCheckRTLAnsiTest.GetRookKey: string;

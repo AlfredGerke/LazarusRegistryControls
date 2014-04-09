@@ -25,7 +25,7 @@ uses
   regradiogroup_wrapper,
   regcheckgroup_wrapper,
   regvaluelisteditor_wrapper,
-  issue00035_test;
+  issue00035_test, reglabel_test, reglabel_wrapper;
 
 {$R *.res}
 

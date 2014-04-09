@@ -524,14 +524,32 @@ begin
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.EraseSectionProc(aIni: TRegIniFile);
+var
+  sections: TStrings;
+  count: integer;
 begin
   // UTF8DecodeIfNeeded, UTF8EncodeIfNeeded sind notwendig, wenn Umlaute über TRegIniFile gelesen
   // oder geschrieben werden
   // TRegistrySource soll dies automatisch können
 
-  Fail('Test wurde noch nicht implementiert');
+  sections := TStringList.Create;
+  try
+    aIni.ReadSection(UTF8DecodeIfNeeded(RenameSectionName, CheckRTLNeeded), sections);
+    count := sections.Count;
 
-  RegSrcWrapper.RegistrySource.EraseSection(RenameSectionName, GroupIdx);
+    AssertTrue('EraseSection: Test nicht durchführbar, Section ist schon leer', (count > 0));
+
+    RegSrcWrapper.RegistrySource.EraseSection(RenameSectionName, GroupIdx);
+
+    sections.Clear;
+    aIni.ReadSection(UTF8DecodeIfNeeded(RenameSectionName, CheckRTLNeeded), sections);
+    count := sections.Count;
+
+    AssertTrue('EraseSection: Section wurde nicht geleert', (count = 0));
+  finally
+    if Assigned(sections) then
+        FreeAndNil(sections);
+  end;
 end;
 
 procedure TRegistrySourceGenericTest<_T1>.PublishedProperties;

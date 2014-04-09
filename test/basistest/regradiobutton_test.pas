@@ -44,7 +44,7 @@ implementation
 
 procedure TRegRadioButtonGenericTest<_T1,_T2>.RootKeys;
 var
-  check_rtl_ansi: boolean;
+  {%H-}check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
 begin
   check_rtl_ansi := False;
@@ -63,8 +63,8 @@ end;
 
 procedure TRegRadioButtonGenericTest<_T1,_T2>.ReadByCaptionSettings;
 var
-  caption_by_default: string;
-  caption_by_registry: string;
+  {%H-}caption_by_default: string;
+  {%H-}caption_by_registry: string;
 begin
   caption_by_registry := _TREGCHECKBOX_CAPTION_VALUE;
   caption_by_default := DEFAULT_CAPTION_VALUE;

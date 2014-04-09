@@ -10,6 +10,7 @@ uses
   regedit_test,
   regcheckbox_test,
   regradiobutton_test,
+  reglabel_test,
   issue00030_test,
   issue00035_test;
 
@@ -29,6 +30,7 @@ initialization
   RegisterTest('Package: RegistryControls', TRegEditTest);
   RegisterTest('Package: RegistryControls', TRegCheckBoxTest);
   RegisterTest('Package: RegistryControls', TRegRadioButtonTest);
+  RegisterTest('Package: RegistryControls', TRegLabelTest);
   //-->
 
   // Alle Tests für die Issues
