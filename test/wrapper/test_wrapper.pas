@@ -17,6 +17,12 @@ type
   TWrapper<_T> = class
   private
     FRegControl: _T;
+    FCanRead: boolean;
+    FCanWrite: boolean;
+    FDoWriteAdHoc: boolean;
+    FGroupIndex: integer;
+    FDoSyncData: boolean;
+
   protected
     procedure SetRegControl; virtual;
     procedure SetRegistryEntries; virtual;
@@ -34,7 +40,13 @@ type
                        aCheckRTLAnsi: boolean); virtual;
     procedure PublishedProperties(aMsg: string); virtual;
 
-    constructor Create(aRegistrySource: TRegistrySource); virtual;
+    constructor Create(aRegistrySource: TRegistrySource;
+                       aSetRegSrc: boolean = True;
+                       aCanRead: boolean = True;
+                       aCanWrite: boolean = True;
+                       aDoWriteAdHoc: boolean = True;
+                       aGroupIndex: integer = 0;
+                       aDoSyncData: boolean = False); virtual;
     destructor Destroy; override;
   public
     property RegControl : _T
@@ -57,7 +69,13 @@ type
                           aCaptionByRegistry: string;
                           aMsg: string);
 
-    constructor Create(aRegistrySource: TRegistrySource); override;
+    constructor Create(aRegistrySource: TRegistrySource;
+                       aSetRegSrc: boolean = True;
+                       aCanRead: boolean = True;
+                       aCanWrite: boolean = True;
+                       aDoWriteAdHoc: boolean = True;
+                       aGroupIndex: integer = 0;
+                       aDoSyncData: boolean = False); override;
   end;
 
   // Grundklasse für alle spezialisierten Wrapper mit Listen-Control
@@ -99,11 +117,21 @@ begin
   if aSetRegSrc then
     FRegControl.RegistrySource := aRegistrySource;
 
-  RegControl.RegistrySettings.CanRead := True;
-  RegControl.RegistrySettings.CanWrite := True;
-  RegControl.RegistrySettings.DoWriteAdHoc := True;
-  RegControl.RegistrySettings.GroupIndex := 0;
-  RegControl.RegistrySettings.DoSyncData := False;
+{
+
+                                  aSetRegSrc: boolean = True;
+                                  aCanRead: boolean = True;
+                                  aCanWrite: boolean = True;
+                                  aDoWriteAdHoc: boolean = True;
+                                  aGroupIndex: integer = 0;
+                                  aDoSyncData: boolean = False
+}
+
+  RegControl.RegistrySettings.CanRead := FCanRead;
+  RegControl.RegistrySettings.CanWrite := FCanWrite;
+  RegControl.RegistrySettings.DoWriteAdHoc := FDoWriteAdHoc;
+  RegControl.RegistrySettings.GroupIndex := FGroupIndex;
+  RegControl.RegistrySettings.DoSyncData := FDoSyncData;
 end;
 
 procedure TWrapper<_T>.RootKeys(aTypeName: string;
@@ -267,11 +295,23 @@ begin
     RegControl.RegistrySettings.DoSyncData);
 end;
 
-constructor TWrapper<_T>.Create(aRegistrySource: TRegistrySource);
+constructor TWrapper<_T>.Create(aRegistrySource: TRegistrySource;
+  aSetRegSrc: boolean = True;
+  aCanRead: boolean = True;
+  aCanWrite: boolean = True;
+  aDoWriteAdHoc: boolean = True;
+  aGroupIndex: integer = 0;
+  aDoSyncData: boolean = False);
 begin
+  FCanRead := aCanRead;
+  FCanWrite := aCanWrite;
+  FDoWriteAdHoc := aDoWriteAdHoc;
+  FGroupIndex := aGroupIndex;
+  FDoSyncData := aDoSyncData;
+
   FRegControl := _T.Create(nil);
   SetRegControl;
-  SetRegistrySettings(aRegistrySource);
+  SetRegistrySettings(aRegistrySource, aSetRegSrc);
   SetRegistryEntries;
 end;
 
@@ -364,9 +404,16 @@ begin
     aCaptionByDefault, RegControl.Caption);
 end;
 
-constructor TWrapperCS<_T>.Create(aRegistrySource: TRegistrySource);
+constructor TWrapperCS<_T>.Create(aRegistrySource: TRegistrySource;
+  aSetRegSrc: boolean = True;
+  aCanRead: boolean = True;
+  aCanWrite: boolean = True;
+  aDoWriteAdHoc: boolean = True;
+  aGroupIndex: integer = 0;
+  aDoSyncData: boolean = False);
 begin
-  inherited Create(aRegistrySource);
+  inherited Create(aRegistrySource, aSetRegSrc, aCanRead, aCanWrite,
+    aDoWriteAdHoc, aGroupIndex, aDoSyncData);
 
   SetCaptionSettings;
 end;

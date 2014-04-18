@@ -28,15 +28,18 @@ const
 
   SEC_TREGCHECKBOX = 'TRegCheckBox';
   IDENT_CHECK_PROPERTY = 'Checked-Property';
-  _TREGCHECKBOX_CAPTION_VALUE = 'Dynamsich';
+  _TREGCHECKBOX_CAPTION_VALUE = 'Dynamisch';
   _CHECKED_ENTRY = True;
   DEFAULT_CHECKED_ENTRY = False;
 
   SEC_TREGRADIOBUTTON = 'TRegRadioButton';
-  _TREGRADIOBUTTON_CAPTION_VALUE = 'Dynamsich';
+  _TREGRADIOBUTTON_CAPTION_VALUE = 'Dynamisch';
   DEFAULT_CAPTION_VALUE = 'Statisch';
 
   IDENT_CAPTION = 'Caption';
+
+  SEC_TREGLABEL = 'TRegLabel';
+  _TREGLABEL_CAPTION_VALUE = 'Dynamisch';
 
 
 
