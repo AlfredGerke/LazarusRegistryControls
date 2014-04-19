@@ -117,16 +117,6 @@ begin
   if aSetRegSrc then
     FRegControl.RegistrySource := aRegistrySource;
 
-{
-
-                                  aSetRegSrc: boolean = True;
-                                  aCanRead: boolean = True;
-                                  aCanWrite: boolean = True;
-                                  aDoWriteAdHoc: boolean = True;
-                                  aGroupIndex: integer = 0;
-                                  aDoSyncData: boolean = False
-}
-
   RegControl.RegistrySettings.CanRead := FCanRead;
   RegControl.RegistrySettings.CanWrite := FCanWrite;
   RegControl.RegistrySettings.DoWriteAdHoc := FDoWriteAdHoc;

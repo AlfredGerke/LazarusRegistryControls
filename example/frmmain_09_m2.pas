@@ -20,6 +20,7 @@ type
     RegComboBox1: TRegComboBox;
     RegEdit1: TRegEdit;
     RegistrySource1: TRegistrySource;
+    RegLabel1: TRegLabel;
     RegListBox1: TRegListBox;
     RegRadioButton1: TRegRadioButton;
     RegRadioButton2: TRegRadioButton;

@@ -38,7 +38,8 @@ type
 implementation
 
 uses
-  test_const;
+  test_const,
+  fpcunit;
 
 { TRegLabelWrapperUTF8 }
 
@@ -59,6 +60,9 @@ end;
 procedure TRegLabelWrapper.SetRegistryEntries;
 begin
   inherited SetRegistryEntries;
+
+  RegControl.RegistrySource.WriteString(SEC_TREGLABEL, IDENT_CAPTION,
+    _TREGLABEL_CAPTION_VALUE);
 end;
 
 procedure TRegLabelWrapper.SetRegistrySettings(
@@ -74,7 +78,12 @@ end;
 
 procedure TRegLabelWrapper.SectionIdentDefault;
 begin
-
+  TAssert.AssertEquals('TRegLabel.RegistrySection.Section',
+    SEC_TREGLABEL, FRegControl.RegistrySettings.Section);
+  TAssert.AssertEquals('TRegLabel.RegistrySection.Ident',
+    IDENT_CAPTION, FRegControl.RegistrySettings.Ident);
+  TAssert.AssertEquals('TRegLabel.RegistrySection.Default',
+    DEFAULT_CAPTION_VALUE, FRegControl.RegistrySettings.Default);
 end;
 
 end.

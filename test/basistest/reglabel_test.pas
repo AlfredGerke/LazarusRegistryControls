@@ -64,7 +64,7 @@ begin
   FRegLabelWrapper.RegControl.RegistrySettings.CanRead := True;
   FRegLabelWrapper.ReadFromReg(True, 'TRegLabel');
 
-  AssertEquals('TRegLabel.RegistrySection.Default', _TREGLABEL_CAPTION_VALUE,
+  AssertEquals('TRegLabel.Caption', _TREGLABEL_CAPTION_VALUE,
     FRegLabelWrapper.RegControl.Caption);
 
   // 3. Fall CanRead = False: DEFAULT_CAPTION_VALUE muss in Caption eingetragen

@@ -218,6 +218,19 @@ object Main: TMain
       132
     )
   end
+  object RegLabel1: TRegLabel
+    Left = 251
+    Height = 16
+    Top = 312
+    Width = 55
+    Caption = 'RegLabel1'
+    ParentColor = False
+    RegistrySettings.CanRead = False
+    RegistrySettings.CanWrite = False
+    RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = False
+  end
   object RegistrySource1: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
     RootKeyForDefaults = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%'
