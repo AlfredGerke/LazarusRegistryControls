@@ -21,11 +21,22 @@ function CheckPropertyAvailable(aObj: TObject;
                                 aPropertyName: string;
                                 aMsg: string = ''): boolean;
 
+function GetNextCount: integer;
+
 implementation
 
 uses
   fpcunit,
   typinfo;
+
+var
+  count: integer;
+
+function GetNextCount: integer;
+begin
+   inc(count);
+   Result := count;
+end;
 
 procedure GetRegIniFile(aRootKey: string;
   aProc: TManageRegIniFile);
@@ -85,6 +96,9 @@ begin
     Result := found;
   end;
 end;
+
+initialization
+  count := 0;
 
 end.
 

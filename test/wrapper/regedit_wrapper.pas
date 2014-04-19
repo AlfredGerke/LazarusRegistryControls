@@ -16,6 +16,7 @@ type
   TRegEditWrapper = class(TWrapper<TRegEdit>)
   private
   protected
+    procedure SetRegControl; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
@@ -55,6 +56,13 @@ begin
 end;
 
 { TRegEditWrapper }
+
+procedure TRegEditWrapper.SetRegControl;
+begin
+  inherited SetRegControl;
+
+  RegControl.Name := SetUniqueName(TREGEDIT_NAME);
+end;
 
 procedure TRegEditWrapper.SetRegistryEntries;
 begin

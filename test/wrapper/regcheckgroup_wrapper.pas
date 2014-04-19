@@ -16,6 +16,7 @@ type
   TRegCheckGroupWrapper = class(TWrapperCSLST<TRegCheckGroup>)
   private
   protected
+    procedure SetRegControl; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
@@ -26,7 +27,17 @@ type
 
 implementation
 
+uses
+  test_const;
+
 { TRegCheckGroupWrapper }
+
+procedure TRegCheckGroupWrapper.SetRegControl;
+begin
+  inherited SetRegControl;
+
+  RegControl.Name := SetUniqueName(TREGCHECKGROUP_NAME);
+end;
 
 procedure TRegCheckGroupWrapper.SetRegistryEntries;
 begin

@@ -60,7 +60,6 @@ begin
   FRegLabelWrapper.SectionIdentDefault;
 
   // 2. Fall CanRead = True: _TREGLABEL_CAPTION_VALUE muss in Caption eingetragen werden
-  FRegLabelWrapper.RegControl.Caption := DEFAULT_CAPTION_VALUE;
   FRegLabelWrapper.RegControl.RegistrySettings.CanRead := True;
   FRegLabelWrapper.ReadFromReg(True, 'TRegLabel');
 

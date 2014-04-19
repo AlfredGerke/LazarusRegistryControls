@@ -16,6 +16,7 @@ type
   TRegCheckBoxWrapper = class(TWrapperCS<TRegCheckBox>)
   private
   protected
+    procedure SetRegControl; override;
     procedure DeleteCaptionEntries; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
@@ -68,6 +69,13 @@ begin
 end;
 
 { TRegCheckBoxWrapper }
+
+procedure TRegCheckBoxWrapper.SetRegControl;
+begin
+  inherited SetRegControl;
+
+  RegControl.Name := SetUniqueName(TREGCHECKBOX_NAME);
+end;
 
 procedure TRegCheckBoxWrapper.DeleteCaptionEntries;
 begin

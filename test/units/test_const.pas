@@ -9,6 +9,18 @@ uses
   SysUtils;
 
 const
+  TREGISTRYSOURCE_NAME = 'TRegistrySource';
+  TREGCHECKBOX_NAME = 'TRegCheckBox';
+  TREGRADIOBUTTON_NAME = 'TRegRadioButton';
+  TREGRADIOGROUP_NAME = 'TRegRadioGroup';
+  TREGEDIT_NAME = 'TRegEdit';
+  TREGCOMBOBOX_NAME = 'TRegComboBox';
+  TREGLISTBOX_NAME = 'TRegListBox';
+  TREGCHECKLISTBOX_NAME = 'TRegCheckListBox';
+  TREGCHECKGROUP_NAME = 'TRegCheckGroup';
+  TREGVALUELISTEDITOR_NAME = 'TRegValueListEditor';
+  TREGLABEL_NAME = 'TRegLabel';
+
   SEC_FPCUNIT_URF8TEST = 'UTF8Bug_mit_ßÖÜÄöüä';
   IDENT_LRC_VERSION_UTF8TEST = 'Version_mit_ßÖÜÄöüä';
 
@@ -41,8 +53,7 @@ const
   SEC_TREGLABEL = 'TRegLabel';
   _TREGLABEL_CAPTION_VALUE = 'Dynamisch';
 
-
-
+  CAPTION_FOR_TREGLABEL = 'LRC RegLabel';
 
 implementation
 

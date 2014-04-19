@@ -16,6 +16,7 @@ type
   TRegValueListEditorWrapper = class(TWrapperLST<TRegValueListEditor>)
   private
   protected
+    procedure SetRegControl; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
@@ -25,7 +26,17 @@ type
 
 implementation
 
+uses
+  test_const;
+
 { TRegValueListEditorWrapper }
+
+procedure TRegValueListEditorWrapper.SetRegControl;
+begin
+  inherited SetRegControl;
+
+  RegControl.Name := SetUniqueName(TREGVALUELISTEDITOR_NAME);
+end;
 
 procedure TRegValueListEditorWrapper.SetRegistryEntries;
 begin

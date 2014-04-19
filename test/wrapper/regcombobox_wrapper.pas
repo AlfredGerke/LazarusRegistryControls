@@ -16,16 +16,27 @@ type
   TRegComboBoxWrapper = class(TWrapperLST<TRegComboBox>)
   private
   protected
-  procedure SetRegistryEntries; override;
-  procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
-                                aSetRegSrc: boolean = True); override;
+    procedure SetRegControl; override;
+    procedure SetRegistryEntries; override;
+    procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
+                                  aSetRegSrc: boolean = True); override;
   public
   public
   end;
 
 implementation
 
+uses
+  test_const;
+
 { TRegComboBoxWrapper }
+
+procedure TRegComboBoxWrapper.SetRegControl;
+begin
+  inherited SetRegControl;
+
+  RegControl.Name := SetUniqueName(TREGCOMBOBOX_NAME);
+end;
 
 procedure TRegComboBoxWrapper.SetRegistryEntries;
 begin

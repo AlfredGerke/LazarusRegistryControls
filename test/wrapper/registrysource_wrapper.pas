@@ -73,7 +73,8 @@ type
 implementation
 
 uses
-  Registry;
+  Registry,
+  test_utils;
 
 { TRegistrySourceWrapperUTF8 }
 
@@ -529,6 +530,7 @@ end;
 constructor TRegistrySourceWrapper.Create;
 begin
   FRegistrySource := TRegistrySource.Create(nil);
+  FRegistrySource.Name := Format('%s%d', [TREGISTRYSOURCE_NAME, GetNextCount]);
   SetRegistrySettings;
   SetRegistryEntries;
 end;

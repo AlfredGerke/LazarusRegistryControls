@@ -24,6 +24,7 @@ type
     FDoSyncData: boolean;
 
   protected
+    function SetUniqueName(aName: string): string;
     procedure SetRegControl; virtual;
     procedure SetRegistryEntries; virtual;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
@@ -100,6 +101,11 @@ uses
   fpcunit;
 
 { TWrapper<_T> }
+
+function TWrapper<_T>.SetUniqueName(aName: string): string;
+begin
+  Result := Format('%s%d', [aName, GetNextCount]);
+end;
 
 procedure TWrapper<_T>.SetRegControl;
 begin

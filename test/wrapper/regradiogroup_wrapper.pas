@@ -16,6 +16,7 @@ type
   TRegRadioGroupWrapper = class(TWrapperCSLST<TRegRadioGroup>)
   private
   protected
+    procedure SetRegControl; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
@@ -26,7 +27,17 @@ type
 
 implementation
 
+uses
+  test_const;
+
 { TRegRadioGroupWrapper }
+
+procedure TRegRadioGroupWrapper.SetRegControl;
+begin
+  inherited SetRegControl;
+
+  RegControl.Name := SetUniqueName(TREGRADIOBUTTON_NAME);
+end;
 
 procedure TRegRadioGroupWrapper.SetRegistryEntries;
 begin

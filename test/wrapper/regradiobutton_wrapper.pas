@@ -76,7 +76,7 @@ procedure TRegRaidoButtonWrapper.SetRegControl;
 begin
   inherited SetRegControl;
 
-  RegControl.Name := 'TRegRadioButton1';
+  RegControl.Name := SetUniqueName(TREGRADIOBUTTON_NAME);
   RegControl.Checked := False;
 end;
 

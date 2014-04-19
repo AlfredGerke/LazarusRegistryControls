@@ -16,9 +16,10 @@ type
   TRegCheckListBoxWrapper = class(TWrapperLST<TRegCheckListBox>)
   private
   protected
-  procedure SetRegistryEntries; override;
-  procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
-                                aSetRegSrc: boolean = True); override;
+    procedure SetRegControl; override;
+    procedure SetRegistryEntries; override;
+    procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
+                                  aSetRegSrc: boolean = True); override;
   public
   public
   end;
@@ -26,7 +27,17 @@ type
 
 implementation
 
+uses
+  test_const;
+
 { TRegCheckListBoxWrapper }
+
+procedure TRegCheckListBoxWrapper.SetRegControl;
+begin
+  inherited SetRegControl;
+
+  RegControl.Name := SetUniqueName(TREGCHECKLISTBOX_NAME);
+end;
 
 procedure TRegCheckListBoxWrapper.SetRegistryEntries;
 begin

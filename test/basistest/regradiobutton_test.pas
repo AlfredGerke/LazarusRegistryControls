@@ -10,7 +10,7 @@ uses
   registrysource_wrapper,
   regradiobutton_wrapper,
   regtype,
-  test_const;
+  Registry;
 
 type
 
@@ -20,6 +20,8 @@ type
   private
     FRegSrcWrapper: _T1;
     FRegRadioButtonWrapper: _T2;
+
+    procedure WriteRegistryProc(aIni: TRegIniFile);
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -28,6 +30,7 @@ type
     procedure PublishedProperties;
     procedure ReadByCaptionSettings;
     procedure ReadRegistry;
+    procedure WriteRegistry;
   end;
 
   { TRegRadioButtonTest }
@@ -41,6 +44,22 @@ type
   end;
 
 implementation
+
+uses
+  test_const,
+  test_utils;
+
+procedure TRegRadioButtonGenericTest<_T1,_T2>.WriteRegistryProc(
+  aIni: TRegIniFile);
+begin
+    // 1. Fall: check Section, Ident, Default
+  FRegRadioButtonWrapper.SectionIdentDefault;
+
+  with aIni do
+  begin
+
+  end;
+end;
 
 procedure TRegRadioButtonGenericTest<_T1,_T2>.RootKeys;
 var
@@ -94,6 +113,12 @@ begin
 
   AssertEquals('TRegRadioButton.RegistrySection.Default', DEFAULT_CHECKED_ENTRY,
     FRegRadioButtonWrapper.RegControl.Checked);
+end;
+
+procedure TRegRadioButtonGenericTest<_T1,_T2>.WriteRegistry;
+begin
+  GetRegIniFile(FRegSrcWrapper.RegistrySource.GetComposedRootKey,
+    WriteRegistryProc);
 end;
 
 procedure TRegRadioButtonGenericTest<_T1,_T2>.SetUp;

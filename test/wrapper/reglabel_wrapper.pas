@@ -16,6 +16,7 @@ type
   TRegLabelWrapper = class(TWrapper<TRegLabel>)
   private
   protected
+    procedure SetRegControl; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
@@ -56,6 +57,14 @@ begin
 end;
 
 { TRegLabelWrapper }
+
+procedure TRegLabelWrapper.SetRegControl;
+begin
+  inherited SetRegControl;
+
+  RegControl.Name := SetUniqueName(TREGLABEL_NAME);
+  RegControl.Caption := CAPTION_FOR_TREGLABEL;
+end;
 
 procedure TRegLabelWrapper.SetRegistryEntries;
 begin
