@@ -15,13 +15,35 @@ type
 
   TRegRaidoButtonWrapper = class(TWrapperCS<TRegRadioButton>)
   private
+    FSection: string;
+    FCaptionSection: string;
+    FIdent: string;
+    FCaptionIdent: string;
+    FDefault: boolean;
   protected
+    procedure _Initialize; override;
+    procedure SetSectionsAndIdents; virtual;
     procedure SetRegControl; override;
     procedure DeleteCaptionEntries; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
     procedure SetCaptionSettings; override;
+
+    property Section: string
+      read FSection;
+
+    property CaptionSection: string
+      read FCaptionSection;
+
+    property Ident: string
+      read FIdent;
+
+    property CaptionIdent: string
+      read FCaptionIdent;
+
+    property Default: boolean
+      read FDefault;
   public
     procedure SectionIdentDefault;
   end;
@@ -31,6 +53,7 @@ type
   TRegRaidoButtonWrapperUTF8 = class(TRegRaidoButtonWrapper)
   private
   protected
+    procedure SetSectionsAndIdents; override;
     procedure DeleteCaptionEntries; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
@@ -47,6 +70,16 @@ uses
   fpcunit;
 
 { TRegRaidoButtonWrapperUTF8 }
+
+procedure TRegRaidoButtonWrapperUTF8.SetSectionsAndIdents;
+begin
+  FSection := SEC_TREGRADIOBUTTON;
+  FIdent := IDENT_CHECK_PROPERTY;
+  FDefault := DEFAULT_CHECKED_ENTRY;
+
+  FCaptionSection := SEC_TREGRADIOBUTTON;
+  FCaptionIdent := IDENT_CAPTION;
+end;
 
 procedure TRegRaidoButtonWrapperUTF8.DeleteCaptionEntries;
 begin
@@ -72,6 +105,23 @@ end;
 
 { TRegRaidoButtonWrapper }
 
+procedure TRegRaidoButtonWrapper._Initialize;
+begin
+  inherited _Initialize;
+
+  SetSectionsAndIdents;
+end;
+
+procedure TRegRaidoButtonWrapper.SetSectionsAndIdents;
+begin
+  FSection := SEC_TREGRADIOBUTTON;
+  FIdent := IDENT_CHECK_PROPERTY;
+  FDefault := DEFAULT_CHECKED_ENTRY;
+
+  FCaptionSection := SEC_TREGRADIOBUTTON;
+  FCaptionIdent := IDENT_CAPTION;
+end;
+
 procedure TRegRaidoButtonWrapper.SetRegControl;
 begin
   inherited SetRegControl;
@@ -84,17 +134,17 @@ procedure TRegRaidoButtonWrapper.DeleteCaptionEntries;
 begin
   inherited DeleteCaptionEntries;
 
-  RegControl.RegistrySource.DeleteKey(SEC_TREGRADIOBUTTON, IDENT_CAPTION);
+  RegControl.RegistrySource.DeleteKey(CaptionSection, CaptionIdent);
 end;
 
 procedure TRegRaidoButtonWrapper.SetRegistryEntries;
 begin
   inherited SetRegistryEntries;
 
-  RegControl.RegistrySource.WriteBool(SEC_TREGRADIOBUTTON, IDENT_CHECK_PROPERTY,
+  RegControl.RegistrySource.WriteBool(Section, Ident,
     _CHECKED_ENTRY);
 
-  RegControl.RegistrySource.WriteString(SEC_TREGRADIOBUTTON, IDENT_CAPTION,
+  RegControl.RegistrySource.WriteString(CaptionSection, CaptionIdent,
     _TREGRADIOBUTTON_CAPTION_VALUE);
 end;
 
@@ -104,17 +154,17 @@ procedure TRegRaidoButtonWrapper.SetRegistrySettings(
 begin
   inherited SetRegistrySettings(aRegistrySource, aSetRegSrc);
 
-  RegControl.RegistrySettings.Default := DEFAULT_CHECKED_ENTRY;
-  RegControl.RegistrySettings.Section := SEC_TREGRADIOBUTTON;
-  RegControl.RegistrySettings.Ident := IDENT_CHECK_PROPERTY;
+  RegControl.RegistrySettings.Section := Section;
+  RegControl.RegistrySettings.Ident := Ident;
+  RegControl.RegistrySettings.Default := Default;
 end;
 
 procedure TRegRaidoButtonWrapper.SetCaptionSettings;
 begin
   inherited SetCaptionSettings;
 
-  RegControl.CaptionSettings.Section := SEC_TREGRADIOBUTTON;
-  RegControl.CaptionSettings.Ident := IDENT_CAPTION;
+  RegControl.CaptionSettings.Section := CaptionSection;
+  RegControl.CaptionSettings.Ident := CaptionIdent;
   RegControl.CaptionSettings.CaptionByRegistry := True;
 
   RegControl.Caption := DEFAULT_CAPTION_VALUE;
@@ -123,11 +173,11 @@ end;
 procedure TRegRaidoButtonWrapper.SectionIdentDefault;
 begin
   TAssert.AssertEquals('TRegRadioButton.RegistrySection.Section',
-    SEC_TREGRADIOBUTTON, FRegControl.RegistrySettings.Section);
+    Section, FRegControl.RegistrySettings.Section);
   TAssert.AssertEquals('TRegRadioButton.RegistrySection.Ident',
-    IDENT_CHECK_PROPERTY, FRegControl.RegistrySettings.Ident);
+    Ident, FRegControl.RegistrySettings.Ident);
   TAssert.AssertEquals('TRegRadioButton.RegistrySection.Default',
-    DEFAULT_CHECKED_ENTRY, FRegControl.RegistrySettings.Default);
+    Default, FRegControl.RegistrySettings.Default);
 end;
 
 end.

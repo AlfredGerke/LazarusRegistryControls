@@ -24,6 +24,7 @@ type
     FDoSyncData: boolean;
 
   protected
+    procedure _Initialize; virtual;
     function SetUniqueName(aName: string): string;
     procedure SetRegControl; virtual;
     procedure SetRegistryEntries; virtual;
@@ -101,6 +102,11 @@ uses
   fpcunit;
 
 { TWrapper<_T> }
+
+procedure TWrapper<_T>._Initialize;
+begin
+  // Wird im spezialisierten Wrapper überschrieben
+end;
 
 function TWrapper<_T>.SetUniqueName(aName: string): string;
 begin
@@ -304,6 +310,8 @@ begin
   FDoWriteAdHoc := aDoWriteAdHoc;
   FGroupIndex := aGroupIndex;
   FDoSyncData := aDoSyncData;
+
+  _Initialize;
 
   FRegControl := _T.Create(nil);
   SetRegControl;
