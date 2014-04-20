@@ -27,7 +27,7 @@ uses
   regvaluelisteditor_wrapper,
   issue00035_test,
   reglabel_test,
-  reglabel_wrapper;
+  reglabel_wrapper, lrc_testcase;
 
 {$R *.res}
 

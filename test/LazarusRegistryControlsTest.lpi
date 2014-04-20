@@ -46,7 +46,7 @@
         <PackageName Value="FCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="24">
+    <Units Count="25">
       <Unit0>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -166,6 +166,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="reglabel_wrapper"/>
       </Unit23>
+      <Unit24>
+        <Filename Value="tests\lrc_testcase.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="lrc_testcase"/>
+      </Unit24>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -176,7 +181,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\source;wrapper;issues;basistest;units"/>
+      <OtherUnitFiles Value="..\source;wrapper;issues;basistest;units;tests"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
