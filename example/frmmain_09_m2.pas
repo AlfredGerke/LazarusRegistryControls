@@ -5,15 +5,17 @@ unit frmmain_09_M2;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, regcombobox,
-  reglistbox, regchecklistbox, regcheckgroup, regradiogroup, regcheckbox,
-  regradiobutton, reglabel, regvaluelisteditor, regsourcen, regedit;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  regcombobox, reglistbox, regchecklistbox, regcheckgroup, regradiogroup,
+  regcheckbox, regradiobutton, reglabel, regvaluelisteditor, regsourcen,
+  regedit;
 
 type
 
   { TMain }
 
   TMain = class(TForm)
+    Button1: TButton;
     RegCheckBox1: TRegCheckBox;
     RegCheckGroup1: TRegCheckGroup;
     RegCheckListBox1: TRegCheckListBox;
@@ -26,6 +28,7 @@ type
     RegRadioButton2: TRegRadioButton;
     RegRadioGroup1: TRegRadioGroup;
     RegValueListEditor1: TRegValueListEditor;
+    procedure Button1Click(Sender: TObject);
   private
     { private declarations }
   public
@@ -39,8 +42,20 @@ implementation
 
 {$R *.lfm}
 
+uses
+  Registry;
+
 { TMain }
 
+
+procedure TMain.Button1Click(Sender: TObject);
+var
+  ini: TRegistryIniFile;
+begin
+  ini := TRegistryIniFile.Create('Software\Alfred');
+  ini.WriteString('Section', 'Test', 'Hallo');
+  ini.free;
+end;
 
 end.
 

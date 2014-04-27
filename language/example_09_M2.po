@@ -1,6 +1,10 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: tmain.button1.caption
+msgid "Button1"
+msgstr ""
+
 #: tmain.caption
 msgid "Example (LRC 0.9 M2)"
 msgstr ""
@@ -20,6 +24,10 @@ msgstr ""
 
 #: tmain.regedit1.text
 msgid "RegEdit1"
+msgstr ""
+
+#: tmain.reglabel1.caption
+msgid "RegLabel1"
 msgstr ""
 
 #: tmain.regradiobutton1.caption

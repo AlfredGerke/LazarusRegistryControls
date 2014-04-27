@@ -6,7 +6,7 @@ object Main: TMain
   Caption = 'Example (LRC 0.9 M2)'
   ClientHeight = 442
   ClientWidth = 873
-  LCLVersion = '1.0.14.0'
+  LCLVersion = '1.2.2.0'
   object RegCheckBox1: TRegCheckBox
     Left = 16
     Height = 19
@@ -207,6 +207,9 @@ object Main: TMain
     FixedCols = 0
     RowCount = 2
     TabOrder = 9
+    Strings.Strings = (
+      ''
+    )
     RegistrySettings.CanRead = False
     RegistrySettings.CanWrite = False
     RegistrySettings.DoWriteAdHoc = False
@@ -220,9 +223,9 @@ object Main: TMain
   end
   object RegLabel1: TRegLabel
     Left = 251
-    Height = 16
+    Height = 15
     Top = 312
-    Width = 55
+    Width = 54
     Caption = 'RegLabel1'
     ParentColor = False
     RegistrySettings.CanRead = False
@@ -230,6 +233,15 @@ object Main: TMain
     RegistrySettings.DoWriteAdHoc = False
     RegistrySettings.GroupIndex = 0
     RegistrySettings.DoSyncData = False
+  end
+  object Button1: TButton
+    Left = 452
+    Height = 25
+    Top = 327
+    Width = 75
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 10
   end
   object RegistrySource1: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
