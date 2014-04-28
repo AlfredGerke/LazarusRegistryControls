@@ -15,11 +15,8 @@ type
 
   TRegRaidoButtonWrapper = class(TWrapperCS<TRegRadioButton>)
   private
-    FSection: string;
-    FCaptionSection: string;
-    FIdent: string;
-    FCaptionIdent: string;
     FDefault: boolean;
+
   protected
     procedure _Initialize; override;
     procedure SetSectionsAndIdents; virtual;
@@ -30,20 +27,9 @@ type
                                   aSetRegSrc: boolean = True); override;
     procedure SetCaptionSettings; override;
 
-    property Section: string
-      read FSection;
-
-    property CaptionSection: string
-      read FCaptionSection;
-
-    property Ident: string
-      read FIdent;
-
-    property CaptionIdent: string
-      read FCaptionIdent;
-
     property Default: boolean
-      read FDefault;
+      read FDefault
+      write FDefault;
   public
     procedure SectionIdentDefault;
   end;
@@ -73,12 +59,12 @@ uses
 
 procedure TRegRaidoButtonWrapperUTF8.SetSectionsAndIdents;
 begin
-  FSection := SEC_TREGRADIOBUTTON;
-  FIdent := IDENT_CHECK_PROPERTY;
-  FDefault := DEFAULT_CHECKED_ENTRY;
+  Section := SEC_TREGRADIOBUTTON;
+  Ident := IDENT_CHECK_PROPERTY;
+  Default := DEFAULT_CHECKED_ENTRY;
 
-  FCaptionSection := SEC_TREGRADIOBUTTON;
-  FCaptionIdent := IDENT_CAPTION;
+  CaptionSection := SEC_TREGRADIOBUTTON;
+  CaptionIdent := IDENT_CAPTION;
 end;
 
 procedure TRegRaidoButtonWrapperUTF8.DeleteCaptionEntries;
@@ -114,12 +100,12 @@ end;
 
 procedure TRegRaidoButtonWrapper.SetSectionsAndIdents;
 begin
-  FSection := SEC_TREGRADIOBUTTON;
-  FIdent := IDENT_CHECK_PROPERTY;
-  FDefault := DEFAULT_CHECKED_ENTRY;
+  Section := SEC_TREGRADIOBUTTON;
+  Ident := IDENT_CHECK_PROPERTY;
+  Default := DEFAULT_CHECKED_ENTRY;
 
-  FCaptionSection := SEC_TREGRADIOBUTTON;
-  FCaptionIdent := IDENT_CAPTION;
+  CaptionSection := SEC_TREGRADIOBUTTON;
+  CaptionIdent := IDENT_CAPTION;
 end;
 
 procedure TRegRaidoButtonWrapper.SetRegControl;

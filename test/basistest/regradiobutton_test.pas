@@ -100,13 +100,47 @@ end;
 
 procedure TRegRadioButtonGenericTest<_T1,_T2>.WriteRegistryProc(
   aIni: TRegIniFile);
+var
+  test_ident: string;
+  test_section: string;
+  test_default: boolean;
+
+  value_by_regini: boolean;
 begin
-    // 1. Fall: check Section, Ident, Default
-  FRegRadioButtonWrapper.SectionIdentDefault;
+  { TODO 10 -oAlfred Gerke -cTest : Komplett überarbeiten; vorhandener Code ist NUR ein Beispiel }
+  test_default := Default;
+  test_section:= GetSectionUTF8Decoded;
+  test_ident := GetIdentUTF8Decoded;
 
   with aIni do
   begin
+    // 1. Fall CanWrite = True
+    value_by_regini :=
+      ReadBool(test_section, test_ident, test_default);
 
+    AssertTrue('TRegCheckBox.ReadReg: Test nicht durchführbar, Vergleichswerte sind identisch',
+      (value_by_regini <> test_default));
+
+    FRegRadioButtonWrapper.RegControl.Checked := test_default;
+    FRegRadioButtonWrapper.RegControl.RegistrySettings.CanWrite := True;
+    FRegRadioButtonWrapper.ReadFromReg(True, rdoGeneral, 'TRegRadioButton');
+
+    AssertEquals('TRegCheckBox.Checked', value_by_regini,
+      FRegRadioButtonWrapper.RegControl.Checked);
+
+    // 2. Fall CanWrite = False
+    value_by_regini :=
+      ReadBool(test_section, test_ident, test_default);
+
+    AssertTrue('TRegCheckBox.ReadReg: Test nicht durchführbar, Vergleichswerte sind identisch',
+      (value_by_regini <> test_default));
+
+    FRegRadioButtonWrapper.RegControl.Checked := test_default;
+    FRegRadioButtonWrapper.RegControl.RegistrySettings.CanWrite := False;
+    FRegRadioButtonWrapper.ReadFromReg(True, rdoGeneral, 'TRegCheckBox');
+
+    AssertEquals('TRegCheckBox.Checked', test_default,
+      FRegRadioButtonWrapper.RegControl.Checked);
   end;
 end;
 

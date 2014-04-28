@@ -23,6 +23,8 @@ type
     FGroupIndex: integer;
     FDoSyncData: boolean;
 
+    FSection: string;
+    FIdent: string;
   protected
     procedure _Initialize; virtual;
     function SetUniqueName(aName: string): string;
@@ -30,6 +32,14 @@ type
     procedure SetRegistryEntries; virtual;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); virtual;
+
+    property Section: string
+      read FSection
+      write FSection;
+
+    property Ident: string
+      read FIdent
+      write FIdent;
   public
     procedure ReadFromReg(aExpected: boolean;
                           aMsg: string = ''); virtual;
@@ -60,9 +70,19 @@ type
   // Grundklasse für alle spezialisierten Wrapper mit CaptionSettings
   TWrapperCS<_T> = class(TWrapper<_T>)
   private
+    FCaptionSection: string;
+    FCaptionIdent: string;
   protected
     procedure SetCaptionSettings; virtual;
     procedure DeleteCaptionEntries; virtual;
+
+    property CaptionSection: string
+      read FCaptionSection
+      write FCaptionSection;
+
+    property CaptionIdent: string
+      read FCaptionIdent
+      write FCaptionIdent;
   public
     procedure ReadFromReg(aExpected: boolean;
                           aOrigin: TRegistryDataOrigin;
