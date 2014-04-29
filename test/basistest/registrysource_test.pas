@@ -24,7 +24,7 @@ type
     FStringIdent: string;
     FIntegerIdent: string;
     FBooleanIdent: string;
-    FComposedRookKeyForCheck: string;
+    FComposedRootKeyForCheck: string;
     FComposedRootKeyForDefaultsForCheck: string;
     FComposedRootKeyForCommonForCheck: string;
     FTestString: string;
@@ -78,9 +78,9 @@ type
       read FBooleanIdent
       write FBooleanIdent;
 
-    property ComposedRookKeyForCheck: string
-      read FComposedRookKeyForCheck
-      write FComposedRookKeyForCheck;
+    property ComposedRootKeyForCheck: string
+      read FComposedRootKeyForCheck
+      write FComposedRootKeyForCheck;
 
     property ComposedRootKeyForDefaultsForCheck: string
       read FComposedRootKeyForDefaultsForCheck
@@ -490,7 +490,7 @@ begin
 
   ident_is_present := False;
   key_for_check :=
-    UTF8DecodeIfNeeded(ComposedRookKeyForCheck  + '\' + RenameSectionName,
+    UTF8DecodeIfNeeded(ComposedRootKeyForCheck  + '\' + RenameSectionName,
       CheckRTLNeeded);
 
   try
@@ -574,7 +574,7 @@ var
   key_for_check: string;
 begin
   key_by_regsrc := RegSrcWrapper.RegistrySource.GetComposedRootKey;
-  key_for_check := IncludeTrailingPathDelimiter(ComposedRookKeyForCheck);
+  key_for_check := IncludeTrailingPathDelimiter(ComposedRootKeyForCheck);
 
   AssertEquals('GetComposedRootKey', key_for_check, key_by_regsrc);
 end;
@@ -688,7 +688,7 @@ begin
   StringIdent := 'String_Ident';
   IntegerIdent := 'Integer_Ident';
   BooleanIdent := 'Boolean_Ident';
-  ComposedRookKeyForCheck :=
+  ComposedRootKeyForCheck :=
     'SOFTWARE\ExampleFactory\LazarusRegistryControls\{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}';
   ComposedRootKeyForDefaultsForCheck :=
     'SOFTWARE\ExampleFactory\LazarusRegistryControls\DEFAULTS\{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}';
@@ -712,7 +712,7 @@ begin
   StringIdent := 'String_Ident_mit_ßÜÖÄüöä';
   IntegerIdent := 'Integer_Ident_mit_ßÜÖÄüöä';
   BooleanIdent := 'Boolean_Ident_mit_ßÜÖÄüöä';
-  ComposedRookKeyForCheck :=
+  ComposedRootKeyForCheck :=
     'SOFTWARE\Organisation_mit_ßÜÖÄüöä\Project_mit_ßÜÖÄüöä\{2CD0EB3F-A81E-4F0D-AE9B-1548DC65F930}';
   ComposedRootKeyForDefaultsForCheck :=
     'SOFTWARE\Organisation_mit_ßÜÖÄüöä\Project_mit_ßÜÖÄüöä\DEFAULTS\{2CD0EB3F-A81E-4F0D-AE9B-1548DC65F930}';

@@ -11,9 +11,16 @@ uses
 
 type
 
+  { TRegRadioButtonForTest }
+
+  TRegRadioButtonForTest = class(TRegRadioButton)
+  public
+    procedure TriggerClick;
+  end;
+
   { TRegRaidoButtonWrapper }
 
-  TRegRaidoButtonWrapper = class(TWrapperCS<TRegRadioButton>)
+  TRegRaidoButtonWrapper = class(TWrapperCS<TRegRadioButtonForTest>)
   private
     FDefault: boolean;
 
@@ -54,6 +61,13 @@ implementation
 uses
   test_const,
   fpcunit;
+
+{ TRegRadioButtonForTest }
+
+procedure TRegRadioButtonForTest.TriggerClick;
+begin
+  Click;
+end;
 
 { TRegRaidoButtonWrapperUTF8 }
 
