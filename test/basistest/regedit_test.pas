@@ -53,12 +53,33 @@ uses
 { TRegEditGenericTest }
 
 procedure TRegEditGenericTest<_T1,_T2>.WriteRegistryProc(aIni: TRegIniFile);
-begin
+var
+  test_section: string;
+  test_ident: string;
+  test_default: string;
 
+  regvalue_by_ini: string;
+begin
+  with aIni do
+  begin
+    // 1. Fall CanWrite = True
+    FRegEditWrapper.RegControl.RegistrySettings.CanWrite := True;
+
+
+
+
+
+    // 2. Fall CanWrite = False
+    FRegEditWrapper.RegControl.RegistrySettings.CanWrite := False;
+    FRegEditWrapper.SetRegistryEntries;
+
+  end;
 end;
 
 procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryProc(aIni: TRegIniFile);
 begin
+
+
 
 end;
 

@@ -11,3 +11,4 @@ test/LazarusRegistryControlsTest.exe
 *.bak
 link.res
 ppas.bat
+*.lps

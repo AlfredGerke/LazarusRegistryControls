@@ -5,10 +5,10 @@ unit frmmain_09_M2;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  regcombobox, reglistbox, regchecklistbox, regcheckgroup, regradiogroup,
-  regcheckbox, regradiobutton, reglabel, regvaluelisteditor, regsourcen,
-  regedit;
+  Forms,
+  StdCtrls, regcombobox, reglistbox,
+  regchecklistbox, regcheckgroup, regradiogroup, regcheckbox, regradiobutton,
+  reglabel, regvaluelisteditor, regsourcen, regedit;
 
 type
 
@@ -50,9 +50,9 @@ uses
 
 procedure TMain.Button1Click(Sender: TObject);
 var
-  ini: TRegistryIniFile;
+  ini: TRegIniFile;
 begin
-  ini := TRegistryIniFile.Create('Software\Alfred');
+  ini := TRegIniFile.Create('Software\Alfred');
   ini.WriteString('Section', 'Test', 'Hallo');
   ini.free;
 end;

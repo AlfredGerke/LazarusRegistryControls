@@ -33,7 +33,10 @@ type
     FNewStringIdent: string;
     FGroupIdx: integer;
     FCheckRTLNeeded: boolean;
+    FKeyExistsSectionName: string;
 
+    procedure SectionExistsProc(aIni: TRegIniFile);
+    procedure IdentExistsProc(aIni: TRegIniFile);
     procedure DeleteRootKeyProc(aIni: TRegIniFile);
     procedure ReadStringProc(aIni: TRegIniFile);
     procedure ReadIntegerProc(aIni: TRegIniFile);
@@ -53,6 +56,10 @@ type
 
     property RegSrcWrapper: _T1
       read FRegSrcWrapper;
+
+    property KeyExistsSectionName: string
+      read FKeyExistsSectionName
+      write FKeyExistsSectionName;
 
     property ReadSectionName: string
       read FReadSectionName
@@ -130,9 +137,9 @@ type
     procedure DeleteKey;
     procedure EraseSection;
     procedure DeleteRootKey;
+    procedure SectionExists;
+    procedure IdentExists;
   end;
-
-  { TRegistrySourceGenericTest }
 
   { TRegistrySourceTest }
 
@@ -155,6 +162,75 @@ uses
   regconvutils;
 
 { TRegistrySourceGenericTest }
+
+procedure TRegistrySourceGenericTest<_T1>.SectionExistsProc(aIni: TRegIniFile);
+var
+  key_for_check: string;
+  key_is_present: boolean;
+
+  section_found: boolean;
+begin
+  key_for_check :=
+    UTF8DecodeIfNeeded(ComposedRootKeyForCheck  + '\' + KeyExistsSectionName,
+      CheckRTLNeeded);
+  try
+    key_is_present := aIni.KeyExists(key_for_check);
+
+    // Prüfen ob der Test-Ident vorhanden ist
+    // Zu Beginn des Test muss der Test-Ident vorhanden sein
+    AssertTrue('KeyExists: Test nicht durchführbar, TestKey ist nicht vorhanden',
+      key_is_present);
+  finally
+    //
+  end;
+
+  section_found :=
+    FRegSrcWrapper.RegistrySource.SectionExists(KeyExistsSectionName);
+
+  AssertEquals('SectionExists: RegistrySource liefert falschen Wert',
+    key_is_present, section_found);
+end;
+
+procedure TRegistrySourceGenericTest<_T1>.IdentExistsProc(aIni: TRegIniFile);
+var
+  ident_is_present: boolean;
+  ident_found: boolean;
+  key_for_check: string;
+begin
+  key_for_check :=
+    UTF8DecodeIfNeeded(ComposedRootKeyForCheck  + '\' + KeyExistsSectionName,
+      CheckRTLNeeded);
+  try
+    if aIni.OpenKeyReadOnly(key_for_check) then
+      ident_is_present :=
+        aIni.ValueExists(UTF8DecodeIfNeeded(StringIdent, CheckRTLNeeded));
+
+    // Prüfen ob der Test-Ident vorhanden ist
+    // Zu Beginn des Test muss der Test-Ident vorhanden sein
+    AssertTrue('IdentExists: Test nicht durchführbar, TestIdent ist nicht vorhanden',
+      ident_is_present);
+  finally
+    aIni.CloseKey;
+  end;
+
+  ident_found :=
+    FRegSrcWrapper.RegistrySource.IdentExists(KeyExistsSectionName, StringIdent);
+
+  AssertEquals('IdentExists: RegistrySource liefert falschen Wert',
+    ident_is_present, ident_found);
+end;
+
+procedure TRegistrySourceGenericTest<_T1>.SectionExists;
+begin
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    SectionExistsProc);
+end;
+
+procedure TRegistrySourceGenericTest<_T1>.IdentExists;
+begin
+  GetRegIniFile(RegSrcWrapper.RegistrySource.GetComposedRootKey,
+    IdentExistsProc);
+end;
 
 procedure TRegistrySourceGenericTest<_T1>.DeleteRootKeyProc(aIni: TRegIniFile);
 var
@@ -682,6 +758,7 @@ end;
 
 procedure TRegistrySourceTest.SetSectionsAndIdents;
 begin
+  KeyExistsSectionName := 'KeyExistsSection';
   ReadSectionName := 'ReadSection';
   WriteSectionName := 'WriteSection';
   RenameSectionName := 'RenameSection';
@@ -706,6 +783,7 @@ end;
 
 procedure TRegistrySourceUTF8Test.SetSectionsAndIdents;
 begin
+  KeyExistsSectionName := 'KeyExistsSection_mit_ßÜÖÄüöä';
   ReadSectionName := 'ReadSection_mit_ßÜÖÄüöä';
   WriteSectionName := 'WriteSection_mit_ßÜÖÄüöä';
   RenameSectionName := 'RenameSection_mit_ßÜÖÄüöä';

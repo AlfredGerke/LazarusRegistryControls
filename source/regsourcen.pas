@@ -273,6 +273,22 @@ type
     function GetComposedRootKeyForDefaults: string;
     function GetComposedRootKeyForCommon: string;
 
+    function IdentExists(aSection: string;
+                         aIdent: string;
+                         aCheckDefaults: boolean = False): boolean; reintroduce; overload;
+    function IdentExists(aRootKey: string;
+                         aRootKeyForDefaults: string;
+                         aRootForDefaults: string;
+                         aSection: string;
+                         aIdent: string;
+                         aCheckDefaults: boolean = False): boolean; reintroduce; overload;
+    function SectionExists(aRootKey: string;
+                           aRootKeyForDefaults: string;
+                           aRootForDefaults: string;
+                           aSection: string;
+                           aCheckDefaults: boolean = False): boolean; reintroduce; overload;
+    function SectionExists(aSection: string;
+                           aCheckDefaults: boolean = False): boolean; reintroduce; overload;
     function ReadString(aRootKey: string;
                         aRootKeyForDefaults: string;
                         aRootForDefaults: string;
@@ -912,6 +928,57 @@ begin
     FreeAndNil(FClientList);
 
   inherited Destroy;
+end;
+
+function TCustomRegistrySource.IdentExists(aSection: string;
+  aIdent: string;
+  aCheckDefaults: boolean = False): boolean;
+begin
+  try
+    Result := IdentExists(GetComposedRootKey,
+                GetComposedRootKeyForDefaults,
+                RootForDefaults,
+                aSection,
+                aIdent,
+                aCheckDefaults);
+  except
+    on E: Exception do
+      raise;
+  end;
+end;
+
+function TCustomRegistrySource.IdentExists(aRootKey: string;
+  aRootKeyForDefaults: string;
+  aRootForDefaults: string;
+  aSection: string;
+  aIdent: string;
+  aCheckDefaults: boolean = False): boolean;
+begin
+  Result := False;
+end;
+
+function TCustomRegistrySource.SectionExists(aRootKey: string;
+  aRootKeyForDefaults: string;
+  aRootForDefaults: string;
+  aSection: string;
+  aCheckDefaults: boolean = False): boolean;
+begin
+  Result := False;
+end;
+
+function TCustomRegistrySource.SectionExists(aSection: string;
+  aCheckDefaults: boolean = False): boolean;
+begin
+  try
+    Result := SectionExists(GetComposedRootKey,
+                GetComposedRootKeyForDefaults,
+                RootForDefaults,
+                aSection,
+                aCheckDefaults);
+  except
+    on E: Exception do
+      raise;
+  end;
 end;
 
 function TCustomRegistrySource.ReadString(aRootKey: string;

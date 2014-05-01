@@ -13,19 +13,22 @@ type
   TStrConvertTarget = (sctUnknown, sctToUTF8, sctToAnsi);
 
 function UTF8ToSysIfNeeded(aString: string;
-  aCheckRTLAnsi: boolean): string;
+                           aCheckRTLAnsi: boolean): string;
+
 function SysToUTF8IfNeeded(aString: string;
-  aCheckRTLAnsi: boolean): string;
+                           aCheckRTLAnsi: boolean): string;
+
 procedure SysToUTF8StringsIfNeeded(aStrings: TStrings;
-  aCheckRTLAnsi: boolean);
+                                   aCheckRTLAnsi: boolean);
+
 procedure UTF8ToSysStringsIfNeeded(aStrings: TStrings;
-  aCheckRTLAnsi: boolean);
+                                   aCheckRTLAnsi: boolean);
 
 function UTF8DecodeIfNeeded(aString: string;
-  aCheckRTLAnsi: boolean): string;
+                            aCheckRTLAnsi: boolean): string;
 
 function UTF8EncodeIfNeeded(aString: string;
-  aCheckRTLAnsi: boolean): string;
+                            aCheckRTLAnsi: boolean): string;
 
 implementation
 
@@ -40,8 +43,10 @@ begin
   if (aCheckRTLAnsi and NeedRTLAnsi) then
   begin
     case aTarget of
-      sctToUTF8: Result := SysToUTF8(aString);
-      sctToAnsi: Result := UTF8ToSys(aString);
+      sctToUTF8:
+        Result := SysToUTF8(aString);
+      sctToAnsi:
+        Result := UTF8ToSys(aString);
     else
       Result := aString;
     end;
@@ -79,8 +84,10 @@ begin
       for anz := 0 to list.count-1 do
       begin
         case aTarget of
-          sctToUTF8: item := SysToUTF8(list.strings[anz]);
-          sctToAnsi: item := UTF8ToSys(list.strings[anz]);
+          sctToUTF8:
+            item := SysToUTF8(list.strings[anz]);
+          sctToAnsi:
+            item := UTF8ToSys(list.strings[anz]);
         else
           item := list.strings[anz];
         end;

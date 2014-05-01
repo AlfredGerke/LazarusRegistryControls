@@ -28,8 +28,8 @@ type
     procedure SetRegistryEntries; virtual;
     procedure SetRegistrySettings; virtual;
   public
-    procedure GetRootKeys(var ACheckRTLAnsi: boolean;
-                          var ARootKeysStruct: TRootKeysStruct);
+    procedure GetRootKeys(var aCheckRTLAnsi: boolean;
+                          var aRootKeysStruct: TRootKeysStruct);
     procedure PublishedProperties; virtual;
     procedure RootKeysStruct; virtual;
 
@@ -123,6 +123,10 @@ begin
       WriteString(UTF8Decode(SEC_FPCUNIT_URF8TEST),
         UTF8Decode(IDENT_LRC_VERSION_UTF8TEST),
         UTF8Decode(_VERSION));
+
+      WriteString(UTF8Decode('KeyExistsSection_mit_ßÜÖÄüöä'),
+        UTF8Decode('String_Ident_mit_ßÜÖÄüöä'),
+        UTF8Decode('String_Value_mit_ßÜÖÄüöä'));
     end;
   finally
     if Assigned(ini) then
@@ -226,6 +230,8 @@ begin
 
       WriteString('RenameSection', 'String_Ident', 'String_Value');
 
+      WriteString('KeyExistsSection', 'String_Ident', 'String_Value');
+
       WriteString(SEC_FPCUNIT_TEST, IDENT_LRC_VERSION, _VERSION);
     end;
   finally
@@ -253,49 +259,49 @@ begin
   FRegistrySource.CheckRTLAnsi := True;
 end;
 
-procedure TRegistrySourceWrapper.GetRootKeys(var ACheckRTLAnsi: boolean;
-  var ARootKeysStruct: TRootKeysStruct);
+procedure TRegistrySourceWrapper.GetRootKeys(var aCheckRTLAnsi: boolean;
+  var aRootKeysStruct: TRootKeysStruct);
 begin
-  ACheckRTLAnsi := FRegistrySource.CheckRTLAnsi;
-  ARootKeysStruct.Clear;
+  aCheckRTLAnsi := FRegistrySource.CheckRTLAnsi;
+  aRootKeysStruct.Clear;
 
-  ARootKeysStruct.RootKey :=
+  aRootKeysStruct.RootKey :=
     IncludeTrailingPathDelimiter(FRegistrySource.RootKey);
 
-  ARootKeysStruct.RootKey :=
+  aRootKeysStruct.RootKey :=
     _ChangeTokenForKey(TokenTypeStr[ttOrganisation],
       FRegistrySource.Organisation,
       ARootKeysStruct.RootKey);
 
-  ARootKeysStruct.RootKey :=
+  aRootKeysStruct.RootKey :=
     _ChangeTokenForKey(TokenTypeStr[ttProject],
       FRegistrySource.Project,
       ARootKeysStruct.RootKey);
 
-  ARootKeysStruct.RootKey :=
+  aRootKeysStruct.RootKey :=
     _ChangeTokenForKey(TokenTypeStr[ttGUID], FRegistrySource.GUID,
       ARootKeysStruct.RootKey);
 
-  ARootKeysStruct.RootKeyForDefaults :=
+  aRootKeysStruct.RootKeyForDefaults :=
     IncludeTrailingPathDelimiter(FRegistrySource.RootKeyForDefaults);
 
-  ARootKeysStruct.RootKeyForDefaults :=
+  aRootKeysStruct.RootKeyForDefaults :=
     _ChangeTokenForKey(TokenTypeStr[ttOrganisation],
       FRegistrySource.Organisation,
       ARootKeysStruct.RootKeyForDefaults);
 
-  ARootKeysStruct.RootKeyForDefaults :=
+  aRootKeysStruct.RootKeyForDefaults :=
     _ChangeTokenForKey(TokenTypeStr[ttProject],
       FRegistrySource.Project,
-      ARootKeysStruct.RootKeyForDefaults);
+      aRootKeysStruct.RootKeyForDefaults);
 
-  ARootKeysStruct.RootKeyForDefaults :=
+  aRootKeysStruct.RootKeyForDefaults :=
     _ChangeTokenForKey(TokenTypeStr[ttGUID], FRegistrySource.GUID,
-      ARootKeysStruct.RootKeyForDefaults);
+      aRootKeysStruct.RootKeyForDefaults);
 
-  ARootKeysStruct.GUID := FRegistrySource.GUID;
-  ARootKeysStruct.Project := FRegistrySource.Project;
-  ARootKeysStruct.Organisation := FRegistrySource.Organisation;
+  aRootKeysStruct.GUID := FRegistrySource.GUID;
+  aRootKeysStruct.Project := FRegistrySource.Project;
+  aRootKeysStruct.Organisation := FRegistrySource.Organisation;
 end;
 
 procedure TRegistrySourceWrapper.PublishedProperties;

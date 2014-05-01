@@ -6,7 +6,7 @@ object Main: TMain
   Caption = 'Example (LRC 0.9 M2)'
   ClientHeight = 442
   ClientWidth = 873
-  LCLVersion = '1.2.2.0'
+  LCLVersion = '1.2.0.3'
   object RegCheckBox1: TRegCheckBox
     Left = 16
     Height = 19

@@ -122,6 +122,10 @@ type
                            const Ident: string;
                            Value: Longint);
     //!-->
+
+    function SectionExists(aSection: string): boolean;
+    function IdentExists(aSection: string;
+                         aIdent: string): boolean;
     procedure EraseSectionForDefaults(aSection: string);
     procedure DeleteKeyForDefaults(aSection: string;
                                    aKey: string);
@@ -1022,6 +1026,17 @@ begin
   ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
 
   inherited WriteInteger(section_str, ident_str, Value);
+end;
+
+function TDataByCurrentUser.SectionExists(aSection: string): boolean;
+begin
+
+end;
+
+function TDataByCurrentUser.IdentExists(aSection: string;
+  aIdent: string): boolean;
+begin
+
 end;
 
 procedure TDataByCurrentUser.EraseSectionForDefaults(aSection: string);
