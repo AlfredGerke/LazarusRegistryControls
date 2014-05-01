@@ -70,31 +70,33 @@ begin
   with aIni do
   begin
     // 1. Fall CanRead = True
+    FRegRadioButtonWrapper.RegControl.RegistrySettings.CanRead := True;
+
     value_by_regini :=
       ReadBool(test_section, test_ident, test_default);
 
-    AssertTrue('TRegRadioButton.ReadReg: Test nicht durchführbar, Vergleichswerte sind identisch',
+    AssertTrue('1. Fall CanRead = True - TRegRadioButton.ReadReg: Test nicht durchführbar, Vergleichswerte sind identisch',
       (value_by_regini <> test_default));
 
     FRegRadioButtonWrapper.RegControl.Checked := test_default;
-    FRegRadioButtonWrapper.RegControl.RegistrySettings.CanRead := True;
     FRegRadioButtonWrapper.ReadFromReg(True, rdoGeneral, 'TRegRadioButton');
 
-    AssertEquals('TRegRadioButton.Checked', value_by_regini,
+    AssertEquals('1. Fall CanRead = True - TRegRadioButton.Checked', value_by_regini,
       FRegRadioButtonWrapper.RegControl.Checked);
 
     // 2. Fall CanRead = False
+    FRegRadioButtonWrapper.RegControl.RegistrySettings.CanRead := False;
+
     value_by_regini :=
       ReadBool(test_section, test_ident, test_default);
 
-    AssertTrue('TRegRadioButton.ReadReg: Test nicht durchführbar, Vergleichswerte sind identisch',
+    AssertTrue('2. Fall CanRead = False - TRegRadioButton.ReadReg: Test nicht durchführbar, Vergleichswerte sind identisch',
       (value_by_regini <> test_default));
 
     FRegRadioButtonWrapper.RegControl.Checked := test_default;
-    FRegRadioButtonWrapper.RegControl.RegistrySettings.CanRead := False;
     FRegRadioButtonWrapper.ReadFromReg(True, rdoGeneral, 'TRegRadioButton');
 
-    AssertEquals('TRegRadioButton.Checked', test_default,
+    AssertEquals('2. Fall CanRead = False - TRegRadioButton.Checked', test_default,
       FRegRadioButtonWrapper.RegControl.Checked);
   end;
 end;
@@ -108,45 +110,62 @@ var
 
   value_by_regini_before: boolean;
   value_by_regini_post: boolean;
-
-  key_for_check: string;
-  ident_is_present: boolean;
 begin
   { TODO 10 -oAlfred Gerke -cTest : Komplett überarbeiten; vorhandener Code ist NUR ein Beispiel }
   test_default := Default;
   test_section:= GetSectionUTF8Decoded;
   test_ident := GetIdentUTF8Decoded;
 
-  ident_is_present := False;
-    key_for_check :=
-      UTF8DecodeIfNeeded(FRegSrcWrapper.RegistrySource.GetComposedRootKey
-        + Section, CheckRTLNeeded);
-
   with aIni do
   begin
     // 1. Fall CanWrite = True
-    ident_is_present :=
-       aIni.ValueExists(UTF8DecodeIfNeeded(test_section + '\' + test_ident, CheckRTLNeeded));
-
-    // Prüfen ob der Test-Ident vorhanden ist
-    // Zu Beginn des Test muss der Test-Ident vorhanden sein
-    AssertTrue('TRegCheckBox.WriteReg: Test nicht durchführbar, TestIdent ist nicht vorhanden',
-      ident_is_present);
+    FRegRadioButtonWrapper.RegControl.RegistrySettings.CanWrite := True;
 
     value_by_regini_before :=
       ReadBool(test_section, test_ident, test_default);
 
-    FRegRadioButtonWrapper.RegControl.RegistrySettings.CanWrite := True;
+    // Prüfen ob der Test-Ident vorhanden und ungleich dem Default
+    // Nur wenn der gelesene Wert aus der Registry nicht mit dem Default übereinstimmt
+    // kann man sicher sein, das der Wert tatsächlich in der Registry vorhanden ist
+    AssertTrue('1. Fall CanWrite = True - TRegRadioButton.WriteReg: Test nicht durchführbar, TestIdent und Default unterscheiden sich nicht',
+      (value_by_regini_before <> test_default));
+
     FRegRadioButtonWrapper.RegControl.Checked := not value_by_regini_before;
     FRegRadioButtonWrapper.RegControl.TriggerClick;
 
     value_by_regini_post :=
-      ReadBool(test_section, test_ident, test_default);
+      ReadBool(test_section, test_ident, value_by_regini_before);
 
-    AssertFalse('TRegCheckBox.WriteReg: Test nicht eindeutig, Wert-Vorher und Wert-Nachher sind identisch',
+    AssertTrue('1. Fall CanWrite = True - TRegRadioButton.WriteReg: Test nicht eindeutig, Wert-Vorher und Wert-Nachher sind identisch',
       (value_by_regini_before <> value_by_regini_post));
 
-    AssertEquals('TRegCheckBox.Checked', value_by_regini_post,
+    AssertEquals('1. Fall CanWrite = True - TRegRadioButton.Checked', value_by_regini_post,
+      FRegRadioButtonWrapper.RegControl.Checked);
+
+    // 2. Fall CanWrite = False
+    FRegRadioButtonWrapper.RegControl.RegistrySettings.CanWrite := False;
+    // Testwerte wieder einrichten
+    FRegRadioButtonWrapper.SetRegistryEntries;
+
+    value_by_regini_before :=
+      ReadBool(test_section, test_ident, test_default);
+
+    // Prüfen ob der Test-Ident vorhanden und ungleich dem Default
+    // Nur wenn der gelesene Wert aus der Registry nicht mit dem Default übereinstimmt
+    // kann man sicher sein, das der Wert tatsächlich in der Registry vorhanden ist
+    AssertTrue('2. Fall CanWrite = False = True - TRegRadioButton.WriteReg: Test nicht durchführbar, TestIdent und Default unterscheiden sich nicht',
+      (value_by_regini_before <> test_default));
+
+    FRegRadioButtonWrapper.RegControl.Checked := not value_by_regini_before;
+    FRegRadioButtonWrapper.RegControl.TriggerClick;
+
+    value_by_regini_post :=
+      ReadBool(test_section, test_ident, value_by_regini_before);
+
+    AssertTrue('2. Fall CanWrite = False - TRegRadioButton.WriteReg: Test nicht eindeutig, Wert-Vorher und Wert-Nachher müssen identisch sein',
+      (value_by_regini_before = value_by_regini_post));
+
+    AssertEquals('2. Fall CanWrite = False - TRegRadioButton.Checked', not value_by_regini_before,
       FRegRadioButtonWrapper.RegControl.Checked);
   end;
 end;
@@ -223,6 +242,8 @@ begin
   Section := SEC_TREGRADIOBUTTON;
   Ident := IDENT_CHECK_PROPERTY;
   Default := DEFAULT_CHECKED_ENTRY;
+
+  CheckRTLNeeded := True;
 end;
 
 { TRegRadioButtonTest }
@@ -234,6 +255,8 @@ begin
   Section := SEC_TREGRADIOBUTTON;
   Ident := IDENT_CHECK_PROPERTY;
   Default := DEFAULT_CHECKED_ENTRY;
+
+  CheckRTLNeeded := True;
 end;
 
 end.

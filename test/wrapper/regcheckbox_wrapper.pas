@@ -11,9 +11,16 @@ uses
 
 type
 
+  { TRegCheckBoxForTest }
+
+  TRegCheckBoxForTest = class(TRegCheckBox)
+  public
+    procedure TriggerClick;
+  end;
+
   { TRegCheckBoxWrapper }
 
-  TRegCheckBoxWrapper = class(TWrapperCS<TRegCheckBox>)
+  TRegCheckBoxWrapper = class(TWrapperCS<TRegCheckBoxForTest>)
   private
     FDefault: boolean;
 
@@ -39,7 +46,7 @@ type
   TRegCheckBoxWrapperUTF8 = class(TRegCheckBoxWrapper)
   private
   protected
-    procedure SetSectionsAndIdents; virtual;
+    procedure SetSectionsAndIdents; override;
     procedure DeleteCaptionEntries; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
@@ -53,6 +60,13 @@ implementation
 uses
   test_const,
   fpcunit;
+
+{ TRegCheckBoxForTest }
+
+procedure TRegCheckBoxForTest.TriggerClick;
+begin
+  Click;
+end;
 
 { TRegCheckBoxWrapperUTF8 }
 

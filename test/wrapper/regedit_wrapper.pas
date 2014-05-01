@@ -15,13 +15,20 @@ type
 
   TRegEditWrapper = class(TWrapper<TRegEdit>)
   private
+    FDefault: string;
   protected
+    procedure _Initialize; override;
+    procedure SetSectionsAndIdents; virtual;
     procedure SetRegControl; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
+
+    property Default: string
+      read FDefault
+      write FDefault;
   public
-  public
+    procedure SectionIdentDefault;
   end;
 
   { TRegEditWrapperUTF8 }
@@ -29,6 +36,7 @@ type
   TRegEditWrapperUTF8 = class(TRegEditWrapper)
   private
   protected
+    procedure SetSectionsAndIdents; virtual;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
@@ -40,9 +48,15 @@ type
 implementation
 
 uses
-  test_const;
+  test_const,
+  fpcunit;
 
 { TRegEditWrapperUTF8 }
+
+procedure TRegEditWrapperUTF8.SetSectionsAndIdents;
+begin
+
+end;
 
 procedure TRegEditWrapperUTF8.SetRegistryEntries;
 begin
@@ -56,6 +70,16 @@ begin
 end;
 
 { TRegEditWrapper }
+
+procedure TRegEditWrapper._Initialize;
+begin
+  inherited _Initialize;
+end;
+
+procedure TRegEditWrapper.SetSectionsAndIdents;
+begin
+
+end;
 
 procedure TRegEditWrapper.SetRegControl;
 begin
@@ -80,6 +104,16 @@ begin
   RegControl.RegistrySettings.Default := DEFAULT_TEXT_ENTRY;
   RegControl.RegistrySettings.Section := SEC_TREGEDIT;
   RegControl.RegistrySettings.Ident := IDENT_TEXT_PROPERTY;
+end;
+
+procedure TRegEditWrapper.SectionIdentDefault;
+begin
+  TAssert.AssertEquals('TRegEdit.RegistrySection.Section',
+    Section, FRegControl.RegistrySettings.Section);
+  TAssert.AssertEquals('TRegEdit.RegistrySection.Ident',
+    Ident, FRegControl.RegistrySettings.Ident);
+  TAssert.AssertEquals('TRegEdit.RegistrySection.Default',
+    Default, FRegControl.RegistrySettings.Default);
 end;
 
 end.

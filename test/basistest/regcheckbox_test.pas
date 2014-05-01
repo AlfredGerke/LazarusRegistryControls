@@ -55,22 +55,126 @@ uses
 
 
 procedure TRegCheckBoxGenericTest<_T1,_T2>.WriteRegistryProc(aIni: TRegIniFile);
-begin
+var
+  test_ident: string;
+  test_section: string;
+  test_default: boolean;
 
+  value_by_regini_before: boolean;
+  value_by_regini_post: boolean;
+begin
+  { TODO 10 -oAlfred Gerke -cTest : Komplett überarbeiten; vorhandener Code ist NUR ein Beispiel }
+  test_default := Default;
+  test_section:= GetSectionUTF8Decoded;
+  test_ident := GetIdentUTF8Decoded;
+
+  with aIni do
+  begin
+    // 1. Fall CanWrite = True
+    FRegCheckBoxWrapper.RegControl.RegistrySettings.CanWrite := True;
+
+    value_by_regini_before :=
+      ReadBool(test_section, test_ident, test_default);
+
+    // Prüfen ob der Test-Ident vorhanden und ungleich dem Default
+    // Nur wenn der gelesene Wert aus der Registry nicht mit dem Default übereinstimmt
+    // kann man sicher sein, das der Wert tatsächlich in der Registry vorhanden ist
+    AssertTrue('1. Fall CanWrite = True - TRegCheckBox.WriteReg: Test nicht durchführbar, TestIdent und Default unterscheiden sich nicht',
+      (value_by_regini_before <> test_default));
+
+    FRegCheckBoxWrapper.RegControl.Checked := not value_by_regini_before;
+    FRegCheckBoxWrapper.RegControl.TriggerClick;
+
+    value_by_regini_post :=
+      ReadBool(test_section, test_ident, value_by_regini_before);
+
+    AssertTrue('1. Fall CanWrite = True - TRegCheckBox.WriteReg: Test nicht eindeutig, Wert-Vorher und Wert-Nachher sind identisch',
+      (value_by_regini_before <> value_by_regini_post));
+
+    AssertEquals('1. Fall CanWrite = True - TRegCheckBox.Checked', value_by_regini_post,
+      FRegCheckBoxWrapper.RegControl.Checked);
+
+    // 2. Fall CanWrite = False
+    FRegCheckBoxWrapper.RegControl.RegistrySettings.CanWrite := False;
+    // Testwerte wieder einrichten
+    FRegCheckBoxWrapper.SetRegistryEntries;
+
+    value_by_regini_before :=
+      ReadBool(test_section, test_ident, test_default);
+
+    // Prüfen ob der Test-Ident vorhanden und ungleich dem Default
+    // Nur wenn der gelesene Wert aus der Registry nicht mit dem Default übereinstimmt
+    // kann man sicher sein, das der Wert tatsächlich in der Registry vorhanden ist
+    AssertTrue('2. Fall CanWrite = False = True - TRegCheckBox.WriteReg: Test nicht durchführbar, TestIdent und Default unterscheiden sich nicht',
+      (value_by_regini_before <> test_default));
+
+    FRegCheckBoxWrapper.RegControl.Checked := not value_by_regini_before;
+    FRegCheckBoxWrapper.RegControl.TriggerClick;
+
+    value_by_regini_post :=
+      ReadBool(test_section, test_ident, value_by_regini_before);
+
+    AssertTrue('2. Fall CanWrite = False - TRegCheckBox.WriteReg: Test nicht eindeutig, Wert-Vorher und Wert-Nachher müssen identisch sein',
+      (value_by_regini_before = value_by_regini_post));
+
+    AssertEquals('2. Fall CanWrite = False - TRegCheckBox.Checked', not value_by_regini_before,
+      FRegCheckBoxWrapper.RegControl.Checked);
+  end;
 end;
 
 procedure TRegCheckBoxGenericTest<_T1,_T2>.ReadRegistryProc(aIni: TRegIniFile);
-begin
+var
+  test_ident: string;
+  test_section: string;
+  test_default: boolean;
 
+  value_by_regini: boolean;
+begin
+  test_default := Default;
+  test_section:= GetSectionUTF8Decoded;
+  test_ident := GetIdentUTF8Decoded;
+
+  with aIni do
+  begin
+    // 1. Fall CanRead = True
+    FRegCheckBoxWrapper.RegControl.RegistrySettings.CanRead := True;
+
+    value_by_regini :=
+      ReadBool(test_section, test_ident, test_default);
+
+    AssertTrue('1. Fall CanRead = True - TRegCheckBox.ReadReg: Test nicht durchführbar, Vergleichswerte sind identisch',
+      (value_by_regini <> test_default));
+
+    FRegCheckBoxWrapper.RegControl.Checked := test_default;
+    FRegCheckBoxWrapper.ReadFromReg(True, rdoGeneral, 'TRegCheckBox');
+
+    AssertEquals('1. Fall CanRead = True - TRegCheckBox.Checked', value_by_regini,
+      FRegCheckBoxWrapper.RegControl.Checked);
+
+    // 2. Fall CanRead = False
+    FRegCheckBoxWrapper.RegControl.RegistrySettings.CanRead := False;
+
+    value_by_regini :=
+      ReadBool(test_section, test_ident, test_default);
+
+    AssertTrue('2. Fall CanRead = False - TRegCheckBox.ReadReg: Test nicht durchführbar, Vergleichswerte sind identisch',
+      (value_by_regini <> test_default));
+
+    FRegCheckBoxWrapper.RegControl.Checked := test_default;
+    FRegCheckBoxWrapper.ReadFromReg(True, rdoGeneral, 'TRegCheckBox');
+
+    AssertEquals('2. Fall CanRead = False - TRegCheckBox.Checked', test_default,
+      FRegCheckBoxWrapper.RegControl.Checked);
+  end;
 end;
 
 procedure TRegCheckBoxGenericTest<_T1,_T2>.RookKeys;
 var
-  {%H-}check_rtl_ansi: boolean;
+  check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
 begin
   check_rtl_ansi := False;
-  {%H-}root_keys_struct.Clear;
+  root_keys_struct.Clear;
 
   FRegSrcWrapper.GetRootKeys(check_rtl_ansi, root_keys_struct);
 
@@ -85,8 +189,8 @@ end;
 
 procedure TRegCheckBoxGenericTest<_T1,_T2>.ReadByCaptionSettings;
 var
-  {%H-}caption_by_default: string;
-  {%H-}caption_by_registry: string;
+  caption_by_default: string;
+  caption_by_registry: string;
 begin
   caption_by_registry := _TREGCHECKBOX_CAPTION_VALUE;
   caption_by_default := DEFAULT_CAPTION_VALUE;
@@ -97,6 +201,8 @@ end;
 
 procedure TRegCheckBoxGenericTest<_T1,_T2>.SetUp;
 begin
+  inherited SetUp;
+
   FRegSrcWrapper := _T1.Create;
   FRegCheckBoxWrapper := _T2.Create(FRegSrcWrapper.RegistrySource);
 end;
@@ -134,6 +240,8 @@ begin
   Section := SEC_TREGCHECKBOX;
   Ident := IDENT_CHECK_PROPERTY;
   Default := DEFAULT_CHECKED_ENTRY;
+
+  CheckRTLNeeded := True;
 end;
 
 { TRegCheckBoxUTF8Test }
@@ -145,6 +253,8 @@ begin
   Section := SEC_TREGCHECKBOX;
   Ident := IDENT_CHECK_PROPERTY;
   Default := DEFAULT_CHECKED_ENTRY;
+
+  CheckRTLNeeded := True;
 end;
 
 end.

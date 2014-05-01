@@ -191,6 +191,7 @@
     </Parsing>
     <Other>
       <CompilerMessages>
+        <IgnoredMessages idx5024="True" idx5026="True"/>
         <MsgFileName Value=""/>
       </CompilerMessages>
       <CompilerPath Value="$(CompPath)"/>
