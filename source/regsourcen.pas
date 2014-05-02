@@ -953,8 +953,39 @@ function TCustomRegistrySource.IdentExists(aRootKey: string;
   aSection: string;
   aIdent: string;
   aCheckDefaults: boolean = False): boolean;
+var
+  streg: TDataByCurrentUser;
 begin
   Result := False;
+
+  if aCheckDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings,
+               FCheckRTLAnsi)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings,
+               FCheckRTLAnsi);
+
+  try
+    try
+      if aCheckDefaults then
+        Result := streg.IdentExistsForDefaults(aSection, aIdent)
+      else
+        Result := streg.IdentExists(aSection, aIdent);
+    except
+      on E: Exception do
+      begin
+        Result := False;
+        raise;
+      end;
+    end;
+  finally
+    if Assigned(streg) then
+      FreeAndNil(streg);
+  end;
 end;
 
 function TCustomRegistrySource.SectionExists(aRootKey: string;
@@ -962,8 +993,39 @@ function TCustomRegistrySource.SectionExists(aRootKey: string;
   aRootForDefaults: string;
   aSection: string;
   aCheckDefaults: boolean = False): boolean;
+var
+  streg: TDataByCurrentUser;
 begin
   Result := False;
+
+  if aCheckDefaults then
+    streg := TDataByCurrentUser.Create(aRootKey,
+               aRootForDefaults,
+               aRootKeyForDefaults,
+               FPrefereStrings,
+               FCheckRTLAnsi)
+  else
+    streg := TDataByCurrentUser.Create(aRootKey,
+               FPrefereStrings,
+               FCheckRTLAnsi);
+
+  try
+    try
+      if aCheckDefaults then
+        Result := streg.SectionExistsForDefaults(aSection)
+      else
+        Result := streg.SectionExists(aSection);
+    except
+      on E: Exception do
+      begin
+        Result := False;
+        raise;
+      end;
+    end;
+  finally
+    if Assigned(streg) then
+      FreeAndNil(streg);
+  end;
 end;
 
 function TCustomRegistrySource.SectionExists(aSection: string;

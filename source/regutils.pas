@@ -11,6 +11,43 @@ uses
 
 type
 
+  { TRegUtils }
+
+  TRegUtils = class
+  public type
+    TManageRegistry = function(aReg: TRegistry): boolean of object;
+  private
+    FSection: string;
+    FIdent: string;
+    FOpenReadOnly: boolean;
+    FCanCreate: boolean;
+  public
+    class function GetInstance: TRegUtils;
+
+    function GetRegistry(aRoot: HKEY;
+                         aRootKey: string;
+                         aProc: TManageRegistry;
+                         aOpenKeyReadOnly: boolean = True;
+                         aCanCreate: boolean = False): boolean;
+    procedure Refresh;
+
+    // Wird von GetRegistry gesetzt
+    property CanCreate: boolean
+      read FCanCreate;
+
+
+    property OpenReadOnly: boolean
+      read FOpenReadOnly;
+
+    property Section: string
+      read FSection
+      write FSection;
+
+    property Ident: string
+      read FIdent
+      write FIdent;
+  end;
+
   { TDefaultsForCurrentUser }
 
   TDefaultsForCurrentUser = class
@@ -20,6 +57,8 @@ type
     FPrefereStrings: boolean;
     FCheckRTLAnsi: boolean;
 
+    function SectionExistsProc(aReg: TRegistry): boolean;
+    function IdentExistsProc(aReg: TRegistry): boolean;
     procedure ReadSectionValuesByKind(aSection: string;
                                       aStrings: TStrings;
                                       aKind: TListSourceKind = Both;
@@ -32,6 +71,9 @@ type
       read FCheckRTLAnsi
       write FCheckRTLAnsi;
   public
+    function SectionExists(aSection: string): boolean;
+    function IdentExists(aSection: string;
+                         aIdent: string): boolean;
     function DeleteKey(aSection: string): boolean;
     function DeleteValue(aSection: string;
                          aKey: string): boolean;
@@ -123,7 +165,10 @@ type
                            Value: Longint);
     //!-->
 
+    function SectionExistsForDefaults(aSection: string): boolean;
     function SectionExists(aSection: string): boolean;
+    function IdentExistsForDefaults(aSection: string;
+                                    aIdent: string): boolean;
     function IdentExists(aSection: string;
                          aIdent: string): boolean;
     procedure EraseSectionForDefaults(aSection: string);
@@ -204,7 +249,118 @@ begin
   Result := error;
 end;
 
+{ TRegUtils }
+
+var
+  reg_util_instance: TRegUtils;
+
+class function TRegUtils.GetInstance: TRegUtils;
+begin
+  if not Assigned(reg_util_instance) then
+    reg_util_instance := TRegUtils.Create;
+
+  Result := reg_util_instance;
+end;
+
+function TRegUtils.GetRegistry(aRoot: HKEY;
+  aRootKey: string;
+  aProc: TManageRegistry;
+  aOpenKeyReadOnly: boolean = True;
+  aCanCreate: boolean = False): boolean;
+var
+  reg: TRegistry;
+  key_exists: boolean;
+  do_proc: boolean;
+  proc_success: boolean;
+begin
+  proc_success := False;
+  FOpenReadOnly := aOpenKeyReadOnly;
+  FCanCreate := aCanCreate;
+
+  reg := TRegistry.Create;
+  try
+    try
+      with reg do
+      begin
+        RootKey := aRoot;
+
+        key_exists := KeyExists(aRootKey);
+
+        if (FOpenReadOnly and key_exists) then
+          do_proc := OpenKeyReadOnly(aRootKey)
+        else
+          do_proc := OpenKey(aRootKey, FCanCreate);
+      end;
+
+      if (do_proc and Assigned(aProc)) then
+        proc_success := aProc(reg);
+
+      Result := proc_success;
+    except
+      on E: Exception do
+      begin
+        Result := False;
+      end;
+    end;
+  finally
+    if Assigned(reg) then
+      FreeAndNil(reg);
+  end
+end;
+
+procedure TRegUtils.Refresh;
+begin
+  FSection := EmptyStr;
+  FIdent := EmptyStr;
+  FOpenReadOnly := True;
+  FCanCreate := False;
+end;
+
 { TDefaultsForCurrentUser }
+
+function TDefaultsForCurrentUser.SectionExistsProc(aReg: TRegistry): boolean;
+var
+  key_to_check: string;
+  section_to_check: string;
+begin
+  Result := False;
+
+  with TRegUtils.GetInstance do
+  begin
+    section_to_check := Section;
+  end;
+
+  with aReg do
+  begin
+    key_to_check := concat(CurrentPath, section_to_check);
+
+    Result := KeyExists(key_to_check);
+  end;
+end;
+
+function TDefaultsForCurrentUser.IdentExistsProc(aReg: TRegistry): boolean;
+var
+  key_to_check: string;
+  section_to_check: string;
+  ident_to_check: string;
+begin
+  Result := False;
+
+  with TRegUtils.GetInstance do
+  begin
+    section_to_check := Section;
+    ident_to_check := Ident;
+  end;
+
+  with aReg do
+  begin
+    key_to_check := concat(CurrentPath, section_to_check);
+
+    if KeyExists(key_to_check) then
+      if OpenKeyReadOnly(key_to_check) then
+        Result := ValueExists(ident_to_check);
+  end;
+end;
 
 procedure TDefaultsForCurrentUser.ReadSectionValuesByKind(aSection: string;
   aStrings: TStrings;
@@ -361,6 +517,36 @@ begin
   end;
 end;
 
+function TDefaultsForCurrentUser.SectionExists(aSection: string): boolean;
+begin
+  with TRegUtils.GetInstance do
+  begin
+    Refresh;
+    try
+      Section := aSection;
+      Result := GetRegistry(GetHKeyRoot, DefaultKey, SectionExistsProc);
+    finally
+      Refresh;
+    end;
+  end;
+end;
+
+function TDefaultsForCurrentUser.IdentExists(aSection: string;
+  aIdent: string): boolean;
+begin
+  with TRegUtils.GetInstance do
+  begin
+    Refresh;
+    try
+      Section := aSection;
+      Ident := aIdent;
+      Result := GetRegistry(GetHKeyRoot, DefaultKey, IdentExistsProc);
+    finally
+      Refresh;
+    end;
+  end;
+end;
+
 function TDefaultsForCurrentUser.DeleteKey(aSection: string): boolean;
 var
   reg: TRegistry;
@@ -378,8 +564,7 @@ begin
         section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
         key := concat(DefaultKey, section_utf8_decoded);
 
-        if KeyExists(key) then
-          Result := DeleteKey(key);
+        Result := KeyExists(key);
 
         CloseKey;
       end;
@@ -797,13 +982,6 @@ constructor TDataByCurrentUser.Create(aFileName: string;
   aPrefereStrings: boolean = False;
   aCheckRTLAnsi: boolean = True);
 begin
-  // wenn das läuft Kommentar entfernen
-  {
-  inherited Create(aFileName);
-
-  CheckRTLAnsi := aCheckRTLAnsi;
-  PreferStringValues := aPrefereStrings;
-  }
   Create(aFileName, aPrefereStrings, aCheckRTLAnsi);
 
   FUseDefaults :=
@@ -1028,15 +1206,47 @@ begin
   inherited WriteInteger(section_str, ident_str, Value);
 end;
 
-function TDataByCurrentUser.SectionExists(aSection: string): boolean;
+function TDataByCurrentUser.SectionExistsForDefaults(aSection: string): boolean;
 begin
+  Result := UseDefaults.SectionExists(aSection);
+end;
 
+function TDataByCurrentUser.SectionExists(aSection: string): boolean;
+var
+  key_to_check: string;
+begin
+  key_to_check :=
+    concat(IncludeLeadingPathDelimiter(FileName),
+      UTF8DecodeIfNeeded(aSection, CheckRTLAnsi));
+
+  Result := KeyExists(key_to_check);
+end;
+
+function TDataByCurrentUser.IdentExistsForDefaults(aSection: string;
+  aIdent: string): boolean;
+begin
+  Result := UseDefaults.IdentExists(aSection, aIdent);
 end;
 
 function TDataByCurrentUser.IdentExists(aSection: string;
   aIdent: string): boolean;
+var
+  key_to_open: string;
+  ident_to_check: string;
 begin
+  if SectionExists(aSection) then
+  begin
+    key_to_open :=
+      concat(IncludeLeadingPathDelimiter(FileName),
+        UTF8DecodeIfNeeded(aSection, CheckRTLAnsi));
+    ident_to_check := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
 
+    if OpenKeyReadOnly(key_to_open) then
+    begin
+      Result := ValueExists(ident_to_check);
+      CloseKey;
+    end;
+  end;
 end;
 
 procedure TDataByCurrentUser.EraseSectionForDefaults(aSection: string);
