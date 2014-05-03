@@ -46,34 +46,34 @@
         <PackageName Value="FCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="25">
+    <Units Count="24">
       <Unit0>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LazarusRegistryControlsTest"/>
       </Unit0>
       <Unit1>
-        <Filename Value="registrysource_test.pas"/>
+        <Filename Value="basistest\registrysource_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="registrysource_test"/>
       </Unit1>
       <Unit2>
-        <Filename Value="lrc_test.pas"/>
+        <Filename Value="tests\lrc_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="lrc_test"/>
       </Unit2>
       <Unit3>
-        <Filename Value="regedit_test.pas"/>
+        <Filename Value="basistest\regedit_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regedit_test"/>
       </Unit3>
       <Unit4>
-        <Filename Value="registrysource_wrapper.pas"/>
+        <Filename Value="wrapper\registrysource_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="registrysource_wrapper"/>
       </Unit4>
       <Unit5>
-        <Filename Value="regedit_wrapper.pas"/>
+        <Filename Value="wrapper\regedit_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regedit_wrapper"/>
       </Unit5>
@@ -83,94 +83,90 @@
         <UnitName Value="test_const"/>
       </Unit6>
       <Unit7>
-        <Filename Value="test_wrapper.pas"/>
+        <Filename Value="wrapper\test_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="test_wrapper"/>
       </Unit7>
       <Unit8>
-        <Filename Value="regcheckbox_wrapper.pas"/>
+        <Filename Value="wrapper\regcheckbox_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regcheckbox_wrapper"/>
       </Unit8>
       <Unit9>
-        <Filename Value="regcheckbox_test.pas"/>
+        <Filename Value="basistest\regcheckbox_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regcheckbox_test"/>
       </Unit9>
       <Unit10>
-        <Filename Value="regradiobutton_wrapper.pas"/>
+        <Filename Value="wrapper\regradiobutton_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regradiobutton_wrapper"/>
       </Unit10>
       <Unit11>
-        <Filename Value="regradiobutton_test.pas"/>
+        <Filename Value="basistest\regradiobutton_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regradiobutton_test"/>
       </Unit11>
       <Unit12>
-        <Filename Value="test_utils.pas"/>
+        <Filename Value="untis\test_utils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="test_utils"/>
       </Unit12>
       <Unit13>
-        <Filename Value="lrc_0-9_m2_issue_30.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit13>
-      <Unit14>
-        <Filename Value="reglistbox_wrapper.pas"/>
+        <Filename Value="wrapper\reglistbox_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="reglistbox_wrapper"/>
-      </Unit14>
-      <Unit15>
-        <Filename Value="regchecklistbox_wrapper.pas"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="wrapper\regchecklistbox_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regchecklistbox_wrapper"/>
-      </Unit15>
-      <Unit16>
-        <Filename Value="regcombobox_wrapper.pas"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="wrapper\regcombobox_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regcombobox_wrapper"/>
-      </Unit16>
-      <Unit17>
-        <Filename Value="regradiogroup_wrapper.pas"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="wrapper\regradiogroup_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regradiogroup_wrapper"/>
-      </Unit17>
-      <Unit18>
-        <Filename Value="regcheckgroup_wrapper.pas"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="wrapper\regcheckgroup_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regcheckgroup_wrapper"/>
-      </Unit18>
-      <Unit19>
-        <Filename Value="regvaluelisteditor_wrapper.pas"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="wrapper\regvaluelisteditor_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="regvaluelisteditor_wrapper"/>
-      </Unit19>
-      <Unit20>
-        <Filename Value="issues\issues00035_test.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="issues00035_test"/>
-      </Unit20>
-      <Unit21>
+      </Unit18>
+      <Unit19>
         <Filename Value="issues\issue00035_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="issue00035_test"/>
-      </Unit21>
-      <Unit22>
+      </Unit19>
+      <Unit20>
         <Filename Value="basistest\reglabel_test.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="reglabel_test"/>
-      </Unit22>
-      <Unit23>
+      </Unit20>
+      <Unit21>
         <Filename Value="wrapper\reglabel_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="reglabel_wrapper"/>
-      </Unit23>
-      <Unit24>
+      </Unit21>
+      <Unit22>
         <Filename Value="tests\lrc_testcase.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="lrc_testcase"/>
-      </Unit24>
+      </Unit22>
+      <Unit23>
+        <Filename Value="issues\issue00030_test.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="issue00030_test"/>
+      </Unit23>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

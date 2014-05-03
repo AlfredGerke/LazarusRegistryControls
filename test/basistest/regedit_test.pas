@@ -59,12 +59,29 @@ var
   test_default: string;
 
   regvalue_by_ini: string;
+  ident_exists: boolean;
 begin
+  test_section := Section;
+  test_ident := Ident;
+  test_default := Default;
+
   with aIni do
   begin
     // 1. Fall CanWrite = True
     FRegEditWrapper.RegControl.RegistrySettings.CanWrite := True;
 
+    ident_exists :=
+      FRegSrcWrapper.RegistrySource.IdentExists(test_section, test_ident);
+
+    AssertTrue('1. Fall CanWrite = True: Test nicht durchführbar, Ident ist nicht vorhanden',
+      ident_exists);
+
+    regvalue_by_ini := ReadString(test_section, test_ident, DEFAULT_TEXT_ENTRY);
+
+    AssertTrue('1. Fall CanWrite = True: Test nicht durchführbar, Testidents sind identisch',
+      (regvalue_by_ini <> _TEXT_ENTRY) and (regvalue_by_ini <> _TEST_STRING));
+
+    FRegEditWrapper.RegControl.Text := _TEST_STRING;
 
 
 

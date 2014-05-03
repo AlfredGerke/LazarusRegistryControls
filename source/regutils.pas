@@ -117,6 +117,7 @@ type
     property Root: string
       read FRoot
       write FRoot;
+
     property DefaultKey: string
       read GetDefaultKey
       write FDefaultKey;
@@ -137,7 +138,7 @@ type
       read FCheckRTLAnsi
       write FCheckRTLAnsi;
   public
-    // überschrieben aus TRegIniFile/TRegistgry
+    // überschrieben aus TRegIniFile/TRegistry
     //!<--
     procedure EraseSection(const Section: string);
     procedure DeleteKey(const Section: String;

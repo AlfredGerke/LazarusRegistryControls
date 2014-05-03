@@ -36,6 +36,7 @@ const
   SEC_TREGEDIT = 'TRegEdit';
   DEFAULT_TEXT_ENTRY = 'Default-Eintrag';
   _TEXT_ENTRY = 'Text-Eintrag';
+  _TEST_STRING = 'Test-String';
   IDENT_TEXT_PROPERTY = 'Text-Property';
 
   SEC_TREGCHECKBOX = 'TRegCheckBox';
