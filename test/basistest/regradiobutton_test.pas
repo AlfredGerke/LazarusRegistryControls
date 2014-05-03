@@ -111,7 +111,6 @@ var
   value_by_regini_before: boolean;
   value_by_regini_post: boolean;
 begin
-  { TODO 10 -oAlfred Gerke -cTest : Komplett überarbeiten; vorhandener Code ist NUR ein Beispiel }
   test_default := Default;
   test_section:= GetSectionUTF8Decoded;
   test_ident := GetIdentUTF8Decoded;
