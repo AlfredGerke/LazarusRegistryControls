@@ -22,7 +22,14 @@ type
     FRegSrcWrapper: _T1;
     FRegEditWrapper: _T2;
 
-
+    procedure ReadRegistryCase3(aIni: TRegIniFile;
+                                aSection: string;
+                                aIdent: string;
+                                aDefault: string);
+    procedure ReadRegistryCase2(aIni: TRegIniFile;
+                                aSection: string;
+                                aIdent: string;
+                                aDefault: string);
     procedure ReadRegistryCase1(aIni: TRegIniFile;
                                 aSection: string;
                                 aIdent: string;
@@ -52,11 +59,13 @@ type
   end;
 
   { TRegEditTest }
+
   TRegEditTest= class(TRegEditGenericTest<TRegistrySourceWrapper, TRegEditWrapper>)
     procedure SetSectionsAndIdents; override;
   end;
 
   { TRegEditUTF8Test }
+
   TRegEditUTF8Test= class(TRegEditGenericTest<TRegistrySourceWrapperUTF8, TRegEditWrapperUTF8>)
     procedure SetSectionsAndIdents; override;
   end;
@@ -65,16 +74,142 @@ implementation
 
 uses
   test_const,
-  test_utils;
+  test_utils,
+  regconvutils;
 
 { TRegEditGenericTest }
+
+procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryCase3(aIni: TRegIniFile;
+  aSection: string;
+  aIdent: string;
+  aDefault: string);
+var
+  regvalue: string;
+  ident_exists: boolean;
+  checked: boolean;
+begin
+  with aIni do
+  begin
+    // 3. Fall CanRead = True (Ident nicht vorhanden)
+    FRegEditWrapper.RegControl.RegistrySettings.CanRead := True;
+    // Verhindert das das Setzen der Text-Eigenschaft sofort Änderungen in der
+    // Registry vornimmt
+    FRegEditWrapper.RegControl.RegistrySettings.CanWrite := False;
+
+    FRegSrcWrapper.RegistrySource.DeleteKey(Section, Ident);
+
+    ident_exists :=
+      FRegSrcWrapper.RegistrySource.IdentExists(Section, Ident);
+
+    AssertFalse('3. Fall CanRead = True (Ident nicht vorhanden): Test nicht '
+      + 'durchführbar, Ident darf nicht vorhanden sein', ident_exists);
+
+    regvalue := ReadString(aSection, aIdent, DEFAULT_TEXT_ENTRY);
+
+    checked := (CompareText(regvalue, DEFAULT_TEXT_ENTRY) = 0);
+
+    AssertTrue(Format('3. Fall CanRead = True (Ident nicht vorhanden): Test nicht '
+      + 'durchführbar, Value muss %s sein', [DEFAULT_TEXT_ENTRY]), checked);
+
+    FRegEditWrapper.RegControl.Text := _TEST_STRING;
+    FRegEditWrapper.ReadFromReg(True, 'TRegEdit');
+
+    // Wenn CanRead = True und kein Ident vorhanden ist, dann muss der Default-Wert
+    // in der Text-Eigenschaft vorhanden sein
+    AssertEquals('3. Fall CanRead = True (Ident nicht vorhanden): TRegEdit.Text:',
+      aDefault, FRegEditWrapper.RegControl.Text);
+  end;
+end;
+
+procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryCase2(aIni: TRegIniFile;
+  aSection: string;
+  aIdent: string;
+  aDefault: string);
+var
+  regvalue: string;
+  ident_exists: boolean;
+  checked: boolean;
+begin
+  with aIni do
+  begin
+    // 2. Fall CanRead = False
+    FRegEditWrapper.RegControl.RegistrySettings.CanRead := False;
+    // Verhindert das das Setzen der Text-Eigenschaft sofort Änderungen in der
+    // Registry vornimmt
+    FRegEditWrapper.RegControl.RegistrySettings.CanWrite := False;
+
+    ident_exists :=
+      FRegSrcWrapper.RegistrySource.IdentExists(Section, Ident);
+
+    AssertTrue('2. Fall CanRead = False: Test nicht durchführbar, Ident ist nicht '
+      + 'vorhanden', ident_exists);
+
+    regvalue := ReadString(aSection, aIdent, DEFAULT_TEXT_ENTRY);
+
+    checked := (CompareText(regvalue, DEFAULT_TEXT_ENTRY) <> 0);
+
+    AssertTrue(Format('2. Fall CanRead = False: Test nicht durchführbar, Value '
+      + 'darf nicht %s sein', [DEFAULT_TEXT_ENTRY]), checked);
+
+    checked := (CompareText(regvalue, _TEXT_ENTRY) = 0);
+
+    AssertTrue(Format('2. Fall CanRead = False: Test nicht durchführbar, Value '
+      + 'muss %s sein', [_TEXT_ENTRY]), checked);
+
+    FRegEditWrapper.RegControl.Text := _TEST_STRING;
+    FRegEditWrapper.ReadFromReg(True, 'TRegEdit');
+
+    // Wenn CanRead = False dann darf der Wert aus der Registry nicht in der
+    // Text-Eigenschaft vorhanden sein, die Text-Eigenschaft darf sich nicht
+    // geändert haben
+    AssertEquals('2. Fall CanRead = False: TRegEdit.Text:', _TEST_STRING,
+      FRegEditWrapper.RegControl.Text);
+  end;
+end;
 
 procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryCase1(aIni: TRegIniFile;
   aSection: string;
   aIdent: string;
   aDefault: string);
+var
+  regvalue: string;
+  ident_exists: boolean;
+  checked: boolean;
 begin
+  with aIni do
+  begin
+    // 1. Fall CanRead = True
+    FRegEditWrapper.RegControl.RegistrySettings.CanRead := True;
+    // Verhindert das das Setzen der Text-Eigenschaft sofort Änderungen in der
+    // Registry vornimmt
+    FRegEditWrapper.RegControl.RegistrySettings.CanWrite := False;
 
+    ident_exists :=
+      FRegSrcWrapper.RegistrySource.IdentExists(Section, Ident);
+
+    AssertTrue('1. Fall CanRead = True: Test nicht durchführbar, Ident ist nicht '
+      + 'vorhanden', ident_exists);
+
+    regvalue := ReadString(aSection, aIdent, DEFAULT_TEXT_ENTRY);
+
+    checked := (CompareText(regvalue, DEFAULT_TEXT_ENTRY) <> 0);
+
+    AssertTrue(Format('1. Fall CanRead = True: Test nicht durchführbar, Value '
+      + 'darf nicht %s sein', [DEFAULT_TEXT_ENTRY]), checked);
+
+    checked := (CompareText(regvalue, _TEXT_ENTRY) = 0);
+
+    AssertTrue(Format('1. Fall CanRead = True: Test nicht durchführbar, Value '
+      + 'muss %s sein', [_TEXT_ENTRY]), checked);
+
+    FRegEditWrapper.RegControl.Text := _TEST_STRING;
+    FRegEditWrapper.ReadFromReg(True, 'TRegEdit');
+
+    // Wenn CanRead = True dann muss der Wert aus der Registry in der
+    // Text-Eigenschaft vorhanden sein
+    AssertEquals('1. Fall CanRead = True: TRegEdit.Text:', regvalue,
+      FRegEditWrapper.RegControl.Text);
+  end;
 end;
 
 procedure TRegEditGenericTest<_T1,_T2>.WriteRegistryCase3(aIni: TRegIniFile;
@@ -96,31 +231,35 @@ begin
     ident_exists :=
       FRegSrcWrapper.RegistrySource.IdentExists(Section, Ident);
 
-    AssertFalse('3. Fall CanWrite = True (Ident nicht vorhanden): Test nicht durchführbar, Ident darf nicht vorhanden sein',
-      ident_exists);
+    AssertFalse('3. Fall CanWrite = True (Ident nicht vorhanden): Test nicht '
+      + 'durchführbar, Ident darf nicht vorhanden sein', ident_exists);
 
     regvalue_before := ReadString(aSection, aIdent, DEFAULT_TEXT_ENTRY);
 
     checked := (CompareText(regvalue_before, DEFAULT_TEXT_ENTRY) = 0);
 
-    AssertTrue(Format('3. Fall CanWrite = True (Ident nicht vorhanden): Test nicht durchführbar, Value muss: %s sein',
-      [DEFAULT_TEXT_ENTRY]), checked);
+    AssertTrue(Format('3. Fall CanWrite = True (Ident nicht vorhanden): Test '
+      + 'nicht durchführbar, Value muss: %s sein', [DEFAULT_TEXT_ENTRY]),
+      checked);
 
     checked := (CompareText(regvalue_before, _TEST_STRING) <> 0);
 
-    AssertTrue(Format('3. Fall CanWrite = True (Ident nicht vorhanden): Test nicht durchführbar, Value darf nicht: %s sein',
-      [_TEST_STRING]), checked);
+    AssertTrue(Format('3. Fall CanWrite = True (Ident nicht vorhanden): Test '
+      + 'nicht durchführbar, Value darf nicht: %s sein', [_TEST_STRING]),
+      checked);
 
     FRegEditWrapper.RegControl.Text := _TEST_STRING;
     FRegEditWrapper.RegControl.TriggerChange;
 
     regvalue_post := ReadString(aSection, aIdent, DEFAULT_TEXT_ENTRY);
 
-    AssertTrue('3. Fall CanWrite = True (Ident nicht vorhanden): Keine Änderungen in der Registry vorgenommen',
-      (regvalue_before <> regvalue_post));
+    AssertTrue('3. Fall CanWrite = True (Ident nicht vorhanden): Keine Änderungen '
+      + 'in der Registry vorgenommen', (regvalue_before <> regvalue_post));
 
-    AssertEquals('3. Fall CanWrite = True (Ident nicht vorhanden): TRegEdit.Text:', _TEST_STRING,
-      regvalue_post);
+    // Wenn CanWrite = True muss nach dem Setzen der Text-Eigenschaft in der
+    // Registry eine neuer Ident mit dem Wert angelegt worden sein
+    AssertEquals('3. Fall CanWrite = True (Ident nicht vorhanden): TRegEdit.Text:',
+      _TEST_STRING, regvalue_post);
   end;
 end;
 
@@ -138,25 +277,24 @@ begin
   begin
     // 2. Fall CanWrite = False
     FRegEditWrapper.RegControl.RegistrySettings.CanWrite := False;
-    FRegEditWrapper.SetRegistryEntries;
 
     ident_exists :=
       FRegSrcWrapper.RegistrySource.IdentExists(Section, Ident);
 
-    AssertTrue('2. Fall CanWrite = False: Test nicht durchführbar, Ident ist nicht vorhanden',
-      ident_exists);
+    AssertTrue('2. Fall CanWrite = False: Test nicht durchführbar, Ident ist '
+      + 'nicht vorhanden', ident_exists);
 
     regvalue_before := ReadString(aSection, aIdent, DEFAULT_TEXT_ENTRY);
 
     checked := (CompareText(regvalue_before, _TEXT_ENTRY) = 0);
 
-    AssertTrue(Format('2. Fall CanWrite = False: Test nicht durchführbar, Value muss: %s sein',
-      [_TEXT_ENTRY]), checked);
+    AssertTrue(Format('2. Fall CanWrite = False: Test nicht durchführbar, Value '
+      + 'muss: %s sein', [_TEXT_ENTRY]), checked);
 
     checked := (CompareText(regvalue_before, _TEST_STRING) <> 0);
 
-    AssertTrue(Format('2. Fall CanWrite = False: Test nicht durchführbar, Value darf nicht: %s sein',
-      [_TEST_STRING]), checked);
+    AssertTrue(Format('2. Fall CanWrite = False: Test nicht durchführbar, Value '
+      + 'darf nicht: %s sein', [_TEST_STRING]), checked);
 
     FRegEditWrapper.RegControl.Text := _TEST_STRING;
     FRegEditWrapper.RegControl.TriggerChange;
@@ -166,6 +304,8 @@ begin
     AssertTrue('2. Fall CanWrite = False: Änderungen in der Registry vorgenommen',
       (regvalue_before = regvalue_post));
 
+    // Wenn CanWrite = False darf nach dem Setzen der Text-Eigenschaft der Wert
+    // in der Registry trotzdem nicht verändert worden sein
     AssertEquals('2. Fall CanWrite = False: TRegEdit.Text:', _TEXT_ENTRY,
       regvalue_post);
   end;
@@ -189,29 +329,31 @@ begin
     ident_exists :=
       FRegSrcWrapper.RegistrySource.IdentExists(Section, Ident);
 
-    AssertTrue('1. Fall CanWrite = True: Test nicht durchführbar, Ident ist nicht vorhanden',
-      ident_exists);
+    AssertTrue('1. Fall CanWrite = True: Test nicht durchführbar, Ident ist nicht '
+      + 'vorhanden', ident_exists);
 
     regvalue_before := ReadString(aSection, aIdent, DEFAULT_TEXT_ENTRY);
 
     checked := (CompareText(regvalue_before, _TEXT_ENTRY) = 0);
 
-    AssertTrue(Format('1. Fall CanWrite = True: Test nicht durchführbar, Value muss: %s sein',
-      [_TEXT_ENTRY]), checked);
+    AssertTrue(Format('1. Fall CanWrite = True: Test nicht durchführbar, Value '
+      + 'muss: %s sein', [_TEXT_ENTRY]), checked);
 
     checked := (CompareText(regvalue_before, _TEST_STRING) <> 0);
 
-    AssertTrue(Format('1. Fall CanWrite = True: Test nicht durchführbar, Value darf nicht: %s sein',
-      [_TEST_STRING]), checked);
+    AssertTrue(Format('1. Fall CanWrite = True: Test nicht durchführbar, Value '
+      + 'darf nicht: %s sein', [_TEST_STRING]), checked);
 
     FRegEditWrapper.RegControl.Text := _TEST_STRING;
     FRegEditWrapper.RegControl.TriggerChange;
 
     regvalue_post := ReadString(aSection, aIdent, DEFAULT_TEXT_ENTRY);
 
-    AssertTrue('1. Fall CanWrite = True: Keine Änderungen in der Registry vorgenommen',
-      (regvalue_before <> regvalue_post));
+    AssertTrue('1. Fall CanWrite = True: Keine Änderungen in der Registry '
+      + 'vorgenommen', (regvalue_before <> regvalue_post));
 
+    // Wenn CanWrite = True muss nach dem Setzen der Text-Eigenschaft der Wert
+    // der Text-Eigenschaft auch in der Registry stehen
     AssertEquals('1. Fall CanWrite = True: TRegEdit.Text:', _TEST_STRING,
       regvalue_post);
   end;
@@ -225,10 +367,12 @@ var
 begin
   test_section := GetSectionUTF8Decoded;
   test_ident := GetIdentUTF8Decoded;
-  test_default := Default;
+  test_default := UTF8DecodeIfNeeded(Default, CheckRTLNeeded);
 
   WriteRegistryCase1(aIni, test_section, test_ident, test_default);
+  FRegEditWrapper.SetRegistryEntries;
   WriteRegistryCase2(aIni, test_section, test_ident, test_default);
+  FRegEditWrapper.SetRegistryEntries;
   WriteRegistryCase3(aIni, test_section, test_ident, test_default);
 end;
 
@@ -240,8 +384,13 @@ var
 begin
   test_section := GetSectionUTF8Decoded;
   test_ident := GetIdentUTF8Decoded;
-  test_default := Default;
+  test_default := UTF8DecodeIfNeeded(Default, CheckRTLNeeded);
 
+  ReadRegistryCase1(aIni, test_section, test_ident, test_default);
+  FRegEditWrapper.SetRegistryEntries;
+  ReadRegistryCase2(aIni, test_section, test_ident, test_default);
+  FRegEditWrapper.SetRegistryEntries;
+  ReadRegistryCase3(aIni, test_section, test_ident, test_default);
 end;
 
 procedure TRegEditGenericTest<_T1,_T2>.ReadRegistry;

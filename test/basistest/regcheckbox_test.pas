@@ -76,9 +76,11 @@ begin
       ReadBool(test_section, test_ident, test_default);
 
     // Prüfen ob der Test-Ident vorhanden und ungleich dem Default
-    // Nur wenn der gelesene Wert aus der Registry nicht mit dem Default übereinstimmt
-    // kann man sicher sein, das der Wert tatsächlich in der Registry vorhanden ist
-    AssertTrue('1. Fall CanWrite = True - TRegCheckBox.WriteReg: Test nicht durchführbar, TestIdent und Default unterscheiden sich nicht',
+    // Nur wenn der gelesene Wert aus der Registry nicht mit dem Default
+    // übereinstimmt kann man sicher sein, das der Wert tatsächlich in der
+    // Registry vorhanden ist
+    AssertTrue('1. Fall CanWrite = True - TRegCheckBox.WriteReg: Test nicht '
+      + 'durchführbar, TestIdent und Default unterscheiden sich nicht',
       (value_by_regini_before <> test_default));
 
     FRegCheckBoxWrapper.RegControl.Checked := not value_by_regini_before;
@@ -87,11 +89,12 @@ begin
     value_by_regini_post :=
       ReadBool(test_section, test_ident, value_by_regini_before);
 
-    AssertTrue('1. Fall CanWrite = True - TRegCheckBox.WriteReg: Test nicht eindeutig, Wert-Vorher und Wert-Nachher sind identisch',
+    AssertTrue('1. Fall CanWrite = True - TRegCheckBox.WriteReg: Test nicht '
+      + 'eindeutig, Wert-Vorher und Wert-Nachher sind identisch',
       (value_by_regini_before <> value_by_regini_post));
 
-    AssertEquals('1. Fall CanWrite = True - TRegCheckBox.Checked', value_by_regini_post,
-      FRegCheckBoxWrapper.RegControl.Checked);
+    AssertEquals('1. Fall CanWrite = True - TRegCheckBox.Checked',
+      value_by_regini_post, FRegCheckBoxWrapper.RegControl.Checked);
 
     // 2. Fall CanWrite = False
     FRegCheckBoxWrapper.RegControl.RegistrySettings.CanWrite := False;
@@ -104,7 +107,8 @@ begin
     // Prüfen ob der Test-Ident vorhanden und ungleich dem Default
     // Nur wenn der gelesene Wert aus der Registry nicht mit dem Default übereinstimmt
     // kann man sicher sein, das der Wert tatsächlich in der Registry vorhanden ist
-    AssertTrue('2. Fall CanWrite = False = True - TRegCheckBox.WriteReg: Test nicht durchführbar, TestIdent und Default unterscheiden sich nicht',
+    AssertTrue('2. Fall CanWrite = False = True - TRegCheckBox.WriteReg: Test '
+      + 'nicht durchführbar, TestIdent und Default unterscheiden sich nicht',
       (value_by_regini_before <> test_default));
 
     FRegCheckBoxWrapper.RegControl.Checked := not value_by_regini_before;
@@ -113,11 +117,12 @@ begin
     value_by_regini_post :=
       ReadBool(test_section, test_ident, value_by_regini_before);
 
-    AssertTrue('2. Fall CanWrite = False - TRegCheckBox.WriteReg: Test nicht eindeutig, Wert-Vorher und Wert-Nachher müssen identisch sein',
+    AssertTrue('2. Fall CanWrite = False - TRegCheckBox.WriteReg: Test nicht '
+      + 'eindeutig, Wert-Vorher und Wert-Nachher müssen identisch sein',
       (value_by_regini_before = value_by_regini_post));
 
-    AssertEquals('2. Fall CanWrite = False - TRegCheckBox.Checked', not value_by_regini_before,
-      FRegCheckBoxWrapper.RegControl.Checked);
+    AssertEquals('2. Fall CanWrite = False - TRegCheckBox.Checked',
+      not value_by_regini_before, FRegCheckBoxWrapper.RegControl.Checked);
   end;
 end;
 
@@ -141,7 +146,8 @@ begin
     value_by_regini :=
       ReadBool(test_section, test_ident, test_default);
 
-    AssertTrue('1. Fall CanRead = True - TRegCheckBox.ReadReg: Test nicht durchführbar, Vergleichswerte sind identisch',
+    AssertTrue('1. Fall CanRead = True - TRegCheckBox.ReadReg: Test nicht '
+      + 'durchführbar, Vergleichswerte sind identisch',
       (value_by_regini <> test_default));
 
     FRegCheckBoxWrapper.RegControl.Checked := test_default;
@@ -156,7 +162,8 @@ begin
     value_by_regini :=
       ReadBool(test_section, test_ident, test_default);
 
-    AssertTrue('2. Fall CanRead = False - TRegCheckBox.ReadReg: Test nicht durchführbar, Vergleichswerte sind identisch',
+    AssertTrue('2. Fall CanRead = False - TRegCheckBox.ReadReg: Test nicht '
+      + 'durchführbar, Vergleichswerte sind identisch',
       (value_by_regini <> test_default));
 
     FRegCheckBoxWrapper.RegControl.Checked := test_default;

@@ -113,13 +113,16 @@ begin
       FreeAndNil(ini);
   end;
 
-  AssertEquals('Testwert für String lesen', 'String_Value_mit_ßÜÖÄüöä', check_string_1);
+  AssertEquals('Testwert für String lesen', 'String_Value_mit_ßÜÖÄüöä',
+    check_string_1);
   AssertEquals('Testwert für Integer lesen', 12345, check_integer_1);
   AssertEquals('Testwert für Boolean lesen', True, check_bool_1);
-  AssertEquals('Testwert für String schreiben', 'String_Value_mit_ßÜÖÄüöä', check_string_2);
+  AssertEquals('Testwert für String schreiben', 'String_Value_mit_ßÜÖÄüöä',
+    check_string_2);
   AssertEquals('Testwert für Integer schreiben', 12345, check_integer_2);
   AssertEquals('Testwert für Boolean schreiben', True, check_bool_2);
-  AssertEquals('Testwert für Key umbenennen', 'String_Value_mit_ßÜÖÄüöä', check_string_3);
+  AssertEquals('Testwert für Key umbenennen', 'String_Value_mit_ßÜÖÄüöä',
+    check_string_3);
 end;
 
 end.
