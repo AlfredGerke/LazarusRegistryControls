@@ -16,6 +16,21 @@ type
   TRegUtils = class
   public type
     TManageRegistry = function(aReg: TRegistry): boolean of object;
+
+    { TManageValue }
+
+    TManageValue = record
+      Value: variant;
+
+      procedure SetValueByInteger(aValue: integer);
+      procedure SetValueByString(aValue: string);
+      procedure SetValueByBoolean(aValue: string);
+      function GetValueAsInteger: integer;
+      function GetValueAsString: string;
+      function GetValueAsBoolean: boolean;
+
+      procedure Clear;
+    end;
   private
     FSection: string;
     FIdent: string;
@@ -35,7 +50,6 @@ type
     property CanCreate: boolean
       read FCanCreate;
 
-
     property OpenReadOnly: boolean
       read FOpenReadOnly;
 
@@ -46,6 +60,66 @@ type
     property Ident: string
       read FIdent
       write FIdent;
+  end;
+
+  { TLRCRRegIniFile }
+
+  TLRCRRegIniFile = class
+  strict private
+    FReg: TRegUtils;
+    FRoot: HKEY;
+
+    function DeleteKeyProc(aReg: TRegistry): boolean;
+  private
+    FFilename: string;
+  protected
+  public
+    constructor Create(const aFileName: string;
+                       aRoot: HKEY = HKEY_CURRENT_USER); virtual;
+    destructor Destroy; override;
+
+    procedure DeleteKey(const aSection: string;
+                        const aIdent: string);
+
+    procedure EraseSection(const aSection: string);
+
+    function ReadBool(const aSection: string;
+                      const aIdent: string;
+                      aDefault: Boolean): Boolean;
+
+    function ReadInteger(const aSection: string;
+                         const aIdent: string;
+                         aDefault: Longint): Longint;
+
+    function ReadString(const aSection: string;
+                        const aIdent: string;
+                        const aDefault: string): string;
+
+    procedure ReadSection(const aSection: string;
+                          aStrings: TStrings);
+
+    procedure ReadSections(aStrings: TStrings);
+
+    procedure ReadSectionValues(const aSection: string;
+                                const aStrings: TStrings);
+
+    procedure WriteBool(const aSection: string;
+                        const aIdent: string;
+                        aValue: Boolean);
+
+    procedure WriteInteger(const aSection: string;
+                           const aIdent: string;
+                           aValue: Longint);
+
+    procedure WriteString(const aSection: string;
+                          const aIdent: string;
+                          const aValue: string);
+
+    function GetFilename: string;
+    property Filename: string
+      read GetFilename
+      write FFilename;
+  published
   end;
 
   { TDefaultsForCurrentUser }
@@ -255,6 +329,158 @@ end;
 var
   reg_util_instance: TRegUtils;
 
+{ TRegUtils.TManageValue }
+
+procedure TRegUtils.TManageValue.SetValueByInteger(aValue: integer);
+begin
+
+end;
+
+procedure TRegUtils.TManageValue.SetValueByString(aValue: string);
+begin
+
+end;
+
+procedure TRegUtils.TManageValue.SetValueByBoolean(aValue: string);
+begin
+
+end;
+
+function TRegUtils.TManageValue.GetValueAsInteger: integer;
+begin
+
+end;
+
+function TRegUtils.TManageValue.GetValueAsString: string;
+begin
+
+end;
+
+function TRegUtils.TManageValue.GetValueAsBoolean: boolean;
+begin
+
+end;
+
+procedure TRegUtils.TManageValue.Clear;
+begin
+  FillChar(Self, SizeOf(Self), #0);
+end;
+
+{ TLRCRRegIniFile }
+
+function TLRCRRegIniFile.DeleteKeyProc(aReg: TRegistry): boolean;
+begin
+
+end;
+
+constructor TLRCRRegIniFile.Create(const aFileName: string;
+  aRoot: HKEY = HKEY_CURRENT_USER);
+begin
+  FFilename := aFileName;
+  FRoot := aRoot;
+  FReg := TRegUtils.Create;
+end;
+
+destructor TLRCRRegIniFile.Destroy;
+begin
+  FFilename := EmptyStr;
+
+  if Assigned(FReg) then
+    FreeAndNil(FReg);
+
+  inherited Destroy;
+end;
+
+procedure TLRCRRegIniFile.DeleteKey(const aSection: string;
+  const aIdent: string);
+var
+  success: boolean;
+begin
+  with FReg do
+  begin
+    Refresh;
+    try
+      Section := aSection;
+      Ident := aIdent;
+      success := GetRegistry(FRoot, Filename, DeleteKeyProc, False);
+    finally
+      Refresh;
+    end;
+  end;
+end;
+
+procedure TLRCRRegIniFile.EraseSection(const aSection: string);
+begin
+
+end;
+
+function TLRCRRegIniFile.ReadBool(const aSection: string;
+  const aIdent: string;
+  aDefault: Boolean): Boolean;
+begin
+
+end;
+
+function TLRCRRegIniFile.ReadInteger(const aSection: string;
+  const aIdent: string;
+  aDefault: Longint): Longint;
+begin
+
+end;
+
+function TLRCRRegIniFile.ReadString(const aSection: string;
+  const aIdent: string;
+  const aDefault: string): string;
+begin
+
+end;
+
+procedure TLRCRRegIniFile.ReadSection(const aSection: string; aStrings: TStrings
+  );
+begin
+
+end;
+
+procedure TLRCRRegIniFile.ReadSections(aStrings: TStrings);
+begin
+
+end;
+
+procedure TLRCRRegIniFile.ReadSectionValues(const aSection: string;
+  const aStrings: TStrings);
+begin
+
+end;
+
+procedure TLRCRRegIniFile.WriteBool(const aSection: string;
+  const aIdent: string;
+  aValue: Boolean);
+begin
+
+end;
+
+procedure TLRCRRegIniFile.WriteInteger(const aSection: string;
+  const aIdent: string;
+  aValue: Longint);
+begin
+
+end;
+
+procedure TLRCRRegIniFile.WriteString(const aSection: string;
+  const aIdent: string;
+  const aValue: string);
+begin
+
+end;
+
+function TLRCRRegIniFile.GetFilename: string;
+begin
+  if (Trim(FFilename) <> EmptyStr) then
+    Result := IncludeLeadingPathDelimiter(FFilename)
+  else
+    Result := EmptyStr;
+end;
+
 class function TRegUtils.GetInstance: TRegUtils;
 begin
   if not Assigned(reg_util_instance) then
@@ -262,6 +488,8 @@ begin
 
   Result := reg_util_instance;
 end;
+
+{ TRegUtils }
 
 function TRegUtils.GetRegistry(aRoot: HKEY;
   aRootKey: string;

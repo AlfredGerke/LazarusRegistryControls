@@ -364,8 +364,11 @@ begin
     RegSrcWrapper.RegistrySource.ReadSection(ReadSectionName, value_by_regsrc);
 
     // Anzahl aus 1. und 2. muss gleich sein
-    AssertTrue('ReadSection: RegistrySource liefert falsche Anzahl von Sektionen',
+    AssertTrue('ReadSection: RegistrySource liefert falsche Anzahl Datenwerte in Sektionen',
       (value_by_regini.Count = value_by_regsrc.Count));
+
+    AssertFalse('ReadSection: Test nicht durchführbar, Anzahl in Section = 0',
+      (value_by_regini.Count = 0));
 
     // Jeder Wert aus 1. muss identisch sein mit jedem Wert aus 2.
     for anz := 0 to value_by_regini.Count-1 do
