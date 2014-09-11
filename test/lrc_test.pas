@@ -12,13 +12,19 @@ uses
   regradiobutton_test,
   reglabel_test,
   issue00030_test,
-  issue00035_test;
+  issue00035_test,
+  lrcreginifile_test;
 
 implementation
 
 initialization
   { TODO 1 -oAlfred Gerke -cGUI : Formular zum Dynamischen erzeugen von RegistryControls.
 (s. testpreferredsize.pas in C:\Users\Alfred\Programme\lazarus\test\lcltests) }
+
+  // Alle Tests für TLRCRegInifile
+  //!<--
+  RegisterTest('Voraussetzungen', TLRCRegInifileTest);
+  //-->
 
   // Alle Tests für das Package: RegistrySource
   //!<--

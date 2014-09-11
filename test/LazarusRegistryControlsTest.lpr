@@ -28,7 +28,8 @@ uses
   issue00035_test,
   reglabel_test,
   reglabel_wrapper,
-  lrc_testcase;
+  lrc_testcase,
+  lrcreginifile_test;
 
 {$R *.res}
 

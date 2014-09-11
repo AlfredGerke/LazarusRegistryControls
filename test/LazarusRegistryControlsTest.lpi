@@ -46,7 +46,7 @@
         <PackageName Value="FCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="24">
+    <Units Count="25">
       <Unit0>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -167,6 +167,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="issue00030_test"/>
       </Unit23>
+      <Unit24>
+        <Filename Value="basistest\lrcreginifile_test.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="lrcreginifile_test"/>
+      </Unit24>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

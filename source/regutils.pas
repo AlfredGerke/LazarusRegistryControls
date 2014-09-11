@@ -15,7 +15,8 @@ type
 
   TRegUtils = class
   public type
-    THandleRegistry = function(aReg: TRegistry): boolean of object;
+    THandleRegistry = function(aReg: TRegistry;
+                               aOpenKey: string): boolean of object;
 
     { THandleValue }
 
@@ -79,17 +80,28 @@ type
     FRoot: HKEY;
     FFuncResult: TRegUtils.THandleValue;
 
-    function ReadIntegerProc(aReg: TRegistry): boolean;
-    function ReadStringProc(aReg: TRegistry): boolean;
-    function ReadSectionProc(aReg: TRegistry): boolean;
-    function ReadSectionsProc(aReg: TRegistry): boolean;
-    function ReadSectionValuesProc(aReg: TRegistry): boolean;
-    function WriteBoolProc(aReg: TRegistry): boolean;
-    function WriteIntegerProc(aReg: TRegistry): boolean;
-    function WriteStringProc(aReg: TRegistry): boolean;
-    function ReadBoolProc(aReg: TRegistry): boolean;
-    function EraseSectionProc(aReg: TRegistry): boolean;
-    function DeleteKeyProc(aReg: TRegistry): boolean;
+    function ReadIntegerProc(aReg: TRegistry;
+                             aOpenKey: string): boolean;
+    function ReadStringProc(aReg: TRegistry;
+                            aOpenKey: string): boolean;
+    function ReadSectionProc(aReg: TRegistry;
+                             aOpenKey: string): boolean;
+    function ReadSectionsProc(aReg: TRegistry;
+                              aOpenKey: string): boolean;
+    function ReadSectionValuesProc(aReg: TRegistry;
+                                   aOpenKey: string): boolean;
+    function WriteBoolProc(aReg: TRegistry;
+                           aOpenKey: string): boolean;
+    function WriteIntegerProc(aReg: TRegistry;
+                              aOpenKey: string): boolean;
+    function WriteStringProc(aReg: TRegistry;
+                             aOpenKey: string): boolean;
+    function ReadBoolProc(aReg: TRegistry;
+                          aOpenKey: string): boolean;
+    function EraseSectionProc(aReg: TRegistry;
+                              aOpenKey: string): boolean;
+    function DeleteKeyProc(aReg: TRegistry;
+                           aOpenKey: string): boolean;
   private
     FFilename: string;
   protected
@@ -98,8 +110,8 @@ type
                        aRoot: HKEY = HKEY_CURRENT_USER); virtual;
     destructor Destroy; override;
 
-    procedure DeleteKey(const aSection: string;
-                        const aIdent: string);
+    function DeleteKey(const aSection: string;
+                       const aIdent: string): boolean;
 
     procedure EraseSection(const aSection: string);
 
@@ -151,8 +163,10 @@ type
     FPrefereStrings: boolean;
     FCheckRTLAnsi: boolean;
 
-    function SectionExistsProc(aReg: TRegistry): boolean;
-    function IdentExistsProc(aReg: TRegistry): boolean;
+    function SectionExistsProc(aReg: TRegistry;
+                               aOpenKey: string): boolean;
+    function IdentExistsProc(aReg: TRegistry;
+                             aOpenKey: string): boolean;
     procedure ReadSectionValuesByKind(aSection: string;
                                       aStrings: TStrings;
                                       aKind: TListSourceKind = Both;
@@ -388,59 +402,135 @@ end;
 
 { TLRCRRegIniFile }
 
-function TLRCRRegIniFile.ReadIntegerProc(aReg: TRegistry): boolean;
+function TLRCRRegIniFile.ReadIntegerProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
+var
+  ident: string;
+  res: integer;
 begin
+  ident := FReg.Ident;
+  if aReg.ValueExists(ident) then
+  begin
+    res := aReg.ReadInteger(ident);
+    FFuncResult.Value.SetValueByInteger(res);
+  end
+  else
+    FFuncResult.Value.SetValueByInteger(FReg.Value.GetValueAsInteger);
 
+  Result := True;
 end;
 
-function TLRCRRegIniFile.ReadStringProc(aReg: TRegistry): boolean;
+function TLRCRRegIniFile.ReadStringProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
+var
+  ident: string;
+  res: string;
 begin
+  ident := FReg.Ident;
+  if aReg.ValueExists(ident) then
+  begin
+    res := aReg.ReadString(ident);
+    FFuncResult.Value.SetValueByString(res);
+  end
+  else
+    FFuncResult.Value.SetValueByString(FReg.Value.GetValueAsString);
 
+  Result := True;
 end;
 
-function TLRCRRegIniFile.ReadSectionProc(aReg: TRegistry): boolean;
+function TLRCRRegIniFile.ReadSectionProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
+var
+  values: TStrings;
 begin
+  values := FReg.GetStrings;
+  if Assigned(values) then
+  begin
+    aReg.GetValueNames(values);
+    FReg.SetStrings(values);
 
+    Result := Assigned(values);
+  end
+  else
+    Result := False;
 end;
 
-function TLRCRRegIniFile.ReadSectionsProc(aReg: TRegistry): boolean;
+function TLRCRRegIniFile.ReadSectionsProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
+var
+  values: TStrings;
 begin
+  values := FReg.GetStrings;
+  if Assigned(values) then
+  begin
+    aReg.GetKeyNames(values);
+    FReg.SetStrings(values);
 
+    Result := Assigned(values);
+  end
+  else
+    Result := False;
 end;
 
-function TLRCRRegIniFile.ReadSectionValuesProc(aReg: TRegistry): boolean;
+function TLRCRRegIniFile.ReadSectionValuesProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
 begin
-
+  Result := ReadSectionProc(aReg, aOpenKey);
 end;
 
-function TLRCRRegIniFile.WriteBoolProc(aReg: TRegistry): boolean;
+function TLRCRRegIniFile.WriteBoolProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
 begin
+  aReg.WriteBool(FReg.Ident, FReg.Value.GetValueAsBoolean);
 
+  Result := True;
 end;
 
-function TLRCRRegIniFile.WriteIntegerProc(aReg: TRegistry): boolean;
+function TLRCRRegIniFile.WriteIntegerProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
 begin
+  aReg.WriteInteger(FReg.Ident, FReg.Value.GetValueAsInteger);
 
+  Result := True;
 end;
 
-function TLRCRRegIniFile.WriteStringProc(aReg: TRegistry): boolean;
+function TLRCRRegIniFile.WriteStringProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
 begin
+  aReg.WriteString(FReg.Ident, FReg.Value.GetValueAsString);
 
+  Result := True;
 end;
 
-function TLRCRRegIniFile.ReadBoolProc(aReg: TRegistry): boolean;
+function TLRCRRegIniFile.ReadBoolProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
+var
+  ident: string;
+  res: boolean;
 begin
+  ident := FReg.Ident;
+  if aReg.ValueExists(ident) then
+  begin
+    res := aReg.ReadBool(ident);
+    FFuncResult.Value.SetValueByBoolean(res);
+  end
+  else
+    FFuncResult.Value.SetValueByBoolean(FReg.Value.GetValueAsBoolean);
 
+  Result := True;
 end;
 
-function TLRCRRegIniFile.EraseSectionProc(aReg: TRegistry): boolean;
+function TLRCRRegIniFile.EraseSectionProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
 begin
-
+  aReg.CloseKey;
+  Result := aReg.DeleteKey(aOpenKey);
 end;
 
-function TLRCRRegIniFile.DeleteKeyProc(aReg: TRegistry): boolean;
+function TLRCRRegIniFile.DeleteKeyProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
 begin
-
+  Result := aReg.DeleteValue(FReg.Ident);
 end;
 
 constructor TLRCRRegIniFile.Create(const aFileName: string;
@@ -461,10 +551,8 @@ begin
   inherited Destroy;
 end;
 
-procedure TLRCRRegIniFile.DeleteKey(const aSection: string;
-  const aIdent: string);
-var
-  success: boolean;
+function TLRCRRegIniFile.DeleteKey(const aSection: string;
+  const aIdent: string): boolean;
 begin
   with FReg do
   begin
@@ -473,7 +561,8 @@ begin
       Section := aSection;
       Ident := aIdent;
 
-      success := GetRegistry(FRoot, Filename, DeleteKeyProc, False);
+      Result :=
+        GetRegistry(FRoot, Filename + aSection, DeleteKeyProc, False);
     finally
       Refresh;
     end;
@@ -490,7 +579,8 @@ begin
     try
       Section := aSection;
 
-      success := GetRegistry(FRoot, Filename, EraseSectionProc, False);
+      success :=
+        GetRegistry(FRoot, Filename + aSection, EraseSectionProc, False);
     finally
       Refresh;
     end;
@@ -512,7 +602,8 @@ begin
       Value.SetValueByBoolean(aDefault);
       FFuncResult.Clear;
 
-      success := GetRegistry(FRoot, Filename, ReadBoolProc, False);
+      success :=
+        GetRegistry(FRoot, Filename + aSection, ReadBoolProc, False);
 
       if success then
         Result := FFuncResult.GetValueAsBoolean
@@ -539,7 +630,8 @@ begin
       Value.SetValueByInteger(aDefault);
       FFuncResult.Clear;
 
-      success := GetRegistry(FRoot, Filename, ReadIntegerProc, False);
+      success :=
+        GetRegistry(FRoot, Filename + aSection, ReadIntegerProc, False);
 
       if success then
         Result := FFuncResult.GetValueAsInteger
@@ -566,7 +658,8 @@ begin
       Value.SetValueByString(aDefault);
       FFuncResult.Clear;
 
-      success := GetRegistry(FRoot, Filename, ReadStringProc, False);
+      success :=
+        GetRegistry(FRoot, Filename + aSection, ReadStringProc, False);
 
       if success then
         Result := FFuncResult.GetValueAsString
@@ -590,7 +683,8 @@ begin
       Section := aSection;
       SetStrings(aStrings);
 
-      success := GetRegistry(FRoot, Filename, ReadStringProc, False);
+      success :=
+        GetRegistry(FRoot, Filename + aSection, ReadSectionProc, False);
 
       if success then
         aStrings := GetStrings;
@@ -610,7 +704,7 @@ begin
     try
       SetStrings(aStrings);
 
-      success := GetRegistry(FRoot, Filename, ReadStringProc, False);
+      success := GetRegistry(FRoot, Filename, ReadSectionsProc, False);
 
       if success then
         aStrings := GetStrings;
@@ -632,7 +726,8 @@ begin
       Section := aSection;
       SetStrings(aStrings);
 
-      success := GetRegistry(FRoot, Filename, ReadStringProc, False);
+      success :=
+        GetRegistry(FRoot, Filename + aSection, ReadSectionValuesProc, False);
 
       if success then
         aStrings := GetStrings;
@@ -656,7 +751,8 @@ begin
       Ident := aIdent;
       Value.SetValueByBoolean(aValue);
 
-      success := GetRegistry(FRoot, Filename, ReadStringProc, False);
+      success :=
+        GetRegistry(FRoot, Filename + aSection, WriteBoolProc, False);
     finally
       Refresh;
     end;
@@ -677,7 +773,8 @@ begin
       Ident := aIdent;
       Value.SetValueByInteger(aValue);
 
-      success := GetRegistry(FRoot, Filename, ReadStringProc, False);
+      success :=
+        GetRegistry(FRoot, Filename + aSection, WriteIntegerProc, False);
     finally
       Refresh;
     end;
@@ -698,7 +795,8 @@ begin
       Ident := aIdent;
       Value.SetValueByString(aValue);
 
-      success := GetRegistry(FRoot, Filename, ReadStringProc, False);
+      success :=
+        GetRegistry(FRoot, Filename + aSection, WriteStringProc, False);
     finally
       Refresh;
     end;
@@ -764,7 +862,7 @@ begin
       end;
 
       if (do_proc and Assigned(aProc)) then
-        proc_success := aProc(reg);
+        proc_success := aProc(reg, aRootKey);
 
       Result := proc_success;
     except
@@ -789,7 +887,8 @@ end;
 
 { TDefaultsForCurrentUser }
 
-function TDefaultsForCurrentUser.SectionExistsProc(aReg: TRegistry): boolean;
+function TDefaultsForCurrentUser.SectionExistsProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
 var
   key_to_check: string;
   section_to_check: string;
@@ -809,7 +908,8 @@ begin
   end;
 end;
 
-function TDefaultsForCurrentUser.IdentExistsProc(aReg: TRegistry): boolean;
+function TDefaultsForCurrentUser.IdentExistsProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
 var
   key_to_check: string;
   section_to_check: string;
