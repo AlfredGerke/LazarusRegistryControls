@@ -10,7 +10,13 @@ uses
 
 type
   TManageRegIniFile = procedure(aIni: TRegIniFile) of object;
+  TManageRegistry = procedure(aReg: TRegistry) of object;
 
+procedure GetRegistry(aRoot: HKEY;
+                      aRootKey: string;
+                      aSection: string;
+                      aProc: TManageRegistry;
+                      aCanCreate: boolean = True);
 procedure GetRegIniFile(aRootKey: string;
                         aProc: TManageRegIniFile);
 
@@ -36,6 +42,41 @@ function GetNextCount: integer;
 begin
    inc(count);
    Result := count;
+end;
+
+procedure GetRegistry(aRoot: HKEY;
+  aRootKey: string;
+  aSection: string;
+  aProc: TManageRegistry;
+  aCanCreate: boolean = True);
+var
+  reg: TRegistry;
+  key: string;
+begin
+  reg := TRegistry.Create(KEY_ALL_ACCESS);
+  try
+    with reg do
+    begin
+      RootKey := aRoot;
+
+      if (Trim(aSection) = EmptyStr) then
+        key := IncludeTrailingPathDelimiter(aRootKey)
+      else
+        key := IncludeTrailingPathDelimiter(aRootKey) +
+          IncludeTrailingPathDelimiter(aSection);
+      if OpenKey(key, aCanCreate) then
+      begin
+        if Assigned(aProc) then
+          aProc(reg);
+
+        CloseKey;
+      end;
+    end;
+
+  finally
+    if Assigned(reg) then
+      FreeAndNil(reg);
+  end;
 end;
 
 procedure GetRegIniFile(aRootKey: string;

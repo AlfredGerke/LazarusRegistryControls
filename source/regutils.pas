@@ -536,7 +536,7 @@ end;
 constructor TLRCRRegIniFile.Create(const aFileName: string;
   aRoot: HKEY = HKEY_CURRENT_USER);
 begin
-  FFilename := aFileName;
+  FFilename := IncludeTrailingPathDelimiter(aFileName);
   FRoot := aRoot;
   FReg := TRegUtils.Create;
 end;

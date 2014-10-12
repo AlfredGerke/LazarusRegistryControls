@@ -9,6 +9,8 @@ uses
   SysUtils;
 
 const
+  LRCREGINIFILE_TESTROOT = 'SOFTWARE\ExampleFactory\LRCRegInifile';
+
   TREGISTRYSOURCE_NAME = 'TRegistrySource';
   TREGCHECKBOX_NAME = 'TRegCheckBox';
   TREGRADIOBUTTON_NAME = 'TRegRadioButton';
