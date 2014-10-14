@@ -22,7 +22,14 @@ type
     FLRCRRegIniFile: TLRCRRegIniFile;
     FTestString1: string;
     FTestString2: string;
+    FTestBool1: boolean;
+    FTestBool2: boolean;
+    FTestInteger1: integer;
+    FTestInteger2: integer;
 
+    procedure ReadStringBeforeLRCProc(aReg: TRegistry);
+    procedure ReadIntegerBeforeLRCProc(aReg: TRegistry);
+    procedure ReadBoolBeforeLRCProc(aReg: TRegistry);
     procedure DeleteKeyBeforeLRCProc(aReg: TRegistry);
     procedure DeleteKeyAfterLRCProc(aReg: TRegistry);
     procedure EraseSectionBeforeLRCProc(aReg: TRegistry);
@@ -54,6 +61,33 @@ implementation
 uses
   test_const,
   test_utils;
+
+procedure TLRCRegInifileTest.ReadStringBeforeLRCProc(aReg: TRegistry);
+begin
+  with aReg do
+    FTestString1 := ReadString('ReadString');
+
+  AssertTrue(Format('Test nicht durchführbar, Datenwert besitzt falschen Wert: %s',
+    [FTestString1]), FTestString1='TestStringForReadTest');
+end;
+
+procedure TLRCRegInifileTest.ReadIntegerBeforeLRCProc(aReg: TRegistry);
+begin
+  with aReg do
+    FTestInteger1 := ReadInteger('ReadInteger');
+
+  AssertTrue(Format('Test nicht durchführbar, Datenwert besitzt falschen Wert: %d',
+    [FTestInteger1]), FTestInteger1=1965);
+end;
+
+procedure TLRCRegInifileTest.ReadBoolBeforeLRCProc(aReg: TRegistry);
+begin
+  with aReg do
+    FTestBool1 := ReadBool('ReadBoolean');
+
+  AssertTrue(Format('Test nicht durchführbar, Datenwert besitzt falschen Wert: %s',
+    [BoolToStr(FTestBool1, 'True', 'False')]), FTestBool1=True);
+end;
 
 procedure TLRCRegInifileTest.DeleteKeyBeforeLRCProc(aReg: TRegistry);
 begin
@@ -142,8 +176,8 @@ begin
         if OpenKey(LRCREGINIFILE_TESTROOT + '\BooleanSection\', True)
         then
         begin
-          WriteBool('WriteBoolean', False);
-          WriteBool('ReadBoolean', False);
+          WriteBool('WriteBoolean', True);
+          WriteBool('ReadBoolean', True);
         end;
         CloseKey;
 
@@ -152,7 +186,7 @@ begin
         begin
           WriteString('StringIdent', 'Test');
           WriteInteger('IntegerIdent', 1234);
-          WriteBool('BooleanIdent', False);
+          WriteBool('BooleanIdent', True);
         end;
         CloseKey;
       end
@@ -230,17 +264,44 @@ end;
 
 procedure TLRCRegInifileTest.ReadBool;
 begin
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'BooleanSection',
+    ReadBoolBeforeLRCProc);
+
   // Liest einen boolschen Datenwert
+  FTestBool2 := FLRCRRegIniFile.ReadBool('BooleanSection', 'ReadBoolean', False);
+
+  AssertTrue('Datenwert wurde nicht richtig ausgelesen',
+    FTestBool1=FTestBool2);
+  AssertTrue('Datenwert wurde nicht richtig ausgelesen',
+    FTestBool2=True);
 end;
 
 procedure TLRCRegInifileTest.ReadInteger;
 begin
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'IntegerSection',
+    ReadIntegerBeforeLRCProc);
+
   // Liest einen Integer Datenwert
+  FTestInteger2 := FLRCRRegIniFile.ReadInteger('IntegerSection', 'ReadInteger', -1);
+
+  AssertTrue('Datenwert wurde nicht richtig ausgelesen',
+    FTestInteger1=FTestInteger2);
+  AssertTrue('Datenwert wurde nicht richtig ausgelesen',
+    FTestInteger2=1965);
 end;
 
 procedure TLRCRegInifileTest.ReadString;
 begin
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'StringSection',
+    ReadStringBeforeLRCProc);
+
   // Liest einen String Datenwert
+  FTestString2 := FLRCRRegIniFile.ReadString('StringSection', 'ReadString', EmptyStr);
+
+  AssertTrue('Datenwert wurde nicht richtig ausgelesen',
+    FTestString1=FTestString2);
+  AssertTrue('Datenwert wurde nicht richtig ausgelesen',
+    FTestString2='TestStringForReadTest');
 end;
 
 procedure TLRCRegInifileTest.ReadSection;

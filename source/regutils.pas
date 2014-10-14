@@ -412,10 +412,10 @@ begin
   if aReg.ValueExists(ident) then
   begin
     res := aReg.ReadInteger(ident);
-    FFuncResult.Value.SetValueByInteger(res);
+    FFuncResult.SetValueByInteger(res);
   end
   else
-    FFuncResult.Value.SetValueByInteger(FReg.Value.GetValueAsInteger);
+    FFuncResult.SetValueByInteger(FReg.Value.GetValueAsInteger);
 
   Result := True;
 end;
@@ -430,10 +430,10 @@ begin
   if aReg.ValueExists(ident) then
   begin
     res := aReg.ReadString(ident);
-    FFuncResult.Value.SetValueByString(res);
+    FFuncResult.SetValueByString(res);
   end
   else
-    FFuncResult.Value.SetValueByString(FReg.Value.GetValueAsString);
+    FFuncResult.SetValueByString(FReg.Value.GetValueAsString);
 
   Result := True;
 end;
@@ -512,10 +512,10 @@ begin
   if aReg.ValueExists(ident) then
   begin
     res := aReg.ReadBool(ident);
-    FFuncResult.Value.SetValueByBoolean(res);
+    FFuncResult.SetValueByBoolean(res);
   end
   else
-    FFuncResult.Value.SetValueByBoolean(FReg.Value.GetValueAsBoolean);
+    FFuncResult.SetValueByBoolean(FReg.Value.GetValueAsBoolean);
 
   Result := True;
 end;
