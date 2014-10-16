@@ -475,6 +475,7 @@ end;
 function TLRCRRegIniFile.ReadSectionValuesProc(aReg: TRegistry;
   aOpenKey: string): boolean;
 begin
+  { TODO -oAlfred Gerke -cTLRCRegInifile entwickeln : Falsche Implementation s. ReadSectionValuesByKind }
   Result := ReadSectionProc(aReg, aOpenKey);
 end;
 

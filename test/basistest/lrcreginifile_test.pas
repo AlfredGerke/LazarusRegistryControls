@@ -26,7 +26,16 @@ type
     FTestBool2: boolean;
     FTestInteger1: integer;
     FTestInteger2: integer;
+    FTestList1: TStrings;
+    FTestList2: TStrings;
 
+    procedure CheckListForReadSectionValuesTest(aList: TStrings);
+    procedure CheckListForReadSectionsTest(aList: TStrings);
+    procedure CheckListForReadSectionTest(aList: TStrings);
+
+    procedure ReadSectionValuesBeforeLRCProc(aReg: TRegistry);
+    procedure ReadSectionsBeforeLRCProc(aReg: TRegistry);
+    procedure ReadSectionBeforeLRCProc(aReg: Tregistry);
     procedure ReadStringBeforeLRCProc(aReg: TRegistry);
     procedure ReadIntegerBeforeLRCProc(aReg: TRegistry);
     procedure ReadBoolBeforeLRCProc(aReg: TRegistry);
@@ -61,6 +70,142 @@ implementation
 uses
   test_const,
   test_utils;
+
+procedure TLRCRegInifileTest.CheckListForReadSectionValuesTest(aList: TStrings);
+var
+  count: integer;
+  index: integer;
+  value: string;
+begin
+  count := aList.Count;
+
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=3 - Ist=%d',
+    [count]), count=3);
+
+  index := aList.IndexOfName('StringIdent');
+  AssertFalse('StringIdent nicht gefunden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertFalse(Format('Falscher Wert für StringIdent: Soll=Test - Ist=%s', [value]),
+    (value='Test'));
+
+  index := aList.IndexOfName('IntegerIdent');
+  AssertFalse('IntegerIdent nicht gefunden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertFalse(Format('Falscher Wert für IntegerIdent: Soll=1234 - Ist=%s', [value]),
+    (value='1234'));
+
+  index := aList.IndexOfName('BooleanIdent');
+  AssertFalse('BooleanIdent nicht gefuden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertFalse(Format('Falscher Wert für BooleanIdant: Soll=True - Ist=%s', [value]),
+    (value='True'));
+end;
+
+procedure TLRCRegInifileTest.CheckListForReadSectionsTest(aList: TStrings);
+var
+  count: integer;
+  index: integer;
+begin
+  count := aList.Count;
+
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=4 - Ist=%d',
+    [count]), count=4);
+
+  index := aList.IndexOf('StringSection');
+  AssertFalse('StringSection nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('IntegerSection');
+  AssertFalse('IntegerSection nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('BooleanSection');
+  AssertFalse('BooleanSection nicht gefuden', (index=-1));
+
+  index := aList.IndexOf('DeleteKeySection');
+  AssertFalse('DeleteKeySection nicht gefuden', (index=-1));
+end;
+
+procedure TLRCRegInifileTest.CheckListForReadSectionTest(aList: TStrings);
+var
+  count: integer;
+  index: integer;
+begin
+  count := aList.Count;
+
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=3 - Ist=%d',
+    [count]), count=3);
+
+  index := aList.IndexOf('StringIdent');
+  AssertFalse('StringIdent nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('IntegerIdent');
+  AssertFalse('IntegerIdent nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('BooleanIdent');
+  AssertFalse('BooleanIdent nicht gefuden', (index=-1));
+end;
+
+procedure TLRCRegInifileTest.ReadSectionValuesBeforeLRCProc(aReg: TRegistry);
+var
+  list: TStrings;
+  anz: integer;
+  ident: string;
+  value: string;
+begin
+  AssertTrue('Test nicht durchführbar, Liste nicht vorhanden',
+    Assigned(FTestList1));
+
+  FTestList1.Clear;
+
+  list := TStringList.Create;
+  try
+    with aReg do
+    begin
+      GetValueNames(list);
+
+      { TODO -oAlfred Gerke -cTLRCRegInifile testen : Für Test hier ungeignet, Ident und separat auslesen }
+      for anz := 0 to (list.Count-1) do
+      begin
+        ident := list.Strings[anz];
+        value := ReadString(ident);
+        FTestList1.Add(Format('%s=%s', [ident, value]));
+      end;
+    end;
+
+    CheckListForReadSectionValuesTest(FTestList1);
+  finally
+    if Assigned(list) then
+      FreeAndNil(list);
+  end;
+end;
+
+procedure TLRCRegInifileTest.ReadSectionsBeforeLRCProc(aReg: TRegistry);
+begin
+  AssertTrue('Test nicht durchführbar, Liste nicht vorhanden',
+    Assigned(FTestList1));
+
+  FTestList1.Clear;
+
+  with aReg do
+    GetKeyNames(FTestList1);
+
+  CheckListForReadSectionsTest(FTestList1);
+end;
+
+procedure TLRCRegInifileTest.ReadSectionBeforeLRCProc(aReg: Tregistry);
+begin
+  AssertTrue('Test nicht durchführbar, Liste nicht vorhanden',
+    Assigned(FTestList1));
+
+  FTestList1.Clear;
+
+  with aReg do
+    GetValueNames(FTestList1);
+
+  CheckListForReadSectionTest(FTestList1);
+end;
 
 procedure TLRCRegInifileTest.ReadStringBeforeLRCProc(aReg: TRegistry);
 begin
@@ -305,49 +450,62 @@ begin
 end;
 
 procedure TLRCRegInifileTest.ReadSection;
-var
-  list: TStrings;
 begin
-  list := TStringList.Create;
+  FTestList1 := TStringList.Create;
+  FTestList2 := TStringList.Create;
   try
+    GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'DeleteKeySection',
+      ReadSectionBeforeLRCProc);
 
     // Liest alle Namen aller Datenwerte einer Section (NAME)
-    FLRCRRegIniFile.ReadSection('DeleteKeySection', list);
+    FLRCRRegIniFile.ReadSection('DeleteKeySection', FTestList2);
 
+    CheckListForReadSectionTest(FTestList2);
   finally
-    if Assigned(list) then
-      FreeAndNil(list);
+    if Assigned(FTestList1) then
+      FreeAndNil(FTestList1);
+    if Assigned(FTestList2) then
+      FreeAndNil(FTestList2);
   end;
 end;
 
 procedure TLRCRegInifileTest.ReadSections;
-var
-  list: TStrings;
 begin
-  list := TStringList.Create;
+  FTestList1 := TStringList.Create;
+  FTestList2 := TStringList.Create;
   try
-    // Liest alle Unterschlüssel eines Hauptschlüssels
-    FLRCRRegIniFile.ReadSections(list);
+    GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, '',
+      ReadSectionsBeforeLRCProc);
 
+    // Liest alle Unterschlüssel eines Hauptschlüssels
+    FLRCRRegIniFile.ReadSections(FTestList2);
+
+    CheckListForReadSectionsTest(FTestList2);
   finally
-    if Assigned(list) then
-      FreeAndNil(list);
+    if Assigned(FTestList1) then
+      FreeAndNil(FTestList1);
+    if Assigned(FTestList2) then
+      FreeAndNil(FTestList2);
   end;
 end;
 
 procedure TLRCRegInifileTest.ReadSectionValues;
-var
-  list: TStrings;
 begin
-  list := TStringList.Create;
+  FTestList1 := TStringList.Create;
+  FTestList2 := TStringList.Create;
   try
+    GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'DeleteKeySection',
+      ReadSectionValuesBeforeLRCProc);
 
     // Liest alle Datenwerte einer Section (NAME=VALUE)
-    FLRCRRegIniFile.ReadSectionValues('DeleteKeySection', list);
+    FLRCRRegIniFile.ReadSectionValues('DeleteKeySection', FTestList2);
 
+    CheckListForReadSectionValuesTest(FTestList2);
   finally
-    if Assigned(list) then
-      FreeAndNil(list);
+    if Assigned(FTestList1) then
+      FreeAndNil(FTestList1);
+    if Assigned(FTestList2) then
+      FreeAndNil(FTestList2);
   end;
 end;
 
