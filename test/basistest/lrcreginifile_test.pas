@@ -33,6 +33,9 @@ type
     procedure CheckListForReadSectionsTest(aList: TStrings);
     procedure CheckListForReadSectionTest(aList: TStrings);
 
+    procedure WriteStringBeforeLRCProc(aReg: TRegistry);
+    procedure WriteIntegerBeforeLRCProc(aReg: TRegistry);
+    procedure WriteBoolBeforeLRCPRoc(aReg: TRegistry);
     procedure ReadSectionValuesBeforeLRCProc(aReg: TRegistry);
     procedure ReadSectionsBeforeLRCProc(aReg: TRegistry);
     procedure ReadSectionBeforeLRCProc(aReg: Tregistry);
@@ -76,6 +79,8 @@ var
   count: integer;
   index: integer;
   value: string;
+  value_bool: boolean;
+  value_int: integer;
 begin
   count := aList.Count;
 
@@ -86,22 +91,31 @@ begin
   AssertFalse('StringIdent nicht gefunden', (index=-1));
 
   value := aList.ValueFromIndex[index];
-  AssertFalse(Format('Falscher Wert für StringIdent: Soll=Test - Ist=%s', [value]),
-    (value='Test'));
+  AssertTrue(
+    Format('Falscher Wert für StringIdent: Soll=Test - Ist=%s', [value]),
+      (value='Test'));
 
   index := aList.IndexOfName('IntegerIdent');
   AssertFalse('IntegerIdent nicht gefunden', (index=-1));
 
   value := aList.ValueFromIndex[index];
-  AssertFalse(Format('Falscher Wert für IntegerIdent: Soll=1234 - Ist=%s', [value]),
-    (value='1234'));
+  AssertTrue(
+    Format('Wert für IntegerIdent kein Integer: %s', [value]),
+      TryStrToInt(value, value_int));
+  AssertTrue(
+    Format('Falscher Wert für IntegerIdent: Soll=1234 - Ist=%s', [value]),
+      (value='1234'));
 
   index := aList.IndexOfName('BooleanIdent');
   AssertFalse('BooleanIdent nicht gefuden', (index=-1));
 
   value := aList.ValueFromIndex[index];
-  AssertFalse(Format('Falscher Wert für BooleanIdant: Soll=True - Ist=%s', [value]),
-    (value='True'));
+  AssertTrue(
+    Format('Wert für BooleanIdent kein Boolean: %s', [value]),
+      TryStrToBool(value, value_bool));
+  AssertTrue(
+    Format('Falscher Wert für BooleanIdent: Soll=True - Ist=%s',
+      [BoolToStr(value_bool, 'true', 'False')]), (value_bool=True));
 end;
 
 procedure TLRCRegInifileTest.CheckListForReadSectionsTest(aList: TStrings);
@@ -147,12 +161,30 @@ begin
   AssertFalse('BooleanIdent nicht gefuden', (index=-1));
 end;
 
+procedure TLRCRegInifileTest.WriteStringBeforeLRCProc(aReg: TRegistry);
+begin
+
+end;
+
+procedure TLRCRegInifileTest.WriteIntegerBeforeLRCProc(aReg: TRegistry);
+begin
+
+end;
+
+procedure TLRCRegInifileTest.WriteBoolBeforeLRCPRoc(aReg: TRegistry);
+begin
+
+end;
+
 procedure TLRCRegInifileTest.ReadSectionValuesBeforeLRCProc(aReg: TRegistry);
 var
   list: TStrings;
   anz: integer;
   ident: string;
-  value: string;
+  value_str: string;
+  value_bool: boolean;
+  value_int: integer;
+  count: integer;
 begin
   AssertTrue('Test nicht durchführbar, Liste nicht vorhanden',
     Assigned(FTestList1));
@@ -165,16 +197,27 @@ begin
     begin
       GetValueNames(list);
 
-      { TODO -oAlfred Gerke -cTLRCRegInifile testen : Für Test hier ungeignet, Ident und separat auslesen }
-      for anz := 0 to (list.Count-1) do
-      begin
-        ident := list.Strings[anz];
-        value := ReadString(ident);
-        FTestList1.Add(Format('%s=%s', [ident, value]));
-      end;
-    end;
+      count := list.count;
 
-    CheckListForReadSectionValuesTest(FTestList1);
+      AssertTrue(
+        Format('Test nicht durchführbar, falsche Anzahl Einträge: Soll=3 - Ist=%d',
+          [count]), (count=3));
+
+      value_str := aReg.ReadString('StringIdent');
+      AssertTrue(
+        Format('Test nicht durchführbar, falscher Wert für StringIdent: %s',
+          [value_str]), (value_str='Test'));
+
+      value_int := aReg.ReadInteger('IntegerIdent');
+      AssertTrue(
+        Format('Test nicht durchführbar, falscher Wert für IntegerIdent: %d',
+          [value_int]), (value_int=1234));
+
+      value_bool := aReg.ReadBool('BooleanIdent');
+      AssertTrue(
+        Format('Test nicht durchführbar, falscher Wert für BooleanIdent: %s',
+          [BoolToStr(value_bool, 'True', 'False')]), (value_bool=True));
+    end;
   finally
     if Assigned(list) then
       FreeAndNil(list);
@@ -212,8 +255,9 @@ begin
   with aReg do
     FTestString1 := ReadString('ReadString');
 
-  AssertTrue(Format('Test nicht durchführbar, Datenwert besitzt falschen Wert: %s',
-    [FTestString1]), FTestString1='TestStringForReadTest');
+  AssertTrue(
+    Format('Test nicht durchführbar, Datenwert besitzt falschen Wert: %s',
+      [FTestString1]), FTestString1='TestStringForReadTest');
 end;
 
 procedure TLRCRegInifileTest.ReadIntegerBeforeLRCProc(aReg: TRegistry);
@@ -221,8 +265,9 @@ begin
   with aReg do
     FTestInteger1 := ReadInteger('ReadInteger');
 
-  AssertTrue(Format('Test nicht durchführbar, Datenwert besitzt falschen Wert: %d',
-    [FTestInteger1]), FTestInteger1=1965);
+  AssertTrue(
+    Format('Test nicht durchführbar, Datenwert besitzt falschen Wert: %d',
+      [FTestInteger1]), FTestInteger1=1965);
 end;
 
 procedure TLRCRegInifileTest.ReadBoolBeforeLRCProc(aReg: TRegistry);
@@ -230,8 +275,9 @@ begin
   with aReg do
     FTestBool1 := ReadBool('ReadBoolean');
 
-  AssertTrue(Format('Test nicht durchführbar, Datenwert besitzt falschen Wert: %s',
-    [BoolToStr(FTestBool1, 'True', 'False')]), FTestBool1=True);
+  AssertTrue(
+    Format('Test nicht durchführbar, Datenwert besitzt falschen Wert: %s',
+      [BoolToStr(FTestBool1, 'True', 'False')]), FTestBool1=True);
 end;
 
 procedure TLRCRegInifileTest.DeleteKeyBeforeLRCProc(aReg: TRegistry);
@@ -262,8 +308,9 @@ begin
 
     count := list.Count;
 
-    AssertTrue(Format('Test nicht durchführbar, falsche Anzahl Sectionen: Soll=4 - Ist=%d', [count]),
-      count = 4);
+    AssertTrue(
+      Format('Test nicht durchführbar, falsche Anzahl Sectionen: Soll=4 - Ist=%d',
+        [count]), count = 4);
   finally
     if Assigned(list) then
       FreeAndNil(list);
@@ -282,8 +329,9 @@ begin
 
     count := list.Count;
 
-    AssertTrue(Format('Falsche Anzahl Sectionen: Soll=3 - Ist=%d', [count]),
-      count = 3);
+    AssertTrue(
+      Format('Falsche Anzahl Sectionen: Soll=3 - Ist=%d', [count]),
+        count = 3);
   finally
     if Assigned(list) then
       FreeAndNil(list);
@@ -413,10 +461,12 @@ begin
     ReadBoolBeforeLRCProc);
 
   // Liest einen boolschen Datenwert
-  FTestBool2 := FLRCRRegIniFile.ReadBool('BooleanSection', 'ReadBoolean', False);
+  FTestBool2 :=
+    FLRCRRegIniFile.ReadBool('BooleanSection', 'ReadBoolean', False);
 
   AssertTrue('Datenwert wurde nicht richtig ausgelesen',
     FTestBool1=FTestBool2);
+
   AssertTrue('Datenwert wurde nicht richtig ausgelesen',
     FTestBool2=True);
 end;
@@ -427,10 +477,12 @@ begin
     ReadIntegerBeforeLRCProc);
 
   // Liest einen Integer Datenwert
-  FTestInteger2 := FLRCRRegIniFile.ReadInteger('IntegerSection', 'ReadInteger', -1);
+  FTestInteger2 :=
+    FLRCRRegIniFile.ReadInteger('IntegerSection', 'ReadInteger', -1);
 
   AssertTrue('Datenwert wurde nicht richtig ausgelesen',
     FTestInteger1=FTestInteger2);
+
   AssertTrue('Datenwert wurde nicht richtig ausgelesen',
     FTestInteger2=1965);
 end;
@@ -441,10 +493,12 @@ begin
     ReadStringBeforeLRCProc);
 
   // Liest einen String Datenwert
-  FTestString2 := FLRCRRegIniFile.ReadString('StringSection', 'ReadString', EmptyStr);
+  FTestString2 :=
+    FLRCRRegIniFile.ReadString('StringSection', 'ReadString', EmptyStr);
 
   AssertTrue('Datenwert wurde nicht richtig ausgelesen',
     FTestString1=FTestString2);
+
   AssertTrue('Datenwert wurde nicht richtig ausgelesen',
     FTestString2='TestStringForReadTest');
 end;
@@ -464,6 +518,7 @@ begin
   finally
     if Assigned(FTestList1) then
       FreeAndNil(FTestList1);
+
     if Assigned(FTestList2) then
       FreeAndNil(FTestList2);
   end;
@@ -484,6 +539,7 @@ begin
   finally
     if Assigned(FTestList1) then
       FreeAndNil(FTestList1);
+
     if Assigned(FTestList2) then
       FreeAndNil(FTestList2);
   end;
@@ -504,6 +560,7 @@ begin
   finally
     if Assigned(FTestList1) then
       FreeAndNil(FTestList1);
+
     if Assigned(FTestList2) then
       FreeAndNil(FTestList2);
   end;
@@ -511,17 +568,42 @@ end;
 
 procedure TLRCRegInifileTest.WriteBool;
 begin
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'BooleanSection',
+    WriteBoolBeforeLRCProc);
+
   // Schreibt einen boolschen Datenwert
+  FLRCRRegIniFile.WriteBool('BooleanSection', 'WriteBoolean', False);
+
+  FLRCRRegIniFile.WriteBool('BooleanSection', 'WriteBooleanNew', True);
+
+  FLRCRRegIniFile.WriteBool('BooleanSectionNew', 'WriteBoolean', True);
 end;
 
 procedure TLRCRegInifileTest.WriteInteger;
 begin
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'IntegerSection',
+    WriteIntegerBeforeLRCProc);
+
   // Schreibt einen Interger Datenwert
+  FLRCRRegIniFile.WriteInteger('IntegerSection', 'WriteInteger', 4321);
+
+  FLRCRRegIniFile.WriteInteger('IntegerSection', 'WriteIntegerNew', 1111);
+
+  FLRCRRegIniFile.WriteInteger('IntegerSectionNew', 'WriteInteger', 99);
 end;
 
 procedure TLRCRegInifileTest.WriteString;
 begin
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'StringSection',
+    WriteStringBeforeLRCProc);
+
   // Schreibt einen String Datenwert
+  FLRCRRegIniFile.WriteString('StringSection', 'WriteString', 'Wert wird geändert');
+
+  FLRCRRegIniFile.WriteString('StringSection', 'WriteStringNew', 'Neuer Ident');
+
+  FLRCRRegIniFile.WriteString('StringSectionNew', 'WriteString',
+    'Neue Section und neuer Ident');
 end;
 
 procedure TLRCRegInifileTest.TestFilename;

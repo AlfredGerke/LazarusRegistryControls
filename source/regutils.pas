@@ -474,9 +474,44 @@ end;
 
 function TLRCRRegIniFile.ReadSectionValuesProc(aReg: TRegistry;
   aOpenKey: string): boolean;
+var
+  names: TStrings;
+  anz: integer;
+  ident: string;
+  value_data_type: TRegDataType;
+  value: string;
 begin
-  { TODO -oAlfred Gerke -cTLRCRegInifile entwickeln : Falsche Implementation s. ReadSectionValuesByKind }
-  Result := ReadSectionProc(aReg, aOpenKey);
+  names := FReg.GetStrings;
+  if Assigned(names) then
+  begin
+    aReg.GetValueNames(names);
+
+    for anz := 0 to names.Count-1 do
+    begin
+      ident := names[anz];
+      value_data_type := aReg.GetDataType(ident);
+
+      case value_data_type of
+        rdString,
+        rdExpandString:
+          value := aReg.ReadString(ident);
+        rdBinary:
+          Continue;
+        rdInteger:
+          value := IntToStr(aReg.ReadInteger(ident));
+      else
+        Continue;
+      end;
+
+      names[anz] := Format('%s=%s', [ident, value]);
+    end;
+
+    FReg.SetStrings(names);
+
+    Result := Assigned(names);
+  end
+  else
+    Result := False;
 end;
 
 function TLRCRRegIniFile.WriteBoolProc(aReg: TRegistry;
