@@ -639,7 +639,7 @@ begin
       FFuncResult.Clear;
 
       success :=
-        GetRegistry(FRoot, Filename + aSection, ReadBoolProc, False);
+        GetRegistry(FRoot, Filename + aSection, ReadBoolProc, True);
 
       if success then
         Result := FFuncResult.GetValueAsBoolean
@@ -667,7 +667,7 @@ begin
       FFuncResult.Clear;
 
       success :=
-        GetRegistry(FRoot, Filename + aSection, ReadIntegerProc, False);
+        GetRegistry(FRoot, Filename + aSection, ReadIntegerProc, True);
 
       if success then
         Result := FFuncResult.GetValueAsInteger
@@ -695,7 +695,7 @@ begin
       FFuncResult.Clear;
 
       success :=
-        GetRegistry(FRoot, Filename + aSection, ReadStringProc, False);
+        GetRegistry(FRoot, Filename + aSection, ReadStringProc, True);
 
       if success then
         Result := FFuncResult.GetValueAsString
@@ -720,7 +720,7 @@ begin
       SetStrings(aStrings);
 
       success :=
-        GetRegistry(FRoot, Filename + aSection, ReadSectionProc, False);
+        GetRegistry(FRoot, Filename + aSection, ReadSectionProc, True);
 
       if success then
         aStrings := GetStrings;
@@ -740,7 +740,7 @@ begin
     try
       SetStrings(aStrings);
 
-      success := GetRegistry(FRoot, Filename, ReadSectionsProc, False);
+      success := GetRegistry(FRoot, Filename, ReadSectionsProc, True);
 
       if success then
         aStrings := GetStrings;
@@ -763,7 +763,7 @@ begin
       SetStrings(aStrings);
 
       success :=
-        GetRegistry(FRoot, Filename + aSection, ReadSectionValuesProc, False);
+        GetRegistry(FRoot, Filename + aSection, ReadSectionValuesProc, True);
 
       if success then
         aStrings := GetStrings;
@@ -788,7 +788,7 @@ begin
       Value.SetValueByBoolean(aValue);
 
       success :=
-        GetRegistry(FRoot, Filename + aSection, WriteBoolProc, False);
+        GetRegistry(FRoot, Filename + aSection, WriteBoolProc, False, True);
     finally
       Refresh;
     end;
@@ -810,7 +810,7 @@ begin
       Value.SetValueByInteger(aValue);
 
       success :=
-        GetRegistry(FRoot, Filename + aSection, WriteIntegerProc, False);
+        GetRegistry(FRoot, Filename + aSection, WriteIntegerProc, False, True);
     finally
       Refresh;
     end;
@@ -832,7 +832,7 @@ begin
       Value.SetValueByString(aValue);
 
       success :=
-        GetRegistry(FRoot, Filename + aSection, WriteStringProc, False);
+        GetRegistry(FRoot, Filename + aSection, WriteStringProc, False, True);
     finally
       Refresh;
     end;
