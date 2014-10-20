@@ -6,17 +6,22 @@ interface
 
 uses
   SysUtils,
-  Registry;
+  Registry,
+  classes;
 
 type
   TManageRegIniFile = procedure(aIni: TRegIniFile) of object;
   TManageRegistry = procedure(aReg: TRegistry) of object;
+
+procedure AssertFindSectionTrue(aReg: TRegistry;
+                                aSection: string);
 
 procedure GetRegistry(aRoot: HKEY;
                       aRootKey: string;
                       aSection: string;
                       aProc: TManageRegistry;
                       aCanCreate: boolean = True);
+
 procedure GetRegIniFile(aRootKey: string;
                         aProc: TManageRegIniFile);
 
@@ -37,6 +42,27 @@ uses
 
 var
   count: integer;
+
+procedure AssertFindSectionTrue(aReg: TRegistry;
+  aSection: string);
+var
+  list: TStrings;
+  index: integer;
+begin
+  list := TStringList.Create;
+  try
+    with aReg do
+      GetKeyNames(list);
+
+    index := list.IndexOf(aSection);
+
+    TAssert.AssertTrue(
+      Format('Test nicht durchführbar, %s vorhanden', [aSection]), index=-1);
+  finally
+    if Assigned(list) then
+      FreeAndNil(list);
+  end;
+end;
 
 function GetNextCount: integer;
 begin

@@ -34,7 +34,15 @@ type
     procedure CheckListForReadSectionTest(aList: TStrings);
 
     procedure WriteStringBeforeLRCProc(aReg: TRegistry);
+    procedure WriteStringAfterLRCProc1(aReg: TRegistry);
+    procedure WriteStringAfterLRCProc2(aReg: TRegistry);
+    procedure WriteStringAfterLRCProc3(aReg: TRegistry);
+    procedure WriteStringAfterLRCProc4(aReg: TRegistry);
     procedure WriteIntegerBeforeLRCProc(aReg: TRegistry);
+    procedure WriteIntegerAfterLRCProc1(aReg: TRegistry);
+    procedure WriteIntegerAfterLRCProc2(aReg: TRegistry);
+    procedure WriteIntegerAfterLRCProc3(aReg: TRegistry);
+    procedure WriteIntegerAfterLRCProc4(aReg: TRegistry);
     procedure WriteBoolBeforeLRCPRoc(aReg: TRegistry);
     procedure WriteBoolAfterLRCProc1(aReg: TRegistry);
     procedure WriteBoolAfterLRCProc2(aReg: TRegistry);
@@ -58,6 +66,7 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
+    procedure Filename;
     procedure DeleteKey;
     procedure EraseSection;
     procedure ReadBool;
@@ -69,7 +78,6 @@ type
     procedure WriteBool;
     procedure WriteInteger;
     procedure WriteString;
-    procedure TestFilename;
   end;
 
 implementation
@@ -180,6 +188,48 @@ begin
   end;
 end;
 
+procedure TLRCRegInifileTest.WriteStringAfterLRCProc1(aReg: TRegistry);
+begin
+  with aReg do
+  begin
+    FTestString2 := ReadString('WriteString');
+
+    AssertEquals('Falscher Wert für WriteString', 'Wert wird geändert', FTestString2);
+
+    AssertTrue('Falscher Wert für WriteString', (FTestString1<>FTestString2));
+
+    AssertFalse('Test nicht durchführbar, WriteStringNew vorhanden',
+      ValueExists('WriteStringNew'));
+  end;
+end;
+
+procedure TLRCRegInifileTest.WriteStringAfterLRCProc2(aReg: TRegistry);
+begin
+  with aReg do
+    FTestString2 := ReadString('WriteStringNew');
+
+  AssertTrue('Falscher Wert für WriteStringNew: Soll=Neuer Ident', (FTestString2='Neuer Ident'));
+
+  AssertFalse('Falscher Wert für WriteStringNew', (FTestString1=FTestString2));
+end;
+
+procedure TLRCRegInifileTest.WriteStringAfterLRCProc3(aReg: TRegistry);
+begin
+  AssertFindSectionTrue(aReg, 'StringSectionNew');
+end;
+
+procedure TLRCRegInifileTest.WriteStringAfterLRCProc4(aReg: TRegistry);
+begin
+  with aReg do
+  begin
+    FTestString2 := ReadString('WriteString');
+
+    AssertEquals('Falscher Wert für WriteString', 'Neue Section und neuer Ident', FTestString2);
+
+    AssertTrue('Falscher Wert für WriteString', (FTestString1<>FTestString2));
+  end;
+end;
+
 procedure TLRCRegInifileTest.WriteIntegerBeforeLRCProc(aReg: TRegistry);
 begin
   with aReg do
@@ -192,6 +242,48 @@ begin
     AssertTrue(
       Format('Falscher Wert für WriteInteger: Soll=1808 - Ist=%d',
         [FTestInteger1]), (FTestInteger1=1808));
+  end;
+end;
+
+procedure TLRCRegInifileTest.WriteIntegerAfterLRCProc1(aReg: TRegistry);
+begin
+  with aReg do
+    begin
+      FTestInteger2 := ReadInteger('WriteInteger');
+
+      AssertEquals('Falscher Wert für WriteInteger', 4321, FTestInteger2);
+
+      AssertTrue('Falscher Wert für WriteInteger', (FTestInteger1<>FTestInteger2));
+
+      AssertFalse('Test nicht durchführbar, WriteIntegerNew vorhanden',
+        ValueExists('WriteIntegerNew'));
+    end;
+end;
+
+procedure TLRCRegInifileTest.WriteIntegerAfterLRCProc2(aReg: TRegistry);
+begin
+  with aReg do
+    FTestInteger2 := ReadInteger('WriteIntegerNew');
+
+  AssertTrue('Falscher Wert für WriteIntegerNew: Soll=1111', (FTestInteger2=1111));
+
+  AssertFalse('Falscher Wert für WriteIntegerNew', (FTestInteger1=FTestInteger2));
+end;
+
+procedure TLRCRegInifileTest.WriteIntegerAfterLRCProc3(aReg: TRegistry);
+begin
+  AssertFindSectionTrue(aReg, 'IntegerSectionNew');
+end;
+
+procedure TLRCRegInifileTest.WriteIntegerAfterLRCProc4(aReg: TRegistry);
+begin
+  with aReg do
+  begin
+    FTestInteger2 := ReadInteger('WriteInteger');
+
+    AssertEquals('Falscher Wert für WriteInteger', 99, FTestInteger2);
+
+    AssertTrue('Falscher Wert für WriteInteger', (FTestInteger1<>FTestInteger2));
   end;
 end;
 
@@ -234,23 +326,8 @@ begin
 end;
 
 procedure TLRCRegInifileTest.WriteBoolAfterLRCProc3(aReg: TRegistry);
-var
-  list: TStrings;
-  index: integer;
 begin
-  list := TStringList.Create;
-  try
-    with aReg do
-      GetKeyNames(list);
-
-    index := list.IndexOf('BooleanSectionNew');
-
-    AssertTrue('Test nicht durchführbar, BooleanSectionNew vorhanden',
-      index=-1);
-  finally
-    if Assigned(list) then
-      FreeAndNil(list);
-  end;
+  AssertFindSectionTrue(aReg, 'BooleanSectionNew');
 end;
 
 procedure TLRCRegInifileTest.WriteBoolAfterLRCProc4(aReg: TRegistry);
@@ -475,12 +552,17 @@ begin
       else
       begin
         DeleteKey(LRCREGINIFILE_TESTROOT + '\StringSection\');
+        if KeyExists(LRCREGINIFILE_TESTROOT + '\StringSectionNew\') then
+          DeleteKey(LRCREGINIFILE_TESTROOT + '\StringSectionNew\');
         DeleteKey(LRCREGINIFILE_TESTROOT + '\IntegerSection\');
+        if KeyExists(LRCREGINIFILE_TESTROOT + '\IntegerSectionNew\') then
+          DeleteKey(LRCREGINIFILE_TESTROOT + '\IntegerSectionNew\');
         DeleteKey(LRCREGINIFILE_TESTROOT + '\BooleanSection\');
         if KeyExists(LRCREGINIFILE_TESTROOT + '\BooleanSectionNew\') then
           DeleteKey(LRCREGINIFILE_TESTROOT + '\BooleanSectionNew\');
         DeleteKey(LRCREGINIFILE_TESTROOT + '\DeleteKeySection\');
-        DeleteKey(LRCREGINIFILE_TESTROOT + '\LRCRegInifile\');
+        DeleteKey(LRCREGINIFILE_TESTROOT + '\');
+
         CloseKey;
       end;
     end;
@@ -494,12 +576,20 @@ procedure TLRCRegInifileTest.Init;
 begin
   FTestString1 := EmptyStr;
   FTestString2 := EmptyStr;
+  FTestBool1 := False;
+  FTestBool2 := False;
+  FTestInteger1 := -1;
+  FTestInteger2 := -1;
 end;
 
 procedure TLRCRegInifileTest.Done;
 begin
   FTestString1 := EmptyStr;
   FTestString2 := EmptyStr;
+  FTestBool1 := False;
+  FTestBool2 := False;
+  FTestInteger1 := -1;
+  FTestInteger2 := -1;
 end;
 
 procedure TLRCRegInifileTest.SetUp;
@@ -692,9 +782,23 @@ begin
   // Schreibt einen Interger Datenwert
   FLRCRRegIniFile.WriteInteger('IntegerSection', 'WriteInteger', 4321);
 
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'IntegerSection',
+    WriteIntegerAfterLRCProc1);
+
   FLRCRRegIniFile.WriteInteger('IntegerSection', 'WriteIntegerNew', 1111);
 
+  FTestInteger1 := 1;
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'IntegerSection',
+    WriteIntegerAfterLRCProc2);
+
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, '',
+    WriteIntegerAfterLRCProc3);
+
   FLRCRRegIniFile.WriteInteger('IntegerSectionNew', 'WriteInteger', 99);
+
+  FTestInteger1 := 1;
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'IntegerSectionNew',
+    WriteIntegerAfterLRCProc4);
 end;
 
 procedure TLRCRegInifileTest.WriteString;
@@ -705,17 +809,34 @@ begin
   // Schreibt einen String Datenwert
   FLRCRRegIniFile.WriteString('StringSection', 'WriteString', 'Wert wird geändert');
 
-  //CheckStringForWriteStringTest(
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'StringSection',
+    WriteStringAfterLRCProc1);
 
   FLRCRRegIniFile.WriteString('StringSection', 'WriteStringNew', 'Neuer Ident');
 
+  FTestString1 := EmptyStr;
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'StringSection',
+    WriteStringAfterLRCProc2);
+
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, '',
+    WriteStringAfterLRCProc3);
+
   FLRCRRegIniFile.WriteString('StringSectionNew', 'WriteString',
     'Neue Section und neuer Ident');
+
+  FTestString1 := EmptyStr;
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'StringSectionNew',
+    WriteStringAfterLRCProc4);
 end;
 
-procedure TLRCRegInifileTest.TestFilename;
+procedure TLRCRegInifileTest.Filename;
+var
+  filename: string;
 begin
+  filename := FLRCRRegIniFile.Filename;
 
+  AssertEquals('Falscher Eintrag für Rootsection',
+      '\' + LRCREGINIFILE_TESTROOT + '\', filename);
 end;
 
 end.
