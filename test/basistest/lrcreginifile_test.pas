@@ -11,15 +11,21 @@ uses
   testutils,
   testregistry,
   regutils,
-  Registry;
+  Registry,
+  regbasics;
 
 type
 
   { TLRCRegInifileTest }
 
+  TTestLRCRegIniFile = class(TLRCRegIniFile)
+  public
+    property Root;
+  end;
+
   TLRCRegInifileTest= class(TTestCase)
   private
-    FLRCRRegIniFile: TLRCRRegIniFile;
+    FLRCRRegIniFile: TTestLRCRegIniFile;
     FTestString1: string;
     FTestString2: string;
     FTestBool1: boolean;
@@ -67,6 +73,7 @@ type
     procedure TearDown; override;
   published
     procedure Filename;
+    procedure Root;
     procedure DeleteKey;
     procedure EraseSection;
     procedure ReadBool;
@@ -78,6 +85,10 @@ type
     procedure WriteBool;
     procedure WriteInteger;
     procedure WriteString;
+    procedure KeyExists;
+    procedure OpenKeyReadOnly;
+    procedure ValueExists;
+    procedure CloseKey;
   end;
 
 implementation
@@ -596,7 +607,7 @@ procedure TLRCRegInifileTest.SetUp;
 begin
   Init;
   SetSectionsAndIdents;
-  FLRCRRegIniFile := TLRCRRegIniFile.Create(LRCREGINIFILE_TESTROOT);
+  FLRCRRegIniFile := TTestLRCRegIniFile.Create(LRCREGINIFILE_TESTROOT);
 end;
 
 procedure TLRCRegInifileTest.TearDown;
@@ -829,6 +840,30 @@ begin
     WriteStringAfterLRCProc4);
 end;
 
+procedure TLRCRegInifileTest.KeyExists;
+var
+  key_exists: boolean;
+begin
+   key_exists := FLRCRRegIniFile.KeyExists('');
+
+   AssertTrue('Key wurde nicht gefunden, Test fehlgeschlagen', key_exists);
+end;
+
+procedure TLRCRegInifileTest.OpenKeyReadOnly;
+begin
+
+end;
+
+procedure TLRCRegInifileTest.ValueExists;
+begin
+
+end;
+
+procedure TLRCRegInifileTest.CloseKey;
+begin
+
+end;
+
 procedure TLRCRegInifileTest.Filename;
 var
   filename: string;
@@ -837,6 +872,12 @@ begin
 
   AssertEquals('Falscher Eintrag für Rootsection',
       '\' + LRCREGINIFILE_TESTROOT + '\', filename);
+end;
+
+procedure TLRCRegInifileTest.Root;
+begin
+  AssertEquals('Falscher Eintrag für den Rootkey',
+    HKEY_CURRENT_USER, FLRCRRegIniFile.Root);
 end;
 
 end.

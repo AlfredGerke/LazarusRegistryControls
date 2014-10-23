@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <Package Version="4">
     <PathDelim Value="\"/>
@@ -45,7 +45,7 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
     <Version Minor="9" Release="8" Build="5"/>
-    <Files Count="14">
+    <Files Count="15">
       <Item1>
         <Filename Value="registrysource.lrs"/>
         <Type Value="LRS"/>
@@ -103,6 +103,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
         <Filename Value="..\source\dlgguid.pas"/>
         <UnitName Value="dlgguid"/>
       </Item14>
+      <Item15>
+        <Filename Value="..\source\regbasics.pas"/>
+        <UnitName Value="regbasics"/>
+      </Item15>
     </Files>
     <LazDoc Paths="C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\doc" PackageName="RegistrySource"/>
     <i18n>
