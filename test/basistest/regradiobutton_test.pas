@@ -11,7 +11,8 @@ uses
   regradiobutton_wrapper,
   regtype,
   Registry,
-  lrc_testcase;
+  lrc_testcase,
+  regbasics;
 
 type
 
@@ -22,8 +23,8 @@ type
     FRegSrcWrapper: _T1;
     FRegRadioButtonWrapper: _T2;
 
-    procedure WriteRegistryProc(aIni: TRegIniFile);
-    procedure ReadRegistryProc(aIni: TRegIniFile);
+    procedure WriteRegistryProc(aIni: TLRCRegIniFile);
+    procedure ReadRegistryProc(aIni: TLRCRegIniFile);
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -55,7 +56,7 @@ uses
   regconvutils;
 
 procedure TRegRadioButtonGenericTest<_T1,_T2>.ReadRegistryProc(
-  aIni: TRegIniFile);
+  aIni: TLRCRegIniFile);
 var
   test_ident: string;
   test_section: string;
@@ -104,7 +105,7 @@ begin
 end;
 
 procedure TRegRadioButtonGenericTest<_T1,_T2>.WriteRegistryProc(
-  aIni: TRegIniFile);
+  aIni: TLRCRegIniFile);
 var
   test_ident: string;
   test_section: string;

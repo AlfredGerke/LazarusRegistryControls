@@ -74,13 +74,14 @@ implementation
 
 uses
   Registry,
-  test_utils;
+  test_utils,
+  regbasics;
 
 { TRegistrySourceWrapperUTF8 }
 
 procedure TRegistrySourceWrapperUTF8.SetRegistryEntries;
 var
-  {%H-}ini: TRegIniFile;
+  {%H-}ini: TLRCRegIniFile;
   root_key: string;
 begin
   root_key :=
@@ -88,7 +89,7 @@ begin
       'SOFTWARE\Organisation_mit_ßÜÖÄüöä\Project_mit_ßÜÖÄüöä\{2CD0EB3F-A81E-4F0D-'
     + 'AE9B-1548DC65F930}');
 
-  ini := TRegIniFile.Create(root_key);
+  ini := TLRCRegIniFile.Create(root_key);
   try
     with ini do
     begin
@@ -206,13 +207,13 @@ end;
 
 procedure TRegistrySourceWrapper.SetRegistryEntries;
 var
-  {%H-}ini: TRegIniFile;
+  {%H-}ini: TLRCRegIniFile;
   root_key: string;
 begin
   root_key :=
     'SOFTWARE\ExampleFactory\LazarusRegistryControls\{A4B6F463-1EF0-4DB0-B5DC-1580D2B944D4}';
 
-  ini := TRegIniFile.Create(root_key);
+  ini := TLRCRegIniFile.Create(root_key);
   try
     with ini do
     begin

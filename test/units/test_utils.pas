@@ -7,10 +7,11 @@ interface
 uses
   SysUtils,
   Registry,
-  classes;
+  classes,
+  regbasics;
 
 type
-  TManageRegIniFile = procedure(aIni: TRegIniFile) of object;
+  TManageRegIniFile = procedure(aIni: TLRCRegIniFile) of object;
   TManageRegistry = procedure(aReg: TRegistry) of object;
 
 procedure AssertFindSectionTrue(aReg: TRegistry;
@@ -108,9 +109,9 @@ end;
 procedure GetRegIniFile(aRootKey: string;
   aProc: TManageRegIniFile);
 var
-  ini: TRegIniFile;
+  ini: TLRCRegIniFile;
 begin
-  ini := TRegIniFile.Create(UTF8Decode(aRootKey));
+  ini := TLRCRegIniFile.Create(UTF8Decode(aRootKey));
   try
     with ini do
     begin

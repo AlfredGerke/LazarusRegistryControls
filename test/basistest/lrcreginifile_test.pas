@@ -86,9 +86,7 @@ type
     procedure WriteInteger;
     procedure WriteString;
     procedure KeyExists;
-    procedure OpenKeyReadOnly;
     procedure ValueExists;
-    procedure CloseKey;
   end;
 
 implementation
@@ -844,24 +842,22 @@ procedure TLRCRegInifileTest.KeyExists;
 var
   key_exists: boolean;
 begin
-   key_exists := FLRCRRegIniFile.KeyExists('');
+   key_exists := FLRCRRegIniFile.KeyExists('StringSection');
 
-   AssertTrue('Key wurde nicht gefunden, Test fehlgeschlagen', key_exists);
-end;
-
-procedure TLRCRegInifileTest.OpenKeyReadOnly;
-begin
-
+   AssertTrue(
+     'Section: StringSection wurde nicht gefunden, Test fehlgeschlagen',
+       key_exists);
 end;
 
 procedure TLRCRegInifileTest.ValueExists;
+var
+  value_exists: boolean;
 begin
+  value_exists := FLRCRRegIniFile.ValueExists('StringSection', 'WriteString');
 
-end;
-
-procedure TLRCRegInifileTest.CloseKey;
-begin
-
+  AssertTrue(
+    'Value: WriteSring der Section: StringSection wurde nicht gefunden, Test fehlgeschlagen',
+      value_exists);
 end;
 
 procedure TLRCRegInifileTest.Filename;

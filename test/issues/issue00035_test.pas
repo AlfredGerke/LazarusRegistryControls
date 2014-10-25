@@ -33,7 +33,8 @@ uses
   regcheckbox_test,
   regradiobutton_test,
   reglabel_test,
-  testregistry;
+  testregistry,
+  regbasics;
 
 procedure RegisterIssue00035Tests(aSuitePath: string = 'LRC 09 M2.Issue #35 - UTF8-Bug');
 begin
@@ -64,7 +65,7 @@ end;
 
 procedure TCheckRTLAnsiTest.CheckSettings;
 var
-  {%H-}ini: TRegIniFile;
+  {%H-}ini: TLRCRegIniFile;
   root_key: string;
   check_string_1: string;
   check_string_2: string;
@@ -76,7 +77,7 @@ var
 begin
   root_key := GetRookKey;
 
-  ini := TRegIniFile.Create(root_key);
+  ini := TLRCRegIniFile.Create(root_key);
   try
     with ini do
     begin

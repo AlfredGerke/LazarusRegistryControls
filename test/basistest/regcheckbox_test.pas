@@ -12,7 +12,8 @@ uses
   regtype,
   test_const,
   lrc_testcase,
-  Registry;
+  Registry,
+  regbasics;
 
 type
 
@@ -23,8 +24,8 @@ type
     FRegSrcWrapper: _T1;
     FRegCheckBoxWrapper: _T2;
 
-    procedure WriteRegistryProc(aIni: TRegIniFile);
-    procedure ReadRegistryProc(aIni: TRegIniFile);
+    procedure WriteRegistryProc(aIni: TLRCRegIniFile);
+    procedure ReadRegistryProc(aIni: TLRCRegIniFile);
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -54,7 +55,7 @@ uses
   test_utils;
 
 
-procedure TRegCheckBoxGenericTest<_T1,_T2>.WriteRegistryProc(aIni: TRegIniFile);
+procedure TRegCheckBoxGenericTest<_T1,_T2>.WriteRegistryProc(aIni: TLRCRegIniFile);
 var
   test_ident: string;
   test_section: string;
@@ -126,7 +127,7 @@ begin
   end;
 end;
 
-procedure TRegCheckBoxGenericTest<_T1,_T2>.ReadRegistryProc(aIni: TRegIniFile);
+procedure TRegCheckBoxGenericTest<_T1,_T2>.ReadRegistryProc(aIni: TLRCRegIniFile);
 var
   test_ident: string;
   test_section: string;

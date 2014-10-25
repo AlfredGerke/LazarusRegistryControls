@@ -106,9 +106,10 @@ type
                            aOpenKey: string): boolean;
     function KeyEixstsProc(aReg: TRegistry;
                            aOpenKey: string): boolean;
-    function OpenKeyReadOnlyProc(aReg: TRegistry;
-                                 aOpenKey: string): boolean;
+    function ValueExistsProc(aReg: TRegistry;
+                             aOpenKey: string): boolean;
   private
+
     FFilename: string;
   protected
     property Root: HKEY
@@ -118,11 +119,12 @@ type
                        aRoot: HKEY = HKEY_CURRENT_USER); virtual;
     destructor Destroy; override;
 
-    procedure CloseKey;
+    function HandleRegistry(const aSection: string;
+                            aHandleRegistryProc: TRegUtils.THandleRegistry): boolean;
 
-    function ValueExists(const aName: string): boolean;
-
-    function OpenKeyReadOnly(const aKey: string): boolean;
+    function ValueExists(const aKey: string;
+                         const aName: string;
+                         aCompleteByFilename: boolean = True): boolean;
 
     function KeyExists(const aSection: string): boolean;
 
@@ -472,10 +474,10 @@ begin
   Result := aReg.KeyExists(FReg.Section);
 end;
 
-function TLRCRegIniFile.OpenKeyReadOnlyProc(aReg: TRegistry;
+function TLRCRegIniFile.ValueExistsProc(aReg: TRegistry;
   aOpenKey: string): boolean;
 begin
-  Result := True;
+  Result := aReg.ValueExists(FReg.Ident);
 end;
 
 constructor TLRCRegIniFile.Create(const aFileName: string;
@@ -496,24 +498,40 @@ begin
   inherited Destroy;
 end;
 
-procedure TLRCRegIniFile.CloseKey;
-begin
-
-end;
-
-function TLRCRegIniFile.ValueExists(const aName: string): boolean;
-begin
-
-end;
-
-function TLRCRegIniFile.OpenKeyReadOnly(const aKey: string): boolean;
+function TLRCRegIniFile.HandleRegistry(const aSection: string;
+  aHandleRegistryProc: TRegUtils.THandleRegistry): boolean;
 begin
   with FReg do
   begin
     Refresh;
     try
       Result :=
-        GetRegistry(FRoot, aKey, OpenKeyReadOnlyProc, True, False, False);
+        GetRegistry(FRoot, Filename + Section, aHandleRegistryProc, False, True);
+    finally
+      Refresh;
+    end;
+  end;
+end;
+
+function TLRCRegIniFile.ValueExists(const aKey: string;
+  const aName: string;
+  aCompleteByFilename: boolean = True): boolean;
+var
+  root_key: string;
+begin
+  with FReg do
+  begin
+    Refresh;
+    try
+      Ident := aName;
+
+      if aCompleteByFilename then
+        root_key := Filename + aKey
+      else
+        root_key := aKey;
+
+      Result :=
+        GetRegistry(FRoot, root_key, ValueExistsProc, True);
     finally
       Refresh;
     end;

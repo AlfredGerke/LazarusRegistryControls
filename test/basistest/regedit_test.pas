@@ -11,7 +11,8 @@ uses
   regedit_wrapper,
   regtype,
   lrc_testcase,
-  Registry;
+  Registry,
+  regbasics;
 
 type
 
@@ -22,32 +23,32 @@ type
     FRegSrcWrapper: _T1;
     FRegEditWrapper: _T2;
 
-    procedure ReadRegistryCase3(aIni: TRegIniFile;
+    procedure ReadRegistryCase3(aIni: TLRCRegIniFile;
                                 aSection: string;
                                 aIdent: string;
                                 aDefault: string);
-    procedure ReadRegistryCase2(aIni: TRegIniFile;
+    procedure ReadRegistryCase2(aIni: TLRCRegIniFile;
                                 aSection: string;
                                 aIdent: string;
                                 aDefault: string);
-    procedure ReadRegistryCase1(aIni: TRegIniFile;
+    procedure ReadRegistryCase1(aIni: TLRCRegIniFile;
                                 aSection: string;
                                 aIdent: string;
                                 aDefault: string);
-    procedure WriteRegistryCase1(aIni: TRegIniFile;
+    procedure WriteRegistryCase1(aIni: TLRCRegIniFile;
                                  aSection: string;
                                  aIdent: string;
                                  aDefault: string);
-    procedure WriteRegistryCase2(aIni: TRegIniFile;
+    procedure WriteRegistryCase2(aIni: TLRCRegIniFile;
                                  aSection: string;
                                  aIdent: string;
                                  aDefault: string);
-    procedure WriteRegistryCase3(aIni: TRegIniFile;
+    procedure WriteRegistryCase3(aIni: TLRCRegIniFile;
                                  aSection: string;
                                  aIdent: string;
                                  aDefault: string);
-    procedure WriteRegistryProc(aIni: TRegIniFile);
-    procedure ReadRegistryProc(aIni: TRegIniFile);
+    procedure WriteRegistryProc(aIni: TLRCRegIniFile);
+    procedure ReadRegistryProc(aIni: TLRCRegIniFile);
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -79,7 +80,7 @@ uses
 
 { TRegEditGenericTest }
 
-procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryCase3(aIni: TRegIniFile;
+procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryCase3(aIni: TLRCRegIniFile;
   aSection: string;
   aIdent: string;
   aDefault: string);
@@ -121,7 +122,7 @@ begin
   end;
 end;
 
-procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryCase2(aIni: TRegIniFile;
+procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryCase2(aIni: TLRCRegIniFile;
   aSection: string;
   aIdent: string;
   aDefault: string);
@@ -167,7 +168,7 @@ begin
   end;
 end;
 
-procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryCase1(aIni: TRegIniFile;
+procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryCase1(aIni: TLRCRegIniFile;
   aSection: string;
   aIdent: string;
   aDefault: string);
@@ -212,7 +213,7 @@ begin
   end;
 end;
 
-procedure TRegEditGenericTest<_T1,_T2>.WriteRegistryCase3(aIni: TRegIniFile;
+procedure TRegEditGenericTest<_T1,_T2>.WriteRegistryCase3(aIni: TLRCRegIniFile;
   aSection: string;
   aIdent: string;
   aDefault: string);
@@ -263,7 +264,7 @@ begin
   end;
 end;
 
-procedure TRegEditGenericTest<_T1,_T2>.WriteRegistryCase2(aIni: TRegIniFile;
+procedure TRegEditGenericTest<_T1,_T2>.WriteRegistryCase2(aIni: TLRCRegIniFile;
   aSection: string;
   aIdent: string;
   aDefault: string);
@@ -311,7 +312,7 @@ begin
   end;
 end;
 
-procedure TRegEditGenericTest<_T1,_T2>.WriteRegistryCase1(aIni: TRegIniFile;
+procedure TRegEditGenericTest<_T1,_T2>.WriteRegistryCase1(aIni: TLRCRegIniFile;
   aSection: string;
   aIdent: string;
   aDefault: string);
@@ -359,7 +360,7 @@ begin
   end;
 end;
 
-procedure TRegEditGenericTest<_T1,_T2>.WriteRegistryProc(aIni: TRegIniFile);
+procedure TRegEditGenericTest<_T1,_T2>.WriteRegistryProc(aIni: TLRCRegIniFile);
 var
   test_section: string;
   test_ident: string;
@@ -376,7 +377,7 @@ begin
   WriteRegistryCase3(aIni, test_section, test_ident, test_default);
 end;
 
-procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryProc(aIni: TRegIniFile);
+procedure TRegEditGenericTest<_T1,_T2>.ReadRegistryProc(aIni: TLRCRegIniFile);
 var
   test_section: string;
   test_ident: string;
