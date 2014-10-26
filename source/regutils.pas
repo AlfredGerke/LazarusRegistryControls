@@ -1143,7 +1143,7 @@ begin
         UTF8DecodeIfNeeded(aSection, CheckRTLAnsi));
     ident_to_check := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
 
-    Result := ValueExists(key_to_open, ident_to_check);
+    Result := ValueExists(key_to_open, ident_to_check, False);
   end;
 end;
 

@@ -175,7 +175,7 @@ begin
     UTF8DecodeIfNeeded(ComposedRootKeyForCheck  + '\' + KeyExistsSectionName,
       CheckRTLNeeded);
   try
-    key_is_present := aIni.KeyExists(key_for_check);
+    key_is_present := aIni.KeyExists(key_for_check, False);
 
     // Prüfen ob der Test-Ident vorhanden ist
     // Zu Beginn des Test muss der Test-Ident vorhanden sein

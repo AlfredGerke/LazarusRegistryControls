@@ -126,7 +126,8 @@ type
                          const aName: string;
                          aCompleteByFilename: boolean = True): boolean;
 
-    function KeyExists(const aSection: string): boolean;
+    function KeyExists(const aKey: string;
+                       aCompleteByFilename: boolean = True): boolean;
 
     function DeleteKey(const aSection: string;
                        const aIdent: string): boolean;
@@ -471,7 +472,13 @@ end;
 function TLRCRegIniFile.KeyEixstsProc(aReg: TRegistry;
   aOpenKey: string): boolean;
 begin
-  Result := aReg.KeyExists(FReg.Section);
+  with FReg do
+  begin
+    if Section = EmptyStr then
+      Result := True
+    else
+      Result := aReg.KeyExists(Section);
+  end;
 end;
 
 function TLRCRegIniFile.ValueExistsProc(aReg: TRegistry;
@@ -538,16 +545,27 @@ begin
   end;
 end;
 
-function TLRCRegIniFile.KeyExists(const aSection: string): boolean;
+function TLRCRegIniFile.KeyExists(const aKey: string;
+  aCompleteByFilename: boolean = True): boolean;
+var
+  root_key: string;
 begin
   with FReg do
   begin
     Refresh;
     try
-      Section := aSection;
+      if aCompleteByFilename then
+      begin
+        Section := aKey;
+        root_key := Filename;
+      end
+      else
+      begin
+        root_key := aKey;
+      end;
 
       Result :=
-        GetRegistry(FRoot, Filename, KeyEixstsProc, True);
+        GetRegistry(FRoot, root_key, KeyEixstsProc, True);
     finally
       Refresh;
     end;
