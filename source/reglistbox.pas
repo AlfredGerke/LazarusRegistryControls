@@ -551,6 +551,6 @@ begin
 end;
 
 initialization
-  {$I ..\package\registrycontrols.lrs}
+  {$I ..\package\reglistbox.lrs}
 
 end.

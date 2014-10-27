@@ -649,6 +649,6 @@ begin
 end;
 
 initialization
-  {$I ..\package\registrycontrols.lrs}
+  {$I ..\package\regchecklistbox.lrs}
 
 end.

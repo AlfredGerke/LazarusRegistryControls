@@ -624,6 +624,6 @@ begin
 end;
 
 initialization
-  {$I ..\package\registrycontrols.lrs}
+  {$I ..\package\regradiogroup.lrs}
 
 end.

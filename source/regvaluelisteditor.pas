@@ -584,6 +584,6 @@ begin
 end;
 
 initialization
-  {$I ..\package\registrycontrols.lrs}
+  {$I ..\package\regvaluelisteditor.lrs}
 
 end.

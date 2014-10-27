@@ -429,6 +429,6 @@ begin
 end;
 
 initialization
-  {$I ..\package\registrycontrols.lrs}
+  {$I ..\package\reglabel.lrs}
 
 end.

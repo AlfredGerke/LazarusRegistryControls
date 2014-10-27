@@ -226,7 +226,7 @@ var
 begin
   Result := False;
 
-  with TRegUtils.GetInstance do
+  with TLRCRegUtils.GetInstance do
   begin
     section_to_check := Section;
   end;
@@ -248,7 +248,7 @@ var
 begin
   Result := False;
 
-  with TRegUtils.GetInstance do
+  with TLRCRegUtils.GetInstance do
   begin
     section_to_check := Section;
     ident_to_check := Ident;
@@ -421,7 +421,7 @@ end;
 
 function TDefaultsForCurrentUser.SectionExists(aSection: string): boolean;
 begin
-  with TRegUtils.GetInstance do
+  with TLRCRegUtils.GetInstance do
   begin
     Refresh;
     try
@@ -436,7 +436,7 @@ end;
 function TDefaultsForCurrentUser.IdentExists(aSection: string;
   aIdent: string): boolean;
 begin
-  with TRegUtils.GetInstance do
+  with TLRCRegUtils.GetInstance do
   begin
     Refresh;
     try

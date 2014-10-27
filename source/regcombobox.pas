@@ -562,6 +562,6 @@ begin
 end;
 
 initialization
-  {$I ..\package\registrycontrols.lrs}
+  {$I ..\package\regcombobox.lrs}
 
 end.

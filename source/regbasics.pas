@@ -11,9 +11,9 @@ uses
 
 type
 
-  { TRegUtils }
+  { TLRCRegUtils }
 
-  TRegUtils = class
+  TLRCRegUtils = class
   public type
     THandleRegistry = function(aReg: TRegistry;
                                aOpenKey: string): boolean of object;
@@ -40,7 +40,7 @@ type
     FOpenReadOnly: boolean;
     FCanCreate: boolean;
   public
-    class function GetInstance: TRegUtils;
+    class function GetInstance: TLRCRegUtils;
 
     procedure SetStrings(aStrings: TStrings);
     function GetStrings: TStrings;
@@ -77,9 +77,9 @@ type
 
   TLRCRegIniFile = class
   strict private
-    FReg: TRegUtils;
+    FReg: TLRCRegUtils;
     FRoot: HKEY;
-    FFuncResult: TRegUtils.THandleValue;
+    FFuncResult: TLRCRegUtils.THandleValue;
     FPreferStringValues: boolean;
 
     function ReadIntegerProc(aReg: TRegistry;
@@ -109,8 +109,8 @@ type
     function ValueExistsProc(aReg: TRegistry;
                              aOpenKey: string): boolean;
   private
-
     FFilename: string;
+
   protected
     property Root: HKEY
       read FRoot;
@@ -119,13 +119,19 @@ type
                        aRoot: HKEY = HKEY_CURRENT_USER); virtual;
     destructor Destroy; override;
 
+    // ist in TRegIniFile nicht vorhanden
     function HandleRegistry(const aSection: string;
-                            aHandleRegistryProc: TRegUtils.THandleRegistry): boolean;
+                            aHandleRegistryProc: TLRCRegUtils.THandleRegistry;
+                            aCompleteByFilename: boolean = True): boolean;
 
+    // kommt in TRegIniFile direkt aus TRegistry
+    // Parameter und Händling angepasst (s. Testprogramm)
     function ValueExists(const aKey: string;
                          const aName: string;
                          aCompleteByFilename: boolean = True): boolean;
 
+    // kommt in TRegIniFile direkt aus TRegistry
+    // Parameter und Händling angepasst (s. Testprogramm)
     function KeyExists(const aKey: string;
                        aCompleteByFilename: boolean = True): boolean;
 
@@ -181,66 +187,66 @@ type
 implementation
 
 var
-  reg_util_instance: TRegUtils;
+  reg_util_instance: TLRCRegUtils;
 
-{ TRegUtils.THandleValue }
+{ TLRCRegUtils.THandleValue }
 
-procedure TRegUtils.THandleValue.SetValueByInteger(aValue: integer);
+procedure TLRCRegUtils.THandleValue.SetValueByInteger(aValue: integer);
 begin
   Value := aValue;
 end;
 
-procedure TRegUtils.THandleValue.SetValueByString(aValue: string);
+procedure TLRCRegUtils.THandleValue.SetValueByString(aValue: string);
 begin
   Value := aValue;
 end;
 
-procedure TRegUtils.THandleValue.SetValueByBoolean(aValue: boolean);
+procedure TLRCRegUtils.THandleValue.SetValueByBoolean(aValue: boolean);
 begin
   Value := aValue;
 end;
 
-function TRegUtils.THandleValue.GetValueAsInteger: integer;
+function TLRCRegUtils.THandleValue.GetValueAsInteger: integer;
 begin
   Result := Value;
 end;
 
-function TRegUtils.THandleValue.GetValueAsString: string;
+function TLRCRegUtils.THandleValue.GetValueAsString: string;
 begin
   Result := Value;
 end;
 
-function TRegUtils.THandleValue.GetValueAsBoolean: boolean;
+function TLRCRegUtils.THandleValue.GetValueAsBoolean: boolean;
 begin
   Result := Value;
 end;
 
-procedure TRegUtils.THandleValue.Clear;
+procedure TLRCRegUtils.THandleValue.Clear;
 begin
   FillChar(Self, SizeOf(Self), #0);
 end;
 
-{ TRegUtils }
+{ TLRCRegUtils }
 
-class function TRegUtils.GetInstance: TRegUtils;
+class function TLRCRegUtils.GetInstance: TLRCRegUtils;
 begin
   if not Assigned(reg_util_instance) then
-    reg_util_instance := TRegUtils.Create;
+    reg_util_instance := TLRCRegUtils.Create;
 
   Result := reg_util_instance;
 end;
 
-procedure TRegUtils.SetStrings(aStrings: TStrings);
+procedure TLRCRegUtils.SetStrings(aStrings: TStrings);
 begin
   FStrings := aStrings;
 end;
 
-function TRegUtils.GetStrings: TStrings;
+function TLRCRegUtils.GetStrings: TStrings;
 begin
   Result := FStrings;
 end;
 
-function TRegUtils.GetRegistry(aRoot: HKEY;
+function TLRCRegUtils.GetRegistry(aRoot: HKEY;
   aRootKey: string;
   aProc: THandleRegistry;
   aOpenKeyReadOnly: boolean = True;
@@ -284,6 +290,7 @@ begin
   finally
     if Assigned(reg) then
     begin
+      // wenn do_proc=True war OpenKey oder OpenKeyReadOnly erfogreich
       if (aDoCloseKey and do_proc) then
         reg.CloseKey;
 
@@ -292,7 +299,7 @@ begin
   end
 end;
 
-procedure TRegUtils.Refresh;
+procedure TLRCRegUtils.Refresh;
 begin
   FSection := EmptyStr;
   FIdent := EmptyStr;
@@ -311,7 +318,11 @@ begin
   ident := FReg.Ident;
   if aReg.ValueExists(ident) then
   begin
-    res := aReg.ReadInteger(ident);
+    if FPreferStringValues then
+      res := StrToInt(aReg.ReadString(ident))
+    else
+      res := aReg.ReadInteger(ident);
+
     FFuncResult.SetValueByInteger(res);
   end
   else
@@ -417,7 +428,10 @@ end;
 function TLRCRegIniFile.WriteBoolProc(aReg: TRegistry;
   aOpenKey: string): boolean;
 begin
-  aReg.WriteBool(FReg.Ident, FReg.Value.GetValueAsBoolean);
+  if FPreferStringValues then
+    aReg.WriteString(FReg.Ident, FReg.Value.GetValueAsString)
+  else
+    aReg.WriteBool(FReg.Ident, FReg.Value.GetValueAsBoolean);
 
   Result := True;
 end;
@@ -425,7 +439,10 @@ end;
 function TLRCRegIniFile.WriteIntegerProc(aReg: TRegistry;
   aOpenKey: string): boolean;
 begin
-  aReg.WriteInteger(FReg.Ident, FReg.Value.GetValueAsInteger);
+  if FPreferStringValues then
+    aReg.WriteString(FReg.Ident, FReg.Value.GetValueAsString)
+  else
+    aReg.WriteInteger(FReg.Ident, FReg.Value.GetValueAsInteger);
 
   Result := True;
 end;
@@ -447,7 +464,11 @@ begin
   ident := FReg.Ident;
   if aReg.ValueExists(ident) then
   begin
-    res := aReg.ReadBool(ident);
+    if FPreferStringValues then
+      res := (StrToInt(aReg.ReadString(ident)) <> 0)
+    else
+      res := aReg.ReadBool(ident);
+
     FFuncResult.SetValueByBoolean(res);
   end
   else
@@ -474,7 +495,7 @@ function TLRCRegIniFile.KeyEixstsProc(aReg: TRegistry;
 begin
   with FReg do
   begin
-    if Section = EmptyStr then
+    if (Section = EmptyStr) then
       Result := True
     else
       Result := aReg.KeyExists(Section);
@@ -492,7 +513,7 @@ constructor TLRCRegIniFile.Create(const aFileName: string;
 begin
   FFilename := IncludeTrailingPathDelimiter(aFileName);
   FRoot := aRoot;
-  FReg := TRegUtils.Create;
+  FReg := TLRCRegUtils.Create;
 end;
 
 destructor TLRCRegIniFile.Destroy;
@@ -506,14 +527,21 @@ begin
 end;
 
 function TLRCRegIniFile.HandleRegistry(const aSection: string;
-  aHandleRegistryProc: TRegUtils.THandleRegistry): boolean;
+  aHandleRegistryProc: TLRCRegUtils.THandleRegistry;
+  aCompleteByFilename: boolean): boolean;
+var
+  root_key: string;
 begin
   with FReg do
   begin
     Refresh;
     try
+      if aCompleteByFilename then
+        root_key := Filename + Section
+      else
+        root_key := aSection;
       Result :=
-        GetRegistry(FRoot, Filename + Section, aHandleRegistryProc, False, True);
+        GetRegistry(FRoot, root_key, aHandleRegistryProc, False, True);
     finally
       Refresh;
     end;
@@ -591,8 +619,6 @@ begin
 end;
 
 procedure TLRCRegIniFile.EraseSection(const aSection: string);
-var
-  success: boolean;
 begin
   with FReg do
   begin
@@ -600,8 +626,7 @@ begin
     try
       Section := aSection;
 
-      success :=
-        GetRegistry(FRoot, Filename + aSection, EraseSectionProc, False);
+      GetRegistry(FRoot, Filename + aSection, EraseSectionProc, False);
     finally
       Refresh;
     end;
@@ -761,8 +786,6 @@ end;
 procedure TLRCRegIniFile.WriteBool(const aSection: string;
   const aIdent: string;
   aValue: Boolean);
-var
-  success: boolean;
 begin
   with FReg do
   begin
@@ -772,8 +795,7 @@ begin
       Ident := aIdent;
       Value.SetValueByBoolean(aValue);
 
-      success :=
-        GetRegistry(FRoot, Filename + aSection, WriteBoolProc, False, True);
+      GetRegistry(FRoot, Filename + aSection, WriteBoolProc, False, True);
     finally
       Refresh;
     end;
@@ -783,8 +805,6 @@ end;
 procedure TLRCRegIniFile.WriteInteger(const aSection: string;
   const aIdent: string;
   aValue: Longint);
-var
-  success: boolean;
 begin
   with FReg do
   begin
@@ -794,8 +814,7 @@ begin
       Ident := aIdent;
       Value.SetValueByInteger(aValue);
 
-      success :=
-        GetRegistry(FRoot, Filename + aSection, WriteIntegerProc, False, True);
+      GetRegistry(FRoot, Filename + aSection, WriteIntegerProc, False, True);
     finally
       Refresh;
     end;
@@ -805,8 +824,6 @@ end;
 procedure TLRCRegIniFile.WriteString(const aSection: string;
   const aIdent: string;
   const aValue: string);
-var
-  success: boolean;
 begin
   with FReg do
   begin
@@ -816,8 +833,7 @@ begin
       Ident := aIdent;
       Value.SetValueByString(aValue);
 
-      success :=
-        GetRegistry(FRoot, Filename + aSection, WriteStringProc, False, True);
+      GetRegistry(FRoot, Filename + aSection, WriteStringProc, False, True);
     finally
       Refresh;
     end;

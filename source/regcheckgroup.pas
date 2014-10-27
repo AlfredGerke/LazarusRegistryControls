@@ -755,6 +755,6 @@ begin
 end;
 
 initialization
-  {$I ..\package\registrycontrols.lrs}
+  {$I ..\package\regcheckgroup.lrs}
 
 end.

@@ -422,6 +422,6 @@ begin
 end;
 
 initialization
-  {$I ..\package\registrycontrols.lrs}
+  {$I ..\package\regedit.lrs}
 
 end.
