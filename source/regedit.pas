@@ -341,6 +341,8 @@ procedure TCustomRegEdit.Change;
 begin
   inherited;
 
+  Modified := True;
+
   if FRegistrySettings.DoWriteAdHoc then
     WriteToReg;
 end;

@@ -354,8 +354,6 @@ end;
 procedure TLRCRegInifileTest.ReadSectionValuesBeforeLRCProc(aReg: TRegistry);
 var
   list: TStrings;
-  anz: integer;
-  ident: string;
   value_str: string;
   value_bool: boolean;
   value_int: integer;
