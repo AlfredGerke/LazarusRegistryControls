@@ -22,9 +22,6 @@ type
       aStrings: TStrings;
       aKind: TListSourceKind = Both;
       aMerge: boolean = False);
-
-    function IdentExistsProc(aReg: TRegistry;
-                             aOpenKey: string): boolean;
   protected
     property CheckRTLAnsi: boolean
       read FCheckRTLAnsi
@@ -314,31 +311,6 @@ begin
   end;
 end;
 
-function TDefaultsForCurrentUser.IdentExistsProc(aReg: TRegistry;
-  aOpenKey: string): boolean;
-var
-  key_to_check: string;
-  section_to_check: string;
-  ident_to_check: string;
-begin
-  Result := False;
-
-  with TLRCRegUtils.GetInstance do
-  begin
-    section_to_check := Section;
-    ident_to_check := Ident;
-  end;
-
-  with aReg do
-  begin
-    key_to_check := concat(CurrentPath, section_to_check);
-
-    if KeyExists(key_to_check) then
-      if OpenKeyReadOnly(key_to_check) then
-        Result := ValueExists(ident_to_check);
-  end;
-end;
-
 function TDefaultsForCurrentUser.SectionExists(const aSection: string): boolean;
 var
   section_str: string;
@@ -351,22 +323,15 @@ end;
 function TDefaultsForCurrentUser.IdentExists(const aSection: string;
   const aIdent: string): boolean;
 var
-  section_str: string;
-  ident_str: string;
+  key_to_open: string;
+  ident_to_check: string;
 begin
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-  ident_str :=  UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
-
-  with TLRCRegUtils.GetInstance do
+  if SectionExists(aSection) then
   begin
-    Refresh;
-    try
-      Section := section_str;
-      Ident := ident_str;
-      Result := GetRegistry(self.Root, Filename, IdentExistsProc);
-    finally
-      Refresh;
-    end;
+    key_to_open := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+    ident_to_check := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+
+    Result := ValueExists(key_to_open, ident_to_check, True);
   end;
 end;
 
@@ -782,12 +747,10 @@ var
 begin
   if SectionExists(aSection) then
   begin
-    key_to_open :=
-      concat(IncludeLeadingPathDelimiter(FileName),
-        UTF8DecodeIfNeeded(aSection, CheckRTLAnsi));
+    key_to_open := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
     ident_to_check := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
 
-    Result := ValueExists(key_to_open, ident_to_check, False);
+    Result := ValueExists(key_to_open, ident_to_check, True);
   end;
 end;
 
@@ -808,60 +771,15 @@ procedure TDataByCurrentUser.RenameKey(aSection: string;
   aOldKey: string;
   aNewKey: string);
 var
-  value_str: string;
-  value_int: integer;
-  value_data_type: TRegDataType;
-  reg: TRegistry;
-  key: string;
-  sec: string;
-  old_key: string;
+  section_str: string;
+  old_key_str: string;
+  new_key_str: string;
 begin
-  sec := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-  old_key := UTF8DecodeIfNeeded(aOldKey, CheckRTLAnsi);
-  reg := TRegistry.Create;
-  try
-    reg.RootKey := HKEY_CURRENT_USER;
-    key := Concat(FileName + sec);
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  old_key_str :=  UTF8DecodeIfNeeded(aOldKey, CheckRTLAnsi);
+  new_key_str :=  UTF8DecodeIfNeeded(aNewKey, CheckRTLAnsi);
 
-    if reg.OpenKeyReadOnly(key) then
-    begin
-      value_data_type := reg.GetDataType(old_key);
-
-      case value_data_type of
-        rdString,
-        rdExpandString:
-        begin
-          value_str := ReadString(aSection, aOldKey, EmptyStr);
-
-          if CheckRTLAnsi then
-            if NeedRTLAnsi then
-              value_str := SysToUTF8(value_str);
-        end;
-        rdInteger:
-          value_int := ReadInteger(aSection, aOldKey, $FFFFFF);
-      end;
-    end;
-    reg.CloseKey;
-
-    DeleteKey(aSection, aOldKey);
-
-    case value_data_type of
-      rdString,
-      rdExpandString:
-      begin
-        if CheckRTLAnsi then
-          if NeedRTLAnsi then
-            value_str := UTF8ToSys(value_str);
-
-        WriteString(aSection, aNewKey, value_str);
-      end;
-      rdInteger:
-        WriteInteger(aSection, aNewKey, value_int);
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-  end;
+  RenameIdent(section_str, old_key_str, new_key_str);
 end;
 
 procedure TDataByCurrentUser.RenameKeyForDefaults(aSection: string;
@@ -908,27 +826,27 @@ function TDataByCurrentUser.ReadStringCheckForDefaults(aSection: string;
   aIdent: string;
   aDefault: string): string;
 begin
-  Result := ReadString(aSection,
-              aIdent,
-              UseDefaults.ReadString(aSection, aIdent, aDefault));
+  Result :=
+    ReadString(aSection, aIdent, UseDefaults.ReadString(aSection, aIdent,
+      aDefault));
 end;
 
 function TDataByCurrentUser.ReadIntegerCheckForDefaults(aSection: string;
   aIdent: string;
   aDefault: integer): integer;
 begin
-  Result := ReadInteger(aSection,
-              aIdent,
-              UseDefaults.ReadInteger(aSection, aIdent, aDefault));
+  Result :=
+    ReadInteger(aSection, aIdent, UseDefaults.ReadInteger(aSection, aIdent,
+      aDefault));
 end;
 
 function TDataByCurrentUser.ReadBoolCheckForDefaults(aSection: string;
   aIdent: string;
   aDefault: boolean): boolean;
 begin
-  Result := ReadBool(aSection,
-              aIdent,
-              UseDefaults.ReadBool(aSection, aIdent, aDefault));
+  Result :=
+    ReadBool(aSection, aIdent, UseDefaults.ReadBool(aSection, aIdent,
+      aDefault));
 end;
 
 procedure TDataByCurrentUser.ReadSectionCheckForDefaults(aSection: string;

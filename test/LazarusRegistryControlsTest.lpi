@@ -54,6 +54,7 @@
       <Unit1>
         <Filename Value="basistest\registrysource_test.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="registrysource_test"/>
       </Unit1>
       <Unit2>
         <Filename Value="tests\lrc_test.pas"/>
@@ -62,7 +63,6 @@
       <Unit3>
         <Filename Value="basistest\regedit_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regedit_test"/>
       </Unit3>
       <Unit4>
         <Filename Value="wrapper\registrysource_wrapper.pas"/>
@@ -71,7 +71,6 @@
       <Unit5>
         <Filename Value="wrapper\regedit_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regedit_wrapper"/>
       </Unit5>
       <Unit6>
         <Filename Value="test_const.pas"/>

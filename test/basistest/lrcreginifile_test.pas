@@ -39,6 +39,10 @@ type
     procedure CheckListForReadSectionsTest(aList: TStrings);
     procedure CheckListForReadSectionTest(aList: TStrings);
 
+
+    procedure RenameIdentAfterLRCProc1(aReg: TRegistry);
+    procedure RenameIdentAfterLRCProc2(aReg: TRegistry);
+    procedure RenameIdentAfterLRCProc3(aReg: TRegistry);
     procedure WriteStringBeforeLRCProc(aReg: TRegistry);
     procedure WriteStringAfterLRCProc1(aReg: TRegistry);
     procedure WriteStringAfterLRCProc2(aReg: TRegistry);
@@ -87,6 +91,7 @@ type
     procedure WriteString;
     procedure KeyExists;
     procedure ValueExists;
+    procedure RenameIdent;
   end;
 
 implementation
@@ -146,8 +151,8 @@ var
 begin
   count := aList.Count;
 
-  AssertTrue(Format('Falsche Anzahl Einträge: Soll=4 - Ist=%d',
-    [count]), count=4);
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=5 - Ist=%d',
+    [count]), count=5);
 
   index := aList.IndexOf('StringSection');
   AssertFalse('StringSection nicht gefunden', (index=-1));
@@ -180,6 +185,33 @@ begin
 
   index := aList.IndexOf('BooleanIdent');
   AssertFalse('BooleanIdent nicht gefuden', (index=-1));
+end;
+
+procedure TLRCRegInifileTest.RenameIdentAfterLRCProc1(aReg: TRegistry);
+begin
+  with aReg do
+  begin
+    AssertTrue('Test nicht durchführbar, NewStringIdent nicht vorhanden',
+      ValueExists('NewStringIdent'));
+  end;
+end;
+
+procedure TLRCRegInifileTest.RenameIdentAfterLRCProc2(aReg: TRegistry);
+begin
+  with aReg do
+  begin
+    AssertTrue('Test nicht durchführbar, NewIntegerIdent nicht vorhanden',
+      ValueExists('NewIntegerIdent'));
+  end;
+end;
+
+procedure TLRCRegInifileTest.RenameIdentAfterLRCProc3(aReg: TRegistry);
+begin
+  with aReg do
+  begin
+    AssertTrue('Test nicht durchführbar, NewBooleanIdent nicht vorhanden',
+      ValueExists('NewBooleanIdent'));
+  end;
 end;
 
 procedure TLRCRegInifileTest.WriteStringBeforeLRCProc(aReg: TRegistry);
@@ -482,8 +514,8 @@ begin
     count := list.Count;
 
     AssertTrue(
-      Format('Test nicht durchführbar, falsche Anzahl Sectionen: Soll=4 - Ist=%d',
-        [count]), count = 4);
+      Format('Test nicht durchführbar, falsche Anzahl Sectionen: Soll=5 - Ist=%d',
+        [count]), count = 5);
   finally
     if Assigned(list) then
       FreeAndNil(list);
@@ -503,8 +535,8 @@ begin
     count := list.Count;
 
     AssertTrue(
-      Format('Falsche Anzahl Sectionen: Soll=3 - Ist=%d', [count]),
-        count = 3);
+      Format('Falsche Anzahl Sectionen: Soll=4 - Ist=%d', [count]),
+        count = 4);
   finally
     if Assigned(list) then
       FreeAndNil(list);
@@ -523,32 +555,36 @@ begin
 
       if aCreate then
       begin
-        if OpenKey(LRCREGINIFILE_TESTROOT + '\StringSection\', True)
-        then
+        if OpenKey(LRCREGINIFILE_TESTROOT + '\StringSection\', True) then
         begin
           WriteString('WriteString', 'TestStringForWriteTest');
           WriteString('ReadString', 'TestStringForReadTest');
         end;
         CloseKey;
 
-        if OpenKey(LRCREGINIFILE_TESTROOT + '\IntegerSection\', True)
-        then
+        if OpenKey(LRCREGINIFILE_TESTROOT + '\IntegerSection\', True) then
         begin
           WriteInteger('WriteInteger', 1808);
           WriteInteger('ReadInteger', 1965);
         end;
         CloseKey;
 
-        if OpenKey(LRCREGINIFILE_TESTROOT + '\BooleanSection\', True)
-        then
+        if OpenKey(LRCREGINIFILE_TESTROOT + '\BooleanSection\', True) then
         begin
           WriteBool('WriteBoolean', True);
           WriteBool('ReadBoolean', True);
         end;
         CloseKey;
 
-        if OpenKey(LRCREGINIFILE_TESTROOT + '\DeleteKeySection\', True)
-        then
+        if OpenKey(LRCREGINIFILE_TESTROOT + '\DeleteKeySection\', True) then
+        begin
+          WriteString('StringIdent', 'Test');
+          WriteInteger('IntegerIdent', 1234);
+          WriteBool('BooleanIdent', True);
+        end;
+        CloseKey;
+
+        if OpenKey(LRCREGINIFILE_TESTROOT + '\RenameIdentSection\', True) then
         begin
           WriteString('StringIdent', 'Test');
           WriteInteger('IntegerIdent', 1234);
@@ -568,6 +604,8 @@ begin
         if KeyExists(LRCREGINIFILE_TESTROOT + '\BooleanSectionNew\') then
           DeleteKey(LRCREGINIFILE_TESTROOT + '\BooleanSectionNew\');
         DeleteKey(LRCREGINIFILE_TESTROOT + '\DeleteKeySection\');
+        DeleteKey(LRCREGINIFILE_TESTROOT + '\RenameIdentSection\');
+
         DeleteKey(LRCREGINIFILE_TESTROOT + '\');
 
         CloseKey;
@@ -840,11 +878,11 @@ procedure TLRCRegInifileTest.KeyExists;
 var
   key_exists: boolean;
 begin
-   key_exists := FLRCRRegIniFile.KeyExists('StringSection');
+  key_exists := FLRCRRegIniFile.KeyExists('StringSection');
 
-   AssertTrue(
-     'Section: StringSection wurde nicht gefunden, Test fehlgeschlagen',
-       key_exists);
+  AssertTrue(
+    'Section: StringSection wurde nicht gefunden, Test fehlgeschlagen',
+    key_exists);
 end;
 
 procedure TLRCRegInifileTest.ValueExists;
@@ -855,7 +893,25 @@ begin
 
   AssertTrue(
     'Value: WriteSring der Section: StringSection wurde nicht gefunden, Test fehlgeschlagen',
-      value_exists);
+    value_exists);
+end;
+
+procedure TLRCRegInifileTest.RenameIdent;
+begin
+  FLRCRRegIniFile.RenameIdent('RenameIdentSection', 'StringIdent', 'NewStringIdent');
+
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'RenameIdentSection',
+    RenameIdentAfterLRCProc1);
+
+  FLRCRRegIniFile.RenameIdent('RenameIdentSection', 'IntegerIdent', 'NewIntegerIdent');
+
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'RenameIdentSection',
+    RenameIdentAfterLRCProc2);
+
+  FLRCRRegIniFile.RenameIdent('RenameIdentSection', 'BooleanIdent', 'NewBooleanIdent');
+
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'RenameIdentSection',
+    RenameIdentAfterLRCProc3);
 end;
 
 procedure TLRCRegInifileTest.Filename;

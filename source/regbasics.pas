@@ -349,18 +349,19 @@ begin
         value_int := ReadInteger(old_key);
     end;
 
-    DeleteValue(old_key);
+    if DeleteValue(old_key) then
+    begin
+      case value_data_type of
+        rdString,
+        rdExpandString:
+          WriteString(new_key, value_str);
+        rdInteger:
+          WriteInteger(new_key, value_int);
+      end;
 
-    case value_data_type of
-      rdString,
-      rdExpandString:
-        WriteString(new_key, value_str);
-      rdInteger:
-        WriteInteger(new_key, value_int);
+      Result := True;
     end;
   end;
-
-  Result := True;
 end;
 
 function TLRCRegIniFile.ReadIntegerProc(aReg: TRegistry;
@@ -622,7 +623,7 @@ begin
       Section := aSection;
       Ident := aOldIdent;
       Value.SetValueByString(aNewIdent);
-      GetRegistry(self.Root, Filename + aSection, RenameKeyProc);
+      GetRegistry(self.Root, Filename + aSection, RenameKeyProc, False, True);
     finally
       Refresh;
     end;
