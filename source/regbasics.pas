@@ -116,8 +116,13 @@ type
       read FRoot;
   public
     constructor Create(const aFileName: string;
-                       aRoot: HKEY = HKEY_CURRENT_USER); virtual;
+                       aRoot: HKEY = HKEY_CURRENT_USER); virtual; overload;
+    constructor Create(const aFileName: string;
+                       aRoot: string = 'HKEY_CURRENT_USER'); virtual;  overload;
+
     destructor Destroy; override;
+
+    function StrToHKeyRoot(aRootStr: string): HKEY;
 
     // ist in TRegIniFile nicht vorhanden
     function HandleRegistry(const aSection: string;
@@ -138,7 +143,7 @@ type
     function DeleteKey(const aSection: string;
                        const aIdent: string): boolean;
 
-    procedure EraseSection(const aSection: string);
+    function EraseSection(const aSection: string): boolean;
 
     function ReadBool(const aSection: string;
                       const aIdent: string;
@@ -516,6 +521,17 @@ begin
   FReg := TLRCRegUtils.Create;
 end;
 
+constructor TLRCRegIniFile.Create(const aFileName: string;
+  aRoot: string = 'HKEY_CURRENT_USER');
+var
+  _root: HKEY;
+begin
+  _root := StrToHKeyRoot(aRoot);
+
+  create(aFilename, _root);
+end;
+
+
 destructor TLRCRegIniFile.Destroy;
 begin
   FFilename := EmptyStr;
@@ -524,6 +540,28 @@ begin
     FreeAndNil(FReg);
 
   inherited Destroy;
+end;
+
+
+function TLRCRegIniFile.StrToHKeyRoot(aRootStr: string): HKEY;
+begin
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_CLASSES_ROOT') then
+    Result := HKEY_CLASSES_ROOT
+  else
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_CURRENT_USER') then
+    Result := HKEY_CURRENT_USER
+  else
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_LOCAL_MACHINE') then
+    Result := HKEY_LOCAL_MACHINE
+  else
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_USERS') then
+    Result := HKEY_USERS
+  else
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_CURRENT_CONFIG') then
+    Result := HKEY_CURRENT_CONFIG
+  else
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_DYN_DATA') then
+    Result := HKEY_DYN_DATA
 end;
 
 function TLRCRegIniFile.HandleRegistry(const aSection: string;
@@ -618,7 +656,7 @@ begin
   end;
 end;
 
-procedure TLRCRegIniFile.EraseSection(const aSection: string);
+function TLRCRegIniFile.EraseSection(const aSection: string): boolean;
 begin
   with FReg do
   begin
@@ -626,7 +664,7 @@ begin
     try
       Section := aSection;
 
-      GetRegistry(FRoot, Filename + aSection, EraseSectionProc, False);
+      Result := GetRegistry(FRoot, Filename + aSection, EraseSectionProc, False);
     finally
       Refresh;
     end;

@@ -14,79 +14,64 @@ type
 
   { TDefaultsForCurrentUser }
 
-  TDefaultsForCurrentUser = class
+  TDefaultsForCurrentUser = class(TLRCRegInifile)
   private
-    FRoot: string;
-    FDefaultKey: string;
-    FPrefereStrings: boolean;
     FCheckRTLAnsi: boolean;
 
-    function SectionExistsProc(aReg: TRegistry;
-                               aOpenKey: string): boolean;
+    procedure ReadSectionValuesByKind(aSection: string;
+      aStrings: TStrings;
+      aKind: TListSourceKind = Both;
+      aMerge: boolean = False);
+
     function IdentExistsProc(aReg: TRegistry;
                              aOpenKey: string): boolean;
-    procedure ReadSectionValuesByKind(aSection: string;
-                                      aStrings: TStrings;
-                                      aKind: TListSourceKind = Both;
-                                      aMerge: boolean = False);
   protected
-    function GetDefaultKey: string;
-    function GetHKeyRoot: HKEY;
-
     property CheckRTLAnsi: boolean
       read FCheckRTLAnsi
       write FCheckRTLAnsi;
   public
-    function SectionExists(aSection: string): boolean;
-    function IdentExists(aSection: string;
-                         aIdent: string): boolean;
-    function DeleteKey(aSection: string): boolean;
-    function DeleteValue(aSection: string;
-                         aKey: string): boolean;
-    procedure RenameKey(aSection: string;
-                        aOldKey: string;
-                        aNewKey: string);
-    function ReadString(aSection: string;
-                        aIdent: string;
-                        aDefault: string): string; virtual;
-    function ReadInteger(aSection: string;
-                         aIdent: string;
-                         aDefault: integer): integer; virtual;
-    function ReadBool(aSection: string;
-                      aIdent: string;
-                      aDefault: boolean): boolean; virtual;
-    procedure ReadSectionValuesOnly(aSection: string;
-                                    aStrings: TStrings;
+    function SectionExists(const aSection: string): boolean;
+    function IdentExists(const aSection: string;
+                         const aIdent: string): boolean;
+    function DeleteKey(const aSection: string): boolean; overload;
+    function DeleteValue(const aSection: string;
+                         const aKey: string): boolean;
+    procedure RenameKey(const aSection: string;
+                        const aOldKey: string;
+                        const aNewKey: string);
+    function ReadString(const aSection: string;
+                        const aIdent: string;
+                        const aDefault: string): string;
+    function ReadInteger(const aSection: string;
+                         const aIdent: string;
+                         const aDefault: integer): integer;
+    function ReadBool(const aSection: string;
+                      const aIdent: string;
+                      aDefault: boolean): boolean;
+    procedure ReadSectionValuesOnly(const aSection: string;
+                                    const aStrings: TStrings;
                                     aMerge: boolean);
-    procedure ReadSection(aSection: string;
-                          aStrings: TStrings;
-                          aMerge: boolean); virtual;
-    procedure ReadSectionValues(aSection: string;
-                                aStrings: TStrings;
+    procedure ReadSection(const aSection: string;
+                          const aStrings: TStrings;
+                          aMerge: boolean);
+    procedure ReadSectionValues(const aSection: string;
+                                const aStrings: TStrings;
                                 aMerge: boolean); virtual;
-    procedure WriteString(aSection: string;
-                          aIdent: string;
-                          aString: string); virtual;
-    procedure WriteInteger(aSection: string;
-                           aIdent: string;
-                           aInteger: integer); virtual;
-    procedure WriteBool(aSection: string;
-                        aIdent: string;
-                        aBool: boolean); virtual;
+    procedure WriteString(const aSection: string;
+                          const aIdent: string;
+                          const aString: string);
+    procedure WriteInteger(const aSection: string;
+                           const aIdent: string;
+                           aInteger: integer);
+    procedure WriteBool(const aSection: string;
+                        const aIdent: string;
+                        aBool: boolean);
 
     constructor Create(aRoot: string;
                        aDefaultKey: string;
                        aPrefereString: boolean = False;
                        aCheckRTLAnsi: boolean = True); virtual;
     destructor Destroy; override;
-  published
-    property Root: string
-      read FRoot
-      write FRoot;
-
-    property DefaultKey: string
-      read GetDefaultKey
-      write FDefaultKey;
   end;
 
   { TDataByCurrentUser }
@@ -218,52 +203,6 @@ end;
 
 { TDefaultsForCurrentUser }
 
-function TDefaultsForCurrentUser.SectionExistsProc(aReg: TRegistry;
-  aOpenKey: string): boolean;
-var
-  key_to_check: string;
-  section_to_check: string;
-begin
-  Result := False;
-
-  with TLRCRegUtils.GetInstance do
-  begin
-    section_to_check := Section;
-  end;
-
-  with aReg do
-  begin
-    key_to_check := concat(CurrentPath, section_to_check);
-
-    Result := KeyExists(key_to_check);
-  end;
-end;
-
-function TDefaultsForCurrentUser.IdentExistsProc(aReg: TRegistry;
-  aOpenKey: string): boolean;
-var
-  key_to_check: string;
-  section_to_check: string;
-  ident_to_check: string;
-begin
-  Result := False;
-
-  with TLRCRegUtils.GetInstance do
-  begin
-    section_to_check := Section;
-    ident_to_check := Ident;
-  end;
-
-  with aReg do
-  begin
-    key_to_check := concat(CurrentPath, section_to_check);
-
-    if KeyExists(key_to_check) then
-      if OpenKeyReadOnly(key_to_check) then
-        Result := ValueExists(ident_to_check);
-  end;
-end;
-
 procedure TDefaultsForCurrentUser.ReadSectionValuesByKind(aSection: string;
   aStrings: TStrings;
   aKind: TListSourceKind = Both;
@@ -311,10 +250,10 @@ begin
         aStrings.Clear;
       with reg do
       begin
-        RootKey := GetHKEYRoot;
+        RootKey := Root;
 
         aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-        key := concat(DefaultKey, aSection);
+        key := concat(Filename, aSection);
 
         if OpenKeyReadOnly(key) then
         begin
@@ -375,148 +314,89 @@ begin
   end;
 end;
 
-function TDefaultsForCurrentUser.GetDefaultKey: string;
+function TDefaultsForCurrentUser.IdentExistsProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
+var
+  key_to_check: string;
+  section_to_check: string;
+  ident_to_check: string;
 begin
-  Result := IncludeTrailingPathDelimiter(FDefaultKey);
-end;
+  Result := False;
 
-function TDefaultsForCurrentUser.GetHKeyRoot: HKEY;
-begin
-  if (UpperCase(Trim(Root)) = 'HKEY_CLASSES_ROOT') then
+  with TLRCRegUtils.GetInstance do
   begin
-    Result := HKEY_CLASSES_ROOT;
-    Exit;
+    section_to_check := Section;
+    ident_to_check := Ident;
   end;
 
-  if (UpperCase(Trim(Root)) = 'HKEY_CURRENT_USER') then
+  with aReg do
   begin
-    Result := HKEY_CURRENT_USER;
-    Exit;
-  end;
+    key_to_check := concat(CurrentPath, section_to_check);
 
-  if (UpperCase(Trim(Root)) = 'HKEY_LOCAL_MACHINE') then
-  begin
-    Result := HKEY_LOCAL_MACHINE;
-    Exit;
-  end;
-
-  if (UpperCase(Trim(Root)) = 'HKEY_USERS') then
-  begin
-    Result := HKEY_USERS;
-    Exit;
-  end;
-
-  if (UpperCase(Trim(Root)) = 'HKEY_CURRENT_CONFIG') then
-  begin
-    Result := HKEY_CURRENT_CONFIG;
-    Exit;
-  end;
-
-  if (UpperCase(Trim(Root)) = 'HKEY_DYN_DATA') then
-  begin
-    Result := HKEY_DYN_DATA;
-    Exit;
+    if KeyExists(key_to_check) then
+      if OpenKeyReadOnly(key_to_check) then
+        Result := ValueExists(ident_to_check);
   end;
 end;
 
-function TDefaultsForCurrentUser.SectionExists(aSection: string): boolean;
+function TDefaultsForCurrentUser.SectionExists(const aSection: string): boolean;
+var
+  section_str: string;
 begin
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+
+  Result := KeyExists(section_str);
+end;
+
+function TDefaultsForCurrentUser.IdentExists(const aSection: string;
+  const aIdent: string): boolean;
+var
+  section_str: string;
+  ident_str: string;
+begin
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  ident_str :=  UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+
   with TLRCRegUtils.GetInstance do
   begin
     Refresh;
     try
-      Section := aSection;
-      Result := GetRegistry(GetHKeyRoot, DefaultKey, SectionExistsProc);
+      Section := section_str;
+      Ident := ident_str;
+      Result := GetRegistry(self.Root, Filename, IdentExistsProc);
     finally
       Refresh;
     end;
   end;
 end;
 
-function TDefaultsForCurrentUser.IdentExists(aSection: string;
-  aIdent: string): boolean;
-begin
-  with TLRCRegUtils.GetInstance do
-  begin
-    Refresh;
-    try
-      Section := aSection;
-      Ident := aIdent;
-      Result := GetRegistry(GetHKeyRoot, DefaultKey, IdentExistsProc);
-    finally
-      Refresh;
-    end;
-  end;
-end;
-
-function TDefaultsForCurrentUser.DeleteKey(aSection: string): boolean;
+function TDefaultsForCurrentUser.DeleteKey(const aSection: string): boolean;
 var
-  reg: TRegistry;
-  key: string;
-  section_utf8_decoded: string;
+  section_str: string;
 begin
   Result := False;
-  reg := TRegistry.Create;
-  try
-    try
-      with reg do
-      begin
-        RootKey := GetHKEYRoot;
 
-        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-        key := concat(DefaultKey, section_utf8_decoded);
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
 
-        Result := KeyExists(key);
-
-        CloseKey;
-      end;
-    except
-      on E: Exception do
-      begin
-      end;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-  end;
+  Result := EraseSection(section_str);
 end;
 
-function TDefaultsForCurrentUser.DeleteValue(aSection: string;
-  aKey: string): boolean;
+function TDefaultsForCurrentUser.DeleteValue(const aSection: string;
+  const aKey: string): boolean;
 var
-  reg: TRegistry;
-  key: string;
-  section_utf8_decoded: string;
+  section_str: string;
+  ident_str: string;
 begin
   Result := False;
-  reg := TRegistry.Create;
-  try
-    try
-      with reg do
-      begin
-        RootKey := GetHKEYRoot;
 
-        section_utf8_decoded :=  UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-        key := concat(DefaultKey, section_utf8_decoded);
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(aKey, CheckRTLAnsi);
 
-        if OpenKey(key, True) then
-          Result := DeleteValue(aKey);
-
-        CloseKey;
-      end;
-    except
-      on E: Exception do
-        Result := False;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-  end;
+  Result := DeleteKey(section_str, ident_str);
 end;
 
-procedure TDefaultsForCurrentUser.RenameKey(aSection: string;
-  aOldKey: string;
-  aNewKey: string);
+procedure TDefaultsForCurrentUser.RenameKey(const aSection: string;
+  const aOldKey: string; const aNewKey: string);
 var
   value_str: string;
   value_int: integer;
@@ -582,298 +462,110 @@ constructor TDefaultsForCurrentUser.Create(aRoot: string;
   aPrefereString: boolean = False;
   aCheckRTLAnsi: boolean = True);
 begin
-  inherited Create;
+  inherited Create(aDefaultKey, aRoot);
 
-  FRoot := aRoot;
-  FDefaultKey := aDefaultKey;
-  FPrefereStrings := aPrefereString;
+  PreferStringValues := aPrefereString;
   FCheckRTLAnsi := aCheckRTLAnsi;
 end;
 
 destructor TDefaultsForCurrentUser.Destroy;
 begin
-  FRoot := '';
-  FDefaultKey := '';
-
   inherited Destroy;
 end;
 
-function TDefaultsForCurrentUser.ReadString(aSection: string;
-  aIdent: string;
-  aDefault: string): string;
+function TDefaultsForCurrentUser.ReadString(const aSection: string;
+  const aIdent: string;
+  const aDefault: string): string;
 var
-  reg: TRegistry;
-  key: string;
+  section_str: string;
+  ident_str: string;
 begin
-  Result := aDefault;
-  reg := TRegistry.Create;
-  try
-    try
-      with reg do
-      begin
-        RootKey := GetHKEYRoot;
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
 
-        aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-        aIdent := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
-
-        key := concat(DefaultKey, aSection);
-
-        if OpenKeyReadOnly(key) then
-          if ValueExists(aIdent) then
-          begin
-            Result := ReadString(aIdent);
-
-            Result := SysToUTF8IfNeeded(Result, CheckRTLAnsi)
-          end;
-
-        CloseKey;
-      end;
-    except
-      on E: Exception do
-        Result := aDefault;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-  end;
+  Result := inherited ReadString(section_str, ident_str, aDefault);
 end;
 
-function TDefaultsForCurrentUser.ReadInteger(aSection: string;
-  aIdent: string;
-  aDefault: integer): integer;
+function TDefaultsForCurrentUser.ReadInteger(const aSection: string;
+  const aIdent: string;
+  const aDefault: integer): integer;
 var
-  reg: TRegistry;
-  key: string;
-  section_utf8_decoded: string;
-  ident_utf8_decoded: string;
+  section_str: string;
+  ident_str: sting;
 begin
-  Result := aDefault;
-  reg := TRegistry.Create;
-  try
-    try
-      with reg do
-      begin
-        RootKey := GetHKEYRoot;
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
 
-        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-        ident_utf8_decoded := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
-        key := concat(DefaultKey, section_utf8_decoded);
-
-        if OpenKeyReadOnly(key) then
-        begin
-          if ValueExists(ident_utf8_decoded) then
-          begin
-            if FPrefereStrings then
-              Result := StrToInt(ReadString(ident_utf8_decoded))
-            else
-              Result := ReadInteger(ident_utf8_decoded);
-          end;
-        end;
-
-        CloseKey;
-      end;
-    except
-      on E: Exception do
-        Result := aDefault;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-  end;
+  Result := inherited ReadInteger(section_str, ident_str, aDefault);
 end;
 
-function TDefaultsForCurrentUser.ReadBool(aSection: string;
-  aIdent: string;
+function TDefaultsForCurrentUser.ReadBool(const aSection: string;
+  const aIdent: string;
   aDefault: boolean): boolean;
 var
-  reg: TRegistry;
-  key: string;
-  section_utf8_decoded : string;
-  ident_utf8_decoded : string;
+  section_str: string;
+  ident_str: sting;
 begin
-  Result := aDefault;
-  reg := TRegistry.Create;
-  try
-    try
-      with reg do
-      begin
-        RootKey := GetHKEYRoot;
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
 
-        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-        ident_utf8_decoded := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
-
-        key := concat(DefaultKey, section_utf8_decoded);
-
-        if OpenKeyReadOnly(key) then
-        begin
-          if ValueExists(ident_utf8_decoded) then
-          begin
-            if FPrefereStrings then
-              Result := StrToInt(ReadString(ident_utf8_decoded)) <> 0
-            else
-              Result := ReadBool(ident_utf8_decoded);
-          end;
-        end;
-
-        CloseKey;
-      end;
-    except
-      on E: Exception do
-        Result := aDefault;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-  end;
+  Result := inherited ReadBool(section_str, ident_str, aDefault);
 end;
 
-procedure TDefaultsForCurrentUser.ReadSectionValuesOnly(aSection: string;
-  aStrings: TStrings;
-  aMerge: boolean);
+procedure TDefaultsForCurrentUser.ReadSectionValuesOnly(const aSection: string;
+  const aStrings: TStrings; aMerge: boolean);
 begin
   ReadSectionValuesByKind(aSection, aStrings, byValue, aMerge);
 end;
 
-procedure TDefaultsForCurrentUser.ReadSection(aSection: string;
-  aStrings: TStrings;
-  aMerge: boolean);
+procedure TDefaultsForCurrentUser.ReadSection(const aSection: string;
+  const aStrings: TStrings; aMerge: boolean);
 begin
   ReadSectionValuesByKind(aSection, aStrings, byKey, aMerge);
 end;
 
-procedure TDefaultsForCurrentUser.ReadSectionValues(aSection: string;
-  aStrings: TStrings;
-  aMerge: boolean);
+procedure TDefaultsForCurrentUser.ReadSectionValues(const aSection: string;
+  const aStrings: TStrings; aMerge: boolean);
 begin
   ReadSectionValuesByKind(aSection, aStrings, Both, aMerge);
 end;
 
-procedure TDefaultsForCurrentUser.WriteString(aSection: string;
-  aIdent: string;
-  aString: string);
+procedure TDefaultsForCurrentUser.WriteString(const aSection: string;
+  const aIdent: string;
+  const aString: string);
 var
-  reg: TRegistry;
-  key: string;
+  section_str: string;
+  ident_str: string;
 begin
-  reg := TRegistry.Create;
-  try
-    try
-      with reg do
-      begin
-        RootKey := GetHKEYRoot;
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
 
-        aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-
-        key := concat(DefaultKey, aSection);
-
-        if OpenKey(key, True) then
-        begin
-          aIdent := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
-          aString := UTF8DecodeIfNeeded(aString, CheckRTLAnsi);
-
-          WriteString(aIdent, aString);
-        end;
-
-        CloseKey;
-      end;
-    except
-      on E: Exception do
-      begin
-      end;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-  end;
+  inherited WriteString(section_str, ident_str, aString);
 end;
 
-procedure TDefaultsForCurrentUser.WriteInteger(aSection: string;
-  aIdent: string;
+procedure TDefaultsForCurrentUser.WriteInteger(const aSection: string;
+  const aIdent: string;
   aInteger: integer);
 var
-  reg: TRegistry;
-  key: string;
-  section_utf8_decoded : string;
-  ident_utf8_decoded : string;
+  section_str: string;
+  ident_str: string;
 begin
-  reg := TRegistry.Create;
-  try
-    try
-      with reg do
-      begin
-        RootKey := GetHKEYRoot;
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
 
-        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-        ident_utf8_decoded := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
-
-        key := concat(DefaultKey, section_utf8_decoded);
-
-        if OpenKey(key, True) then
-        begin
-          if FPrefereStrings then
-            WriteString(ident_utf8_decoded, IntToStr(aInteger))
-          else
-            WriteInteger(ident_utf8_decoded, aInteger);
-        end;
-
-        CloseKey;
-      end;
-    except
-      on E: Exception do
-      begin
-      end;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-  end;
+  inherited WriteInteger(section_str, ident_str, aInteger);
 end;
 
-procedure TDefaultsForCurrentUser.WriteBool(aSection: string;
-  aIdent: string;
-  aBool: boolean);
+procedure TDefaultsForCurrentUser.WriteBool(const aSection: string;
+  const aIdent: string; aBool: boolean);
 var
-  reg: TRegistry;
-  key: string;
-  section_utf8_decoded : string;
-  ident_utf8_decoded : string;
+  section_str: string;
+  ident_str: string;
 begin
-  reg := TRegistry.Create;
-  try
-    try
-      with reg do
-      begin
-        RootKey := GetHKEYRoot;
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
 
-        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-        ident_utf8_decoded := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
-
-        key := concat(DefaultKey, section_utf8_decoded);
-
-        if OpenKey(key, True) then
-        begin
-          if FPrefereStrings then
-          begin
-            if aBool then
-              WriteString(ident_utf8_decoded, '1')
-            else
-              WriteString(ident_utf8_decoded, '0');
-            end
-          else
-            WriteBool(ident_utf8_decoded, aBool);
-        end;
-
-        CloseKey;
-      end;
-    except
-      on E: Exception do
-      begin
-      end;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-  end;
+  inherited WriteBool(section_str, ident_str, aBool);
 end;
 
 { TDataByCurrentUser }
