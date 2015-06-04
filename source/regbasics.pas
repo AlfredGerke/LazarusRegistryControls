@@ -82,6 +82,8 @@ type
     FFuncResult: TLRCRegUtils.THandleValue;
     FPreferStringValues: boolean;
 
+    function RenameKeyProc(aReg: TRegistry;
+                           aOpenKey: string): boolean;
     function ReadIntegerProc(aReg: TRegistry;
                              aOpenKey: string): boolean;
     function ReadStringProc(aReg: TRegistry;
@@ -118,11 +120,15 @@ type
     constructor Create(const aFileName: string;
                        aRoot: HKEY = HKEY_CURRENT_USER); virtual; overload;
     constructor Create(const aFileName: string;
-                       aRoot: string = 'HKEY_CURRENT_USER'); virtual;  overload;
+                       aRoot: string); virtual;  overload;
 
     destructor Destroy; override;
 
     function StrToHKeyRoot(aRootStr: string): HKEY;
+
+    procedure RenameIdent(const aSection: string;
+                          const aOldIdent: string;
+                          const aNewIdent: string);
 
     // ist in TRegIniFile nicht vorhanden
     function HandleRegistry(const aSection: string;
@@ -313,6 +319,49 @@ begin
 end;
 
 { TLRCRegIniFile }
+
+function TLRCRegIniFile.RenameKeyProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
+var
+  old_key: string;
+  new_key: string;
+  value_str: string;
+  value_int: integer;
+  value_data_type: TRegDataType;
+begin
+  Result := False;
+
+  with TLRCRegUtils.GetInstance do
+  begin
+    old_key := Ident;
+    new_key := Value.GetValueAsString;
+  end;
+
+  with aReg do
+  begin
+    value_data_type := GetDataType(old_key);
+
+    case value_data_type of
+      rdString,
+      rdExpandString:
+        value_str := ReadString(old_key);
+      rdInteger:
+        value_int := ReadInteger(old_key);
+    end;
+
+    DeleteValue(old_key);
+
+    case value_data_type of
+      rdString,
+      rdExpandString:
+        WriteString(new_key, value_str);
+      rdInteger:
+        WriteInteger(new_key, value_int);
+    end;
+  end;
+
+  Result := True;
+end;
 
 function TLRCRegIniFile.ReadIntegerProc(aReg: TRegistry;
   aOpenKey: string): boolean;
@@ -531,7 +580,6 @@ begin
   create(aFilename, _root);
 end;
 
-
 destructor TLRCRegIniFile.Destroy;
 begin
   FFilename := EmptyStr;
@@ -541,7 +589,6 @@ begin
 
   inherited Destroy;
 end;
-
 
 function TLRCRegIniFile.StrToHKeyRoot(aRootStr: string): HKEY;
 begin
@@ -562,6 +609,24 @@ begin
   else
   if (UpperCase(Trim(aRootStr)) = 'HKEY_DYN_DATA') then
     Result := HKEY_DYN_DATA
+end;
+
+procedure TLRCRegIniFile.RenameIdent(const aSection: string;
+  const aOldIdent: string;
+  const aNewIdent: string);
+begin
+  with TLRCRegUtils.GetInstance do
+  begin
+    Refresh;
+    try
+      Section := aSection;
+      Ident := aOldIdent;
+      Value.SetValueByString(aNewIdent);
+      GetRegistry(self.Root, Filename + aSection, RenameKeyProc);
+    finally
+      Refresh;
+    end;
+  end;
 end;
 
 function TLRCRegIniFile.HandleRegistry(const aSection: string;

@@ -398,63 +398,15 @@ end;
 procedure TDefaultsForCurrentUser.RenameKey(const aSection: string;
   const aOldKey: string; const aNewKey: string);
 var
-  value_str: string;
-  value_int: integer;
-  value_data_type: TRegDataType;
-  reg: TRegistry;
-  key: string;
+  section_str: string;
+  old_key_str: string;
+  new_key_str: string;
 begin
-  reg := TRegistry.Create;
-  try
-    with reg do
-    begin
-      RootKey := GetHKEYRoot;
+  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  old_key_str :=  UTF8DecodeIfNeeded(aOldKey, CheckRTLAnsi);
+  new_key_str :=  UTF8DecodeIfNeeded(aNewKey, CheckRTLAnsi);
 
-      aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-      key := concat(DefaultKey, aSection);
-
-      aOldKey := UTF8DecodeIfNeeded(aOldKey, CheckRTLAnsi);
-      aNewKey := UTF8DecodeIfNeeded(aNewKey, CheckRTLAnsi);
-
-      if OpenKey(key, True) then
-      begin
-        value_data_type := reg.GetDataType(aOldKey);
-
-        case value_data_type of
-          rdString,
-          rdExpandString:
-          begin
-            value_str := ReadString(aOldKey);
-
-            // wird nicht benötigt
-            //value_str := SysToUTF8IfNeeded(value_str, CheckRTLAnsi);
-          end;
-          rdInteger:
-            value_int := ReadInteger(aOldKey);
-        end;
-      end;
-
-      DeleteValue(aOldKey);
-
-      case value_data_type of
-        rdString,
-        rdExpandString:
-        begin
-          // wird nicht benötigt
-          //value_str := UTF8ToSysIfNeeded(value_str);
-
-          WriteString(aNewKey, value_str);
-        end;
-        rdInteger:
-          WriteInteger(aNewKey, value_int);
-      end;
-
-       CloseKey;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-  end;
+  RenameIdent(section_str, old_key_str, new_key_str);
 end;
 
 constructor TDefaultsForCurrentUser.Create(aRoot: string;
@@ -491,7 +443,7 @@ function TDefaultsForCurrentUser.ReadInteger(const aSection: string;
   const aDefault: integer): integer;
 var
   section_str: string;
-  ident_str: sting;
+  ident_str: string;
 begin
   section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
   ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
@@ -504,7 +456,7 @@ function TDefaultsForCurrentUser.ReadBool(const aSection: string;
   aDefault: boolean): boolean;
 var
   section_str: string;
-  ident_str: sting;
+  ident_str: string;
 begin
   section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
   ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
@@ -590,7 +542,7 @@ var
 begin
   file_name := UTF8DecodeIfNeeded(aFileName, aCheckRTLAnsi);
 
-  inherited Create(file_name);
+  inherited Create(file_name, HKEY_CURRENT_USER);
 
   CheckRTLAnsi := aCheckRTLAnsi;
   PreferStringValues := aPrefereStrings;
