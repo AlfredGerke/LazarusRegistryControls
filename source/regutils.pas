@@ -17,11 +17,6 @@ type
   TDefaultsForCurrentUser = class(TLRCRegInifile)
   private
     FCheckRTLAnsi: boolean;
-
-    procedure ReadSectionValuesByKind(aSection: string;
-      aStrings: TStrings;
-      aKind: TListSourceKind = Both;
-      aMerge: boolean = False);
   protected
     property CheckRTLAnsi: boolean
       read FCheckRTLAnsi
@@ -77,10 +72,6 @@ type
   private
     FUseDefaults: TDefaultsForCurrentUser;
     FCheckRTLAnsi: boolean;
-
-    procedure ReadSectionValuesByKind(aSection: string;
-                                      aStrings: TStrings;
-                                      aKind: TListSourceKind = Both);
   protected
     property CheckRTLAnsi: boolean
       read FCheckRTLAnsi
@@ -199,117 +190,6 @@ begin
 end;
 
 { TDefaultsForCurrentUser }
-
-procedure TDefaultsForCurrentUser.ReadSectionValuesByKind(aSection: string;
-  aStrings: TStrings;
-  aKind: TListSourceKind = Both;
-  aMerge: boolean = False);
-
-  procedure AddString(aStrings: TStrings;
-                      aValue: string;
-                      aMerge: boolean);
-  var
-    index: Integer;
-    value_name: string;
-    pos_index: SizeInt;
-  begin
-     if aMerge then
-     begin
-       pos_index := Pos('=', aValue);
-       if (pos_index = 0) then
-         index := aStrings.IndexOf(aValue)
-       else
-       begin
-         value_name := Copy(aValue, 1, pos_index-1);
-         index := aStrings.IndexOfName(value_name);
-       end;
-       if (index = -1) then
-         aStrings.Add(aValue);
-     end
-     else
-       aStrings.Add(aValue);
-  end;
-var
-  list: TStrings;
-  reg: TRegistry;
-  key: string;
-  anz: integer;
-  value: string;
-  value_name: string;
-  value_name_utf8_decoded: string;
-  value_data_type: TRegDataType;
-begin
-  reg := TRegistry.Create;
-  list := TStringList.Create;
-  try
-    try
-      if not aMerge then
-        aStrings.Clear;
-      with reg do
-      begin
-        RootKey := Root;
-
-        aSection := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-        key := concat(Filename, aSection);
-
-        if OpenKeyReadOnly(key) then
-        begin
-          GetValueNames(list);
-
-          // Aus dieser Liste werden die Idents entnommen,
-          // eventuell besser auf eine Umwandlung verzichten
-          SysToUTF8StringsIfNeeded(list, CheckRTLAnsi);
-
-          for anz := 0 to list.Count-1 do
-  	  begin
-            value_name := list.Strings[anz];
-            value_name_utf8_decoded := UTF8ToSysIfNeeded(value_name, CheckRTLAnsi);
-            value_name_utf8_decoded := UTF8DecodeIfNeeded(value_name_utf8_decoded, CheckRTLAnsi);
-
-            value_data_type := GetDataType(value_name);
-
-            case value_data_type of
-              rdString,
-              rdExpandString:
-              begin
-                value := reg.ReadString(value_name_utf8_decoded);
-
-                if CheckRTLAnsi then
-                  if NeedRTLAnsi then
-                    value := SysToUTF8(value);
-
-              end;
-              rdBinary:
-                Continue;
-              rdInteger:
-                value := IntToStr(ReadInteger(value_name));
-            else
-              Continue;
-            end;
-
-            case aKind of
-              byValue: AddString(aStrings, value, aMerge);
-              byKey: AddString(aStrings, value_name, aMerge);
-              Both: AddString(aStrings, value_name + '=' + value, aMerge);
-            else
-              Break;
-            end;
-  	  end;
-        end;
-
-        CloseKey;
-      end;
-    except
-      on E: Exception do
-        aStrings.Clear;
-    end;
-  finally
-    if Assigned(reg) then
-      FreeAndNil(reg);
-    if Assigned(list) then
-      FreeAndNil(list);
-  end;
-end;
 
 function TDefaultsForCurrentUser.SectionExists(const aSection: string): boolean;
 var
@@ -432,19 +312,19 @@ end;
 procedure TDefaultsForCurrentUser.ReadSectionValuesOnly(const aSection: string;
   const aStrings: TStrings; aMerge: boolean);
 begin
-  ReadSectionValuesByKind(aSection, aStrings, byValue, aMerge);
+  ReadSectionValuesByKind(aSection, aStrings, lskByValue, aMerge, CheckRTLAnsi);
 end;
 
 procedure TDefaultsForCurrentUser.ReadSection(const aSection: string;
   const aStrings: TStrings; aMerge: boolean);
 begin
-  ReadSectionValuesByKind(aSection, aStrings, byKey, aMerge);
+  ReadSectionValuesByKind(aSection, aStrings, lskByKey, aMerge, CheckRTLAnsi);
 end;
 
 procedure TDefaultsForCurrentUser.ReadSectionValues(const aSection: string;
   const aStrings: TStrings; aMerge: boolean);
 begin
-  ReadSectionValuesByKind(aSection, aStrings, Both, aMerge);
+  ReadSectionValuesByKind(aSection, aStrings, lskByKeyValue, aMerge, CheckRTLAnsi);
 end;
 
 procedure TDefaultsForCurrentUser.WriteString(const aSection: string;
@@ -518,78 +398,6 @@ begin
   FUseDefaults.Free;
 
   inherited Destroy;
-end;
-
-procedure TDataByCurrentUser.ReadSectionValuesByKind(aSection: string;
-  aStrings: TStrings;
-  aKind: TListSourceKind);
-var
-  list: TStringList;
-  anz: Integer;
-  section_utf8_decoded: string;
-  value: String;
-  value_name: string;
-  value_name_utf8_decoded: string;
-  value_data_type: TRegDataType;
-  reg: TRegistry;
-  key: string;
-begin
-  aStrings.Clear;
-  list := TStringlist.Create;
-  try
-    case aKind of
-      byKey:
-        ReadSection(aSection, aStrings);
-      byValue,
-      Both:
-      begin
-        ReadSection(aSection, list);
-
-        reg := TRegistry.Create;
-        reg.RootKey := HKEY_CURRENT_USER;
-
-        section_utf8_decoded := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-
-        key := Concat(FileName + section_utf8_decoded);
-
-        if reg.OpenKeyReadOnly(key) then
-        begin
-          for anz := 0 to list.Count-1 do
-          begin
-            value_name := list[anz];
-            value_name_utf8_decoded := UTF8ToSysIfNeeded(value_name, CheckRTLAnsi);
-            value_name_utf8_decoded := UTF8DecodeIfNeeded(value_name_utf8_decoded, CheckRTLAnsi);
-
-            value_data_type := reg.GetDataType(value_name_utf8_decoded);
-
-            case value_data_type of
-              rdString,
-              rdExpandString:
-                value := ReadString(aSection, UTF8ToSysIfNeeded(value_name, CheckRTLAnsi), EmptyStr);
-              rdBinary:
-                Continue;
-              rdInteger:
-                value := IntToStr(ReadInteger(aSection, UTF8ToSysIfNeeded(value_name, CheckRTLAnsi), $FFFFFF));
-            else
-              Continue;
-            end;
-
-            if (aKind = Both) then
-              value := value_name + '=' + value;
-
-            aStrings.Add(value);
-          end;
-        end;
-
-        reg.CloseKey;
-      end;
-    else
-      Exit;
-    end;
-  finally
-    if Assigned(list) then
-      FreeAndNil(list);
-  end;
 end;
 
 procedure TDataByCurrentUser.EraseSection(const Section: string);
@@ -793,13 +601,13 @@ end;
 procedure TDataByCurrentUser.ReadSectionValuesEx(aSection: string;
   aStrings: TStrings);
 begin
-  ReadSectionValuesByKind(aSection, aStrings, Both);
+  ReadSectionValuesByKind(aSection, aStrings, lskByKeyValue, False, CheckRTLAnsi);
 end;
 
 procedure TDataByCurrentUser.ReadSectionValuesOnly(aSection: string;
   aStrings: TStrings);
 begin
-  ReadSectionValuesByKind(aSection, aStrings, byValue);
+  ReadSectionValuesByKind(aSection, aStrings, lskByValue, False, CheckRTLAnsi);
 end;
 
 procedure TDataByCurrentUser.ReadSectionValuesOnlyForDefaults(aSection: string;

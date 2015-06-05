@@ -54,7 +54,6 @@
       <Unit1>
         <Filename Value="basistest\registrysource_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="registrysource_test"/>
       </Unit1>
       <Unit2>
         <Filename Value="tests\lrc_test.pas"/>

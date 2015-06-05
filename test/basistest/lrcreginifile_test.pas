@@ -35,10 +35,10 @@ type
     FTestList1: TStrings;
     FTestList2: TStrings;
 
+    procedure CheckListForReadSectionValuesByKindTest(aList: TStrings);
     procedure CheckListForReadSectionValuesTest(aList: TStrings);
     procedure CheckListForReadSectionsTest(aList: TStrings);
     procedure CheckListForReadSectionTest(aList: TStrings);
-
 
     procedure RenameIdentAfterLRCProc1(aReg: TRegistry);
     procedure RenameIdentAfterLRCProc2(aReg: TRegistry);
@@ -92,13 +92,36 @@ type
     procedure KeyExists;
     procedure ValueExists;
     procedure RenameIdent;
+    procedure ReadSectionValuesByKind;
   end;
 
 implementation
 
 uses
   test_const,
-  test_utils;
+  test_utils,
+  regtype;
+
+procedure TLRCRegInifileTest.CheckListForReadSectionValuesByKindTest(
+  aList: TStrings);
+var
+  count: integer;
+  index: integer;
+begin
+  count := aList.Count;
+
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=3 - Ist=%d',
+    [count]), count=3);
+
+  index := aList.IndexOf('Test');
+  AssertFalse('Value: Test nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('1234');
+  AssertFalse('Value: 1234 nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('1');
+  AssertFalse('Value: 1 (für True) nicht gefuden', (index=-1));
+end;
 
 procedure TLRCRegInifileTest.CheckListForReadSectionValuesTest(aList: TStrings);
 var
@@ -912,6 +935,55 @@ begin
 
   GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'RenameIdentSection',
     RenameIdentAfterLRCProc3);
+end;
+
+procedure TLRCRegInifileTest.ReadSectionValuesByKind;
+begin
+  FTestList1 := TStringList.Create;
+  FTestList2 := TStringList.Create;
+  try
+    // Verhalten wie ReadSection testen
+    GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'DeleteKeySection',
+      ReadSectionBeforeLRCProc);
+
+    // Liest alle Namen aller Datenwerte einer Section (NAME)
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByKey);
+
+    CheckListForReadSectionTest(FTestList2);
+
+    // Verhalten wie ReadSectionsValues testen
+
+    FTestList1.Clear;
+    FTestList2.Clear;
+
+    GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'DeleteKeySection',
+      ReadSectionValuesBeforeLRCProc);
+
+    // Liest alle Datenwerte einer Section (NAME=VALUE)
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByKeyValue);
+
+    CheckListForReadSectionValuesTest(FTestList2);
+
+    // Nur Values auslesen
+
+    FTestList1.Clear;
+    FTestList2.Clear;
+
+    GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'DeleteKeySection',
+      ReadSectionValuesBeforeLRCProc);
+
+    // Liest alle Datenwerte einer Section (NAME=VALUE)
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByValue);
+
+    CheckListForReadSectionValuesByKindTest(FTestList2);
+
+  finally
+    if Assigned(FTestList1) then
+      FreeAndNil(FTestList1);
+
+    if Assigned(FTestList2) then
+      FreeAndNil(FTestList2);
+  end;
 end;
 
 procedure TLRCRegInifileTest.Filename;
