@@ -35,7 +35,10 @@ type
     FTestList1: TStrings;
     FTestList2: TStrings;
 
-    procedure CheckListForReadSectionValuesByKindTest(aList: TStrings);
+    procedure CheckListForReadSectionValuesByKindTest4(aList: TStrings);
+    procedure CheckListForReadSectionValuesByKindTest3(aList: TStrings);
+    procedure CheckListForReadSectionValuesByKindTest2(aList: TStrings);
+    procedure CheckListForReadSectionValuesByKindTest1(aList: TStrings);
     procedure CheckListForReadSectionValuesTest(aList: TStrings);
     procedure CheckListForReadSectionsTest(aList: TStrings);
     procedure CheckListForReadSectionTest(aList: TStrings);
@@ -102,7 +105,7 @@ uses
   test_utils,
   regtype;
 
-procedure TLRCRegInifileTest.CheckListForReadSectionValuesByKindTest(
+procedure TLRCRegInifileTest.CheckListForReadSectionValuesByKindTest1(
   aList: TStrings);
 var
   count: integer;
@@ -121,6 +124,138 @@ begin
 
   index := aList.IndexOf('1');
   AssertFalse('Value: 1 (für True) nicht gefuden', (index=-1));
+end;
+
+procedure TLRCRegInifileTest.CheckListForReadSectionValuesByKindTest4(
+  aList: TStrings);
+var
+  count: integer;
+  index: integer;
+begin
+  count := aList.Count;
+
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=6 - Ist=%d',
+    [count]), count=6);
+
+  index := aList.IndexOf('Test');
+  AssertFalse('Value: Test nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('1234');
+  AssertFalse('Value: 1234 nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('1');
+  AssertFalse('Value: 1 (für True) nicht gefuden', (index=-1));
+
+  index := aList.IndexOf('Test2');
+  AssertFalse('Value: Test2 nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('2222');
+  AssertFalse('Value: 2222 nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('0');
+  AssertFalse('Value: 0 (für False) nicht gefuden', (index=-1));
+end;
+
+procedure TLRCRegInifileTest.CheckListForReadSectionValuesByKindTest3(
+  aList: TStrings);
+var
+  count: integer;
+  index: integer;
+  value: string;
+  value_bool: boolean;
+  value_int: integer;
+begin
+  count := aList.Count;
+
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=5 - Ist=%d',
+    [count]), count=5);
+
+  index := aList.IndexOfName('StringIdent');
+  AssertFalse('StringIdent nicht gefunden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Falscher Wert für StringIdent: Soll=Test - Ist=%s', [value]),
+      (value='Test'));
+
+  index := aList.IndexOfName('IntegerIdent');
+  AssertFalse('IntegerIdent nicht gefunden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Wert für IntegerIdent kein Integer: %s', [value]),
+      TryStrToInt(value, value_int));
+  AssertTrue(
+    Format('Falscher Wert für IntegerIdent: Soll=2222 - Ist=%s', [value]),
+      (value<>'1234'));
+
+  index := aList.IndexOfName('BooleanIdent');
+  AssertFalse('BooleanIdent nicht gefuden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Wert für BooleanIdent kein Boolean: %s', [value]),
+      TryStrToBool(value, value_bool));
+  AssertTrue(
+    Format('Falscher Wert für BooleanIdent: Soll=True - Ist=%s',
+      [BoolToStr(value_bool, 'true', 'False')]), (value_bool=True));
+
+  index := aList.IndexOfName('StringIdent2');
+  AssertFalse('StringIdent nicht gefunden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Falscher Wert für StringIdent2: Soll=Test2 - Ist=%s', [value]),
+      (value='Test2'));
+
+  index := aList.IndexOfName('IntegerIdent');
+  AssertFalse('IntegerIdent nicht gefunden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Wert für IntegerIdent kein Integer: %s', [value]),
+      TryStrToInt(value, value_int));
+  AssertTrue(
+    Format('Falscher Wert für IntegerIdent: Soll=2222 - Ist=%s', [value]),
+      (value='2222'));
+
+  index := aList.IndexOfName('BooleanIdent2');
+  AssertFalse('BooleanIdent2 nicht gefuden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Wert für BooleanIdent2 kein Boolean: %s', [value]),
+      TryStrToBool(value, value_bool));
+  AssertTrue(
+    Format('Falscher Wert für BooleanIdent2: Soll=True - Ist=%s',
+      [BoolToStr(value_bool, 'true', 'False')]), (value_bool=False));
+end;
+
+procedure TLRCRegInifileTest.CheckListForReadSectionValuesByKindTest2(
+  aList: TStrings);
+var
+  count: integer;
+  index: integer;
+begin
+  count := aList.Count;
+
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=5 - Ist=%d',
+    [count]), count=5);
+
+  index := aList.IndexOf('StringIdent');
+  AssertFalse('StringIdent nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('IntegerIdent');
+  AssertFalse('IntegerIdent nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('BooleanIdent');
+  AssertFalse('BooleanIdent nicht gefuden', (index=-1));
+
+  index := aList.IndexOf('StringIdent2');
+  AssertFalse('StringIdent nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('BooleanIdent2');
+  AssertFalse('BooleanIdent nicht gefuden', (index=-1));
 end;
 
 procedure TLRCRegInifileTest.CheckListForReadSectionValuesTest(aList: TStrings);
@@ -942,7 +1077,7 @@ begin
   FTestList1 := TStringList.Create;
   FTestList2 := TStringList.Create;
   try
-    // Verhalten wie ReadSection testen
+    // 1. Verhalten wie ReadSection testen
     GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'DeleteKeySection',
       ReadSectionBeforeLRCProc);
 
@@ -951,8 +1086,7 @@ begin
 
     CheckListForReadSectionTest(FTestList2);
 
-    // Verhalten wie ReadSectionsValues testen
-
+    // 2. Verhalten wie ReadSectionsValues testen
     FTestList1.Clear;
     FTestList2.Clear;
 
@@ -964,7 +1098,7 @@ begin
 
     CheckListForReadSectionValuesTest(FTestList2);
 
-    // Nur Values auslesen
+    // 3. Nur Values auslesen
 
     FTestList1.Clear;
     FTestList2.Clear;
@@ -972,11 +1106,40 @@ begin
     GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'DeleteKeySection',
       ReadSectionValuesBeforeLRCProc);
 
-    // Liest alle Datenwerte einer Section (NAME=VALUE)
+    // Liest alle Werte aller Datenwerte einer Section (VALUE)
     FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByValue);
 
-    CheckListForReadSectionValuesByKindTest(FTestList2);
+    CheckListForReadSectionValuesByKindTest1(FTestList2);
 
+    // 4. Verhalten wie ReadSection testen zuzügl. Merge vorhandener Daten
+    FTestList2.Clear;
+    FTestList2.Add('StringIdent2');
+    FTestList2.Add('IntegerIdent');
+    FTestList2.Add('BooleanIdent2');
+
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByKey, True);
+
+    CheckListForReadSectionValuesByKindTest2(FTestList2);
+
+    // 5. Verhalten wie ReadSection testen zuzügl. Merge vorhandener Daten
+    FTestList2.Clear;
+    FTestList2.Add('StringIdent2=Test2');
+    FTestList2.Add('IntegerIdent=2222');
+    FTestList2.Add('BooleanIdent2=0');
+
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByKeyValue, True);
+
+    CheckListForReadSectionValuesByKindTest3(FTestList2);
+
+    // 5. Liest alle Werte aller Datenwerte einer Section (VALUE) zuzügl. Merge vorhandener Daten
+    FTestList2.Clear;
+    FTestList2.Add('Test2');
+    FTestList2.Add('2222');
+    FTestList2.Add('0');
+
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByValue, True);
+
+    CheckListForReadSectionValuesByKindTest4(FTestList2);
   finally
     if Assigned(FTestList1) then
       FreeAndNil(FTestList1);

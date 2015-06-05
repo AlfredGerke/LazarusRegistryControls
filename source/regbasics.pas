@@ -371,9 +371,10 @@ function TLRCRegIniFile.ReadSectionValuesByKindProc(aReg: TRegistry;
        begin
          value_name := Copy(aValue, 1, pos_index-1);
          index := aStrings.IndexOfName(value_name);
-          if (index = -1) then
-            aStrings.Add(aValue);
        end;
+
+       if (index = -1) then
+         aStrings.Add(aValue);
      end
      else
        aStrings.Add(aValue);
