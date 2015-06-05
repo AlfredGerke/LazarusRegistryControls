@@ -50,122 +50,98 @@
       <Unit0>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="LazarusRegistryControlsTest"/>
       </Unit0>
       <Unit1>
         <Filename Value="basistest\registrysource_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="registrysource_test"/>
       </Unit1>
       <Unit2>
         <Filename Value="tests\lrc_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="lrc_test"/>
       </Unit2>
       <Unit3>
         <Filename Value="basistest\regedit_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regedit_test"/>
       </Unit3>
       <Unit4>
         <Filename Value="wrapper\registrysource_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="registrysource_wrapper"/>
       </Unit4>
       <Unit5>
         <Filename Value="wrapper\regedit_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regedit_wrapper"/>
       </Unit5>
       <Unit6>
         <Filename Value="test_const.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="test_const"/>
       </Unit6>
       <Unit7>
         <Filename Value="wrapper\test_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="test_wrapper"/>
       </Unit7>
       <Unit8>
         <Filename Value="wrapper\regcheckbox_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regcheckbox_wrapper"/>
       </Unit8>
       <Unit9>
         <Filename Value="basistest\regcheckbox_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regcheckbox_test"/>
       </Unit9>
       <Unit10>
         <Filename Value="wrapper\regradiobutton_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regradiobutton_wrapper"/>
       </Unit10>
       <Unit11>
         <Filename Value="basistest\regradiobutton_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regradiobutton_test"/>
       </Unit11>
       <Unit12>
         <Filename Value="untis\test_utils.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="test_utils"/>
       </Unit12>
       <Unit13>
         <Filename Value="wrapper\reglistbox_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="reglistbox_wrapper"/>
       </Unit13>
       <Unit14>
         <Filename Value="wrapper\regchecklistbox_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regchecklistbox_wrapper"/>
       </Unit14>
       <Unit15>
         <Filename Value="wrapper\regcombobox_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regcombobox_wrapper"/>
       </Unit15>
       <Unit16>
         <Filename Value="wrapper\regradiogroup_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regradiogroup_wrapper"/>
       </Unit16>
       <Unit17>
         <Filename Value="wrapper\regcheckgroup_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regcheckgroup_wrapper"/>
       </Unit17>
       <Unit18>
         <Filename Value="wrapper\regvaluelisteditor_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="regvaluelisteditor_wrapper"/>
       </Unit18>
       <Unit19>
         <Filename Value="issues\issue00035_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="issue00035_test"/>
       </Unit19>
       <Unit20>
         <Filename Value="basistest\reglabel_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="reglabel_test"/>
       </Unit20>
       <Unit21>
         <Filename Value="wrapper\reglabel_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="reglabel_wrapper"/>
       </Unit21>
       <Unit22>
         <Filename Value="tests\lrc_testcase.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="lrc_testcase"/>
       </Unit22>
       <Unit23>
         <Filename Value="issues\issue00030_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="issue00030_test"/>
       </Unit23>
       <Unit24>
         <Filename Value="basistest\lrcreginifile_test.pas"/>
@@ -192,10 +168,8 @@
     </Parsing>
     <Other>
       <CompilerMessages>
-        <IgnoredMessages idx5024="True" idx5026="True"/>
-        <MsgFileName Value=""/>
+        <IgnoredMessages idx5026="True" idx5024="True"/>
       </CompilerMessages>
-      <CompilerPath Value="$(CompPath)"/>
     </Other>
   </CompilerOptions>
   <Debugging>

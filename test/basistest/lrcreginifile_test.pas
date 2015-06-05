@@ -35,10 +35,17 @@ type
     FTestList1: TStrings;
     FTestList2: TStrings;
 
+    procedure CheckListForReadSectionValuesByKindTest4(aList: TStrings);
+    procedure CheckListForReadSectionValuesByKindTest3(aList: TStrings);
+    procedure CheckListForReadSectionValuesByKindTest2(aList: TStrings);
+    procedure CheckListForReadSectionValuesByKindTest1(aList: TStrings);
     procedure CheckListForReadSectionValuesTest(aList: TStrings);
     procedure CheckListForReadSectionsTest(aList: TStrings);
     procedure CheckListForReadSectionTest(aList: TStrings);
 
+    procedure RenameIdentAfterLRCProc1(aReg: TRegistry);
+    procedure RenameIdentAfterLRCProc2(aReg: TRegistry);
+    procedure RenameIdentAfterLRCProc3(aReg: TRegistry);
     procedure WriteStringBeforeLRCProc(aReg: TRegistry);
     procedure WriteStringAfterLRCProc1(aReg: TRegistry);
     procedure WriteStringAfterLRCProc2(aReg: TRegistry);
@@ -87,13 +94,169 @@ type
     procedure WriteString;
     procedure KeyExists;
     procedure ValueExists;
+    procedure RenameIdent;
+    procedure ReadSectionValuesByKind;
   end;
 
 implementation
 
 uses
   test_const,
-  test_utils;
+  test_utils,
+  regtype;
+
+procedure TLRCRegInifileTest.CheckListForReadSectionValuesByKindTest1(
+  aList: TStrings);
+var
+  count: integer;
+  index: integer;
+begin
+  count := aList.Count;
+
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=3 - Ist=%d',
+    [count]), count=3);
+
+  index := aList.IndexOf('Test');
+  AssertFalse('Value: Test nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('1234');
+  AssertFalse('Value: 1234 nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('1');
+  AssertFalse('Value: 1 (für True) nicht gefuden', (index=-1));
+end;
+
+procedure TLRCRegInifileTest.CheckListForReadSectionValuesByKindTest4(
+  aList: TStrings);
+var
+  count: integer;
+  index: integer;
+begin
+  count := aList.Count;
+
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=6 - Ist=%d',
+    [count]), count=6);
+
+  index := aList.IndexOf('Test');
+  AssertFalse('Value: Test nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('1234');
+  AssertFalse('Value: 1234 nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('1');
+  AssertFalse('Value: 1 (für True) nicht gefuden', (index=-1));
+
+  index := aList.IndexOf('Test2');
+  AssertFalse('Value: Test2 nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('2222');
+  AssertFalse('Value: 2222 nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('0');
+  AssertFalse('Value: 0 (für False) nicht gefuden', (index=-1));
+end;
+
+procedure TLRCRegInifileTest.CheckListForReadSectionValuesByKindTest3(
+  aList: TStrings);
+var
+  count: integer;
+  index: integer;
+  value: string;
+  value_bool: boolean;
+  value_int: integer;
+begin
+  count := aList.Count;
+
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=5 - Ist=%d',
+    [count]), count=5);
+
+  index := aList.IndexOfName('StringIdent');
+  AssertFalse('StringIdent nicht gefunden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Falscher Wert für StringIdent: Soll=Test - Ist=%s', [value]),
+      (value='Test'));
+
+  index := aList.IndexOfName('IntegerIdent');
+  AssertFalse('IntegerIdent nicht gefunden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Wert für IntegerIdent kein Integer: %s', [value]),
+      TryStrToInt(value, value_int));
+  AssertTrue(
+    Format('Falscher Wert für IntegerIdent: Soll=2222 - Ist=%s', [value]),
+      (value<>'1234'));
+
+  index := aList.IndexOfName('BooleanIdent');
+  AssertFalse('BooleanIdent nicht gefuden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Wert für BooleanIdent kein Boolean: %s', [value]),
+      TryStrToBool(value, value_bool));
+  AssertTrue(
+    Format('Falscher Wert für BooleanIdent: Soll=True - Ist=%s',
+      [BoolToStr(value_bool, 'true', 'False')]), (value_bool=True));
+
+  index := aList.IndexOfName('StringIdent2');
+  AssertFalse('StringIdent nicht gefunden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Falscher Wert für StringIdent2: Soll=Test2 - Ist=%s', [value]),
+      (value='Test2'));
+
+  index := aList.IndexOfName('IntegerIdent');
+  AssertFalse('IntegerIdent nicht gefunden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Wert für IntegerIdent kein Integer: %s', [value]),
+      TryStrToInt(value, value_int));
+  AssertTrue(
+    Format('Falscher Wert für IntegerIdent: Soll=2222 - Ist=%s', [value]),
+      (value='2222'));
+
+  index := aList.IndexOfName('BooleanIdent2');
+  AssertFalse('BooleanIdent2 nicht gefuden', (index=-1));
+
+  value := aList.ValueFromIndex[index];
+  AssertTrue(
+    Format('Wert für BooleanIdent2 kein Boolean: %s', [value]),
+      TryStrToBool(value, value_bool));
+  AssertTrue(
+    Format('Falscher Wert für BooleanIdent2: Soll=True - Ist=%s',
+      [BoolToStr(value_bool, 'true', 'False')]), (value_bool=False));
+end;
+
+procedure TLRCRegInifileTest.CheckListForReadSectionValuesByKindTest2(
+  aList: TStrings);
+var
+  count: integer;
+  index: integer;
+begin
+  count := aList.Count;
+
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=5 - Ist=%d',
+    [count]), count=5);
+
+  index := aList.IndexOf('StringIdent');
+  AssertFalse('StringIdent nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('IntegerIdent');
+  AssertFalse('IntegerIdent nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('BooleanIdent');
+  AssertFalse('BooleanIdent nicht gefuden', (index=-1));
+
+  index := aList.IndexOf('StringIdent2');
+  AssertFalse('StringIdent nicht gefunden', (index=-1));
+
+  index := aList.IndexOf('BooleanIdent2');
+  AssertFalse('BooleanIdent nicht gefuden', (index=-1));
+end;
 
 procedure TLRCRegInifileTest.CheckListForReadSectionValuesTest(aList: TStrings);
 var
@@ -146,8 +309,8 @@ var
 begin
   count := aList.Count;
 
-  AssertTrue(Format('Falsche Anzahl Einträge: Soll=4 - Ist=%d',
-    [count]), count=4);
+  AssertTrue(Format('Falsche Anzahl Einträge: Soll=5 - Ist=%d',
+    [count]), count=5);
 
   index := aList.IndexOf('StringSection');
   AssertFalse('StringSection nicht gefunden', (index=-1));
@@ -180,6 +343,33 @@ begin
 
   index := aList.IndexOf('BooleanIdent');
   AssertFalse('BooleanIdent nicht gefuden', (index=-1));
+end;
+
+procedure TLRCRegInifileTest.RenameIdentAfterLRCProc1(aReg: TRegistry);
+begin
+  with aReg do
+  begin
+    AssertTrue('Test nicht durchführbar, NewStringIdent nicht vorhanden',
+      ValueExists('NewStringIdent'));
+  end;
+end;
+
+procedure TLRCRegInifileTest.RenameIdentAfterLRCProc2(aReg: TRegistry);
+begin
+  with aReg do
+  begin
+    AssertTrue('Test nicht durchführbar, NewIntegerIdent nicht vorhanden',
+      ValueExists('NewIntegerIdent'));
+  end;
+end;
+
+procedure TLRCRegInifileTest.RenameIdentAfterLRCProc3(aReg: TRegistry);
+begin
+  with aReg do
+  begin
+    AssertTrue('Test nicht durchführbar, NewBooleanIdent nicht vorhanden',
+      ValueExists('NewBooleanIdent'));
+  end;
 end;
 
 procedure TLRCRegInifileTest.WriteStringBeforeLRCProc(aReg: TRegistry);
@@ -354,8 +544,6 @@ end;
 procedure TLRCRegInifileTest.ReadSectionValuesBeforeLRCProc(aReg: TRegistry);
 var
   list: TStrings;
-  anz: integer;
-  ident: string;
   value_str: string;
   value_bool: boolean;
   value_int: integer;
@@ -484,8 +672,8 @@ begin
     count := list.Count;
 
     AssertTrue(
-      Format('Test nicht durchführbar, falsche Anzahl Sectionen: Soll=4 - Ist=%d',
-        [count]), count = 4);
+      Format('Test nicht durchführbar, falsche Anzahl Sectionen: Soll=5 - Ist=%d',
+        [count]), count = 5);
   finally
     if Assigned(list) then
       FreeAndNil(list);
@@ -505,8 +693,8 @@ begin
     count := list.Count;
 
     AssertTrue(
-      Format('Falsche Anzahl Sectionen: Soll=3 - Ist=%d', [count]),
-        count = 3);
+      Format('Falsche Anzahl Sectionen: Soll=4 - Ist=%d', [count]),
+        count = 4);
   finally
     if Assigned(list) then
       FreeAndNil(list);
@@ -525,32 +713,36 @@ begin
 
       if aCreate then
       begin
-        if OpenKey(LRCREGINIFILE_TESTROOT + '\StringSection\', True)
-        then
+        if OpenKey(LRCREGINIFILE_TESTROOT + '\StringSection\', True) then
         begin
           WriteString('WriteString', 'TestStringForWriteTest');
           WriteString('ReadString', 'TestStringForReadTest');
         end;
         CloseKey;
 
-        if OpenKey(LRCREGINIFILE_TESTROOT + '\IntegerSection\', True)
-        then
+        if OpenKey(LRCREGINIFILE_TESTROOT + '\IntegerSection\', True) then
         begin
           WriteInteger('WriteInteger', 1808);
           WriteInteger('ReadInteger', 1965);
         end;
         CloseKey;
 
-        if OpenKey(LRCREGINIFILE_TESTROOT + '\BooleanSection\', True)
-        then
+        if OpenKey(LRCREGINIFILE_TESTROOT + '\BooleanSection\', True) then
         begin
           WriteBool('WriteBoolean', True);
           WriteBool('ReadBoolean', True);
         end;
         CloseKey;
 
-        if OpenKey(LRCREGINIFILE_TESTROOT + '\DeleteKeySection\', True)
-        then
+        if OpenKey(LRCREGINIFILE_TESTROOT + '\DeleteKeySection\', True) then
+        begin
+          WriteString('StringIdent', 'Test');
+          WriteInteger('IntegerIdent', 1234);
+          WriteBool('BooleanIdent', True);
+        end;
+        CloseKey;
+
+        if OpenKey(LRCREGINIFILE_TESTROOT + '\RenameIdentSection\', True) then
         begin
           WriteString('StringIdent', 'Test');
           WriteInteger('IntegerIdent', 1234);
@@ -570,6 +762,8 @@ begin
         if KeyExists(LRCREGINIFILE_TESTROOT + '\BooleanSectionNew\') then
           DeleteKey(LRCREGINIFILE_TESTROOT + '\BooleanSectionNew\');
         DeleteKey(LRCREGINIFILE_TESTROOT + '\DeleteKeySection\');
+        DeleteKey(LRCREGINIFILE_TESTROOT + '\RenameIdentSection\');
+
         DeleteKey(LRCREGINIFILE_TESTROOT + '\');
 
         CloseKey;
@@ -842,11 +1036,11 @@ procedure TLRCRegInifileTest.KeyExists;
 var
   key_exists: boolean;
 begin
-   key_exists := FLRCRRegIniFile.KeyExists('StringSection');
+  key_exists := FLRCRRegIniFile.KeyExists('StringSection');
 
-   AssertTrue(
-     'Section: StringSection wurde nicht gefunden, Test fehlgeschlagen',
-       key_exists);
+  AssertTrue(
+    'Section: StringSection wurde nicht gefunden, Test fehlgeschlagen',
+    key_exists);
 end;
 
 procedure TLRCRegInifileTest.ValueExists;
@@ -857,7 +1051,102 @@ begin
 
   AssertTrue(
     'Value: WriteSring der Section: StringSection wurde nicht gefunden, Test fehlgeschlagen',
-      value_exists);
+    value_exists);
+end;
+
+procedure TLRCRegInifileTest.RenameIdent;
+begin
+  FLRCRRegIniFile.RenameIdent('RenameIdentSection', 'StringIdent', 'NewStringIdent');
+
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'RenameIdentSection',
+    RenameIdentAfterLRCProc1);
+
+  FLRCRRegIniFile.RenameIdent('RenameIdentSection', 'IntegerIdent', 'NewIntegerIdent');
+
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'RenameIdentSection',
+    RenameIdentAfterLRCProc2);
+
+  FLRCRRegIniFile.RenameIdent('RenameIdentSection', 'BooleanIdent', 'NewBooleanIdent');
+
+  GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'RenameIdentSection',
+    RenameIdentAfterLRCProc3);
+end;
+
+procedure TLRCRegInifileTest.ReadSectionValuesByKind;
+begin
+  FTestList1 := TStringList.Create;
+  FTestList2 := TStringList.Create;
+  try
+    // 1. Verhalten wie ReadSection testen
+    GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'DeleteKeySection',
+      ReadSectionBeforeLRCProc);
+
+    // Liest alle Namen aller Datenwerte einer Section (NAME)
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByKey);
+
+    CheckListForReadSectionTest(FTestList2);
+
+    // 2. Verhalten wie ReadSectionsValues testen
+    FTestList1.Clear;
+    FTestList2.Clear;
+
+    GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'DeleteKeySection',
+      ReadSectionValuesBeforeLRCProc);
+
+    // Liest alle Datenwerte einer Section (NAME=VALUE)
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByKeyValue);
+
+    CheckListForReadSectionValuesTest(FTestList2);
+
+    // 3. Nur Values auslesen
+
+    FTestList1.Clear;
+    FTestList2.Clear;
+
+    GetRegistry(HKEY_CURRENT_USER, LRCREGINIFILE_TESTROOT, 'DeleteKeySection',
+      ReadSectionValuesBeforeLRCProc);
+
+    // Liest alle Werte aller Datenwerte einer Section (VALUE)
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByValue);
+
+    CheckListForReadSectionValuesByKindTest1(FTestList2);
+
+    // 4. Verhalten wie ReadSection testen zuzügl. Merge vorhandener Daten
+    FTestList2.Clear;
+    FTestList2.Add('StringIdent2');
+    FTestList2.Add('IntegerIdent');
+    FTestList2.Add('BooleanIdent2');
+
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByKey, True);
+
+    CheckListForReadSectionValuesByKindTest2(FTestList2);
+
+    // 5. Verhalten wie ReadSection testen zuzügl. Merge vorhandener Daten
+    FTestList2.Clear;
+    FTestList2.Add('StringIdent2=Test2');
+    FTestList2.Add('IntegerIdent=2222');
+    FTestList2.Add('BooleanIdent2=0');
+
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByKeyValue, True);
+
+    CheckListForReadSectionValuesByKindTest3(FTestList2);
+
+    // 5. Liest alle Werte aller Datenwerte einer Section (VALUE) zuzügl. Merge vorhandener Daten
+    FTestList2.Clear;
+    FTestList2.Add('Test2');
+    FTestList2.Add('2222');
+    FTestList2.Add('0');
+
+    FLRCRRegIniFile.ReadSectionValuesByKind('DeleteKeySection', FTestList2, lskByValue, True);
+
+    CheckListForReadSectionValuesByKindTest4(FTestList2);
+  finally
+    if Assigned(FTestList1) then
+      FreeAndNil(FTestList1);
+
+    if Assigned(FTestList2) then
+      FreeAndNil(FTestList2);
+  end;
 end;
 
 procedure TLRCRegInifileTest.Filename;

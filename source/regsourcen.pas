@@ -326,7 +326,7 @@ type
                           aStrings: TStrings;
                           aMerge: boolean;
                           aUseDefaults: boolean;
-                          aListSource: TListSourceKind = byKey); reintroduce; overload;
+                          aListSource: TListSourceKind = lskByKey); reintroduce; overload;
     procedure ReadSection(aSection: string;
                           aStrings: TStrings;
                           aMerge: boolean = False); reintroduce; overload;
@@ -502,7 +502,7 @@ end;
 
 procedure TRegistrySettingsValueList._Initialize;
 begin
-  FSourceKind := Both;
+  FSourceKind := lskByKeyValue;
 
   inherited;
 end;
@@ -518,7 +518,7 @@ end;
 
 procedure TRegistrySettingsCheckedList._Initialize;
 begin
-  FSourceKind := Both;
+  FSourceKind := lskByKeyValue;
 
   inherited;
 end;
@@ -1237,7 +1237,7 @@ procedure TCustomRegistrySource.ReadSection(aRootKey: string;
   aStrings: TStrings;
   aMerge: boolean;
   aUseDefaults: boolean;
-  aListSource: TListSourceKind = byKey);
+  aListSource: TListSourceKind = lskByKey);
 var
   streg: TDataByCurrentUser;
 begin
@@ -1257,11 +1257,11 @@ begin
       if aUseDefaults then
       begin
         case aListSource of
-          byKey:
+          lskByKey:
             streg.ReadSectionCheckForDefaults(aSection, aStrings, aMerge);
-          byValue:
+          lskByValue:
             streg.ReadSectionValuesOnlyForDefaults(aSection, aStrings, aMerge);
-          Both:
+          lskByKeyValue:
             streg.ReadSectionValuesCheckForDefaults(aSection, aStrings, aMerge);
         else
           aStrings.clear;
@@ -1270,9 +1270,9 @@ begin
       else
       begin
         case aListSource of
-          byKey: streg.ReadSection(aSection, aStrings);
-          byValue: streg.ReadSectionValuesOnly(aSection, aStrings);
-          Both: streg.ReadSectionValuesEx(aSection, aStrings);
+          lskByKey: streg.ReadSection(aSection, aStrings);
+          lskByValue: streg.ReadSectionValuesOnly(aSection, aStrings);
+          lskByKeyValue: streg.ReadSectionValuesEx(aSection, aStrings);
         else
           aStrings.clear;
         end;
@@ -1299,7 +1299,7 @@ begin
       aStrings,
       aMerge,
       ReadDefaults,
-      byKey);
+      lskByKey);
   except
     on E: Exception do
       raise;

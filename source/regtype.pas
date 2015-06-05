@@ -51,7 +51,7 @@ type
 
   { TListSourceKind }
 
-  TListSourceKind = (lskUnknown, byKey, byValue, Both);
+  TListSourceKind = (lskUnknown, lskByKey, lskByValue, lskByKeyValue);
 
   { TCustomProperties }
 

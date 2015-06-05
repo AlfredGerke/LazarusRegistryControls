@@ -7,7 +7,8 @@ interface
 uses
   Classes,
   SysUtils,
-  Registry;
+  Registry,
+  regtype;
 
 type
 
@@ -39,6 +40,9 @@ type
     FStrings: TStrings;
     FOpenReadOnly: boolean;
     FCanCreate: boolean;
+    FListSourceKind: TListSourceKind;
+    FMerge: boolean;
+    FCheckRTLAnsi: boolean;
   public
     class function GetInstance: TLRCRegUtils;
 
@@ -71,6 +75,18 @@ type
     property Value: THandleValue
       read FValue
       write FValue;
+
+    property ListSourceKind: TListSourceKind
+      read FListSourceKind
+      write FListSourceKind;
+
+    property Merge: boolean
+      read FMerge
+      write FMerge;
+
+    property CheckRTLAnsi: boolean
+      read FCheckRTLAnsi
+      write FCheckRTLAnsi;
   end;
 
   { TLRCRegIniFile }
@@ -82,6 +98,10 @@ type
     FFuncResult: TLRCRegUtils.THandleValue;
     FPreferStringValues: boolean;
 
+    function ReadSectionValuesByKindProc(aReg: TRegistry;
+                                         aOpenKey: string): boolean;
+    function RenameKeyProc(aReg: TRegistry;
+                           aOpenKey: string): boolean;
     function ReadIntegerProc(aReg: TRegistry;
                              aOpenKey: string): boolean;
     function ReadStringProc(aReg: TRegistry;
@@ -116,8 +136,23 @@ type
       read FRoot;
   public
     constructor Create(const aFileName: string;
-                       aRoot: HKEY = HKEY_CURRENT_USER); virtual;
+                       aRoot: HKEY = HKEY_CURRENT_USER); virtual; overload;
+    constructor Create(const aFileName: string;
+                       aRoot: string); virtual;  overload;
+
     destructor Destroy; override;
+
+    function StrToHKeyRoot(aRootStr: string): HKEY;
+
+    procedure ReadSectionValuesByKind(aSection: string;
+                                      aStrings: TStrings;
+                                      aKind: TListSourceKind = lskByKeyValue;
+                                      aMerge: boolean = False;
+                                      aCheckRTLAnsi: boolean = True);
+
+    procedure RenameIdent(const aSection: string;
+                          const aOldIdent: string;
+                          const aNewIdent: string);
 
     // ist in TRegIniFile nicht vorhanden
     function HandleRegistry(const aSection: string;
@@ -138,7 +173,7 @@ type
     function DeleteKey(const aSection: string;
                        const aIdent: string): boolean;
 
-    procedure EraseSection(const aSection: string);
+    function EraseSection(const aSection: string): boolean;
 
     function ReadBool(const aSection: string;
                       const aIdent: string;
@@ -185,6 +220,10 @@ type
 
 
 implementation
+
+uses
+  regconvutils,
+  FileUtil;
 
 var
   reg_util_instance: TLRCRegUtils;
@@ -305,9 +344,163 @@ begin
   FIdent := EmptyStr;
   FOpenReadOnly := True;
   FCanCreate := False;
+  FListSourceKind := lskUnknown;
+  FMerge := False;
+  FCheckRTLAnsi := False;
 end;
 
 { TLRCRegIniFile }
+
+function TLRCRegIniFile.ReadSectionValuesByKindProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
+
+  procedure AddString(aStrings: TStrings;
+                      aValue: string;
+                      aMerge: boolean);
+  var
+    index: Integer;
+    value_name: string;
+    pos_index: SizeInt;
+  begin
+     if aMerge then
+     begin
+       pos_index := Pos('=', aValue);
+       if (pos_index = 0) then
+         index := aStrings.IndexOf(aValue)
+       else
+       begin
+         value_name := Copy(aValue, 1, pos_index-1);
+         index := aStrings.IndexOfName(value_name);
+       end;
+
+       if (index = -1) then
+         aStrings.Add(aValue);
+     end
+     else
+       aStrings.Add(aValue);
+  end;
+
+var
+  current_list: TStrings;
+  new_list: TStrings;
+  check_rtl_ansi: boolean;
+  do_merge: Boolean;
+  list_source_kind: TListSourceKind;
+  anz: integer;
+  value: string;
+  value_name: string;
+  value_name_utf8_decoded: string;
+  value_data_type: TRegDataType;
+begin
+  with FReg do
+  begin
+    current_list := GetStrings;
+    check_rtl_ansi := CheckRTLAnsi;
+    do_merge := Merge;
+    list_source_kind := ListSourceKind;
+  end;
+
+  if Assigned(current_list) then
+  begin
+    if not do_merge then
+      current_list.Clear;
+
+    new_list := TStringList.Create;
+    try
+      with aReg do
+      begin
+        GetValueNames(new_list);
+
+        // Aus dieser Liste werden die Idents entnommen,
+        // eventuell besser auf eine Umwandlung verzichten
+        SysToUTF8StringsIfNeeded(new_list, check_rtl_ansi);
+
+        for anz := 0 to new_list.Count-1 do
+	begin
+          value_name := new_list.Strings[anz];
+          value_name_utf8_decoded :=
+            UTF8ToSysIfNeeded(value_name, check_rtl_ansi);
+          value_name_utf8_decoded :=
+            UTF8DecodeIfNeeded(value_name_utf8_decoded, check_rtl_ansi);
+
+          value_data_type := GetDataType(value_name);
+
+          case value_data_type of
+            rdString,
+            rdExpandString:
+            begin
+              value := ReadString(value_name_utf8_decoded);
+
+              if check_rtl_ansi then
+                if NeedRTLAnsi then
+                  value := SysToUTF8(value);
+
+            end;
+            rdBinary:
+              Continue;
+            rdInteger:
+              value := IntToStr(ReadInteger(value_name));
+          else
+            Continue;
+          end;
+
+          case list_source_kind of
+            lskByValue: AddString(current_list, value, do_merge);
+            lskByKey: AddString(current_list, value_name, do_merge);
+            lskByKeyValue: AddString(current_list, value_name + '=' + value, do_merge);
+          else
+            Break;
+          end;
+	end;
+
+      end;
+    finally
+      if Assigned(new_list) then
+        FreeAndNil(new_list);
+    end;
+  end;
+end;
+
+function TLRCRegIniFile.RenameKeyProc(aReg: TRegistry;
+  aOpenKey: string): boolean;
+var
+  old_key: string;
+  new_key: string;
+  value_str: string;
+  value_int: integer;
+  value_data_type: TRegDataType;
+begin
+  Result := False;
+
+  old_key := FReg.Ident;
+  new_key := FReg.Value.GetValueAsString;
+
+  with aReg do
+  begin
+    value_data_type := GetDataType(old_key);
+
+    case value_data_type of
+      rdString,
+      rdExpandString:
+        value_str := ReadString(old_key);
+      rdInteger:
+        value_int := ReadInteger(old_key);
+    end;
+
+    if DeleteValue(old_key) then
+    begin
+      case value_data_type of
+        rdString,
+        rdExpandString:
+          WriteString(new_key, value_str);
+        rdInteger:
+          WriteInteger(new_key, value_int);
+      end;
+
+      Result := True;
+    end;
+  end;
+end;
 
 function TLRCRegIniFile.ReadIntegerProc(aReg: TRegistry;
   aOpenKey: string): boolean;
@@ -516,6 +709,16 @@ begin
   FReg := TLRCRegUtils.Create;
 end;
 
+constructor TLRCRegIniFile.Create(const aFileName: string;
+  aRoot: string = 'HKEY_CURRENT_USER');
+var
+  _root: HKEY;
+begin
+  _root := StrToHKeyRoot(aRoot);
+
+  create(aFilename, _root);
+end;
+
 destructor TLRCRegIniFile.Destroy;
 begin
   FFilename := EmptyStr;
@@ -524,6 +727,74 @@ begin
     FreeAndNil(FReg);
 
   inherited Destroy;
+end;
+
+function TLRCRegIniFile.StrToHKeyRoot(aRootStr: string): HKEY;
+begin
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_CLASSES_ROOT') then
+    Result := HKEY_CLASSES_ROOT
+  else
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_CURRENT_USER') then
+    Result := HKEY_CURRENT_USER
+  else
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_LOCAL_MACHINE') then
+    Result := HKEY_LOCAL_MACHINE
+  else
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_USERS') then
+    Result := HKEY_USERS
+  else
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_CURRENT_CONFIG') then
+    Result := HKEY_CURRENT_CONFIG
+  else
+  if (UpperCase(Trim(aRootStr)) = 'HKEY_DYN_DATA') then
+    Result := HKEY_DYN_DATA
+end;
+
+procedure TLRCRegIniFile.ReadSectionValuesByKind(aSection: string;
+  aStrings: TStrings;
+  aKind: TListSourceKind;
+  aMerge: boolean;
+  aCheckRTLAnsi: boolean = True);
+var
+  success: boolean;
+begin
+  with FReg do
+  begin
+    Refresh;
+    try
+      Section := aSection;
+      SetStrings(aStrings);
+      ListSourceKind := aKind;
+      Merge := aMerge;
+      CheckRTLAnsi := aCheckRTLAnsi;
+
+      success :=
+        GetRegistry(FRoot, Filename + aSection, ReadSectionValuesByKindProc, True);
+
+      if success then
+        aStrings := GetStrings;
+    finally
+      Refresh;
+    end;
+  end;
+end;
+
+procedure TLRCRegIniFile.RenameIdent(const aSection: string;
+  const aOldIdent: string;
+  const aNewIdent: string);
+begin
+  with FReg do
+  begin
+    Refresh;
+    try
+      Section := aSection;
+      Ident := aOldIdent;
+      Value.SetValueByString(aNewIdent);
+      GetRegistry(self.Root, Filename + aSection, RenameKeyProc, False, True);
+    finally
+      Refresh;
+    end;
+  end;
 end;
 
 function TLRCRegIniFile.HandleRegistry(const aSection: string;
@@ -618,7 +889,7 @@ begin
   end;
 end;
 
-procedure TLRCRegIniFile.EraseSection(const aSection: string);
+function TLRCRegIniFile.EraseSection(const aSection: string): boolean;
 begin
   with FReg do
   begin
@@ -626,7 +897,7 @@ begin
     try
       Section := aSection;
 
-      GetRegistry(FRoot, Filename + aSection, EraseSectionProc, False);
+      Result := GetRegistry(FRoot, Filename + aSection, EraseSectionProc, False);
     finally
       Refresh;
     end;
