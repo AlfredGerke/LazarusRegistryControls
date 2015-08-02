@@ -16,7 +16,7 @@ type
 
   TLRCRegUtils = class
   public type
-    THandleRegistry = function(aReg: TRegistry;
+    TOnHandleRegistry = function(aReg: TRegistry;
                                aOpenKey: string): boolean of object;
 
     { THandleValue }
@@ -51,7 +51,7 @@ type
 
     function GetRegistry(aRoot: HKEY;
                          aRootKey: string;
-                         aProc: THandleRegistry;
+                         aProc: TOnHandleRegistry;
                          aOpenKeyReadOnly: boolean = True;
                          aCanCreate: boolean = False;
                          aDoCloseKey: boolean = True): boolean;
@@ -156,7 +156,7 @@ type
 
     // ist in TRegIniFile nicht vorhanden
     function HandleRegistry(const aSection: string;
-                            aHandleRegistryProc: TLRCRegUtils.THandleRegistry;
+                            aHandleRegistryProc: TLRCRegUtils.TOnHandleRegistry;
                             aCompleteByFilename: boolean = True): boolean;
 
     // kommt in TRegIniFile direkt aus TRegistry
@@ -287,7 +287,7 @@ end;
 
 function TLRCRegUtils.GetRegistry(aRoot: HKEY;
   aRootKey: string;
-  aProc: THandleRegistry;
+  aProc: TOnHandleRegistry;
   aOpenKeyReadOnly: boolean = True;
   aCanCreate: boolean = False;
   aDoCloseKey: boolean = True): boolean;
@@ -392,6 +392,8 @@ var
   value_name_utf8_decoded: string;
   value_data_type: TRegDataType;
 begin
+  Result := False;
+
   with FReg do
   begin
     current_list := GetStrings;
@@ -451,6 +453,8 @@ begin
           else
             Break;
           end;
+
+          Result := True;
 	end;
 
       end;
@@ -798,7 +802,7 @@ begin
 end;
 
 function TLRCRegIniFile.HandleRegistry(const aSection: string;
-  aHandleRegistryProc: TLRCRegUtils.THandleRegistry;
+  aHandleRegistryProc: TLRCRegUtils.TOnHandleRegistry;
   aCompleteByFilename: boolean): boolean;
 var
   root_key: string;
