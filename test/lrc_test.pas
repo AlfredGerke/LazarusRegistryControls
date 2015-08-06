@@ -13,7 +13,8 @@ uses
   reglabel_test,
   issue00030_test,
   issue00035_test,
-  lrcreginifile_test;
+  lrcreginifile_test,
+  reglistbox_test;
 
 implementation
 

@@ -34,7 +34,8 @@ uses
   regradiobutton_test,
   reglabel_test,
   testregistry,
-  regbasics;
+  regbasics,
+  reglistbox_test;
 
 procedure RegisterIssue00035Tests(aSuitePath: string = 'LRC 09 M2.Issue #35 - UTF8-Bug');
 begin

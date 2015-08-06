@@ -29,7 +29,8 @@ uses
   reglabel_test,
   reglabel_wrapper,
   lrc_testcase,
-  lrcreginifile_test;
+  lrcreginifile_test,
+  reglistbox_test;
 
 {$R *.res}
 
