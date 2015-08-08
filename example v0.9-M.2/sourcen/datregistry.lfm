@@ -1,0 +1,23 @@
+object RegistrySourceModule: TRegistrySourceModule
+  OldCreateOrder = False
+  Height = 150
+  HorizontalOffset = 682
+  VerticalOffset = 295
+  Width = 150
+  object rsRegistrySource: TRegistrySource
+    RootKey = 'SOFTWARE\ExampleFactory\LazarusRegistryControls\{EC8199A8-A8FD-40D9-9ACA-C28D913C2E0B}\'
+    RootKeyForDefaults = 'SOFTWARE\ExampleFactory\LazarusRegistryControls\DEFAULTS\{EC8199A8-A8FD-40D9-9ACA-C28D913C2E0B}\'
+    RootKeyForCommon = 'HKEY_CURRENT_USER'
+    Project = 'LazarusRegistryControls'
+    Organisation = 'ExampleFactory'
+    RootForDefaults = 'HKEY_LOCAL_MACHINE'
+    ReadDefaults = True
+    WriteDefaults = False
+    GUID = '{EC8199A8-A8FD-40D9-9ACA-C28D913C2E0B}'
+    DoSyncData = True
+    PrefereStrings = False
+    CheckRTLAnsi = True
+    left = 56
+    top = 24
+  end
+end

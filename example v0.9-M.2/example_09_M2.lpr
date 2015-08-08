@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms,
-  frmmain_09_m2, fmeControlDetails, fmereglistbox;
+  frmMain, fmeControlDetails, fmereglistbox, datRegistry, regbaseframe;
 
 {$R *.res}
 
@@ -16,6 +16,7 @@ begin
   RequireDerivedFormResource := True;
   Application.Initialize;
   Application.CreateForm(TMain, Main);
+  Application.CreateForm(TRegistrySourceModule, RegistrySourceModule);
   Application.Run;
 end.
 

@@ -1,6 +1,10 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: tcontroldetails.acshowrootkeys.caption
+msgid "RootKeys ändern"
+msgstr ""
+
 #: tcontroldetails.pnlbuttom.caption
 msgid "pnlButtom"
 msgstr ""
@@ -21,5 +25,9 @@ msgstr ""
 
 #: tmain.caption
 msgid "Example (LRC 0.9 M2)"
+msgstr ""
+
+#: tregcontrolframe.pnldesktop.caption
+msgid "pnlDesktop"
 msgstr ""
 

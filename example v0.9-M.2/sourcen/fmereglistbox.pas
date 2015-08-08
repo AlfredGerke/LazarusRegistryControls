@@ -5,24 +5,35 @@ unit fmereglistbox;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, ExtCtrls, reglistbox;
+  Classes,
+  ExtCtrls,
+  reglistbox,
+  regbaseframe;
 
 type
 
   { TControlRegListBox }
 
-  TControlRegListBox = class(TFrame)
+  TControlRegListBox = class(TRegControlFrame<TRegListBox>)
     pnlClient: TPanel;
-    rlstListBox: TRegListBox;
+    RegListBox1: TRegListBox;
   private
-    { private declarations }
   public
-    { public declarations }
+    constructor Create(aOwner: TComponent); override;
   end;
 
 implementation
 
 {$R *.lfm}
+
+{ TControlRegListBox }
+
+constructor TControlRegListBox.Create(aOwner: TComponent);
+begin
+  inherited;
+
+  SetRegControl(RegListBox1);
+end;
 
 end.
 

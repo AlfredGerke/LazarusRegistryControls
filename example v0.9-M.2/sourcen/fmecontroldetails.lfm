@@ -15,39 +15,43 @@ object ControlDetails: TControlDetails
     Width = 661
     Align = alBottom
     Caption = 'pnlButtom'
+    ClientHeight = 79
+    ClientWidth = 661
     TabOrder = 0
+    object Button1: TButton
+      Left = 16
+      Height = 25
+      Top = 16
+      Width = 139
+      Action = acShowRootKeys
+      TabOrder = 0
+    end
   end
   object pnlLeft: TPanel
     Left = 0
     Height = 376
     Top = 0
-    Width = 170
+    Width = 350
     Align = alLeft
     Caption = 'pnlLeft'
-    ClientHeight = 376
-    ClientWidth = 170
     TabOrder = 1
-    inline FrameRegListBox: TControlRegListBox
-      Left = 1
-      Height = 374
-      Top = 1
-      Width = 168
-      Align = alClient
-      ClientHeight = 374
-      ClientWidth = 168
-      inherited pnlClient: TPanel
-        Height = 374
-        Width = 168
-      end
-    end
   end
   object pnlClient: TPanel
-    Left = 170
+    Left = 350
     Height = 376
     Top = 0
-    Width = 491
+    Width = 311
     Align = alClient
     Caption = 'pnlClient'
     TabOrder = 2
+  end
+  object acList: TActionList
+    Images = Main.lstImageListOutline
+    left = 552
+    top = 392
+    object acShowRootKeys: TAction
+      Caption = 'RootKeys ändern'
+      OnExecute = acShowRootKeysExecute
+    end
   end
 end

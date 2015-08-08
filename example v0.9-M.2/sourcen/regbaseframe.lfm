@@ -1,0 +1,20 @@
+object RegControlFrame: TRegControlFrame
+  Left = 0
+  Height = 240
+  Top = 0
+  Width = 320
+  ClientHeight = 240
+  ClientWidth = 320
+  TabOrder = 0
+  DesignLeft = 883
+  DesignTop = 382
+  object pnlDesktop: TPanel
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 320
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 0
+  end
+end

@@ -1,4 +1,4 @@
-unit frmmain_09_M2;
+unit frmMain;
 
 {$mode Delphi}{$H+}
 
@@ -8,25 +8,25 @@ uses
   Forms,
   ComCtrls,
   ExtCtrls,
-  Controls, fmeControlDetails, Classes;
+  Controls,
+  fmeControlDetails,
+  Classes;
 
 type
 
   { TMain }
 
   TMain = class(TForm)
-    FrameControlDetails: TControlDetails;
     lstImageListOutline: TImageList;
     pnlOutline: TPanel;
     pnlDesktop: TPanel;
     spOutline: TSplitter;
     tvOutline: TTreeView;
-    procedure FrameControlDetailsClick(Sender: TObject);
     procedure tvOutlineChange(Sender: TObject; Node: TTreeNode);
   private
-    { private declarations }
+    FDesktopFrame: TControlDetails;
   public
-    { public declarations }
+    constructor Create(aOwner: TComponent); override;
   end;
 
 var
@@ -36,19 +36,22 @@ implementation
 
 {$R *.lfm}
 
-uses
-  Dialogs;
 
 { TMain }
 
 procedure TMain.tvOutlineChange(Sender: TObject; Node: TTreeNode);
 begin
-  MessageDlg(Node.Text, mtInformation, [mbOK], 0);
+  if Assigned(FDesktopFrame) then
+    FDesktopFrame.GetRegControl(Node.Text);
 end;
 
-procedure TMain.FrameControlDetailsClick(Sender: TObject);
+constructor TMain.Create(aOwner: TComponent);
 begin
+  inherited Create(aOwner);
 
+  FDesktopFrame := TControlDetails.Create(pnlDesktop);
+  FDesktopFrame.Parent := pnlDesktop;
+  FDesktopFrame.Align := alClient;
 end;
 
 end.
