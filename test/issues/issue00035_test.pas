@@ -45,6 +45,7 @@ begin
   RegisterTest(aSuitePath, TRegCheckBoxUTF8Test);
   RegisterTest(aSuitePath, TRegRadioButtonUTF8Test);
   RegisterTest(aSuitePath, TRegLabelUTF8Test);
+  RegisterTest(aSuitePath, TRegListBoxUTF8Test);
 end;
 
 function TCheckRTLAnsiTest.GetRookKey: string;

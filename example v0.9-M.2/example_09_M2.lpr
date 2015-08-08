@@ -1,13 +1,14 @@
 program example_09_M2;
 
-{$mode objfpc}{$H+}
+{$mode Delphi}{$H+}
 
 uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, frmmain_09_M2;
+  Forms,
+  frmmain_09_m2;
 
 {$R *.res}
 

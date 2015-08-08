@@ -58,6 +58,8 @@ const
 
   CAPTION_FOR_TREGLABEL = 'LRC RegLabel';
 
+  SEC_TREGLISTBOX = '';
+
 implementation
 
 end.

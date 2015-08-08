@@ -54,7 +54,6 @@ implementation
 uses
   test_utils;
 
-
 procedure TRegCheckBoxGenericTest<_T1,_T2>.WriteRegistryProc(aIni: TLRCRegIniFile);
 var
   test_ident: string;

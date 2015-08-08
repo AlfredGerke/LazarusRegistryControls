@@ -4,11 +4,13 @@
 
 lib/i386-win32/
 example/lib/i386-win32/
+example v0.9-M.2/lib/i386-win32/
+example v0.9-M.2/bin/i386-win32/
 test/lib/i386-win32/
 example/example.exe
-example/example_09_M2.exe
 test/LazarusRegistryControlsTest.exe
 *.bak
 link.res
 ppas.bat
 *.lps
+*.lnk

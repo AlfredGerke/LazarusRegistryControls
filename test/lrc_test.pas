@@ -38,6 +38,7 @@ initialization
   RegisterTest('Package: RegistryControls', TRegCheckBoxTest);
   RegisterTest('Package: RegistryControls', TRegRadioButtonTest);
   RegisterTest('Package: RegistryControls', TRegLabelTest);
+  RegisterTest('Package: RegistryControls', TRegListBoxTest);
   //-->
 
   // Alle Tests für die Issues
