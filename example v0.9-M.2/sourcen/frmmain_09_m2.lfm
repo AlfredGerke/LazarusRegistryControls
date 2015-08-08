@@ -7,26 +7,29 @@ object Main: TMain
   ClientHeight = 616
   ClientWidth = 951
   LCLVersion = '1.4.2.0'
-  object Splitter1: TSplitter
-    Left = 170
+  object spOutline: TSplitter
+    Left = 200
     Height = 616
     Top = 0
     Width = 5
+    AutoSnap = False
+    MinSize = 200
   end
   object pnlOutline: TPanel
     Left = 0
     Height = 616
     Top = 0
-    Width = 170
+    Width = 200
     Align = alLeft
     ClientHeight = 616
-    ClientWidth = 170
+    ClientWidth = 200
+    Constraints.MinWidth = 200
     TabOrder = 1
     object tvOutline: TTreeView
       Left = 1
       Height = 614
       Top = 1
-      Width = 168
+      Width = 198
       Align = alClient
       DefaultItemHeight = 18
       Images = lstImageListOutline
@@ -52,16 +55,26 @@ object Main: TMain
     end
   end
   object pnlDesktop: TPanel
-    Left = 175
+    Left = 205
     Height = 616
     Top = 0
-    Width = 776
+    Width = 746
     Align = alClient
+    ClientHeight = 616
+    ClientWidth = 746
     TabOrder = 2
+    inline FrameControlDetails: TControlDetails
+      Left = 1
+      Height = 614
+      Top = 1
+      Width = 744
+      Align = alClient
+      OnClick = FrameControlDetailsClick
+    end
   end
   object lstImageListOutline: TImageList
-    left = 32
-    top = 248
+    left = 72
+    top = 264
     Bitmap = {
       4C690B0000001000000010000000FEFEFE00FEFEFE00FEFEFE00FEFEFE00FEFE
       FE00FEFEFE00FEFEFE00FEFEFE00FEFEFE00FEFEFE00FEFEFE00FEFEFE00FEFE

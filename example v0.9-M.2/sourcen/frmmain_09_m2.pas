@@ -6,20 +6,22 @@ interface
 
 uses
   Forms,
-  StdCtrls, DBGrids, ComCtrls, ExtCtrls, Controls, regcombobox, reglistbox,
-  regchecklistbox, regcheckgroup, regradiogroup, regcheckbox, regradiobutton,
-  reglabel, regvaluelisteditor, regsourcen, regedit, Classes;
+  ComCtrls,
+  ExtCtrls,
+  Controls, fmeControlDetails, Classes;
 
 type
 
   { TMain }
 
   TMain = class(TForm)
+    FrameControlDetails: TControlDetails;
     lstImageListOutline: TImageList;
     pnlOutline: TPanel;
     pnlDesktop: TPanel;
-    Splitter1: TSplitter;
+    spOutline: TSplitter;
     tvOutline: TTreeView;
+    procedure FrameControlDetailsClick(Sender: TObject);
     procedure tvOutlineChange(Sender: TObject; Node: TTreeNode);
   private
     { private declarations }
@@ -35,7 +37,6 @@ implementation
 {$R *.lfm}
 
 uses
-  Registry,
   Dialogs;
 
 { TMain }
@@ -45,9 +46,10 @@ begin
   MessageDlg(Node.Text, mtInformation, [mbOK], 0);
 end;
 
-{ TMain }
+procedure TMain.FrameControlDetailsClick(Sender: TObject);
+begin
 
-
+end;
 
 end.
 

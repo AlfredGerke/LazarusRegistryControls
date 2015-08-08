@@ -1,0 +1,39 @@
+object ControlRegListBox: TControlRegListBox
+  Left = 0
+  Height = 388
+  Top = 0
+  Width = 320
+  ClientHeight = 388
+  ClientWidth = 320
+  TabOrder = 0
+  DesignLeft = 697
+  DesignTop = 287
+  object pnlClient: TPanel
+    Left = 0
+    Height = 388
+    Top = 0
+    Width = 320
+    Align = alClient
+    Caption = 'pnlClient'
+    ClientHeight = 388
+    ClientWidth = 320
+    TabOrder = 0
+    object rlstListBox: TRegListBox
+      Left = 32
+      Height = 296
+      Top = 32
+      Width = 264
+      ItemHeight = 0
+      TabOrder = 0
+      RegistrySettings.CanRead = False
+      RegistrySettings.CanWrite = False
+      RegistrySettings.DoWriteAdHoc = False
+      RegistrySettings.GroupIndex = 0
+      RegistrySettings.DoSyncData = False
+      RegistrySettings.Default = 0
+      RegistrySettings.ItemsByRegistry = False
+      RegistrySettings.SourceKind = lskUnknown
+      RegistrySettings.DoMergeData = False
+    end
+  end
+end

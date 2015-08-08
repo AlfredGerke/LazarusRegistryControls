@@ -1,6 +1,24 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: tcontroldetails.pnlbuttom.caption
+msgid "pnlButtom"
+msgstr ""
+
+#: tcontroldetails.pnlclient.caption
+msgctxt "tcontroldetails.pnlclient.caption"
+msgid "pnlClient"
+msgstr ""
+
+#: tcontroldetails.pnlleft.caption
+msgid "pnlLeft"
+msgstr ""
+
+#: tcontrolreglistbox.pnlclient.caption
+msgctxt "TCONTROLREGLISTBOX.PNLCLIENT.CAPTION"
+msgid "pnlClient"
+msgstr ""
+
 #: tmain.caption
 msgid "Example (LRC 0.9 M2)"
 msgstr ""

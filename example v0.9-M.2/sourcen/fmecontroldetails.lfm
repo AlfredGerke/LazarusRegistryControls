@@ -1,0 +1,53 @@
+object ControlDetails: TControlDetails
+  Left = 0
+  Height = 455
+  Top = 0
+  Width = 661
+  ClientHeight = 455
+  ClientWidth = 661
+  TabOrder = 0
+  DesignLeft = 612
+  DesignTop = 277
+  object pnlButtom: TPanel
+    Left = 0
+    Height = 79
+    Top = 376
+    Width = 661
+    Align = alBottom
+    Caption = 'pnlButtom'
+    TabOrder = 0
+  end
+  object pnlLeft: TPanel
+    Left = 0
+    Height = 376
+    Top = 0
+    Width = 170
+    Align = alLeft
+    Caption = 'pnlLeft'
+    ClientHeight = 376
+    ClientWidth = 170
+    TabOrder = 1
+    inline FrameRegListBox: TControlRegListBox
+      Left = 1
+      Height = 374
+      Top = 1
+      Width = 168
+      Align = alClient
+      ClientHeight = 374
+      ClientWidth = 168
+      inherited pnlClient: TPanel
+        Height = 374
+        Width = 168
+      end
+    end
+  end
+  object pnlClient: TPanel
+    Left = 170
+    Height = 376
+    Top = 0
+    Width = 491
+    Align = alClient
+    Caption = 'pnlClient'
+    TabOrder = 2
+  end
+end
