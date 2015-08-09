@@ -1,6 +1,6 @@
 unit datRegistry;
 
-{$mode delphi}
+{$mode Delphi}{$H+}
 
 interface
 

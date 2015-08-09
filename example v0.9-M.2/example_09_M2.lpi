@@ -76,24 +76,25 @@
         <UnitName Value="fmeControlDetails"/>
       </Unit2>
       <Unit3>
-        <Filename Value="sourcen\fmereglistbox.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="ControlRegListBox"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Frame"/>
-      </Unit3>
-      <Unit4>
         <Filename Value="sourcen\datregistry.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="RegistrySourceModule"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="datRegistry"/>
-      </Unit4>
-      <Unit5>
+      </Unit3>
+      <Unit4>
         <Filename Value="sourcen\regbaseframe.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="RegControlFrame"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="sourcen\fmereglistbox.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ControlRegListBox"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit5>
     </Units>

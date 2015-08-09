@@ -5,17 +5,12 @@ msgstr "Content-Type: text/plain; charset=UTF-8"
 msgid "RootKeys ändern"
 msgstr ""
 
-#: tcontroldetails.pnlbuttom.caption
-msgid "pnlButtom"
+#: tcontroldetails.cbxeditrootkeys.caption
+msgid "RootKeys bearbeiten"
 msgstr ""
 
-#: tcontroldetails.pnlclient.caption
-msgctxt "tcontroldetails.pnlclient.caption"
-msgid "pnlClient"
-msgstr ""
-
-#: tcontroldetails.pnlleft.caption
-msgid "pnlLeft"
+#: tcontroldetails.speedbutton1.caption
+msgid "..."
 msgstr ""
 
 #: tcontrolreglistbox.pnlclient.caption

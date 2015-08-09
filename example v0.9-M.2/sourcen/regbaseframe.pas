@@ -1,18 +1,18 @@
 unit regbaseframe;
 
-{$mode delphi}
+{$mode Delphi}{$H+}
 
 interface
 
 uses
-  Forms, ExtCtrls;
+  Forms,
+  ExtCtrls;
 
 type
 
   { TRegControlFrame }
 
   TRegControlFrame<_T> = class(TFrame)
-    pnlDesktop: TPanel;
   private
     FRegControl: _T;
   public
@@ -38,8 +38,19 @@ begin
 end;
 
 procedure TRegControlFrame<_T>.GetRootKeys(aEdit: boolean);
+var
+  curr_edit: boolean;
 begin
-  FRegControl.RegistrySource.ShowClientEditDialog(GetRegControlName);
+  curr_edit := FRegControl.RegistrySource.EditClientRootKeys;
+  try
+    if (curr_edit <> aEdit) then
+      FRegControl.RegistrySource.EditClientRootKeys := aEdit;
+
+    FRegControl.RegistrySource.ShowClientEditDialog(GetRegControlName);
+  finally
+    if (curr_edit <> aEdit) then
+      FRegControl.RegistrySource.EditClientRootKeys := curr_edit;
+  end;
 end;
 
 end.

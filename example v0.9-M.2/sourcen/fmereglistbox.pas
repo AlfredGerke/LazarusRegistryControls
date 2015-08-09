@@ -1,21 +1,18 @@
 unit fmereglistbox;
 
-{$mode delphi}
+{$mode Delphi}{$H+}
 
 interface
 
 uses
-  Classes,
-  ExtCtrls,
-  reglistbox,
-  regbaseframe;
+  Classes, SysUtils, FileUtil, Forms, Controls, ExtCtrls, regbaseframe,
+  reglistbox;
 
 type
 
   { TControlRegListBox }
 
   TControlRegListBox = class(TRegControlFrame<TRegListBox>)
-    pnlClient: TPanel;
     RegListBox1: TRegListBox;
   private
   public
@@ -25,8 +22,6 @@ type
 implementation
 
 {$R *.lfm}
-
-{ TControlRegListBox }
 
 constructor TControlRegListBox.Create(aOwner: TComponent);
 begin
