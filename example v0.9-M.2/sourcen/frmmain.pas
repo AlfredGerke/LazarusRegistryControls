@@ -36,7 +36,6 @@ implementation
 
 {$R *.lfm}
 
-
 { TMain }
 
 procedure TMain.tvOutlineChange(Sender: TObject; Node: TTreeNode);

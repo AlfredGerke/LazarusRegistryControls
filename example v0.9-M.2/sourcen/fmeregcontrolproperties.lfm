@@ -1,9 +1,27 @@
 object RegControlProperties: TRegControlProperties
   Left = 0
-  Height = 240
+  Height = 375
   Top = 0
   Width = 320
+  ClientHeight = 375
+  ClientWidth = 320
   TabOrder = 0
   DesignLeft = 826
   DesignTop = 369
+  object pnlCaptionSettings: TPanel
+    Left = 0
+    Height = 162
+    Top = 0
+    Width = 320
+    Align = alTop
+    TabOrder = 0
+  end
+  object pnlRegistrySettings: TPanel
+    Left = 0
+    Height = 213
+    Top = 162
+    Width = 320
+    Align = alClient
+    TabOrder = 1
+  end
 end

@@ -115,6 +115,7 @@
         <Filename Value="sourcen\fmeregcontrolproperties.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="RegControlProperties"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit8>
       <Unit9>

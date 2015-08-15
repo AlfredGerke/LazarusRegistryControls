@@ -9,14 +9,25 @@ uses
   fmeregcontrolproperties, reglistbox;
 
 type
+
+  { TRegListBoxProperties }
+
   TRegListBoxProperties = class(TRegControlProperties<TRegListBox>)
-  private
-  public
+  protected
+    procedure _Initialize; override;
   end;
 
 implementation
 
 {$R *.lfm}
+
+{ TRegListBoxProperties }
+
+procedure TRegListBoxProperties._Initialize;
+begin
+  // Default
+  DoCreateCaptionProperites := False;
+end;
 
 end.
 

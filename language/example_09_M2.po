@@ -22,6 +22,18 @@ msgstr ""
 msgid "Example (LRC 0.9 M2)"
 msgstr ""
 
+#: tregcontrolcaptionsettings.cbxcaptionbyregistry.caption
+msgid "CaptionByRegistry"
+msgstr ""
+
+#: tregcontrolcaptionsettings.edtident.editlabel.caption
+msgid "Ident"
+msgstr ""
+
+#: tregcontrolcaptionsettings.edtsection.editlabel.caption
+msgid "Section"
+msgstr ""
+
 #: tregcontrolframe.pnldesktop.caption
 msgid "pnlDesktop"
 msgstr ""

@@ -13,7 +13,8 @@ uses
   ActnList,
   Buttons,
   fmereglistbox,
-  fmereglistboxproperties;
+  fmereglistboxproperties,
+  reglistbox;
 
 type
 
@@ -66,6 +67,7 @@ begin
   FGetRootKeysProc := nil;
   FSetWriteAdHoc := nil;
 
+
   if (aLabel = 'TRegListBox') then
   begin
     // ControlFrame
@@ -80,7 +82,63 @@ begin
     FRegControlProperties.Parent := pnlClient;
     FRegControlProperties.Align := alClient;
 
-    TRegListBoxProperties(FRegControlProperties).SetRegControl(TControlRegListBox(FRegControlFrame).RegControl);
+    TRegListBoxProperties(FRegControlProperties).SetRegControl(
+      TRegListBox(TControlRegListBox(FRegControlFrame).RegControl));
+  end
+  else
+  if (aLabel = 'TRegistrySource') then
+  begin
+    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Wichtig: TRegistrySource ist keine visuelle Komponente }
+  end
+  else
+  if (aLabel = 'TRegCheckBox') then
+  begin
+    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
+  end
+  else
+  if (aLabel = 'TRegRadioButton') then
+  begin
+    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
+  end
+  else
+  if (aLabel = 'TRegRadioGroup') then
+  begin
+    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
+  end
+  else
+  if (aLabel = 'TRegEdit') then
+  begin
+    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
+  end
+  else
+  if (aLabel = 'TRegListBox') then
+  begin
+    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
+  end
+  else
+  if (aLabel = 'TRegComboBox') then
+  begin
+    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
+  end
+  else
+  if (aLabel = 'TRegCheckListBox') then
+  begin
+    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
+  end
+  else
+  if (aLabel = 'TRegCheckGroupBox') then
+  begin
+    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
+  end
+  else
+  if (aLabel = 'TRegValueListEditor') then
+  begin
+    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
+  end
+  else
+  if (aLabel = 'TRegLabel') then
+  begin
+    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
   end;
 end;
 
