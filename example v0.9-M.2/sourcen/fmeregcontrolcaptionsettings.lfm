@@ -1,0 +1,2 @@
+inherited RegControlCaptionSettings: TRegControlCaptionSettings
+end

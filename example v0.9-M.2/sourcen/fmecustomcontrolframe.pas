@@ -1,4 +1,4 @@
-unit regbaseframe;
+unit fmecustomcontrolframe;
 
 {$mode Delphi}{$H+}
 
@@ -10,34 +10,37 @@ uses
 
 type
 
-  { TRegControlFrame }
+  { TCustomRegControlFrame }
 
-  TRegControlFrame<_T> = class(TFrame)
+  TCustomRegControlFrame<_T> = class(TFrame)
   private
     FRegControl: _T;
   public
     function GetRegControlName: string;
     procedure SetRegControl(aControl: _T);
     procedure GetRootKeys(aEdit: boolean);
+
+    property RegControl: _T
+      read FRegControl;
   end;
 
 implementation
 
 {$R *.lfm}
 
-{ TRegControlFrame<_T> }
+{ TCustomRegControlFrame<_T> }
 
-function TRegControlFrame<_T>.GetRegControlName: string;
+function TCustomRegControlFrame<_T>.GetRegControlName: string;
 begin
   Result := FRegControl.Name;
 end;
 
-procedure TRegControlFrame<_T>.SetRegControl(aControl: _T);
+procedure TCustomRegControlFrame<_T>.SetRegControl(aControl: _T);
 begin
   FRegControl := aControl;
 end;
 
-procedure TRegControlFrame<_T>.GetRootKeys(aEdit: boolean);
+procedure TCustomRegControlFrame<_T>.GetRootKeys(aEdit: boolean);
 var
   curr_edit: boolean;
 begin

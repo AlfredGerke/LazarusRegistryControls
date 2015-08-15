@@ -10,8 +10,10 @@ uses
   Controls,
   ExtCtrls,
   StdCtrls,
-  ActnList, Buttons,
-  fmereglistbox;
+  ActnList,
+  Buttons,
+  fmereglistbox,
+  fmereglistboxproperties;
 
 type
 
@@ -25,12 +27,15 @@ type
     pnlLeft: TPanel;
     pnlButtom: TPanel;
     SpeedButton1: TSpeedButton;
+    Splitter1: TSplitter;
     procedure acShowRootKeysExecute(Sender: TObject);
   strict private type
     TOnGetRootKeys = procedure(aEdit: boolean) of object;
     TOnSetWriteAdHoc = procedure(aWriteAdHoc: boolean) of object;
   private
     FRegControlFrame: TFrame;
+    FRegControlProperties: TFrame;
+    //
     FGetRootKeysProc: TOnGetRootKeys;
     FSetWriteAdHoc: TOnSetWriteAdHoc;
   public
@@ -55,15 +60,27 @@ begin
   if Assigned(FRegControlFrame) then
     FreeAndNil(FRegControlFrame);
 
+  if Assigned(FRegControlProperties) then
+    FreeAndNil(FRegControlProperties);
+
   FGetRootKeysProc := nil;
+  FSetWriteAdHoc := nil;
 
   if (aLabel = 'TRegListBox') then
   begin
+    // ControlFrame
     FRegControlFrame := TControlRegListBox.Create(pnlLeft);
     FRegControlFrame.Parent := pnlLeft;
     FRegControlFrame.Align := alClient;
 
     FGetRootKeysProc := TControlRegListBox(FRegControlFrame).GetRootKeys;
+
+    // PropertiesFrame
+    FRegControlProperties := TRegListBoxProperties.Create(pnlClient);
+    FRegControlProperties.Parent := pnlClient;
+    FRegControlProperties.Align := alClient;
+
+    TRegListBoxProperties(FRegControlProperties).SetRegControl(TControlRegListBox(FRegControlFrame).RegControl);
   end;
 end;
 

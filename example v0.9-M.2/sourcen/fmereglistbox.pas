@@ -5,14 +5,14 @@ unit fmereglistbox;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, ExtCtrls, regbaseframe,
+  Classes, SysUtils, FileUtil, Forms, Controls, ExtCtrls, fmecustomcontrolframe,
   reglistbox;
 
 type
 
   { TControlRegListBox }
 
-  TControlRegListBox = class(TRegControlFrame<TRegListBox>)
+  TControlRegListBox = class(TCustomRegControlFrame<TRegListBox>)
     RegListBox1: TRegListBox;
   private
   public

@@ -43,12 +43,18 @@ object ControlDetails: TControlDetails
     TabOrder = 1
   end
   object pnlClient: TPanel
+    Left = 355
+    Height = 376
+    Top = 0
+    Width = 306
+    Align = alClient
+    TabOrder = 2
+  end
+  object Splitter1: TSplitter
     Left = 350
     Height = 376
     Top = 0
-    Width = 311
-    Align = alClient
-    TabOrder = 2
+    Width = 5
   end
   object acList: TActionList
     Images = Main.lstImageListOutline

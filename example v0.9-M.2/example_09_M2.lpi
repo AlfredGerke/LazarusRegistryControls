@@ -54,7 +54,7 @@
         <PackageName Value="LCL"/>
       </Item5>
     </RequiredPackages>
-    <Units Count="6">
+    <Units Count="10">
       <Unit0>
         <Filename Value="example_09_M2.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -84,9 +84,9 @@
         <UnitName Value="datRegistry"/>
       </Unit3>
       <Unit4>
-        <Filename Value="sourcen\regbaseframe.pas"/>
+        <Filename Value="sourcen\fmecustomcontrolframe.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="RegControlFrame"/>
+        <ComponentName Value="CustomRegControlFrame"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit4>
@@ -97,6 +97,33 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit5>
+      <Unit6>
+        <Filename Value="sourcen\fmecustomsettings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CustomRegControlSettings"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="sourcen\fmeregcontrolcaptionsettings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RegControlCaptionSettings"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="sourcen\fmeregcontrolproperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RegControlProperties"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="sourcen\fmereglistboxproperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RegListBoxProperties"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit9>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -8,8 +8,9 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms,
-  frmMain, fmeControlDetails, datRegistry, regbaseframe,
-fmereglistbox;
+  frmMain, fmeControlDetails, datRegistry, fmecustomcontrolframe,
+fmereglistbox, fmecustomsettings, fmeregcontrolcaptionsettings,
+fmeregcontrolproperties, fmereglistboxproperties;
 
 {$R *.res}
 
