@@ -6,14 +6,10 @@ interface
 
 uses
   Classes,
-  SysUtils,
-  FileUtil,
   Forms,
   Controls,
   ExtCtrls,
-  reglistbox,
-  fmeregcontrolcaptionsettings,
-  regsourcen;
+  fmeregcontrolcaptionsettings;
 
 type
 
@@ -22,24 +18,24 @@ type
   TRegControlProperties<_T> = class(TFrame)
     pnlCaptionSettings: TPanel;
     pnlRegistrySettings: TPanel;
+    spSplitter: TSplitter;
   private
     FRegControl: _T;
     FCaptionSettingsFrame: TRegControlCaptionSettings;
-
     FDoCreateRegistryProperties: boolean;
-    FDoCreateCaptionProperites: boolean;
-
-    procedure CreatePropertyFrames;
+    FDoCreateCaptionSettings: boolean;
   protected
+    procedure CreatePropertyFrames; virtual;
+
     procedure _Initialize; virtual;
 
     property DoCreateRegistryProperties: boolean
       read FDoCreateRegistryProperties
       write FDoCreateRegistryProperties;
 
-    property DoCreateCaptionProperites: boolean
-      read FDoCreateCaptionProperites
-      write FDoCreateCaptionProperites;
+    property DoCreateCaptionSettings: boolean
+      read FDoCreateCaptionSettings
+      write FDoCreateCaptionSettings;
 
     property RegControl: _T
       read FRegControl;
@@ -62,14 +58,16 @@ begin
     { TODO -oAlfred Gerke -cRegControlPropertiesFrame ausprogrammieren : An dieser Stelle muss der Frame für RegistrySettings eines RegControls erstellt werden }
   end;
 
-  if FDoCreateCaptionProperites then
+  if FDoCreateCaptionSettings then
   begin
+    spSplitter.Visible := True;
+    pnlCaptionSettings.Visible := True;
+
     FCaptionSettingsFrame := TRegControlCaptionSettings.Create(pnlCaptionSettings);
     FCaptionSettingsFrame.Parent := pnlCaptionSettings;
     FCaptionSettingsFrame.Align := alClient;
 
-    { TODO -oAlfred Gerke -cRegControlPropertiesFrame ausprogrammieren : An dieser Stellen müssen die CaptionSettings eines RegControls übergeben werden }
-    FCaptionSettingsFrame.SetRegControlSettings(nil);
+    { TODO -oAlfred Gerke -cCaptionSettings zuweisen : Dem CaptionSettingFrame müssen die CaptionSettings des RegControl übergeben werden }
   end;
 end;
 
@@ -90,7 +88,7 @@ begin
   inherited Create(aOwner);
 
   FDoCreateRegistryProperties := True;
-  FDoCreateCaptionProperites := False;
+  FDoCreateCaptionSettings := False;
 
   _Initialize;
 end;

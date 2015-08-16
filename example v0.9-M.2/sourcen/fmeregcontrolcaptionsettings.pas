@@ -5,13 +5,8 @@ unit fmeregcontrolcaptionsettings;
 interface
 
 uses
-  Classes,
-  SysUtils,
-  FileUtil,
-  Forms,
-  Controls,
-  Graphics,
-  Dialogs, StdCtrls, ExtCtrls,
+  StdCtrls,
+  ExtCtrls,
   fmecustomsettings,
   regsourcen;
 

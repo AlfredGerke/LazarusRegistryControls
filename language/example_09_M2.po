@@ -38,3 +38,7 @@ msgstr ""
 msgid "pnlDesktop"
 msgstr ""
 
+#: tregcontrolproperties.panel1.caption
+msgid "pnlCaptionSettings"
+msgstr ""
+

@@ -1,0 +1,15 @@
+inherited RegControlPropertiesCS: TRegControlPropertiesCS
+  inherited pnlRegistrySettings: TPanel
+    Height = 237
+    Top = 138
+    Align = alClient
+  end
+  object pnlCaptionSettings: TPanel[1]
+    Left = 0
+    Height = 138
+    Top = 0
+    Width = 320
+    Align = alTop
+    TabOrder = 1
+  end
+end

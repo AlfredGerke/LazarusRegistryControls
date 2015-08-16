@@ -8,7 +8,7 @@
       <Unit0>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="2"/>
+        <TopLine Value="5"/>
         <CursorPos X="3" Y="33"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
@@ -40,7 +40,7 @@
       <Unit4>
         <Filename Value="wrapper\registrysource_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="3" Y="19"/>
         <UsageCount Value="114"/>
         <Loaded Value="True"/>
@@ -81,7 +81,7 @@
       <Unit9>
         <Filename Value="basistest\regcheckbox_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="8"/>
         <CursorPos Y="56"/>
         <UsageCount Value="104"/>
         <Loaded Value="True"/>
@@ -111,7 +111,7 @@
       <Unit13>
         <Filename Value="wrapper\reglistbox_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="13"/>
         <CursorPos X="21" Y="16"/>
         <UsageCount Value="104"/>
@@ -161,10 +161,11 @@
       <Unit19>
         <Filename Value="issues\issue00035_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="50"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="13"/>
         <CursorPos X="63" Y="31"/>
         <UsageCount Value="189"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit19>
       <Unit20>
@@ -193,8 +194,11 @@
       <Unit23>
         <Filename Value="issues\issue00030_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="81"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="25"/>
+        <CursorPos X="3" Y="20"/>
         <UsageCount Value="107"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit23>
       <Unit24>
@@ -209,8 +213,7 @@
       <Unit25>
         <Filename Value="basistest\reglistbox_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="10"/>
         <CursorPos X="22" Y="39"/>
         <UsageCount Value="21"/>
@@ -227,7 +230,7 @@
       <Unit27>
         <Filename Value="lrc_test.pas"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="10"/>
+        <TopLine Value="14"/>
         <CursorPos X="62" Y="41"/>
         <UsageCount Value="145"/>
         <Loaded Value="True"/>
@@ -520,13 +523,17 @@
       </Unit71>
       <Unit72>
         <Filename Value="units\test_utils.pas"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="135"/>
+        <CursorPos X="20" Y="145"/>
         <UsageCount Value="35"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit72>
       <Unit73>
         <Filename Value="units\test_const.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="24"/>
         <CursorPos X="24" Y="61"/>
         <UsageCount Value="32"/>
@@ -862,7 +869,7 @@
         <UsageCount Value="10"/>
       </Unit123>
     </Units>
-    <JumpHistory Count="18" HistoryIndex="17">
+    <JumpHistory Count="17" HistoryIndex="16">
       <Position1>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <Caret Line="10" Column="86"/>
@@ -900,41 +907,37 @@
         <Caret Line="34" Column="28" TopLine="16"/>
       </Position9>
       <Position10>
-        <Filename Value="basistest\regcheckbox_test.pas"/>
-        <Caret Line="56" TopLine="197"/>
+        <Filename Value="basistest\reglistbox_test.pas"/>
+        <Caret Line="11" Column="13" TopLine="7"/>
       </Position10>
       <Position11>
         <Filename Value="basistest\reglistbox_test.pas"/>
-        <Caret Line="11" Column="13" TopLine="7"/>
+        <Caret Line="83" TopLine="46"/>
       </Position11>
       <Position12>
         <Filename Value="basistest\reglistbox_test.pas"/>
-        <Caret Line="83" TopLine="46"/>
+        <Caret Line="37" Column="22" TopLine="7"/>
       </Position12>
       <Position13>
         <Filename Value="basistest\reglistbox_test.pas"/>
-        <Caret Line="37" Column="22" TopLine="7"/>
+        <Caret Line="39" Column="75" TopLine="19"/>
       </Position13>
       <Position14>
-        <Filename Value="basistest\reglistbox_test.pas"/>
-        <Caret Line="39" Column="75" TopLine="19"/>
-      </Position14>
-      <Position15>
         <Filename Value="basistest\regcheckbox_test.pas"/>
         <Caret Line="56"/>
-      </Position15>
-      <Position16>
+      </Position14>
+      <Position15>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <Caret Line="33" Column="3" TopLine="2"/>
+      </Position15>
+      <Position16>
+        <Filename Value="lrc_test.pas"/>
+        <Caret Line="41" Column="62" TopLine="14"/>
       </Position16>
       <Position17>
-        <Filename Value="lrc_test.pas"/>
-        <Caret TopLine="10"/>
+        <Filename Value="issues\issue00030_test.pas"/>
+        <Caret Line="20" Column="3" TopLine="25"/>
       </Position17>
-      <Position18>
-        <Filename Value="lrc_test.pas"/>
-        <Caret Line="41" Column="62" TopLine="10"/>
-      </Position18>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

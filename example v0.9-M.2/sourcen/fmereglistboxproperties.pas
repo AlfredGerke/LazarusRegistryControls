@@ -12,22 +12,13 @@ type
 
   { TRegListBoxProperties }
 
-  TRegListBoxProperties = class(TRegControlProperties<TRegListBox>)
-  protected
-    procedure _Initialize; override;
-  end;
+  TRegListBoxProperties = class(TRegControlProperties<TRegListBox>);
 
 implementation
 
 {$R *.lfm}
 
 { TRegListBoxProperties }
-
-procedure TRegListBoxProperties._Initialize;
-begin
-  // Default
-  DoCreateCaptionProperites := False;
-end;
 
 end.
 
