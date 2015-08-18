@@ -142,7 +142,6 @@ var
   assert_message: string;
 begin
   try
-
     try
       FindPropInfo(aObj, aPropertyName);
       found := True;

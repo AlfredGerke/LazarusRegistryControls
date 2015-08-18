@@ -525,8 +525,8 @@
         <Filename Value="units\test_utils.pas"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="135"/>
-        <CursorPos X="20" Y="145"/>
+        <TopLine Value="98"/>
+        <CursorPos Y="145"/>
         <UsageCount Value="35"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -869,7 +869,7 @@
         <UsageCount Value="10"/>
       </Unit123>
     </Units>
-    <JumpHistory Count="17" HistoryIndex="16">
+    <JumpHistory Count="16" HistoryIndex="15">
       <Position1>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <Caret Line="10" Column="86"/>
@@ -934,10 +934,6 @@
         <Filename Value="lrc_test.pas"/>
         <Caret Line="41" Column="62" TopLine="14"/>
       </Position16>
-      <Position17>
-        <Filename Value="issues\issue00030_test.pas"/>
-        <Caret Line="20" Column="3" TopLine="25"/>
-      </Position17>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

@@ -9,7 +9,8 @@ uses
   Forms,
   Controls,
   ExtCtrls,
-  fmeregcontrolcaptionsettings;
+  fmeregcontrolcaptionsettings,
+  regsourcen;
 
 type
 
@@ -25,6 +26,7 @@ type
     FDoCreateRegistryProperties: boolean;
     FDoCreateCaptionSettings: boolean;
   protected
+    function GetRegControlCaptionSettings: TCaptionSettings; virtual;
     procedure CreatePropertyFrames; virtual;
 
     procedure _Initialize; virtual;
@@ -51,7 +53,15 @@ implementation
 
 { TRegControlProperties<_T> }
 
+function TRegControlProperties<_T>.GetRegControlCaptionSettings: TCaptionSettings;
+begin
+  // Nur wenn DoCreateCaptionSettings=True überschreiben
+  Result := nil;
+end;
+
 procedure TRegControlProperties<_T>.CreatePropertyFrames;
+var
+  caption_settings: TCaptionSettings;
 begin
   if FDoCreateRegistryProperties then
   begin
@@ -68,6 +78,9 @@ begin
     FCaptionSettingsFrame.Align := alClient;
 
     { TODO -oAlfred Gerke -cCaptionSettings zuweisen : Dem CaptionSettingFrame müssen die CaptionSettings des RegControl übergeben werden }
+    caption_settings := GetRegControlCaptionSettings;
+    if Assigned(caption_settings) then
+      FCaptionSettingsFrame.SetRegControlSettings(caption_settings);
   end;
 end;
 

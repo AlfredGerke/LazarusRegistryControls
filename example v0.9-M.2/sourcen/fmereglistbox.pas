@@ -1,4 +1,4 @@
-{ TODO -oAlfred Gerke -cRegControlFrames erstellen : Nach dem Vorbild dieser Unit müssen für jedes RegControl  ein eigender Frame erstellt werden }
+{ TODO -oAlfred Gerke -cRegControlFrames erstellen : Nach dem Vorbild dieser Unit müssen für jedes RegControl  ein eigener Frame erstellt werden }
 unit fmereglistbox;
 
 {$mode Delphi}{$H+}
