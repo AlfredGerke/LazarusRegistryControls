@@ -6,7 +6,8 @@ interface
 
 uses
   Forms,
-  ExtCtrls;
+  ExtCtrls,
+  Classes;
 
 type
 
@@ -15,7 +16,10 @@ type
   TCustomRegControlFrame<_T> = class(TFrame)
   private
     FRegControl: _T;
+  protected
+    procedure _Initialize; virtual;
   public
+    constructor Create(aOwner: TComponent); override;
     function GetRegControlName: string;
     procedure SetRegControl(aControl: _T);
     procedure GetRootKeys(aEdit: boolean);
@@ -29,6 +33,18 @@ implementation
 {$R *.lfm}
 
 { TCustomRegControlFrame<_T> }
+
+procedure TCustomRegControlFrame<_T>._Initialize;
+begin
+  // In Ableitung überschreiben
+end;
+
+constructor TCustomRegControlFrame<_T>.Create(aOwner: TComponent);
+begin
+  inherited Create(aOwner);
+
+  _Initialize;
+end;
 
 function TCustomRegControlFrame<_T>.GetRegControlName: string;
 begin

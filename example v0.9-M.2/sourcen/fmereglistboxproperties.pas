@@ -5,8 +5,15 @@ unit fmereglistboxproperties;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, 
-  fmeregcontrolproperties, reglistbox;
+  Classes,
+  SysUtils,
+  FileUtil,
+  Forms,
+  Controls,
+  Graphics,
+  Dialogs,
+  fmeregcontrolproperties,
+  reglistbox;
 
 type
 

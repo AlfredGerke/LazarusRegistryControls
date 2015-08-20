@@ -13,6 +13,10 @@ msgstr ""
 msgid "..."
 msgstr ""
 
+#: tcontrolregcheckbox.regcheckbox1.caption
+msgid "RegCheckBox1"
+msgstr ""
+
 #: tcontrolreglistbox.pnlclient.caption
 msgctxt "TCONTROLREGLISTBOX.PNLCLIENT.CAPTION"
 msgid "pnlClient"

@@ -1,0 +1,18 @@
+inherited ControlRegCheckBox: TControlRegCheckBox
+  object RegCheckBox1: TRegCheckBox[0]
+    Left = 104
+    Height = 19
+    Top = 40
+    Width = 98
+    Caption = 'RegCheckBox1'
+    TabOrder = 0
+    CaptionSettings.CaptionByRegistry = False
+    RegistrySettings.CanRead = False
+    RegistrySettings.CanWrite = False
+    RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = False
+    RegistrySettings.Default = False
+    RegistrySource = RegistrySourceModule.rsRegistrySource
+  end
+end

@@ -14,7 +14,10 @@ uses
   Buttons,
   fmereglistbox,
   fmereglistboxproperties,
-  reglistbox;
+  reglistbox,
+  fmeregcheckbox,
+  fmeregcheckboxproperties,
+  regcheckbox;
 
 type
 
@@ -93,7 +96,20 @@ begin
   else
   if (aLabel = 'TRegCheckBox') then
   begin
-    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
+    // ControlFrame
+    FRegControlFrame := TControlRegCheckBox.Create(pnlLeft);
+    FRegControlFrame.Parent := pnlLeft;
+    FRegControlFrame.Align := alClient;
+
+    FGetRootKeysProc := TControlRegCheckBox(FRegControlFrame).GetRootKeys;
+
+    // PropertiesFrame
+    FRegControlProperties := TRegCheckBoxProperties.Create(pnlClient);
+    FRegControlProperties.Parent := pnlClient;
+    FRegControlProperties.Align := alClient;
+
+    TRegCheckBoxProperties(FRegControlProperties).SetRegControl(
+      TRegCheckBox(TControlRegCheckBox(FRegControlFrame).RegControl));
   end
   else
   if (aLabel = 'TRegRadioButton') then
