@@ -37,11 +37,11 @@ type
     TOnGetRootKeys = procedure(aEdit: boolean) of object;
     TOnSetWriteAdHoc = procedure(aWriteAdHoc: boolean) of object;
   private
-    FRegControlFrame: TFrame;
-    FRegControlProperties: TFrame;
-    //
     FGetRootKeysProc: TOnGetRootKeys;
     FSetWriteAdHoc: TOnSetWriteAdHoc;
+
+    procedure FreeControlFrame;
+    procedure FreePropertiesFrame;
   public
     procedure GetRegControl(aLabel: string);
   end;
@@ -59,34 +59,43 @@ begin
     FGetRootKeysProc(cbxEditRootKeys.Checked);
 end;
 
+procedure TControlDetails.FreeControlFrame;
+begin
+
+end;
+
+procedure TControlDetails.FreePropertiesFrame;
+begin
+
+end;
+
 procedure TControlDetails.GetRegControl(aLabel: string);
 begin
-  if Assigned(FRegControlFrame) then
-    FreeAndNil(FRegControlFrame);
-
-  if Assigned(FRegControlProperties) then
-    FreeAndNil(FRegControlProperties);
+  FreeControlFrame;
+  FreePropertiesFrame;
 
   FGetRootKeysProc := nil;
   FSetWriteAdHoc := nil;
 
-
   if (aLabel = 'TRegListBox') then
   begin
     // ControlFrame
-    FRegControlFrame := TControlRegListBox.Create(pnlLeft);
-    FRegControlFrame.Parent := pnlLeft;
-    FRegControlFrame.Align := alClient;
+    with TControlRegListBox.Create(pnlLeft) do
+    begin
+      Parent := pnlLeft;
+      Align := alClient;
 
-    FGetRootKeysProc := TControlRegListBox(FRegControlFrame).GetRootKeys;
+      FGetRootKeysProc := GetRootKeys;
 
-    // PropertiesFrame
-    FRegControlProperties := TRegListBoxProperties.Create(pnlClient);
-    FRegControlProperties.Parent := pnlClient;
-    FRegControlProperties.Align := alClient;
+      // PropertiesFrame
+      with TRegListBoxProperties.Create(pnlClient) do
+      begin
+        Parent := pnlClient;
+        Align := alClient;
 
-    TRegListBoxProperties(FRegControlProperties).SetRegControl(
-      TRegListBox(TControlRegListBox(FRegControlFrame).RegControl));
+        SetRegControl(RegControl);
+      end;
+    end;
   end
   else
   if (aLabel = 'TRegistrySource') then
@@ -97,19 +106,25 @@ begin
   if (aLabel = 'TRegCheckBox') then
   begin
     // ControlFrame
-    FRegControlFrame := TControlRegCheckBox.Create(pnlLeft);
-    FRegControlFrame.Parent := pnlLeft;
-    FRegControlFrame.Align := alClient;
+    with TControlRegCheckBox.Create(pnlLeft) do
+    begin
+      Parent := pnlLeft;
+      Align := alClient;
 
-    FGetRootKeysProc := TControlRegCheckBox(FRegControlFrame).GetRootKeys;
+      FGetRootKeysProc := GetRootKeys;
 
-    // PropertiesFrame
-    FRegControlProperties := TRegCheckBoxProperties.Create(pnlClient);
-    FRegControlProperties.Parent := pnlClient;
-    FRegControlProperties.Align := alClient;
+      // PropertiesFrame
+      with TRegCheckBoxProperties.Create(pnlClient) do
+      begin
+        Parent := pnlClient;
+        Align := alClient;
 
-    TRegCheckBoxProperties(FRegControlProperties).SetRegControl(
-      TRegCheckBox(TControlRegCheckBox(FRegControlFrame).RegControl));
+        //TRegCheckBoxProperties(FRegControlFrame).pnlCaptionSettings.Visible := True;
+        //TRegCheckBoxProperties(FRegControlFrame).spSplitter.Show;
+
+        SetRegControl(RegControl);
+      end;
+    end;
   end
   else
   if (aLabel = 'TRegRadioButton') then

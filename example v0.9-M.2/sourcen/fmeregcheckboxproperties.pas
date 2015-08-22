@@ -11,7 +11,7 @@ uses
   Forms,
   Controls,
   Graphics,
-  Dialogs,
+  Dialogs, ExtCtrls, ValEdit,
   fmeregcontrolproperties,
   regcheckbox,
   regsourcen;
@@ -34,7 +34,7 @@ implementation
 
 function TRegCheckBoxProperties.GetRegControlCaptionSettings: TCaptionSettings;
 begin
-  Result := TRegCheckBox(RegControl).CaptionSettings;
+  Result := TRegCheckBox(self.RegControl).CaptionSettings;
 end;
 
 procedure TRegCheckBoxProperties._Initialize;

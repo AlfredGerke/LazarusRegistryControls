@@ -8,7 +8,7 @@ uses
   Classes,
   Forms,
   Controls,
-  ExtCtrls,
+  ExtCtrls, ValEdit,
   fmeregcontrolcaptionsettings,
   regsourcen;
 
@@ -20,6 +20,7 @@ type
     pnlCaptionSettings: TPanel;
     pnlRegistrySettings: TPanel;
     spSplitter: TSplitter;
+    ValueListEditor1: TValueListEditor;
   private
     FRegControl: _T;
     FCaptionSettingsFrame: TRegControlCaptionSettings;
@@ -70,15 +71,12 @@ begin
 
   if FDoCreateCaptionSettings then
   begin
-    spSplitter.Visible := True;
-    pnlCaptionSettings.Visible := True;
-
-    FCaptionSettingsFrame := TRegControlCaptionSettings.Create(pnlCaptionSettings);
-    FCaptionSettingsFrame.Parent := pnlCaptionSettings;
+    FCaptionSettingsFrame := TRegControlCaptionSettings.Create(self.pnlCaptionSettings);
+    FCaptionSettingsFrame.Parent := self.pnlCaptionSettings;
     FCaptionSettingsFrame.Align := alClient;
 
     { TODO -oAlfred Gerke -cCaptionSettings zuweisen : Dem CaptionSettingFrame müssen die CaptionSettings des RegControl übergeben werden }
-    caption_settings := GetRegControlCaptionSettings;
+    caption_settings := self.GetRegControlCaptionSettings;
     if Assigned(caption_settings) then
       FCaptionSettingsFrame.SetRegControlSettings(caption_settings);
   end;
