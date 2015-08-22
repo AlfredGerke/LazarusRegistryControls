@@ -9,7 +9,10 @@ uses
   SysUtils,
   FileUtil,
   Forms,
-  Controls, Graphics, Dialogs, fmecustomcontrolframe,
+  Controls,
+  Graphics,
+  Dialogs,
+  fmecustomcontrolframe,
   regcheckbox;
 
 type

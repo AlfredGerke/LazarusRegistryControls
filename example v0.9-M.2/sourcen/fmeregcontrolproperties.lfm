@@ -23,6 +23,7 @@ object RegControlProperties: TRegControlProperties
     Width = 320
     Align = alTop
     TabOrder = 1
+    Visible = False
   end
   object spSplitter: TSplitter
     Cursor = crVSplit
@@ -33,5 +34,6 @@ object RegControlProperties: TRegControlProperties
     Align = alTop
     MinSize = 125
     ResizeAnchor = akTop
+    Visible = False
   end
 end

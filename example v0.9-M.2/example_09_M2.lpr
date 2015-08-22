@@ -18,7 +18,8 @@ uses
   fmereglistbox,
   fmereglistboxproperties,
   fmeregcheckbox,
-  fmeregcheckboxproperties;
+  fmeregcheckboxproperties,
+  fmeregistrysettingsbooleandefault;
 
 {$R *.res}
 

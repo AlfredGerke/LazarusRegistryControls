@@ -77,7 +77,6 @@ begin
     self.pnlCaptionSettings.Show;
     self.spSplitter.Show;
 
-    { TODO -oAlfred Gerke -cCaptionSettings zuweisen : Dem CaptionSettingFrame müssen die CaptionSettings des RegControl übergeben werden }
     caption_settings := self.GetRegControlCaptionSettings;
     if Assigned(caption_settings) then
       FCaptionSettingsFrame.SetRegControlSettings(caption_settings);
