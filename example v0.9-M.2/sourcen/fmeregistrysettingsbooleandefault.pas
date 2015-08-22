@@ -5,13 +5,7 @@ unit fmeregistrysettingsbooleandefault;
 interface
 
 uses
-  Classes,
-  SysUtils,
-  FileUtil,
-  Forms,
-  Controls,
-  Graphics,
-  Dialogs, ValEdit,
+  ValEdit,
   fmecustomsettings,
   regsourcen;
 

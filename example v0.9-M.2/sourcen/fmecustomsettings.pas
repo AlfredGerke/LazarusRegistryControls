@@ -6,10 +6,7 @@ interface
 
 uses
   Classes,
-  SysUtils,
-  FileUtil,
-  Forms,
-  Controls;
+  Forms;
 
 type
 

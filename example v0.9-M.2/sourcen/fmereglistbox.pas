@@ -5,12 +5,6 @@ unit fmereglistbox;
 interface
 
 uses
-  Classes,
-  SysUtils,
-  FileUtil,
-  Forms,
-  Controls,
-  ExtCtrls,
   fmecustomcontrolframe,
   reglistbox;
 

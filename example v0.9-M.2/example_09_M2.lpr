@@ -19,7 +19,8 @@ uses
   fmereglistboxproperties,
   fmeregcheckbox,
   fmeregcheckboxproperties,
-  fmeregistrysettingsbooleandefault;
+  fmeregistrysettingsbooleandefault,
+  fmeregistrylistsettings;
 
 {$R *.res}
 

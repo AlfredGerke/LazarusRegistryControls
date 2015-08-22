@@ -1,0 +1,24 @@
+inherited RegControlListSettings: TRegControlListSettings
+  object ValueListEditor1: TValueListEditor[0]
+    Left = 5
+    Height = 230
+    Top = 5
+    Width = 310
+    Align = alClient
+    BorderSpacing.Around = 5
+    FixedCols = 0
+    RowCount = 2
+    TabOrder = 0
+    Strings.Strings = (
+      ''
+    )
+    TitleCaptions.Strings = (
+      'Key'
+      'Value'
+    )
+    ColWidths = (
+      64
+      242
+    )
+  end
+end

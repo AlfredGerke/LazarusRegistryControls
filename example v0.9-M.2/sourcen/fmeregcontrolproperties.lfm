@@ -32,6 +32,7 @@ object RegControlProperties: TRegControlProperties
     Top = 122
     Width = 320
     Align = alTop
+    AutoSnap = False
     MinSize = 125
     ResizeAnchor = akTop
     Visible = False

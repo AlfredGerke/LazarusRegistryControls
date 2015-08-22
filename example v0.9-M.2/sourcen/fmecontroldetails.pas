@@ -5,7 +5,6 @@ unit fmeControlDetails;
 interface
 
 uses
-  SysUtils,
   Forms,
   Controls,
   ExtCtrls,
@@ -14,10 +13,9 @@ uses
   Buttons,
   fmereglistbox,
   fmereglistboxproperties,
-  reglistbox,
   fmeregcheckbox,
   fmeregcheckboxproperties,
-  regcheckbox;
+  fmeregcontrolproperties;
 
 type
 
@@ -40,7 +38,6 @@ type
     FGetRootKeysProc: TOnGetRootKeys;
     FSetWriteAdHoc: TOnSetWriteAdHoc;
 
-    procedure FreeFrame(aPanel: TPanel);
     procedure FreeControlFrame;
     procedure FreePropertiesFrame;
   public
@@ -60,30 +57,14 @@ begin
     FGetRootKeysProc(cbxEditRootKeys.Checked);
 end;
 
-procedure TControlDetails.FreeFrame(aPanel: TPanel);
-var
-  anz: integer;
-  frame: TFrame;
-begin
-  for anz := 0 to aPanel.ComponentCount-1 do
-  begin
-    if (aPanel.Components[anz] is TFrame) then
-    begin
-      frame := TFrame(aPanel.Components[anz]);
-      FreeAndNil(frame);
-      Exit;
-    end;
-  end;
-end;
-
 procedure TControlDetails.FreeControlFrame;
 begin
-  FreeFrame(pnlLeft);
+  TRegControlProperties.FreeFrame(pnlLeft);
 end;
 
 procedure TControlDetails.FreePropertiesFrame;
 begin
-  FreeFrame(pnlClient);
+  TRegControlProperties.FreeFrame(pnlClient);
 end;
 
 procedure TControlDetails.GetRegControl(aLabel: string);

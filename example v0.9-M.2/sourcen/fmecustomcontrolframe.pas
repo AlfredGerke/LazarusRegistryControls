@@ -6,7 +6,6 @@ interface
 
 uses
   Forms,
-  ExtCtrls,
   Classes;
 
 type

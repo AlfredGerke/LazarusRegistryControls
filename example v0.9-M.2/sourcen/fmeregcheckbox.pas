@@ -5,13 +5,6 @@ unit fmeregcheckbox;
 interface
 
 uses
-  Classes,
-  SysUtils,
-  FileUtil,
-  Forms,
-  Controls,
-  Graphics,
-  Dialogs,
   fmecustomcontrolframe,
   regcheckbox;
 

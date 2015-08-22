@@ -22,10 +22,12 @@ type
     spSplitter: TSplitter;
   private
     FRegComponent: TComponent;
-    FCaptionSettingsFrame: TRegControlCaptionSettings;
     FDoCreateRegistryProperties: boolean;
     FDoCreateCaptionSettings: boolean;
+
+    procedure CreateCaptionSettingsFrame;
   protected
+    procedure CreateRegistrySettingsFrame; virtual; abstract;
     function GetRegControlCaptionSettings: TCaptionSettings; virtual;
     procedure CreatePropertyFrames; virtual;
 
@@ -42,7 +44,10 @@ type
     property RegComponent: TComponent
       read FRegComponent;
   public
+    class procedure FreeFrame(aPanel: TPanel);
+
     constructor Create(aOwner: TComponent); override;
+    destructor Destroy; override;
 
     procedure SetRegComponent(AComponent: TComponent);
   end;
@@ -51,7 +56,44 @@ implementation
 
 {$R *.lfm}
 
+uses
+  SysUtils;
+
 { TRegControlProperties }
+
+class procedure TRegControlProperties.FreeFrame(aPanel: TPanel);
+var
+  anz: integer;
+  frame: TFrame;
+begin
+  for anz := 0 to aPanel.ComponentCount-1 do
+  begin
+    if (aPanel.Components[anz] is TFrame) then
+    begin
+      frame := TFrame(aPanel.Components[anz]);
+      FreeAndNil(frame);
+      Exit;
+    end;
+  end;
+end;
+
+procedure TRegControlProperties.CreateCaptionSettingsFrame;
+var
+  caption_settings: TCaptionSettings;
+begin
+  with TRegControlCaptionSettings.Create(self.pnlCaptionSettings) do
+  begin
+    Parent := self.pnlCaptionSettings;
+    Align := alClient;
+
+    pnlCaptionSettings.Show;
+    spSplitter.Show;
+
+    caption_settings := self.GetRegControlCaptionSettings;
+    if Assigned(caption_settings) then
+      SetRegControlSettings(caption_settings);
+  end;
+end;
 
 function TRegControlProperties.GetRegControlCaptionSettings: TCaptionSettings;
 begin
@@ -60,27 +102,12 @@ begin
 end;
 
 procedure TRegControlProperties.CreatePropertyFrames;
-var
-  caption_settings: TCaptionSettings;
 begin
   if FDoCreateRegistryProperties then
-  begin
-    { TODO -oAlfred Gerke -cRegControlPropertiesFrame ausprogrammieren : An dieser Stelle muss der Frame für RegistrySettings eines RegControls erstellt werden }
-  end;
+    CreateRegistrySettingsFrame;
 
   if FDoCreateCaptionSettings then
-  begin
-    FCaptionSettingsFrame := TRegControlCaptionSettings.Create(self.pnlCaptionSettings);
-    FCaptionSettingsFrame.Parent := self.pnlCaptionSettings;
-    FCaptionSettingsFrame.Align := alClient;
-
-    self.pnlCaptionSettings.Show;
-    self.spSplitter.Show;
-
-    caption_settings := self.GetRegControlCaptionSettings;
-    if Assigned(caption_settings) then
-      FCaptionSettingsFrame.SetRegControlSettings(caption_settings);
-  end;
+    CreateCaptionSettingsFrame;
 end;
 
 procedure TRegControlProperties._Initialize;
@@ -103,6 +130,16 @@ begin
   FDoCreateCaptionSettings := False;
 
   _Initialize;
+end;
+
+destructor TRegControlProperties.Destroy;
+begin
+  if FDoCreateCaptionSettings then
+    TRegControlProperties.FreeFrame(pnlCaptionSettings);
+
+  TRegControlProperties.FreeFrame(pnlRegistrySettings);
+
+  inherited Destroy;
 end;
 
 end.

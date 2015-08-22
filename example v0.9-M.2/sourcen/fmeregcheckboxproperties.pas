@@ -5,16 +5,11 @@ unit fmeregcheckboxproperties;
 interface
 
 uses
-  Classes,
-  SysUtils,
-  FileUtil,
-  Forms,
   Controls,
-  Graphics,
-  Dialogs, ExtCtrls,
   fmeregcontrolproperties,
   regcheckbox,
-  regsourcen;
+  regsourcen,
+  fmeregistrysettingsbooleandefault;
 
 type
 
@@ -22,6 +17,7 @@ type
 
   TRegCheckBoxProperties = class(TRegControlProperties)
   protected
+    procedure CreateRegistrySettingsFrame; override;
     function GetRegControlCaptionSettings: TCaptionSettings; override;
     procedure _Initialize; override;
   end;
@@ -30,7 +26,19 @@ implementation
 
 {$R *.lfm}
 
-  { TRegCheckBoxProperties }
+{ TRegCheckBoxProperties }
+
+procedure TRegCheckBoxProperties.CreateRegistrySettingsFrame;
+begin
+  with TRegControlBooleanDefaultSettings.Create(pnlRegistrySettings) do
+  begin
+    Parent := pnlRegistrySettings;
+    Align := alClient;
+
+    if Assigned(TRegCheckBox(self.RegComponent).RegistrySettings) then
+      SetRegControlSettings(TRegCheckBox(self.RegComponent).RegistrySettings);
+  end;
+end;
 
 function TRegCheckBoxProperties.GetRegControlCaptionSettings: TCaptionSettings;
 begin
