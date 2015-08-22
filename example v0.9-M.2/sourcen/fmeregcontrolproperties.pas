@@ -8,7 +8,7 @@ uses
   Classes,
   Forms,
   Controls,
-  ExtCtrls, ValEdit,
+  ExtCtrls,
   fmeregcontrolcaptionsettings,
   regsourcen;
 
@@ -16,13 +16,12 @@ type
 
   { TRegControlProperties }
 
-  TRegControlProperties<_T> = class(TFrame)
+  TRegControlProperties = class(TFrame)
     pnlCaptionSettings: TPanel;
     pnlRegistrySettings: TPanel;
     spSplitter: TSplitter;
-    ValueListEditor1: TValueListEditor;
   private
-    FRegControl: _T;
+    FRegComponent: TComponent;
     FCaptionSettingsFrame: TRegControlCaptionSettings;
     FDoCreateRegistryProperties: boolean;
     FDoCreateCaptionSettings: boolean;
@@ -40,27 +39,27 @@ type
       read FDoCreateCaptionSettings
       write FDoCreateCaptionSettings;
 
-    property RegControl: _T
-      read FRegControl;
+    property RegComponent: TComponent
+      read FRegComponent;
   public
     constructor Create(aOwner: TComponent); override;
 
-    procedure SetRegControl(AControl: _T);
+    procedure SetRegComponent(AComponent: TComponent);
   end;
 
 implementation
 
 {$R *.lfm}
 
-{ TRegControlProperties<_T> }
+{ TRegControlProperties }
 
-function TRegControlProperties<_T>.GetRegControlCaptionSettings: TCaptionSettings;
+function TRegControlProperties.GetRegControlCaptionSettings: TCaptionSettings;
 begin
   // Nur wenn DoCreateCaptionSettings=True überschreiben
   Result := nil;
 end;
 
-procedure TRegControlProperties<_T>.CreatePropertyFrames;
+procedure TRegControlProperties.CreatePropertyFrames;
 var
   caption_settings: TCaptionSettings;
 begin
@@ -75,6 +74,9 @@ begin
     FCaptionSettingsFrame.Parent := self.pnlCaptionSettings;
     FCaptionSettingsFrame.Align := alClient;
 
+    self.pnlCaptionSettings.Show;
+    self.spSplitter.Show;
+
     { TODO -oAlfred Gerke -cCaptionSettings zuweisen : Dem CaptionSettingFrame müssen die CaptionSettings des RegControl übergeben werden }
     caption_settings := self.GetRegControlCaptionSettings;
     if Assigned(caption_settings) then
@@ -82,19 +84,19 @@ begin
   end;
 end;
 
-procedure TRegControlProperties<_T>._Initialize;
+procedure TRegControlProperties._Initialize;
 begin
   // In der Ableitung überschreiben
 end;
 
-procedure TRegControlProperties<_T>.SetRegControl(AControl: _T);
+procedure TRegControlProperties.SetRegComponent(AComponent: TComponent);
 begin
-  FRegControl := aControl;
+  FRegComponent := AComponent;
 
   CreatePropertyFrames;
 end;
 
-constructor TRegControlProperties<_T>.Create(aOwner: TComponent);
+constructor TRegControlProperties.Create(aOwner: TComponent);
 begin
   inherited Create(aOwner);
 

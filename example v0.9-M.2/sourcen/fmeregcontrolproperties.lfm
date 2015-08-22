@@ -14,27 +14,7 @@ object RegControlProperties: TRegControlProperties
     Top = 128
     Width = 320
     Align = alClient
-    ClientHeight = 247
-    ClientWidth = 320
     TabOrder = 0
-    object ValueListEditor1: TValueListEditor
-      Left = 6
-      Height = 235
-      Top = 6
-      Width = 308
-      Align = alClient
-      BorderSpacing.Around = 5
-      FixedCols = 0
-      RowCount = 2
-      TabOrder = 0
-      Strings.Strings = (
-        ''
-      )
-      ColWidths = (
-        64
-        240
-      )
-    end
   end
   object pnlCaptionSettings: TPanel
     Left = 0
@@ -51,6 +31,7 @@ object RegControlProperties: TRegControlProperties
     Top = 122
     Width = 320
     Align = alTop
+    MinSize = 125
     ResizeAnchor = akTop
   end
 end

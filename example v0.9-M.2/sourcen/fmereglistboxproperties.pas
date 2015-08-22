@@ -19,7 +19,7 @@ type
 
   { TRegListBoxProperties }
 
-  TRegListBoxProperties = class(TRegControlProperties<TRegListBox>);
+  TRegListBoxProperties = class(TRegControlProperties);
 
 implementation
 

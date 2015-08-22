@@ -40,6 +40,7 @@ type
     FGetRootKeysProc: TOnGetRootKeys;
     FSetWriteAdHoc: TOnSetWriteAdHoc;
 
+    procedure FreeFrame(aPanel: TPanel);
     procedure FreeControlFrame;
     procedure FreePropertiesFrame;
   public
@@ -59,14 +60,30 @@ begin
     FGetRootKeysProc(cbxEditRootKeys.Checked);
 end;
 
+procedure TControlDetails.FreeFrame(aPanel: TPanel);
+var
+  anz: integer;
+  frame: TFrame;
+begin
+  for anz := 0 to aPanel.ComponentCount-1 do
+  begin
+    if (aPanel.Components[anz] is TFrame) then
+    begin
+      frame := TFrame(aPanel.Components[anz]);
+      FreeAndNil(frame);
+      Exit;
+    end;
+  end;
+end;
+
 procedure TControlDetails.FreeControlFrame;
 begin
-
+  FreeFrame(pnlLeft);
 end;
 
 procedure TControlDetails.FreePropertiesFrame;
 begin
-
+  FreeFrame(pnlClient);
 end;
 
 procedure TControlDetails.GetRegControl(aLabel: string);
@@ -93,7 +110,7 @@ begin
         Parent := pnlClient;
         Align := alClient;
 
-        SetRegControl(RegControl);
+        SetRegComponent(RegControl);
       end;
     end;
   end
@@ -119,10 +136,7 @@ begin
         Parent := pnlClient;
         Align := alClient;
 
-        //TRegCheckBoxProperties(FRegControlFrame).pnlCaptionSettings.Visible := True;
-        //TRegCheckBoxProperties(FRegControlFrame).spSplitter.Show;
-
-        SetRegControl(RegControl);
+        SetRegComponent(RegControl);
       end;
     end;
   end
