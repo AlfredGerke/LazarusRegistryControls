@@ -97,7 +97,7 @@ end;
 
 function TRegControlProperties.GetRegControlCaptionSettings: TCaptionSettings;
 begin
-  // Nur wenn DoCreateCaptionSettings=True überschreiben
+  // Nur wenn DoCreateCaptionSettings=True in einer Ableitung überschreiben
   Result := nil;
 end;
 
@@ -112,7 +112,7 @@ end;
 
 procedure TRegControlProperties._Initialize;
 begin
-  // In der Ableitung überschreiben
+  // In einer Ableitung überschreiben
 end;
 
 procedure TRegControlProperties.SetRegComponent(AComponent: TComponent);
@@ -136,8 +136,9 @@ destructor TRegControlProperties.Destroy;
 begin
   if FDoCreateCaptionSettings then
     TRegControlProperties.FreeFrame(pnlCaptionSettings);
-
-  TRegControlProperties.FreeFrame(pnlRegistrySettings);
+  
+  if FDoCreateRegistryProperties then
+    TRegControlProperties.FreeFrame(pnlRegistrySettings);
 
   inherited Destroy;
 end;
