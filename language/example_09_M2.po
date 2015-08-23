@@ -9,6 +9,10 @@ msgstr ""
 msgid "RootKeys bearbeiten"
 msgstr ""
 
+#: tcontroldetails.panel1.caption
+msgid "Panel1"
+msgstr ""
+
 #: tcontroldetails.speedbutton1.caption
 msgid "..."
 msgstr ""

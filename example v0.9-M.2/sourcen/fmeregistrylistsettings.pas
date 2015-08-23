@@ -64,6 +64,7 @@ end;
 procedure TRegControlListSettings._Initialize;
 begin
   OnSetSettings := SetSettingsProc;
+  ValueListEditor1.Options
 end;
 
 

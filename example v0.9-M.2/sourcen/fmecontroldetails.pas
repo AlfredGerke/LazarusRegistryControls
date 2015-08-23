@@ -25,11 +25,13 @@ type
     acList: TActionList;
     acShowRootKeys: TAction;
     cbxEditRootKeys: TCheckBox;
+    Panel1: TPanel;
+    pnlButtom: TPanel;
     pnlClient: TPanel;
     pnlLeft: TPanel;
-    pnlButtom: TPanel;
     SpeedButton1: TSpeedButton;
     Splitter1: TSplitter;
+    Splitter2: TSplitter;
     procedure acShowRootKeysExecute(Sender: TObject);
   strict private type
     TOnGetRootKeys = procedure(aEdit: boolean) of object;

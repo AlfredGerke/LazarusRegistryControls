@@ -6,19 +6,19 @@ inherited RegControlListSettings: TRegControlListSettings
     Width = 310
     Align = alClient
     BorderSpacing.Around = 5
-    FixedCols = 0
+    DefaultColWidth = 150
     RowCount = 2
     TabOrder = 0
     Strings.Strings = (
       ''
     )
     TitleCaptions.Strings = (
-      'Key'
+      'Property'
       'Value'
     )
     ColWidths = (
-      64
-      242
+      150
+      156
     )
   end
 end
