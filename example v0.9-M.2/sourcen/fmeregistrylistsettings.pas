@@ -5,7 +5,7 @@ unit fmeregistrylistsettings;
 interface
 
 uses
-  ValEdit,
+  ValEdit, StdCtrls,
   fmecustomsettings,
   regsourcen;
 
@@ -14,6 +14,7 @@ type
   { TRegControlListSettings }
 
   TRegControlListSettings = class(TCustomRegControlSettings<TRegistrySettingsList>)
+    lblCaptionSettings: TLabel;
     ValueListEditor1: TValueListEditor;
   private
     procedure SetSettingsProc(aSettings: TRegistrySettingsList);

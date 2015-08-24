@@ -8,14 +8,13 @@ uses
   Forms,
   Controls,
   ExtCtrls,
-  StdCtrls,
   ActnList,
-  Buttons,
   fmereglistbox,
   fmereglistboxproperties,
   fmeregcheckbox,
   fmeregcheckboxproperties,
-  fmeregcontrolproperties;
+  fmeregcontrolproperties,
+  fmeregcontrolbuttonframe;
 
 type
 
@@ -24,24 +23,17 @@ type
   TControlDetails = class(TFrame)
     acList: TActionList;
     acShowRootKeys: TAction;
-    cbxEditRootKeys: TCheckBox;
-    Panel1: TPanel;
-    pnlButtom: TPanel;
+    pnlWorkspace: TPanel;
+    pnlButton: TPanel;
     pnlClient: TPanel;
     pnlLeft: TPanel;
-    SpeedButton1: TSpeedButton;
-    Splitter1: TSplitter;
-    Splitter2: TSplitter;
-    procedure acShowRootKeysExecute(Sender: TObject);
-  strict private type
-    TOnGetRootKeys = procedure(aEdit: boolean) of object;
-    TOnSetWriteAdHoc = procedure(aWriteAdHoc: boolean) of object;
+    spHSplitter: TSplitter;
+    spVSplitter: TSplitter;
   private
-    FGetRootKeysProc: TOnGetRootKeys;
-    FSetWriteAdHoc: TOnSetWriteAdHoc;
-
+    procedure CreateButtonFrame(aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys);
     procedure FreeControlFrame;
     procedure FreePropertiesFrame;
+    procedure FreeButtonFrame;
   public
     procedure GetRegControl(aLabel: string);
   end;
@@ -53,10 +45,15 @@ implementation
 
 { TControlDetails }
 
-procedure TControlDetails.acShowRootKeysExecute(Sender: TObject);
+procedure TControlDetails.CreateButtonFrame(aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys);
 begin
-  if Assigned(FGetRootKeysProc) then
-    FGetRootKeysProc(cbxEditRootKeys.Checked);
+  with TRegControlButtonFrame.Create(pnlButton) do
+  begin
+    Parent := pnlButton;
+    Align := alClient;
+
+    OnGetRootKeys := AGetRootKeys;
+  end;
 end;
 
 procedure TControlDetails.FreeControlFrame;
@@ -69,13 +66,16 @@ begin
   TRegControlProperties.FreeFrame(pnlClient);
 end;
 
+procedure TControlDetails.FreeButtonFrame;
+begin
+  TRegControlProperties.FreeFrame(pnlButton);
+end;
+
 procedure TControlDetails.GetRegControl(aLabel: string);
 begin
   FreeControlFrame;
   FreePropertiesFrame;
-
-  FGetRootKeysProc := nil;
-  FSetWriteAdHoc := nil;
+  FreeButtonFrame;
 
   if (aLabel = 'TRegListBox') then
   begin
@@ -85,8 +85,6 @@ begin
       Parent := pnlLeft;
       Align := alClient;
 
-      FGetRootKeysProc := GetRootKeys;
-
       // PropertiesFrame
       with TRegListBoxProperties.Create(pnlClient) do
       begin
@@ -95,6 +93,9 @@ begin
 
         SetRegComponent(RegControl);
       end;
+
+      // Buttonframe
+      CreateButtonFrame(GetRootKeys);
     end;
   end
   else
@@ -111,8 +112,6 @@ begin
       Parent := pnlLeft;
       Align := alClient;
 
-      FGetRootKeysProc := GetRootKeys;
-
       // PropertiesFrame
       with TRegCheckBoxProperties.Create(pnlClient) do
       begin
@@ -121,6 +120,9 @@ begin
 
         SetRegComponent(RegControl);
       end;
+
+      // Buttonframe
+      CreateButtonFrame(GetRootKeys);
     end;
   end
   else

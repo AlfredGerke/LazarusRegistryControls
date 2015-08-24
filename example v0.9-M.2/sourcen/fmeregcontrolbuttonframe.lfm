@@ -1,0 +1,46 @@
+object RegControlButtonFrame: TRegControlButtonFrame
+  Left = 0
+  Height = 240
+  Top = 0
+  Width = 320
+  ClientHeight = 240
+  ClientWidth = 320
+  TabOrder = 0
+  DesignLeft = 763
+  DesignTop = 406
+  object pnlWorkspace: TPanel
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 320
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 240
+    ClientWidth = 320
+    TabOrder = 0
+    object SpeedButton1: TSpeedButton
+      Left = 8
+      Height = 22
+      Top = 5
+      Width = 23
+      Action = acGetRootKeys
+      Caption = '...'
+    end
+    object cbxEditRootKeys: TCheckBox
+      Left = 40
+      Height = 19
+      Top = 8
+      Width = 128
+      Caption = 'RootKeys bearbeiten'
+      TabOrder = 0
+    end
+  end
+  object acList: TActionList
+    left = 216
+    top = 96
+    object acGetRootKeys: TAction
+      Caption = 'GetRootKeys'
+      OnExecute = acGetRootKeysExecute
+    end
+  end
+end

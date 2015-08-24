@@ -3,46 +3,44 @@ inherited RegControlCaptionSettings: TRegControlCaptionSettings
   Width = 229
   ClientHeight = 124
   ClientWidth = 229
-  object cbxCaptionByRegistry: TCheckBox[0]
-    Left = 8
-    Height = 19
-    Top = 97
-    Width = 117
-    Caption = 'CaptionByRegistry'
+  object ValueListEditor1: TValueListEditor[0]
+    Left = 5
+    Height = 93
+    Top = 26
+    Width = 219
+    Align = alClient
+    BorderSpacing.Around = 5
+    DefaultColWidth = 150
+    FixedCols = 0
+    RowCount = 2
     TabOrder = 0
+    Strings.Strings = (
+      ''
+    )
+    TitleCaptions.Strings = (
+      'Property'
+      'Value'
+    )
+    ColWidths = (
+      150
+      65
+    )
   end
-  object edtSection: TLabeledEdit[1]
-    Left = 8
-    Height = 23
-    Top = 24
-    Width = 216
-    EditLabel.AnchorSideLeft.Control = edtSection
-    EditLabel.AnchorSideRight.Control = edtSection
-    EditLabel.AnchorSideRight.Side = asrBottom
-    EditLabel.AnchorSideBottom.Control = edtSection
-    EditLabel.Left = 8
-    EditLabel.Height = 15
-    EditLabel.Top = 6
-    EditLabel.Width = 216
-    EditLabel.Caption = 'Section'
-    EditLabel.ParentColor = False
-    TabOrder = 1
-  end
-  object edtIdent: TLabeledEdit[2]
-    Left = 8
-    Height = 23
-    Top = 66
-    Width = 216
-    EditLabel.AnchorSideLeft.Control = edtIdent
-    EditLabel.AnchorSideRight.Control = edtIdent
-    EditLabel.AnchorSideRight.Side = asrBottom
-    EditLabel.AnchorSideBottom.Control = edtIdent
-    EditLabel.Left = 8
-    EditLabel.Height = 15
-    EditLabel.Top = 48
-    EditLabel.Width = 216
-    EditLabel.Caption = 'Ident'
-    EditLabel.ParentColor = False
-    TabOrder = 2
+  object lblCaptionSettings: TLabel[1]
+    Left = 5
+    Height = 16
+    Top = 5
+    Width = 219
+    Align = alTop
+    BorderSpacing.Around = 5
+    Caption = 'Caption-Settings'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
   end
 end

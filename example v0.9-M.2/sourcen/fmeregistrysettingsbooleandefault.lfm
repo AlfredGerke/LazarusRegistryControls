@@ -3,20 +3,42 @@ inherited RegControlBooleanDefaultSettings: TRegControlBooleanDefaultSettings
   DesignTop = 414
   object ValueListEditor1: TValueListEditor[0]
     Left = 5
-    Height = 230
-    Top = 5
+    Height = 209
+    Top = 26
     Width = 310
     Align = alClient
     BorderSpacing.Around = 5
+    DefaultColWidth = 150
     FixedCols = 0
     RowCount = 2
     TabOrder = 0
     Strings.Strings = (
       ''
     )
-    ColWidths = (
-      64
-      242
+    TitleCaptions.Strings = (
+      'Property'
+      'Value'
     )
+    ColWidths = (
+      150
+      156
+    )
+  end
+  object lblCaptionSettings: TLabel[1]
+    Left = 5
+    Height = 16
+    Top = 5
+    Width = 310
+    Align = alTop
+    BorderSpacing.Around = 5
+    Caption = 'Registry-Settings'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
   end
 end

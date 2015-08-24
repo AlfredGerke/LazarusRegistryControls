@@ -5,8 +5,7 @@ unit fmeregcontrolcaptionsettings;
 interface
 
 uses
-  StdCtrls,
-  ExtCtrls,
+  ExtCtrls, ValEdit, StdCtrls,
   fmecustomsettings,
   regsourcen;
 
@@ -15,11 +14,10 @@ type
   { TRegControlCaptionSettings }
 
   TRegControlCaptionSettings = class(TCustomRegControlSettings<TCaptionSettings>)
-    cbxCaptionByRegistry: TCheckBox;
-    edtSection: TLabeledEdit;
-    edtIdent: TLabeledEdit;
+    lblCaptionSettings: TLabel;
     lblIdent: TBoundLabel;
     lblSection: TBoundLabel;
+    ValueListEditor1: TValueListEditor;
   private
     procedure SetSettingsProc(aSettings: TCaptionSettings);
   protected
@@ -30,13 +28,20 @@ implementation
 
 {$R *.lfm}
 
+uses
+  SysUtils;
+
 { TRegControlCaptionSettings }
 
 procedure TRegControlCaptionSettings.SetSettingsProc(aSettings: TCaptionSettings);
 begin
-  edtSection.Text:=aSettings.Section;
-  edtIdent.Text := aSettings.Ident;
-  cbxCaptionByRegistry.Checked := aSettings.CaptionByRegistry;
+  with ValueListEditor1.Strings, aSettings do
+  begin
+    Clear;
+    Add('Section=' + Section);
+    Add('Ident=' + Ident);
+    Add('CaptionByRegistry=' + BoolToStr(CaptionByRegistry, True));
+  end;
 end;
 
 procedure TRegControlCaptionSettings._Initialize;

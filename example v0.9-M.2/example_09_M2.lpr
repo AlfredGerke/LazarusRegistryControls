@@ -20,7 +20,7 @@ uses
   fmeregcheckbox,
   fmeregcheckboxproperties,
   fmeregistrysettingsbooleandefault,
-  fmeregistrylistsettings;
+  fmeregistrylistsettings, fmeregcontrolbuttonframe;
 
 {$R *.res}
 
