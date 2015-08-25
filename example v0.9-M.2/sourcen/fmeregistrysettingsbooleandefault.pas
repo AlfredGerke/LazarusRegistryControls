@@ -14,7 +14,7 @@ type
   { TRegControlBooleanDefaultSettings }
 
   TRegControlBooleanDefaultSettings = class(TCustomRegControlSettings<TRegistrySettingsBooleanDefault>)
-    lblCaptionSettings: TLabel;
+    lblRegistrySettings: TLabel;
     ValueListEditor1: TValueListEditor;
   private
     procedure SetSettingsProc(aSettings: TRegistrySettingsBooleanDefault);

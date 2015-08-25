@@ -22,6 +22,7 @@ type
     pnlDesktop: TPanel;
     spOutline: TSplitter;
     tvOutline: TTreeView;
+    procedure FormShow(Sender: TObject);
     procedure tvOutlineChange(Sender: TObject; Node: TTreeNode);
   private
     FDesktopFrame: TControlDetails;
@@ -42,6 +43,11 @@ procedure TMain.tvOutlineChange(Sender: TObject; Node: TTreeNode);
 begin
   if Assigned(FDesktopFrame) then
     FDesktopFrame.GetRegControl(Node.Text);
+end;
+
+procedure TMain.FormShow(Sender: TObject);
+begin
+  FDesktopFrame.GetRegControl('TRegistrySource');
 end;
 
 constructor TMain.Create(aOwner: TComponent);

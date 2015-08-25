@@ -14,7 +14,10 @@ uses
   fmeregcheckbox,
   fmeregcheckboxproperties,
   fmeregcontrolproperties,
-  fmeregcontrolbuttonframe;
+  fmeregcontrolbuttonframe,
+  fmeregistrysource,
+  fmeregistrysourceproperties,
+  fmeregistrysourcebuttonframe;
 
 type
 
@@ -30,6 +33,18 @@ type
     spHSplitter: TSplitter;
     spVSplitter: TSplitter;
   private
+    procedure CreateTRegistrySourceFrame;
+    procedure CreateTRegListBoxFrame;
+    procedure CreateTRegCheckBoxFrame;
+    procedure CreateTRegRadioButtonFrame;
+    procedure CreateTRegRadioGroupFrame;
+    procedure CreateTRegEditFrame;
+    procedure CreateTRegComboBoxFrame;
+    procedure CreateTRegCheckListBoxFrame;
+    procedure CreateTRegCheckGroupBoxFrame;
+    procedure CreateTRegValueListEditorFrame;
+    procedure CreateTRegLabelFrame;
+
     procedure CreateButtonFrame(aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys);
     procedure FreeControlFrame;
     procedure FreePropertiesFrame;
@@ -45,6 +60,110 @@ implementation
 
 { TControlDetails }
 
+procedure TControlDetails.CreateTRegistrySourceFrame;
+begin
+  with TControlRegistrySource.Create(pnlLeft) do
+  begin
+    Parent := pnlLeft;
+    Align := alClient;
+  end;
+
+  with TRegistrySourceProperties.Create(pnlClient) do
+  begin
+    PArent := pnlClient;
+    Align := alClient;
+  end;
+
+  with TTRegistrySoruceButtonFrame.Create(pnlButton) do
+  begin
+    Parent := pnlButton;
+    Align := alClient;
+  end;
+end;
+
+procedure TControlDetails.CreateTRegListBoxFrame;
+begin
+  // ControlFrame
+  with TControlRegListBox.Create(pnlLeft) do
+  begin
+    Parent := pnlLeft;
+    Align := alClient;
+
+    // PropertiesFrame
+    with TRegListBoxProperties.Create(pnlClient) do
+    begin
+      Parent := pnlClient;
+      Align := alClient;
+
+      SetRegComponent(RegControl);
+    end;
+
+    // Buttonframe
+    CreateButtonFrame(GetRootKeys);
+  end;
+end;
+
+procedure TControlDetails.CreateTRegCheckBoxFrame;
+begin
+  // ControlFrame
+  with TControlRegCheckBox.Create(pnlLeft) do
+  begin
+    Parent := pnlLeft;
+    Align := alClient;
+
+    // PropertiesFrame
+    with TRegCheckBoxProperties.Create(pnlClient) do
+    begin
+      Parent := pnlClient;
+      Align := alClient;
+
+      SetRegComponent(RegControl);
+    end;
+
+    // Buttonframe
+    CreateButtonFrame(GetRootKeys);
+  end;
+end;
+
+procedure TControlDetails.CreateTRegRadioButtonFrame;
+begin
+end;
+
+procedure TControlDetails.CreateTRegRadioGroupFrame;
+begin
+
+end;
+
+procedure TControlDetails.CreateTRegEditFrame;
+begin
+
+end;
+
+procedure TControlDetails.CreateTRegComboBoxFrame;
+begin
+
+end;
+
+procedure TControlDetails.CreateTRegCheckListBoxFrame;
+begin
+
+end;
+
+procedure TControlDetails.CreateTRegCheckGroupBoxFrame;
+begin
+
+end;
+
+procedure TControlDetails.CreateTRegValueListEditorFrame;
+begin
+
+end;
+
+procedure TControlDetails.CreateTRegLabelFrame;
+begin
+
+end;
+
 procedure TControlDetails.CreateButtonFrame(aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys);
 begin
   with TRegControlButtonFrame.Create(pnlButton) do
@@ -52,7 +171,7 @@ begin
     Parent := pnlButton;
     Align := alClient;
 
-    OnGetRootKeys := AGetRootKeys;
+    OnGetRootKeys := aGetRootKeys;
   end;
 end;
 
@@ -78,98 +197,37 @@ begin
   FreeButtonFrame;
 
   if (aLabel = 'TRegListBox') then
-  begin
-    // ControlFrame
-    with TControlRegListBox.Create(pnlLeft) do
-    begin
-      Parent := pnlLeft;
-      Align := alClient;
-
-      // PropertiesFrame
-      with TRegListBoxProperties.Create(pnlClient) do
-      begin
-        Parent := pnlClient;
-        Align := alClient;
-
-        SetRegComponent(RegControl);
-      end;
-
-      // Buttonframe
-      CreateButtonFrame(GetRootKeys);
-    end;
-  end
+    CreateTRegListBoxFrame
   else
   if (aLabel = 'TRegistrySource') then
-  begin
-    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Wichtig: TRegistrySource ist keine visuelle Komponente }
-  end
+    CreateTRegistrySourceFrame
   else
   if (aLabel = 'TRegCheckBox') then
-  begin
-    // ControlFrame
-    with TControlRegCheckBox.Create(pnlLeft) do
-    begin
-      Parent := pnlLeft;
-      Align := alClient;
-
-      // PropertiesFrame
-      with TRegCheckBoxProperties.Create(pnlClient) do
-      begin
-        Parent := pnlClient;
-        Align := alClient;
-
-        SetRegComponent(RegControl);
-      end;
-
-      // Buttonframe
-      CreateButtonFrame(GetRootKeys);
-    end;
-  end
+    CreateTRegCheckBoxFrame
   else
   if (aLabel = 'TRegRadioButton') then
-  begin
-    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
-  end
+    CreateTRegRadioButtonFrame
   else
   if (aLabel = 'TRegRadioGroup') then
-  begin
-    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
-  end
+    CreateTRegRadioGroupFrame
   else
   if (aLabel = 'TRegEdit') then
-  begin
-    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
-  end
-  else
-  if (aLabel = 'TRegListBox') then
-  begin
-    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
-  end
+    CreateTRegEditFrame
   else
   if (aLabel = 'TRegComboBox') then
-  begin
-    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
-  end
+    CreateTRegComboBoxFrame
   else
   if (aLabel = 'TRegCheckListBox') then
-  begin
-    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
-  end
+    CreateTRegCheckListBoxFrame
   else
   if (aLabel = 'TRegCheckGroupBox') then
-  begin
-    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
-  end
+    CreateTRegCheckGroupBoxFrame
   else
   if (aLabel = 'TRegValueListEditor') then
-  begin
-    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
-  end
+    CreateTRegValueListEditorFrame
   else
   if (aLabel = 'TRegLabel') then
-  begin
-    { TODO -oAlfred Gerke -cControlDetailsFrame einrichten : Ähnlich verfahren wie mit TRegListBox }
-  end;
+    CreateTRegLabelFrame;
 end;
 
 

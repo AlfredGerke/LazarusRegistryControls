@@ -54,7 +54,7 @@
         <PackageName Value="LCL"/>
       </Item5>
     </RequiredPackages>
-    <Units Count="15">
+    <Units Count="18">
       <Unit0>
         <Filename Value="example_09_M2.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -159,6 +159,26 @@
         <ComponentName Value="RegControlButtonFrame"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit14>
+      <Unit15>
+        <Filename Value="sourcen\fmeregistrysource.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ControlRegistrySource"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="sourcen\fmeregistrysourceproperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RegistrySourceProperties"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="sourcen\fmeregistrysourcebuttonframe.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="TRegistrySoruceButtonFrame"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit17>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

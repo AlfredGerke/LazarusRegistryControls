@@ -5,11 +5,13 @@ inherited RegControlListSettings: TRegControlListSettings
     Top = 26
     Width = 310
     Align = alClient
+    AutoEdit = False
     BorderSpacing.Around = 5
     DefaultColWidth = 150
     FixedCols = 0
     RowCount = 2
     TabOrder = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goThumbTracking]
     Strings.Strings = (
       ''
     )
@@ -22,7 +24,7 @@ inherited RegControlListSettings: TRegControlListSettings
       156
     )
   end
-  object lblCaptionSettings: TLabel[1]
+  object lblRegistrySettings: TLabel[1]
     Left = 5
     Height = 16
     Top = 5

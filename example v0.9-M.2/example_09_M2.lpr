@@ -7,20 +7,11 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms,
-  datRegistry,
-  frmMain,
-  fmeControlDetails,
-  fmecustomcontrolframe,
-  fmecustomsettings,
-  fmeregcontrolproperties,
-  fmeregcontrolcaptionsettings,
-  fmereglistbox,
-  fmereglistboxproperties,
-  fmeregcheckbox,
-  fmeregcheckboxproperties,
-  fmeregistrysettingsbooleandefault,
-  fmeregistrylistsettings, fmeregcontrolbuttonframe;
+  Forms, datRegistry, frmMain, fmeControlDetails, fmecustomcontrolframe, fmecustomsettings,
+  fmeregcontrolproperties, fmeregcontrolcaptionsettings, fmereglistbox, fmereglistboxproperties,
+  fmeregcheckbox, fmeregcheckboxproperties, fmeregistrysettingsbooleandefault,
+  fmeregistrylistsettings, fmeregcontrolbuttonframe, fmeregistrysource, fmeregistrysourceproperties,
+  fmeregistrysourcebuttonframe;
 
 {$R *.res}
 

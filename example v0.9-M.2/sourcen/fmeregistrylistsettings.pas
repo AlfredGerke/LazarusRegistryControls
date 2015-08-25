@@ -14,7 +14,7 @@ type
   { TRegControlListSettings }
 
   TRegControlListSettings = class(TCustomRegControlSettings<TRegistrySettingsList>)
-    lblCaptionSettings: TLabel;
+    lblRegistrySettings: TLabel;
     ValueListEditor1: TValueListEditor;
   private
     procedure SetSettingsProc(aSettings: TRegistrySettingsList);

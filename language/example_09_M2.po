@@ -13,6 +13,26 @@ msgstr ""
 msgid "RegCheckBox1"
 msgstr ""
 
+#: tcontrolregistrysource.lblauthor.caption
+msgid "Author:"
+msgstr ""
+
+#: tcontrolregistrysource.lblcompname1.caption
+msgid "LazarusRegistryControls"
+msgstr ""
+
+#: tcontrolregistrysource.lblcompname2.caption
+msgid "(LRC)"
+msgstr ""
+
+#: tcontrolregistrysource.lblgithub.caption
+msgid "https://github.com/AlfredGerke/LazarusRegistryControls.git"
+msgstr ""
+
+#: tcontrolregistrysource.lblname.caption
+msgid "Alfred Gerke"
+msgstr ""
+
 #: tcontrolreglistbox.pnlclient.caption
 msgctxt "TCONTROLREGLISTBOX.PNLCLIENT.CAPTION"
 msgid "pnlClient"
@@ -24,6 +44,11 @@ msgstr ""
 
 #: tregcontrolbooleandefaultsettings.lblcaptionsettings.caption
 msgctxt "TREGCONTROLBOOLEANDEFAULTSETTINGS.LBLCAPTIONSETTINGS.CAPTION"
+msgid "Registry-Settings"
+msgstr ""
+
+#: tregcontrolbooleandefaultsettings.lblregistrysettings.caption
+msgctxt "TREGCONTROLBOOLEANDEFAULTSETTINGS.LBLREGISTRYSETTINGS.CAPTION"
 msgid "Registry-Settings"
 msgstr ""
 
@@ -39,18 +64,6 @@ msgstr ""
 msgid "..."
 msgstr ""
 
-#: tregcontrolcaptionsettings.cbxcaptionbyregistry.caption
-msgid "CaptionByRegistry"
-msgstr ""
-
-#: tregcontrolcaptionsettings.edtident.editlabel.caption
-msgid "Ident"
-msgstr ""
-
-#: tregcontrolcaptionsettings.edtsection.editlabel.caption
-msgid "Section"
-msgstr ""
-
 #: tregcontrolcaptionsettings.lblcaptionsettings.caption
 msgid "Caption-Settings"
 msgstr ""
@@ -64,7 +77,17 @@ msgctxt "tregcontrollistsettings.lblcaptionsettings.caption"
 msgid "Registry-Settings"
 msgstr ""
 
+#: tregcontrollistsettings.lblregistrysettings.caption
+msgctxt "TREGCONTROLLISTSETTINGS.LBLREGISTRYSETTINGS.CAPTION"
+msgid "Registry-Settings"
+msgstr ""
+
 #: tregcontrolproperties.panel1.caption
 msgid "pnlCaptionSettings"
+msgstr ""
+
+#: tregistrysourceproperties.lblregistrysettings.caption
+msgctxt "TREGISTRYSOURCEPROPERTIES.LBLREGISTRYSETTINGS.CAPTION"
+msgid "Registry-Settings"
 msgstr ""
 

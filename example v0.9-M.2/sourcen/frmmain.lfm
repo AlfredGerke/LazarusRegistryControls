@@ -6,6 +6,7 @@ object Main: TMain
   Caption = 'Example (LRC 0.9 M2)'
   ClientHeight = 616
   ClientWidth = 951
+  OnShow = FormShow
   LCLVersion = '1.4.2.0'
   object spOutline: TSplitter
     Left = 200
@@ -33,8 +34,10 @@ object Main: TMain
       Align = alClient
       DefaultItemHeight = 18
       Images = lstImageListOutline
+      ReadOnly = True
       TabOrder = 0
       OnChange = tvOutlineChange
+      Options = [tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoReadOnly, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
       Items.Data = {
         F9FFFFFF02000B0000000A0000000A0000000A000000FFFFFFFF000000000000
         0000000F000000545265676973747279536F7572636500000000000000000000
