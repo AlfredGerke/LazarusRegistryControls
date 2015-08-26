@@ -6,13 +6,17 @@ inherited ControlRegCheckBox: TControlRegCheckBox
     Width = 98
     Caption = 'RegCheckBox1'
     TabOrder = 0
-    CaptionSettings.CaptionByRegistry = False
-    RegistrySettings.CanRead = False
-    RegistrySettings.CanWrite = False
-    RegistrySettings.DoWriteAdHoc = False
+    CaptionSettings.Section = 'TRegCheckBox'
+    CaptionSettings.Ident = 'Caption'
+    CaptionSettings.CaptionByRegistry = True
+    RegistrySettings.CanRead = True
+    RegistrySettings.CanWrite = True
+    RegistrySettings.DoWriteAdHoc = True
     RegistrySettings.GroupIndex = 0
     RegistrySettings.DoSyncData = False
     RegistrySettings.Default = False
+    RegistrySettings.Section = 'TRegCheckBox'
+    RegistrySettings.Ident = 'Key'
     RegistrySource = RegistrySourceModule.rsRegistrySource
   end
 end

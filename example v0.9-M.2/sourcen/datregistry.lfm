@@ -1,19 +1,19 @@
 object RegistrySourceModule: TRegistrySourceModule
   OldCreateOrder = False
-  Height = 150
-  HorizontalOffset = 682
-  VerticalOffset = 295
+  Height = 149
+  HorizontalOffset = 1030
+  VerticalOffset = 303
   Width = 150
   object rsRegistrySource: TRegistrySource
-    RootKey = 'SOFTWARE\ExampleFactory\LazarusRegistryControls\{EC8199A8-A8FD-40D9-9ACA-C28D913C2E0B}\'
-    RootKeyForDefaults = 'SOFTWARE\ExampleFactory\LazarusRegistryControls\DEFAULTS\{EC8199A8-A8FD-40D9-9ACA-C28D913C2E0B}\'
+    RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
+    RootKeyForDefaults = 'SOFTWARE\ExampleFactory\LazarusRegistryControls\DEFAULTS\{28322BBA-2873-48C8-A70B-7067810C384B}\'
     RootKeyForCommon = 'HKEY_CURRENT_USER'
     Project = 'LazarusRegistryControls'
     Organisation = 'ExampleFactory'
     RootForDefaults = 'HKEY_LOCAL_MACHINE'
     ReadDefaults = True
     WriteDefaults = False
-    GUID = '{EC8199A8-A8FD-40D9-9ACA-C28D913C2E0B}'
+    GUID = '{28322BBA-2873-48C8-A70B-7067810C384B}'
     DoSyncData = True
     PrefereStrings = False
     CheckRTLAnsi = True

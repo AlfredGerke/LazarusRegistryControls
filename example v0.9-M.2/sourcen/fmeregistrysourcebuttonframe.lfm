@@ -3,7 +3,26 @@ object TRegistrySoruceButtonFrame: TTRegistrySoruceButtonFrame
   Height = 240
   Top = 0
   Width = 320
+  ClientHeight = 240
+  ClientWidth = 320
   TabOrder = 0
   DesignLeft = 877
   DesignTop = 373
+  object btnCreateSettings: TButton
+    Left = 8
+    Height = 25
+    Top = 8
+    Width = 168
+    Action = acCreateSettings
+    TabOrder = 0
+  end
+  object acList: TActionList
+    left = 224
+    top = 136
+    object acCreateSettings: TAction
+      Category = 'RegistrySettings'
+      Caption = 'Create Registry Settings'
+      OnExecute = acCreateSettingsExecute
+    end
+  end
 end

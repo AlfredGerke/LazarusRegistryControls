@@ -16,11 +16,11 @@ inherited ControlRegListBox: TControlRegListBox
     RegistrySettings.CanWrite = True
     RegistrySettings.DoWriteAdHoc = True
     RegistrySettings.GroupIndex = 0
-    RegistrySettings.DoSyncData = True
+    RegistrySettings.DoSyncData = False
     RegistrySettings.Default = 0
-    RegistrySettings.Section = 'ListBox1'
+    RegistrySettings.Section = 'TRegListBox'
     RegistrySettings.ItemsByRegistry = True
-    RegistrySettings.ListSection = 'ListBoxListe'
+    RegistrySettings.ListSection = 'TRegListBoxItems'
     RegistrySettings.SourceKind = lskByValue
     RegistrySettings.DoMergeData = True
     RegistrySource = RegistrySourceModule.rsRegistrySource

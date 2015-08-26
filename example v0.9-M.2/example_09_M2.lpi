@@ -177,6 +177,7 @@
         <Filename Value="sourcen\fmeregistrysourcebuttonframe.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="TRegistrySoruceButtonFrame"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit17>
     </Units>

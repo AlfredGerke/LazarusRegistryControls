@@ -91,3 +91,7 @@ msgctxt "TREGISTRYSOURCEPROPERTIES.LBLREGISTRYSETTINGS.CAPTION"
 msgid "Registry-Settings"
 msgstr ""
 
+#: ttregistrysorucebuttonframe.accreatesettings.caption
+msgid "Create Registry Settings"
+msgstr ""
+
