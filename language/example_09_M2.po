@@ -86,6 +86,11 @@ msgstr ""
 msgid "pnlCaptionSettings"
 msgstr ""
 
+#: tregcontrolstringdefault.lblregistrysettings.caption
+msgctxt "TREGCONTROLSTRINGDEFAULT.LBLREGISTRYSETTINGS.CAPTION"
+msgid "Registry-Settings"
+msgstr ""
+
 #: tregistrysourceproperties.lblregistrysettings.caption
 msgctxt "TREGISTRYSOURCEPROPERTIES.LBLREGISTRYSETTINGS.CAPTION"
 msgid "Registry-Settings"
@@ -93,5 +98,17 @@ msgstr ""
 
 #: ttregistrysorucebuttonframe.accreatesettings.caption
 msgid "Create Registry Settings"
+msgstr ""
+
+#: ttregistrysorucebuttonframe.acdeletehkcusettings.caption
+msgid "Delete HKEY_CURRENT_USER Settings"
+msgstr ""
+
+#: ttregistrysorucebuttonframe.cbxcreatedefaults.caption
+msgid "Create DEFAULTS"
+msgstr ""
+
+#: ttregistrysorucebuttonframe.cbxdeletedefaults.caption
+msgid "Delete DEFAULTS"
 msgstr ""
 

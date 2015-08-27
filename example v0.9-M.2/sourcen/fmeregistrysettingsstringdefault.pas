@@ -1,23 +1,28 @@
-unit fmeregistrysettingsbooleandefault;
+unit fmeregistrysettingsstringdefault;
 
 {$mode delphi}
 
 interface
 
 uses
-  ValEdit, StdCtrls,
+  Classes,
+  SysUtils,
+  Controls,
+  Graphics,
+  StdCtrls,
+  ValEdit,
   fmecustomsettings,
   regsourcen;
 
 type
 
-  { TRegControlBooleanDefaultSettings }
+  { TRegControlStringDefault }
 
-  TRegControlBooleanDefaultSettings = class(TCustomRegControlSettings<TRegistrySettingsBooleanDefault>)
+  TRegControlStringDefault = class(TCustomRegControlSettings<TRegistrySettingsStringDefault>)
     lblRegistrySettings: TLabel;
     ValueListEditor1: TValueListEditor;
   private
-    procedure SetSettingsProc(aSettings: TRegistrySettingsBooleanDefault);
+    procedure SetSettingsProc(aSettings: TRegistrySettingsStringDefault);
   protected
     procedure _Initialize; override;
   end;
@@ -26,13 +31,10 @@ implementation
 
 {$R *.lfm}
 
-uses
-  SysUtils;
+{ TRegControlStringDefault }
 
-{ TRegControlBooleanDefaultSettings }
-
-procedure TRegControlBooleanDefaultSettings.SetSettingsProc(
-    aSettings: TRegistrySettingsBooleanDefault);
+procedure TRegControlStringDefault.SetSettingsProc(
+  aSettings: TRegistrySettingsStringDefault);
 begin
   with ValueListEditor1.Strings, aSettings do
   begin
@@ -43,15 +45,16 @@ begin
     Add('GroupIndex=' + IntToStr(GroupIndex));
     Add('DoSyncData=' + BoolToStr(DoSyncData, True));
     Add('Section=' + Section);
-    Add('Default=' + BoolToStr(Default, True));
+    Add('Default=' + Default);
     Add('Ident=' + Ident);
   end;
 end;
 
-procedure TRegControlBooleanDefaultSettings._Initialize;
+procedure TRegControlStringDefault._Initialize;
 begin
   OnSetSettings := SetSettingsProc;
 end;
+
 
 end.
 

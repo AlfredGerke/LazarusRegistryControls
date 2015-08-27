@@ -376,10 +376,13 @@ function _ChangeTokenForKey(aToken: string;
   aTokenValue: string;
   aKey: string): string;
 begin
+  Result := aKey;
+
   if pos(aToken, aKey) > 0 then
     if ((Trim(aTokenValue) <> EmptyStr) and
-      (aTokenValue <> aToken))then
-      result := StringReplace(aKey, aToken, aTokenValue, [rfReplaceAll]);
+      (aTokenValue <> aToken))
+    then
+      Result := StringReplace(aKey, aToken, aTokenValue, [rfReplaceAll]);
 end;
 
 { TCustomCaptionSettings }

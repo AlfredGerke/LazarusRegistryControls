@@ -11,7 +11,8 @@ uses
   fmeregcontrolproperties, fmeregcontrolcaptionsettings, fmereglistbox, fmereglistboxproperties,
   fmeregcheckbox, fmeregcheckboxproperties, fmeregistrysettingsbooleandefault,
   fmeregistrylistsettings, fmeregcontrolbuttonframe, fmeregistrysource, fmeregistrysourceproperties,
-  fmeregistrysourcebuttonframe;
+  fmeregistrysourcebuttonframe, fmeregedit, fmeregeditproperties, 
+fmeregistrysettingsstringdefault;
 
 {$R *.res}
 

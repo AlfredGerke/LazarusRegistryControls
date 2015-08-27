@@ -6,8 +6,8 @@ object RegistrySourceModule: TRegistrySourceModule
   Width = 150
   object rsRegistrySource: TRegistrySource
     RootKey = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\%%GUID%%'
-    RootKeyForDefaults = 'SOFTWARE\ExampleFactory\LazarusRegistryControls\DEFAULTS\{28322BBA-2873-48C8-A70B-7067810C384B}\'
-    RootKeyForCommon = 'HKEY_CURRENT_USER'
+    RootKeyForDefaults = 'SOFTWARE\%%ORGANISATION%%\%%PROJECT%%\DEFAULTS\%%GUID%%'
+    RootKeyForCommon = 'SOFTWARE\%%ORGANISATION%%\GEMEINSAME DATEN\%%PROJECT%%\%%GUID%%'
     Project = 'LazarusRegistryControls'
     Organisation = 'ExampleFactory'
     RootForDefaults = 'HKEY_LOCAL_MACHINE'

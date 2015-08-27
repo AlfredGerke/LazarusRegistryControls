@@ -17,7 +17,9 @@ uses
   fmeregcontrolbuttonframe,
   fmeregistrysource,
   fmeregistrysourceproperties,
-  fmeregistrysourcebuttonframe;
+  fmeregistrysourcebuttonframe,
+  fmeregedit,
+  fmeregeditproperties;
 
 type
 
@@ -136,7 +138,24 @@ end;
 
 procedure TControlDetails.CreateTRegEditFrame;
 begin
+  // ControlFrame
+  with TControlRegEdit.Create(pnlLeft) do
+  begin
+    Parent := pnlLeft;
+    Align := alClient;
 
+    // PropertiesFrame
+    with TRegEditProperties.Create(pnlClient) do
+    begin
+      Parent := pnlClient;
+      Align := alClient;
+
+      SetRegComponent(RegControl);
+    end;
+
+    // Buttonframe
+    CreateButtonFrame(GetRootKeys);
+  end;
 end;
 
 procedure TControlDetails.CreateTRegComboBoxFrame;

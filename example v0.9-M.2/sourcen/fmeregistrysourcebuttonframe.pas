@@ -18,10 +18,18 @@ type
   TTRegistrySoruceButtonFrame = class(TFrame)
     acList: TActionList;
     acCreateSettings: TAction;
+    acDeleteHKCUSettings: TAction;
     btnCreateSettings: TButton;
+    Button1: TButton;
+    cbxDeleteDefaults: TCheckBox;
+    cbxCreateDefaults: TCheckBox;
     procedure acCreateSettingsExecute(Sender: TObject);
+    procedure acDeleteHKCUSettingsExecute(Sender: TObject);
   private
-    procedure CreateRegistrySettings;
+    procedure CreateRegistrySettings(aCreateDefaults: boolean); overload;
+    procedure CreateRegistrySettings; overload;
+    procedure DeleteRegistrySettings(aDeleteDefaults: boolean); overload;
+    procedure DeleteRegistrySettings; overload;
   end;
 
 implementation
@@ -38,14 +46,19 @@ begin
   CreateRegistrySettings;
 end;
 
-procedure TTRegistrySoruceButtonFrame.CreateRegistrySettings;
+procedure TTRegistrySoruceButtonFrame.acDeleteHKCUSettingsExecute(Sender: TObject);
+begin
+  DeleteRegistrySettings;
+end;
+
+procedure TTRegistrySoruceButtonFrame.CreateRegistrySettings(aCreateDefaults: boolean);
 begin
   Screen.Cursor := crHourGlass;
 
   with RegistrySourceModule.rsRegistrySource do
   begin
     DoSyncData := False;
-    WriteDefaults := True;
+    WriteDefaults := aCreateDefaults;
 
     WriteString('About', 'Version', '1.0.0');
     WriteString('About', 'Projekt', 'LazarusRegistryControls');
@@ -108,6 +121,34 @@ begin
   end;
 
   Screen.Cursor := crDefault;
+end;
+
+procedure TTRegistrySoruceButtonFrame.CreateRegistrySettings;
+begin
+  CreateRegistrySettings(cbxCreateDefaults.Checked);
+end;
+
+procedure TTRegistrySoruceButtonFrame.DeleteRegistrySettings(aDeleteDefaults: boolean);
+begin
+  Screen.Cursor := crHourGlass;
+
+  with RegistrySourceModule.rsRegistrySource do
+  begin
+    DoSyncData := False;
+    WriteDefaults := aDeleteDefaults;
+
+    DeleteRootKey;
+
+    DoSyncData := False;
+    WriteDefaults := True;
+  end;
+
+  Screen.Cursor := crDefault;
+end;
+
+procedure TTRegistrySoruceButtonFrame.DeleteRegistrySettings;
+begin
+  DeleteRegistrySettings(cbxDeleteDefaults.Checked);
 end;
 
 end.
