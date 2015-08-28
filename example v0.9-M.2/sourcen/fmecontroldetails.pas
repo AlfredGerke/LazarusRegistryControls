@@ -19,7 +19,9 @@ uses
   fmeregistrysourceproperties,
   fmeregistrysourcebuttonframe,
   fmeregedit,
-  fmeregeditproperties;
+  fmeregeditproperties,
+  fmereglabel,
+  fmereglabelproperties;
 
 type
 
@@ -74,12 +76,15 @@ begin
   begin
     PArent := pnlClient;
     Align := alClient;
-  end;
 
-  with TTRegistrySoruceButtonFrame.Create(pnlButton) do
-  begin
-    Parent := pnlButton;
-    Align := alClient;
+
+    with TRegistrySourceButtonFrame.Create(pnlButton) do
+    begin
+      Parent := pnlButton;
+      Align := alClient;
+
+      OnRefreshSettings := RefreshSettings;
+    end;
   end;
 end;
 
@@ -180,7 +185,24 @@ end;
 
 procedure TControlDetails.CreateTRegLabelFrame;
 begin
+  // ControlFrame
+  with TControlRegLabel.Create(pnlLeft) do
+  begin
+    Parent := pnlLeft;
+    Align := alClient;
 
+    // PropertiesFrame
+    with TRegLabelProperties.Create(pnlClient) do
+    begin
+      Parent := pnlClient;
+      Align := alClient;
+
+      SetRegComponent(RegControl);
+    end;
+
+    // Buttonframe
+    CreateButtonFrame(GetRootKeys);
+  end;
 end;
 
 procedure TControlDetails.CreateButtonFrame(aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys);

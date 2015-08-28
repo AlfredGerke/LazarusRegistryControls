@@ -13,24 +13,36 @@ msgstr ""
 msgid "RegCheckBox1"
 msgstr ""
 
+#: tcontrolregistrysource.lblage.caption
+msgid "lblAGE"
+msgstr ""
+
 #: tcontrolregistrysource.lblauthor.caption
 msgid "Author:"
 msgstr ""
 
-#: tcontrolregistrysource.lblcompname1.caption
-msgid "LazarusRegistryControls"
+#: tcontrolregistrysource.lblgit.caption
+msgid "lblGit"
 msgstr ""
 
-#: tcontrolregistrysource.lblcompname2.caption
-msgid "(LRC)"
+#: tcontrolregistrysource.lbllrc.caption
+msgid "lblLRC"
 msgstr ""
 
-#: tcontrolregistrysource.lblgithub.caption
-msgid "https://github.com/AlfredGerke/LazarusRegistryControls.git"
+#: tcontrolregistrysource.lblproject.caption
+msgid "lblProject"
 msgstr ""
 
-#: tcontrolregistrysource.lblname.caption
-msgid "Alfred Gerke"
+#: tcontrolregistrysource.lblversion.caption
+msgid "Version:"
+msgstr ""
+
+#: tcontrolreglabel.regedit1.text
+msgid "RegEdit1"
+msgstr ""
+
+#: tcontrolreglabel.reglabel1.caption
+msgid "RegLabel1"
 msgstr ""
 
 #: tcontrolreglistbox.pnlclient.caption
@@ -61,6 +73,7 @@ msgid "RootKeys bearbeiten"
 msgstr ""
 
 #: tregcontrolbuttonframe.speedbutton1.caption
+msgctxt "tregcontrolbuttonframe.speedbutton1.caption"
 msgid "..."
 msgstr ""
 
@@ -91,24 +104,125 @@ msgctxt "TREGCONTROLSTRINGDEFAULT.LBLREGISTRYSETTINGS.CAPTION"
 msgid "Registry-Settings"
 msgstr ""
 
+#: tregistrysorucebuttonframe.accreatesettings.caption
+msgctxt "TREGISTRYSORUCEBUTTONFRAME.ACCREATESETTINGS.CAPTION"
+msgid "Create Registry Settings"
+msgstr ""
+
+#: tregistrysorucebuttonframe.acdeletehkcusettings.caption
+msgctxt "TREGISTRYSORUCEBUTTONFRAME.ACDELETEHKCUSETTINGS.CAPTION"
+msgid "Delete HKEY_CURRENT_USER Settings"
+msgstr ""
+
+#: tregistrysorucebuttonframe.cbxcreatedefaults.caption
+msgctxt "TREGISTRYSORUCEBUTTONFRAME.CBXCREATEDEFAULTS.CAPTION"
+msgid "Create DEFAULTS"
+msgstr ""
+
+#: tregistrysorucebuttonframe.cbxdeletedefaults.caption
+msgctxt "TREGISTRYSORUCEBUTTONFRAME.CBXDELETEDEFAULTS.CAPTION"
+msgid "Delete DEFAULTS"
+msgstr ""
+
+#: tregistrysorucebuttonframe.checkbox1.caption
+msgctxt "TREGISTRYSORUCEBUTTONFRAME.CHECKBOX1.CAPTION"
+msgid "DoSyncData"
+msgstr ""
+
+#: tregistrysorucebuttonframe.grbregistrysettings.caption
+msgctxt "TREGISTRYSORUCEBUTTONFRAME.GRBREGISTRYSETTINGS.CAPTION"
+msgid " Registry Settings "
+msgstr ""
+
+#: tregistrysorucebuttonframe.grpproperties.caption
+msgctxt "TREGISTRYSORUCEBUTTONFRAME.GRPPROPERTIES.CAPTION"
+msgid "Properties"
+msgstr ""
+
+#: tregistrysourcebuttonframe.accreatesettings.caption
+msgctxt "TREGISTRYSOURCEBUTTONFRAME.ACCREATESETTINGS.CAPTION"
+msgid "Create Registry Settings"
+msgstr ""
+
+#: tregistrysourcebuttonframe.acdeletehkcusettings.caption
+msgctxt "TREGISTRYSOURCEBUTTONFRAME.ACDELETEHKCUSETTINGS.CAPTION"
+msgid "Delete HKEY_CURRENT_USER Settings"
+msgstr ""
+
+#: tregistrysourcebuttonframe.acdosyncdata.caption
+msgctxt "TREGISTRYSOURCEBUTTONFRAME.ACDOSYNCDATA.CAPTION"
+msgid "DoSyncData"
+msgstr ""
+
+#: tregistrysourcebuttonframe.acpreferestrings.caption
+msgid "PrefereStrings"
+msgstr ""
+
+#: tregistrysourcebuttonframe.acreaddefaults.caption
+msgid "ReadDefaults"
+msgstr ""
+
+#: tregistrysourcebuttonframe.acwritedefaults.caption
+msgid "WriteDefaults"
+msgstr ""
+
+#: tregistrysourcebuttonframe.cbxcreatedefaults.caption
+msgctxt "TREGISTRYSOURCEBUTTONFRAME.CBXCREATEDEFAULTS.CAPTION"
+msgid "Create DEFAULTS"
+msgstr ""
+
+#: tregistrysourcebuttonframe.cbxdeletedefaults.caption
+msgctxt "TREGISTRYSOURCEBUTTONFRAME.CBXDELETEDEFAULTS.CAPTION"
+msgid "Delete DEFAULTS"
+msgstr ""
+
+#: tregistrysourcebuttonframe.grbregistrysettings.caption
+msgctxt "TREGISTRYSOURCEBUTTONFRAME.GRBREGISTRYSETTINGS.CAPTION"
+msgid " Registry Settings "
+msgstr ""
+
+#: tregistrysourcebuttonframe.grpproperties.caption
+msgctxt "TREGISTRYSOURCEBUTTONFRAME.GRPPROPERTIES.CAPTION"
+msgid "Properties"
+msgstr ""
+
 #: tregistrysourceproperties.lblregistrysettings.caption
 msgctxt "TREGISTRYSOURCEPROPERTIES.LBLREGISTRYSETTINGS.CAPTION"
 msgid "Registry-Settings"
 msgstr ""
 
 #: ttregistrysorucebuttonframe.accreatesettings.caption
+msgctxt "ttregistrysorucebuttonframe.accreatesettings.caption"
 msgid "Create Registry Settings"
 msgstr ""
 
 #: ttregistrysorucebuttonframe.acdeletehkcusettings.caption
+msgctxt "ttregistrysorucebuttonframe.acdeletehkcusettings.caption"
 msgid "Delete HKEY_CURRENT_USER Settings"
 msgstr ""
 
 #: ttregistrysorucebuttonframe.cbxcreatedefaults.caption
+msgctxt "ttregistrysorucebuttonframe.cbxcreatedefaults.caption"
 msgid "Create DEFAULTS"
 msgstr ""
 
 #: ttregistrysorucebuttonframe.cbxdeletedefaults.caption
+msgctxt "ttregistrysorucebuttonframe.cbxdeletedefaults.caption"
 msgid "Delete DEFAULTS"
+msgstr ""
+
+#: ttregistrysorucebuttonframe.checkbox1.caption
+msgctxt "ttregistrysorucebuttonframe.checkbox1.caption"
+msgid "DoSyncData"
+msgstr ""
+
+#: ttregistrysorucebuttonframe.grbregistrysettings.caption
+msgctxt "ttregistrysorucebuttonframe.grbregistrysettings.caption"
+msgid " Registry Settings "
+msgstr ""
+
+#: ttregistrysorucebuttonframe.grpproperties.caption
+msgctxt "ttregistrysorucebuttonframe.grpproperties.caption"
+msgid "Properties"
 msgstr ""
 

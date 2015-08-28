@@ -662,7 +662,7 @@ begin
   if aReg.ValueExists(ident) then
   begin
     if FPreferStringValues then
-      res := (StrToInt(aReg.ReadString(ident)) <> 0)
+      res := StrToBool(aReg.ReadString(ident))
     else
       res := aReg.ReadBool(ident);
 

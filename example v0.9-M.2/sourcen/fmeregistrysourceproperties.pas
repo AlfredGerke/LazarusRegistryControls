@@ -18,6 +18,8 @@ type
     procedure SetSettings;
   public
     constructor Create(aOwner: TComponent); override;
+
+    procedure RefreshSettings;
   end;
 
 implementation
@@ -53,6 +55,11 @@ constructor TRegistrySourceProperties.Create(aOwner: TComponent);
 begin
   inherited Create(aOwner);
 
+  SetSettings;
+end;
+
+procedure TRegistrySourceProperties.RefreshSettings;
+begin
   SetSettings;
 end;
 

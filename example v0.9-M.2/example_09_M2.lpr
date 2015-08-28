@@ -12,7 +12,7 @@ uses
   fmeregcheckbox, fmeregcheckboxproperties, fmeregistrysettingsbooleandefault,
   fmeregistrylistsettings, fmeregcontrolbuttonframe, fmeregistrysource, fmeregistrysourceproperties,
   fmeregistrysourcebuttonframe, fmeregedit, fmeregeditproperties, 
-fmeregistrysettingsstringdefault;
+fmeregistrysettingsstringdefault, fmereglabel, fmereglabelproperties;
 
 {$R *.res}
 

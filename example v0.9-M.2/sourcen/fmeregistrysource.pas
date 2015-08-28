@@ -9,7 +9,7 @@ uses
   SysUtils,
   FileUtil,
   Forms,
-  Controls, ExtCtrls, StdCtrls;
+  Controls, ExtCtrls, StdCtrls, reglabel;
 
 type
 
@@ -18,10 +18,11 @@ type
   TControlRegistrySource = class(TFrame)
     imgPic: TImage;
     lblAuthor: TLabel;
-    lblCompName1: TLabel;
-    lblCompName2: TLabel;
-    lblGitHub: TLabel;
-    lblName: TLabel;
+    lblVersion: TLabel;
+    lblGit: TRegLabel;
+    lblAGE: TRegLabel;
+    lblLRC: TRegLabel;
+    lblProject: TRegLabel;
   private
     { private declarations }
   public

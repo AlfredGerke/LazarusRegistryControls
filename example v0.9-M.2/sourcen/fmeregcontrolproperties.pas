@@ -20,6 +20,8 @@ type
     pnlCaptionSettings: TPanel;
     pnlRegistrySettings: TPanel;
     spSplitter: TSplitter;
+  public type
+    TOnRefreshSettings = procedure of object;
   private
     FRegComponent: TComponent;
     FDoCreateRegistryProperties: boolean;

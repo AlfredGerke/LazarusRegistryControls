@@ -493,60 +493,6 @@ object ControlRegistrySource: TControlRegistrySource
     }
     Transparent = True
   end
-  object lblCompName1: TLabel
-    Left = 8
-    Height = 22
-    Top = 8
-    Width = 232
-    Caption = 'LazarusRegistryControls'
-    Font.CharSet = ANSI_CHARSET
-    Font.Color = clBlack
-    Font.Height = -19
-    Font.Name = 'Arial'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    Font.Style = [fsBold, fsUnderline]
-    ParentColor = False
-    ParentFont = False
-  end
-  object lblCompName2: TLabel
-    Left = 248
-    Height = 24
-    Top = 8
-    Width = 56
-    Caption = '(LRC)'
-    Font.CharSet = ANSI_CHARSET
-    Font.Color = clBlack
-    Font.Height = -21
-    Font.Name = 'Arial'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    ParentColor = False
-    ParentFont = False
-  end
-  object lblGitHub: TLabel
-    Left = 8
-    Height = 15
-    Top = 40
-    Width = 317
-    Caption = 'https://github.com/AlfredGerke/LazarusRegistryControls.git'
-    ParentColor = False
-  end
-  object lblName: TLabel
-    Left = 168
-    Height = 16
-    Top = 64
-    Width = 72
-    Caption = 'Alfred Gerke'
-    Font.CharSet = ANSI_CHARSET
-    Font.Color = clBlack
-    Font.Height = -13
-    Font.Name = 'Arial'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    ParentColor = False
-    ParentFont = False
-  end
   object lblAuthor: TLabel
     Left = 120
     Height = 16
@@ -561,5 +507,114 @@ object ControlRegistrySource: TControlRegistrySource
     Font.Quality = fqDraft
     ParentColor = False
     ParentFont = False
+  end
+  object lblGit: TRegLabel
+    Left = 8
+    Height = 15
+    Top = 40
+    Width = 28
+    Caption = 'lblGit'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -12
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsUnderline]
+    ParentColor = False
+    ParentFont = False
+    RegistrySettings.CanRead = True
+    RegistrySettings.CanWrite = False
+    RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = True
+    RegistrySettings.Default = 'Git'
+    RegistrySettings.Section = 'About'
+    RegistrySettings.Ident = 'Git'
+    RegistrySource = RegistrySourceModule.rsRegistrySource
+  end
+  object lblAGE: TRegLabel
+    Left = 168
+    Height = 16
+    Top = 64
+    Width = 41
+    Caption = 'lblAGE'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    RegistrySettings.CanRead = True
+    RegistrySettings.CanWrite = False
+    RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = True
+    RegistrySettings.Default = 'Author'
+    RegistrySettings.Section = 'About'
+    RegistrySettings.Ident = 'Author'
+    RegistrySource = RegistrySourceModule.rsRegistrySource
+  end
+  object lblVersion: TLabel
+    Left = 120
+    Height = 16
+    Top = 83
+    Width = 47
+    Caption = 'Version:'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object lblLRC: TRegLabel
+    Left = 168
+    Height = 16
+    Top = 83
+    Width = 38
+    Caption = 'lblLRC'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    RegistrySettings.CanRead = True
+    RegistrySettings.CanWrite = False
+    RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = True
+    RegistrySettings.Default = 'Version'
+    RegistrySettings.Section = 'About'
+    RegistrySettings.Ident = 'Version'
+    RegistrySource = RegistrySourceModule.rsRegistrySource
+  end
+  object lblProject: TRegLabel
+    Left = 8
+    Height = 22
+    Top = 8
+    Width = 88
+    Caption = 'lblProject'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold, fsUnderline]
+    ParentColor = False
+    ParentFont = False
+    RegistrySettings.CanRead = True
+    RegistrySettings.CanWrite = False
+    RegistrySettings.DoWriteAdHoc = False
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = True
+    RegistrySettings.Default = 'Project'
+    RegistrySettings.Section = 'About'
+    RegistrySettings.Ident = 'Project'
+    RegistrySource = RegistrySourceModule.rsRegistrySource
   end
 end
