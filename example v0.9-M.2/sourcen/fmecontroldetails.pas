@@ -21,7 +21,9 @@ uses
   fmeregedit,
   fmeregeditproperties,
   fmereglabel,
-  fmereglabelproperties;
+  fmereglabelproperties,
+  fmeregradiobutton,
+  fmeregradiobuttonproperties;
 
 type
 
@@ -147,6 +149,26 @@ end;
 
 procedure TControlDetails.CreateTRegRadioButtonFrame;
 begin
+  // ControlFrame
+  with TControlRegRadioButton.Create(pnlLeft) do
+  begin
+    Parent := pnlLeft;
+    Align := alClient;
+
+    // PropertiesFrame
+    with TRegRadioButtonProperties.Create(pnlClient) do
+    begin
+      Parent := pnlClient;
+      Align := alClient;
+
+      SetRegComponent(RegControl);
+
+      // Buttonframe
+      CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
+        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
+        GetDoSyncData);
+    end;
+  end;
 end;
 
 procedure TControlDetails.CreateTRegRadioGroupFrame;

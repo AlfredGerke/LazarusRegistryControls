@@ -38,6 +38,7 @@ msgid "Version:"
 msgstr ""
 
 #: tcontrolreglabel.regedit1.text
+msgctxt "tcontrolreglabel.regedit1.text"
 msgid "RegEdit1"
 msgstr ""
 
@@ -48,6 +49,14 @@ msgstr ""
 #: tcontrolreglistbox.pnlclient.caption
 msgctxt "TCONTROLREGLISTBOX.PNLCLIENT.CAPTION"
 msgid "pnlClient"
+msgstr ""
+
+#: tcontrolregradiobutton.regradiobutton1.caption
+msgid "RegRadioButton1"
+msgstr ""
+
+#: tcontrolregradiobutton.regradiobutton2.caption
+msgid "RegRadioButton2"
 msgstr ""
 
 #: tmain.caption

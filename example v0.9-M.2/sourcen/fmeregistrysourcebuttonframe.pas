@@ -180,8 +180,10 @@ begin
     WriteBool('TRegCheckBox', 'Key', True);
     WriteString('TRegCheckBox', 'Caption', 'Standardcaption');
 
-    WriteBool('TRegRadioButton', 'Key', True);
+    WriteBool('TRegRadioButton', 'Key1', True);
+    WriteBool('TRegRadioButton', 'Key2', False);
     WriteString('TRegRadioButton', 'Caption', 'Standardcaption');
+    WriteString('TRegRadioButton2', 'Caption', 'Standardcaption2');
 
     WriteString('TRegListBoxItems', 'Key1', 'Value1');
     WriteString('TRegListBoxItems', 'Key2', 'Value2');
