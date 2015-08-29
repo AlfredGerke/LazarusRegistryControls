@@ -5,7 +5,11 @@ unit fmeregistrysourceproperties;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, StdCtrls, ValEdit;
+  Classes,
+  SysUtils,
+  Forms,
+  StdCtrls,
+  ValEdit;
 
 type
 

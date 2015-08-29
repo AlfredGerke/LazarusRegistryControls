@@ -5,7 +5,6 @@ unit fmeregeditproperties;
 interface
 
 uses
-  FileUtil,
   Controls,
   fmeregcontrolproperties,
   fmeregistrysettingsstringdefault,
@@ -35,6 +34,8 @@ begin
 
     if Assigned(TRegEdit(self.RegComponent).RegistrySettings) then
       SetRegControlSettings(TRegEdit(self.RegComponent).RegistrySettings);
+
+    OnRefreshSettings := RefreshSettings;
   end;
 end;
 

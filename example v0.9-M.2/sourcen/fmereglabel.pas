@@ -5,15 +5,9 @@ unit fmereglabel;
 interface
 
 uses
-  Classes,
-  SysUtils,
-  FileUtil,
-  Forms,
-  Controls,
-  Graphics,
-  Dialogs,
   fmecustomcontrolframe,
-  reglabel, regedit;
+  reglabel,
+  regedit;
 
 type
 

@@ -112,11 +112,12 @@ begin
       Align := alClient;
 
       SetRegComponent(RegControl);
-    end;
 
-    // Buttonframe
-    CreateButtonFrame(nil, GetRootKeys, SetCanRead, SetCanWrite, SetDoWriteAdHoc,
-      SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData);
+      // Buttonframe
+      CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
+        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
+        GetDoSyncData);
+    end;
   end;
 end;
 
@@ -135,11 +136,12 @@ begin
       Align := alClient;
 
       SetRegComponent(RegControl);
-    end;
 
-    // Buttonframe
-    CreateButtonFrame(nil, GetRootKeys, SetCanRead, SetCanWrite, SetDoWriteAdHoc,
-      SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData);
+      // Buttonframe
+      CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
+        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
+        GetDoSyncData);
+    end;
   end;
 end;
 
@@ -167,11 +169,12 @@ begin
       Align := alClient;
 
       SetRegComponent(RegControl);
-    end;
 
-    // Buttonframe
-    CreateButtonFrame(nil, GetRootKeys, SetCanRead, SetCanWrite, SetDoWriteAdHoc,
-      SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData);
+      // Buttonframe
+      CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
+        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
+        GetDoSyncData);
+    end;
   end;
 end;
 
@@ -210,11 +213,12 @@ begin
       Align := alClient;
 
       SetRegComponent(RegControl);
-    end;
 
-    // Buttonframe
-    CreateButtonFrame(nil, GetRootKeys, SetCanRead, SetCanWrite, SetDoWriteAdHoc,
-      SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData);
+      // Buttonframe
+      CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
+        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
+        GetDoSyncData);
+    end;
   end;
 end;
 

@@ -5,13 +5,7 @@ unit fmereglabelproperties;
 interface
 
 uses
-  Classes,
-  SysUtils,
-  FileUtil,
-  Forms,
   Controls,
-  Graphics,
-  Dialogs,
   fmeregcontrolproperties,
   fmeregistrysettingsstringdefault,
   reglabel;
@@ -41,6 +35,8 @@ begin
 
     if Assigned(TRegLabel(self.RegComponent).RegistrySettings) then
       SetRegControlSettings(TRegLabel(self.RegComponent).RegistrySettings);
+
+    OnRefreshSettings := RefreshSettings;
   end;
 end;
 

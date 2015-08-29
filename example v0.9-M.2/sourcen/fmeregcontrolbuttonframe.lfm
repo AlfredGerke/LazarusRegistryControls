@@ -20,20 +20,20 @@ object RegControlButtonFrame: TRegControlButtonFrame
     TabOrder = 0
     object grbDialogs: TGroupBox
       Left = 5
-      Height = 75
+      Height = 97
       Top = 5
       Width = 310
       Align = alTop
       BorderSpacing.Around = 5
       Caption = ' Dialogs '
-      ClientHeight = 54
+      ClientHeight = 76
       ClientWidth = 306
       Font.CharSet = ANSI_CHARSET
       Font.Height = -13
       Font.Name = 'Arial'
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
-      Font.Style = [fsBold, fsUnderline]
+      Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
       object btnGetRootKeys: TSpeedButton
@@ -66,20 +66,20 @@ object RegControlButtonFrame: TRegControlButtonFrame
     end
     object grpProperties: TGroupBox
       Left = 5
-      Height = 150
-      Top = 85
+      Height = 128
+      Top = 107
       Width = 310
       Align = alClient
       BorderSpacing.Around = 5
       Caption = ' Properties '
-      ClientHeight = 129
+      ClientHeight = 107
       ClientWidth = 306
       Font.CharSet = ANSI_CHARSET
       Font.Height = -13
       Font.Name = 'Arial'
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
-      Font.Style = [fsBold, fsUnderline]
+      Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
       object cbxCanRead: TCheckBox

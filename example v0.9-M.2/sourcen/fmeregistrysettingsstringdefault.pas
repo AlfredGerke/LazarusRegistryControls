@@ -5,10 +5,7 @@ unit fmeregistrysettingsstringdefault;
 interface
 
 uses
-  Classes,
   SysUtils,
-  Controls,
-  Graphics,
   StdCtrls,
   ValEdit,
   fmecustomsettings,

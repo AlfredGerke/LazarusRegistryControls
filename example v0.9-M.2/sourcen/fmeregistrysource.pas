@@ -5,11 +5,10 @@ unit fmeregistrysource;
 interface
 
 uses
-  Classes,
-  SysUtils,
-  FileUtil,
   Forms,
-  Controls, ExtCtrls, StdCtrls, reglabel;
+  ExtCtrls,
+  StdCtrls,
+  reglabel;
 
 type
 

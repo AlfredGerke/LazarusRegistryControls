@@ -34,6 +34,8 @@ begin
 
     if Assigned(TRegListBox(self.RegComponent).RegistrySettings) then
       SetRegControlSettings(TRegListBox(self.RegComponent).RegistrySettings);
+
+    OnRefreshSettings := RefreshSettings;
   end;
 end;
 

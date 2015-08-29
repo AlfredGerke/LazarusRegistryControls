@@ -26,6 +26,7 @@ type
     FRegComponent: TComponent;
     FDoCreateRegistryProperties: boolean;
     FDoCreateCaptionSettings: boolean;
+    FOnRefreshSettings: TOnRefreshSettings;
 
     procedure CreateCaptionSettingsFrame;
   protected
@@ -52,6 +53,10 @@ type
     destructor Destroy; override;
 
     procedure SetRegComponent(AComponent: TComponent);
+
+    property OnRefreshSettings: TOnRefreshSettings
+      read FOnRefreshSettings
+      write FOnRefreshSettings;
   end;
 
 implementation
@@ -130,6 +135,7 @@ begin
 
   FDoCreateRegistryProperties := True;
   FDoCreateCaptionSettings := False;
+  FOnRefreshSettings := nil;
 
   _Initialize;
 end;

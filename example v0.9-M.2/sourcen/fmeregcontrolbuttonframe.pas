@@ -102,8 +102,8 @@ type
         write FOnGetDoWriteAdHoc;
 
       property OnGetDoSyncData: TOnGetBooleanProperty
-        read FOnGetDoWriteAdHoc
-        write FOnGetDoWriteAdHoc;
+        read FOnGetDoSyncData
+        write FOnGetDoSyncData;
   end;
 
 implementation
