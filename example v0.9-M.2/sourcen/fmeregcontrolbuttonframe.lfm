@@ -6,8 +6,8 @@ object RegControlButtonFrame: TRegControlButtonFrame
   ClientHeight = 240
   ClientWidth = 320
   TabOrder = 0
-  DesignLeft = 763
-  DesignTop = 406
+  DesignLeft = 840
+  DesignTop = 392
   object pnlWorkspace: TPanel
     Left = 0
     Height = 240
@@ -18,29 +18,155 @@ object RegControlButtonFrame: TRegControlButtonFrame
     ClientHeight = 240
     ClientWidth = 320
     TabOrder = 0
-    object SpeedButton1: TSpeedButton
-      Left = 8
-      Height = 22
+    object grbDialogs: TGroupBox
+      Left = 5
+      Height = 75
       Top = 5
-      Width = 23
-      Action = acGetRootKeys
-      Caption = '...'
-    end
-    object cbxEditRootKeys: TCheckBox
-      Left = 40
-      Height = 19
-      Top = 8
-      Width = 128
-      Caption = 'RootKeys bearbeiten'
+      Width = 310
+      Align = alTop
+      BorderSpacing.Around = 5
+      Caption = ' Dialogs '
+      ClientHeight = 54
+      ClientWidth = 306
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold, fsUnderline]
+      ParentFont = False
       TabOrder = 0
+      object btnGetRootKeys: TSpeedButton
+        Left = 8
+        Height = 22
+        Top = 5
+        Width = 128
+        Action = acGetRootKeys
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+      end
+      object cbxEditRootKeys: TCheckBox
+        Left = 8
+        Height = 19
+        Top = 32
+        Width = 97
+        Caption = 'Edit RootKeys'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        TabOrder = 0
+      end
+    end
+    object grpProperties: TGroupBox
+      Left = 5
+      Height = 150
+      Top = 85
+      Width = 310
+      Align = alClient
+      BorderSpacing.Around = 5
+      Caption = ' Properties '
+      ClientHeight = 129
+      ClientWidth = 306
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold, fsUnderline]
+      ParentFont = False
+      TabOrder = 1
+      object cbxCanRead: TCheckBox
+        Left = 8
+        Height = 19
+        Top = 8
+        Width = 73
+        Action = acCanRead
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        TabOrder = 0
+      end
+      object cbxCanWrite: TCheckBox
+        Left = 8
+        Height = 19
+        Top = 30
+        Width = 71
+        Action = acCanWrite
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        TabOrder = 1
+      end
+      object cbxDoWriteAdHoc: TCheckBox
+        Left = 8
+        Height = 19
+        Top = 52
+        Width = 100
+        Action = acDoWriteAdHoc
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        TabOrder = 2
+      end
+      object cbxDoSyncData: TCheckBox
+        Left = 8
+        Height = 19
+        Top = 76
+        Width = 88
+        Action = acDoSyncData
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        TabOrder = 3
+      end
     end
   end
   object acList: TActionList
-    left = 216
-    top = 96
+    left = 240
+    top = 136
     object acGetRootKeys: TAction
-      Caption = 'GetRootKeys'
+      Category = 'Dialogs'
+      Caption = 'Rootkeys'
       OnExecute = acGetRootKeysExecute
+    end
+    object acCanRead: TAction
+      Category = 'Properties'
+      Caption = 'CanRead'
+      OnExecute = acCanReadExecute
+    end
+    object acCanWrite: TAction
+      Category = 'Properties'
+      Caption = 'CanWrite'
+      OnExecute = acCanWriteExecute
+    end
+    object acDoWriteAdHoc: TAction
+      Category = 'Properties'
+      Caption = 'DoWriteAdHoc'
+      OnExecute = acDoWriteAdHocExecute
+    end
+    object acDoSyncData: TAction
+      Category = 'Properties'
+      Caption = 'DoSyncData'
+      OnExecute = acDoSyncDataExecute
     end
   end
 end

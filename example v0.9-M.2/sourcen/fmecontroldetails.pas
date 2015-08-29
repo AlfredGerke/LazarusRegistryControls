@@ -49,7 +49,16 @@ type
     procedure CreateTRegValueListEditorFrame;
     procedure CreateTRegLabelFrame;
 
-    procedure CreateButtonFrame(aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys);
+    procedure CreateButtonFrame(aRefreshSettings: TRegControlProperties.TOnRefreshSettings;
+                                aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys;
+                                aSetCanRead: TRegControlButtonFrame.TOnSetBooleanProperty;
+                                aSetCanWrite: TRegControlButtonFrame.TOnSetBooleanProperty;
+                                aSetDoWriteAdHoc: TRegControlButtonFrame.TOnSetBooleanProperty;
+                                aSetDoSyncData: TRegControlButtonFrame.TOnSetBooleanProperty;
+                                aGetCanRead: TRegControlButtonFrame.TOnGetBooleanProperty;
+                                aGetCanWrite: TRegControlButtonFrame.TOnGetBooleanProperty;
+                                aGetDoWriteAdHoc: TRegControlButtonFrame.TOnGetBooleanProperty;
+                                aGetDoSyncData: TRegControlButtonFrame.TOnGetBooleanProperty);
     procedure FreeControlFrame;
     procedure FreePropertiesFrame;
     procedure FreeButtonFrame;
@@ -106,7 +115,8 @@ begin
     end;
 
     // Buttonframe
-    CreateButtonFrame(GetRootKeys);
+    CreateButtonFrame(nil, GetRootKeys, SetCanRead, SetCanWrite, SetDoWriteAdHoc,
+      SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData);
   end;
 end;
 
@@ -128,7 +138,8 @@ begin
     end;
 
     // Buttonframe
-    CreateButtonFrame(GetRootKeys);
+    CreateButtonFrame(nil, GetRootKeys, SetCanRead, SetCanWrite, SetDoWriteAdHoc,
+      SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData);
   end;
 end;
 
@@ -159,7 +170,8 @@ begin
     end;
 
     // Buttonframe
-    CreateButtonFrame(GetRootKeys);
+    CreateButtonFrame(nil, GetRootKeys, SetCanRead, SetCanWrite, SetDoWriteAdHoc,
+      SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData);
   end;
 end;
 
@@ -201,11 +213,22 @@ begin
     end;
 
     // Buttonframe
-    CreateButtonFrame(GetRootKeys);
+    CreateButtonFrame(nil, GetRootKeys, SetCanRead, SetCanWrite, SetDoWriteAdHoc,
+      SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData);
   end;
 end;
 
-procedure TControlDetails.CreateButtonFrame(aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys);
+procedure TControlDetails.CreateButtonFrame(
+  aRefreshSettings: TRegControlProperties.TOnRefreshSettings;
+  aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys;
+  aSetCanRead: TRegControlButtonFrame.TOnSetBooleanProperty;
+  aSetCanWrite: TRegControlButtonFrame.TOnSetBooleanProperty;
+  aSetDoWriteAdHoc: TRegControlButtonFrame.TOnSetBooleanProperty;
+  aSetDoSyncData: TRegControlButtonFrame.TOnSetBooleanProperty;
+  aGetCanRead: TRegControlButtonFrame.TOnGetBooleanProperty;
+  aGetCanWrite: TRegControlButtonFrame.TOnGetBooleanProperty;
+  aGetDoWriteAdHoc: TRegControlButtonFrame.TOnGetBooleanProperty;
+  aGetDoSyncData: TRegControlButtonFrame.TOnGetBooleanProperty);
 begin
   with TRegControlButtonFrame.Create(pnlButton) do
   begin
@@ -213,6 +236,20 @@ begin
     Align := alClient;
 
     OnGetRootKeys := aGetRootKeys;
+
+    OnSetCanRead := aSetCanRead;
+    OnSetCanWrite := aSetCanWrite;
+    OnSetDoSyncData := aSetDoSyncData;
+    OnSetDoWriteAdHoc := aSetDoWriteAdHoc;
+
+    OnGetCanRead := aGetCanRead;
+    OnGetCanWrite := aGetCanWrite;
+    OnGetDoSyncData := aGetDoSyncData;
+    OnGetDoWriteAdHoc := aGetDoWriteAdHoc;
+
+    OnRefreshSettings := aRefreshSettings;
+
+    Refresh;
   end;
 end;
 

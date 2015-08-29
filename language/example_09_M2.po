@@ -64,17 +64,37 @@ msgctxt "TREGCONTROLBOOLEANDEFAULTSETTINGS.LBLREGISTRYSETTINGS.CAPTION"
 msgid "Registry-Settings"
 msgstr ""
 
+#: tregcontrolbuttonframe.accanread.caption
+msgid "CanRead"
+msgstr ""
+
+#: tregcontrolbuttonframe.accanwrite.caption
+msgid "CanWrite"
+msgstr ""
+
+#: tregcontrolbuttonframe.acdosyncdata.caption
+msgctxt "TREGCONTROLBUTTONFRAME.ACDOSYNCDATA.CAPTION"
+msgid "DoSyncData"
+msgstr ""
+
+#: tregcontrolbuttonframe.acdowriteadhoc.caption
+msgid "DoWriteAdHoc"
+msgstr ""
+
 #: tregcontrolbuttonframe.acgetrootkeys.caption
-msgid "GetRootKeys"
+msgid "Rootkeys"
 msgstr ""
 
 #: tregcontrolbuttonframe.cbxeditrootkeys.caption
-msgid "RootKeys bearbeiten"
+msgid "Edit RootKeys"
 msgstr ""
 
-#: tregcontrolbuttonframe.speedbutton1.caption
-msgctxt "tregcontrolbuttonframe.speedbutton1.caption"
-msgid "..."
+#: tregcontrolbuttonframe.grbdialogs.caption
+msgid " Dialogs "
+msgstr ""
+
+#: tregcontrolbuttonframe.grpproperties.caption
+msgid " Properties "
 msgstr ""
 
 #: tregcontrolcaptionsettings.lblcaptionsettings.caption

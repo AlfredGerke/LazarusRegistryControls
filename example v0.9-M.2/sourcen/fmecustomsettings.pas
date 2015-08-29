@@ -21,6 +21,8 @@ type
   protected
     procedure _Initialize; virtual;
   public
+    procedure RefreshSettings;
+
     constructor Create(aOwner: TComponent); override;
 
     procedure SetRegControlSettings(aControlSettings: _T);
@@ -44,6 +46,12 @@ begin
   //
 end;
 
+procedure TCustomRegControlSettings<_T>.RefreshSettings;
+begin
+  if Assigned(FOnSetSettings) then
+    FOnSetSettings(FRegControlSettings);
+end;
+
 constructor TCustomRegControlSettings<_T>.Create(aOwner: TComponent);
 begin
   inherited Create(aOwner);
@@ -56,8 +64,7 @@ procedure TCustomRegControlSettings<_T>.SetRegControlSettings(
 begin
   FRegControlSettings := aControlSettings;
 
-  if Assigned(FOnSetSettings) then
-    FOnSetSettings(FRegControlSettings);
+  RefreshSettings;
 end;
 
 end.

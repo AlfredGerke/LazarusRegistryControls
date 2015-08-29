@@ -157,6 +157,7 @@
         <Filename Value="sourcen\fmeregcontrolbuttonframe.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="RegControlButtonFrame"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit14>
       <Unit15>
