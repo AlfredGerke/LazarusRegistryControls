@@ -13,6 +13,10 @@ msgstr ""
 msgid "RegCheckBox1"
 msgstr ""
 
+#: tcontrolregcheckgroup.regcheckgroup1.caption
+msgid "RegCheckGroup1"
+msgstr ""
+
 #: tcontrolregcomobbox.regcombobox1.text
 msgid "RegComboBox1"
 msgstr ""

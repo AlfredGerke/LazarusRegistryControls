@@ -33,7 +33,7 @@ inherited ControlRegRadioButton: TControlRegRadioButton
     RegistrySettings.CanWrite = True
     RegistrySettings.DoWriteAdHoc = True
     RegistrySettings.GroupIndex = 0
-    RegistrySettings.DoSyncData = True
+    RegistrySettings.DoSyncData = False
     RegistrySettings.Default = False
     RegistrySettings.Section = 'TRegRadioButton'
     RegistrySettings.Ident = 'Key2'

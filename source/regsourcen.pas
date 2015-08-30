@@ -561,11 +561,11 @@ var
   msg: TLMessage;
 begin
   // löst Hint: Local variable "msg" does not seem to be initialized
-  msg.Result:=0;
+  msg.Result := 0;
   FillChar(msg, SizeOf(msg), #0);
   msg.Msg := aMessageConst;
-  msg.lParam:=AGroupIndex;
-  msg.wParam:=aWParam;
+  msg.lParam := AGroupIndex;
+  msg.wParam := aWParam;
   for anz := FClientList.count-1 downto 0 do
   begin
     if Assigned(FClientList.Objects[anz]) then

@@ -1,0 +1,23 @@
+inherited ControlRegCheckListBox: TControlRegCheckListBox
+  object RegCheckListBox1: TRegCheckListBox[0]
+    Left = 5
+    Height = 230
+    Top = 5
+    Width = 310
+    Align = alClient
+    BorderSpacing.Around = 5
+    ItemHeight = 0
+    TabOrder = 0
+    RegistrySettings.CanRead = True
+    RegistrySettings.CanWrite = True
+    RegistrySettings.DoWriteAdHoc = True
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = True
+    RegistrySettings.Default = 0
+    RegistrySettings.Section = 'TRegCheckListBox'
+    RegistrySettings.ItemsByRegistry = True
+    RegistrySettings.ListSection = 'TRegCheckListBoxItems'
+    RegistrySettings.DoMergeData = True
+    RegistrySource = RegistrySourceModule.rsRegistrySource
+  end
+end

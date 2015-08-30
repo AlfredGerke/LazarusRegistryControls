@@ -27,7 +27,11 @@ uses
   fmeregcombobox,
   fmeregcomboboxproperties,
   fmeregradiogroup,
-  fmeregradiogroupproperties;
+  fmeregradiogroupproperties,
+  fmeregchecklistbox,
+  fmeregchecklistboxproperties,
+  fmeregcheckgroup,
+  fmeregcheckgroupproperties;
 
 type
 
@@ -249,12 +253,50 @@ end;
 
 procedure TControlDetails.CreateTRegCheckListBoxFrame;
 begin
+  // ControlFrame
+  with TControlRegCheckListBox.Create(pnlLeft) do
+  begin
+    Parent := pnlLeft;
+    Align := alClient;
 
+    // PropertiesFrame
+    with TRegCheckListBoxProperties.Create(pnlClient) do
+    begin
+      Parent := pnlClient;
+      Align := alClient;
+
+      SetRegComponent(RegControl);
+
+      // Buttonframe
+      CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
+        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
+        GetDoSyncData);
+    end;
+  end;
 end;
 
 procedure TControlDetails.CreateTRegCheckGroupBoxFrame;
 begin
+  // ControlFrame
+  with TControlRegCheckGroup.Create(pnlLeft) do
+  begin
+    Parent := pnlLeft;
+    Align := alClient;
 
+    // PropertiesFrame
+    with TRegCheckGroupProperties.Create(pnlClient) do
+    begin
+      Parent := pnlClient;
+      Align := alClient;
+
+      SetRegComponent(RegControl);
+
+      // Buttonframe
+      CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
+        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
+        GetDoSyncData);
+    end;
+  end;
 end;
 
 procedure TControlDetails.CreateTRegValueListEditorFrame;

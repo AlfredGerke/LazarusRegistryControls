@@ -54,7 +54,7 @@
         <PackageName Value="LCL"/>
       </Item5>
     </RequiredPackages>
-    <Units Count="30">
+    <Units Count="34">
       <Unit0>
         <Filename Value="example_09_M2.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -265,6 +265,34 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit29>
+      <Unit30>
+        <Filename Value="sourcen\fmeregchecklistbox.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ControlRegCheckListBox"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="sourcen\fmeregchecklistboxproperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RegCheckListBoxProperties"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="sourcen\fmeregcheckgroup.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ControlRegCheckGroup"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="sourcen\fmeregcheckgroupproperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RegCheckGroupProperties"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit33>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

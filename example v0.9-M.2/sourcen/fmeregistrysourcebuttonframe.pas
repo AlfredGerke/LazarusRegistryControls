@@ -213,17 +213,18 @@ begin
     WriteInteger('TRegRadioGroup', 'index', 0);
     WriteString('TRegRadioGroup', 'Caption', 'Standardcaption');
 
-    WriteBool('TRegCheckListBox', 'Key1', True);
-    WriteBool('TRegCheckListBox', 'Key2', True);
-    WriteBool('TRegCheckListBox', 'Key3', True);
-    WriteBool('TRegCheckListBox', 'Key4', True);
-    WriteBool('TRegCheckListBox', 'Key5', True);
+    WriteBool('TRegCheckListBoxItems', 'Key1', True);
+    WriteBool('TRegCheckListBoxItems', 'Key2', True);
+    WriteBool('TRegCheckListBoxItems', 'Key3', True);
+    WriteBool('TRegCheckListBoxItems', 'Key4', True);
+    WriteBool('TRegCheckListBoxItems', 'Key5', True);
+    WriteInteger('TRegCheckListBox', 'Index', 0);
 
     WriteBool('TRegCheckGroupBoxItems', 'Key1', True);
-    WriteBool('TRegCheckGroupBoxItems', 'Key1', True);
-    WriteBool('TRegCheckGroupBoxItems', 'Key1', True);
-    WriteBool('TRegCheckGroupBoxItems', 'Key1', True);
-    WriteBool('TRegCheckGroupBoxItems', 'Key1', True);
+    WriteBool('TRegCheckGroupBoxItems', 'Key2', True);
+    WriteBool('TRegCheckGroupBoxItems', 'Key3', True);
+    WriteBool('TRegCheckGroupBoxItems', 'Key4', True);
+    WriteBool('TRegCheckGroupBoxItems', 'Key5', True);
     WriteInteger('TRegCheckGroupBox', 'Index', 0);
     WriteString('TRegCheckGroupBox', 'Caption', 'Standardcaption');
 
