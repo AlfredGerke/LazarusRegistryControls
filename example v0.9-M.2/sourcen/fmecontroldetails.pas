@@ -23,7 +23,11 @@ uses
   fmereglabel,
   fmereglabelproperties,
   fmeregradiobutton,
-  fmeregradiobuttonproperties;
+  fmeregradiobuttonproperties,
+  fmeregcombobox,
+  fmeregcomboboxproperties,
+  fmeregradiogroup,
+  fmeregradiogroupproperties;
 
 type
 
@@ -173,7 +177,26 @@ end;
 
 procedure TControlDetails.CreateTRegRadioGroupFrame;
 begin
+  // ControlFrame
+  with TControlRegRadioGroup.Create(pnlLeft) do
+  begin
+    Parent := pnlLeft;
+    Align := alClient;
 
+    // PropertiesFrame
+    with TRegRadioGroupProperties.Create(pnlClient) do
+    begin
+      Parent := pnlClient;
+      Align := alClient;
+
+      SetRegComponent(RegControl);
+
+      // Buttonframe
+      CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
+        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
+        GetDoSyncData);
+    end;
+  end;
 end;
 
 procedure TControlDetails.CreateTRegEditFrame;
@@ -202,7 +225,26 @@ end;
 
 procedure TControlDetails.CreateTRegComboBoxFrame;
 begin
+  // ControlFrame
+  with TControlRegComobBox.Create(pnlLeft) do
+  begin
+    Parent := pnlLeft;
+    Align := alClient;
 
+    // PropertiesFrame
+    with TRegComboBoxProperties.Create(pnlClient) do
+    begin
+      Parent := pnlClient;
+      Align := alClient;
+
+      SetRegComponent(RegControl);
+
+      // Buttonframe
+      CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
+        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
+        GetDoSyncData);
+    end;
+  end;
 end;
 
 procedure TControlDetails.CreateTRegCheckListBoxFrame;

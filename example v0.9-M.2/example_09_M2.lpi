@@ -54,7 +54,7 @@
         <PackageName Value="LCL"/>
       </Item5>
     </RequiredPackages>
-    <Units Count="25">
+    <Units Count="29">
       <Unit0>
         <Filename Value="example_09_M2.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -230,6 +230,34 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit24>
+      <Unit25>
+        <Filename Value="sourcen\fmeregcombobox.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ControlRegComobBox"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="sourcen\fmeregcomboboxproperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RegComboBoxProperties"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="sourcen\fmeregradiogroup.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ControlRegRadioGroup"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="sourcen\fmeregradiogroupproperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RegRadioGroupProperties"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit28>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -2,18 +2,38 @@ program example_09_M2;
 
 {$mode Delphi}{$H+}
 
-uses
-  {$IFDEF UNIX}{$IFDEF UseCThreads}
-  cthreads,
-  {$ENDIF}{$ENDIF}
+uses {$IFDEF UNIX} {$IFDEF UseCThreads}
+  cthreads, {$ENDIF} {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, datRegistry, frmMain, fmeControlDetails, fmecustomcontrolframe, fmecustomsettings,
-  fmeregcontrolproperties, fmeregcontrolcaptionsettings, fmereglistbox, fmereglistboxproperties,
-  fmeregcheckbox, fmeregcheckboxproperties, fmeregistrysettingsbooleandefault,
-  fmeregistrylistsettings, fmeregcontrolbuttonframe, fmeregistrysource, fmeregistrysourceproperties,
-  fmeregistrysourcebuttonframe, fmeregedit, fmeregeditproperties, 
-fmeregistrysettingsstringdefault, fmereglabel, fmereglabelproperties, fmeregradiobutton, 
-fmeregradiobuttonproperties;
+  Forms,
+  datRegistry,
+  frmMain,
+  fmeControlDetails,
+  fmecustomcontrolframe,
+  fmecustomsettings,
+  fmeregcontrolproperties,
+  fmeregcontrolcaptionsettings,
+  fmereglistbox,
+  fmereglistboxproperties,
+  fmeregcheckbox,
+  fmeregcheckboxproperties,
+  fmeregistrysettingsbooleandefault,
+  fmeregistrylistsettings,
+  fmeregcontrolbuttonframe,
+  fmeregistrysource,
+  fmeregistrysourceproperties,
+  fmeregistrysourcebuttonframe,
+  fmeregedit,
+  fmeregeditproperties,
+  fmeregistrysettingsstringdefault,
+  fmereglabel,
+  fmereglabelproperties,
+  fmeregradiobutton,
+  fmeregradiobuttonproperties,
+  fmeregcombobox,
+  fmeregcomboboxproperties,
+  fmeregradiogroup,
+  fmeregradiogroupproperties;
 
 {$R *.res}
 
@@ -24,4 +44,3 @@ begin
   Application.CreateForm(TRegistrySourceModule, RegistrySourceModule);
   Application.Run;
 end.
-
