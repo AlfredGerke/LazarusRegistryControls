@@ -33,7 +33,8 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   fmeregcombobox,
   fmeregcomboboxproperties,
   fmeregradiogroup,
-  fmeregradiogroupproperties;
+  fmeregradiogroupproperties,
+  fmeregistrysettingscheckedlist;
 
 {$R *.res}
 

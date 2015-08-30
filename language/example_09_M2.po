@@ -136,6 +136,11 @@ msgstr ""
 msgid "pnlCaptionSettings"
 msgstr ""
 
+#: tregcontrolsettingscheckedlist.lblregistrysettings.caption
+msgctxt "TREGCONTROLSETTINGSCHECKEDLIST.LBLREGISTRYSETTINGS.CAPTION"
+msgid "Registry-Settings"
+msgstr ""
+
 #: tregcontrolstringdefault.lblregistrysettings.caption
 msgctxt "TREGCONTROLSTRINGDEFAULT.LBLREGISTRYSETTINGS.CAPTION"
 msgid "Registry-Settings"
