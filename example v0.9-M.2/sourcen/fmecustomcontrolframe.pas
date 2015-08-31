@@ -25,15 +25,17 @@ type
 
     procedure GetRootKeys(aEdit: boolean);
 
-    procedure SetCanRead(AValue: boolean);
-    procedure SetCanWrite(AValue: boolean);
-    procedure SetDoWriteAdHoc(AValue: boolean);
-    procedure SetDoSyncData(AValue: boolean);
+    procedure SetCanRead(aValue: boolean);
+    procedure SetCanWrite(aValue: boolean);
+    procedure SetDoWriteAdHoc(aValue: boolean);
+    procedure SetDoSyncData(aValue: boolean);
+    procedure SetGroupIndex(aValue: integer);
 
     function GetCanRead: boolean;
     function GetCanWrite: boolean;
     function GetDoWriteAdHoc: boolean;
     function GetDoSyncData: boolean;
+    function GetGroupIndex: integer;
 
     property RegControl: _T
       read FRegControl;
@@ -83,24 +85,29 @@ begin
   end;
 end;
 
-procedure TCustomRegControlFrame<_T>.SetCanRead(AValue: boolean);
+procedure TCustomRegControlFrame<_T>.SetCanRead(aValue: boolean);
 begin
-  FRegControl.RegistrySettings.CanRead := AValue;
+  FRegControl.RegistrySettings.CanRead := aValue;
 end;
 
-procedure TCustomRegControlFrame<_T>.SetCanWrite(AValue: boolean);
+procedure TCustomRegControlFrame<_T>.SetCanWrite(aValue: boolean);
 begin
-  FRegControl.RegistrySettings.CanWrite := AValue;
+  FRegControl.RegistrySettings.CanWrite := aValue;
 end;
 
-procedure TCustomRegControlFrame<_T>.SetDoWriteAdHoc(AValue: boolean);
+procedure TCustomRegControlFrame<_T>.SetDoWriteAdHoc(aValue: boolean);
 begin
-  FRegControl.RegistrySettings.DoWriteAdHoc := AValue;
+  FRegControl.RegistrySettings.DoWriteAdHoc := aValue;
 end;
 
-procedure TCustomRegControlFrame<_T>.SetDoSyncData(AValue: boolean);
+procedure TCustomRegControlFrame<_T>.SetDoSyncData(aValue: boolean);
 begin
-  FRegControl.RegistrySettings.DoSyncData := AValue;
+  FRegControl.RegistrySettings.DoSyncData := aValue;
+end;
+
+procedure TCustomRegControlFrame<_T>.SetGroupIndex(aValue: integer);
+begin
+ FRegControl.RegistrySettings.GroupIndex := aValue;
 end;
 
 function TCustomRegControlFrame<_T>.GetCanRead: boolean;
@@ -121,6 +128,11 @@ end;
 function TCustomRegControlFrame<_T>.GetDoSyncData: boolean;
 begin
   Result := FRegControl.RegistrySettings.DoSyncData;
+end;
+
+function TCustomRegControlFrame<_T>.GetGroupIndex: integer;
+begin
+  Result := FRegControl.RegistrySettings.GroupIndex;
 end;
 
 end.

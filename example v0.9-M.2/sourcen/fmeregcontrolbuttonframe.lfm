@@ -1,21 +1,21 @@
 object RegControlButtonFrame: TRegControlButtonFrame
   Left = 0
-  Height = 240
+  Height = 275
   Top = 0
   Width = 320
-  ClientHeight = 240
+  ClientHeight = 275
   ClientWidth = 320
   TabOrder = 0
   DesignLeft = 840
   DesignTop = 392
   object pnlWorkspace: TPanel
     Left = 0
-    Height = 240
+    Height = 275
     Top = 0
     Width = 320
     Align = alClient
     BevelOuter = bvNone
-    ClientHeight = 240
+    ClientHeight = 275
     ClientWidth = 320
     TabOrder = 0
     object grbDialogs: TGroupBox
@@ -66,13 +66,13 @@ object RegControlButtonFrame: TRegControlButtonFrame
     end
     object grpProperties: TGroupBox
       Left = 5
-      Height = 128
+      Height = 163
       Top = 107
       Width = 310
       Align = alClient
       BorderSpacing.Around = 5
       Caption = ' Properties '
-      ClientHeight = 107
+      ClientHeight = 142
       ClientWidth = 306
       Font.CharSet = ANSI_CHARSET
       Font.Height = -13
@@ -138,11 +138,53 @@ object RegControlButtonFrame: TRegControlButtonFrame
         ParentFont = False
         TabOrder = 3
       end
+      object edtGroupIndex: TSpinEdit
+        Left = 192
+        Height = 23
+        Top = 8
+        Width = 66
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnChange = acSetGroupIndexExecute
+        ParentFont = False
+        TabOrder = 4
+      end
+      object lblGroupIndex: TLabel
+        Left = 122
+        Height = 15
+        Top = 12
+        Width = 66
+        Caption = 'GroupIndex:'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object cbxDoMergeData: TCheckBox
+        Left = 8
+        Height = 19
+        Top = 99
+        Width = 96
+        Action = acDoMergeData
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        TabOrder = 5
+      end
     end
   end
   object acList: TActionList
-    left = 240
-    top = 136
+    left = 264
+    top = 200
     object acGetRootKeys: TAction
       Category = 'Dialogs'
       Caption = 'Rootkeys'
@@ -167,6 +209,16 @@ object RegControlButtonFrame: TRegControlButtonFrame
       Category = 'Properties'
       Caption = 'DoSyncData'
       OnExecute = acDoSyncDataExecute
+    end
+    object acDoMergeData: TAction
+      Category = 'Properties'
+      Caption = 'DoMergeData'
+      OnExecute = acDoMergeDataExecute
+    end
+    object acSetGroupIndex: TAction
+      Category = 'Properties'
+      Caption = 'Set GroupIndex'
+      OnExecute = acSetGroupIndexExecute
     end
   end
 end

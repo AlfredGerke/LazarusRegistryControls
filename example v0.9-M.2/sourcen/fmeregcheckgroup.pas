@@ -16,6 +16,9 @@ type
     RegCheckGroup1: TRegCheckGroup;
   protected
     procedure _Initialize; override;
+  public
+    procedure SetDoMergeData(aValue: boolean);
+    function GetDoMergeData: boolean;
   end;
 
 implementation
@@ -29,6 +32,15 @@ begin
   SetRegControl(RegCheckGroup1);
 end;
 
+procedure TControlRegCheckGroup.SetDoMergeData(aValue: boolean);
+begin
+  RegControl.RegistrySettings.DoMergeData := aValue;
+end;
+
+function TControlRegCheckGroup.GetDoMergeData: boolean;
+begin
+  Result := RegControl.RegistrySettings.DoMergeData;
+end;
 
 end.
 

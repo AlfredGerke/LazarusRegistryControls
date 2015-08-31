@@ -93,6 +93,10 @@ msgstr ""
 msgid "CanWrite"
 msgstr ""
 
+#: tregcontrolbuttonframe.acdomergedata.caption
+msgid "DoMergeData"
+msgstr ""
+
 #: tregcontrolbuttonframe.acdosyncdata.caption
 msgctxt "TREGCONTROLBUTTONFRAME.ACDOSYNCDATA.CAPTION"
 msgid "DoSyncData"
@@ -106,6 +110,10 @@ msgstr ""
 msgid "Rootkeys"
 msgstr ""
 
+#: tregcontrolbuttonframe.acsetgroupindex.caption
+msgid "Set GroupIndex"
+msgstr ""
+
 #: tregcontrolbuttonframe.cbxeditrootkeys.caption
 msgid "Edit RootKeys"
 msgstr ""
@@ -116,6 +124,10 @@ msgstr ""
 
 #: tregcontrolbuttonframe.grpproperties.caption
 msgid " Properties "
+msgstr ""
+
+#: tregcontrolbuttonframe.lblgroupindex.caption
+msgid "GroupIndex:"
 msgstr ""
 
 #: tregcontrolcaptionsettings.lblcaptionsettings.caption
@@ -142,6 +154,11 @@ msgstr ""
 
 #: tregcontrolsettingscheckedlist.lblregistrysettings.caption
 msgctxt "TREGCONTROLSETTINGSCHECKEDLIST.LBLREGISTRYSETTINGS.CAPTION"
+msgid "Registry-Settings"
+msgstr ""
+
+#: tregcontrolsettingsvaluelist.lblregistrysettings.caption
+msgctxt "TREGCONTROLSETTINGSVALUELIST.LBLREGISTRYSETTINGS.CAPTION"
 msgid "Registry-Settings"
 msgstr ""
 

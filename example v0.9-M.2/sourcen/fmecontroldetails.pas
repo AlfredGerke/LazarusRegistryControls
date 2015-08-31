@@ -31,7 +31,9 @@ uses
   fmeregchecklistbox,
   fmeregchecklistboxproperties,
   fmeregcheckgroup,
-  fmeregcheckgroupproperties;
+  fmeregcheckgroupproperties,
+  fmeregvaluelisteditor,
+  fmeregvaluelisteditorproperties;
 
 type
 
@@ -59,16 +61,33 @@ type
     procedure CreateTRegValueListEditorFrame;
     procedure CreateTRegLabelFrame;
 
-    procedure CreateButtonFrame(aRefreshSettings: TRegControlProperties.TOnRefreshSettings;
-                                aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys;
-                                aSetCanRead: TRegControlButtonFrame.TOnSetBooleanProperty;
-                                aSetCanWrite: TRegControlButtonFrame.TOnSetBooleanProperty;
-                                aSetDoWriteAdHoc: TRegControlButtonFrame.TOnSetBooleanProperty;
-                                aSetDoSyncData: TRegControlButtonFrame.TOnSetBooleanProperty;
-                                aGetCanRead: TRegControlButtonFrame.TOnGetBooleanProperty;
-                                aGetCanWrite: TRegControlButtonFrame.TOnGetBooleanProperty;
-                                aGetDoWriteAdHoc: TRegControlButtonFrame.TOnGetBooleanProperty;
-                                aGetDoSyncData: TRegControlButtonFrame.TOnGetBooleanProperty);
+    procedure CreateButtonFrame(aRefreshSettings:
+      TRegControlProperties.TOnRefreshSettings;
+      aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys;
+      aSetCanRead:
+      TRegControlButtonFrame.TOnSetBooleanProperty;
+      aSetCanWrite:
+      TRegControlButtonFrame.TOnSetBooleanProperty;
+      aSetDoWriteAdHoc:
+      TRegControlButtonFrame.TOnSetBooleanProperty;
+      aSetDoSyncData:
+      TRegControlButtonFrame.TOnSetBooleanProperty;
+      aSetDoMergeData:
+      TRegControlButtonFrame.TOnSetBooleanProperty;
+      aSetGroupIndex:
+      TRegControlButtonFrame.TOnSetIntegerProperty;
+      aGetCanRead:
+      TRegControlButtonFrame.TOnGetBooleanProperty;
+      aGetCanWrite:
+      TRegControlButtonFrame.TOnGetBooleanProperty;
+      aGetDoWriteAdHoc:
+      TRegControlButtonFrame.TOnGetBooleanProperty;
+      aGetDoSyncData:
+      TRegControlButtonFrame.TOnGetBooleanProperty;
+      aGetDoMergeData:
+      TRegControlButtonFrame.TOnGetBooleanProperty;
+      aGetGroupIndex:
+      TRegControlButtonFrame.TOnGetIntegerProperty);
     procedure FreeControlFrame;
     procedure FreePropertiesFrame;
     procedure FreeButtonFrame;
@@ -125,8 +144,9 @@ begin
 
       // Buttonframe
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
-        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
-        GetDoSyncData);
+        SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
+        GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
+        GetGroupIndex);
     end;
   end;
 end;
@@ -149,8 +169,8 @@ begin
 
       // Buttonframe
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
-        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
-        GetDoSyncData);
+        SetDoWriteAdHoc, SetDoSyncData, nil, SetGroupIndex, GetCanRead,
+        GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, nil, GetGroupIndex);
     end;
   end;
 end;
@@ -173,8 +193,8 @@ begin
 
       // Buttonframe
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
-        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
-        GetDoSyncData);
+        SetDoWriteAdHoc, SetDoSyncData, nil, SetGroupIndex, GetCanRead,
+        GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, nil, GetGroupIndex);
     end;
   end;
 end;
@@ -197,8 +217,9 @@ begin
 
       // Buttonframe
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
-        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
-        GetDoSyncData);
+        SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
+        GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
+        GetGroupIndex);
     end;
   end;
 end;
@@ -221,8 +242,8 @@ begin
 
       // Buttonframe
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
-        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
-        GetDoSyncData);
+        SetDoWriteAdHoc, SetDoSyncData, nil, SetGroupIndex, GetCanRead,
+        GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, nil, getGroupIndex);
     end;
   end;
 end;
@@ -245,8 +266,9 @@ begin
 
       // Buttonframe
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
-        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
-        GetDoSyncData);
+        SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
+        GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
+        GetGroupIndex);
     end;
   end;
 end;
@@ -269,8 +291,9 @@ begin
 
       // Buttonframe
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
-        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
-        GetDoSyncData);
+        SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
+        GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
+        GetGroupIndex);
     end;
   end;
 end;
@@ -293,15 +316,36 @@ begin
 
       // Buttonframe
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
-        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
-        GetDoSyncData);
+        SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
+        GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
+        GetGroupIndex);
     end;
   end;
 end;
 
 procedure TControlDetails.CreateTRegValueListEditorFrame;
 begin
+  // ControlFrame
+  with TControlRegValueListEditor.Create(pnlLeft) do
+  begin
+    Parent := pnlLeft;
+    Align := alClient;
 
+    // PropertiesFrame
+    with TRegValueListEditorProperties.Create(pnlClient) do
+    begin
+      Parent := pnlClient;
+      Align := alClient;
+
+      SetRegComponent(RegControl);
+
+      // Buttonframe
+      CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
+        SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
+        GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
+        GetGroupIndex);
+    end;
+  end;
 end;
 
 procedure TControlDetails.CreateTRegLabelFrame;
@@ -322,8 +366,8 @@ begin
 
       // Buttonframe
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
-        SetDoWriteAdHoc, SetDoSyncData, GetCanRead, GetCanWrite, GetDoWriteAdHoc,
-        GetDoSyncData);
+        SetDoWriteAdHoc, SetDoSyncData, nil, SetGroupIndex, GetCanRead,
+        GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, nil, GetGroupIndex);
     end;
   end;
 end;
@@ -335,10 +379,14 @@ procedure TControlDetails.CreateButtonFrame(
   aSetCanWrite: TRegControlButtonFrame.TOnSetBooleanProperty;
   aSetDoWriteAdHoc: TRegControlButtonFrame.TOnSetBooleanProperty;
   aSetDoSyncData: TRegControlButtonFrame.TOnSetBooleanProperty;
+  aSetDoMergeData: TRegControlButtonFrame.TOnSetBooleanProperty;
+  aSetGroupIndex: TRegControlButtonFrame.TOnSetIntegerProperty;
   aGetCanRead: TRegControlButtonFrame.TOnGetBooleanProperty;
   aGetCanWrite: TRegControlButtonFrame.TOnGetBooleanProperty;
   aGetDoWriteAdHoc: TRegControlButtonFrame.TOnGetBooleanProperty;
-  aGetDoSyncData: TRegControlButtonFrame.TOnGetBooleanProperty);
+  aGetDoSyncData: TRegControlButtonFrame.TOnGetBooleanProperty;
+  aGetDoMergeData: TRegControlButtonFrame.TOnGetBooleanProperty;
+  aGetGroupIndex: TRegControlButtonFrame.TOnGetIntegerProperty);
 begin
   with TRegControlButtonFrame.Create(pnlButton) do
   begin
@@ -351,11 +399,15 @@ begin
     OnSetCanWrite := aSetCanWrite;
     OnSetDoSyncData := aSetDoSyncData;
     OnSetDoWriteAdHoc := aSetDoWriteAdHoc;
+    OnSetDoMergeData := aSetDoMergeData;
+    OnSetGroupIndex := aSetGroupIndex;
 
     OnGetCanRead := aGetCanRead;
     OnGetCanWrite := aGetCanWrite;
     OnGetDoSyncData := aGetDoSyncData;
     OnGetDoWriteAdHoc := aGetDoWriteAdHoc;
+    OnGetDoMergeData := aGetDoMergeData;
+    OnGetGroupIndex := aGetGroupIndex;
 
     OnRefreshSettings := aRefreshSettings;
 
@@ -420,4 +472,3 @@ end;
 
 
 end.
-

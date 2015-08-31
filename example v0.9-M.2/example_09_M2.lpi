@@ -54,7 +54,7 @@
         <PackageName Value="LCL"/>
       </Item5>
     </RequiredPackages>
-    <Units Count="34">
+    <Units Count="37">
       <Unit0>
         <Filename Value="example_09_M2.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -293,6 +293,27 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit33>
+      <Unit34>
+        <Filename Value="sourcen\fmeregvaluelisteditor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ControlRegValueListEditor"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="sourcen\fmeregistrysettingsvaluelist.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RegControlSettingsValueList"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="sourcen\fmeregvaluelisteditorproperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RegValueListEditorProperties"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit36>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

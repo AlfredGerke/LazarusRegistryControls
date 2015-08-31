@@ -23,6 +23,9 @@ type
     RegComboBox1: TRegComboBox;
   protected
     procedure _Initialize; override;
+  public
+    procedure SetDoMergeData(aValue: boolean);
+    function GetDoMergeData: boolean;
   end;
 
 implementation
@@ -34,6 +37,16 @@ begin
   inherited;
 
   SetRegControl(RegComboBox1);
+end;
+
+procedure TControlRegComobBox.SetDoMergeData(aValue: boolean);
+begin
+  RegControl.RegistrySettings.DoMergeData := aValue;
+end;
+
+function TControlRegComobBox.GetDoMergeData: boolean;
+begin
+  Result := RegControl.RegistrySettings.DoMergeData;
 end;
 
 end.

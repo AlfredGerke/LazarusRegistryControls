@@ -38,7 +38,10 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   fmeregchecklistbox,
   fmeregchecklistboxproperties,
   fmeregcheckgroup,
-  fmeregcheckgroupproperties;
+  fmeregcheckgroupproperties,
+  fmeregvaluelisteditor,
+  fmeregistrysettingsvaluelist,
+  fmeregvaluelisteditorproperties;
 
 {$R *.res}
 

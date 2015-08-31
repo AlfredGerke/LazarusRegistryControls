@@ -1,0 +1,28 @@
+inherited ControlRegValueListEditor: TControlRegValueListEditor
+  object RegValueListEditor1: TRegValueListEditor[0]
+    Left = 5
+    Height = 230
+    Top = 5
+    Width = 310
+    Align = alClient
+    BorderSpacing.Around = 5
+    FixedCols = 0
+    RowCount = 2
+    TabOrder = 0
+    Strings.Strings = (
+      ''
+    )
+    RegistrySettings.CanRead = True
+    RegistrySettings.CanWrite = True
+    RegistrySettings.DoWriteAdHoc = True
+    RegistrySettings.GroupIndex = 0
+    RegistrySettings.DoSyncData = True
+    RegistrySettings.ListSection = 'TRegValueListEditorItems'
+    RegistrySettings.DoMergeData = True
+    RegistrySource = RegistrySourceModule.rsRegistrySource
+    ColWidths = (
+      64
+      242
+    )
+  end
+end
