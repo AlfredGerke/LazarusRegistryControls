@@ -71,6 +71,15 @@ msgstr ""
 msgid "RegRadioGroup1"
 msgstr ""
 
+#: tcustomregcontrolframe.toolbar1.caption
+msgctxt "tcustomregcontrolframe.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tcustomregcontrolframe.toolbutton1.caption
+msgid "ToolButton1"
+msgstr ""
+
 #: tmain.caption
 msgid "Example (LRC 0.9 M2)"
 msgstr ""
@@ -110,8 +119,16 @@ msgstr ""
 msgid "Rootkeys"
 msgstr ""
 
+#: tregcontrolbuttonframe.acreadfromreg.caption
+msgid "Refresh"
+msgstr ""
+
 #: tregcontrolbuttonframe.acsetgroupindex.caption
 msgid "Set GroupIndex"
+msgstr ""
+
+#: tregcontrolbuttonframe.barbuttonframetoolbar.caption
+msgid "barButtonFrameToolbar"
 msgstr ""
 
 #: tregcontrolbuttonframe.cbxeditrootkeys.caption

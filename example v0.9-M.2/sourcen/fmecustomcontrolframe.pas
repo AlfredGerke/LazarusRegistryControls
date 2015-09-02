@@ -37,6 +37,8 @@ type
     function GetDoSyncData: boolean;
     function GetGroupIndex: integer;
 
+    procedure ReadFromRegProc;
+
     property RegControl: _T
       read FRegControl;
   end;
@@ -133,6 +135,11 @@ end;
 function TCustomRegControlFrame<_T>.GetGroupIndex: integer;
 begin
   Result := FRegControl.RegistrySettings.GroupIndex;
+end;
+
+procedure TCustomRegControlFrame<_T>.ReadFromRegProc;
+begin
+  FRegControl.ReadFromReg;
 end;
 
 end.

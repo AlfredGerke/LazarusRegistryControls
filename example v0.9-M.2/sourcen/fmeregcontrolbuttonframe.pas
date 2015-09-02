@@ -9,7 +9,7 @@ uses
   ExtCtrls,
   Buttons,
   StdCtrls,
-  ActnList, Spin,
+  ActnList, Spin, ComCtrls, Controls,
   fmeregcontrolproperties, Classes;
 
 type
@@ -25,6 +25,7 @@ type
     acDoSyncData: TAction;
     acDoMergeData: TAction;
     acSetGroupIndex: TAction;
+    acReadFromReg: TAction;
     cbxDoMergeData: TCheckBox;
     cbxEditRootKeys: TCheckBox;
     cbxCanRead: TCheckBox;
@@ -33,16 +34,20 @@ type
     cbxDoSyncData: TCheckBox;
     grbDialogs: TGroupBox;
     grpProperties: TGroupBox;
+    ilImages: TImageList;
     lblGroupIndex: TLabel;
     pnlWorkspace: TPanel;
     btnGetRootKeys: TSpeedButton;
     edtGroupIndex: TSpinEdit;
+    barButtonFrameToolbar: TToolBar;
+    ToolButton1: TToolButton;
     procedure acCanReadExecute(Sender: TObject);
     procedure acCanWriteExecute(Sender: TObject);
     procedure acDoMergeDataExecute(Sender: TObject);
     procedure acDoSyncDataExecute(Sender: TObject);
     procedure acDoWriteAdHocExecute(Sender: TObject);
     procedure acGetRootKeysExecute(Sender: TObject);
+    procedure acReadFromRegExecute(Sender: TObject);
     procedure acSetGroupIndexExecute(Sender: TObject);
   public type
     TOnGetRootKeys = procedure(aEdit: boolean) of object;
@@ -50,6 +55,7 @@ type
     TOnGetBooleanProperty = function : boolean of object;
     TOnSetIntegerProperty = procedure(aIndex: integer) of object;
     TOnGetIntegerProperty = function : integer of object;
+    TOnReadFromRegistry = procedure of object;
   private
     FOnGetRootKeys: TOnGetRootKeys;
     //
@@ -67,8 +73,11 @@ type
     FOnGetDoMergeData: TOnGetBooleanProperty;
     FOnGetGroupIndex: TOnGetIntegerProperty;
     //
+    FOnReadFromRegistry: TOnReadFromRegistry;
+    //
     FOnRefreshSettings: TRegControlProperties.TOnRefreshSettings;
 
+    procedure RefreshRegControl;
     procedure SetCanRead;
     procedure SetCanWrite;
     procedure SetDoWriteAdHoc;
@@ -135,6 +144,10 @@ type
       property OnGetGroupIndex: TOnGetIntegerProperty
         read FOnGetGroupIndex
         write FOnGetGroupIndex;
+
+      property OnReadFromRegistry: TOnReadFromRegistry
+        read FOnReadFromRegistry
+        write FOnReadFromRegistry;
   end;
 
 implementation
@@ -149,9 +162,20 @@ begin
     FOnGetRootKeys(cbxEditRootKeys.Checked);
 end;
 
+procedure TRegControlButtonFrame.acReadFromRegExecute(Sender: TObject);
+begin
+  RefreshRegControl;
+end;
+
 procedure TRegControlButtonFrame.acSetGroupIndexExecute(Sender: TObject);
 begin
   SetGroupIndex;
+end;
+
+procedure TRegControlButtonFrame.RefreshRegControl;
+begin
+  if Assigned(FOnReadFromRegistry) then
+    FOnReadFromRegistry;
 end;
 
 procedure TRegControlButtonFrame.acCanReadExecute(Sender: TObject);
