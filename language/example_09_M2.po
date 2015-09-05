@@ -67,6 +67,18 @@ msgstr ""
 msgid "RegRadioButton2"
 msgstr ""
 
+#: tcontrolregradiobutton.regradiobutton3.caption
+msgid "RegRadioButton3"
+msgstr ""
+
+#: tcontrolregradiobutton.regradiobutton4.caption
+msgid "RegRadioButton4"
+msgstr ""
+
+#: tcontrolregradiobutton.regradiobutton5.caption
+msgid "DefaultCaption5"
+msgstr ""
+
 #: tcontrolregradiogroup.regradiogroup1.caption
 msgid "RegRadioGroup1"
 msgstr ""

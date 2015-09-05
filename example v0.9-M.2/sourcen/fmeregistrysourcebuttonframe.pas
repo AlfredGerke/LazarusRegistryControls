@@ -182,8 +182,13 @@ begin
 
     WriteBool('TRegRadioButton', 'Key1', True);
     WriteBool('TRegRadioButton', 'Key2', False);
-    WriteString('TRegRadioButton', 'Caption', 'Standardcaption');
+    WriteBool('TRegRadioButton', 'Key3', False);
+    WriteBool('TRegRadioButton', 'Key4', False);
+    WriteBool('TRegRadioButton', 'Key5', False);
+    WriteString('TRegRadioButton1', 'Caption', 'Standardcaption');
     WriteString('TRegRadioButton2', 'Caption', 'Standardcaption2');
+    WriteString('TRegRadioButton3', 'Caption', 'Standardcaption3');
+    WriteString('TRegRadioButton4', 'Caption', 'Standardcaption4');
 
     WriteString('TRegListBoxItems', 'Key1', 'Value1');
     WriteString('TRegListBoxItems', 'Key2', 'Value2');

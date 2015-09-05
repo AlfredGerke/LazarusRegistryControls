@@ -26,6 +26,7 @@ type
     FRegistrySettings: TRegistrySettingsBooleanDefault;
     FCaptionSettings: TCaptionSettings;
     FIsModified: boolean;
+    FSuppress: boolean;
 
     function RefreshRegistrySettings: boolean;
     procedure ReadWriteInfo(aRead: boolean);
@@ -48,12 +49,12 @@ type
 
     procedure Click; override;
     procedure SetName(const NewName: TComponentName); override;
-
     procedure OnChangeSettings(Sender: TObject); virtual;
     procedure OnChangeCaptionSettings(Sender: TObject); virtual;
     procedure SetRegistrySource(aRegistrySource: TRegistrySource); virtual;
     function GetEditDialog(aEdit: boolean;
                            aAtDesignTime: boolean = True): boolean; virtual;
+    procedure ApplyRegistryChanges(ASuppress: boolean = True); virtual;
 
     property RegistrySettings: TRegistrySettingsBooleanDefault
       read FRegistrySettings
@@ -73,6 +74,10 @@ type
 
     property IsModified: boolean
       read FIsModified;
+
+    property Suppress: boolean
+      read FSuppress
+      write FSuppress;
   published
   end;
 
@@ -114,6 +119,47 @@ end;
 procedure TCustomRegRadioButton.OnChangeCaptionSettings(Sender: TObject);
 begin
   ReadFromReg(rdoCaption);
+end;
+
+procedure TCustomRegRadioButton.ApplyRegistryChanges(ASuppress: boolean = True);
+var
+  reg_control: TControl;
+  anz: Integer;
+begin
+  if not Suppress then
+  begin
+    if ((Parent <> nil) and (not (csLoading in ComponentState))) then
+    begin
+      for anz := 0 to Parent.ControlCount-1 do
+      begin
+        reg_control := Parent.Controls[anz];
+        if ((reg_control is TRegRadioButton) and (reg_control <> Self)) then
+          with TRegRadioButton(reg_control) do
+            Suppress := ASuppress;
+      end;
+    end;
+
+    if ASuppress then
+      if ((Parent <> nil) and (not (csLoading in ComponentState))) then
+      begin
+        for anz := 0 to Parent.ControlCount-1 do
+        begin
+          reg_control := Parent.Controls[anz];
+          if ((reg_control is TRegRadioButton) and (reg_control <> Self)) then
+          begin
+            with TRegRadioButton(reg_control) do
+            begin
+              if Suppress then
+              begin
+                Checked := False;
+                FIsModified := True;
+                WriteToReg;
+              end;
+            end;
+          end;
+        end;
+      end;
+  end;
 end;
 
 function TCustomRegRadioButton.RefreshRegistrySettings: boolean;
@@ -172,6 +218,7 @@ begin
             begin
               sync_state_by_default:= FRegistrySettings.DoSyncData;
               FRegistrySettings.DoSyncData := False;
+              ApplyRegistryChanges;
               try
                 RegistrySource.WriteBool(FRegistrySettings.RootKey,
                   FRegistrySettings.RootKeyForDefaults,
@@ -185,6 +232,7 @@ begin
                 FIsModified := False;
               finally
                 FRegistrySettings.DoSyncData := sync_state_by_default;
+                ApplyRegistryChanges(False);
               end;
             end;
           end;
@@ -301,17 +349,18 @@ procedure TCustomRegRadioButton.RefreshData(var aMessage: TLMessage);
 var
   group_index: cardinal;
 begin
-  if FRegistrySettings.DoSyncData then
-  begin
-    group_index := aMessage.lParam;
-    if (group_index > 0) then
+  if not Suppress then
+    if FRegistrySettings.DoSyncData then
     begin
-      if group_index = FRegistrySettings.GroupIndex then
+      group_index := aMessage.lParam;
+      if (group_index > 0) then
+      begin
+        if group_index = FRegistrySettings.GroupIndex then
+          aMessage.Result := LongInt(ReadFromReg)
+      end
+      else
         aMessage.Result := LongInt(ReadFromReg)
-    end
-    else
-      aMessage.Result := LongInt(ReadFromReg)
-  end;
+    end;
 end;
 
 procedure TCustomRegRadioButton.PostData(var aMessage: TLMessage);
@@ -407,6 +456,19 @@ begin
     FRegistrySource.RenameClient(old_name, new_name);
 end;
 
+{
+procedure TCustomRegRadioButton.ApplyChanges;
+begin
+  SuppressRegistryReads;
+  try
+    inherited ApplyChanges;
+
+  finally
+    SuppressRegistryReads(False);
+  end;
+end;
+}
+
 constructor TCustomRegRadioButton.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
@@ -414,6 +476,7 @@ begin
   FIsModified := False;
   FRegistrySettings := TRegistrySettingsBooleanDefault.Create(Self);
   FRegistrySettings.OnChange:= OnChangeSettings;
+  FSuppress := False;
 
   FCaptionSettings := TCaptionSettings.Create(Self);
   FCaptionSettings.OnChange := OnChangeCaptionSettings;
@@ -442,6 +505,9 @@ end;
 function TCustomRegRadioButton.ReadFromReg(aReadSource: TRegistryDataOrigin = rdoGeneral): boolean;
 begin
   Result := False;
+
+  if FSuppress then
+    Exit;
 
   if (not Assigned(FRegistrySource) or (aReadSource = rdoUnknown)) then
     Exit;
