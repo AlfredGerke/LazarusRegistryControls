@@ -178,7 +178,8 @@ begin
     WriteString('TRegLabel', 'Key', 'Standardcaption');
 
     WriteBool('TRegCheckBox', 'Key', True);
-    WriteString('TRegCheckBox', 'Caption', 'Standardcaption');
+    WriteString('TRegCheckBoxCaption', 'Caption', 'Standardcaption');
+    WriteInteger('TRegCheckGroup1', 'Index', 0);
 
     WriteBool('TRegRadioButton', 'Key1', True);
     WriteBool('TRegRadioButton', 'Key2', False);

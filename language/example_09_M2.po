@@ -13,6 +13,16 @@ msgstr ""
 msgid "RegCheckBox1"
 msgstr ""
 
+#: tcontrolregcheckbox.regcheckgroup1.caption
+msgctxt "TCONTROLREGCHECKBOX.REGCHECKGROUP1.CAPTION"
+msgid "DefaultCaption"
+msgstr ""
+
+#: tcontrolregcheckbox.regradiobutton1.caption
+msgctxt "tcontrolregcheckbox.regradiobutton1.caption"
+msgid "DefaultCaption"
+msgstr ""
+
 #: tcontrolregcheckgroup.regcheckgroup1.caption
 msgid "RegCheckGroup1"
 msgstr ""
