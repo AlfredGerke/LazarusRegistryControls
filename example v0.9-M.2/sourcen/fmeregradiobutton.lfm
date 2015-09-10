@@ -161,5 +161,13 @@ inherited ControlRegRadioButton: TControlRegRadioButton
       RegistrySettings.DoMergeData = True
       RegistrySource = RegistrySourceModule.rsRegistrySource
     end
+    object Bevel1: TBevel
+      Left = 8
+      Height = 2
+      Top = 40
+      Width = 305
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Around = 5
+    end
   end
 end

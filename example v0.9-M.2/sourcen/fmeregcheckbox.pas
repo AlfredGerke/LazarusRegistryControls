@@ -6,13 +6,14 @@ interface
 
 uses
   fmecustomcontrolframe,
-  regcheckbox, regradiobutton, regcheckgroup, Forms;
+  regcheckbox, regradiobutton, regcheckgroup, Forms, ExtCtrls;
 
 type
 
   { TControlRegCheckBox }
 
   TControlRegCheckBox = class(TCustomRegControlFrame<TRegCheckBox>)
+    Bevel1: TBevel;
     RegCheckBox1: TRegCheckBox;
     RegCheckGroup1: TRegCheckGroup;
     RegRadioButton1: TRegRadioButton;

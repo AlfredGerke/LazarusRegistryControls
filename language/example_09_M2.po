@@ -10,6 +10,7 @@ msgid "pnlWorkspace"
 msgstr ""
 
 #: tcontrolregcheckbox.regcheckbox1.caption
+msgctxt "tcontrolregcheckbox.regcheckbox1.caption"
 msgid "RegCheckBox1"
 msgstr ""
 
@@ -29,6 +30,11 @@ msgstr ""
 
 #: tcontrolregcomobbox.regcombobox1.text
 msgid "RegComboBox1"
+msgstr ""
+
+#: tcontrolregedit.reglabel1.caption
+msgctxt "TCONTROLREGEDIT.REGLABEL1.CAPTION"
+msgid "RegLabel1"
 msgstr ""
 
 #: tcontrolregistrysource.lblage.caption
@@ -61,6 +67,7 @@ msgid "RegEdit1"
 msgstr ""
 
 #: tcontrolreglabel.reglabel1.caption
+msgctxt "tcontrolreglabel.reglabel1.caption"
 msgid "RegLabel1"
 msgstr ""
 

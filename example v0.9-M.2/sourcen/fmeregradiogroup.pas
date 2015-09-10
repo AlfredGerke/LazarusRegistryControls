@@ -6,7 +6,7 @@ interface
 
 uses
   fmecustomcontrolframe,
-  regradiogroup;
+  regradiogroup, regcheckbox, regchecklistbox, ExtCtrls;
 
 type
 

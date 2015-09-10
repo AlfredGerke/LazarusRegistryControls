@@ -8,13 +8,14 @@ uses
   fmecustomcontrolframe,
   regradiobutton,
   regchecklistbox,
-  Forms;
+  Forms, ExtCtrls;
 
 type
 
   { TControlRegRadioButton }
 
   TControlRegRadioButton = class(TCustomRegControlFrame<TRegRadioButton>)
+    Bevel1: TBevel;
     RegCheckListBox1: TRegCheckListBox;
     RegRadioButton1: TRegRadioButton;
     RegRadioButton2: TRegRadioButton;

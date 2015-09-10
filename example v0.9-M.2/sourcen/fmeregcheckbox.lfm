@@ -4,8 +4,8 @@ inherited ControlRegCheckBox: TControlRegCheckBox
     Height = 240
     Top = 0
     Width = 320
-    HorzScrollBar.Page = 297
-    VertScrollBar.Page = 161
+    HorzScrollBar.Page = 161
+    VertScrollBar.Page = 75
     Align = alClient
     BorderStyle = bsNone
     ClientHeight = 240
@@ -66,7 +66,7 @@ inherited ControlRegCheckBox: TControlRegCheckBox
     end
     object RegCheckGroup1: TRegCheckGroup
       Left = 136
-      Height = 105
+      Height = 169
       Top = 56
       Width = 161
       AutoFill = True
@@ -100,6 +100,14 @@ inherited ControlRegCheckBox: TControlRegCheckBox
       RegistrySettings.ListSection = 'TRegCheckBox'
       RegistrySettings.DoMergeData = True
       RegistrySource = RegistrySourceModule.rsRegistrySource
+    end
+    object Bevel1: TBevel
+      Left = 8
+      Height = 2
+      Top = 40
+      Width = 305
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Around = 5
     end
   end
 end
