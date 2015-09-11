@@ -6,7 +6,11 @@ interface
 
 uses
   fmecustomcontrolframe,
-  regedit, regvaluelisteditor, reglabel, ExtCtrls;
+  regedit,
+  regvaluelisteditor,
+  reglabel,
+  ExtCtrls,
+  Forms;
 
 type
 
@@ -17,6 +21,7 @@ type
     RegEdit1: TRegEdit;
     RegLabel1: TRegLabel;
     RegValueListEditor1: TRegValueListEditor;
+    ScrollBox1: TScrollBox;
   protected
     procedure _Initialize; override;
   end;

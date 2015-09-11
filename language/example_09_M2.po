@@ -29,6 +29,7 @@ msgid "RegCheckGroup1"
 msgstr ""
 
 #: tcontrolregcomobbox.regcombobox1.text
+msgctxt "tcontrolregcomobbox.regcombobox1.text"
 msgid "RegComboBox1"
 msgstr ""
 
@@ -71,9 +72,8 @@ msgctxt "tcontrolreglabel.reglabel1.caption"
 msgid "RegLabel1"
 msgstr ""
 
-#: tcontrolreglistbox.pnlclient.caption
-msgctxt "TCONTROLREGLISTBOX.PNLCLIENT.CAPTION"
-msgid "pnlClient"
+#: tcontrolreglistbox.regradiogroup1.caption
+msgid "Defaultcaption"
 msgstr ""
 
 #: tcontrolregradiobutton.regradiobutton1.caption
@@ -94,6 +94,11 @@ msgstr ""
 
 #: tcontrolregradiobutton.regradiobutton5.caption
 msgid "DefaultCaption5"
+msgstr ""
+
+#: tcontrolregradiogroup.regcombobox1.text
+msgctxt "TCONTROLREGRADIOGROUP.REGCOMBOBOX1.TEXT"
+msgid "RegComboBox1"
 msgstr ""
 
 #: tcontrolregradiogroup.regradiogroup1.caption

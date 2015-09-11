@@ -1,66 +1,78 @@
 inherited ControlRegEdit: TControlRegEdit
-  object RegEdit1: TRegEdit[0]
-    Left = 8
-    Height = 23
-    Top = 8
-    Width = 208
+  object ScrollBox1: TScrollBox[0]
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 320
+    HorzScrollBar.Page = 216
+    VertScrollBar.Page = 232
+    Align = alClient
+    ClientHeight = 236
+    ClientWidth = 316
     TabOrder = 0
-    RegistrySettings.CanRead = True
-    RegistrySettings.CanWrite = True
-    RegistrySettings.DoWriteAdHoc = True
-    RegistrySettings.GroupIndex = 0
-    RegistrySettings.DoSyncData = True
-    RegistrySettings.Default = 'Default'
-    RegistrySettings.Section = 'TRegEdit'
-    RegistrySettings.Ident = 'Key'
-    RegistrySource = RegistrySourceModule.rsRegistrySource
-  end
-  object RegValueListEditor1: TRegValueListEditor[1]
-    Left = 8
-    Height = 152
-    Top = 80
-    Width = 200
-    FixedCols = 0
-    RowCount = 2
-    TabOrder = 1
-    Strings.Strings = (
-      ''
-    )
-    RegistrySettings.CanRead = True
-    RegistrySettings.CanWrite = True
-    RegistrySettings.DoWriteAdHoc = True
-    RegistrySettings.GroupIndex = 0
-    RegistrySettings.DoSyncData = True
-    RegistrySettings.ListSection = 'TRegEdit'
-    RegistrySettings.DoMergeData = True
-    RegistrySource = RegistrySourceModule.rsRegistrySource
-    ColWidths = (
-      64
-      132
-    )
-  end
-  object Bevel1: TBevel[2]
-    Left = 8
-    Height = 2
-    Top = 40
-    Width = 305
-    Anchors = [akTop, akLeft, akRight]
-    BorderSpacing.Around = 5
-  end
-  object RegLabel1: TRegLabel[3]
-    Left = 8
-    Height = 15
-    Top = 56
-    Width = 54
-    Caption = 'RegLabel1'
-    ParentColor = False
-    RegistrySettings.CanRead = True
-    RegistrySettings.CanWrite = True
-    RegistrySettings.DoWriteAdHoc = True
-    RegistrySettings.GroupIndex = 0
-    RegistrySettings.DoSyncData = True
-    RegistrySettings.Section = 'TRegEdit'
-    RegistrySettings.Ident = 'Key'
-    RegistrySource = RegistrySourceModule.rsRegistrySource
+    object RegEdit1: TRegEdit
+      Left = 8
+      Height = 23
+      Top = 8
+      Width = 208
+      TabOrder = 0
+      RegistrySettings.CanRead = True
+      RegistrySettings.CanWrite = True
+      RegistrySettings.DoWriteAdHoc = True
+      RegistrySettings.GroupIndex = 0
+      RegistrySettings.DoSyncData = True
+      RegistrySettings.Default = 'Default'
+      RegistrySettings.Section = 'TRegEdit'
+      RegistrySettings.Ident = 'Key'
+      RegistrySource = RegistrySourceModule.rsRegistrySource
+    end
+    object RegValueListEditor1: TRegValueListEditor
+      Left = 8
+      Height = 152
+      Top = 80
+      Width = 200
+      FixedCols = 0
+      RowCount = 2
+      TabOrder = 1
+      Strings.Strings = (
+        ''
+      )
+      RegistrySettings.CanRead = True
+      RegistrySettings.CanWrite = True
+      RegistrySettings.DoWriteAdHoc = True
+      RegistrySettings.GroupIndex = 0
+      RegistrySettings.DoSyncData = True
+      RegistrySettings.ListSection = 'TRegEdit'
+      RegistrySettings.DoMergeData = True
+      RegistrySource = RegistrySourceModule.rsRegistrySource
+      ColWidths = (
+        64
+        132
+      )
+    end
+    object Bevel1: TBevel
+      Left = 8
+      Height = 2
+      Top = 40
+      Width = 305
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Around = 5
+    end
+    object RegLabel1: TRegLabel
+      Left = 8
+      Height = 15
+      Top = 56
+      Width = 54
+      Caption = 'RegLabel1'
+      ParentColor = False
+      RegistrySettings.CanRead = True
+      RegistrySettings.CanWrite = True
+      RegistrySettings.DoWriteAdHoc = True
+      RegistrySettings.GroupIndex = 0
+      RegistrySettings.DoSyncData = True
+      RegistrySettings.Section = 'TRegEdit'
+      RegistrySettings.Ident = 'Key'
+      RegistrySource = RegistrySourceModule.rsRegistrySource
+    end
   end
 end

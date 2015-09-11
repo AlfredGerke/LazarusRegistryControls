@@ -6,7 +6,9 @@ interface
 
 uses
   fmecustomcontrolframe,
-  reglistbox;
+  reglistbox,
+  regradiogroup,
+  ExtCtrls;
 
 type
 
@@ -14,6 +16,8 @@ type
 
   TControlRegListBox = class(TCustomRegControlFrame<TRegListBox>)
     RegListBox1: TRegListBox;
+    RegRadioGroup1: TRegRadioGroup;
+    Splitter1: TSplitter;
   protected
     procedure _Initialize; override;
   public

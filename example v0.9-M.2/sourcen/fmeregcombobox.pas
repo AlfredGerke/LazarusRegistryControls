@@ -12,15 +12,20 @@ uses
   Controls,
   Graphics,
   Dialogs,
+  ExtCtrls,
   fmecustomcontrolframe,
-  regcombobox;
+  regcombobox,
+  reglistbox;
 
 type
 
   { TControlRegComobBox }
 
   TControlRegComobBox = class(TCustomRegControlFrame<TRegComboBox>)
+    Bevel1: TBevel;
     RegComboBox1: TRegComboBox;
+    RegListBox1: TRegListBox;
+    ScrollBox1: TScrollBox;
   protected
     procedure _Initialize; override;
   public

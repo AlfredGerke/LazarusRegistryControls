@@ -4,8 +4,8 @@ inherited ControlRegCheckBox: TControlRegCheckBox
     Height = 240
     Top = 0
     Width = 320
-    HorzScrollBar.Page = 161
-    VertScrollBar.Page = 75
+    HorzScrollBar.Page = 297
+    VertScrollBar.Page = 183
     Align = alClient
     BorderStyle = bsNone
     ClientHeight = 240
@@ -66,7 +66,7 @@ inherited ControlRegCheckBox: TControlRegCheckBox
     end
     object RegCheckGroup1: TRegCheckGroup
       Left = 136
-      Height = 169
+      Height = 127
       Top = 56
       Width = 161
       AutoFill = True
