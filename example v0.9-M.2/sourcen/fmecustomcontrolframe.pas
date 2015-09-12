@@ -6,7 +6,8 @@ interface
 
 uses
   Forms,
-  Classes;
+  Classes,
+  regtype;
 
 type
 
@@ -15,8 +16,13 @@ type
   TCustomRegControlFrame<_T> = class(TFrame)
   private
     FRegControl: _T;
+
   protected
     procedure _Initialize; virtual;
+
+    procedure BeforeRegistrySettingChangeProc(aOldSettingInfo: TRegistrySettingValue;
+                                              aNewSettingInfo: TRegistrySettingValue;
+                                              var aIsOk: boolean);
   public
     constructor Create(aOwner: TComponent); override;
 
@@ -47,7 +53,100 @@ implementation
 
 {$R *.lfm}
 
+uses
+  Dialogs,
+  Controls;
+
 { TCustomRegControlFrame<_T> }
+
+procedure TCustomRegControlFrame<_T>.BeforeRegistrySettingChangeProc(
+  aOldSettingInfo: TRegistrySettingValue;
+  aNewSettingInfo: TRegistrySettingValue;
+  var aIsOk: boolean);
+begin
+  aIsOk := False;
+
+  case aNewSettingInfo.Kind of
+    rskRootKey:
+      if (aNewSettingInfo.RootKey <> aOldSettingInfo.RootKey) then
+        aIsOk :=
+          (MessageDlg('RootKey: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskRootKeyForDefault:
+      if (aNewSettingInfo.RootKeyForDefault <> aOldSettingInfo.RootKeyForDefault) then
+        aIsOk :=
+          (MessageDlg('RootKeyForDefault: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskSection:
+      if (aNewSettingInfo.Section <> aOldSettingInfo.Section) then
+        aIsOk :=
+          (MessageDlg('Section: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskIdent:
+      if (aNewSettingInfo.Ident <> aOldSettingInfo.Ident) then
+        aIsOk :=
+          (MessageDlg('Ident: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskDefault:
+      if (aNewSettingInfo.Default <> aOldSettingInfo.Default) then
+        aIsOk :=
+          (MessageDlg('Default: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskReadDefaults:
+      if (aNewSettingInfo.ReadDefaults <> aOldSettingInfo.ReadDefaults) then
+        aIsOk :=
+          (MessageDlg('ReadDefaults: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskWriteDefaults:
+      if (aNewSettingInfo.WriteDefaults <> aOldSettingInfo.WriteDefaults) then
+        aIsOk :=
+          (MessageDlg('WriteDefaults: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskRootForDefaults:
+      if (aNewSettingInfo.RootForDefaults <> aOldSettingInfo.RootForDefaults) then
+        aIsOk :=
+          (MessageDlg('RootForDefaults: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskCanRead:
+      if (aNewSettingInfo.CanRead <> aOldSettingInfo.CanRead) then
+        aIsOk :=
+          (MessageDlg('CanRead: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskCanWrite:
+      if (aNewSettingInfo.CanWrite <> aOldSettingInfo.CanWrite) then
+        aIsOk :=
+          (MessageDlg('CanWrite: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskDoWriteAdHoc:
+      if (aNewSettingInfo.DoWriteAdHoc <> aOldSettingInfo.DoWriteAdHoc) then
+        aIsOk :=
+          (MessageDlg('DoWriteAdHoc: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskDoSyncData:
+      if (aNewSettingInfo.DoSyncData <> aOldSettingInfo.DoSyncData) then
+        aIsOk :=
+          (MessageDlg('DoSyncData: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskDoMergeData:
+      if (aNewSettingInfo.DoMergeData <> aOldSettingInfo.DoMergeData) then
+        aIsOk :=
+          (MessageDlg('DoMergeData: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskSectionForCaption:
+      if (aNewSettingInfo.SectionForCaption <> aOldSettingInfo.SectionForCaption) then
+        aIsOk :=
+          (MessageDlg('SectionForCaption: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    rskIdentForCaption:
+      if (aNewSettingInfo.IdentForCaption <> aOldSettingInfo.IdentForCaption) then
+        aIsOk :=
+          (MessageDlg('IdentForCaption: Anpassungen erlauben?',
+             mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+  else
+    MessageDlg('Unbekannter Vorgang erkannt und abgewiesen!',
+      mtConfirmation, [mbYes, mbNo], 0);
+  end;
+end;
 
 procedure TCustomRegControlFrame<_T>._Initialize;
 begin
@@ -69,6 +168,8 @@ end;
 procedure TCustomRegControlFrame<_T>.SetRegControl(aControl: _T);
 begin
   FRegControl := aControl;
+  FRegControl.RegistrySettings.OnBeforeRegistrySettingChange :=
+    BeforeRegistrySettingChangeProc;
 end;
 
 procedure TCustomRegControlFrame<_T>.GetRootKeys(aEdit: boolean);

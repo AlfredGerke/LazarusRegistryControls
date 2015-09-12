@@ -6,16 +6,16 @@ Beispielanwendung zur Verfügung gestellt.
 
 **Inhaltsübersicht:**    
 
-0. v0.9-M.1 (unbedingt beachten!)
+0. v0.9-M1 (unbedingt beachten!)
 1. example.exe    
 2. Lanugages    
 
-v0.9-M.1
---------
-Die Sourcen dieser Beispielanwendung sind nur mit dem Pre-release *v0.9-M.1* lauffähig.
-Mit der Version *v0.9-M.2* wurden grundlegende Änderungen eingeführt die in dieser Beispielanwednung
+v0.9-M1
+-------
+Die Sourcen dieser Beispielanwendung sind nur mit dem Pre-release *v0.9-M1* lauffähig.
+Mit der Version *v0.9-M2* wurden grundlegende Änderungen eingeführt die in dieser Beispielanwednung
 nicht Berücksichtigt werden. Es sind auch keine Anpassungen an diese Beispielanwendung vorgesehen.
-Für die Version *v0.9-M.2* wird eine komplett neue Beispielanwendung eingeführt.
+Für die Version *v0.9-M2* wird eine komplett neue Beispielanwendung eingeführt.
 
 example.exe
 -----------

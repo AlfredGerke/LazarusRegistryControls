@@ -5,7 +5,8 @@ unit fmeregistrylistsettings;
 interface
 
 uses
-  ValEdit, StdCtrls,
+  ValEdit,
+  StdCtrls,
   fmecustomsettings,
   regsourcen;
 

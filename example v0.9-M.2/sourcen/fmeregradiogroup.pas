@@ -38,6 +38,9 @@ begin
   inherited;
 
   SetRegControl(RegRadioGroup1);
+
+  RegRadioGroup1.CaptionSettings.OnBeforeCaptionSettingChange :=
+    BeforeRegistrySettingChangeProc;
 end;
 
 procedure TControlRegRadioGroup.SetDoMergeData(aValue: boolean);

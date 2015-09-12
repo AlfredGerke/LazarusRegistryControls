@@ -173,6 +173,7 @@ begin
             if (FRegistrySettings.CanWrite and FIsModified) then
             begin
               sync_state_by_default := FRegistrySettings.DoSyncData;
+              FRegistrySettings.BeginUpdate;
               FRegistrySettings.DoSyncData:= False;
               try
                 RegistrySource.WriteBool(FRegistrySettings.Rootkey,
@@ -187,6 +188,7 @@ begin
                 FIsModified := False;
               finally
                 FRegistrySettings.DoSyncData := sync_state_by_default;
+                FRegistrySettings.EndUpdate;
               end;
             end;
           end;

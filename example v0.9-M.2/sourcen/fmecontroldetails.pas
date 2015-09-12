@@ -324,7 +324,7 @@ end;
 procedure TControlDetails.CreateTRegCheckGroupBoxFrame;
 begin
   if Assigned(FOnSetTitel) then
-    FOnSetTitel('TRegCheckGroupBox');
+    FOnSetTitel('TRegCheckGroup');
 
   // ControlFrame
   with TControlRegCheckGroup.Create(pnlLeft) do
@@ -495,7 +495,7 @@ begin
   if (aLabel = 'TRegCheckListBox') then
     CreateTRegCheckListBoxFrame
   else
-  if (aLabel = 'TRegCheckGroupBox') then
+  if (aLabel = 'TRegCheckGroup') then
     CreateTRegCheckGroupBoxFrame
   else
   if (aLabel = 'TRegValueListEditor') then

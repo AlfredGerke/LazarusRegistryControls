@@ -97,11 +97,9 @@ zur Anwendung kommen, werden direkt im Testfall implementiert.
 
 4 GUI-Test
 ----------
-LR-Controls sollen auch in einer GUI-Umgebung getestet werden. Zu diesem Zweck
-wird ein einfaches Formular entworfen, auf dem ein oder mehrere LR-Controls platziert werden.
-Es sollen Benutzereingabe simuliert werden und Ergebnisse überprüft werden.
-
-Konzept: ???
+LR-Controls sollen auch in einer GUI-Umgebung getestet werden. Zu diesem Zweck wird das Beispielprogramm
+verwendet. Es ist so aufgebaut das es sowohl als Demonstration als auch als Testumgebung für eventuell
+notwendiges Debugging dienen kann.
 
 5 Bugs
 ------

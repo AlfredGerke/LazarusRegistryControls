@@ -14,7 +14,7 @@
     <LazDoc Paths="..\doc"/>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="..\language"/>
+      <OutDir Value="languages"/>
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>

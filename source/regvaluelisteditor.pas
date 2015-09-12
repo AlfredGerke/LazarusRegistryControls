@@ -205,6 +205,7 @@ begin
             if (FRegistrySettings.CanWrite and Modified) then
             begin
               sync_state_by_default := FRegistrySettings.DoSyncData;
+              FRegistrySettings.BeginUpdate;
               FRegistrySettings.DoSyncData := False;
               try
                 if FCurrKeyValueItems.KeyDataChanged then
@@ -232,6 +233,7 @@ begin
                   end;
               finally
                 FRegistrySettings.DoSyncData := sync_state_by_default;
+                FRegistrySettings.EndUpdate;
               end;
             end;
           end;
@@ -339,9 +341,11 @@ begin
   if Assigned(FRegistrySource) then
     FRegistrySource.UnRegisterClient(self);
   FRegistrySource := nil;
+  RegistrySettings.BeginUpdate;
   RegistrySettings.CanWrite := False;
   RegistrySettings.CanRead := False;
   RegistrySettings.DoWriteAdHoc := False;
+  RegistrySettings.EndUpdate;
   aMessage.Result := 1;
 end;
 

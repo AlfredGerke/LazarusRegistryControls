@@ -157,6 +157,7 @@ begin
             if (FRegistrySettings.CanWrite and Modified) then
             begin
               sync_state_by_default:= FRegistrySettings.DoSyncData;
+              FRegistrySettings.BeginUpdate;
               FRegistrySettings.DoSyncData := False;
               try
                 RegistrySource.WriteString(FRegistrySettings.RootKey,
@@ -171,6 +172,7 @@ begin
                 Modified := False;
               finally
                 FRegistrySettings.DoSyncData := sync_state_by_default;
+                FRegistrySettings.EndUpdate;
               end;
             end;
           end;
@@ -203,9 +205,11 @@ begin
   if Assigned(FRegistrySource) then
     FRegistrySource.UnRegisterClient(self);
   FRegistrySource := nil;
+  RegistrySettings.BeginUpdate;
   RegistrySettings.CanWrite := False;
   RegistrySettings.CanRead := False;
   RegistrySettings.DoWriteAdHoc := False;
+  RegistrySettings.EndUpdate;
   aMessage.Result := 1;
 end;
 

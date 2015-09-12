@@ -38,6 +38,9 @@ begin
   inherited;
 
   SetRegControl(RegRadioButton1);
+
+  RegRadioButton1.CaptionSettings.OnBeforeCaptionSettingChange :=
+    BeforeRegistrySettingChangeProc;
 end;
 
 

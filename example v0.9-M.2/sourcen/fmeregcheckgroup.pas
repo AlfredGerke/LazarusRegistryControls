@@ -37,6 +37,9 @@ begin
   inherited;
 
   SetRegControl(RegCheckGroup1);
+
+  RegCheckGroup1.CaptionSettings.OnBeforeCaptionSettingChange :=
+    BeforeRegistrySettingChangeProc;
 end;
 
 procedure TControlRegCheckGroup.SetDoMergeData(aValue: boolean);

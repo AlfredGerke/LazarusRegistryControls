@@ -35,6 +35,9 @@ begin
   inherited;
 
   SetRegControl(RegCheckBox1);
+
+  RegCheckBox1.CaptionSettings.OnBeforeCaptionSettingChange :=
+    BeforeRegistrySettingChangeProc;
 end;
 
 end.

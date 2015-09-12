@@ -5,7 +5,9 @@ unit fmeregcontrolcaptionsettings;
 interface
 
 uses
-  ExtCtrls, ValEdit, StdCtrls,
+  ExtCtrls,
+  ValEdit,
+  StdCtrls,
   fmecustomsettings,
   regsourcen;
 

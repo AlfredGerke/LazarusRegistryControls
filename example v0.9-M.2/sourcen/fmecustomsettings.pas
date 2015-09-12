@@ -39,6 +39,7 @@ implementation
 
 {$R *.lfm}
 
+
 { TCustomRegControlSettings<_T> }
 
 procedure TCustomRegControlSettings<_T>._Initialize;
