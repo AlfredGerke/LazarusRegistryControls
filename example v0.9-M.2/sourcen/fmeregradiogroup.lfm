@@ -33,7 +33,7 @@ inherited ControlRegRadioGroup: TControlRegRadioGroup
       RegistrySettings.CanRead = True
       RegistrySettings.CanWrite = True
       RegistrySettings.DoWriteAdHoc = True
-      RegistrySettings.GroupIndex = 0
+      RegistrySettings.GroupIndex = 1
       RegistrySettings.DoSyncData = True
       RegistrySettings.Default = 0
       RegistrySettings.Section = 'TRegRadioGroup'
@@ -50,6 +50,8 @@ inherited ControlRegRadioGroup: TControlRegRadioGroup
       Width = 305
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Around = 5
+      Shape = bsTopLine
+      Style = bsRaised
     end
     object RegComboBox1: TRegComboBox
       Left = 8
@@ -62,7 +64,7 @@ inherited ControlRegRadioGroup: TControlRegRadioGroup
       RegistrySettings.CanRead = True
       RegistrySettings.CanWrite = True
       RegistrySettings.DoWriteAdHoc = True
-      RegistrySettings.GroupIndex = 0
+      RegistrySettings.GroupIndex = 1
       RegistrySettings.DoSyncData = True
       RegistrySettings.Default = 0
       RegistrySettings.Section = 'TRegRadioGroup'

@@ -179,6 +179,11 @@ begin
 
     WriteBool('TRegCheckBox', 'Key', True);
     WriteString('TRegCheckBoxCaption', 'Caption', 'Standardcaption');
+    WriteString('TRegCheckBoxCaption', 'CaptionKey1', 'Key1');
+    WriteString('TRegCheckBoxCaption', 'CaptionKey2', 'Key2');
+    WriteString('TRegCheckBoxCaption', 'CaptionKey3', 'Key3');
+    WriteString('TRegCheckBoxCaption', 'CaptionKey4', 'Key4');
+    WriteString('TRegCheckBoxCaption', 'CaptionKey5', 'Key5');
     WriteInteger('TRegCheckGroup1', 'Index', 0);
 
     WriteBool('TRegRadioButton', 'Key1', True);

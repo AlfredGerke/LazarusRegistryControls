@@ -21,7 +21,7 @@ inherited ControlRegComobBox: TControlRegComobBox
       RegistrySettings.CanRead = True
       RegistrySettings.CanWrite = True
       RegistrySettings.DoWriteAdHoc = True
-      RegistrySettings.GroupIndex = 0
+      RegistrySettings.GroupIndex = 1
       RegistrySettings.DoSyncData = True
       RegistrySettings.Default = 0
       RegistrySettings.Section = 'TRegComboBox'
@@ -33,11 +33,13 @@ inherited ControlRegComobBox: TControlRegComobBox
     end
     object Bevel1: TBevel
       Left = 6
-      Height = 2
+      Height = 5
       Top = 40
       Width = 305
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Around = 5
+      Shape = bsTopLine
+      Style = bsRaised
     end
     object RegListBox1: TRegListBox
       Left = 6
@@ -49,7 +51,7 @@ inherited ControlRegComobBox: TControlRegComobBox
       RegistrySettings.CanRead = True
       RegistrySettings.CanWrite = True
       RegistrySettings.DoWriteAdHoc = True
-      RegistrySettings.GroupIndex = 0
+      RegistrySettings.GroupIndex = 1
       RegistrySettings.DoSyncData = True
       RegistrySettings.Default = 0
       RegistrySettings.Section = 'TRegComboBox'

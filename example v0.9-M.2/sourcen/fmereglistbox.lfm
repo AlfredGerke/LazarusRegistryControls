@@ -15,8 +15,8 @@ inherited ControlRegListBox: TControlRegListBox
     RegistrySettings.CanRead = True
     RegistrySettings.CanWrite = True
     RegistrySettings.DoWriteAdHoc = True
-    RegistrySettings.GroupIndex = 0
-    RegistrySettings.DoSyncData = False
+    RegistrySettings.GroupIndex = 1
+    RegistrySettings.DoSyncData = True
     RegistrySettings.Default = 0
     RegistrySettings.Section = 'TRegListBox'
     RegistrySettings.ItemsByRegistry = True
@@ -46,7 +46,7 @@ inherited ControlRegListBox: TControlRegListBox
     RegistrySettings.CanRead = True
     RegistrySettings.CanWrite = True
     RegistrySettings.DoWriteAdHoc = True
-    RegistrySettings.GroupIndex = 0
+    RegistrySettings.GroupIndex = 1
     RegistrySettings.DoSyncData = True
     RegistrySettings.Default = 0
     RegistrySettings.Section = 'TRegListBox'

@@ -108,6 +108,8 @@ inherited ControlRegCheckBox: TControlRegCheckBox
       Width = 305
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Around = 5
+      Shape = bsFrame
+      Style = bsRaised
     end
   end
 end

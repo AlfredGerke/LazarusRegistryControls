@@ -48,7 +48,11 @@ type
     pnlLeft: TPanel;
     spHSplitter: TSplitter;
     spVSplitter: TSplitter;
+  public type
+    TOnSetTitel = procedure(aCaption: string) of object;
   private
+    FOnSetTitel: TOnSetTitel;
+
     procedure CreateTRegistrySourceFrame;
     procedure CreateTRegListBoxFrame;
     procedure CreateTRegCheckBoxFrame;
@@ -81,6 +85,10 @@ type
     procedure FreeButtonFrame;
   public
     procedure GetRegControl(aLabel: string);
+
+    property OnSetTitel: TOnSetTitel
+      read FOnSetTitel
+      write FOnSetTitel;
   end;
 
 implementation
@@ -92,6 +100,9 @@ implementation
 
 procedure TControlDetails.CreateTRegistrySourceFrame;
 begin
+  if Assigned(FOnSetTitel) then
+    FOnSetTitel('TRegistrySource');
+
   with TControlRegistrySource.Create(pnlLeft) do
   begin
     Parent := pnlLeft;
@@ -116,6 +127,9 @@ end;
 
 procedure TControlDetails.CreateTRegListBoxFrame;
 begin
+  if Assigned(FOnSetTitel) then
+    FOnSetTitel('TRegListBox');
+
   // ControlFrame
   with TControlRegListBox.Create(pnlLeft) do
   begin
@@ -141,6 +155,9 @@ end;
 
 procedure TControlDetails.CreateTRegCheckBoxFrame;
 begin
+  if Assigned(FOnSetTitel) then
+    FOnSetTitel('TRegCheckBox');
+
   // ControlFrame
   with TControlRegCheckBox.Create(pnlLeft) do
   begin
@@ -166,6 +183,9 @@ end;
 
 procedure TControlDetails.CreateTRegRadioButtonFrame;
 begin
+  if Assigned(FOnSetTitel) then
+    FOnSetTitel('TRegRadioButton');
+
   // ControlFrame
   with TControlRegRadioButton.Create(pnlLeft) do
   begin
@@ -191,6 +211,9 @@ end;
 
 procedure TControlDetails.CreateTRegRadioGroupFrame;
 begin
+  if Assigned(FOnSetTitel) then
+    FOnSetTitel('TRegRadioGroup');
+
   // ControlFrame
   with TControlRegRadioGroup.Create(pnlLeft) do
   begin
@@ -216,6 +239,9 @@ end;
 
 procedure TControlDetails.CreateTRegEditFrame;
 begin
+  if Assigned(FOnSetTitel) then
+    FOnSetTitel('TRegEdit');
+
   // ControlFrame
   with TControlRegEdit.Create(pnlLeft) do
   begin
@@ -241,6 +267,9 @@ end;
 
 procedure TControlDetails.CreateTRegComboBoxFrame;
 begin
+  if Assigned(FOnSetTitel) then
+    FOnSetTitel('TRegComboBox');
+
   // ControlFrame
   with TControlRegComobBox.Create(pnlLeft) do
   begin
@@ -266,6 +295,9 @@ end;
 
 procedure TControlDetails.CreateTRegCheckListBoxFrame;
 begin
+  if Assigned(FOnSetTitel) then
+    FOnSetTitel('TRegCheckListBox');
+
   // ControlFrame
   with TControlRegCheckListBox.Create(pnlLeft) do
   begin
@@ -291,6 +323,9 @@ end;
 
 procedure TControlDetails.CreateTRegCheckGroupBoxFrame;
 begin
+  if Assigned(FOnSetTitel) then
+    FOnSetTitel('TRegCheckGroupBox');
+
   // ControlFrame
   with TControlRegCheckGroup.Create(pnlLeft) do
   begin
@@ -316,6 +351,9 @@ end;
 
 procedure TControlDetails.CreateTRegValueListEditorFrame;
 begin
+  if Assigned(FOnSetTitel) then
+    FOnSetTitel('TRegValueListEditor');
+
   // ControlFrame
   with TControlRegValueListEditor.Create(pnlLeft) do
   begin
@@ -341,6 +379,9 @@ end;
 
 procedure TControlDetails.CreateTRegLabelFrame;
 begin
+  if Assigned(FOnSetTitel) then
+    FOnSetTitel('TRegLabel');
+
   // ControlFrame
   with TControlRegLabel.Create(pnlLeft) do
   begin

@@ -9,13 +9,15 @@ inherited ControlRegValueListEditor: TControlRegValueListEditor
     FixedCols = 0
     RowCount = 2
     TabOrder = 0
+    KeyOptions = [keyEdit, keyAdd, keyDelete]
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goAutoAddRows, goAlwaysShowEditor, goThumbTracking]
     Strings.Strings = (
       ''
     )
     RegistrySettings.CanRead = True
     RegistrySettings.CanWrite = True
     RegistrySettings.DoWriteAdHoc = True
-    RegistrySettings.GroupIndex = 0
+    RegistrySettings.GroupIndex = 1
     RegistrySettings.DoSyncData = True
     RegistrySettings.ListSection = 'TRegValueListEditorItems'
     RegistrySettings.DoMergeData = True

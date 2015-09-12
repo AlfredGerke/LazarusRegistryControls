@@ -26,6 +26,8 @@ type
     procedure tvOutlineChange(Sender: TObject; Node: TTreeNode);
   private
     FDesktopFrame: TControlDetails;
+
+    procedure SetTitelProc(aCaption: string);
   public
     constructor Create(aOwner: TComponent); override;
   end;
@@ -37,12 +39,23 @@ implementation
 
 {$R *.lfm}
 
+uses
+  SysUtils;
+
 { TMain }
 
 procedure TMain.tvOutlineChange(Sender: TObject; Node: TTreeNode);
 begin
   if Assigned(FDesktopFrame) then
     FDesktopFrame.GetRegControl(Node.Text);
+end;
+
+procedure TMain.SetTitelProc(aCaption: string);
+begin
+  if (Trim(aCaption) = EmptyStr) then
+    Self.Caption := 'Example (LRC 0.9 M2)'
+  else
+    Self.Caption := Format('Example (LRC 0.9 M2): %s', [aCaption]);
 end;
 
 procedure TMain.FormShow(Sender: TObject);
@@ -57,6 +70,7 @@ begin
   FDesktopFrame := TControlDetails.Create(pnlDesktop);
   FDesktopFrame.Parent := pnlDesktop;
   FDesktopFrame.Align := alClient;
+  FDesktopFrame.OnSetTitel := SetTitelProc;
 end;
 
 end.

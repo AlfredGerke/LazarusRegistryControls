@@ -6,14 +6,21 @@ interface
 
 uses
   fmecustomcontrolframe,
-  regcheckgroup;
+  regcheckgroup, regcheckbox, Forms, ExtCtrls;
 
 type
 
   { TControlRegCheckGroup }
 
   TControlRegCheckGroup = class(TCustomRegControlFrame<TRegCheckGroup>)
+    Bevel1: TBevel;
+    RegCheckBox1: TRegCheckBox;
+    RegCheckBox2: TRegCheckBox;
+    RegCheckBox3: TRegCheckBox;
+    RegCheckBox4: TRegCheckBox;
+    RegCheckBox5: TRegCheckBox;
     RegCheckGroup1: TRegCheckGroup;
+    ScrollBox1: TScrollBox;
   protected
     procedure _Initialize; override;
   public

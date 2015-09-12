@@ -7,15 +7,17 @@ interface
 uses
   fmecustomcontrolframe,
   reglabel,
-  regedit;
+  regedit, ExtCtrls, Forms;
 
 type
 
   { TControlRegLabel }
 
   TControlRegLabel = class(TCustomRegControlFrame<TRegLabel>)
+    Bevel1: TBevel;
     RegEdit1: TRegEdit;
     RegLabel1: TRegLabel;
+    ScrollBox1: TScrollBox;
   protected
     procedure _Initialize; override;
   end;

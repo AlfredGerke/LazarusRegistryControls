@@ -24,8 +24,58 @@ msgctxt "tcontrolregcheckbox.regradiobutton1.caption"
 msgid "DefaultCaption"
 msgstr ""
 
+#: tcontrolregcheckgroup.regcheckbox1.caption
+msgctxt "TCONTROLREGCHECKGROUP.REGCHECKBOX1.CAPTION"
+msgid "RegCheckBox1"
+msgstr ""
+
+#: tcontrolregcheckgroup.regcheckbox2.caption
+msgctxt "TCONTROLREGCHECKGROUP.REGCHECKBOX2.CAPTION"
+msgid "RegCheckBox2"
+msgstr ""
+
+#: tcontrolregcheckgroup.regcheckbox3.caption
+msgctxt "TCONTROLREGCHECKGROUP.REGCHECKBOX3.CAPTION"
+msgid "RegCheckBox3"
+msgstr ""
+
+#: tcontrolregcheckgroup.regcheckbox4.caption
+msgctxt "TCONTROLREGCHECKGROUP.REGCHECKBOX4.CAPTION"
+msgid "RegCheckBox4"
+msgstr ""
+
+#: tcontrolregcheckgroup.regcheckbox5.caption
+msgctxt "TCONTROLREGCHECKGROUP.REGCHECKBOX5.CAPTION"
+msgid "RegCheckBox5"
+msgstr ""
+
 #: tcontrolregcheckgroup.regcheckgroup1.caption
 msgid "RegCheckGroup1"
+msgstr ""
+
+#: tcontrolregchecklistbox.regcheckbox1.caption
+msgctxt "TCONTROLREGCHECKLISTBOX.REGCHECKBOX1.CAPTION"
+msgid "RegCheckBox1"
+msgstr ""
+
+#: tcontrolregchecklistbox.regcheckbox2.caption
+msgctxt "tcontrolregchecklistbox.regcheckbox2.caption"
+msgid "RegCheckBox2"
+msgstr ""
+
+#: tcontrolregchecklistbox.regcheckbox3.caption
+msgctxt "tcontrolregchecklistbox.regcheckbox3.caption"
+msgid "RegCheckBox3"
+msgstr ""
+
+#: tcontrolregchecklistbox.regcheckbox4.caption
+msgctxt "tcontrolregchecklistbox.regcheckbox4.caption"
+msgid "RegCheckBox4"
+msgstr ""
+
+#: tcontrolregchecklistbox.regcheckbox5.caption
+msgctxt "tcontrolregchecklistbox.regcheckbox5.caption"
+msgid "RegCheckBox5"
 msgstr ""
 
 #: tcontrolregcomobbox.regcombobox1.text

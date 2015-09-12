@@ -11,6 +11,16 @@ inherited ControlRegRadioButton: TControlRegRadioButton
     ClientHeight = 240
     ClientWidth = 320
     TabOrder = 0
+    object Bevel1: TBevel
+      Left = 5
+      Height = 6
+      Top = 40
+      Width = 310
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Around = 2
+      Shape = bsTopLine
+      Style = bsRaised
+    end
     object RegRadioButton1: TRegRadioButton
       Left = 8
       Height = 19
@@ -160,14 +170,6 @@ inherited ControlRegRadioButton: TControlRegRadioButton
       RegistrySettings.ListSection = 'TRegRadioButton'
       RegistrySettings.DoMergeData = True
       RegistrySource = RegistrySourceModule.rsRegistrySource
-    end
-    object Bevel1: TBevel
-      Left = 8
-      Height = 2
-      Top = 40
-      Width = 305
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Around = 5
     end
   end
 end
