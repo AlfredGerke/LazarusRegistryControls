@@ -1,3 +1,5 @@
+{ TODO -oAlfred Gerke -cControlButtonFrame : Spezielle Testmethoden für Listen-RegControls implementieren }
+
 unit fmeregcontrolbuttonframe;
 
 {$mode delphi}

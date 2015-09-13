@@ -86,8 +86,8 @@ type
       read FOnCustomItemCheck
       write FOnCustomItemCheck;
   public
-    procedure ClearItems(aAskFor: boolean = True;
-                         aMsg: string = 'Clear Items?'); virtual;
+    function ClearItems(aAskFor: boolean = True;
+                        aMsg: string = 'Clear Items?'): boolean; virtual;
     procedure Click; override;
     procedure AfterConstruction; override;
     function ReadFromReg(aReadSource: TRegistryDataOrigin = rdoGeneral): boolean; virtual;
@@ -651,13 +651,14 @@ begin
   FLastChecked := aLastChecked;
 end;
 
-procedure TCustomRegCheckGroup.ClearItems(aAskFor: boolean = True;
-  aMsg: string = 'Clear Items?');
+function TCustomRegCheckGroup.ClearItems(aAskFor: boolean = True;
+  aMsg: string = 'Clear Items?'): boolean;
 var
   start: boolean;
 begin
   start := not aAskFor;
   if FRegistrySettings.ItemsByRegistry then
+  begin
     if aAskFor then
       start := (MessageDlg(aMsg, mtConfirmation, [mbYes, mbNo], 0) = mrYes);
     if start then
@@ -667,6 +668,9 @@ begin
         FRegistrySettings.ListSection,
         FRegistrySettings.WriteDefaults,
         FRegistrySettings.GroupIndex);
+  end;
+
+  Result := (start and FRegistrySettings.ItemsByRegistry);
 end;
 
 procedure TCustomRegCheckGroup.Click;

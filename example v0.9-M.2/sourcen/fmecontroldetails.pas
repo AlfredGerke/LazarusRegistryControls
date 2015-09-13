@@ -65,6 +65,7 @@ type
     procedure CreateTRegValueListEditorFrame;
     procedure CreateTRegLabelFrame;
 
+    { TODO -oAlfred Gerke -cCreateButtonFrame : Spezielle Testmethoden für Listen-RegControls implementieren }
     procedure CreateButtonFrame(aRefreshSettings: TRegControlProperties.TOnRefreshSettings;
                                 aGetRootKeys: TRegControlButtonFrame.TOnGetRootKeys;
                                 aSetCanRead: TRegControlButtonFrame.TOnSetBooleanProperty;

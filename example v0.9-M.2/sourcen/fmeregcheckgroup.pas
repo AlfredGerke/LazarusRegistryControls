@@ -26,6 +26,8 @@ type
   public
     procedure SetDoMergeData(aValue: boolean);
     function GetDoMergeData: boolean;
+
+    { TODO -oAlfred Gerke -cListen-RegControls : Spezielle Testmethoden für Listen-RegControls implementieren }
   end;
 
 implementation

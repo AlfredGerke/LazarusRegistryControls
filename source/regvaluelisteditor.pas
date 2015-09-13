@@ -70,8 +70,8 @@ type
       read FRegistrySource
       write SetRegistrySource;
   public
-    procedure ClearItems(aAskFor: boolean = True;
-                         aMsg: string = 'Clear Items?'); virtual;
+    function ClearItems(aAskFor: boolean = True;
+                        aMsg: string = 'Clear Items?'): boolean; virtual;
     procedure AfterConstruction; override;
     function ReadFromReg: boolean; virtual;
     function WriteToReg: boolean; virtual;
@@ -508,13 +508,14 @@ begin
   UpdateKeyValueInfo(ACol, ARow, False);
 end;
 
-procedure TCustomRegValueListEditor.ClearItems(aAskFor: boolean = True;
-  aMsg: string = 'Clear Items?');
+function TCustomRegValueListEditor.ClearItems(aAskFor: boolean = True;
+  aMsg: string = 'Clear Items?'): boolean;
 var
   start: boolean;
 begin
   start := not aAskFor;
   if FRegistrySettings.CanRead then
+  begin
     if aAskFor then
       start := (MessageDlg(aMsg, mtConfirmation, [mbYes, mbNo], 0) = mrYes);
     if start then
@@ -524,6 +525,9 @@ begin
         FRegistrySettings.ListSection,
         FRegistrySettings.WriteDefaults,
         FRegistrySettings.GroupIndex);
+  end;
+
+  Result := (start and FRegistrySettings.CanRead);
 end;
 
 procedure TCustomRegValueListEditor.AfterConstruction;
