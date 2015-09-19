@@ -46,7 +46,6 @@ object RegControlButtonFrame: TRegControlButtonFrame
         Left = 115
         Top = 2
         Action = acSetItems
-        ImageIndex = 2
       end
     end
     object ScrollBox1: TScrollBox
@@ -54,7 +53,7 @@ object RegControlButtonFrame: TRegControlButtonFrame
       Height = 277
       Top = 52
       Width = 348
-      HorzScrollBar.Page = 272
+      HorzScrollBar.Page = 297
       VertScrollBar.Page = 274
       Align = alClient
       BorderStyle = bsNone
@@ -182,7 +181,7 @@ object RegControlButtonFrame: TRegControlButtonFrame
           TabOrder = 3
         end
         object edtGroupIndex: TSpinEdit
-          Left = 192
+          Left = 217
           Height = 23
           Top = 8
           Width = 66
@@ -237,13 +236,44 @@ object RegControlButtonFrame: TRegControlButtonFrame
           ParentFont = False
           TabOrder = 6
         end
+        object rgbListSourceKind: TRadioGroup
+          Left = 122
+          Height = 105
+          Top = 36
+          Width = 161
+          AutoFill = True
+          Caption = ' ListSourceKind '
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 84
+          ClientWidth = 157
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Items.Strings = (
+            'lskUnknown'
+            'lskByKey'
+            'lskByValue'
+            'lskByKeyValue'
+          )
+          OnClick = acSetListSourceKindExecute
+          ParentFont = False
+          TabOrder = 7
+        end
       end
     end
   end
   object acList: TActionList
     Images = ilImages
-    left = 264
-    top = 208
+    left = 248
+    top = 8
     object acGetRootKeys: TAction
       Category = 'Dialogs'
       Caption = 'Rootkeys'
@@ -288,6 +318,7 @@ object RegControlButtonFrame: TRegControlButtonFrame
     object acSetItems: TAction
       Category = 'Functions'
       Caption = 'Set Items'
+      ImageIndex = 2
       OnExecute = acSetItemsExecute
     end
     object acItemsByRegistry: TAction
@@ -301,10 +332,15 @@ object RegControlButtonFrame: TRegControlButtonFrame
       ImageIndex = 1
       OnExecute = acClearItemsExecute
     end
+    object acSetListSourceKind: TAction
+      Category = 'Properties'
+      Caption = 'ListeSourceKind'
+      OnExecute = acSetListSourceKindExecute
+    end
   end
   object ilImages: TImageList
-    left = 208
-    top = 208
+    left = 200
+    top = 8
     Bitmap = {
       4C69030000001000000010000000FFFFFF00FFFFFF00FFFFFF00A465341DA769
       3A9FA76A3ADEA56736F6A76939E5A76A3ABCA4653453A4653405FFFFFF00FFFF

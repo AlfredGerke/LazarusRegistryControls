@@ -122,8 +122,17 @@ msgctxt "tcontrolreglabel.reglabel1.caption"
 msgid "RegLabel1"
 msgstr ""
 
+#: tcontrolreglistbox.acdeleteitem.caption
+msgid "Delete Item"
+msgstr ""
+
 #: tcontrolreglistbox.regradiogroup1.caption
 msgid "Defaultcaption"
+msgstr ""
+
+#: tcontrolreglistbox.toolbar1.caption
+msgctxt "TCONTROLREGLISTBOX.TOOLBAR1.CAPTION"
+msgid "ToolBar1"
 msgstr ""
 
 #: tcontrolregradiobutton.regradiobutton1.caption
@@ -223,6 +232,10 @@ msgstr ""
 msgid "Set Items"
 msgstr ""
 
+#: tregcontrolbuttonframe.acsetlistsourcekind.caption
+msgid "ListeSourceKind"
+msgstr ""
+
 #: tregcontrolbuttonframe.barbuttonframetoolbar.caption
 msgid "barButtonFrameToolbar"
 msgstr ""
@@ -241,6 +254,10 @@ msgstr ""
 
 #: tregcontrolbuttonframe.lblgroupindex.caption
 msgid "GroupIndex:"
+msgstr ""
+
+#: tregcontrolbuttonframe.rgblistsourcekind.caption
+msgid " ListSourceKind "
 msgstr ""
 
 #: tregcontrolcaptionsettings.lblcaptionsettings.caption

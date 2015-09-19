@@ -22,11 +22,16 @@ type
 
     { TODO -oAlfred Gerke -cListen-RegControls : Spezielle Testmethoden für Listen-RegControls implementieren }
     { TODO -oAlfred Gerke -cListen-RegControls : Für TRegValueListEditor Set-/GetItemsByRegistry nicht implementieren }
+    { TODO -oAlfred Gerke -cListen-RegControls : Für TRegValueListEditor Set-/GetListSourceKind nicht implementieren }
+    function ClearItems: boolean;
   end;
 
 implementation
 
 {$R *.lfm}
+
+uses
+  Dialogs;
 
 { TControlRegValueListEditor }
 
@@ -47,6 +52,10 @@ begin
   Result := RegControl.RegistrySettings.DoMergeData;
 end;
 
+function TControlRegValueListEditor.ClearItems: boolean;
+begin
+  Result := RegControl.ClearItems(True, 'Einträge löschen?')
+end;
 
 end.
 

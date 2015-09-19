@@ -11,8 +11,13 @@ uses
   ExtCtrls,
   Buttons,
   StdCtrls,
-  ActnList, Spin, ComCtrls, Controls,
-  fmeregcontrolproperties, Classes;
+  ActnList,
+  Spin,
+  ComCtrls,
+  Controls,
+  fmeregcontrolproperties,
+  Classes,
+  regtype;
 
 type
 
@@ -31,6 +36,7 @@ type
     acSetItems: TAction;
     acItemsByRegistry: TAction;
     acClearItems: TAction;
+    acSetListSourceKind: TAction;
     btnGetRootKeys: TSpeedButton;
     cbxCanRead: TCheckBox;
     cbxCanWrite: TCheckBox;
@@ -46,6 +52,7 @@ type
     lblGroupIndex: TLabel;
     pnlWorkspace: TPanel;
     barButtonFrameToolbar: TToolBar;
+    rgbListSourceKind: TRadioGroup;
     ScrollBox1: TScrollBox;
     btnRefresh: TToolButton;
     btnClear: TToolButton;
@@ -61,12 +68,15 @@ type
     procedure acReadFromRegExecute(Sender: TObject);
     procedure acSetGroupIndexExecute(Sender: TObject);
     procedure acSetItemsExecute(Sender: TObject);
+    procedure acSetListSourceKindExecute(Sender: TObject);
   public type
     TOnGetRootKeys = procedure(aEdit: boolean) of object;
     TOnSetBooleanProperty = procedure(AValue: boolean) of object;
-    TOnGetBooleanProperty = function : boolean of object;
+    TOnGetBooleanProperty = function: boolean of object;
     TOnSetIntegerProperty = procedure(aIndex: integer) of object;
-    TOnGetIntegerProperty = function : integer of object;
+    TOnGetIntegerProperty = function: integer of object;
+    TOnSetListSourceKind = procedure(aSetListSourceKind: TListSourceKind) of object;
+    TOnGetListSourceKind = function: TListSourceKind of object;
     TOnReadFromRegistry = procedure of object;
     TOnSetItems = procedure of object;
     TOnClearItems = function : boolean of object;
@@ -80,6 +90,7 @@ type
     FOnSetDoMergeData: TOnSetBooleanProperty;
     FOnSetGroupIndex: TOnSetIntegerProperty;
     FOnSetItemsByRegistry: TOnSetBooleanProperty;
+    FOnSetListSourceKind: TOnSetListSourceKind;
     //
     FOnGetCanRead: TOnGetBooleanProperty;
     FOnGetCanWrite: TOnGetBooleanProperty;
@@ -88,6 +99,7 @@ type
     FOnGetDoMergeData: TOnGetBooleanProperty;
     FOnGetGroupIndex: TOnGetIntegerProperty;
     FOnGetItemsByRegistry: TOnGetBooleanProperty;
+    FOnGetListSourceKind: TOnGetListSourceKind;
     //
     FOnReadFromRegistry: TOnReadFromRegistry;
     FOnSetItems: TOnSetItems;
@@ -104,6 +116,7 @@ type
     procedure SetGroupIndex;
     procedure SetItemsByRegistry;
     procedure SetItems;
+    procedure SetListSourceKind;
     function ClearItems: boolean;
   public
     procedure Refresh;
@@ -174,6 +187,14 @@ type
         read FOnGetItemsByRegistry
         write FOnGetItemsByRegistry;
 
+      property OnSetListSourceKind: TOnSetListSourceKind
+        read FOnSetListSourceKind
+        write FOnSetListSourceKind;
+
+      property OnGetListSourceKind: TOnGetListSourceKind
+        read FOnGetListSourceKind
+        write FOnGetListSourceKind;
+
       property OnReadFromRegistry: TOnReadFromRegistry
         read FOnReadFromRegistry
         write FOnReadFromRegistry;
@@ -220,6 +241,11 @@ end;
 procedure TRegControlButtonFrame.acSetItemsExecute(Sender: TObject);
 begin
   SetItems;
+end;
+
+procedure TRegControlButtonFrame.acSetListSourceKindExecute(Sender: TObject);
+begin
+  SetListSourceKind;
 end;
 
 procedure TRegControlButtonFrame.RefreshRegControl;
@@ -346,6 +372,17 @@ begin
      FOnSetItems;
 end;
 
+procedure TRegControlButtonFrame.SetListSourceKind;
+begin
+  if Assigned(FOnSetListSourceKind) then
+    FOnSetListSourceKind(TListSourceKind(rgbListSourceKind.ItemIndex));
+
+  if Assigned(FOnRefreshSettings) then
+    FOnRefreshSettings;
+
+  RefreshRegControl;
+end;
+
 function TRegControlButtonFrame.ClearItems: boolean;
 begin
   Result := Assigned(FOnClearItems);
@@ -385,6 +422,14 @@ begin
 
   btnAdd.Enabled := Assigned(FOnSetItems);
   btnClear.Enabled := Assigned(FOnClearItems);
+
+  if Assigned(FOnGetListSourceKind) then
+  begin
+    rgbListSourceKind.Enabled := True;
+    rgbListSourceKind.ItemIndex := Integer(FOnGetListSourceKind);
+  end
+  else
+    rgbListSourceKind.Enabled := False;
 
   if Assigned(FOnGetGroupIndex) then
     edtGroupIndex.Value := FOnGetGroupIndex;
