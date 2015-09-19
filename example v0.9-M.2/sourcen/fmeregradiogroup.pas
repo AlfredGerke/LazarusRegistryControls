@@ -31,13 +31,16 @@ type
     { TODO -oAlfred Gerke -cListen-RegControls : Spezielle Testmethoden für Listen-RegControls implementieren }
     procedure SetItemsByRegistry(aValue: boolean);
     function GetItemsByRegistry: boolean;
-
     function ClearItems: boolean;
+    procedure SetItems;
   end;
 
 implementation
 
 {$R *.lfm}
+
+uses
+  Dialogs;
 
 procedure TControlRegRadioGroup._Initialize;
 begin
@@ -62,6 +65,20 @@ end;
 function TControlRegRadioGroup.ClearItems: boolean;
 begin
   Result := RegControl.ClearItems(True, 'Einträge löschen?');
+end;
+
+procedure TControlRegRadioGroup.SetItems;
+begin
+  if GetItemsByRegistry then
+    MessageDlg('Listendaten werden aus der Registry gelesen, ItemsByRegistry auf False setzen!', mtWarning, [mbOK], 0)
+  else
+  begin
+    RegComboBox1.Items.Add('Default1');
+    RegComboBox1.Items.Add('Default2');
+    RegComboBox1.Items.Add('Default3');
+    RegComboBox1.Items.Add('Default4');
+    RegComboBox1.Items.Add('Default5');
+  end;
 end;
 
 procedure TControlRegRadioGroup.SetItemsByRegistry(aValue: boolean);

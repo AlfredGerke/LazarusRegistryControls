@@ -21,6 +21,7 @@ type
     function GetDoMergeData: boolean;
 
     { TODO -oAlfred Gerke -cListen-RegControls : Spezielle Testmethoden für Listen-RegControls implementieren }
+    { TODO -oAlfred Gerke -cListen-RegControls : Für TRegValueListEditor Set-/GetItemsByRegistry nicht implementieren }
   end;
 
 implementation

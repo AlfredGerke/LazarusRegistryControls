@@ -369,6 +369,7 @@ begin
 
       SetRegComponent(RegControl);
 
+      { TODO -oAlfred Gerke -cListen-RegControls : Für TRegValueListEditor Set-/GetItemsByRegistry nicht übergeben }
       // Buttonframe
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
         SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,

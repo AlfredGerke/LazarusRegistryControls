@@ -28,6 +28,9 @@ type
     function GetDoMergeData: boolean;
 
     { TODO -oAlfred Gerke -cListen-RegControls : Spezielle Testmethoden für Listen-RegControls implementieren }
+    procedure SetItemsByRegistry(aValue: boolean);
+    function GetItemsByRegistry: boolean;
+
   end;
 
 implementation
@@ -52,6 +55,16 @@ end;
 function TControlRegCheckGroup.GetDoMergeData: boolean;
 begin
   Result := RegControl.RegistrySettings.DoMergeData;
+end;
+
+procedure TControlRegCheckGroup.SetItemsByRegistry(aValue: boolean);
+begin
+
+end;
+
+function TControlRegCheckGroup.GetItemsByRegistry: boolean;
+begin
+
 end;
 
 end.

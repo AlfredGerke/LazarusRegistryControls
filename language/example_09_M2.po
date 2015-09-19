@@ -186,6 +186,10 @@ msgstr ""
 msgid "CanWrite"
 msgstr ""
 
+#: tregcontrolbuttonframe.acclearitems.caption
+msgid "Clear Items"
+msgstr ""
+
 #: tregcontrolbuttonframe.acdomergedata.caption
 msgid "DoMergeData"
 msgstr ""
@@ -203,12 +207,20 @@ msgstr ""
 msgid "Rootkeys"
 msgstr ""
 
+#: tregcontrolbuttonframe.acitemsbyregistry.caption
+msgid "ItemsByRegistry"
+msgstr ""
+
 #: tregcontrolbuttonframe.acreadfromreg.caption
 msgid "Refresh"
 msgstr ""
 
 #: tregcontrolbuttonframe.acsetgroupindex.caption
 msgid "Set GroupIndex"
+msgstr ""
+
+#: tregcontrolbuttonframe.acsetitems.caption
+msgid "Set Items"
 msgstr ""
 
 #: tregcontrolbuttonframe.barbuttonframetoolbar.caption

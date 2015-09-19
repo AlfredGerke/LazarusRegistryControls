@@ -28,10 +28,14 @@ type
     acDoMergeData: TAction;
     acSetGroupIndex: TAction;
     acReadFromReg: TAction;
+    acSetItems: TAction;
+    acItemsByRegistry: TAction;
+    acClearItems: TAction;
     btnGetRootKeys: TSpeedButton;
     cbxCanRead: TCheckBox;
     cbxCanWrite: TCheckBox;
     cbxDoMergeData: TCheckBox;
+    cbxItemsByRegistry: TCheckBox;
     cbxDoSyncData: TCheckBox;
     cbxDoWriteAdHoc: TCheckBox;
     cbxEditRootKeys: TCheckBox;
@@ -43,15 +47,20 @@ type
     pnlWorkspace: TPanel;
     barButtonFrameToolbar: TToolBar;
     ScrollBox1: TScrollBox;
-    ToolButton1: TToolButton;
+    btnRefresh: TToolButton;
+    btnClear: TToolButton;
+    btnAdd: TToolButton;
     procedure acCanReadExecute(Sender: TObject);
     procedure acCanWriteExecute(Sender: TObject);
+    procedure acClearItemsExecute(Sender: TObject);
     procedure acDoMergeDataExecute(Sender: TObject);
     procedure acDoSyncDataExecute(Sender: TObject);
     procedure acDoWriteAdHocExecute(Sender: TObject);
     procedure acGetRootKeysExecute(Sender: TObject);
+    procedure acItemsByRegistryExecute(Sender: TObject);
     procedure acReadFromRegExecute(Sender: TObject);
     procedure acSetGroupIndexExecute(Sender: TObject);
+    procedure acSetItemsExecute(Sender: TObject);
   public type
     TOnGetRootKeys = procedure(aEdit: boolean) of object;
     TOnSetBooleanProperty = procedure(AValue: boolean) of object;
@@ -59,6 +68,8 @@ type
     TOnSetIntegerProperty = procedure(aIndex: integer) of object;
     TOnGetIntegerProperty = function : integer of object;
     TOnReadFromRegistry = procedure of object;
+    TOnSetItems = procedure of object;
+    TOnClearItems = function : boolean of object;
   private
     FOnGetRootKeys: TOnGetRootKeys;
     //
@@ -68,6 +79,7 @@ type
     FOnSetDoSyncData: TOnSetBooleanProperty;
     FOnSetDoMergeData: TOnSetBooleanProperty;
     FOnSetGroupIndex: TOnSetIntegerProperty;
+    FOnSetItemsByRegistry: TOnSetBooleanProperty;
     //
     FOnGetCanRead: TOnGetBooleanProperty;
     FOnGetCanWrite: TOnGetBooleanProperty;
@@ -75,8 +87,11 @@ type
     FOnGetDoSyncData: TOnGetBooleanProperty;
     FOnGetDoMergeData: TOnGetBooleanProperty;
     FOnGetGroupIndex: TOnGetIntegerProperty;
+    FOnGetItemsByRegistry: TOnGetBooleanProperty;
     //
     FOnReadFromRegistry: TOnReadFromRegistry;
+    FOnSetItems: TOnSetItems;
+    FOnClearItems: TOnClearItems;
     //
     FOnRefreshSettings: TRegControlProperties.TOnRefreshSettings;
 
@@ -87,6 +102,9 @@ type
     procedure SetDoSyncData;
     procedure SetDoMegerData;
     procedure SetGroupIndex;
+    procedure SetItemsByRegistry;
+    procedure SetItems;
+    function ClearItems: boolean;
   public
     procedure Refresh;
 
@@ -148,14 +166,33 @@ type
         read FOnGetGroupIndex
         write FOnGetGroupIndex;
 
+      property OnSetItemsByRegistry: TOnSetBooleanProperty
+        read FOnSetItemsByRegistry
+        write FOnSetItemsByRegistry;
+
+      property OnGetItemsByRegistry: TOnGetBooleanProperty
+        read FOnGetItemsByRegistry
+        write FOnGetItemsByRegistry;
+
       property OnReadFromRegistry: TOnReadFromRegistry
         read FOnReadFromRegistry
         write FOnReadFromRegistry;
+
+      property OnSetItems: TOnSetItems
+        read FOnSetItems
+        write FOnSetItems;
+
+      property OnClearItems: TOnClearItems
+        read FOnClearItems
+        write FOnClearItems;
   end;
 
 implementation
 
 {$R *.lfm}
+
+uses
+  Dialogs;
 
 { TRegControlButtonFrame }
 
@@ -163,6 +200,11 @@ procedure TRegControlButtonFrame.acGetRootKeysExecute(Sender: TObject);
 begin
   if Assigned(FOnGetRootKeys) then
     FOnGetRootKeys(cbxEditRootKeys.Checked);
+end;
+
+procedure TRegControlButtonFrame.acItemsByRegistryExecute(Sender: TObject);
+begin
+  SetItemsByRegistry;
 end;
 
 procedure TRegControlButtonFrame.acReadFromRegExecute(Sender: TObject);
@@ -173,6 +215,11 @@ end;
 procedure TRegControlButtonFrame.acSetGroupIndexExecute(Sender: TObject);
 begin
   SetGroupIndex;
+end;
+
+procedure TRegControlButtonFrame.acSetItemsExecute(Sender: TObject);
+begin
+  SetItems;
 end;
 
 procedure TRegControlButtonFrame.RefreshRegControl;
@@ -189,6 +236,12 @@ end;
 procedure TRegControlButtonFrame.acCanWriteExecute(Sender: TObject);
 begin
   SetCanWrite;
+end;
+
+procedure TRegControlButtonFrame.acClearItemsExecute(Sender: TObject);
+begin
+  if not ClearItems then
+    MessageDlg('Daten wurden nicht gelöscht!', mtInformation, [mbOK], 0);
 end;
 
 procedure TRegControlButtonFrame.acDoMergeDataExecute(Sender: TObject);
@@ -275,6 +328,31 @@ begin
     FOnRefreshSettings;
 end;
 
+procedure TRegControlButtonFrame.SetItemsByRegistry;
+begin
+  if Assigned(FOnSetItemsByRegistry) then
+    if cbxItemsByRegistry.Checked then
+      FOnSetItemsByRegistry(True)
+    else
+      FOnSetItemsByRegistry(False);
+
+  if Assigned(FOnRefreshSettings) then
+    FOnRefreshSettings;
+end;
+
+procedure TRegControlButtonFrame.SetItems;
+begin
+  if Assigned(FOnSetItems) then
+     FOnSetItems;
+end;
+
+function TRegControlButtonFrame.ClearItems: boolean;
+begin
+  Result := Assigned(FOnClearItems);
+  if Result then
+    Result := FOnClearItems;
+end;
+
 procedure TRegControlButtonFrame.Refresh;
 begin
   if Assigned(FOnGetCanRead) then
@@ -296,6 +374,17 @@ begin
   end
   else
     cbxDoMergeData.Enabled := False;
+
+  if Assigned(FOnGetItemsByRegistry) then
+  begin
+    cbxItemsByRegistry.Enabled := True;
+    cbxItemsByRegistry.Checked := FOnGetItemsByRegistry;
+  end
+  else
+    cbxItemsByRegistry.Enabled := False;
+
+  btnAdd.Enabled := Assigned(FOnSetItems);
+  btnClear.Enabled := Assigned(FOnClearItems);
 
   if Assigned(FOnGetGroupIndex) then
     edtGroupIndex.Value := FOnGetGroupIndex;
