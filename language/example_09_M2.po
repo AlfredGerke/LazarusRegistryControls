@@ -24,6 +24,11 @@ msgctxt "tcontrolregcheckbox.regradiobutton1.caption"
 msgid "DefaultCaption"
 msgstr ""
 
+#: tcontrolregcheckgroup.acdeleteitem.caption
+msgctxt "TCONTROLREGCHECKGROUP.ACDELETEITEM.CAPTION"
+msgid "Delete Item"
+msgstr ""
+
 #: tcontrolregcheckgroup.regcheckbox1.caption
 msgctxt "TCONTROLREGCHECKGROUP.REGCHECKBOX1.CAPTION"
 msgid "RegCheckBox1"
@@ -53,6 +58,16 @@ msgstr ""
 msgid "RegCheckGroup1"
 msgstr ""
 
+#: tcontrolregcheckgroup.toolbar1.caption
+msgctxt "TCONTROLREGCHECKGROUP.TOOLBAR1.CAPTION"
+msgid "ToolBar1"
+msgstr ""
+
+#: tcontrolregchecklistbox.acdeleteitem.caption
+msgctxt "TCONTROLREGCHECKLISTBOX.ACDELETEITEM.CAPTION"
+msgid "Delete Item"
+msgstr ""
+
 #: tcontrolregchecklistbox.regcheckbox1.caption
 msgctxt "TCONTROLREGCHECKLISTBOX.REGCHECKBOX1.CAPTION"
 msgid "RegCheckBox1"
@@ -78,9 +93,24 @@ msgctxt "tcontrolregchecklistbox.regcheckbox5.caption"
 msgid "RegCheckBox5"
 msgstr ""
 
+#: tcontrolregchecklistbox.toolbar1.caption
+msgctxt "TCONTROLREGCHECKLISTBOX.TOOLBAR1.CAPTION"
+msgid "ToolBar1"
+msgstr ""
+
+#: tcontrolregcomobbox.acdeleteitem.caption
+msgctxt "TCONTROLREGCOMOBBOX.ACDELETEITEM.CAPTION"
+msgid "Delete Item"
+msgstr ""
+
 #: tcontrolregcomobbox.regcombobox1.text
 msgctxt "tcontrolregcomobbox.regcombobox1.text"
 msgid "RegComboBox1"
+msgstr ""
+
+#: tcontrolregcomobbox.toolbar1.caption
+msgctxt "TCONTROLREGCOMOBBOX.TOOLBAR1.CAPTION"
+msgid "ToolBar1"
 msgstr ""
 
 #: tcontrolregedit.reglabel1.caption
@@ -123,6 +153,7 @@ msgid "RegLabel1"
 msgstr ""
 
 #: tcontrolreglistbox.acdeleteitem.caption
+msgctxt "tcontrolreglistbox.acdeleteitem.caption"
 msgid "Delete Item"
 msgstr ""
 
@@ -155,6 +186,11 @@ msgstr ""
 msgid "DefaultCaption5"
 msgstr ""
 
+#: tcontrolregradiogroup.acdeleteitem.caption
+msgctxt "TCONTROLREGRADIOGROUP.ACDELETEITEM.CAPTION"
+msgid "Delete Item"
+msgstr ""
+
 #: tcontrolregradiogroup.regcombobox1.text
 msgctxt "TCONTROLREGRADIOGROUP.REGCOMBOBOX1.TEXT"
 msgid "RegComboBox1"
@@ -162,6 +198,11 @@ msgstr ""
 
 #: tcontrolregradiogroup.regradiogroup1.caption
 msgid "RegRadioGroup1"
+msgstr ""
+
+#: tcontrolregradiogroup.toolbar1.caption
+msgctxt "TCONTROLREGRADIOGROUP.TOOLBAR1.CAPTION"
+msgid "ToolBar1"
 msgstr ""
 
 #: tcustomregcontrolframe.toolbar1.caption

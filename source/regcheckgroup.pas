@@ -109,6 +109,7 @@ type
   protected
   public
   published
+    property LastChecked;
     property CaptionSettings;
     property RegistrySettings;
     property RegistrySource;

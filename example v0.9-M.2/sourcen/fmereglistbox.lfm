@@ -74,6 +74,7 @@ inherited ControlRegListBox: TControlRegListBox
     AutoSize = True
     Caption = 'ToolBar1'
     DisabledImages = ImageList1
+    EdgeBorders = [ebBottom]
     HotImages = ImageList1
     Images = ImageList1
     TabOrder = 3

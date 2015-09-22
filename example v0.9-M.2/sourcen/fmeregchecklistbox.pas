@@ -9,15 +9,18 @@ uses
   regchecklistbox,
   regcheckbox,
   Forms,
-  ExtCtrls,
-  regtype;
+  ExtCtrls, Controls, ActnList, ComCtrls,
+  regtype, Classes;
 
 type
 
   { TControlRegCheckListBox }
 
   TControlRegCheckListBox = class(TCustomRegControlFrame<TRegCheckListBox>)
+    acDeleteItem: TAction;
+    ActionList1: TActionList;
     Bevel1: TBevel;
+    ImageList1: TImageList;
     RegCheckBox1: TRegCheckBox;
     RegCheckBox2: TRegCheckBox;
     RegCheckBox3: TRegCheckBox;
@@ -25,6 +28,9 @@ type
     RegCheckBox5: TRegCheckBox;
     RegCheckListBox1: TRegCheckListBox;
     ScrollBox1: TScrollBox;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    procedure acDeleteItemExecute(Sender: TObject);
   protected
     procedure _Initialize; override;
   public
@@ -43,7 +49,21 @@ implementation
 {$R *.lfm}
 
 uses
-  Dialogs;
+  Dialogs,
+  datRegistry;
+
+procedure TControlRegCheckListBox.acDeleteItemExecute(Sender: TObject);
+var
+  index: integer;
+  value: string;
+  lsk: TListSourceKind;
+begin
+  index := RegCheckListBox1.ItemIndex;
+  value := RegCheckListBox1.Items[index];
+  lsk := RegCheckListBox1.RegistrySettings.SourceKind;
+
+  RegistrySourceModule.DeleteListItem('TRegCheckListBoxItems', value, lsk);
+end;
 
 procedure TControlRegCheckListBox._Initialize;
 begin

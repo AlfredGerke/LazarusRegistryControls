@@ -10,8 +10,10 @@ uses
   regradiogroup,
   ExtCtrls,
   ActnList,
-  Menus, ComCtrls, Controls,
-  regtype, Classes;
+  Menus,
+  ComCtrls,
+  Controls,
+  regtype;
 
 type
 
@@ -48,11 +50,20 @@ implementation
 {$R *.lfm}
 
 uses
-  Dialogs;
+  Dialogs,
+  datRegistry;
 
 procedure TControlRegListBox.acDeleteItemExecute(Sender: TObject);
+var
+  index: integer;
+  value: string;
+  lsk: TListSourceKind;
 begin
-  RegControl.Items.Delete(RegControl.ItemIndex);
+  index := RegListBox1.ItemIndex;
+  value := RegListBox1.Items[index];
+  lsk := RegListBox1.RegistrySettings.SourceKind;
+
+  RegistrySourceModule.DeleteListItem('TRegListBoxItems', value, lsk);
 end;
 
 procedure TControlRegListBox._Initialize;

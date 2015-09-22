@@ -11,18 +11,24 @@ uses
   regchecklistbox,
   regcombobox,
   ExtCtrls,
-  Forms,
-  regtype;
+  Forms, Controls, ActnList, ComCtrls,
+  regtype, Classes;
 
 type
 
   { TControlRegRadioGroup }
 
   TControlRegRadioGroup = class(TCustomRegControlFrame<TRegRadioGroup>)
+    acDeleteItem: TAction;
+    ActionList1: TActionList;
     Bevel1: TBevel;
+    ImageList1: TImageList;
     RegComboBox1: TRegComboBox;
     RegRadioGroup1: TRegRadioGroup;
     ScrollBox1: TScrollBox;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    procedure acDeleteItemExecute(Sender: TObject);
   protected
      procedure _Initialize; override;
   public
@@ -43,7 +49,21 @@ implementation
 {$R *.lfm}
 
 uses
-  Dialogs;
+  Dialogs,
+  datRegistry;
+
+procedure TControlRegRadioGroup.acDeleteItemExecute(Sender: TObject);
+var
+  index: integer;
+  value: string;
+  lsk: TListSourceKind;
+begin
+  index := RegRadioGroup1.ItemIndex;
+  value := RegRadioGroup1.Items[index];
+  lsk := RegRadioGroup1.RegistrySettings.SourceKind;
+
+  RegistrySourceModule.DeleteListItem('TRegRadioGroupItems', value, lsk);
+end;
 
 procedure TControlRegRadioGroup._Initialize;
 begin

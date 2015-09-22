@@ -12,7 +12,7 @@ uses
   Controls,
   Graphics,
   Dialogs,
-  ExtCtrls,
+  ExtCtrls, ActnList, ComCtrls,
   fmecustomcontrolframe,
   regcombobox,
   reglistbox,
@@ -23,10 +23,16 @@ type
   { TControlRegComobBox }
 
   TControlRegComobBox = class(TCustomRegControlFrame<TRegComboBox>)
+    acDeleteItem: TAction;
+    ActionList1: TActionList;
     Bevel1: TBevel;
+    ImageList1: TImageList;
     RegComboBox1: TRegComboBox;
     RegListBox1: TRegListBox;
     ScrollBox1: TScrollBox;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    procedure acDeleteItemExecute(Sender: TObject);
   protected
     procedure _Initialize; override;
   public
@@ -45,6 +51,22 @@ type
 implementation
 
 {$R *.lfm}
+
+uses
+  datRegistry;
+
+procedure TControlRegComobBox.acDeleteItemExecute(Sender: TObject);
+var
+  index: integer;
+  value: string;
+  lsk: TListSourceKind;
+begin
+  index := RegComboBox1.ItemIndex;
+  value := RegComboBox1.Items[index];
+  lsk := RegComboBox1.RegistrySettings.SourceKind;
+
+  RegistrySourceModule.DeleteListItem('TRegComboBoxItems', value, lsk);
+end;
 
 procedure TControlRegComobBox._Initialize;
 begin

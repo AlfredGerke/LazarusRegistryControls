@@ -10,8 +10,7 @@ uses
   Controls,
   ActnList,
   StdCtrls,
-  fmeregcontrolproperties,
-  regtype;
+  fmeregcontrolproperties;
 
 type
 
@@ -55,17 +54,6 @@ type
   protected
     procedure _Initialize;
   public
-    procedure DeleteListItemByKeyValue(aSection: string;
-                                       aKeyValue: string);
-    procedure DeleteListItemByValue(aSection: string;
-                                    aValue: string);
-    procedure DeleteListItemsByKey(aSection: string;
-                                   aKey: string);
-    procedure DeleteListItem(aSection: string;
-                             aIdent: string); overload;
-    procedure DeleteListItem(aSection: string;
-                             aListValue: string;
-                             aListSourceKind: TListSourceKind); overload;
     constructor Create(aOwner: TComponent); override;
 
     property OnRefreshSettings: TRegControlProperties.TOnRefreshSettings
@@ -302,59 +290,6 @@ begin
     RegistrySourceModule.rsRegistrySource.ReadDefaults;
   cbxWriteDefaults.Checked :=
     RegistrySourceModule.rsRegistrySource.WriteDefaults;
-end;
-
-procedure TRegistrySourceButtonFrame.DeleteListItemByKeyValue(aSection: string;
-  aKeyValue: string);
-begin
-  aKeyValue := Copy(aKeyValue, 1, pos('=', aKeyValue)-1);
-  DeleteListItemsByKey(aSection, aKeyValue);
-end;
-
-procedure TRegistrySourceButtonFrame.DeleteListItemByValue(aSection: string;
-  aValue: string);
-var
-  number_str: string;
-  number: integer;
-begin
-  number_str := Copy(aValue, 6, 1);
-  if TryStrToInt(number_str, number) then
-  begin
-    aValue := Format('Key%d', [number]);
-    DeleteListItemsByKey(aSection, aValue);
-  end
-  else
-    MessageDlg(Format('Kein gültiger Index aus %s ermittelt [%s]!',
-      [aValue, number_str]), mtWarning, [mbOK], 0);
-end;
-
-procedure TRegistrySourceButtonFrame.DeleteListItemsByKey(aSection: string;
-  aKey: string);
-begin
-  DeleteListItem(aSection, aKey);
-end;
-
-procedure TRegistrySourceButtonFrame.DeleteListItem(aSection: string;
-  aIdent: string);
-begin
-  with RegistrySourceModule.rsRegistrySource do
-    DeleteKey(aSection, aIdent);
-end;
-
-procedure TRegistrySourceButtonFrame.DeleteListItem(aSection: string;
-  aListValue: string;
-  aListSourceKind: TListSourceKind);
-begin
-  case AListSourceKind of
-    lskUnknown:
-      MessageDlg('Unbekannte Quelle für Listdaten gewählt!', mtWarning, [mbOK], 0);
-    lskByKey:
-      DeleteListItemsByKey(aSection, aListValue);
-    lskByValue:
-      DeleteListItemByValue(aSection, aListValue);
-    lskByKeyValue:
-      DeleteListItemByKeyValue(aSection, aListValue);
-  end;
 end;
 
 constructor TRegistrySourceButtonFrame.Create(aOwner: TComponent);
