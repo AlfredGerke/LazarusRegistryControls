@@ -80,7 +80,7 @@ inherited ControlRegListBox: TControlRegListBox
     TabOrder = 3
     object ToolButton1: TToolButton
       Left = 1
-      Top = 2
+      Top = 0
       Action = acDeleteItem
       Wrap = True
     end
