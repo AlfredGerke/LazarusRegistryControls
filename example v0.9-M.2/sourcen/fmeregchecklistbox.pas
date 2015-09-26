@@ -49,20 +49,11 @@ implementation
 {$R *.lfm}
 
 uses
-  Dialogs,
-  datRegistry;
+  Dialogs;
 
 procedure TControlRegCheckListBox.acDeleteItemExecute(Sender: TObject);
-var
-  index: integer;
-  value: string;
-  lsk: TListSourceKind;
 begin
-  index := RegCheckListBox1.ItemIndex;
-  value := RegCheckListBox1.Items[index];
-  lsk := RegCheckListBox1.RegistrySettings.SourceKind;
-
-  RegistrySourceModule.DeleteListItem('TRegCheckListBoxItems', value, lsk);
+  RegCheckListBox1.DeleteItem;
 end;
 
 procedure TControlRegCheckListBox._Initialize;

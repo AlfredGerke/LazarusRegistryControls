@@ -49,20 +49,11 @@ implementation
 {$R *.lfm}
 
 uses
-  Dialogs,
-  datRegistry;
+  Dialogs;
 
 procedure TControlRegRadioGroup.acDeleteItemExecute(Sender: TObject);
-var
-  index: integer;
-  value: string;
-  lsk: TListSourceKind;
 begin
-  index := RegRadioGroup1.ItemIndex;
-  value := RegRadioGroup1.Items[index];
-  lsk := RegRadioGroup1.RegistrySettings.SourceKind;
-
-  RegistrySourceModule.DeleteListItem('TRegRadioGroupItems', value, lsk);
+  RegRadioGroup1.DeleteItem;
 end;
 
 procedure TControlRegRadioGroup._Initialize;

@@ -52,20 +52,9 @@ implementation
 
 {$R *.lfm}
 
-uses
-  datRegistry;
-
 procedure TControlRegComobBox.acDeleteItemExecute(Sender: TObject);
-var
-  index: integer;
-  value: string;
-  lsk: TListSourceKind;
 begin
-  index := RegComboBox1.ItemIndex;
-  value := RegComboBox1.Items[index];
-  lsk := RegComboBox1.RegistrySettings.SourceKind;
-
-  RegistrySourceModule.DeleteListItem('TRegComboBoxItems', value, lsk);
+  RegComboBox1.DeleteItem;
 end;
 
 procedure TControlRegComobBox._Initialize;
