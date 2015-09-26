@@ -28,6 +28,7 @@ type
     FRegistrySource: TRegistrySource;
     FRegistrySettings: TRegistrySettingsValueList;
 
+    function GetKeyBySourceKind(aItemIndex: integer): string;
     procedure UpdateKeyValueInfo(aCol: integer;
                                  aRow: integer;
                                  aDoBefore: boolean);
@@ -70,6 +71,7 @@ type
       read FRegistrySource
       write SetRegistrySource;
   public
+    procedure DeleteItem(aItemIndex: integer);
     function ClearItems(aAskFor: boolean = True;
                         aMsg: string = 'Clear Items?'): boolean; virtual;
     procedure AfterConstruction; override;
@@ -109,6 +111,18 @@ begin
 end;
 
 { TCustomRegValueListEditor }
+
+function TCustomRegValueListEditor.GetKeyBySourceKind(aItemIndex: integer): string;
+begin
+  case RegistrySettings.SourceKind of
+    lskByKeyValue:
+      Result := Keys[aItemIndex];
+  else
+    MessageDlg('Invalid SourceKind!',
+      mtWarning, [mbOK], 0);
+    Result := EmptyStr;
+  end;
+end;
 
 procedure TCustomRegValueListEditor.UpdateKeyValueInfo(aCol: integer;
   aRow: integer;
@@ -506,6 +520,29 @@ begin
   inherited SetEditText(ACol, ARow, Value);
 
   UpdateKeyValueInfo(ACol, ARow, False);
+end;
+
+procedure TCustomRegValueListEditor.DeleteItem(aItemIndex: integer);
+var
+  key: string;
+begin
+  if ((aItemIndex < 0) or (aItemIndex > (RowCount-FixedRows))) then
+    raise Exception.CreateFmt('Invalid Index: %d', [aItemIndex]);
+
+  key := GetKeyBySourceKind(aItemIndex);
+  if (key <> EmptyStr) then
+    if ((FRegistrySettings.RootKey <> '') and
+        (FRegistrySettings.RootKeyForDefaults <> '') and
+        (FRegistrySettings.RootForDefaults <> '') and
+        (FRegistrySettings.ListSection <> ''))
+    then
+      FRegistrySource.DeleteKey(FRegistrySettings.RootKey,
+        FRegistrySettings.RootKeyForDefaults,
+        FRegistrySettings.RootForDefaults,
+        FRegistrySettings.ListSection,
+        key,
+        FRegistrySettings.WriteDefaults,
+        FRegistrySettings.GroupIndex);
 end;
 
 function TCustomRegValueListEditor.ClearItems(aAskFor: boolean = True;

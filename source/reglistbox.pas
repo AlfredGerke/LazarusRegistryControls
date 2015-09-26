@@ -137,7 +137,8 @@ begin
               FRegistrySettings.ReadDefaults,
               lskByKeyValue);
 
-            Result := list.Names[aItemIndex];
+            if (aItemIndex <= list.Count-1) then
+              Result := list.Names[aItemIndex];
           end;
         end;
       end;
@@ -529,7 +530,10 @@ var
   key: string;
 begin
   if (aItemIndex = -1) then
-    aItemIndex := Self.ItemIndex;
+    aItemIndex := Self.ItemIndex
+  else
+  if ((aItemIndex < 0) or (aItemIndex > Items.Count-1)) then
+    raise Exception.CreateFmt('Invalid Index: %d', [aItemIndex]);
 
   key := GetKeyBySourceKind(aItemIndex);
   if (key <> EmptyStr) then

@@ -32,6 +32,8 @@ type
     FOnCustomItemCheck: TCheckGroupClicked;
     FCatchEvents: boolean;
 
+    function GetKeyByItemIndex(aItemIndex: integer): string;
+    function GetKeyBySourceKind(aItemIndex: integer): string;
     procedure SaveItemsStatesToReg(aOnlyByItemIndex: boolean = True);
     procedure OnHookedItemCheck(Sender: TObject; Index: integer);
     procedure SetCheckedItemsByList(aList: TStrings;
@@ -86,6 +88,7 @@ type
       read FOnCustomItemCheck
       write FOnCustomItemCheck;
   public
+    procedure DeleteItem(aItemIndex: integer = -1);
     function ClearItems(aAskFor: boolean = True;
                         aMsg: string = 'Clear Items?'): boolean; virtual;
     procedure Click; override;
@@ -134,6 +137,63 @@ begin
 end;
 
 { TCustomRegCheckGroup }
+
+function TCustomRegCheckGroup.GetKeyByItemIndex(aItemIndex: integer): string;
+var
+  list: TStrings;
+begin
+  Result := EmptyStr;
+  list := TStringList.Create;
+  try
+    try
+      if not (csDesigning in ComponentState) then
+      begin
+        if assigned(RegistrySource) then
+        begin
+          if ((FRegistrySettings.RootKey <> '') and
+            (FRegistrySettings.RootKeyForDefaults <> '') and
+            (FRegistrySettings.RootForDefaults <> '') and
+            (FRegistrySettings.ListSection <> '')) then
+          begin
+            RegistrySource.ReadSection(FRegistrySettings.RootKey,
+              FRegistrySettings.RootKeyForDefaults,
+              FRegistrySettings.RootForDefaults,
+              FRegistrySettings.ListSection,
+              list,
+              FRegistrySettings.DoMergeData,
+              FRegistrySettings.ReadDefaults,
+              lskByKeyValue);
+
+            if (aItemIndex <= list.Count-1) then
+              Result := list.Names[aItemIndex];
+          end;
+        end;
+      end;
+    except
+      on E: Exception do
+        Result := EmptyStr;
+    end;
+  finally
+    if Assigned(list) then
+      FreeAndNil(list);
+  end;
+end;
+
+function TCustomRegCheckGroup.GetKeyBySourceKind(aItemIndex: integer): string;
+begin
+  case RegistrySettings.SourceKind of
+    lskByKey:
+      Result := Items.Strings[aItemIndex];
+    lskByValue:
+      Result := GetKeyByItemIndex(aItemIndex);
+    lskByKeyValue:
+      Result := Items.Names[aItemIndex];
+  else
+    MessageDlg('Invalid SourceKind!',
+      mtWarning, [mbOK], 0);
+    Result := EmptyStr;
+  end;
+end;
 
 procedure TCustomRegCheckGroup.SaveItemsStatesToReg(aOnlyByItemIndex: boolean = True);
 var
@@ -650,6 +710,32 @@ end;
 procedure TCustomRegCheckGroup.SetLastChecked(aLastChecked: integer);
 begin
   FLastChecked := aLastChecked;
+end;
+
+procedure TCustomRegCheckGroup.DeleteItem(aItemIndex: integer = -1);
+var
+  key: string;
+begin
+  if (aItemIndex = -1) then
+    aItemIndex := Self.LastChecked
+  else
+  if ((aItemIndex < 0) or (aItemIndex > Items.Count-1)) then
+    raise Exception.CreateFmt('Invalid Index: %d', [aItemIndex]);
+
+  key := GetKeyBySourceKind(aItemIndex);
+  if (key <> EmptyStr) then
+    if ((FRegistrySettings.RootKey <> '') and
+        (FRegistrySettings.RootKeyForDefaults <> '') and
+        (FRegistrySettings.RootForDefaults <> '') and
+        (FRegistrySettings.ListSection <> ''))
+    then
+      FRegistrySource.DeleteKey(FRegistrySettings.RootKey,
+        FRegistrySettings.RootKeyForDefaults,
+        FRegistrySettings.RootForDefaults,
+        FRegistrySettings.ListSection,
+        key,
+        FRegistrySettings.WriteDefaults,
+        FRegistrySettings.GroupIndex);
 end;
 
 function TCustomRegCheckGroup.ClearItems(aAskFor: boolean = True;
