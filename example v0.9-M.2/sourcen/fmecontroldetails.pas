@@ -86,7 +86,8 @@ type
                                 aSetListSourceKind: TRegControlButtonFrame.TOnSetListSourceKind;
                                 aGetListSourceKind: TRegControlButtonFrame.TOnGetListSourceKind;
                                 aClearItems: TRegControlButtonFrame.TOnClearItems;
-                                SetItems: TRegControlButtonFrame.TOnSetItems);
+                                aSetItems: TRegControlButtonFrame.TOnSetItems;
+                                aDeleteItem: TRegControlButtonFrame.TOnDeleteItem);
     procedure FreeControlFrame;
     procedure FreePropertiesFrame;
     procedure FreeButtonFrame;
@@ -156,7 +157,7 @@ begin
         SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
         GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
         GetGroupIndex, ReadFromRegProc, SetItemsByRegistry, GetItemsByRegistry,
-        SetListSourceKind, GetListSourceKind, ClearItems, SetItems);
+        SetListSourceKind, GetListSourceKind, ClearItems, SetItems, DeleteItem);
     end;
   end;
 end;
@@ -184,7 +185,7 @@ begin
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
         SetDoWriteAdHoc, SetDoSyncData, nil, SetGroupIndex, GetCanRead,
         GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, nil, GetGroupIndex,
-        ReadFromRegProc, nil, nil, nil, nil, nil, nil);
+        ReadFromRegProc, nil, nil, nil, nil, nil, nil, nil);
     end;
   end;
 end;
@@ -212,7 +213,7 @@ begin
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
         SetDoWriteAdHoc, SetDoSyncData, nil, SetGroupIndex, GetCanRead,
         GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, nil, GetGroupIndex,
-        ReadFromRegProc, nil, nil, nil, nil, nil, nil);
+        ReadFromRegProc, nil, nil, nil, nil, nil, nil, nil);
     end;
   end;
 end;
@@ -241,7 +242,7 @@ begin
         SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
         GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
         GetGroupIndex, ReadFromRegProc, SetItemsByRegistry, GetItemsByRegistry,
-        SetListSourceKind, GetListSourceKind, ClearItems, SetItems);
+        SetListSourceKind, GetListSourceKind, ClearItems, SetItems, DeleteItem);
     end;
   end;
 end;
@@ -269,7 +270,7 @@ begin
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
         SetDoWriteAdHoc, SetDoSyncData, nil, SetGroupIndex, GetCanRead,
         GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, nil, getGroupIndex,
-        ReadFromRegProc, nil, nil, nil, nil, nil, nil);
+        ReadFromRegProc, nil, nil, nil, nil, nil, nil, nil);
     end;
   end;
 end;
@@ -298,7 +299,7 @@ begin
         SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
         GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
         GetGroupIndex, ReadFromRegProc, SetItemsByRegistry, GetItemsByRegistry,
-        SetListSourceKind, GetListSourceKind, ClearItems, SetItems);
+        SetListSourceKind, GetListSourceKind, ClearItems, SetItems, DeleteItem);
     end;
   end;
 end;
@@ -327,7 +328,7 @@ begin
         SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
         GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
         GetGroupIndex, ReadFromRegProc, SetItemsByRegistry, GetItemsByRegistry,
-        nil, nil, ClearItems, SetItems);
+        nil, nil, ClearItems, SetItems, DeleteItem);
     end;
   end;
 end;
@@ -356,7 +357,7 @@ begin
         SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
         GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
         GetGroupIndex, ReadFromRegProc, SetItemsByRegistry, GetItemsByRegistry,
-        nil, nil, ClearItems, SetItems);
+        nil, nil, ClearItems, SetItems, DeleteItem);
     end;
   end;
 end;
@@ -385,7 +386,7 @@ begin
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
         SetDoWriteAdHoc, SetDoSyncData, SetDoMergeData, SetGroupIndex,
         GetCanRead, GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, GetDoMergeData,
-        GetGroupIndex, ReadFromRegProc, nil, nil, nil, nil, ClearItems, nil);
+        GetGroupIndex, ReadFromRegProc, nil, nil, nil, nil, ClearItems, nil, DeleteItem);
     end;
   end;
 end;
@@ -413,7 +414,7 @@ begin
       CreateButtonFrame(OnRefreshSettings, GetRootKeys, SetCanRead, SetCanWrite,
         SetDoWriteAdHoc, SetDoSyncData, nil, SetGroupIndex, GetCanRead,
         GetCanWrite, GetDoWriteAdHoc, GetDoSyncData, nil, GetGroupIndex,
-        ReadFromRegProc, nil, nil, nil, nil, nil, nil);
+        ReadFromRegProc, nil, nil, nil, nil, nil, nil, nil);
     end;
   end;
 end;
@@ -439,7 +440,8 @@ procedure TControlDetails.CreateButtonFrame(
   aSetListSourceKind: TRegControlButtonFrame.TOnSetListSourceKind;
   aGetListSourceKind: TRegControlButtonFrame.TOnGetListSourceKind;
   aClearItems: TRegControlButtonFrame.TOnClearItems;
-  SetItems: TRegControlButtonFrame.TOnSetItems);
+  aSetItems: TRegControlButtonFrame.TOnSetItems;
+  aDeleteItem: TRegControlButtonFrame.TOnDeleteItem);
 begin
   with TRegControlButtonFrame.Create(pnlButton) do
   begin
@@ -470,7 +472,8 @@ begin
     OnSetListSourceKind := aSetListSourceKind;
     OnGetListSourceKind := aGetListSourceKind;
     OnClearItems := aClearItems;
-    OnSetItems := SetItems;
+    OnSetItems := aSetItems;
+    OnDeleteItem := aDeleteItem;
 
     Refresh;
   end;

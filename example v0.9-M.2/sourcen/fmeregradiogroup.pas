@@ -7,12 +7,12 @@ interface
 uses
   fmecustomcontrolframe,
   regradiogroup,
-  regcheckbox,
-  regchecklistbox,
   regcombobox,
   ExtCtrls,
-  Forms, Controls, ActnList, ComCtrls,
-  regtype, Classes;
+  Forms,
+  Controls,
+  ActnList,
+  regtype;
 
 type
 
@@ -26,8 +26,6 @@ type
     RegComboBox1: TRegComboBox;
     RegRadioGroup1: TRegRadioGroup;
     ScrollBox1: TScrollBox;
-    ToolBar1: TToolBar;
-    ToolButton1: TToolButton;
     procedure acDeleteItemExecute(Sender: TObject);
   protected
      procedure _Initialize; override;
@@ -42,6 +40,7 @@ type
     function GetListSourceKind: TListSourceKind;
     function ClearItems: boolean;
     procedure SetItems;
+    function DeleteItem: boolean;
   end;
 
 implementation
@@ -53,7 +52,7 @@ uses
 
 procedure TControlRegRadioGroup.acDeleteItemExecute(Sender: TObject);
 begin
-  RegRadioGroup1.DeleteItem;
+  DeleteItem;
 end;
 
 procedure TControlRegRadioGroup._Initialize;
@@ -97,6 +96,11 @@ begin
     RegControl.Items.Add('Default4');
     RegControl.Items.Add('Default5');
   end;
+end;
+
+function TControlRegRadioGroup.DeleteItem: boolean;
+begin
+  Result := RegControl.DeleteItem(-1, True, 'Eintrag löschen?');
 end;
 
 procedure TControlRegRadioGroup.SetItemsByRegistry(aValue: boolean);

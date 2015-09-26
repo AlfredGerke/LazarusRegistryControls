@@ -37,6 +37,7 @@ type
     acItemsByRegistry: TAction;
     acClearItems: TAction;
     acSetListSourceKind: TAction;
+    acDeleteItem: TAction;
     btnGetRootKeys: TSpeedButton;
     cbxCanRead: TCheckBox;
     cbxCanWrite: TCheckBox;
@@ -57,9 +58,11 @@ type
     btnRefresh: TToolButton;
     btnClear: TToolButton;
     btnAdd: TToolButton;
+    btnDeleteItem: TToolButton;
     procedure acCanReadExecute(Sender: TObject);
     procedure acCanWriteExecute(Sender: TObject);
     procedure acClearItemsExecute(Sender: TObject);
+    procedure acDeleteItemExecute(Sender: TObject);
     procedure acDoMergeDataExecute(Sender: TObject);
     procedure acDoSyncDataExecute(Sender: TObject);
     procedure acDoWriteAdHocExecute(Sender: TObject);
@@ -79,6 +82,7 @@ type
     TOnGetListSourceKind = function: TListSourceKind of object;
     TOnReadFromRegistry = procedure of object;
     TOnSetItems = procedure of object;
+    TOnDeleteItem = function : boolean of object;
     TOnClearItems = function : boolean of object;
   private
     FOnGetRootKeys: TOnGetRootKeys;
@@ -104,6 +108,7 @@ type
     FOnReadFromRegistry: TOnReadFromRegistry;
     FOnSetItems: TOnSetItems;
     FOnClearItems: TOnClearItems;
+    FOnDeleteItem: TOnDeleteItem;
     //
     FOnRefreshSettings: TRegControlProperties.TOnRefreshSettings;
 
@@ -118,6 +123,7 @@ type
     procedure SetItems;
     procedure SetListSourceKind;
     function ClearItems: boolean;
+    function DeleteItem: boolean;
   public
     procedure Refresh;
 
@@ -206,6 +212,10 @@ type
       property OnClearItems: TOnClearItems
         read FOnClearItems
         write FOnClearItems;
+
+      property OnDeleteItem: TOnDeleteItem
+        read FOnDeleteItem
+        write FOnDeleteItem;
   end;
 
 implementation
@@ -268,6 +278,12 @@ procedure TRegControlButtonFrame.acClearItemsExecute(Sender: TObject);
 begin
   if not ClearItems then
     MessageDlg('Daten wurden nicht gelöscht!', mtInformation, [mbOK], 0);
+end;
+
+procedure TRegControlButtonFrame.acDeleteItemExecute(Sender: TObject);
+begin
+  if not DeleteItem then
+    MessageDlg('Eintrag wurde nicht gelöscht!', mtInformation, [mbOK], 0);
 end;
 
 procedure TRegControlButtonFrame.acDoMergeDataExecute(Sender: TObject);
@@ -390,6 +406,13 @@ begin
     Result := FOnClearItems;
 end;
 
+function TRegControlButtonFrame.DeleteItem: boolean;
+begin
+  Result := Assigned(FOnDeleteItem);
+  if Result then
+    Result := FOnDeleteItem;
+end;
+
 procedure TRegControlButtonFrame.Refresh;
 begin
   if Assigned(FOnGetCanRead) then
@@ -422,6 +445,7 @@ begin
 
   btnAdd.Enabled := Assigned(FOnSetItems);
   btnClear.Enabled := Assigned(FOnClearItems);
+  btnDeleteItem.Enabled := Assigned(FOnDeleteItem);
 
   if Assigned(FOnGetListSourceKind) then
   begin

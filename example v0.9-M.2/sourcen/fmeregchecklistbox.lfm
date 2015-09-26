@@ -12,8 +12,8 @@ inherited ControlRegCheckListBox: TControlRegCheckListBox
     TabOrder = 0
     object RegCheckListBox1: TRegCheckListBox
       Left = 5
-      Height = 119
-      Top = 29
+      Height = 147
+      Top = 5
       Width = 306
       Align = alTop
       BorderSpacing.Around = 5
@@ -140,25 +140,6 @@ inherited ControlRegCheckListBox: TControlRegCheckListBox
       RegistrySettings.Section = 'TRegCheckListBoxItems'
       RegistrySettings.Ident = 'Key5'
       RegistrySource = RegistrySourceModule.rsRegistrySource
-    end
-    object ToolBar1: TToolBar
-      Left = 0
-      Height = 24
-      Top = 0
-      Width = 316
-      AutoSize = True
-      Caption = 'ToolBar1'
-      DisabledImages = ImageList1
-      EdgeBorders = [ebBottom]
-      HotImages = ImageList1
-      Images = ImageList1
-      TabOrder = 6
-      object ToolButton1: TToolButton
-        Left = 1
-        Top = 0
-        Action = acDeleteItem
-        Wrap = True
-      end
     end
   end
   object ImageList1: TImageList[1]

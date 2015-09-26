@@ -5,14 +5,11 @@ unit fmeregcombobox;
 interface
 
 uses
-  Classes,
-  SysUtils,
-  FileUtil,
   Forms,
   Controls,
-  Graphics,
   Dialogs,
-  ExtCtrls, ActnList, ComCtrls,
+  ExtCtrls,
+  ActnList,
   fmecustomcontrolframe,
   regcombobox,
   reglistbox,
@@ -30,8 +27,6 @@ type
     RegComboBox1: TRegComboBox;
     RegListBox1: TRegListBox;
     ScrollBox1: TScrollBox;
-    ToolBar1: TToolBar;
-    ToolButton1: TToolButton;
     procedure acDeleteItemExecute(Sender: TObject);
   protected
     procedure _Initialize; override;
@@ -46,6 +41,7 @@ type
     function GetListSourceKind: TListSourceKind;
     function ClearItems: boolean;
     procedure SetItems;
+    function DeleteItem: boolean;
   end;
 
 implementation
@@ -54,7 +50,7 @@ implementation
 
 procedure TControlRegComobBox.acDeleteItemExecute(Sender: TObject);
 begin
-  RegComboBox1.DeleteItem;
+  DeleteItem;
 end;
 
 procedure TControlRegComobBox._Initialize;
@@ -115,6 +111,11 @@ begin
     RegControl.Items.Add('Default4');
     RegControl.Items.Add('Default5');
   end;
+end;
+
+function TControlRegComobBox.DeleteItem: boolean;
+begin
+  Result := RegControl.DeleteItem(-1, True, 'Eintrag löschen?');
 end;
 
 end.

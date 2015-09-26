@@ -11,7 +11,6 @@ uses
   ExtCtrls,
   ActnList,
   Menus,
-  ComCtrls,
   Controls,
   regtype;
 
@@ -27,8 +26,6 @@ type
     RegListBox1: TRegListBox;
     RegRadioGroup1: TRegRadioGroup;
     Splitter1: TSplitter;
-    ToolBar1: TToolBar;
-    ToolButton1: TToolButton;
     procedure acDeleteItemExecute(Sender: TObject);
   protected
     procedure _Initialize; override;
@@ -43,6 +40,7 @@ type
     function GetListSourceKind: TListSourceKind;
     function ClearItems: boolean;
     procedure SetItems;
+    function DeleteItem: boolean;
   end;
 
 implementation
@@ -54,7 +52,7 @@ uses
 
 procedure TControlRegListBox.acDeleteItemExecute(Sender: TObject);
 begin
-  RegListBox1.DeleteItem;
+  DeleteItem;
 end;
 
 procedure TControlRegListBox._Initialize;
@@ -115,6 +113,11 @@ begin
     RegControl.Items.Add('Default4');
     RegControl.Items.Add('Default5');
   end;
+end;
+
+function TControlRegListBox.DeleteItem: boolean;
+begin
+  Result := RegControl.DeleteItem(-1, True, 'Eintrag löschen?');
 end;
 
 end.

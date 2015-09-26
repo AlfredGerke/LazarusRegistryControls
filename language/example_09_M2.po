@@ -58,11 +58,6 @@ msgstr ""
 msgid "RegCheckGroup1"
 msgstr ""
 
-#: tcontrolregcheckgroup.toolbar1.caption
-msgctxt "TCONTROLREGCHECKGROUP.TOOLBAR1.CAPTION"
-msgid "ToolBar1"
-msgstr ""
-
 #: tcontrolregchecklistbox.acdeleteitem.caption
 msgctxt "TCONTROLREGCHECKLISTBOX.ACDELETEITEM.CAPTION"
 msgid "Delete Item"
@@ -93,11 +88,6 @@ msgctxt "tcontrolregchecklistbox.regcheckbox5.caption"
 msgid "RegCheckBox5"
 msgstr ""
 
-#: tcontrolregchecklistbox.toolbar1.caption
-msgctxt "TCONTROLREGCHECKLISTBOX.TOOLBAR1.CAPTION"
-msgid "ToolBar1"
-msgstr ""
-
 #: tcontrolregcomobbox.acdeleteitem.caption
 msgctxt "TCONTROLREGCOMOBBOX.ACDELETEITEM.CAPTION"
 msgid "Delete Item"
@@ -106,11 +96,6 @@ msgstr ""
 #: tcontrolregcomobbox.regcombobox1.text
 msgctxt "tcontrolregcomobbox.regcombobox1.text"
 msgid "RegComboBox1"
-msgstr ""
-
-#: tcontrolregcomobbox.toolbar1.caption
-msgctxt "TCONTROLREGCOMOBBOX.TOOLBAR1.CAPTION"
-msgid "ToolBar1"
 msgstr ""
 
 #: tcontrolregedit.reglabel1.caption
@@ -161,11 +146,6 @@ msgstr ""
 msgid "Defaultcaption"
 msgstr ""
 
-#: tcontrolreglistbox.toolbar1.caption
-msgctxt "TCONTROLREGLISTBOX.TOOLBAR1.CAPTION"
-msgid "ToolBar1"
-msgstr ""
-
 #: tcontrolregradiobutton.regradiobutton1.caption
 msgid "RegRadioButton1"
 msgstr ""
@@ -198,11 +178,6 @@ msgstr ""
 
 #: tcontrolregradiogroup.regradiogroup1.caption
 msgid "RegRadioGroup1"
-msgstr ""
-
-#: tcontrolregradiogroup.toolbar1.caption
-msgctxt "TCONTROLREGRADIOGROUP.TOOLBAR1.CAPTION"
-msgid "ToolBar1"
 msgstr ""
 
 #: tcustomregcontrolframe.toolbar1.caption
@@ -238,6 +213,11 @@ msgstr ""
 
 #: tregcontrolbuttonframe.acclearitems.caption
 msgid "Clear Items"
+msgstr ""
+
+#: tregcontrolbuttonframe.acdeleteitem.caption
+msgctxt "TREGCONTROLBUTTONFRAME.ACDELETEITEM.CAPTION"
+msgid "Delete Item"
 msgstr ""
 
 #: tregcontrolbuttonframe.acdomergedata.caption

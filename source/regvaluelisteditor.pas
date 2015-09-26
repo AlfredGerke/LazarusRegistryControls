@@ -62,7 +62,9 @@ type
                            aAtDesignTime: boolean = True): boolean; virtual;
 
     procedure SetName(const NewName: TComponentName); override;
-    procedure SetEditText(ACol, ARow: Longint; const Value: string); override;
+    procedure SetEditText(aCol: Longint;
+                          aRow: Longint;
+                          const Value: string); override;
 
     property RegistrySettings: TRegistrySettingsValueList
       read FRegistrySettings
@@ -71,7 +73,9 @@ type
       read FRegistrySource
       write SetRegistrySource;
   public
-    procedure DeleteItem(aItemIndex: integer);
+    function DeleteItem(aItemIndex: integer = -1;
+                         aAskFor: boolean = True;
+                         aMsg: string = 'Delete Item?'): boolean; virtual;
     function ClearItems(aAskFor: boolean = True;
                         aMsg: string = 'Clear Items?'): boolean; virtual;
     procedure AfterConstruction; override;
@@ -512,7 +516,8 @@ begin
   end;
 end;
 
-procedure TCustomRegValueListEditor.SetEditText(ACol, ARow: Longint;
+procedure TCustomRegValueListEditor.SetEditText(aCol: Longint;
+  aRow: Longint;
   const Value: string);
 begin
   UpdateKeyValueInfo(ACol, ARow, True);
@@ -522,27 +527,44 @@ begin
   UpdateKeyValueInfo(ACol, ARow, False);
 end;
 
-procedure TCustomRegValueListEditor.DeleteItem(aItemIndex: integer);
+function TCustomRegValueListEditor.DeleteItem(aItemIndex: integer = -1;
+  aAskFor: boolean = True;
+  aMsg: string = 'Delete Item?'): boolean;
 var
   key: string;
+  start: boolean;
 begin
+  if (aItemIndex = -1) then
+    aItemIndex := Row
+  else
   if ((aItemIndex < 0) or (aItemIndex > (RowCount-FixedRows))) then
     raise Exception.CreateFmt('Invalid Index: %d', [aItemIndex]);
 
-  key := GetKeyBySourceKind(aItemIndex);
-  if (key <> EmptyStr) then
-    if ((FRegistrySettings.RootKey <> '') and
-        (FRegistrySettings.RootKeyForDefaults <> '') and
-        (FRegistrySettings.RootForDefaults <> '') and
-        (FRegistrySettings.ListSection <> ''))
-    then
-      FRegistrySource.DeleteKey(FRegistrySettings.RootKey,
-        FRegistrySettings.RootKeyForDefaults,
-        FRegistrySettings.RootForDefaults,
-        FRegistrySettings.ListSection,
-        key,
-        FRegistrySettings.WriteDefaults,
-        FRegistrySettings.GroupIndex);
+  start := not aAskFor;
+  if FRegistrySettings.CanRead then
+  begin
+    if aAskFor then
+      start := (MessageDlg(aMsg, mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    if start then
+    begin
+      key := GetKeyBySourceKind(aItemIndex);
+      if (key <> EmptyStr) then
+        if ((FRegistrySettings.RootKey <> '') and
+            (FRegistrySettings.RootKeyForDefaults <> '') and
+            (FRegistrySettings.RootForDefaults <> '') and
+            (FRegistrySettings.ListSection <> ''))
+        then
+          FRegistrySource.DeleteKey(FRegistrySettings.RootKey,
+            FRegistrySettings.RootKeyForDefaults,
+            FRegistrySettings.RootForDefaults,
+            FRegistrySettings.ListSection,
+            key,
+            FRegistrySettings.WriteDefaults,
+            FRegistrySettings.GroupIndex);
+    end;
+  end;
+
+  Result := (start and FRegistrySettings.CanRead);
 end;
 
 function TCustomRegValueListEditor.ClearItems(aAskFor: boolean = True;

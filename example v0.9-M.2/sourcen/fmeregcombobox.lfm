@@ -7,7 +7,7 @@ inherited ControlRegComobBox: TControlRegComobBox
     Top = 0
     Width = 320
     HorzScrollBar.Page = 311
-    VertScrollBar.Page = 224
+    VertScrollBar.Page = 222
     Align = alClient
     ClientHeight = 233
     ClientWidth = 316
@@ -15,7 +15,7 @@ inherited ControlRegComobBox: TControlRegComobBox
     object RegComboBox1: TRegComboBox
       Left = 6
       Height = 23
-      Top = 32
+      Top = 7
       Width = 184
       ItemHeight = 15
       TabOrder = 0
@@ -36,7 +36,7 @@ inherited ControlRegComobBox: TControlRegComobBox
     object Bevel1: TBevel
       Left = 6
       Height = 5
-      Top = 64
+      Top = 39
       Width = 305
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Around = 5
@@ -45,8 +45,8 @@ inherited ControlRegComobBox: TControlRegComobBox
     end
     object RegListBox1: TRegListBox
       Left = 6
-      Height = 144
-      Top = 80
+      Height = 166
+      Top = 56
       Width = 305
       ItemHeight = 0
       TabOrder = 1
@@ -62,25 +62,6 @@ inherited ControlRegComobBox: TControlRegComobBox
       RegistrySettings.SourceKind = lskByKeyValue
       RegistrySettings.DoMergeData = True
       RegistrySource = RegistrySourceModule.rsRegistrySource
-    end
-    object ToolBar1: TToolBar
-      Left = 0
-      Height = 24
-      Top = 0
-      Width = 316
-      AutoSize = True
-      Caption = 'ToolBar1'
-      DisabledImages = ImageList1
-      EdgeBorders = [ebBottom]
-      HotImages = ImageList1
-      Images = ImageList1
-      TabOrder = 2
-      object ToolButton1: TToolButton
-        Left = 1
-        Top = 0
-        Action = acDeleteItem
-        Wrap = True
-      end
     end
   end
   object ImageList1: TImageList[1]

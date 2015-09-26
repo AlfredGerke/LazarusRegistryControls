@@ -43,9 +43,14 @@ object RegControlButtonFrame: TRegControlButtonFrame
         Action = acClearItems
       end
       object btnAdd: TToolButton
-        Left = 115
+        Left = 183
         Top = 2
         Action = acSetItems
+      end
+      object btnDeleteItem: TToolButton
+        Left = 115
+        Top = 2
+        Action = acDeleteItem
       end
     end
     object ScrollBox1: TScrollBox
@@ -250,7 +255,7 @@ object RegControlButtonFrame: TRegControlButtonFrame
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 84
+          ClientHeight = 85
           ClientWidth = 157
           Font.CharSet = ANSI_CHARSET
           Font.Height = -12
@@ -272,8 +277,8 @@ object RegControlButtonFrame: TRegControlButtonFrame
   end
   object acList: TActionList
     Images = ilImages
-    left = 248
-    top = 8
+    left = 288
+    top = 80
     object acGetRootKeys: TAction
       Category = 'Dialogs'
       Caption = 'Rootkeys'
@@ -337,10 +342,16 @@ object RegControlButtonFrame: TRegControlButtonFrame
       Caption = 'ListeSourceKind'
       OnExecute = acSetListSourceKindExecute
     end
+    object acDeleteItem: TAction
+      Category = 'Functions'
+      Caption = 'Delete Item'
+      ImageIndex = 1
+      OnExecute = acDeleteItemExecute
+    end
   end
   object ilImages: TImageList
-    left = 200
-    top = 8
+    left = 240
+    top = 80
     Bitmap = {
       4C69030000001000000010000000FFFFFF00FFFFFF00FFFFFF00A465341DA769
       3A9FA76A3ADEA56736F6A76939E5A76A3ABCA4653453A4653405FFFFFF00FFFF

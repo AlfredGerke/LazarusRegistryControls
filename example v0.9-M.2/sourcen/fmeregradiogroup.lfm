@@ -12,8 +12,8 @@ inherited ControlRegRadioGroup: TControlRegRadioGroup
     TabOrder = 0
     object RegRadioGroup1: TRegRadioGroup
       Left = 5
-      Height = 131
-      Top = 29
+      Height = 151
+      Top = 5
       Width = 306
       Align = alTop
       AutoFill = True
@@ -73,25 +73,6 @@ inherited ControlRegRadioGroup: TControlRegRadioGroup
       RegistrySettings.SourceKind = lskByKey
       RegistrySettings.DoMergeData = True
       RegistrySource = RegistrySourceModule.rsRegistrySource
-    end
-    object ToolBar1: TToolBar
-      Left = 0
-      Height = 24
-      Top = 0
-      Width = 316
-      AutoSize = True
-      Caption = 'ToolBar1'
-      DisabledImages = ImageList1
-      EdgeBorders = [ebBottom]
-      HotImages = ImageList1
-      Images = ImageList1
-      TabOrder = 2
-      object ToolButton1: TToolButton
-        Left = 1
-        Top = 0
-        Action = acDeleteItem
-        Wrap = True
-      end
     end
   end
   object ImageList1: TImageList[1]

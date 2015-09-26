@@ -65,7 +65,9 @@ type
       read FRegistrySource
       write SetRegistrySource;
   public
-    procedure DeleteItem(aItemIndex: integer = -1);
+    function DeleteItem(aItemIndex: integer = -1;
+                        aAskFor: boolean = True;
+                        aMsg: string = 'Delete Item?'): boolean; virtual;
     function ClearItems(aAskFor: boolean = True;
                         aMsg: string = 'Clear Items?'): boolean; virtual;
     procedure Click; override;
@@ -525,9 +527,12 @@ begin
   end;
 end;
 
-procedure TCustomRegListBox.DeleteItem(aItemIndex: integer = -1);
+function TCustomRegListBox.DeleteItem(aItemIndex: integer = -1;
+  aAskFor: boolean = True;
+  aMsg: string = 'Delete Item?'): boolean;
 var
   key: string;
+  start: boolean;
 begin
   if (aItemIndex = -1) then
     aItemIndex := Self.ItemIndex
@@ -535,20 +540,31 @@ begin
   if ((aItemIndex < 0) or (aItemIndex > Items.Count-1)) then
     raise Exception.CreateFmt('Invalid Index: %d', [aItemIndex]);
 
-  key := GetKeyBySourceKind(aItemIndex);
-  if (key <> EmptyStr) then
-    if ((FRegistrySettings.RootKey <> '') and
-        (FRegistrySettings.RootKeyForDefaults <> '') and
-        (FRegistrySettings.RootForDefaults <> '') and
-        (FRegistrySettings.ListSection <> ''))
-    then
-      FRegistrySource.DeleteKey(FRegistrySettings.RootKey,
-        FRegistrySettings.RootKeyForDefaults,
-        FRegistrySettings.RootForDefaults,
-        FRegistrySettings.ListSection,
-        key,
-        FRegistrySettings.WriteDefaults,
-        FRegistrySettings.GroupIndex);
+  start := not aAskFor;
+  if FRegistrySettings.ItemsByRegistry then
+  begin
+    if aAskFor then
+      start := (MessageDlg(aMsg, mtConfirmation, [mbYes, mbNo], 0) = mrYes);
+    if start then
+    begin
+      key := GetKeyBySourceKind(aItemIndex);
+      if (key <> EmptyStr) then
+        if ((FRegistrySettings.RootKey <> '') and
+            (FRegistrySettings.RootKeyForDefaults <> '') and
+            (FRegistrySettings.RootForDefaults <> '') and
+            (FRegistrySettings.ListSection <> ''))
+        then
+          FRegistrySource.DeleteKey(FRegistrySettings.RootKey,
+            FRegistrySettings.RootKeyForDefaults,
+            FRegistrySettings.RootForDefaults,
+            FRegistrySettings.ListSection,
+            key,
+            FRegistrySettings.WriteDefaults,
+            FRegistrySettings.GroupIndex);
+    end;
+  end;
+
+  Result := (start and FRegistrySettings.ItemsByRegistry);
 end;
 
 function TCustomRegListBox.ClearItems(aAskFor: boolean = True;

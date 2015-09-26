@@ -9,8 +9,9 @@ uses
   regcheckgroup,
   regcheckbox,
   Forms,
-  ExtCtrls, Controls, ActnList, ComCtrls,
-  regtype, Classes;
+  ExtCtrls,
+  Controls,
+  ActnList;
 
 type
 
@@ -28,8 +29,6 @@ type
     RegCheckBox5: TRegCheckBox;
     RegCheckGroup1: TRegCheckGroup;
     ScrollBox1: TScrollBox;
-    ToolBar1: TToolBar;
-    ToolButton1: TToolButton;
     procedure acDeleteItemExecute(Sender: TObject);
   protected
     procedure _Initialize; override;
@@ -42,6 +41,7 @@ type
     function GetItemsByRegistry: boolean;
     function ClearItems: boolean;
     procedure SetItems;
+    function DeleteItem: boolean;
   end;
 
 implementation
@@ -53,7 +53,7 @@ uses
 
 procedure TControlRegCheckGroup.acDeleteItemExecute(Sender: TObject);
 begin
-  RegCheckGroup1.DeleteItem;
+  DeleteItem;
 end;
 
 procedure TControlRegCheckGroup._Initialize;
@@ -107,6 +107,11 @@ begin
     RegControl.Items.Add('Default4');
     RegControl.Items.Add('Default5');
   end;
+end;
+
+function TControlRegCheckGroup.DeleteItem: boolean;
+begin
+  Result := RegControl.DeleteItem(-1, True, 'Eintrag löschen?');
 end;
 
 end.

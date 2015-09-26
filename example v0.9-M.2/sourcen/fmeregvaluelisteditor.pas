@@ -24,6 +24,7 @@ type
     { TODO -oAlfred Gerke -cListen-RegControls : Für TRegValueListEditor Set-/GetItemsByRegistry nicht implementieren }
     { TODO -oAlfred Gerke -cListen-RegControls : Für TRegValueListEditor Set-/GetListSourceKind nicht implementieren }
     function ClearItems: boolean;
+    function DeleteItem: boolean;
   end;
 
 implementation
@@ -54,7 +55,12 @@ end;
 
 function TControlRegValueListEditor.ClearItems: boolean;
 begin
-  Result := RegControl.ClearItems(True, 'Einträge löschen?')
+  Result := RegControl.ClearItems(True, 'Einträge löschen?');
+end;
+
+function TControlRegValueListEditor.DeleteItem: boolean;
+begin
+  Result := RegControl.DeleteItem(-1, True, 'Eintrag löschen?');
 end;
 
 end.

@@ -12,8 +12,8 @@ inherited ControlRegCheckGroup: TControlRegCheckGroup
     TabOrder = 0
     object RegCheckGroup1: TRegCheckGroup
       Left = 5
-      Height = 112
-      Top = 29
+      Height = 144
+      Top = 5
       Width = 306
       Align = alTop
       AutoFill = True
@@ -152,25 +152,6 @@ inherited ControlRegCheckGroup: TControlRegCheckGroup
       RegistrySettings.Section = 'TRegCheckGroupBoxItems'
       RegistrySettings.Ident = 'Key5'
       RegistrySource = RegistrySourceModule.rsRegistrySource
-    end
-    object ToolBar1: TToolBar
-      Left = 0
-      Height = 24
-      Top = 0
-      Width = 316
-      AutoSize = True
-      Caption = 'ToolBar1'
-      DisabledImages = ImageList1
-      EdgeBorders = [ebBottom]
-      HotImages = ImageList1
-      Images = ImageList1
-      TabOrder = 6
-      object ToolButton1: TToolButton
-        Left = 1
-        Top = 0
-        Action = acDeleteItem
-        Wrap = True
-      end
     end
   end
   object ImageList1: TImageList[1]
