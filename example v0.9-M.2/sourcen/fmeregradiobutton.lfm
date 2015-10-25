@@ -113,7 +113,7 @@ inherited ControlRegRadioButton: TControlRegRadioButton
       Font.Quality = fqDraft
       ParentFont = False
       TabOrder = 3
-      CaptionSettings.Section = 'TRegRadioButton3'
+      CaptionSettings.Section = 'TRegRadioButton4'
       CaptionSettings.Ident = 'Caption'
       CaptionSettings.CaptionByRegistry = True
       RegistrySettings.CanRead = True
