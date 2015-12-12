@@ -136,9 +136,9 @@ type
       read FRoot;
   public
     constructor Create(const aFileName: string;
-                       aRoot: HKEY = HKEY_CURRENT_USER); overload;
+                       aRoot: HKEY = HKEY_CURRENT_USER); virtual; overload;
     constructor Create(const aFileName: string;
-                       aRoot: string); overload;
+                       aRoot: string);  virtual; overload;
 
     destructor Destroy; override;
 
