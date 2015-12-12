@@ -29,7 +29,6 @@ type
     procedure SetSectionsAndIdents; virtual;
     procedure SetRegControl; override;
     procedure DeleteCaptionEntries; override;
-    procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
     procedure SetCaptionSettings; override;
@@ -38,6 +37,7 @@ type
       read FDefault
       write FDefault;
   public
+    procedure SetRegistryEntries; override;
     procedure SectionIdentDefault;
   end;
 

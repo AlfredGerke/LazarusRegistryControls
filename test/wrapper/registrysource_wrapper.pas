@@ -25,9 +25,10 @@ type
                                 aProject: string;
                                 aOrganisation: string;
                                 aGUID: string);
-    procedure SetRegistryEntries; virtual;
     procedure SetRegistrySettings; virtual;
   public
+    procedure SetRegistryEntries; virtual;
+
     procedure GetRootKeys(var aCheckRTLAnsi: boolean;
                           var aRootKeysStruct: TRootKeysStruct);
     procedure PublishedProperties; virtual;

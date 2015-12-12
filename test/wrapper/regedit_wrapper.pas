@@ -27,7 +27,6 @@ type
     procedure _Initialize; override;
     procedure SetSectionsAndIdents; virtual;
     procedure SetRegControl; override;
-    procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
 
@@ -35,6 +34,7 @@ type
       read FDefault
       write FDefault;
   public
+    procedure SetRegistryEntries; override;
     procedure SectionIdentDefault;
   end;
 

@@ -136,9 +136,9 @@ type
       read FRoot;
   public
     constructor Create(const aFileName: string;
-                       aRoot: HKEY = HKEY_CURRENT_USER); virtual; overload;
+                       aRoot: HKEY = HKEY_CURRENT_USER); overload;
     constructor Create(const aFileName: string;
-                       aRoot: string); virtual;  overload;
+                       aRoot: string); overload;
 
     destructor Destroy; override;
 
@@ -714,7 +714,7 @@ begin
 end;
 
 constructor TLRCRegIniFile.Create(const aFileName: string;
-  aRoot: string = 'HKEY_CURRENT_USER');
+  aRoot: string);
 var
   _root: HKEY;
 begin

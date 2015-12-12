@@ -161,7 +161,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\source;wrapper;issues;basistest;units;tests;$(LazarusDir)\components\ideintf"/>
+      <OtherUnitFiles Value="..\source;wrapper;issues;basistest;units;tests;$(LazarusDir)\components\ideintf;$(LazarusDir)\components\lazcontrols"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

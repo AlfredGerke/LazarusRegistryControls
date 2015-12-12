@@ -33,7 +33,7 @@ function UTF8EncodeIfNeeded(aString: string;
 implementation
 
 uses
-  FileUtil,
+  LazUTF8,
   SysUtils;
 
 function ConvertString(aString: string;

@@ -48,6 +48,7 @@ type
   published
     property Default;
     property Section;
+    property Ident;
   end;
   {$endif}
 
@@ -160,7 +161,7 @@ type
     FEditClientRootKeys: boolean;
     FCheckRTLAnsi: boolean;
 
-    procedure OnSyncData(aGroupIndex: Cardinal);
+    procedure OnSyncData(aGroupIndex: Cardinal = 0);
     procedure DeliverMessage(aMessageConst: cardinal;
                              aClientName: string = '';
                              aGroupIndex: cardinal = 0;
