@@ -138,7 +138,7 @@ type
     constructor Create(const aFileName: string;
                        aRoot: HKEY = HKEY_CURRENT_USER); virtual; overload;
     constructor Create(const aFileName: string;
-                       aRoot: string); virtual;  overload;
+                       aRoot: string);  virtual; overload;
 
     destructor Destroy; override;
 
@@ -714,7 +714,7 @@ begin
 end;
 
 constructor TLRCRegIniFile.Create(const aFileName: string;
-  aRoot: string = 'HKEY_CURRENT_USER');
+  aRoot: string);
 var
   _root: HKEY;
 begin

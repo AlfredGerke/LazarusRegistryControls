@@ -76,8 +76,9 @@ uses
   regmsg,
   ObjInspStrConsts,
   regresstrings,
-  FileUtil,
-  dlgguid;
+  //FileUtil,
+  dlgguid,
+  LazUTF8;
 
 { TGUIDStringProperty }
 
