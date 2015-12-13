@@ -14,7 +14,8 @@ uses
   issue00030_test,
   issue00035_test,
   lrcreginifile_test,
-  reglistbox_test;
+  reglistbox_test,
+  issue00051_test;
 
 implementation
 
@@ -46,6 +47,7 @@ initialization
   //!<--
   RegisterTest('LRC 09 M2.Issue #30 - MergeData umbenennen', TDoMergeDataTest);
   RegisterIssue00035Tests('LRC 09 M2.Issue #35 - UTF8-Bug');
+  RegisterIssue00051Tests('LRC 09 M2.Issue #51 - DeleteItem einführen');
   //-->
 end.
 

@@ -7,17 +7,14 @@ uses
   Forms,
   GuiTestRunner,
   registrysource_test,
-  lrc_test,
   regedit_test,
   registrysource_wrapper,
   regedit_wrapper,
-  test_const,
   test_wrapper,
   regcheckbox_wrapper,
   regcheckbox_test,
   regradiobutton_wrapper,
   regradiobutton_test,
-  test_utils,
   issue00030_test,
   reglistbox_wrapper,
   regchecklistbox_wrapper,
@@ -30,7 +27,10 @@ uses
   reglabel_wrapper,
   lrc_testcase,
   lrcreginifile_test,
-  reglistbox_test;
+  reglistbox_test,
+  lrc_test,
+  test_const,
+  test_utils, issue00051_test;
 
 {$R *.res}
 

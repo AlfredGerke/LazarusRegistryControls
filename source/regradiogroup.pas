@@ -298,7 +298,7 @@ begin
             (FRegistrySettings.Ident <> '')) then
           begin
             RegistrySource.ReadSection(FRegistrySettings.RootKey,
-              FRegistrySettings.RootForDefaults,
+              FRegistrySettings.RootKeyForDefaults,
               FRegistrySettings.RootForDefaults,
               FRegistrySettings.ListSection,
               list,
