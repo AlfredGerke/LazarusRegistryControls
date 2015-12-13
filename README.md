@@ -25,7 +25,6 @@ werden (lesen/schreiben)
 
 0 Anmerkung zur neuen Version
 -----------------------------
-
 Mit der ersten Änderung für die *LRC 0.9 M2* wird die Beispielanwendung: `example.exe` nicht
 mehr lauffähig sein. Eine lauffähige Version der *LRC* mit Beispielanwendung finden sie unter folgendem Link:    
 
@@ -47,7 +46,6 @@ Folgende Änderungen sind vorgesehen (s. Issues):
 
 1 Einleitung
 ------------
-
 Die LazarusRegistryControls (LRC) sind direkte Ableitung einer Teilmenge aus den 
 Standard- und den Additional-Steuerelemte der LCL von Lazarus. Sie werden auf einem 
 eigenen Reiter der Komponentenpalette "Registry Controls" installiert. Die Auswahl 
@@ -83,7 +81,6 @@ für den Einsatz unter Windows sinnvoll.
 
 3 Installation
 --------------
-
 Für die Installation sind keine zusätzlichen Packages (etc.) notwendig. In der 
 vorliegenden Version nur unter Windows sinnvoll.   
 
@@ -113,7 +110,6 @@ werden:
 
 4 LazarusRegistryControls (LRC) Funktionalität
 ----------------------------------------------  
-
 Mit Hilfe der **LRC** soll Ordnung bezüglich des Registryzugriff in einem Projekt hergestellt werden.
 Dabei wurde darauf geachtet, das so wenig wie möglich an Quelltext vom Entwickler geschrieben werden muß,
 um auf Daten in der Registry zu zugreifen.           
@@ -153,7 +149,6 @@ Sie kann auch direkt, unabhängig von Steuerelementen, verwendet werden, um eine
     end;            
 
 ## 4.1 `HKEY_CURRENT_USER`
-
 Die Steuerelemente schreiben und lesen immer in das Registryroot: `HKEY_CURRENT_USER`.
 Unterhalb vom Registryroot wird eine Grundschlüssel eingerichtet. Dieser Grundschlüssel
 sollte immer in den Schlüssel *Software* verweisen.     
@@ -175,7 +170,6 @@ In dem Beispielprogramm wird daraus:
 
 
 ## 4.2 Standardwerte
-
 Standardwerte für nicht erfolgreiche Zugriffe auf die Registry (in der Regel 
 Schlüssel nicht vorhanden) können direkt am Steuerelement in den RegistrySettings 
 (Eigenschaft: Default) definiert werden. Als zweite Möglichkeit kann man am 
@@ -191,6 +185,9 @@ Ein Grundschlüssel könnte also wie folgt aussehen:
 In dem Beispielprogramm wird daraus:        
 `Software\ExampleFactory\LazarusRegistryControls\DEFAULTS\{51D8EEB4-A549-4B08-BFCB-731DEC3E82AE}`       
    
+Wenn als Grundschlüssel `HKEY_LOCAL_MACHINE` gewählt wird muss bedacht werden das bei eingeschalteter
+UAC das Bearbeiten von Inhalten in diesem Grundschlüssel nur mit Adminrechten erlaubt ist. Das Lesen
+von Inhalten hingegen ist schon einem Standardbenutzer erlaubt.
 
 ## 4.3 Synchronisierung und Gruppierung
 

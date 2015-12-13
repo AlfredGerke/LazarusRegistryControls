@@ -9,6 +9,9 @@
       <Title Value="example_09_M2"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
+      <XPManifest>
+        <ExecutionLevel Value="2"/>
+      </XPManifest>
       <Icon Value="0"/>
     </General>
     <LazDoc Paths="..\doc"/>
