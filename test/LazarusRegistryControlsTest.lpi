@@ -140,7 +140,7 @@
         <IsPartOfProject Value="True"/>
       </Unit22>
       <Unit23>
-        <Filename Value="lrc_test.pas"/>
+        <Filename Value="register_lrc_test.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit23>
       <Unit24>

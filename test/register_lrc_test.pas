@@ -1,4 +1,4 @@
-unit lrc_test;
+unit register_lrc_test;
 
 {$mode Delphi}{$H+}
 
@@ -20,9 +20,6 @@ uses
 implementation
 
 initialization
-  { TODO 1 -oAlfred Gerke -cGUI : Formular zum Dynamischen erzeugen von RegistryControls.
-(s. testpreferredsize.pas in C:\Users\Alfred\Programme\lazarus\test\lcltests) }
-
   // Alle Tests für TLRCRegInifile
   //!<--
   RegisterTest('Voraussetzungen', TLRCRegInifileTest);

@@ -28,7 +28,7 @@ uses
   lrc_testcase,
   lrcreginifile_test,
   reglistbox_test,
-  lrc_test,
+  register_lrc_test,
   test_const,
   test_utils, issue00051_test;
 

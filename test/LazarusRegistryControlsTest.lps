@@ -20,16 +20,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="526"/>
         <CursorPos X="3" Y="516"/>
-        <UsageCount Value="129"/>
+        <UsageCount Value="131"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
         <Filename Value="basistest\regedit_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="42"/>
         <CursorPos X="48" Y="62"/>
-        <UsageCount Value="116"/>
+        <UsageCount Value="118"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
@@ -39,7 +39,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="5" Y="31"/>
-        <UsageCount Value="122"/>
+        <UsageCount Value="124"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -48,7 +48,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3"/>
         <CursorPos X="44" Y="37"/>
-        <UsageCount Value="115"/>
+        <UsageCount Value="117"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
@@ -56,7 +56,7 @@
         <IsPartOfProject Value="True"/>
         <TopLine Value="141"/>
         <CursorPos X="42" Y="141"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="127"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
       <Unit6>
@@ -65,16 +65,17 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3"/>
         <CursorPos X="44" Y="40"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="114"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
         <Filename Value="basistest\regcheckbox_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="16"/>
-        <CursorPos X="19" Y="35"/>
-        <UsageCount Value="112"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="199"/>
+        <CursorPos Y="230"/>
+        <UsageCount Value="114"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
@@ -83,7 +84,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3"/>
         <CursorPos X="44" Y="40"/>
-        <UsageCount Value="119"/>
+        <UsageCount Value="121"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
       <Unit9>
@@ -92,15 +93,15 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="27"/>
         <CursorPos X="28" Y="152"/>
-        <UsageCount Value="119"/>
+        <UsageCount Value="121"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit9>
       <Unit10>
         <Filename Value="wrapper\reglistbox_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <CursorPos X="3" Y="16"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="114"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit10>
@@ -110,7 +111,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="15"/>
         <CursorPos X="30" Y="32"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="114"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
@@ -118,7 +119,7 @@
         <IsPartOfProject Value="True"/>
         <TopLine Value="14"/>
         <CursorPos X="33" Y="22"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="114"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit12>
       <Unit13>
@@ -126,7 +127,7 @@
         <IsPartOfProject Value="True"/>
         <TopLine Value="15"/>
         <CursorPos X="56" Y="39"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="114"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit13>
       <Unit14>
@@ -134,23 +135,23 @@
         <IsPartOfProject Value="True"/>
         <TopLine Value="15"/>
         <CursorPos X="57" Y="39"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="114"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit14>
       <Unit15>
         <Filename Value="wrapper\regvaluelisteditor_wrapper.pas"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="60" Y="38"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="114"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit15>
       <Unit16>
         <Filename Value="issues\issue00035_test.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="10"/>
+        <TopLine Value="98"/>
         <CursorPos X="15" Y="36"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="199"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit16>
@@ -160,7 +161,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos X="11" Y="34"/>
-        <UsageCount Value="151"/>
+        <UsageCount Value="153"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit17>
       <Unit18>
@@ -168,16 +169,16 @@
         <IsPartOfProject Value="True"/>
         <TopLine Value="49"/>
         <CursorPos Y="66"/>
-        <UsageCount Value="150"/>
+        <UsageCount Value="152"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit18>
       <Unit19>
         <Filename Value="tests\lrc_testcase.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="4"/>
         <CursorPos X="3" Y="14"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="141"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit19>
@@ -185,9 +186,9 @@
         <Filename Value="issues\issue00030_test.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="91"/>
+        <TopLine Value="3"/>
         <CursorPos X="57" Y="49"/>
-        <UsageCount Value="115"/>
+        <UsageCount Value="117"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit20>
@@ -197,54 +198,53 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="801"/>
         <CursorPos X="3" Y="815"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="95"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
         <Filename Value="basistest\reglistbox_test.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="16"/>
-        <CursorPos X="3" Y="110"/>
-        <UsageCount Value="29"/>
+        <TopLine Value="52"/>
+        <CursorPos X="27" Y="60"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit22>
       <Unit23>
-        <Filename Value="lrc_test.pas"/>
+        <Filename Value="register_lrc_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="15"/>
-        <CursorPos X="24" Y="27"/>
-        <UsageCount Value="150"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="13"/>
+        <CursorPos X="55" Y="21"/>
+        <UsageCount Value="152"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit23>
       <Unit24>
         <Filename Value="units\test_utils.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="43"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit24>
       <Unit25>
         <Filename Value="units\test_const.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="28"/>
         <CursorPos X="26" Y="62"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit25>
       <Unit26>
         <Filename Value="issues\issue00051_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="20"/>
-        <CursorPos Y="53"/>
-        <UsageCount Value="25"/>
+        <TopLine Value="21"/>
+        <CursorPos X="42" Y="51"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit26>
@@ -411,10 +411,10 @@
       </Unit52>
       <Unit53>
         <Filename Value="..\source\regsourcen.pas"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="27"/>
         <CursorPos X="3" Y="45"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="46"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit53>
@@ -526,10 +526,10 @@
       </Unit70>
       <Unit71>
         <Filename Value="..\source\reglistbox.pas"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="14"/>
         <CursorPos X="3" Y="23"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit71>
@@ -816,9 +816,11 @@
       </Unit114>
       <Unit115>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.4\source\packages\fcl-fpcunit\src\fpcunit.pp"/>
-        <TopLine Value="483"/>
-        <CursorPos X="58" Y="485"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="76"/>
+        <CursorPos X="21" Y="87"/>
         <UsageCount Value="15"/>
+        <Loaded Value="True"/>
       </Unit115>
       <Unit116>
         <Filename Value="..\..\..\..\Programme\lazarus\components\ideintf\stringspropeditdlg.pas"/>
@@ -920,7 +922,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit129>
     </Units>
-    <JumpHistory Count="24" HistoryIndex="23">
+    <JumpHistory Count="25" HistoryIndex="24">
       <Position1>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <Caret Line="10" Column="86"/>
@@ -1002,21 +1004,25 @@
         <Caret Line="51" Column="26" TopLine="22"/>
       </Position20>
       <Position21>
-        <Filename Value="lrc_test.pas"/>
-        <Caret Line="19" Column="91" TopLine="18"/>
-      </Position21>
-      <Position22>
-        <Filename Value="lrc_test.pas"/>
-        <Caret Line="50" TopLine="18"/>
-      </Position22>
-      <Position23>
         <Filename Value="issues\issue00030_test.pas"/>
         <Caret Line="37" Column="100" TopLine="12"/>
+      </Position21>
+      <Position22>
+        <Filename Value="issues\issue00035_test.pas"/>
+        <Caret Line="36" Column="15" TopLine="98"/>
+      </Position22>
+      <Position23>
+        <Filename Value="basistest\regcheckbox_test.pas"/>
+        <Caret Line="27" Column="32" TopLine="18"/>
       </Position23>
       <Position24>
-        <Filename Value="lrc_test.pas"/>
-        <Caret Line="27" Column="24" TopLine="12"/>
+        <Filename Value="basistest\reglistbox_test.pas"/>
+        <Caret Line="29" Column="28"/>
       </Position24>
+      <Position25>
+        <Filename Value="basistest\regcheckbox_test.pas"/>
+        <Caret Line="36" Column="27" TopLine="25"/>
+      </Position25>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

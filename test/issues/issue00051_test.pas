@@ -48,7 +48,7 @@ end;
 
 procedure TDeleteItemTest.CheckSettings;
 begin
-
+  Fail('Methode nicht ausprogrammiert!');
 end;
 
 end.

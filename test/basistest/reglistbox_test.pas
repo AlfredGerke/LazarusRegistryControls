@@ -26,6 +26,7 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
+    procedure ReadRegistry;
   end;
 
   { TRegListBoxTest }
@@ -56,6 +57,8 @@ implementation
 uses
   test_const;
 
+{ TRegListBoxGenericTest }
+
 procedure TRegListBoxGenericTest<_T1,_T2>.SetUp;
 begin
   //
@@ -64,6 +67,11 @@ end;
 procedure TRegListBoxGenericTest<_T1,_T2>.TearDown;
 begin
   //
+end;
+
+procedure TRegListBoxGenericTest<_T1,_T2>.ReadRegistry;
+begin
+  Fail('Methode nicht ausprogrammiert!');
 end;
 
 { TRegListBoxTest }
@@ -107,7 +115,7 @@ end;
 
 procedure TRegListBoxDeleteItemTest.DeleteItem;
 begin
-
+  Fail('Methode nicht ausprogrammiert!');
 end;
 
 end.
