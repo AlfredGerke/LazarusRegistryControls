@@ -18,7 +18,7 @@ type
 
   {TRegListBoxGenericTest}
 
-  TRegListBoxGenericTest<_T1,_T2>= class(TLRCTestCase<String>)
+  TRegListBoxGenericTest<_T1,_T2>= class(TLRCTestCase<Integer>)
   private
     FRegSrcWrapper: _T1;
     FRegListBoxWrapper: _T2;
@@ -30,14 +30,25 @@ type
 
   { TRegListBoxTest }
 
-  TRegListBoxTest= class(TRegListBoxGenericTest<TRegistrySourceWrapper,TRegListBoxWrapper>)
+  TRegListBoxTest = class(TRegListBoxGenericTest<TRegistrySourceWrapper, TRegListBoxWrapper>)
+  protected
     procedure SetSectionsAndIdents; override;
   end;
 
   { TRegListBoxUTF8Test }
 
-  TRegListBoxUTF8Test= class(TRegListBoxGenericTest<TRegistrySourceWrapper,TRegListBoxWrapper>)
+  TRegListBoxUTF8Test = class(TRegListBoxGenericTest<TRegistrySourceWrapper, TRegListBoxWrapper>)
+  protected
     procedure SetSectionsAndIdents; override;
+  end;
+
+  { TRegListBoxDeleteItemTest }
+
+  TRegListBoxDeleteItemTest = class(TRegListBoxGenericTest<TRegistrySourceWrapper, TRegListBoxWrapper>)
+  protected
+    procedure SetSectionsAndIdents; override;
+  published
+    procedure DeleteItem;
   end;
 
 implementation
@@ -63,7 +74,7 @@ begin
 
   Section := SEC_TREGLISTBOX;
   //Ident := IDENT_CHECK_PROPERTY;
-  //Default := DEFAULT_CHECKED_ENTRY;
+  Default := DEFAULT_ITEMINDEX_VALUE;
 
   CheckRTLNeeded := True;
 end;
@@ -74,13 +85,30 @@ procedure TRegListBoxUTF8Test.SetSectionsAndIdents;
 begin
   inherited SetSectionsAndIdents;
 
-  Section := SEC_TREGCHECKBOX;
+  Section := SEC_TREGLISTBOX;
   //Ident := IDENT_CHECK_PROPERTY;
-  //Default := DEFAULT_CHECKED_ENTRY;
+  Default := DEFAULT_ITEMINDEX_VALUE;
 
   CheckRTLNeeded := True;
 end;
 
+{ TRegListBoxDeleteItemTest }
+
+procedure TRegListBoxDeleteItemTest.SetSectionsAndIdents;
+begin
+  inherited SetSectionsAndIdents;
+
+  Section := SEC_TREGLISTBOX;
+  //Ident := IDENT_CHECK_PROPERTY;
+  Default := DEFAULT_ITEMINDEX_VALUE;
+
+  CheckRTLNeeded := True;
+end;
+
+procedure TRegListBoxDeleteItemTest.DeleteItem;
+begin
+
+end;
 
 end.
 

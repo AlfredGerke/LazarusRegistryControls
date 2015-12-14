@@ -33,11 +33,20 @@ type
     procedure CheckProperty;
   end;
 
+
+procedure RegisterIssue00030Tests(aSuitePath: string = 'LRC 09 M2.Issue #30 - MergeData umbenennen');
+
 implementation
 
 uses
   test_utils,
-  test_const;
+  test_const,
+  testregistry;
+
+procedure RegisterIssue00030Tests(aSuitePath: string);
+begin
+  RegisterTest(aSuitePath, TDoMergeDataTest);
+end;
 
 procedure TDoMergeDataTest.CheckProperty;
 begin

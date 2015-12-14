@@ -45,7 +45,7 @@ initialization
   // Alle Tests für die Issues
   // (s. GitHub: https://github.com/AlfredGerke/LazarusRegistryControls/issues)
   //!<--
-  RegisterTest('LRC 09 M2.Issue #30 - MergeData umbenennen', TDoMergeDataTest);
+  RegisterIssue00030Tests('LRC 09 M2.Issue #30 - MergeData umbenennen');
   RegisterIssue00035Tests('LRC 09 M2.Issue #35 - UTF8-Bug');
   RegisterIssue00051Tests('LRC 09 M2.Issue #51 - DeleteItem einführen');
   //-->
