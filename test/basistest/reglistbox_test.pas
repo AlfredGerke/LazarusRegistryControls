@@ -8,11 +8,11 @@ uses
   Classes,
   SysUtils,
   fpcunit,
-  testutils,
   testregistry,
   lrc_testcase,
   reglistbox_wrapper,
-  registrysource_wrapper;
+  registrysource_wrapper,
+  regbasics;
 
 type
 
@@ -22,6 +22,8 @@ type
   private
     FRegSrcWrapper: _T1;
     FRegListBoxWrapper: _T2;
+
+    procedure ReadRegistryProc(aIni: TLRCRegIniFile);
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -55,23 +57,36 @@ type
 implementation
 
 uses
-  test_const;
+  test_utils;
 
 { TRegListBoxGenericTest }
 
 procedure TRegListBoxGenericTest<_T1,_T2>.SetUp;
 begin
-  //
+  inherited SetUp;
+
+  FRegSrcWrapper := _T1.Create;
+  FRegListBoxWrapper := _T2.Create(FRegSrcWrapper.RegistrySource);
 end;
 
 procedure TRegListBoxGenericTest<_T1,_T2>.TearDown;
 begin
-  //
+  FreeAndNil(FRegSrcWrapper);
+  FreeAndNil(FRegListBoxWrapper);
 end;
 
 procedure TRegListBoxGenericTest<_T1,_T2>.ReadRegistry;
 begin
-  Fail('Methode nicht ausprogrammiert!');
+  // 1. Fall: check Section, Ident, Default
+  FRegListBoxWrapper.SectionIdentDefault;
+
+  GetRegIniFile(FRegSrcWrapper.RegistrySource.GetComposedRootKey,
+    ReadRegistryProc);
+end;
+
+procedure TRegListBoxGenericTest<_T1,_T2>.ReadRegistryProc(aIni: TLRCRegIniFile);
+begin
+  Fail('Testprocedure noch nicht implementiert!');
 end;
 
 { TRegListBoxTest }
@@ -79,10 +94,6 @@ end;
 procedure TRegListBoxTest.SetSectionsAndIdents;
 begin
   inherited SetSectionsAndIdents;
-
-  Section := SEC_TREGLISTBOX;
-  //Ident := IDENT_CHECK_PROPERTY;
-  Default := DEFAULT_ITEMINDEX_VALUE;
 
   CheckRTLNeeded := True;
 end;
@@ -93,10 +104,6 @@ procedure TRegListBoxUTF8Test.SetSectionsAndIdents;
 begin
   inherited SetSectionsAndIdents;
 
-  Section := SEC_TREGLISTBOX;
-  //Ident := IDENT_CHECK_PROPERTY;
-  Default := DEFAULT_ITEMINDEX_VALUE;
-
   CheckRTLNeeded := True;
 end;
 
@@ -106,16 +113,12 @@ procedure TRegListBoxDeleteItemTest.SetSectionsAndIdents;
 begin
   inherited SetSectionsAndIdents;
 
-  Section := SEC_TREGLISTBOX;
-  //Ident := IDENT_CHECK_PROPERTY;
-  Default := DEFAULT_ITEMINDEX_VALUE;
-
   CheckRTLNeeded := True;
 end;
 
 procedure TRegListBoxDeleteItemTest.DeleteItem;
 begin
-  Fail('Methode nicht ausprogrammiert!');
+  Fail('Testprocedure noch nicht implementiert!');
 end;
 
 end.

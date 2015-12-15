@@ -11,7 +11,6 @@ uses
   regedit_wrapper,
   regtype,
   lrc_testcase,
-  Registry,
   regbasics;
 
 type
@@ -418,7 +417,7 @@ var
   root_keys_struct: TRootKeysStruct;
 begin
   check_rtl_ansi := False;
-  root_keys_struct.Clear;
+  {%H-}root_keys_struct.Clear;
 
   FRegSrcWrapper.GetRootKeys(check_rtl_ansi, root_keys_struct);
 

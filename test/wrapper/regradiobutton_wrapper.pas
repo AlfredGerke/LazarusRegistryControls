@@ -48,11 +48,11 @@ type
   protected
     procedure SetSectionsAndIdents; override;
     procedure DeleteCaptionEntries; override;
-    procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
     procedure SetCaptionSettings; override;
   public
+    procedure SetRegistryEntries; override;
   end;
 
 

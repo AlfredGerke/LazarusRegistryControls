@@ -64,9 +64,9 @@ type
 
   TRegistrySourceWrapperUTF8 = class(TRegistrySourceWrapper)
   protected
-    procedure SetRegistryEntries; override;
     procedure SetRegistrySettings; override;
   public
+    procedure SetRegistryEntries; override;
     procedure PublishedProperties; override;
     procedure RootKeysStruct; override;
   end;

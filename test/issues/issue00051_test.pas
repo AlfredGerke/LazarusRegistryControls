@@ -8,7 +8,6 @@ uses
   Classes,
   SysUtils,
   fpcunit,
-  testutils,
   testregistry;
 
 type
@@ -48,7 +47,7 @@ end;
 
 procedure TDeleteItemTest.CheckSettings;
 begin
-  Fail('Methode nicht ausprogrammiert!');
+  Fail('Testprocedure noch nicht implementiert!');
 end;
 
 end.

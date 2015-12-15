@@ -10,7 +10,6 @@ uses
   registrysource_wrapper,
   regradiobutton_wrapper,
   regtype,
-  Registry,
   lrc_testcase,
   regbasics;
 

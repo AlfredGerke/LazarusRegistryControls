@@ -43,7 +43,7 @@ type
   TRegEditWrapperUTF8 = class(TRegEditWrapper)
   private
   protected
-    procedure SetSectionsAndIdents; virtual;
+    procedure SetSectionsAndIdents; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;

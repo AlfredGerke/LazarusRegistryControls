@@ -27,7 +27,6 @@ procedure RegisterIssue00035Tests(aSuitePath: string = 'LRC 09 M2.Issue #35 - UT
 implementation
 
 uses
-  Registry,
   registrysource_test,
   regedit_test,
   regcheckbox_test,

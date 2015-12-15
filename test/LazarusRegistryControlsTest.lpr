@@ -30,7 +30,8 @@ uses
   reglistbox_test,
   register_lrc_test,
   test_const,
-  test_utils, issue00051_test;
+  test_utils,
+  issue00051_test;
 
 {$R *.res}
 

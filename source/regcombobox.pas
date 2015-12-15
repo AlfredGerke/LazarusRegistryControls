@@ -529,7 +529,7 @@ begin
     end;
   end;
 
-  start := (start and FRegistrySettings.ItemsByRegistry);
+  Result := (start and FRegistrySettings.ItemsByRegistry);
 end;
 
 procedure TCustomRegComboBox.SetName(const NewName: TComponentName);

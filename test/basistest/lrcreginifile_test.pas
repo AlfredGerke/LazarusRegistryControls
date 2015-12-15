@@ -8,9 +8,7 @@ uses
   Classes,
   SysUtils,
   fpcunit,
-  testutils,
   testregistry,
-  regutils,
   Registry,
   regbasics;
 
