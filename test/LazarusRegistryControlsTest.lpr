@@ -5,7 +5,7 @@ program LazarusRegistryControlsTest;
 uses
   Interfaces,
   Forms,
-  GuiTestRunner,
+  GuiTestRunner, lazcontrols,
   registrysource_test,
   regedit_test,
   registrysource_wrapper,

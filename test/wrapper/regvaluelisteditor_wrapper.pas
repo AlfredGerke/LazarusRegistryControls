@@ -11,9 +11,14 @@ uses
 
 type
 
+  { TRegValueListEditorForTest }
+
+  TRegValueListEditorForTest = class(TRegValueListEditor)
+  end;
+
   { TRegValueListEditorWrapper }
 
-  TRegValueListEditorWrapper = class(TWrapperLST<TRegValueListEditor>)
+  TRegValueListEditorWrapper = class(TWrapperLST<TRegValueListEditorForTest>)
   private
   protected
     procedure SetRegControl; override;

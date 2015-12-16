@@ -165,6 +165,8 @@ var
 begin
   // Jeder Getter für ein String-Property besitzt ein UTF8ToSysIfNeeded
 
+  TAssert.AssertEquals('CheckRTLAnsi', aCheckRTLAnsi, RegControl.RegistrySource.CheckRTLAnsi);
+
   // 1. Fall: RootKeys aus dem Control mit den RootKeys aus TRegistrySource
   // vergleichen; dabei geht dieser Test davon aus das per Standard die RootKeys
   // des Controls mit den RootKeys der TRegistrySource identisch sind

@@ -11,9 +11,14 @@ uses
 
 type
 
+  { TRegCheckGroupForTest }
+
+  TRegCheckGroupForTest = class(TRegCheckGroup)
+  end;
+
   { TRegCheckGroupWrapper }
 
-  TRegCheckGroupWrapper = class(TWrapperCSLST<TRegCheckGroup>)
+  TRegCheckGroupWrapper = class(TWrapperCSLST<TRegCheckGroupForTest>)
   private
   protected
     procedure SetRegControl; override;

@@ -11,9 +11,14 @@ uses
 
 type
 
+  { TRegRadioGroupForTest }
+
+  TRegRadioGroupForTest = class(TRegRadioGroup)
+  end;
+
   { TRegRadioGroupWrapper }
 
-  TRegRadioGroupWrapper = class(TWrapperCSLST<TRegRadioGroup>)
+  TRegRadioGroupWrapper = class(TWrapperCSLST<TRegRadioGroupForTest>)
   private
   protected
     procedure SetRegControl; override;

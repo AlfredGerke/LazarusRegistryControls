@@ -11,9 +11,14 @@ uses
 
 type
 
+  { TRegCheckListBoxForTest }
+
+  TRegCheckListBoxForTest = class(TRegCheckListBox)
+  end;
+
   { TRegCheckListBoxWrapper }
 
-  TRegCheckListBoxWrapper = class(TWrapperLST<TRegCheckListBox>)
+  TRegCheckListBoxWrapper = class(TWrapperLST<TRegCheckListBoxForTest>)
   private
   protected
     procedure SetRegControl; override;

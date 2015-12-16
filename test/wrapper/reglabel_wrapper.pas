@@ -11,9 +11,14 @@ uses
 
 type
 
+  { TRegLabelForTest }
+
+  TRegLabelForTest = class(TRegLabel)
+  end;
+
   { TRegLabelWrapper }
 
-  TRegLabelWrapper = class(TWrapper<TRegLabel>)
+  TRegLabelWrapper = class(TWrapper<TRegLabelForTest>)
   private
   protected
     procedure SetRegControl; override;

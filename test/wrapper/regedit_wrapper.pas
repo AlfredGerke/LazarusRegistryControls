@@ -44,10 +44,10 @@ type
   private
   protected
     procedure SetSectionsAndIdents; override;
-    procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
   public
+    procedure SetRegistryEntries; override;
   end;
 
 

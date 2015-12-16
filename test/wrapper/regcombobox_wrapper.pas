@@ -11,9 +11,14 @@ uses
 
 type
 
+  { TRegComboBoxForTest }
+
+  TRegComboBoxForTest = class(TRegComboBox)
+  end;
+
   { TRegComboBoxWrapper }
 
-  TRegComboBoxWrapper = class(TWrapperLST<TRegComboBox>)
+  TRegComboBoxWrapper = class(TWrapperLST<TRegComboBoxForTest>)
   private
   protected
     procedure SetRegControl; override;

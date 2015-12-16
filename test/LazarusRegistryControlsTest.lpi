@@ -35,16 +35,28 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="3">
+    <RequiredPackages Count="7">
       <Item1>
-        <PackageName Value="FPCUnitTestRunner"/>
+        <PackageName Value="LazControls"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="IDEIntf"/>
       </Item2>
       <Item3>
-        <PackageName Value="FCL"/>
+        <PackageName Value="RegistryControls"/>
       </Item3>
+      <Item4>
+        <PackageName Value="RegistrySource"/>
+      </Item4>
+      <Item5>
+        <PackageName Value="FPCUnitTestRunner"/>
+      </Item5>
+      <Item6>
+        <PackageName Value="LCL"/>
+      </Item6>
+      <Item7>
+        <PackageName Value="FCL"/>
+      </Item7>
     </RequiredPackages>
     <Units Count="27">
       <Unit0>
@@ -165,7 +177,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\source;wrapper;issues;basistest;units;tests;$(LazarusDir)\components\ideintf;$(LazarusDir)\components\lazcontrols"/>
+      <OtherUnitFiles Value="wrapper;issues;basistest;units;tests"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

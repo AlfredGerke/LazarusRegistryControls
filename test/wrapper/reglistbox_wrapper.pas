@@ -11,10 +11,16 @@ uses
 
 type
 
+  { TRegListBoxForTest }
+
+  TRegListBoxForTest = class(TRegListBox)
+  end;
+
   { TRegListBoxWrapper }
 
-  TRegListBoxWrapper = class(TWrapperLST<TRegListBox>)
+  TRegListBoxWrapper = class(TWrapperLST<TRegListBoxForTest>)
   private
+    FDefault: integer;
   protected
     procedure _Initialize; override;
     procedure SetRegControl; override;
@@ -22,6 +28,10 @@ type
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
+
+    property Default : integer
+      read FDefault
+      write FDefault;
   public
     procedure SectionIdentDefault;
   end;
@@ -52,7 +62,8 @@ end;
 procedure TRegListBoxWrapper.SetSectionsAndIdents;
 begin
   Section := SEC_TREGLISTBOX;
-  //Default := DEFAULT_ITEMINDEX_VALUE;
+  Ident := IDENT_TREGLISTBOX;
+  Default := DEFAULT_ITEMINDEX_VALUE;
 end;
 
 procedure TRegListBoxWrapper.SetRegistryEntries;
@@ -69,10 +80,12 @@ end;
 
 procedure TRegListBoxWrapper.SectionIdentDefault;
 begin
-  //TAssert.AssertEquals('TRegListBox.RegistrySection.Section',
-  //    Section, FRegControl.RegistrySettings.Section);
-  //TAssert.AssertEquals('TRegListBox.RegistrySection.Default',
-  //    Default, FRegControl.RegistrySettings.Default);
+  TAssert.AssertEquals('TRegListBox.RegistrySection.Section',
+    Section, FRegControl.RegistrySettings.Section);
+  TAssert.AssertEquals('TRegListBox.RegistrySection.Ident',
+    Ident, FRegControl.RegistrySettings.Ident);
+  TAssert.AssertEquals('TRegListBox.RegistrySection.Default',
+    Default, FRegControl.RegistrySettings.Default);
 end;
 
 end.
