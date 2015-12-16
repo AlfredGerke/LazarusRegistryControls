@@ -185,7 +185,7 @@ begin
     WriteString('TRegCheckBoxCaption', 'CaptionKey3', 'Key3');
     WriteString('TRegCheckBoxCaption', 'CaptionKey4', 'Key4');
     WriteString('TRegCheckBoxCaption', 'CaptionKey5', 'Key5');
-    WriteInteger('TRegCheckGroup1', 'Index', 0);
+    WriteInteger('TRegCheckGroup1', 'ItemIndex', 0);
 
     WriteBool('TRegRadioButton', 'Key1', True);
     WriteBool('TRegRadioButton', 'Key2', False);
@@ -202,14 +202,14 @@ begin
     WriteString('TRegListBoxItems', 'Key3', 'Value3');
     WriteString('TRegListBoxItems', 'Key4', 'Value4');
     WriteString('TRegListBoxItems', 'Key5', 'Value5');
-    WriteInteger('TRegListBox', 'Index', 0);
+    WriteInteger('TRegListBox', 'ItemIndex', 0);
 
     WriteString('TRegComboBoxItems', 'Key1', 'Value1');
     WriteString('TRegComboBoxItems', 'Key2', 'Value2');
     WriteString('TRegComboBoxItems', 'Key3', 'Value3');
     WriteString('TRegComboBoxItems', 'Key4', 'Value4');
     WriteString('TRegComboBoxItems', 'Key5', 'Value5');
-    WriteInteger('TRegComboBox', 'Index', 0);
+    WriteInteger('TRegComboBox', 'ItemIndex', 0);
 
     WriteString('TRegValueListEditorItems', 'Key1', 'Value1');
     WriteString('TRegValueListEditorItems', 'Key2', 'Value2');
@@ -222,7 +222,7 @@ begin
     WriteString('TRegRadioGroupItems', 'Key3', 'Value3');
     WriteString('TRegRadioGroupItems', 'Key4', 'Value4');
     WriteString('TRegRadioGroupItems', 'Key5', 'Value5');
-    WriteInteger('TRegRadioGroup', 'index', 0);
+    WriteInteger('TRegRadioGroup', 'ItemIndex', 0);
     WriteString('TRegRadioGroup', 'Caption', 'Standardcaption');
 
     WriteBool('TRegCheckListBoxItems', 'Key1', True);
@@ -230,14 +230,14 @@ begin
     WriteBool('TRegCheckListBoxItems', 'Key3', True);
     WriteBool('TRegCheckListBoxItems', 'Key4', True);
     WriteBool('TRegCheckListBoxItems', 'Key5', True);
-    WriteInteger('TRegCheckListBox', 'Index', 0);
+    WriteInteger('TRegCheckListBox', 'ItemIndex', 0);
 
     WriteBool('TRegCheckGroupBoxItems', 'Key1', True);
     WriteBool('TRegCheckGroupBoxItems', 'Key2', True);
     WriteBool('TRegCheckGroupBoxItems', 'Key3', True);
     WriteBool('TRegCheckGroupBoxItems', 'Key4', True);
     WriteBool('TRegCheckGroupBoxItems', 'Key5', True);
-    WriteInteger('TRegCheckGroupBox', 'Index', 0);
+    WriteInteger('TRegCheckGroupBox', 'ItemIndex', 0);
     WriteString('TRegCheckGroupBox', 'Caption', 'Standardcaption');
 
     DoSyncData := True;

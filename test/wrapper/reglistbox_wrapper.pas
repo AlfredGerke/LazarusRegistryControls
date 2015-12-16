@@ -69,6 +69,8 @@ end;
 procedure TRegListBoxWrapper.SetRegistryEntries;
 begin
   inherited SetRegistryEntries;
+
+
 end;
 
 procedure TRegListBoxWrapper.SetRegistrySettings(
@@ -76,6 +78,8 @@ procedure TRegListBoxWrapper.SetRegistrySettings(
   aSetRegSrc: boolean = True);
 begin
   inherited SetRegistrySettings(aRegistrySource, aSetRegSrc);
+
+
 end;
 
 procedure TRegListBoxWrapper.SectionIdentDefault;

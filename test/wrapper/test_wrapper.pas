@@ -103,7 +103,14 @@ type
   // Grundklasse für alle spezialisierten Wrapper mit Listen-Control
   TWrapperLST<_T> = class(TWrapper<_T>)
   private
+    FDoMergeData: boolean;
+    FItemxByRegistry: boolean;
+    FListSection: string;
+    FSourceKind: TListSourceKind;
   protected
+    property DoMergeData: boolean
+      read FDoMergeData
+      write FDoMergeData;
   public
   end;
 
