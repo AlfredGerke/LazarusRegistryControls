@@ -59,7 +59,8 @@ const
   CAPTION_FOR_TREGLABEL = 'LRC RegLabel';
 
   SEC_TREGLISTBOX = 'TRegListBox';
-  DEFAULT_ITEMINDEX_VALUE = 0;
+  SEC_TREGLISTBOXITEMS = 'TRegListBoxItems';
+  DEFAULT_ITEMINDEX_VALUE = -1;
   IDENT_TREGLISTBOX = 'ItemIndex';
 
 implementation

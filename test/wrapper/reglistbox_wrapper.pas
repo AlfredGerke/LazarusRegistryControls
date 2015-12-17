@@ -64,13 +64,22 @@ begin
   Section := SEC_TREGLISTBOX;
   Ident := IDENT_TREGLISTBOX;
   Default := DEFAULT_ITEMINDEX_VALUE;
+  SpecialListProperties.AddListSection(SEC_TREGLISTBOXITEMS);
 end;
 
 procedure TRegListBoxWrapper.SetRegistryEntries;
 begin
   inherited SetRegistryEntries;
 
-
+  with RegControl.RegistrySource, RegControl.RegistrySettings do
+  begin
+    WriteString(ListSection, 'Key1', 'Value1');
+    WriteString(ListSection, 'Key2', 'Value2');
+    WriteString(ListSection, 'Key3', 'Value3');
+    WriteString(ListSection, 'Key4', 'Value4');
+    WriteString(ListSection, 'Key5', 'Value5');
+    WriteInteger(Section, Ident, DEFAULT_ITEMINDEX_VALUE);
+  end;
 end;
 
 procedure TRegListBoxWrapper.SetRegistrySettings(
@@ -79,7 +88,16 @@ procedure TRegListBoxWrapper.SetRegistrySettings(
 begin
   inherited SetRegistrySettings(aRegistrySource, aSetRegSrc);
 
-
+  RegControl.RegistrySettings.Default := Default;
+  RegControl.RegistrySettings.Section := Section;
+  RegControl.RegistrySettings.Ident := Ident;
+  RegControl.RegistrySettings.ListSection := SpecialListProperties.ListSection;
+  // Dieser Anteil muss vorerst in der Ableitung implementiert werden
+  //!<--
+  RegControl.RegistrySettings.DoMergeData := SpecialListProperties.DoMergeData;
+  RegControl.RegistrySettings.ItemsByRegistry := SpecialListProperties.ItemsByRegistry;
+  RegControl.RegistrySettings.SourceKind := SpecialListProperties.SourceKind;
+  //-->
 end;
 
 procedure TRegListBoxWrapper.SectionIdentDefault;

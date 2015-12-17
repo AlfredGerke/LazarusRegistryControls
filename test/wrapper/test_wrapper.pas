@@ -100,38 +100,56 @@ type
                        aDoSyncData: boolean = False); override;
   end;
 
-
   // Alle zusätzlichen Eigenschaften für ListenControls
 
-  { TSpecialRegistryPropertiesForListControl }
+  { TExtraListRegProperties }
 
-  TSpecialRegistryPropertiesForListControl = record
+  TExtraListRegProperties = record
     DoMergeData: boolean;
-    ItemxByRegistry: boolean;
+    ItemsByRegistry: boolean;
     ListSection: string;
     SourceKind: TListSourceKind;
+
+    procedure AddListSection(aListSection: string);
 
     procedure Clear;
   end;
 
   // Grundklasse für alle spezialisierten Wrapper mit Listen-Control
+
+  { TWrapperLST }
+
   TWrapperLST<_T> = class(TWrapper<_T>)
   private
-     FListProperties: TSpecialRegistryPropertiesForListControl;
+     FListProperties: TExtraListRegProperties;
   protected
     procedure _Initialize; override;
 
-    property SpecialRegistryPropertiesForList: TSpecialRegistryPropertiesForListControl
+    property SpecialRegistryPropertiesForList: TExtraListRegProperties
       read FListProperties
       write FListProperties;
   public
+    constructor Create(aRegistrySource: TRegistrySource;
+                       aSetRegSrc: boolean = True;
+                       aCanRead: boolean = True;
+                       aCanWrite: boolean = True;
+                       aDoWriteAdHoc: boolean = True;
+                       aGroupIndex: integer = 0;
+                       aDoSyncData: boolean = False;
+                       aDoMergeData: boolean = False;
+                       aItemsByRegistry: boolean = True;
+                       aSourceKind: TListSourceKind = lskByKey); reintroduce; overload;
+
+    property SpecialListProperties: TExtraListRegProperties
+      read FListProperties
+      write FListProperties;
   end;
 
   // Grundklasse für alle spezialisierten Wrapper mit Listen-Control und
   // CaptionSettings
   TWrapperCSLST<_T> = class(TWrapperCS<_T>)
   private
-    FListProperties: TSpecialRegistryPropertiesForListControl;
+    FListProperties: TExtraListRegProperties;
   protected
   public
   end;
@@ -470,9 +488,14 @@ begin
   // Wird im spezialisierten Wrapper überschrieben
 end;
 
-{ TSpecialRegistryPropertiesForListControl }
+{ TExtraListRegProperties }
 
-procedure TSpecialRegistryPropertiesForListControl.Clear;
+procedure TExtraListRegProperties.AddListSection(aListSection: string);
+begin
+  ListSection := aListSection;
+end;
+
+procedure TExtraListRegProperties.Clear;
 begin
   FillChar(Self, SizeOf(Self), #0);
 end;
@@ -484,6 +507,25 @@ begin
   inherited _Initialize;
 
   FListProperties.Clear;
+end;
+
+constructor TWrapperLST<_T>.Create(aRegistrySource: TRegistrySource;
+  aSetRegSrc: boolean = True;
+  aCanRead: boolean = True;
+  aCanWrite: boolean = True;
+  aDoWriteAdHoc: boolean = True;
+  aGroupIndex: integer = 0;
+  aDoSyncData: boolean = False;
+  aDoMergeData: boolean = False;
+  aItemsByRegistry: boolean = True;
+  aSourceKind: TListSourceKind = lskByKey);
+begin
+  inherited Create(aRegistrySource, aSetRegSrc, aCanRead, aCanWrite, aDoWriteAdHoc, aGroupIndex,
+    aDoSyncData);
+
+  FListProperties.DoMergeData := aDoMergeData;
+  FListProperties.ItemsByRegistry := aItemsByRegistry;
+  FListProperties.SourceKind := aSourceKind;
 end;
 
 end.
