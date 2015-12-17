@@ -100,17 +100,30 @@ type
                        aDoSyncData: boolean = False); override;
   end;
 
+
+  // Alle zusätzlichen Eigenschaften für ListenControls
+
+  { TSpecialRegistryPropertiesForListControl }
+
+  TSpecialRegistryPropertiesForListControl = record
+    DoMergeData: boolean;
+    ItemxByRegistry: boolean;
+    ListSection: string;
+    SourceKind: TListSourceKind;
+
+    procedure Clear;
+  end;
+
   // Grundklasse für alle spezialisierten Wrapper mit Listen-Control
   TWrapperLST<_T> = class(TWrapper<_T>)
   private
-    FDoMergeData: boolean;
-    FItemxByRegistry: boolean;
-    FListSection: string;
-    FSourceKind: TListSourceKind;
+     FListProperties: TSpecialRegistryPropertiesForListControl;
   protected
-    property DoMergeData: boolean
-      read FDoMergeData
-      write FDoMergeData;
+    procedure _Initialize; override;
+
+    property SpecialRegistryPropertiesForList: TSpecialRegistryPropertiesForListControl
+      read FListProperties
+      write FListProperties;
   public
   end;
 
@@ -118,6 +131,7 @@ type
   // CaptionSettings
   TWrapperCSLST<_T> = class(TWrapperCS<_T>)
   private
+    FListProperties: TSpecialRegistryPropertiesForListControl;
   protected
   public
   end;
@@ -454,6 +468,22 @@ end;
 procedure TWrapperCS<_T>.SetCaptionSettings;
 begin
   // Wird im spezialisierten Wrapper überschrieben
+end;
+
+{ TSpecialRegistryPropertiesForListControl }
+
+procedure TSpecialRegistryPropertiesForListControl.Clear;
+begin
+  FillChar(Self, SizeOf(Self), #0);
+end;
+
+{ TWrapperLST }
+
+procedure TWrapperLST<_T>._Initialize;
+begin
+  inherited _Initialize;
+
+  FListProperties.Clear;
 end;
 
 end.
