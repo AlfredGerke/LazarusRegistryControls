@@ -505,8 +505,6 @@ end;
 procedure TWrapperLST<_T>._Initialize;
 begin
   inherited _Initialize;
-
-  FListProperties.Clear;
 end;
 
 constructor TWrapperLST<_T>.Create(aRegistrySource: TRegistrySource;
@@ -520,12 +518,14 @@ constructor TWrapperLST<_T>.Create(aRegistrySource: TRegistrySource;
   aItemsByRegistry: boolean = True;
   aSourceKind: TListSourceKind = lskByKey);
 begin
-  inherited Create(aRegistrySource, aSetRegSrc, aCanRead, aCanWrite, aDoWriteAdHoc, aGroupIndex,
-    aDoSyncData);
+  FListProperties.Clear;
 
   FListProperties.DoMergeData := aDoMergeData;
   FListProperties.ItemsByRegistry := aItemsByRegistry;
   FListProperties.SourceKind := aSourceKind;
+
+  inherited Create(aRegistrySource, aSetRegSrc, aCanRead, aCanWrite, aDoWriteAdHoc, aGroupIndex,
+    aDoSyncData);
 end;
 
 end.

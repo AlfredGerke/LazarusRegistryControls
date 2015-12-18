@@ -22,10 +22,12 @@ type
   private
     FDefault: integer;
   protected
+    function GetItemsCount: integer;
+
     procedure _Initialize; override;
-    procedure SetRegControl; override;
     procedure SetSectionsAndIdents; virtual;
     procedure SetRegistryEntries; override;
+    procedure SetRegControl; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
 
@@ -34,6 +36,29 @@ type
       write FDefault;
   public
     procedure SectionIdentDefault;
+
+    property ItemsCount: integer
+      read GetItemsCount;
+  end;
+
+  { TRegListBoxWrapperUTF8 }
+
+  TRegListBoxWrapperUTF8 = class(TRegListBoxWrapper)
+  private
+  protected
+    procedure SetSectionsAndIdents; override;
+    procedure SetRegistryEntries; override;
+    procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
+                                  aSetRegSrc: boolean = True); override;
+  public
+  end;
+
+  { TRegListBoxWrapperDeleteItem }
+
+  TRegListBoxWrapperDeleteItem = class(TRegListBoxWrapper)
+  private
+  protected
+  public
   end;
 
 
@@ -43,7 +68,30 @@ uses
   test_const,
   fpcunit;
 
+{ TRegListBoxWrapperUTF8 }
+
+procedure TRegListBoxWrapperUTF8.SetSectionsAndIdents;
+begin
+  inherited SetSectionsAndIdents;
+end;
+
+procedure TRegListBoxWrapperUTF8.SetRegistryEntries;
+begin
+  inherited SetRegistryEntries;
+end;
+
+procedure TRegListBoxWrapperUTF8.SetRegistrySettings(
+  aRegistrySource: TRegistrySource; aSetRegSrc: boolean);
+begin
+  inherited SetRegistrySettings(aRegistrySource, aSetRegSrc);
+end;
+
 { TRegListBoxWrapper }
+
+function TRegListBoxWrapper.GetItemsCount: integer;
+begin
+  Result := RegControl.Items.Count;
+end;
 
 procedure TRegListBoxWrapper._Initialize;
 begin
@@ -71,7 +119,7 @@ procedure TRegListBoxWrapper.SetRegistryEntries;
 begin
   inherited SetRegistryEntries;
 
-  with RegControl.RegistrySource, RegControl.RegistrySettings do
+  with RegControl, RegControl.RegistrySource, RegControl.RegistrySettings do
   begin
     WriteString(ListSection, 'Key1', 'Value1');
     WriteString(ListSection, 'Key2', 'Value2');
@@ -79,6 +127,8 @@ begin
     WriteString(ListSection, 'Key4', 'Value4');
     WriteString(ListSection, 'Key5', 'Value5');
     WriteInteger(Section, Ident, DEFAULT_ITEMINDEX_VALUE);
+
+    ReadFromReg;
   end;
 end;
 
