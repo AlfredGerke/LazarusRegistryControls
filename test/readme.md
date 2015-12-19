@@ -6,11 +6,27 @@ die LazarusRegistryControls zur Verfügung zu stellen.
 
 **Inhaltsübersicht:**
 
+- 0     DebugServer
 - 1     Zielvorgabe
 - 2     Wrapper
 - 3     Testfälle
 - 4     GUI-Test
 - 5     Bugs
+
+
+0 DebugServer
+-------------
+Für den Zeitraum der Entwicklung der Tests für die ListenControls wird der **DebugServer** von Lazarus
+verwendet. Beim Start des Tests wird der **DebugServer** automatisch gestartet und der **DebugClient** 
+eingerichtet.    
+Der **DebugServer** befindet sicht im Archiv: `dbugsrv.zip`.     
+Das Archiv muss entpackt werden und die Ausführungsdatei: `dbugsrv.exe` muss im selben Ordner liegen 
+wie der Test (`LazarusRegistryControlsTest.exe`).         
+Die Originalsourcen für den **DebugServer** befinden sich unter `$(LazarusDir)\tools\debugserver`. 
+Wenn der **DebugServer** neu kompiliert werden soll, muss darauf geachtet werden das die Ausführungsdatei 
+den Name: `dbugsrv.exe` erhält. In jedem anderen Fall wird der automatische Start des **DebugServers** 
+und das Einrichten des **DebugClients** mit einem Fehler abgebrochen. 
+Der Test wird davon aber nicht beeinträchtigt.  
 
 
 1 Zielvorgabe

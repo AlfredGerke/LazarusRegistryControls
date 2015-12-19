@@ -13,6 +13,7 @@ ProjectFilesOnly=0
 LazarusRegistryControls
 	+test
 		test\readme.md
+		.gitignore
 	+example
 		example\readme.md
 	+example v0.9-M2
@@ -26,7 +27,7 @@ LazarusRegistryControls
 3=test\readme.md
 [Selected Project Files]
 Main=
-Selected=README.md
+Selected=test\readme.md
 [README.md]
 TopLine=165
 Caret=1,188
@@ -37,5 +38,5 @@ Caret=143,27
 TopLine=1
 Caret=143,34
 [test\readme.md]
-TopLine=3
-Caret=62,107
+TopLine=1
+Caret=1,29

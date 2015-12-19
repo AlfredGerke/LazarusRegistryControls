@@ -19,7 +19,14 @@ uses
 
 implementation
 
+uses
+  dbugintf;
+
 initialization
+
+  // DebugClient einrichten
+  InitDebugClient;
+
   // Alle Tests für TLRCRegInifile
   //!<--
   RegisterTest('Voraussetzungen', TLRCRegInifileTest);

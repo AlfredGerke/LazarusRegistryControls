@@ -23,6 +23,7 @@ type
     FDefault: integer;
   protected
     function GetItemsCount: integer;
+    function GetDoSyncData: boolean;
 
     procedure _Initialize; override;
     procedure SetSectionsAndIdents; virtual;
@@ -37,8 +38,15 @@ type
   public
     procedure SectionIdentDefault;
 
+    function GetItemByIndex(aIndex: integer): string;
+    function GetIndexOfItem(aItem: string): integer;
+    function DeleteItem(aIndex: integer): boolean;
+
     property ItemsCount: integer
       read GetItemsCount;
+
+    property DoSyncData: boolean
+      read GetDoSyncData;
   end;
 
   { TRegListBoxWrapperUTF8 }
@@ -66,7 +74,8 @@ implementation
 
 uses
   test_const,
-  fpcunit;
+  fpcunit,
+  SysUtils;
 
 { TRegListBoxWrapperUTF8 }
 
@@ -91,6 +100,11 @@ end;
 function TRegListBoxWrapper.GetItemsCount: integer;
 begin
   Result := RegControl.Items.Count;
+end;
+
+function TRegListBoxWrapper.GetDoSyncData: boolean;
+begin
+  Result := RegControl.RegistrySettings.DoSyncData;
 end;
 
 procedure TRegListBoxWrapper._Initialize;
@@ -158,6 +172,24 @@ begin
     Ident, FRegControl.RegistrySettings.Ident);
   TAssert.AssertEquals('TRegListBox.RegistrySection.Default',
     Default, FRegControl.RegistrySettings.Default);
+end;
+
+function TRegListBoxWrapper.GetItemByIndex(aIndex: integer): string;
+begin
+  Result := EmptyStr;
+  if (aIndex > -1) then
+    if (aIndex < ItemsCount) then
+      Result := RegControl.Items.Strings[aIndex];
+end;
+
+function TRegListBoxWrapper.GetIndexOfItem(aItem: string): integer;
+begin
+   Result := RegControl.Items.IndexOf(aItem);
+end;
+
+function TRegListBoxWrapper.DeleteItem(aIndex: integer): boolean;
+begin
+  Result := RegControl.DeleteItem(aIndex, False, EmptyStr);
 end;
 
 end.

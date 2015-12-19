@@ -25,6 +25,8 @@ type
 
     procedure ReadRegistryProc(aIni: TLRCRegIniFile);
   protected
+    procedure DebugItems;
+
     procedure SetUp; override;
     procedure TearDown; override;
 
@@ -64,9 +66,26 @@ type
 implementation
 
 uses
-  test_utils;
+  test_utils,
+  dbugintf;
 
 { TRegListBoxGenericTest }
+
+procedure TRegListBoxGenericTest<_T1,_T2>.DebugItems;
+var
+  count: integer;
+  item: string;
+begin
+  SendDebugEx('//-->', dlInformation);
+
+  for count := 0 to FRegListBoxWrapper.ItemsCount-1 do
+  begin
+    item := FRegListBoxWrapper.GetItemByIndex(count);
+    SendDebugFmtEx('Index: %d - Item: %s ', [count, item], dlInformation);
+  end;
+  SendDebugEx('//!<--', dlInformation);
+  SendDebugEx('Items auflisten', dlInformation);
+end;
 
 procedure TRegListBoxGenericTest<_T1,_T2>.SetUp;
 begin
@@ -129,19 +148,54 @@ procedure TRegListBoxDeleteItemTest.DeleteItemProc(aIni: TLRCRegIniFile);
 var
   list: TStrings;
   count: integer;
+  index: integer;
+  success: boolean;
+  found: boolean;
 begin
   list := TStringList.Create;
   try
     with aIni do
     begin
-      // 1. Anzahl Prüfen
+      DebugItems;
+
+      // 1. Anzahl prüfen
       ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list);
       count := list.count;
 
-      AssertEquals('Test nicht durchführbar: Anzahl Registryeinträge ungleich Anzahl Items im Control',
+      AssertEquals('Test nicht durchführbar: Anzahl Registry-Einträge ungleich Anzahl Items im Control',
         count, FRegListBoxWrapper.ItemsCount);
 
-      // 2.
+      // 2. Key3 prüfen
+      found := ValueExists(FRegListBoxWrapper.SpecialListProperties.ListSection, 'Key3');
+
+      AssertTrue('Test nicht durchführbar: Item Key3 konnte nicht gefunden werden', found);
+
+      // 3. Index für Key3 ermitteln
+      index := FRegListBoxWrapper.GetIndexOfItem('Key3');
+
+      AssertTrue('Test nicht durchführbar: Index für Item Key3 nicht gefunden', (index > -1));
+
+      // 4: Key3 löschen
+      success := FReglistBoxWrapper.DeleteItem(index);
+
+      AssertTrue('DeleteItem: Item Key3 konnte nicht gelöscht werden', success);
+
+      // 5. Anzahl Prüfen wenn DoSyncData = True
+      if FRegListBoxWrapper.DoSyncData then
+      begin
+        ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list);
+        count := list.count;
+
+        AssertEquals('DeleteItem: Anzahl Registry-Einträge ungleich Anzahl Items im Control',
+          count, FRegListBoxWrapper.ItemsCount);
+      end;
+
+      // 6. Key3 erneut prüfen
+      found := ValueExists(FRegListBoxWrapper.SpecialListProperties.ListSection, 'Key3');
+
+      AssertFalse('DeleteItem: Item Key3 konnte nicht gelöscht werden', found);
+
+      DebugItems;
     end;
   finally
     if Assigned(list) then

@@ -135,7 +135,7 @@ type
                        aCanWrite: boolean = True;
                        aDoWriteAdHoc: boolean = True;
                        aGroupIndex: integer = 0;
-                       aDoSyncData: boolean = False;
+                       aDoSyncData: boolean = True;
                        aDoMergeData: boolean = False;
                        aItemsByRegistry: boolean = True;
                        aSourceKind: TListSourceKind = lskByKey); reintroduce; overload;
@@ -513,7 +513,7 @@ constructor TWrapperLST<_T>.Create(aRegistrySource: TRegistrySource;
   aCanWrite: boolean = True;
   aDoWriteAdHoc: boolean = True;
   aGroupIndex: integer = 0;
-  aDoSyncData: boolean = False;
+  aDoSyncData: boolean = True;
   aDoMergeData: boolean = False;
   aItemsByRegistry: boolean = True;
   aSourceKind: TListSourceKind = lskByKey);
