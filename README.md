@@ -87,7 +87,7 @@ vorliegenden Version nur unter Windows sinnvoll.
 ## 3.1 Versionen       
 Lazarus: 1.4.0       
 FPC: 2.6.4     
-DebugServer: [s. readme.md in ./test](https://github.com/AlfredGerke/LazarusRegistryControls/tree/master/test#0-debugserver "readme.md")
+DebugServer: [s. readme.md in ./test](https://github.com/AlfredGerke/LazarusRegistryControls/tree/master/test#0-debugserver "readme.md")     
 LazarusRegistryControls (LRC): *Zielversion LRC 0.9 M2*            
 
 ## 3.2 Reihenfolge    
