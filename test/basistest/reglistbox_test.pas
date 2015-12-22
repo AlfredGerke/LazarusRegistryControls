@@ -46,7 +46,9 @@ type
     procedure ReadRegistryProc(aIni: TLRCRegIniFile);
     procedure WriteRegistryProc(aIni: TLRCRegIniFile);
   protected
+    {$ifdef Debug}
     procedure DebugItems;
+    {$endif}
 
     procedure SetUp; override;
     procedure TearDown; override;
@@ -97,12 +99,15 @@ implementation
 
 uses
   test_utils,
+  {$ifdef Debug}
   dbugintf,
+  {$endif}
   regtype,
   test_const;
 
 { TRegListBoxGenericTest }
 
+{$ifdef Debug}
 procedure TRegListBoxGenericTest<_T1,_T2>.DebugItems;
 var
   count: integer;
@@ -118,6 +123,7 @@ begin
   SendDebugEx('//!<--', dlInformation);
   SendDebugEx('Items auflisten', dlInformation);
 end;
+{$endif}
 
 procedure TRegListBoxGenericTest<_T1,_T2>.SetUp;
 begin
@@ -327,7 +333,9 @@ begin
   try
     with aIni do
     begin
+      {$ifdef Debug}
       DebugItems;
+      {$endif}
 
       // 1. Anzahl prüfen
       ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list);
@@ -368,7 +376,9 @@ begin
 
       AssertFalse('DeleteItem: Item Key3 konnte nicht gelöscht werden', found);
 
+      {$ifdef Debug}
       DebugItems;
+      {$endif}
     end;
   finally
     if Assigned(list) then

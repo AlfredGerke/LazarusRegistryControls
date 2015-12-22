@@ -31,7 +31,8 @@ uses
 
 procedure RegisterIssue00051Tests(aSuitePath: string = 'LRC 09 M2.Issue #51 - DeleteItem einführen');
 begin
-  RegisterTest(aSuitePath, TDeleteItemTest);
+  // Derzeit kein Testfall definiert
+  //RegisterTest(aSuitePath, TDeleteItemTest);
   RegisterTest(aSuitePath, TRegListBoxDeleteItemTest);
 end;
 

@@ -19,13 +19,17 @@ uses
 
 implementation
 
+{$ifdef Debug}
 uses
   dbugintf;
+{$endif}
 
 initialization
 
   // DebugClient einrichten
+  {$ifdef Debug}
   InitDebugClient;
+  {$endif}
 
   // Alle Tests für TLRCRegInifile
   //!<--

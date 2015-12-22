@@ -32,9 +32,9 @@
             <Filename Value="LazarusRegistryControlsTest"/>
           </Target>
           <SearchPaths>
-            <IncludeFiles Value="$(ProjOutDir)"/>
+            <IncludeFiles Value="$(ProjOutDir)\release"/>
             <OtherUnitFiles Value="wrapper;issues;basistest;units;tests"/>
-            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\release"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -204,12 +204,12 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="LazarusRegistryControlsTest"/>
+      <Filename Value="LazarusRegistryControlsTest_dbg"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
       <OtherUnitFiles Value="wrapper;issues;basistest;units;tests"/>
-      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\debug"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
@@ -232,6 +232,9 @@
         <UseExternalDbgSyms Value="True"/>
       </Debugging>
     </Linking>
+    <Other>
+      <CustomOptions Value="-dDebug"/>
+    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="5">
