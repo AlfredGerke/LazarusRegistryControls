@@ -8,8 +8,10 @@ example v0.9-M.2/lib/i386-win32/
 example v0.9-M.2/bin/i386-win32/
 test/lib/i386-win32/
 test/LazarusRegistryControlsTest.exe
+test/LazarusRegistryControlsTest.dbg
 *.bak
 link.res
 ppas.bat
 *.lps
 *.lnk
+*.dbg
