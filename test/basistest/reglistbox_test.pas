@@ -23,7 +23,28 @@ type
     FRegSrcWrapper: _T1;
     FRegListBoxWrapper: _T2;
 
+    procedure ReadRegistryCase1(aIni: TLRCRegIniFile;
+                                aSection: string;
+                                aListSection: string;
+                                aIdent: string;
+                                aDefault: integer);
+    procedure ReadRegistryCase2(aIni: TLRCRegIniFile;
+                                aSection: string;
+                                aListSection: string;
+                                aIdent: string;
+                                aDefault: integer);
+    procedure WriteRegistryCase1(aIni: TLRCRegIniFile;
+                                 aSection: string;
+                                 aListSection: string;
+                                 aIdent: string;
+                                 aDefault: integer);
+    procedure WriteRegistryCase2(aIni: TLRCRegIniFile;
+                                 aSection: string;
+                                 aListSection: string;
+                                 aIdent: string;
+                                 aDefault: integer);
     procedure ReadRegistryProc(aIni: TLRCRegIniFile);
+    procedure WriteRegistryProc(aIni: TLRCRegIniFile);
   protected
     procedure DebugItems;
 
@@ -31,6 +52,9 @@ type
     procedure TearDown; override;
 
     procedure DoReadRegistry;
+    procedure DoRootKeys;
+    procedure DoPublishedProperties;
+    procedure DoWriteRegistry;
   published
   end;
 
@@ -41,6 +65,9 @@ type
     procedure SetSectionsAndIdents; override;
   published
     procedure ReadRegistry;
+    procedure RootKeys;
+    procedure PublishedProperties;
+    procedure WriteRegistry;
   end;
 
   { TRegListBoxUTF8Test }
@@ -50,6 +77,9 @@ type
     procedure SetSectionsAndIdents; override;
   published
     procedure ReadRegistry;
+    procedure RootKeys;
+    procedure PublishedProperties;
+    procedure WriteRegistry;
   end;
 
   { TRegListBoxDeleteItemTest }
@@ -67,7 +97,9 @@ implementation
 
 uses
   test_utils,
-  dbugintf;
+  dbugintf,
+  regtype,
+  test_const;
 
 { TRegListBoxGenericTest }
 
@@ -101,6 +133,34 @@ begin
   FreeAndNil(FRegListBoxWrapper);
 end;
 
+procedure TRegListBoxGenericTest<_T1,_T2>.DoRootKeys;
+var
+  check_rtl_ansi: boolean;
+  root_keys_struct: TRootKeysStruct;
+begin
+  check_rtl_ansi := False;
+  {%H-}root_keys_struct.Clear;
+
+  FRegSrcWrapper.GetRootKeys(check_rtl_ansi, root_keys_struct);
+
+  FRegListBoxWrapper.RootKeys('TRegListBoxWrapper', FRegSrcWrapper.RegistrySource,
+    root_keys_struct, check_rtl_ansi);
+end;
+
+procedure TRegListBoxGenericTest<_T1,_T2>.DoPublishedProperties;
+begin
+  FRegListBoxWrapper.PublishedProperties('TRegListBoxWrapper');
+end;
+
+procedure TRegListBoxGenericTest<_T1,_T2>.DoWriteRegistry;
+begin
+  // 1. Fall: check Section, Ident, Default
+  FRegListBoxWrapper.SectionIdentDefault;
+
+  GetRegIniFile(FRegSrcWrapper.RegistrySource.GetComposedRootKey,
+    WriteRegistryProc);
+end;
+
 procedure TRegListBoxGenericTest<_T1,_T2>.DoReadRegistry;
 begin
   // 1. Fall: check Section, Ident, Default
@@ -109,9 +169,80 @@ begin
   GetRegIniFile(FRegSrcWrapper.RegistrySource.GetComposedRootKey, ReadRegistryProc);
 end;
 
-procedure TRegListBoxGenericTest<_T1,_T2>.ReadRegistryProc(aIni: TLRCRegIniFile);
+procedure TRegListBoxGenericTest<_T1,_T2>.WriteRegistryProc(aIni: TLRCRegIniFile);
+var
+  test_section: string;
+  test_list_section: string;
+  test_ident: string;
 begin
-  Fail('Testprocedure noch nicht implementiert!');
+  test_section := GetSectionUTF8Decoded;
+  test_ident := GetIdentUTF8Decoded;
+  test_list_section := GetListSectionUTF8Decoded;
+
+  WriteRegistryCase1(aIni, test_section, test_list_section, test_ident, Default);
+  FRegListBoxWrapper.DoReadReg := False;
+  FRegListBoxWrapper.SetRegistryEntries;
+  WriteRegistryCase2(aIni, test_section, test_list_section, test_ident, Default);
+end;
+
+procedure TRegListBoxGenericTest<_T1,_T2>.ReadRegistryProc(aIni: TLRCRegIniFile);
+var
+  test_section: string;
+  test_list_section: string;
+  test_ident: string;
+begin
+  test_section := GetSectionUTF8Decoded;
+  test_ident := GetIdentUTF8Decoded;
+  test_list_section := GetListSectionUTF8Decoded;
+
+  ReadRegistryCase1(aIni, test_section, test_list_section, test_ident, Default);
+  FRegListBoxWrapper.DoReadReg := False;
+  FRegListBoxWrapper.SetRegistryEntries;
+  ReadRegistryCase2(aIni, test_section, test_list_section, test_ident, Default);
+end;
+
+procedure TRegListBoxGenericTest<_T1,_T2>.ReadRegistryCase1(aIni: TLRCRegIniFile;
+  aSection: string;
+  aListSection: string;
+  aIdent: string;
+  aDefault: integer);
+begin
+  // Case: DoRead=True
+
+  Fail('Testprocedure Case1: DoRead=True noch nicht implementiert!');
+end;
+
+procedure TRegListBoxGenericTest<_T1,_T2>.ReadRegistryCase2(aIni: TLRCRegIniFile;
+  aSection: string;
+  aListSection: string;
+  aIdent: string;
+  aDefault: integer);
+begin
+  // Case: DoRead=False
+
+  Fail('Testprocedure Case2: DoRead=False noch nicht implementiert!');
+end;
+
+procedure TRegListBoxGenericTest<_T1,_T2>.WriteRegistryCase1(aIni: TLRCRegIniFile;
+  aSection: string;
+  aListSection: string;
+  aIdent: string;
+  aDefault: integer);
+begin
+  // Case: DoWrite=True
+
+  Fail('Testprocedure Case1: DoWrite=True noch nicht implementiert!');
+end;
+
+procedure TRegListBoxGenericTest<_T1,_T2>.WriteRegistryCase2(aIni: TLRCRegIniFile;
+  aSection: string;
+  aListSection: string;
+  aIdent: string;
+  aDefault: integer);
+begin
+  // Case: DoWrite=False
+
+  Fail('Testprocedure Case1: DoWrite=False noch nicht implementiert!');
 end;
 
 { TRegListBoxTest }
@@ -119,6 +250,11 @@ end;
 procedure TRegListBoxTest.SetSectionsAndIdents;
 begin
   inherited SetSectionsAndIdents;
+
+  Section := SEC_TREGLISTBOX;
+  Ident := IDENT_TREGLISTBOX;
+  Default := DEFAULT_ITEMINDEX_VALUE;
+  ListSection := SEC_TREGLISTBOXITEMS;
 
   CheckRTLNeeded := True;
 end;
@@ -128,11 +264,31 @@ begin
   DoReadRegistry;
 end;
 
+procedure TRegListBoxTest.RootKeys;
+begin
+  DoRootKeys;
+end;
+
+procedure TRegListBoxTest.PublishedProperties;
+begin
+  DoPublishedProperties;
+end;
+
+procedure TRegListBoxTest.WriteRegistry;
+begin
+  DoWriteRegistry;
+end;
+
 { TRegListBoxUTF8Test }
 
 procedure TRegListBoxUTF8Test.SetSectionsAndIdents;
 begin
   inherited SetSectionsAndIdents;
+
+  Section := SEC_TREGLISTBOX;
+  Ident := IDENT_TREGLISTBOX;
+  Default := DEFAULT_ITEMINDEX_VALUE;
+  ListSection := SEC_TREGLISTBOXITEMS;
 
   CheckRTLNeeded := True;
 end;
@@ -140,6 +296,21 @@ end;
 procedure TRegListBoxUTF8Test.ReadRegistry;
 begin
   DoReadRegistry;
+end;
+
+procedure TRegListBoxUTF8Test.RootKeys;
+begin
+  DoRootKeys;
+end;
+
+procedure TRegListBoxUTF8Test.PublishedProperties;
+begin
+  DoPublishedProperties;
+end;
+
+procedure TRegListBoxUTF8Test.WriteRegistry;
+begin
+  DoWriteRegistry;
 end;
 
 { TRegListBoxDeleteItemTest }
@@ -176,6 +347,8 @@ begin
       AssertTrue('Test nicht durchführbar: Index für Item Key3 nicht gefunden', (index > -1));
 
       // 4: Key3 löschen
+      // DoSyncData soll das Control autmatisch aktualisieren
+      FRegListBoxWrapper.DoSyncData := True;
       success := FReglistBoxWrapper.DeleteItem(index);
 
       AssertTrue('DeleteItem: Item Key3 konnte nicht gelöscht werden', success);

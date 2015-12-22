@@ -13,6 +13,7 @@ type
 
   TLRCTestCase<_T> = class(TTestCase)
   private
+    FListSection: string;
     FSection: string;
     FIdent: string;
     FDefault: _T;
@@ -21,6 +22,11 @@ type
   protected
     procedure SetSectionsAndIdents; virtual;
     procedure SetUp; override;
+
+    function GetListSectionUTF8Decoded: string;
+    property ListSection: string
+      read FListSection
+      write FListSection;
 
     function GetSectionUTF8Decoded: string;
     property Section: string
@@ -59,6 +65,11 @@ begin
   inherited SetUp;
 
   SetSectionsAndIdents;
+end;
+
+function TLRCTestCase<_T>.GetListSectionUTF8Decoded: string;
+begin
+  Result := UTF8DecodeIfNeeded(FListSection, FCheckRTLNeeded);
 end;
 
 function TLRCTestCase<_T>.GetSectionUTF8Decoded: string;

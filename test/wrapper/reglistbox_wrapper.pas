@@ -21,9 +21,11 @@ type
   TRegListBoxWrapper = class(TWrapperLST<TRegListBoxForTest>)
   private
     FDefault: integer;
+    FDoReadReg: boolean;
   protected
     function GetItemsCount: integer;
     function GetDoSyncData: boolean;
+    procedure SetDoSyncData(aDoSyncData: boolean);
 
     procedure _Initialize; override;
     procedure SetSectionsAndIdents; virtual;
@@ -46,7 +48,12 @@ type
       read GetItemsCount;
 
     property DoSyncData: boolean
-      read GetDoSyncData;
+      read GetDoSyncData
+      write SetDoSyncData;
+
+    property DoReadReg: boolean
+      read FDoReadReg
+      write FDoReadReg;
   end;
 
   { TRegListBoxWrapperUTF8 }
@@ -107,9 +114,16 @@ begin
   Result := RegControl.RegistrySettings.DoSyncData;
 end;
 
+procedure TRegListBoxWrapper.SetDoSyncData(aDoSyncData: boolean);
+begin
+  RegControl.RegistrySettings.DoSyncData := aDoSyncData;
+end;
+
 procedure TRegListBoxWrapper._Initialize;
 begin
   inherited _Initialize;
+
+  FDoReadReg := True;
 
   SetSectionsAndIdents;
 end;
@@ -142,7 +156,8 @@ begin
     WriteString(ListSection, 'Key5', 'Value5');
     WriteInteger(Section, Ident, DEFAULT_ITEMINDEX_VALUE);
 
-    ReadFromReg;
+    if FDoReadReg then
+      ReadFromReg;
   end;
 end;
 
