@@ -197,7 +197,7 @@ var
   caption_by_default: string;
   caption_by_registry: string;
 begin
-  caption_by_registry := _TREGCHECKBOX_CAPTION_VALUE;
+  caption_by_registry := CaptionValueByReg;
   caption_by_default := DEFAULT_CAPTION_VALUE;
 
   FRegCheckBoxWrapper.ReadCaption(caption_by_default, caption_by_registry,
@@ -246,6 +246,10 @@ begin
   Ident := IDENT_CHECK_PROPERTY;
   Default := DEFAULT_CHECKED_ENTRY;
 
+  CaptionSection := SEC_TREGCHECKBOX;
+  CaptionIdent := IDENT_CAPTION;
+  CaptionValueByReg := _TREGCHECKBOX_CAPTION_VALUE;
+
   CheckRTLNeeded := True;
 end;
 
@@ -255,9 +259,13 @@ procedure TRegCheckBoxUTF8Test.SetSectionsAndIdents;
 begin
   inherited SetSectionsAndIdents;
 
-  Section := SEC_TREGCHECKBOX;
-  Ident := IDENT_CHECK_PROPERTY;
+  Section := SEC_TREGCHECKBOX_UTF8;
+  Ident := IDENT_CHECK_PROPERTY_UTF8;
   Default := DEFAULT_CHECKED_ENTRY;
+
+  CaptionSection := SEC_TREGCHECKBOX_UTF8;
+  CaptionIdent := IDENT_CAPTION_UTF8;
+  CaptionValueByReg := _TREGCHECKBOX_CAPTION_VALUE_UTF8;
 
   CheckRTLNeeded := True;
 end;

@@ -23,6 +23,8 @@ type
     FDefault: integer;
     FDoReadReg: boolean;
   protected
+    function GetDoReadProperty: boolean;
+    procedure SetDoReadProperty(aDoRead: boolean);
     function GetItemsCount: integer;
     function GetDoSyncData: boolean;
     procedure SetDoSyncData(aDoSyncData: boolean);
@@ -38,8 +40,8 @@ type
       read FDefault
       write FDefault;
   public
+    procedure ClearItems;
     procedure SectionIdentDefault;
-
     function GetItemByIndex(aIndex: integer): string;
     function GetIndexOfItem(aItem: string): integer;
     function DeleteItem(aIndex: integer): boolean;
@@ -54,6 +56,10 @@ type
     property DoReadReg: boolean
       read FDoReadReg
       write FDoReadReg;
+
+    property DoReadProperty: boolean
+      read GetDoReadProperty
+      write SetDoReadProperty;
   end;
 
   { TRegListBoxWrapperUTF8 }
@@ -103,6 +109,16 @@ begin
 end;
 
 { TRegListBoxWrapper }
+
+function TRegListBoxWrapper.GetDoReadProperty: boolean;
+begin
+  Result := RegControl.RegistrySettings.CanRead;
+end;
+
+procedure TRegListBoxWrapper.SetDoReadProperty(aDoRead: boolean);
+begin
+  RegControl.RegistrySettings.CanRead := aDoRead;
+end;
 
 function TRegListBoxWrapper.GetItemsCount: integer;
 begin
@@ -177,6 +193,11 @@ begin
   RegControl.RegistrySettings.ItemsByRegistry := SpecialListProperties.ItemsByRegistry;
   RegControl.RegistrySettings.SourceKind := SpecialListProperties.SourceKind;
   //-->
+end;
+
+procedure TRegListBoxWrapper.ClearItems;
+begin
+  RegControl.Items.Clear;
 end;
 
 procedure TRegListBoxWrapper.SectionIdentDefault;

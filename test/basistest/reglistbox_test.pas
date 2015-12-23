@@ -201,9 +201,9 @@ begin
   test_ident := GetIdentUTF8Decoded;
   test_list_section := GetListSectionUTF8Decoded;
 
-  ReadRegistryCase1(aIni, test_section, test_list_section, test_ident, Default);
-  FRegListBoxWrapper.DoReadReg := False;
   FRegListBoxWrapper.SetRegistryEntries;
+
+  ReadRegistryCase1(aIni, test_section, test_list_section, test_ident, Default);
   ReadRegistryCase2(aIni, test_section, test_list_section, test_ident, Default);
 end;
 
@@ -214,8 +214,18 @@ procedure TRegListBoxGenericTest<_T1,_T2>.ReadRegistryCase1(aIni: TLRCRegIniFile
   aDefault: integer);
 begin
   // Case: DoRead=True
+  with aIni do
+  begin
+    FRegListBoxWrapper.DoReadProperty := True;
 
-  Fail('Testprocedure Case1: DoRead=True noch nicht implementiert!');
+    AssertEquals('Test nicht durchführbar: DoRead-Property von RegListBox', True,
+      FRegListBoxWrapper.DoReadProperty);
+
+    FRegListBoxWrapper.ClearItems;
+    FRegListBoxWrapper.ReadFromReg(True);
+
+    AssertEquals('Falsche Anzahl Items-Einträge im Control', 5, FRegListBoxWrapper.ItemsCount);
+  end;
 end;
 
 procedure TRegListBoxGenericTest<_T1,_T2>.ReadRegistryCase2(aIni: TLRCRegIniFile;
@@ -225,8 +235,18 @@ procedure TRegListBoxGenericTest<_T1,_T2>.ReadRegistryCase2(aIni: TLRCRegIniFile
   aDefault: integer);
 begin
   // Case: DoRead=False
+  with aIni do
+  begin
+    FRegListBoxWrapper.DoReadProperty := False;
 
-  Fail('Testprocedure Case2: DoRead=False noch nicht implementiert!');
+    AssertEquals('Test nicht durchführbar: DoRead-Property von RegListBox', False,
+      FRegListBoxWrapper.DoReadProperty);
+
+    FRegListBoxWrapper.ClearItems;
+    FRegListBoxWrapper.ReadFromReg(True);
+
+    AssertEquals('Falsche Anzahl Items-Einträge im Control', 0, FRegListBoxWrapper.ItemsCount);
+  end;
 end;
 
 procedure TRegListBoxGenericTest<_T1,_T2>.WriteRegistryCase1(aIni: TLRCRegIniFile;

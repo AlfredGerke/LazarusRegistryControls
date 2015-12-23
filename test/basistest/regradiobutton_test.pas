@@ -199,7 +199,7 @@ var
   {%H-}caption_by_default: string;
   {%H-}caption_by_registry: string;
 begin
-  caption_by_registry := _TREGCHECKBOX_CAPTION_VALUE;
+  caption_by_registry := CaptionValueByReg;
   caption_by_default := DEFAULT_CAPTION_VALUE;
 
   FRegRadioButtonWrapper.ReadCaption(caption_by_default, caption_by_registry,
@@ -244,9 +244,13 @@ procedure TRegRadioButtonUTF8Test.SetSectionsAndIdents;
 begin
   inherited SetSectionsAndIdents;
 
-  Section := SEC_TREGRADIOBUTTON;
-  Ident := IDENT_CHECK_PROPERTY;
+  Section := SEC_TREGRADIOBUTTON_UTF8;
+  Ident := IDENT_CHECK_PROPERTY_UTF8;
   Default := DEFAULT_CHECKED_ENTRY;
+
+  CaptionSection := SEC_TREGRADIOBUTTON_UTF8;
+  CaptionIdent := IDENT_CAPTION_UTF8;
+  CaptionValueByReg := _TREGCHECKBOX_CAPTION_VALUE_UTF8;
 
   CheckRTLNeeded := True;
 end;
@@ -260,6 +264,10 @@ begin
   Section := SEC_TREGRADIOBUTTON;
   Ident := IDENT_CHECK_PROPERTY;
   Default := DEFAULT_CHECKED_ENTRY;
+
+  CaptionSection := SEC_TREGRADIOBUTTON;
+  CaptionIdent := IDENT_CAPTION;
+  CaptionValueByReg := _TREGCHECKBOX_CAPTION_VALUE;
 
   CheckRTLNeeded := True;
 end;

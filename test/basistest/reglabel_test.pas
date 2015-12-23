@@ -10,11 +10,14 @@ uses
   registrysource_wrapper,
   reglabel_wrapper,
   regtype,
-  test_const;
+  test_const,
+  lrc_testcase;
 
 type
 
-  TRegLabelGenericTest<_T1,_T2>= class(TTestCase)
+  { TRegLabelGenericTest }
+
+  TRegLabelGenericTest<_T1,_T2>= class(TLRCTestCase<string>)
   private
     FRegSrcWrapper: _T1;
     FRegLabelWrapper: _T2;
@@ -28,9 +31,11 @@ type
   end;
 
   TRegLabelTest= class(TRegLabelGenericTest<TRegistrySourceWrapper,TRegLabelWrapper>)
+    procedure SetSectionsAndIdents; override;
   end;
 
   TRegLabelUTF8Test= class(TRegLabelGenericTest<TRegistrySourceWrapperUTF8,TRegLabelWrapperUTF8>)
+    procedure SetSectionsAndIdents; override;
   end;
 
 implementation
@@ -64,8 +69,7 @@ begin
   FRegLabelWrapper.RegControl.RegistrySettings.CanRead := True;
   FRegLabelWrapper.ReadFromReg(True, 'TRegLabel');
 
-  AssertEquals('TRegLabel.Caption', _TREGLABEL_CAPTION_VALUE,
-    FRegLabelWrapper.RegControl.Caption);
+  AssertEquals('TRegLabel.Caption', CaptionValueByReg, FRegLabelWrapper.RegControl.Caption);
 
   // 3. Fall CanRead = False: DEFAULT_CAPTION_VALUE muss in Caption eingetragen
   // werden
@@ -79,6 +83,8 @@ end;
 
 procedure TRegLabelGenericTest<_T1,_T2>.SetUp;
 begin
+  inherited;
+
   FRegSrcWrapper := _T1.Create;
   FRegLabelWrapper := _T2.Create(FRegSrcWrapper.RegistrySource);
 end;
@@ -87,6 +93,22 @@ procedure TRegLabelGenericTest<_T1,_T2>.TearDown;
 begin
   FreeAndNil(FRegLabelWrapper);
   FreeAndNil(FRegSrcWrapper);
+
+  inherited;
+end;
+
+{ TRegLabelTest }
+
+procedure TRegLabelTest.SetSectionsAndIdents;
+begin
+  CaptionValueByReg := _TREGLABEL_CAPTION_VALUE;
+end;
+
+{ TRegLabelUTF8Test }
+
+procedure TRegLabelUTF8Test.SetSectionsAndIdents;
+begin
+  CaptionValueByReg := _TREGLABEL_CAPTION_VALUE_UTF8;
 end;
 
 end.

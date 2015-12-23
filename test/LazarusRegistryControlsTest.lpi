@@ -34,7 +34,7 @@
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)\release"/>
             <OtherUnitFiles Value="wrapper;issues;basistest;units;tests"/>
-            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\$(BuildMode)\"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\$(BuildMode)"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -228,7 +228,6 @@
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf2Set"/>
-        <UseHeaptrc Value="True"/>
         <UseExternalDbgSyms Value="True"/>
       </Debugging>
     </Linking>

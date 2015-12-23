@@ -42,19 +42,27 @@ const
   IDENT_TEXT_PROPERTY = 'Text-Property';
 
   SEC_TREGCHECKBOX = 'TRegCheckBox';
+  SEC_TREGCHECKBOX_UTF8 = 'TRegCheckBox_mit_ßÜÖÄüöä';
   IDENT_CHECK_PROPERTY = 'Checked-Property';
+  IDENT_CHECK_PROPERTY_UTF8 = 'Checked-Property_mit_ßÜÖÄüöä';
   _TREGCHECKBOX_CAPTION_VALUE = 'Dynamisch';
+  _TREGCHECKBOX_CAPTION_VALUE_UTF8 = 'Dynamisch_mit_ßÜÖÄüöä';
   _CHECKED_ENTRY = True;
   DEFAULT_CHECKED_ENTRY = False;
 
   SEC_TREGRADIOBUTTON = 'TRegRadioButton';
+  SEC_TREGRADIOBUTTON_UTF8 = 'TRegRadioButton_mit_ßÜÖÄüöä';
   _TREGRADIOBUTTON_CAPTION_VALUE = 'Dynamisch';
+  _TREGRADIOBUTTON_CAPTION_VALUE_UTF8 = 'Dynamisch_mit_ßÜÖÄüöä';
   DEFAULT_CAPTION_VALUE = 'Statisch';
 
   IDENT_CAPTION = 'Caption';
+  IDENT_CAPTION_UTF8 = 'Caption_mit_ßÜÖÄüöä';
 
   SEC_TREGLABEL = 'TRegLabel';
+  SEC_TREGLABEL_UTF8 = 'TRegLabel_mit_ßÜÖÄüöä';
   _TREGLABEL_CAPTION_VALUE = 'Dynamisch';
+  _TREGLABEL_CAPTION_VALUE_UTF8 = 'Dynamisch_mit_ßÜÖÄüöä';
 
   CAPTION_FOR_TREGLABEL = 'LRC RegLabel';
 

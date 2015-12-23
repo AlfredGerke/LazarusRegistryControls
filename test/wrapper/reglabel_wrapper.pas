@@ -20,11 +20,23 @@ type
 
   TRegLabelWrapper = class(TWrapper<TRegLabelForTest>)
   private
+    FDefault: string;
+    FCaptionValueByReg: string;
   protected
+    procedure _Initialize; override;
+    procedure SetSectionsAndIdents; virtual;
     procedure SetRegControl; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
+
+    property Default: string
+      read FDefault
+      write FDefault;
+
+    property CaptionValueByReg: string
+      read FCaptionValueByReg
+      write FCaptionValueByReg;
   public
     procedure SectionIdentDefault;
   end;
@@ -34,6 +46,7 @@ type
   TRegLabelWrapperUTF8 = class(TRegLabelWrapper)
   private
   protected
+    procedure SetSectionsAndIdents; override;
     procedure SetRegistryEntries; override;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); override;
@@ -49,6 +62,15 @@ uses
 
 { TRegLabelWrapperUTF8 }
 
+procedure TRegLabelWrapperUTF8.SetSectionsAndIdents;
+begin
+  Section := SEC_TREGLABEL_UTF8;
+  Ident := IDENT_CAPTION_UTF8;
+  Default := DEFAULT_CAPTION_VALUE;
+
+  CaptionValueByReg := _TREGCHECKBOX_CAPTION_VALUE_UTF8;
+end;
+
 procedure TRegLabelWrapperUTF8.SetRegistryEntries;
 begin
   inherited SetRegistryEntries;
@@ -63,20 +85,36 @@ end;
 
 { TRegLabelWrapper }
 
+procedure TRegLabelWrapper._Initialize;
+begin
+  inherited _Initialize;
+
+  SetSectionsAndIdents;
+end;
+
+procedure TRegLabelWrapper.SetSectionsAndIdents;
+begin
+  Section := SEC_TREGLABEL;
+  Ident := IDENT_CAPTION;
+  Default := DEFAULT_CAPTION_VALUE;
+
+  CaptionValueByReg := _TREGCHECKBOX_CAPTION_VALUE;
+end;
+
 procedure TRegLabelWrapper.SetRegControl;
 begin
   inherited SetRegControl;
 
   RegControl.Name := SetUniqueName(TREGLABEL_NAME);
-  RegControl.Caption := CAPTION_FOR_TREGLABEL;
+  RegControl.Caption := CaptionValueByReg;
 end;
 
 procedure TRegLabelWrapper.SetRegistryEntries;
 begin
   inherited SetRegistryEntries;
 
-  RegControl.RegistrySource.WriteString(SEC_TREGLABEL, IDENT_CAPTION,
-    _TREGLABEL_CAPTION_VALUE);
+  RegControl.RegistrySource.WriteString(Section, Ident,
+    CaptionValueByReg);
 end;
 
 procedure TRegLabelWrapper.SetRegistrySettings(
@@ -86,18 +124,18 @@ begin
   inherited SetRegistrySettings(aRegistrySource, aSetRegSrc);
 
   RegControl.RegistrySettings.Default := DEFAULT_CAPTION_VALUE;
-  RegControl.RegistrySettings.Section := SEC_TREGLABEL;
-  RegControl.RegistrySettings.Ident := IDENT_CAPTION
+  RegControl.RegistrySettings.Section := Section;
+  RegControl.RegistrySettings.Ident := Ident;
 end;
 
 procedure TRegLabelWrapper.SectionIdentDefault;
 begin
   TAssert.AssertEquals('TRegLabel.RegistrySection.Section',
-    SEC_TREGLABEL, FRegControl.RegistrySettings.Section);
+    Section, FRegControl.RegistrySettings.Section);
   TAssert.AssertEquals('TRegLabel.RegistrySection.Ident',
-    IDENT_CAPTION, FRegControl.RegistrySettings.Ident);
+    Ident, FRegControl.RegistrySettings.Ident);
   TAssert.AssertEquals('TRegLabel.RegistrySection.Default',
-    DEFAULT_CAPTION_VALUE, FRegControl.RegistrySettings.Default);
+    Default, FRegControl.RegistrySettings.Default);
 end;
 
 end.

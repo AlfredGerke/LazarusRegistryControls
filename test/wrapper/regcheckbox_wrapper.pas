@@ -23,7 +23,6 @@ type
   TRegCheckBoxWrapper = class(TWrapperCS<TRegCheckBoxForTest>)
   private
     FDefault: boolean;
-
   protected
     procedure _Initialize; override;
     procedure SetSectionsAndIdents; virtual;
@@ -72,12 +71,13 @@ end;
 
 procedure TRegCheckBoxWrapperUTF8.SetSectionsAndIdents;
 begin
-  Section := SEC_TREGCHECKBOX;
-  Ident := IDENT_CHECK_PROPERTY;
+  Section := SEC_TREGCHECKBOX_UTF8;
+  Ident := IDENT_CHECK_PROPERTY_UTF8;
   Default := DEFAULT_CHECKED_ENTRY;
 
-  CaptionSection := SEC_TREGCHECKBOX;
-  CaptionIdent := IDENT_CAPTION;
+  CaptionSection := SEC_TREGCHECKBOX_UTF8;
+  CaptionIdent := IDENT_CAPTION_UTF8;
+  CaptionValueByReg := _TREGCHECKBOX_CAPTION_VALUE_UTF8;
 end;
 
 procedure TRegCheckBoxWrapperUTF8.DeleteCaptionEntries;
@@ -118,6 +118,7 @@ begin
 
   CaptionSection := SEC_TREGCHECKBOX;
   CaptionIdent := IDENT_CAPTION;
+  CaptionValueByReg := _TREGCHECKBOX_CAPTION_VALUE;
 end;
 
 procedure TRegCheckBoxWrapper.SetRegControl;
@@ -143,7 +144,7 @@ begin
     _CHECKED_ENTRY);
 
   RegControl.RegistrySource.WriteString(CaptionSection, CaptionIdent,
-    _TREGCHECKBOX_CAPTION_VALUE);
+    CaptionValueByReg);
 end;
 
 procedure TRegCheckBoxWrapper.SetRegistrySettings(aRegistrySource: TRegistrySource;

@@ -13,12 +13,17 @@ type
 
   TLRCTestCase<_T> = class(TTestCase)
   private
-    FListSection: string;
+    FCaptionSection: string;
+    FCaptionIdent: string;
+    FCaptionValueByReg: string;
+
     FSection: string;
     FIdent: string;
     FDefault: _T;
-    FCheckRTLNeeded: boolean;
 
+    FListSection: string;
+
+    FCheckRTLNeeded: boolean;
   protected
     procedure SetSectionsAndIdents; virtual;
     procedure SetUp; override;
@@ -45,6 +50,18 @@ type
     property CheckRTLNeeded: boolean
       read FCheckRTLNeeded
       write FCheckRTLNeeded;
+
+    property CaptionSection: string
+      read FCaptionSection
+      write FCaptionSection;
+
+    property CaptionIdent: string
+     read FCaptionIdent
+     write FCaptionIdent;
+
+    property CaptionValueByReg: string
+      read FCaptionValueByReg
+      write FCaptionValueByReg;
   public
   end;
 

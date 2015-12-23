@@ -72,6 +72,7 @@ type
   private
     FCaptionSection: string;
     FCaptionIdent: string;
+    FCaptionValueByReg: string;
   protected
     procedure SetCaptionSettings; virtual;
     procedure DeleteCaptionEntries; virtual;
@@ -83,6 +84,10 @@ type
     property CaptionIdent: string
       read FCaptionIdent
       write FCaptionIdent;
+
+    property CaptionValueByReg: string
+      read FCaptionValueByReg
+      write FCaptionValueByReg;
   public
     procedure ReadFromReg(aExpected: boolean;
                           aOrigin: TRegistryDataOrigin;
