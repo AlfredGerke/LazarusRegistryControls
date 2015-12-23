@@ -4,6 +4,11 @@ program example_09_M2;
 
 uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   cthreads, {$ENDIF} {$ENDIF}
+
+  {$ifdef Debug}
+  SysUtils,
+  {$endif}
+
   Interfaces, // this includes the LCL widgetset
   Forms,
   datRegistry,
@@ -46,6 +51,14 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
 {$R *.res}
 
 begin
+  // Leak and Trace einrichten
+  // example.trc: im selben Ordner wie die Ausführungsdatei
+  {$ifdef Debug}
+  if FileExists('example.trc') then
+    DeleteFile('example.trc');
+  SetHeapTraceOutput('example.trc');
+  {$endif}
+
   RequireDerivedFormResource := True;
   Application.Initialize;
   Application.CreateForm(TMain, Main);

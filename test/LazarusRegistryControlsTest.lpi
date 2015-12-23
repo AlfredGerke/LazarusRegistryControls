@@ -29,12 +29,12 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="LazarusRegistryControlsTest"/>
+            <Filename Value="bin\$(TargetCPU)-$(TargetOS)\$(BuildMode)\LazarusRegistryControlsTest"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)\release"/>
             <OtherUnitFiles Value="wrapper;issues;basistest;units;tests"/>
-            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\release"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\$(BuildMode)\"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -204,12 +204,12 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="LazarusRegistryControlsTest_dbg"/>
+      <Filename Value="bin\$(TargetCPU)-$(TargetOS)\$(BuildMode)\LazarusRegistryControlsTest"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
       <OtherUnitFiles Value="wrapper;issues;basistest;units;tests"/>
-      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\debug"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\$(BuildMode)"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
