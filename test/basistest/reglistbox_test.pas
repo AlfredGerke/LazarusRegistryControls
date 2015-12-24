@@ -185,8 +185,9 @@ begin
   test_ident := GetIdentUTF8Decoded;
   test_list_section := GetListSectionUTF8Decoded;
 
+  FRegListBoxWrapper.SetRegistryEntries;
   WriteRegistryCase1(aIni, test_section, test_list_section, test_ident, Default);
-  FRegListBoxWrapper.DoReadReg := False;
+
   FRegListBoxWrapper.SetRegistryEntries;
   WriteRegistryCase2(aIni, test_section, test_list_section, test_ident, Default);
 end;
@@ -216,10 +217,10 @@ begin
   // Case: DoRead=True
   with aIni do
   begin
-    FRegListBoxWrapper.DoReadProperty := True;
+    FRegListBoxWrapper.CanReadProperty := True;
 
-    AssertEquals('Test nicht durchführbar: DoRead-Property von RegListBox', True,
-      FRegListBoxWrapper.DoReadProperty);
+    AssertEquals('Test nicht durchführbar: CanRead-Property von RegListBox', True,
+      FRegListBoxWrapper.CanReadProperty);
 
     FRegListBoxWrapper.ClearItems;
     FRegListBoxWrapper.ReadFromReg(True);
@@ -237,10 +238,10 @@ begin
   // Case: DoRead=False
   with aIni do
   begin
-    FRegListBoxWrapper.DoReadProperty := False;
+    FRegListBoxWrapper.CanReadProperty := False;
 
-    AssertEquals('Test nicht durchführbar: DoRead-Property von RegListBox', False,
-      FRegListBoxWrapper.DoReadProperty);
+    AssertEquals('Test nicht durchführbar: CanRead-Property von RegListBox', False,
+      FRegListBoxWrapper.CanReadProperty);
 
     FRegListBoxWrapper.ClearItems;
     FRegListBoxWrapper.ReadFromReg(True);
@@ -254,10 +255,39 @@ procedure TRegListBoxGenericTest<_T1,_T2>.WriteRegistryCase1(aIni: TLRCRegIniFil
   aListSection: string;
   aIdent: string;
   aDefault: integer);
+var
+  list: TStrings;
+  count: integer;
 begin
   // Case: DoWrite=True
+  list := TStringlist.Create;
+  try
+    with aIni do
+    begin
+      FRegListBoxWrapper.CanWriteProperty := True;
 
-  Fail('Testprocedure Case1: DoWrite=True noch nicht implementiert!');
+      AssertEquals('Test nicht durchführbar: CanWrite-Property von RegListBox', False,
+        FRegListBoxWrapper.CanWriteProperty);
+
+      // 1. Anzahl prüfen
+      ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list);
+      count := list.count;
+
+      AssertEquals('Test nicht durchführbar: Anzahl Registry-Einträge ungleich Anzahl Items im Control',
+        count, FRegListBoxWrapper.ItemsCount);
+
+      AssertTrue('Test nicht durchführbar: Falsche Anzahl Einträge im Control',
+        FRegListBoxWrapper.ItemsCount = 5);
+
+      FRegListBoxWrapper.ItemIndex := 3;
+
+
+      AssertEquals('Falsche Anzahl Items-Einträge im Control', 0, FRegListBoxWrapper.ItemsCount);
+    end;
+  finally
+    if Assigned(list) then
+      FreeAndNil(list);
+  end;
 end;
 
 procedure TRegListBoxGenericTest<_T1,_T2>.WriteRegistryCase2(aIni: TLRCRegIniFile;

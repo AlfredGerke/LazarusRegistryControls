@@ -23,8 +23,14 @@ type
     FDefault: integer;
     FDoReadReg: boolean;
   protected
-    function GetDoReadProperty: boolean;
-    procedure SetDoReadProperty(aDoRead: boolean);
+    function GetItemIndex: integer;
+    procedure SetItemIndex(aItemIndex: integer);
+
+    function GetCanWriteProperty: boolean;
+    procedure SetCanWriteProperty(aCanWrite: boolean);
+
+    function GetCanReadProperty: boolean;
+    procedure SetCanReadProperty(aCanRead: boolean);
     function GetItemsCount: integer;
     function GetDoSyncData: boolean;
     procedure SetDoSyncData(aDoSyncData: boolean);
@@ -40,11 +46,16 @@ type
       read FDefault
       write FDefault;
   public
+    procedure TriggerControlClick;
     procedure ClearItems;
     procedure SectionIdentDefault;
     function GetItemByIndex(aIndex: integer): string;
     function GetIndexOfItem(aItem: string): integer;
     function DeleteItem(aIndex: integer): boolean;
+
+    property ItemIndex: integer
+      read GetItemIndex
+      write SetItemIndex;
 
     property ItemsCount: integer
       read GetItemsCount;
@@ -57,9 +68,13 @@ type
       read FDoReadReg
       write FDoReadReg;
 
-    property DoReadProperty: boolean
-      read GetDoReadProperty
-      write SetDoReadProperty;
+    property CanReadProperty: boolean
+      read GetCanReadProperty
+      write SetCanReadProperty;
+
+    property CanWriteProperty: boolean
+      read GetCanWriteProperty
+      write SetCanWriteProperty;
   end;
 
   { TRegListBoxWrapperUTF8 }
@@ -110,14 +125,34 @@ end;
 
 { TRegListBoxWrapper }
 
-function TRegListBoxWrapper.GetDoReadProperty: boolean;
+function TRegListBoxWrapper.GetItemIndex: integer;
+begin
+  Result := RegControl.ItemIndex;
+end;
+
+procedure TRegListBoxWrapper.SetItemIndex(aItemIndex: integer);
+begin
+  RegControl.ItemIndex := aItemIndex;
+end;
+
+function TRegListBoxWrapper.GetCanWriteProperty: boolean;
+begin
+  Result := RegControl.RegistrySettings.CanWrite;
+end;
+
+procedure TRegListBoxWrapper.SetCanWriteProperty(aCanWrite: boolean);
+begin
+  RegControl.RegistrySettings.CanWrite := aCanWrite;
+end;
+
+function TRegListBoxWrapper.GetCanReadProperty: boolean;
 begin
   Result := RegControl.RegistrySettings.CanRead;
 end;
 
-procedure TRegListBoxWrapper.SetDoReadProperty(aDoRead: boolean);
+procedure TRegListBoxWrapper.SetCanReadProperty(aCanRead: boolean);
 begin
-  RegControl.RegistrySettings.CanRead := aDoRead;
+  RegControl.RegistrySettings.CanRead := aCanRead;
 end;
 
 function TRegListBoxWrapper.GetItemsCount: integer;
@@ -193,6 +228,11 @@ begin
   RegControl.RegistrySettings.ItemsByRegistry := SpecialListProperties.ItemsByRegistry;
   RegControl.RegistrySettings.SourceKind := SpecialListProperties.SourceKind;
   //-->
+end;
+
+procedure TRegListBoxWrapper.TriggerControlClick;
+begin
+  FRegControl.Click;
 end;
 
 procedure TRegListBoxWrapper.ClearItems;
