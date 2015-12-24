@@ -33,6 +33,9 @@ function CheckPropertyAvailable(aObj: TObject;
                                 aPropertyName: string;
                                 aMsg: string = ''): boolean;
 
+procedure CheckListItems(aControlListItems: TStrings;
+                         aRegistrySectionItems: TStrings);
+
 function GetNextCount: integer;
 
 implementation
@@ -57,11 +60,35 @@ begin
 
     index := list.IndexOf(aSection);
 
-    TAssert.AssertTrue(
-      Format('Test nicht durchführbar, %s vorhanden', [aSection]), index=-1);
+    TAssert.AssertTrue(Format('Test nicht durchführbar, %s vorhanden', [aSection]), index=-1);
   finally
     if Assigned(list) then
       FreeAndNil(list);
+  end;
+end;
+
+procedure CheckListItems(aControlListItems: TStrings;
+  aRegistrySectionItems: TStrings);
+var
+  index: integer;
+  anz: integer;
+  item: string;
+begin
+  if not Assigned(aControlListItems) then
+    TAssert.Fail('Test nicht durchführbar, Control-Liste nicht zugewiesen');
+
+  if not Assigned(aRegistrySectionItems) then
+    TAssert.Fail('Test nicht durchführbar, Registry-Section-Liste nicht zugewiesen');
+
+  TAssert.AssertEquals('Test nicht durchführbar, Anzahl Registry-Einträge ungleich Anzahl Items im Control',
+    aRegistrySectionItems.Count, aControlListItems.Count);
+
+  for anz := 0 to aRegistrySectionitems.Count-1 do
+  begin
+    item := aRegistrySectionItems.Strings[anz];
+    index := aControlListItems.IndexOf(item);
+    TAssert.AssertTrue(Format('Test nicht durchführbar, Item: %s nicht in der Control-Liste vorhanden',
+      [item]), index > -1);
   end;
 end;
 

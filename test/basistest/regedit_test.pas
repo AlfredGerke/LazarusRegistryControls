@@ -413,7 +413,7 @@ end;
 
 procedure TRegEditGenericTest<_T1,_T2>.RootKeys;
 var
-  check_rtl_ansi: boolean;
+  {%H-}check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
 begin
   check_rtl_ansi := False;

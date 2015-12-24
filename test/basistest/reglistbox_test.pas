@@ -141,7 +141,7 @@ end;
 
 procedure TRegListBoxGenericTest<_T1,_T2>.DoRootKeys;
 var
-  check_rtl_ansi: boolean;
+  {%H-}check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
 begin
   check_rtl_ansi := False;
@@ -219,7 +219,7 @@ begin
   begin
     FRegListBoxWrapper.CanReadProperty := True;
 
-    AssertEquals('Test nicht durchführbar: CanRead-Property von RegListBox', True,
+    AssertEquals('Test nicht durchführbar, CanRead-Property von RegListBox', True,
       FRegListBoxWrapper.CanReadProperty);
 
     FRegListBoxWrapper.ClearItems;
@@ -240,7 +240,7 @@ begin
   begin
     FRegListBoxWrapper.CanReadProperty := False;
 
-    AssertEquals('Test nicht durchführbar: CanRead-Property von RegListBox', False,
+    AssertEquals('Test nicht durchführbar, CanRead-Property von RegListBox', False,
       FRegListBoxWrapper.CanReadProperty);
 
     FRegListBoxWrapper.ClearItems;
@@ -257,7 +257,6 @@ procedure TRegListBoxGenericTest<_T1,_T2>.WriteRegistryCase1(aIni: TLRCRegIniFil
   aDefault: integer);
 var
   list: TStrings;
-  count: integer;
 begin
   // Case: DoWrite=True
   list := TStringlist.Create;
@@ -266,23 +265,20 @@ begin
     begin
       FRegListBoxWrapper.CanWriteProperty := True;
 
-      AssertEquals('Test nicht durchführbar: CanWrite-Property von RegListBox', False,
+      AssertEquals('Test nicht durchführbar, CanWrite-Property von RegListBox', True,
         FRegListBoxWrapper.CanWriteProperty);
 
       // 1. Anzahl prüfen
       ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list);
-      count := list.count;
 
-      AssertEquals('Test nicht durchführbar: Anzahl Registry-Einträge ungleich Anzahl Items im Control',
-        count, FRegListBoxWrapper.ItemsCount);
-
-      AssertTrue('Test nicht durchführbar: Falsche Anzahl Einträge im Control',
+      AssertTrue('Test nicht durchführbar, Falsche Anzahl Einträge im Control',
         FRegListBoxWrapper.ItemsCount = 5);
+
+      // 2. Einträge prüfen
+      CheckListItems(FRegListBoxWrapper.RegControl.Items, list);
 
       FRegListBoxWrapper.ItemIndex := 3;
 
-
-      AssertEquals('Falsche Anzahl Items-Einträge im Control', 0, FRegListBoxWrapper.ItemsCount);
     end;
   finally
     if Assigned(list) then
@@ -391,25 +387,25 @@ begin
       ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list);
       count := list.count;
 
-      AssertEquals('Test nicht durchführbar: Anzahl Registry-Einträge ungleich Anzahl Items im Control',
+      AssertEquals('Test nicht durchführbar, Anzahl Registry-Einträge ungleich Anzahl Items im Control',
         count, FRegListBoxWrapper.ItemsCount);
 
       // 2. Key3 prüfen
       found := ValueExists(FRegListBoxWrapper.SpecialListProperties.ListSection, 'Key3');
 
-      AssertTrue('Test nicht durchführbar: Item Key3 konnte nicht gefunden werden', found);
+      AssertTrue('Test nicht durchführbar, Item Key3 konnte nicht gefunden werden', found);
 
       // 3. Index für Key3 ermitteln
       index := FRegListBoxWrapper.GetIndexOfItem('Key3');
 
-      AssertTrue('Test nicht durchführbar: Index für Item Key3 nicht gefunden', (index > -1));
+      AssertTrue('Test nicht durchführbar, Index für Item Key3 nicht gefunden', (index > -1));
 
       // 4: Key3 löschen
       // DoSyncData soll das Control autmatisch aktualisieren
       FRegListBoxWrapper.DoSyncData := True;
       success := FReglistBoxWrapper.DeleteItem(index);
 
-      AssertTrue('DeleteItem: Item Key3 konnte nicht gelöscht werden', success);
+      AssertTrue('DeleteItem, Item Key3 konnte nicht gelöscht werden', success);
 
       // 5. Anzahl Prüfen wenn DoSyncData = True
       if FRegListBoxWrapper.DoSyncData then
@@ -424,7 +420,7 @@ begin
       // 6. Key3 erneut prüfen
       found := ValueExists(FRegListBoxWrapper.SpecialListProperties.ListSection, 'Key3');
 
-      AssertFalse('DeleteItem: Item Key3 konnte nicht gelöscht werden', found);
+      AssertFalse('DeleteItem, Item Key3 konnte nicht gelöscht werden', found);
 
       {$ifdef Debug}
       DebugItems;

@@ -175,7 +175,7 @@ end;
 
 procedure TRegCheckBoxGenericTest<_T1,_T2>.RookKeys;
 var
-  check_rtl_ansi: boolean;
+  {%H-}check_rtl_ansi: boolean;
   root_keys_struct: TRootKeysStruct;
 begin
   check_rtl_ansi := False;
@@ -194,8 +194,8 @@ end;
 
 procedure TRegCheckBoxGenericTest<_T1,_T2>.ReadByCaptionSettings;
 var
-  caption_by_default: string;
-  caption_by_registry: string;
+  {%H-}caption_by_default: string;
+  {%H-}caption_by_registry: string;
 begin
   caption_by_registry := CaptionValueByReg;
   caption_by_default := DEFAULT_CAPTION_VALUE;
