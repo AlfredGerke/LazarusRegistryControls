@@ -46,7 +46,7 @@ type
       read FDefault
       write FDefault;
   public
-    procedure TriggerControlClick;
+    procedure Click;
     procedure ClearItems;
     procedure SectionIdentDefault;
     function GetItemByIndex(aIndex: integer): string;
@@ -230,7 +230,7 @@ begin
   //-->
 end;
 
-procedure TRegListBoxWrapper.TriggerControlClick;
+procedure TRegListBoxWrapper.Click;
 begin
   FRegControl.Click;
 end;

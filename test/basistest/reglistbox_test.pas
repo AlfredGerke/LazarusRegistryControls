@@ -257,6 +257,8 @@ procedure TRegListBoxGenericTest<_T1,_T2>.WriteRegistryCase1(aIni: TLRCRegIniFil
   aDefault: integer);
 var
   list: TStrings;
+  item_index_before: integer;
+  item_index_after: integer;
 begin
   // Case: DoWrite=True
   list := TStringlist.Create;
@@ -271,14 +273,24 @@ begin
       // 1. Anzahl prüfen
       ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list);
 
-      AssertTrue('Test nicht durchführbar, Falsche Anzahl Einträge im Control',
+      AssertTrue('Test nicht durchführbar, falsche Anzahl Einträge im Control',
         FRegListBoxWrapper.ItemsCount = 5);
 
       // 2. Einträge prüfen
       CheckListItems(FRegListBoxWrapper.RegControl.Items, list);
 
-      FRegListBoxWrapper.ItemIndex := 3;
+      item_index_before := ReadInteger(aSection, aIdent, aDefault);
+      FRegListBoxWrapper.ItemIndex := 4;
+      FRegListBoxWrapper.Click;
+      item_index_after := ReadInteger(aSection, aIdent, aDefault);
 
+      AssertTrue('Test nicht durchführbar, kein Unterschied im ItemIndex vor und nach dem Lesen das ItemIndex',
+        (item_index_before <> item_index_after));
+
+      AssertEquals('Falscher ItemIndex in der Registry', 4, item_index_after);
+
+      AssertTrue('ItemIndex des Control ungleich dem ItemIndex in der Registry',
+        (FRegListBoxWrapper.ItemIndex = item_index_after));
     end;
   finally
     if Assigned(list) then
@@ -291,10 +303,44 @@ procedure TRegListBoxGenericTest<_T1,_T2>.WriteRegistryCase2(aIni: TLRCRegIniFil
   aListSection: string;
   aIdent: string;
   aDefault: integer);
+var
+  list: TStrings;
+  item_index_before: integer;
+  item_index_after: integer;
 begin
   // Case: DoWrite=False
+  list := TStringlist.Create;
+  try
+    with aIni do
+    begin
+      FRegListBoxWrapper.CanWriteProperty := False;
 
-  Fail('Testprocedure Case1: DoWrite=False noch nicht implementiert!');
+      AssertEquals('Test nicht durchführbar, CanWrite-Property von RegListBox', False,
+        FRegListBoxWrapper.CanWriteProperty);
+
+      // 1. Anzahl prüfen
+      ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list);
+
+      AssertTrue('Test nicht durchführbar, falsche Anzahl Einträge im Control',
+        FRegListBoxWrapper.ItemsCount = 5);
+
+      // 2. Einträge prüfen
+      CheckListItems(FRegListBoxWrapper.RegControl.Items, list);
+
+      item_index_before := ReadInteger(aSection, aIdent, aDefault);
+      FRegListBoxWrapper.ItemIndex := 4;
+      FRegListBoxWrapper.Click;
+      item_index_after := ReadInteger(aSection, aIdent, aDefault);
+
+      AssertTrue('Unterschied im ItemIndex vor und nach dem Lesen das ItemIndex',
+        (item_index_before = item_index_after));
+
+      AssertFalse('Falscher ItemIndex in der Registry', 4=item_index_after);
+    end;
+  finally
+    if Assigned(list) then
+      FreeAndNil(list);
+  end;
 end;
 
 { TRegListBoxTest }
