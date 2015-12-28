@@ -7,7 +7,8 @@ interface
 uses
   test_wrapper,
   reglistbox,
-  regsourcen;
+  regsourcen,
+  Classes;
 
 type
 
@@ -22,6 +23,7 @@ type
   private
     FDefault: integer;
     FDoReadReg: boolean;
+    FListBoxItemsDef: TStrings;
   protected
     function GetItemIndex: integer;
     procedure SetItemIndex(aItemIndex: integer);
@@ -36,6 +38,8 @@ type
     procedure SetDoSyncData(aDoSyncData: boolean);
 
     procedure _Initialize; override;
+    procedure _Finalize; override;
+
     procedure SetSectionsAndIdents; virtual;
     procedure SetRegistryEntries; override;
     procedure SetRegControl; override;
@@ -45,6 +49,9 @@ type
     property Default : integer
       read FDefault
       write FDefault;
+
+    property ListBoxItemsDef: TStrings
+      read FListBoxItemsDef;
   public
     procedure Click;
     procedure ClearItems;
@@ -109,7 +116,17 @@ uses
 
 procedure TRegListBoxWrapperUTF8.SetSectionsAndIdents;
 begin
-  inherited SetSectionsAndIdents;
+  Section := SEC_TREGLISTBOX_UTF8;
+  Ident := IDENT_TREGLISTBOX_UTF8;
+  Default := DEFAULT_ITEMINDEX_VALUE;
+  SpecialListProperties.AddListSection(SEC_TREGLISTBOXITEMS);
+
+  ListBoxItemsDef.Clear;
+  ListBoxItemsDef.Add('Key1_mit_ßÜÖÄüöä=Value1_mit_ßÜÖÄüöä');
+  ListBoxItemsDef.Add('Key2_mit_ßÜÖÄüöä=Value2_mit_ßÜÖÄüöä');
+  ListBoxItemsDef.Add('Key3_mit_ßÜÖÄüöä=Value3_mit_ßÜÖÄüöä');
+  ListBoxItemsDef.Add('Key4_mit_ßÜÖÄüöä=Value4_mit_ßÜÖÄüöä');
+  ListBoxItemsDef.Add('Key5_mit_ßÜÖÄüöä=Value5_mit_ßÜÖÄüöä');
 end;
 
 procedure TRegListBoxWrapperUTF8.SetRegistryEntries;
@@ -176,7 +193,17 @@ begin
 
   FDoReadReg := True;
 
+  FListBoxItemsDef := TStringlist.Create;
+
   SetSectionsAndIdents;
+end;
+
+procedure TRegListBoxWrapper._Finalize;
+begin
+  if Assigned(FListBoxItemsDef) then
+    FreeAndNil(FListBoxItemsDef);
+
+  inherited _Finalize;
 end;
 
 procedure TRegListBoxWrapper.SetRegControl;
@@ -192,6 +219,13 @@ begin
   Ident := IDENT_TREGLISTBOX;
   Default := DEFAULT_ITEMINDEX_VALUE;
   SpecialListProperties.AddListSection(SEC_TREGLISTBOXITEMS);
+
+  ListBoxItemsDef.Clear;
+  ListBoxItemsDef.Add('Key1=Value1');
+  ListBoxItemsDef.Add('Key2=Value2');
+  ListBoxItemsDef.Add('Key3=Value3');
+  ListBoxItemsDef.Add('Key4=Value4');
+  ListBoxItemsDef.Add('Key5=Value5');
 end;
 
 procedure TRegListBoxWrapper.SetRegistryEntries;
@@ -200,11 +234,11 @@ begin
 
   with RegControl, RegControl.RegistrySource, RegControl.RegistrySettings do
   begin
-    WriteString(ListSection, 'Key1', 'Value1');
-    WriteString(ListSection, 'Key2', 'Value2');
-    WriteString(ListSection, 'Key3', 'Value3');
-    WriteString(ListSection, 'Key4', 'Value4');
-    WriteString(ListSection, 'Key5', 'Value5');
+    WriteString(ListSection, ListBoxItemsDef.Names[0], ListBoxItemsDef.ValueFromIndex[0]);
+    WriteString(ListSection, ListBoxItemsDef.Names[1], ListBoxItemsDef.ValueFromIndex[1]);
+    WriteString(ListSection, ListBoxItemsDef.Names[2], ListBoxItemsDef.ValueFromIndex[2]);
+    WriteString(ListSection, ListBoxItemsDef.Names[3], ListBoxItemsDef.ValueFromIndex[3]);
+    WriteString(ListSection, ListBoxItemsDef.Names[4], ListBoxItemsDef.ValueFromIndex[4]);
     WriteInteger(Section, Ident, DEFAULT_ITEMINDEX_VALUE);
 
     if FDoReadReg then

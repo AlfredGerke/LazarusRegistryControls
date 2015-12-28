@@ -425,7 +425,7 @@ begin
           value_name_utf8_decoded :=
             UTF8DecodeIfNeeded(value_name_utf8_decoded, check_rtl_ansi);
 
-          value_data_type := GetDataType(value_name);
+          value_data_type := GetDataType(value_name_utf8_decoded);
 
           case value_data_type of
             rdString,

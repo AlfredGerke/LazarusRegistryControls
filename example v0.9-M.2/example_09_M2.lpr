@@ -1,3 +1,4 @@
+{ TODO 3 -oAGE -cProjektpflege : Prüfen ob regsource.pas noch im Projekt vorhanden ist und wenn ja entfernen }
 program example_09_M2;
 
 {$mode Delphi}{$H+}
@@ -46,7 +47,7 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   fmeregcheckgroupproperties,
   fmeregvaluelisteditor,
   fmeregistrysettingsvaluelist,
-  fmeregvaluelisteditorproperties;
+  fmeregvaluelisteditorproperties, regsourcen;
 
 {$R *.res}
 

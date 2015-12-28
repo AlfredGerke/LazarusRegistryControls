@@ -383,10 +383,10 @@ procedure TRegListBoxUTF8Test.SetSectionsAndIdents;
 begin
   inherited SetSectionsAndIdents;
 
-  Section := SEC_TREGLISTBOX;
-  Ident := IDENT_TREGLISTBOX;
+  Section := SEC_TREGLISTBOX_UTF8;
+  Ident := IDENT_TREGLISTBOX_UTF8;
   Default := DEFAULT_ITEMINDEX_VALUE;
-  ListSection := SEC_TREGLISTBOXITEMS;
+  ListSection := SEC_TREGLISTBOXITEMS_UTF8;
 
   CheckRTLNeeded := True;
 end;

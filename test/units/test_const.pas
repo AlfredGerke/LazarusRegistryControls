@@ -67,9 +67,12 @@ const
   CAPTION_FOR_TREGLABEL = 'LRC RegLabel';
 
   SEC_TREGLISTBOX = 'TRegListBox';
+  SEC_TREGLISTBOX_UTF8 = 'TRegListBox_mit_ßÜÖÄüöä';
   SEC_TREGLISTBOXITEMS = 'TRegListBoxItems';
+  SEC_TREGLISTBOXITEMS_UTF8 = 'TRegListBoxItems_mit_ßÜÖÄüöä';
   DEFAULT_ITEMINDEX_VALUE = -1;
   IDENT_TREGLISTBOX = 'ItemIndex';
+  IDENT_TREGLISTBOX_UTF8 = 'ItemIndex_mit_ßÜÖÄüöä';
 
 implementation
 

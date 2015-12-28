@@ -38,7 +38,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="sourcen"/>
+            <OtherUnitFiles Value="sourcen;..\source"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\release"/>
           </SearchPaths>
           <Parsing>
@@ -93,7 +93,7 @@
         <PackageName Value="LCL"/>
       </Item5>
     </RequiredPackages>
-    <Units Count="37">
+    <Units Count="38">
       <Unit0>
         <Filename Value="example_09_M2.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -353,6 +353,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit36>
+      <Unit37>
+        <Filename Value="..\source\regsourcen.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit37>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -363,7 +367,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="sourcen"/>
+      <OtherUnitFiles Value="sourcen;..\source"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\debug"/>
     </SearchPaths>
     <Parsing>

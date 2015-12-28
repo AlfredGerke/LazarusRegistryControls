@@ -201,7 +201,7 @@ begin
     WriteString('TRegListBoxItems', 'Key2', 'Value2');
     WriteString('TRegListBoxItems', 'Key3', 'Value3');
     WriteString('TRegListBoxItems', 'Key4', 'Value4');
-    WriteString('TRegListBoxItems', 'Key5', 'Value5');
+    WriteString('TRegListBoxItems', 'Key5_mit_ßÜÖÄüöä', 'Value5_mit_ßÜÖÄüöä');
     WriteInteger('TRegListBox', 'ItemIndex', 0);
 
     WriteString('TRegComboBoxItems', 'Key1', 'Value1');

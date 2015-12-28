@@ -27,6 +27,7 @@ type
     FIdent: string;
   protected
     procedure _Initialize; virtual;
+    procedure _Finalize; virtual;
     function SetUniqueName(aName: string): string;
     procedure SetRegControl; virtual;
     procedure SetRegistryEntries; virtual;
@@ -168,6 +169,11 @@ uses
 { TWrapper<_T> }
 
 procedure TWrapper<_T>._Initialize;
+begin
+  // Wird im spezialisierten Wrapper überschrieben
+end;
+
+procedure TWrapper<_T>._Finalize;
 begin
   // Wird im spezialisierten Wrapper überschrieben
 end;
@@ -387,6 +393,8 @@ end;
 
 destructor TWrapper<_T>.Destroy;
 begin
+  _Finalize;
+
   FRegControl.RegistrySource := nil;
 
   FreeAndNil(FRegControl);
