@@ -333,11 +333,13 @@ procedure TDefaultsForCurrentUser.WriteString(const aSection: string;
 var
   section_str: string;
   ident_str: string;
+  value_str: string;
 begin
   section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
   ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+  value_str := UTF8DecodeIfNeeded(aString, CheckRTLAnsi);
 
-  inherited WriteString(section_str, ident_str, aString);
+  inherited WriteString(section_str, ident_str, value_str);
 end;
 
 procedure TDefaultsForCurrentUser.WriteInteger(const aSection: string;

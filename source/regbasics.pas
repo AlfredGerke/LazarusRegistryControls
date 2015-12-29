@@ -413,17 +413,16 @@ begin
       begin
         GetValueNames(new_list);
 
-        // Aus dieser Liste werden die Idents entnommen,
-        // eventuell besser auf eine Umwandlung verzichten
+        // Aus dieser Liste werden die Idents entnommen
+        // !: Liste vorerst immer umwandeln
         SysToUTF8StringsIfNeeded(new_list, check_rtl_ansi);
 
         for anz := 0 to new_list.Count-1 do
 	begin
           value_name := new_list.Strings[anz];
+
           value_name_utf8_decoded :=
             UTF8ToSysIfNeeded(value_name, check_rtl_ansi);
-          value_name_utf8_decoded :=
-            UTF8DecodeIfNeeded(value_name_utf8_decoded, check_rtl_ansi);
 
           value_data_type := GetDataType(value_name_utf8_decoded);
 

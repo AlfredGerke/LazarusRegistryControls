@@ -47,7 +47,7 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   fmeregcheckgroupproperties,
   fmeregvaluelisteditor,
   fmeregistrysettingsvaluelist,
-  fmeregvaluelisteditorproperties, regsourcen;
+  fmeregvaluelisteditorproperties;
 
 {$R *.res}
 
