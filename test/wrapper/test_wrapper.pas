@@ -30,7 +30,6 @@ type
     procedure _Finalize; virtual;
     function SetUniqueName(aName: string): string;
     procedure SetRegControl; virtual;
-    procedure SetRegistryEntries; virtual;
     procedure SetRegistrySettings(aRegistrySource: TRegistrySource;
                                   aSetRegSrc: boolean = True); virtual;
 
@@ -42,6 +41,8 @@ type
       read FIdent
       write FIdent;
   public
+    procedure SetRegistryEntries; virtual;
+
     procedure ReadFromReg(aExpected: boolean;
                           aMsg: string = ''); virtual;
     procedure WriteToReg(aExpected: boolean;

@@ -271,7 +271,7 @@ begin
         FRegListBoxWrapper.CanWriteProperty);
 
       // 1. Anzahl prüfen
-      ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list);
+      ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list, True);
 
       AssertTrue('Test nicht durchführbar, falsche Anzahl Einträge im Control',
         FRegListBoxWrapper.ItemsCount = 5);
@@ -319,7 +319,7 @@ begin
         FRegListBoxWrapper.CanWriteProperty);
 
       // 1. Anzahl prüfen
-      ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list);
+      ReadSection(FRegListBoxWrapper.SpecialListProperties.ListSection, list, True);
 
       AssertTrue('Test nicht durchführbar, falsche Anzahl Einträge im Control',
         FRegListBoxWrapper.ItemsCount = 5);

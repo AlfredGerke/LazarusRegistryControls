@@ -188,7 +188,8 @@ type
                         const aDefault: string): string;
 
     procedure ReadSection(const aSection: string;
-                          aStrings: TStrings);
+                          aStrings: TStrings;
+                          aConvertUTF8ToSYS: boolean = False);
 
     procedure ReadSections(aStrings: TStrings);
 
@@ -992,7 +993,8 @@ begin
 end;
 
 procedure TLRCRegIniFile.ReadSection(const aSection: string;
-  aStrings: TStrings);
+  aStrings: TStrings;
+  aConvertUTF8ToSYS: boolean);
 var
   success: boolean;
 begin
@@ -1007,7 +1009,10 @@ begin
         GetRegistry(FRoot, Filename + aSection, ReadSectionProc, True);
 
       if success then
+      begin
         aStrings := GetStrings;
+        UTF8ToSysStringsIfNeeded(aStrings, aConvertUTF8ToSYS);
+      end;
     finally
       Refresh;
     end;
