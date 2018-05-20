@@ -1,0 +1,4 @@
+{"version":1,"strings":[
+{"hash":203936577,"name":"tcontrolregedit.reglabel1.caption","sourcebytes":[82,101,103,76,97,98,101,108,49],"value":"RegLabel1"},
+{"hash":196851186,"name":"tcontrolregedit.regedit2.text","sourcebytes":[82,101,103,69,100,105,116,50],"value":"RegEdit2"}
+]}
