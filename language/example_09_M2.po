@@ -98,6 +98,10 @@ msgctxt "tcontrolregcomobbox.regcombobox1.text"
 msgid "RegComboBox1"
 msgstr ""
 
+#: tcontrolregedit.regedit2.text
+msgid "RegEdit2"
+msgstr ""
+
 #: tcontrolregedit.reglabel1.caption
 msgctxt "TCONTROLREGEDIT.REGLABEL1.CAPTION"
 msgid "RegLabel1"

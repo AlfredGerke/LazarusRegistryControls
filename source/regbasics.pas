@@ -224,7 +224,8 @@ implementation
 
 uses
   regconvutils,
-  FileUtil;
+  LazUTF8;
+  //FileUtil;
 
 var
   reg_util_instance: TLRCRegUtils;

@@ -58,7 +58,7 @@ type
 
   TRegistrySettingsPropertyEditor = class(TMethodPropertyEditor)
   public
-    function GetFormMethodName: shortstring; override;
+    function GetFormMethodName: shortstring; reintroduce; overload;
   end;
 
 implementation
@@ -408,9 +408,9 @@ begin
   else
   begin
     if (GetComponent(0) is TCustomProperties) then
-      Result := PropertyHook.GetObjectName(TCustomProperties(GetComponent(0)).Owner)
+      Result := PropertyHook.GetObjectName(GetComponent(0), TComponent(TCustomProperties(GetComponent(0)).Owner))
     else
-      Result := PropertyHook.GetObjectName(GetComponent(0));
+      Result := PropertyHook.GetObjectName(GetComponent(0), nil);
 
     for anz := Length(Result) downto 1 do
     if not ((Result[anz] in ['a'..'z', 'A'..'Z', '_']) or
