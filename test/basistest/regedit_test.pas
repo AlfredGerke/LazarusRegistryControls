@@ -367,7 +367,7 @@ var
 begin
   test_section := GetSectionUTF8Decoded;
   test_ident := GetIdentUTF8Decoded;
-  test_default := UTF8DecodeIfNeeded(Default, CheckRTLNeeded);
+  test_default := Default;
 
   WriteRegistryCase1(aIni, test_section, test_ident, test_default);
   FRegEditWrapper.SetRegistryEntries;
@@ -384,7 +384,7 @@ var
 begin
   test_section := GetSectionUTF8Decoded;
   test_ident := GetIdentUTF8Decoded;
-  test_default := UTF8DecodeIfNeeded(Default, CheckRTLNeeded);
+  test_default := Default;
 
   ReadRegistryCase1(aIni, test_section, test_ident, test_default);
   FRegEditWrapper.SetRegistryEntries;

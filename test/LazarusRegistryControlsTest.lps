@@ -16,19 +16,21 @@
       <Unit1>
         <Filename Value="basistest\registrysource_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="164"/>
-        <CursorPos X="21" Y="359"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="616"/>
+        <CursorPos X="40" Y="586"/>
         <UsageCount Value="194"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
         <Filename Value="basistest\regedit_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="112"/>
-        <CursorPos X="27" Y="398"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="371"/>
+        <CursorPos X="26" Y="387"/>
         <UsageCount Value="181"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
@@ -174,10 +176,11 @@
       <Unit19>
         <Filename Value="tests\lrc_testcase.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="72"/>
-        <CursorPos X="54" Y="99"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="78"/>
+        <CursorPos X="58" Y="94"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit19>
       <Unit20>
@@ -201,10 +204,12 @@
       <Unit22>
         <Filename Value="basistest\reglistbox_test.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="187"/>
-        <CursorPos X="40" Y="205"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="311"/>
+        <CursorPos X="77" Y="322"/>
         <UsageCount Value="94"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit22>
       <Unit23>
@@ -406,11 +411,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="GuiTestRunner"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit52>
       <Unit53>
         <Filename Value="..\..\..\..\Programme\lazarus\fpc\2.6.2\source\packages\fcl-fpcunit\src\fpcunit.pp"/>
@@ -582,10 +584,10 @@
       </Unit78>
       <Unit79>
         <Filename Value="..\source\regconvutils.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="64"/>
-        <CursorPos X="68" Y="81"/>
+        <EditorIndex Value="5"/>
+        <CursorPos X="6"/>
         <UsageCount Value="23"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit79>
       <Unit80>
@@ -979,11 +981,31 @@
         <UsageCount Value="10"/>
       </Unit138>
     </Units>
-    <JumpHistory Count="1">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
         <Filename Value="LazarusRegistryControlsTest.lpr"/>
         <Caret Line="12" Column="30"/>
       </Position1>
+      <Position2>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <Caret Line="10" Column="68"/>
+      </Position2>
+      <Position3>
+        <Filename Value="basistest\registrysource_test.pas"/>
+        <Caret Line="163" Column="15" TopLine="152"/>
+      </Position3>
+      <Position4>
+        <Filename Value="basistest\registrysource_test.pas"/>
+        <Caret Line="586" Column="40" TopLine="616"/>
+      </Position4>
+      <Position5>
+        <Filename Value="tests\lrc_testcase.pas"/>
+        <Caret Line="94" Column="58" TopLine="78"/>
+      </Position5>
+      <Position6>
+        <Filename Value="basistest\regedit_test.pas"/>
+        <Caret Line="387" Column="26" TopLine="371"/>
+      </Position6>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

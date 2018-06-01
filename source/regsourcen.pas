@@ -435,8 +435,7 @@ uses
   LMessages,
   PropEdits,
   ComponentEditors,
-  regpropedits,
-  regconvutils;
+  regpropedits;
 
 procedure Register;
 begin
@@ -487,7 +486,7 @@ var
 begin
   value := inherited GetDefault;
 
-  Result:= UTF8ToSysIfNeeded(value, CheckRTLAnsi);
+  Result:= value;
 end;
 
 { TRegistrySettingsItemIndexDefault }
@@ -540,17 +539,17 @@ end;
 
 function TCustomRegistrySource.GetRootKeyForDefaults: string;
 begin
-  Result := UTF8ToSysIfNeeded(FRootKeyForDefaults, FCheckRTLAnsi);
+  Result := FRootKeyForDefaults;
 end;
 
 function TCustomRegistrySource.GetOrganisation: string;
 begin
-  Result := UTF8ToSysIfNeeded(FOrganisation, FCheckRTLAnsi);
+  Result := FOrganisation;
 end;
 
 function TCustomRegistrySource.GetProject: string;
 begin
-  Result := UTF8ToSysIfNeeded(FProject, FCheckRTLAnsi);
+  Result := FProject;
 end;
 
 procedure TCustomRegistrySource.DeliverMessage(aMessageConst: cardinal;
@@ -583,48 +582,48 @@ end;
 
 function TCustomRegistrySource.GetRootKey: string;
 begin
-  Result := UTF8ToSysIfNeeded(FRootKey, FCheckRTLAnsi);
+  Result := FRootKey;
 end;
 
 procedure TCustomRegistrySource.SetRootKey(aRootKey: string);
 begin
-  FRootKey := SysToUTF8IfNeeded(aRootKey, FCheckRTLAnsi);
+  FRootKey := aRootKey;
 end;
 
 procedure TCustomRegistrySource.SetRootKeyForDefaults(
   aRootKeyForDefaults: string);
 begin
-  FRootKeyForDefaults := SysToUTF8IfNeeded(aRootKeyForDefaults, FCheckRTLAnsi);
+  FRootKeyForDefaults := aRootKeyForDefaults;
 end;
 
 function TCustomRegistrySource.GetRootKeyForCommon: string;
 begin
-  Result := UTF8ToSysIfNeeded(FRootKeyForCommon, FCheckRTLAnsi);
+  Result := FRootKeyForCommon;
 end;
 
 procedure TCustomRegistrySource.SetRootKeyForCommon(aRootKeyForCommon: string);
 begin
-  FRootKeyForCommon := SysToUTF8IfNeeded(aRootKeyForCommon, FCheckRTLAnsi);
+  FRootKeyForCommon := aRootKeyForCommon;
 end;
 
 procedure TCustomRegistrySource.SetOrganisation(AValue: string);
 begin
-  FOrganisation := SysToUTF8IfNeeded(AValue, FCheckRTLAnsi);
+  FOrganisation := AValue;
 end;
 
 function TCustomRegistrySource.GetGUID: string;
 begin
-  Result := UTF8ToSysIfNeeded(FGUID, CheckRTLAnsi);
+  Result := FGUID;
 end;
 
 procedure TCustomRegistrySource.SetGUID(aGUID: string);
 begin
-  FGUID := SysToUTF8IfNeeded(aGUID, FCheckRTLAnsi);
+  FGUID := aGUID;
 end;
 
 procedure TCustomRegistrySource.SetProject(AValue: string);
 begin
-  FProject := SysToUTF8IfNeeded(AValue, FCheckRTLAnsi);
+  FProject := AValue;
 end;
 
 function TCustomRegistrySource.GetClientCount: integer;
@@ -871,7 +870,7 @@ begin
   root_key := _ChangeTokenForKey(TokenTypeStr[ttOrganisation], FOrganisation, root_key);
   root_key := _ChangeTokenForKey(TokenTypeStr[ttGUID], FGUID, root_key);
 
-  Result := UTF8ToSysIfNeeded(root_key, FCheckRTLAnsi);
+  Result := root_key;
 end;
 
 function TCustomRegistrySource.GetComposedRootKeyForDefaults: string;
@@ -884,7 +883,7 @@ begin
   root_key := _ChangeTokenForKey(TokenTypeStr[ttOrganisation], FOrganisation, root_key);
   root_key := _ChangeTokenForKey(TokenTypeStr[ttGUID], FGUID, root_key);
 
-  Result := UTF8ToSysIfNeeded(root_key, FCheckRTLAnsi);
+  Result := root_key;
 end;
 
 function TCustomRegistrySource.GetComposedRootKeyForCommon: string;
@@ -897,7 +896,7 @@ begin
   root_key := _ChangeTokenForKey(TokenTypeStr[ttOrganisation], FOrganisation, root_key);
   root_key := _ChangeTokenForKey(TokenTypeStr[ttGUID], FGUID, root_key);
 
-  Result := UTF8ToSysIfNeeded(root_key, FCheckRTLAnsi);
+  Result := root_key;
 end;
 
 constructor TCustomRegistrySource.Create(AOwner: TComponent);

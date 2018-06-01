@@ -4,12 +4,13 @@
 
 unit RegistrySource;
 
+{$warn 5023 off : no warning about unused units}
 interface
 
 uses
   regsourcen, regmsg, regconst, regtype, regpropedits, dlgTrueFalse, 
   dlgeditsettings, dlgaboutcomponent, regresstrings, regutils, regbaseform, 
-  regconvutils, dlgguid, regbasics, LazarusPackageIntf;
+  dlgguid, regbasics, regconvutils, LazarusPackageIntf;
 
 implementation
 

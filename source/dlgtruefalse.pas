@@ -82,27 +82,27 @@ uses
 
 procedure TSetMergeData.SetCaptions;
 begin
-  Self.Caption := SetUTF8IfNeeded(rsSetMergeDataProperty);
-  Self.rbtnFalse.Caption := SetUTF8IfNeeded(rsSetMergeDataOff);
-  Self.rbtnTrue.Caption := SetUTF8IfNeeded(rsSetMergeDataOn);
+  Self.Caption := rsSetMergeDataProperty;
+  Self.rbtnFalse.Caption := rsSetMergeDataOff;
+  Self.rbtnTrue.Caption := rsSetMergeDataOn;
 end;
 
 { TSetSyncData }
 
 procedure TSetSyncData.SetCaptions;
 begin
-  Self.Caption := SetUTF8IfNeeded(rsSetSyncDataProperty);
-  Self.rbtnFalse.Caption := SetUTF8IfNeeded(rsSynchronisationOff);
-  Self.rbtnTrue.Caption := SetUTF8IfNeeded(rsSynchronisationOn);
+  Self.Caption := rsSetSyncDataProperty;
+  Self.rbtnFalse.Caption := rsSynchronisationOff;
+  Self.rbtnTrue.Caption := rsSynchronisationOn;
 end;
 
 { TSetWriteAdHoc }
 
 procedure TSetWriteAdHoc.SetCaptions;
 begin
-  Self.Caption := SetUTF8IfNeeded(rsSetWriteAdHocProperty);
-  Self.rbtnFalse.Caption := SetUTF8IfNeeded(rsWriteAdHocOff);
-  Self.rbtnTrue.Caption := SetUTF8IfNeeded(rsWriteAdHocOn);
+  Self.Caption := rsSetWriteAdHocProperty;
+  Self.rbtnFalse.Caption := rsWriteAdHocOff;
+  Self.rbtnTrue.Caption := rsWriteAdHocOn;
 end;
 
 { TTrueFalse }

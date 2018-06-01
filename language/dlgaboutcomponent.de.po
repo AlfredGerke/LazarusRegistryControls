@@ -6,7 +6,7 @@ msgstr ""
 #: dlgaboutcomponent.rsaboutformcaption
 msgctxt "dlgaboutcomponent.rsaboutformcaption"
 msgid "About..."
-msgstr "Über die Komponenten"
+msgstr "&Uuml;ber die Komponenten"
 
 #: dlgaboutcomponent.rslblauthorcaption
 msgctxt "dlgaboutcomponent.rslblauthorcaption"

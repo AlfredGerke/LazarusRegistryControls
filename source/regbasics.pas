@@ -188,8 +188,7 @@ type
                         const aDefault: string): string;
 
     procedure ReadSection(const aSection: string;
-                          aStrings: TStrings;
-                          aConvertUTF8ToSYS: boolean = False);
+                          aStrings: TStrings);
 
     procedure ReadSections(aStrings: TStrings);
 
@@ -221,11 +220,6 @@ type
 
 
 implementation
-
-uses
-  regconvutils,
-  LazUTF8;
-  //FileUtil;
 
 var
   reg_util_instance: TLRCRegUtils;
@@ -391,7 +385,6 @@ var
   anz: integer;
   value: string;
   value_name: string;
-  value_name_utf8_decoded: string;
   value_data_type: TRegDataType;
 begin
   Result := False;
@@ -415,29 +408,21 @@ begin
       begin
         GetValueNames(new_list);
 
-        // Aus dieser Liste werden die Idents entnommen
-        // !: Liste vorerst immer umwandeln
-        SysToUTF8StringsIfNeeded(new_list, check_rtl_ansi);
-
         for anz := 0 to new_list.Count-1 do
 	begin
           value_name := new_list.Strings[anz];
 
-          value_name_utf8_decoded :=
-            UTF8ToSysIfNeeded(value_name, check_rtl_ansi);
-
-          value_data_type := GetDataType(value_name_utf8_decoded);
+          value_data_type := GetDataType(value_name);
 
           case value_data_type of
             rdString,
             rdExpandString:
             begin
-              value := ReadString(value_name_utf8_decoded);
+              value := ReadString(value_name);
 
               if check_rtl_ansi then
-                if NeedRTLAnsi then
-                  value := SysToUTF8(value);
-
+                 // eventuell Anpassung laut Gebietsschema;
+                ;
             end;
             rdBinary:
               Continue;
@@ -994,8 +979,7 @@ begin
 end;
 
 procedure TLRCRegIniFile.ReadSection(const aSection: string;
-  aStrings: TStrings;
-  aConvertUTF8ToSYS: boolean);
+  aStrings: TStrings);
 var
   success: boolean;
 begin
@@ -1010,10 +994,7 @@ begin
         GetRegistry(FRoot, Filename + aSection, ReadSectionProc, True);
 
       if success then
-      begin
         aStrings := GetStrings;
-        UTF8ToSysStringsIfNeeded(aStrings, aConvertUTF8ToSYS);
-      end;
     finally
       Refresh;
     end;

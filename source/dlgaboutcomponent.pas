@@ -65,8 +65,8 @@ end;
 
 procedure TAboutComponent.SetCaptions;
 begin
-  Self.Caption := SetUTF8IfNeeded(rsAboutFormCaption);
-  lblAuthor.Caption := SetUTF8IfNeeded(rsLblAuthorCaption);
+  Self.Caption := rsAboutFormCaption;
+  lblAuthor.Caption := rsLblAuthorCaption;
 end;
 
 function TAboutComponent.ShowModal: integer;

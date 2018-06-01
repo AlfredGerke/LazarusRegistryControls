@@ -76,14 +76,14 @@ uses
 
 procedure TEditSettings.SetCaptions;
 begin
-  edtRootKey.EditLabel.Caption := SetUTF8IfNeeded(rsLblRootKey);
-  edtRootKeyForDefaults.EditLabel.Caption := SetUTF8IfNeeded(rsLblRootKeyForDefaults);
-  edtRootForDefaults.EditLabel.Caption := SetUTF8IfNeeded(rsLblRootForDefaults);
-  edtGUID.EditLabel.Caption := SetUTF8IfNeeded(rsLblGUID);
-  edtOrganisation.EditLabel.Caption := SetUTF8IfNeeded(rsLblOrganisation);
-  edtProject.EditLabel.Caption := SetUTF8IfNeeded(rsLblProject);
-  cbxReadDefaults.Caption := SetUTF8IfNeeded(rsCbxReadDefaults);
-  cbxWriteDefaults.Caption := SetUTF8IfNeeded(rsCbxWriteDefaults);
+  edtRootKey.EditLabel.Caption := rsLblRootKey;
+  edtRootKeyForDefaults.EditLabel.Caption := rsLblRootKeyForDefaults;
+  edtRootForDefaults.EditLabel.Caption := rsLblRootForDefaults;
+  edtGUID.EditLabel.Caption := rsLblGUID;
+  edtOrganisation.EditLabel.Caption := rsLblOrganisation;
+  edtProject.EditLabel.Caption := rsLblProject;
+  cbxReadDefaults.Caption := rsCbxReadDefaults;
+  cbxWriteDefaults.Caption := rsCbxWriteDefaults;
 end;
 
 procedure TEditSettings.SetEdit(aEdit: boolean);

@@ -3,6 +3,7 @@
   <Package Version="4">
     <PathDelim Value="\"/>
     <Name Value="RegistrySource"/>
+    <Type Value="RunAndDesignTime"/>
     <Author Value="Alfred Gerke"/>
     <CompilerOptions>
       <Version Value="11"/>
@@ -16,12 +17,6 @@
           <SyntaxMode Value="Delphi"/>
         </SyntaxOptions>
       </Parsing>
-      <Other>
-        <CompilerMessages>
-          <MsgFileName Value=""/>
-        </CompilerMessages>
-        <CompilerPath Value="$(CompPath)"/>
-      </Other>
     </CompilerOptions>
     <Description Value="Über TRegistrySource können entsprechende Controls (TRegEdit, TRegCheckBox, etc.) direkt mit der Registry verbunden werden."/>
     <License Value="The MIT License (MIT)
@@ -96,16 +91,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
         <UnitName Value="regbaseform"/>
       </Item12>
       <Item13>
-        <Filename Value="..\source\regconvutils.pas"/>
-        <UnitName Value="regconvutils"/>
-      </Item13>
-      <Item14>
         <Filename Value="..\source\dlgguid.pas"/>
         <UnitName Value="dlgguid"/>
-      </Item14>
-      <Item15>
+      </Item13>
+      <Item14>
         <Filename Value="..\source\regbasics.pas"/>
         <UnitName Value="regbasics"/>
+      </Item14>
+      <Item15>
+        <Filename Value="..\source\regconvutils.pas"/>
+        <UnitName Value="regconvutils"/>
       </Item15>
     </Files>
     <LazDoc Paths="C:\Users\Alfred\Sourcen\GitHub\LazarusRegistryControls\doc" PackageName="RegistrySource"/>
@@ -114,7 +109,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."/>
       <OutDir Value="..\language"/>
       <EnableI18NForLFM Value="True"/>
     </i18n>
-    <Type Value="RunAndDesignTime"/>
     <RequiredPkgs Count="2">
       <Item1>
         <PackageName Value="IDEIntf"/>

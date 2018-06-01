@@ -174,8 +174,7 @@ implementation
 
 uses
   SysUtils,
-  FileUtil,
-  regconvutils;
+  FileUtil;
 
 function _GenGUIDAsStr(var aGUIDAsStr: string): integer;
 var
@@ -195,7 +194,7 @@ function TDefaultsForCurrentUser.SectionExists(const aSection: string): boolean;
 var
   section_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  section_str := aSection;
 
   Result := KeyExists(section_str);
 end;
@@ -208,8 +207,8 @@ var
 begin
   if SectionExists(aSection) then
   begin
-    key_to_open := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-    ident_to_check := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+    key_to_open := aSection;
+    ident_to_check := aIdent;
 
     Result := ValueExists(key_to_open, ident_to_check, True);
   end;
@@ -221,7 +220,7 @@ var
 begin
   Result := False;
 
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
+  section_str := aSection;
 
   Result := EraseSection(section_str);
 end;
@@ -234,8 +233,8 @@ var
 begin
   Result := False;
 
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(aKey, CheckRTLAnsi);
+  section_str := aSection;
+  ident_str := aKey;
 
   Result := DeleteKey(section_str, ident_str);
 end;
@@ -247,9 +246,9 @@ var
   old_key_str: string;
   new_key_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-  old_key_str :=  UTF8DecodeIfNeeded(aOldKey, CheckRTLAnsi);
-  new_key_str :=  UTF8DecodeIfNeeded(aNewKey, CheckRTLAnsi);
+  section_str := aSection;
+  old_key_str := aOldKey;
+  new_key_str := aNewKey;
 
   RenameIdent(section_str, old_key_str, new_key_str);
 end;
@@ -277,8 +276,8 @@ var
   section_str: string;
   ident_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+  section_str := aSection;
+  ident_str := aIdent;
 
   Result := inherited ReadString(section_str, ident_str, aDefault);
 end;
@@ -290,8 +289,8 @@ var
   section_str: string;
   ident_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+  section_str := aSection;
+  ident_str := aIdent;
 
   Result := inherited ReadInteger(section_str, ident_str, aDefault);
 end;
@@ -303,8 +302,8 @@ var
   section_str: string;
   ident_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+  section_str := aSection;
+  ident_str := aIdent;
 
   Result := inherited ReadBool(section_str, ident_str, aDefault);
 end;
@@ -335,9 +334,9 @@ var
   ident_str: string;
   value_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
-  value_str := UTF8DecodeIfNeeded(aString, CheckRTLAnsi);
+  section_str := aSection;
+  ident_str := aIdent;
+  value_str := aString;
 
   inherited WriteString(section_str, ident_str, value_str);
 end;
@@ -349,8 +348,8 @@ var
   section_str: string;
   ident_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+  section_str := aSection;
+  ident_str := aIdent;
 
   inherited WriteInteger(section_str, ident_str, aInteger);
 end;
@@ -361,8 +360,8 @@ var
   section_str: string;
   ident_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+  section_str := aSection;
+  ident_str := aIdent;
 
   inherited WriteBool(section_str, ident_str, aBool);
 end;
@@ -387,7 +386,7 @@ constructor TDataByCurrentUser.Create(aFileName: string;
 var
   file_name: string;
 begin
-  file_name := UTF8DecodeIfNeeded(aFileName, aCheckRTLAnsi);
+  file_name := aFileName;
 
   inherited Create(file_name, HKEY_CURRENT_USER);
 
@@ -406,7 +405,7 @@ procedure TDataByCurrentUser.EraseSection(const Section: string);
 var
   section_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
+  section_str := Section;
 
   inherited EraseSection(section_str);
 end;
@@ -417,8 +416,8 @@ var
   section_str: string;
   ident_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+  section_str := Section;
+  ident_str := Ident;
 
   inherited DeleteKey(section_str, ident_str);
 end;
@@ -426,8 +425,6 @@ end;
 procedure TDataByCurrentUser.ReadSections(Strings: TStrings);
 begin
   inherited ReadSections(Strings);
-
-  SysToUTF8StringsIfNeeded(Strings, CheckRTLAnsi);
 end;
 
 procedure TDataByCurrentUser.ReadSection(const Section: string;
@@ -435,11 +432,9 @@ procedure TDataByCurrentUser.ReadSection(const Section: string;
 var
   section_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
+  section_str := Section;
 
   inherited ReadSection(section_str, Strings);
-
-  SysToUTF8StringsIfNeeded(Strings, CheckRTLAnsi);
 end;
 
 procedure TDataByCurrentUser.WriteString(const Section: string;
@@ -450,9 +445,9 @@ var
   ident_str: string;
   value_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
-  value_str := UTF8DecodeIfNeeded(Value, CheckRTLAnsi);
+  section_str := Section;
+  ident_str := Ident;
+  value_str := Value;
 
   inherited WriteString(section_str, ident_str, value_str);
 end;
@@ -466,13 +461,13 @@ var
   default_str: string;
   value: string;
 begin
-  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
-  default_str := UTF8DecodeIfNeeded(Default, CheckRTLAnsi);
+  section_str := Section;
+  ident_str := Ident;
+  default_str := Default;
 
   value := inherited ReadString(section_str, ident_str, default_str);
 
-  Result := SysToUTF8IfNeeded(value, CheckRTLAnsi);
+  Result := value;
 end;
 
 function TDataByCurrentUser.ReadInteger(const Section: string;
@@ -482,8 +477,8 @@ var
   section_str: string;
   ident_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+  section_str := Section;
+  ident_str := Ident;
 
   Result := inherited ReadInteger(section_str, ident_str, Default);
 end;
@@ -495,8 +490,8 @@ var
   section_str: string;
   ident_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+  section_str := Section;
+  ident_str := Ident;
 
   Result := inherited ReadBool(section_str, ident_str, Default);
 end;
@@ -508,8 +503,8 @@ var
   section_str: string;
   ident_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+  section_str := Section;
+  ident_str := Ident;
 
   inherited WriteBool(section_str, ident_str, Value);
 end;
@@ -521,8 +516,8 @@ var
   section_str: string;
   ident_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(Section, CheckRTLAnsi);
-  ident_str := UTF8DecodeIfNeeded(Ident, CheckRTLAnsi);
+  section_str := Section;
+  ident_str := Ident;
 
   inherited WriteInteger(section_str, ident_str, Value);
 end;
@@ -537,8 +532,7 @@ var
   key_to_check: string;
 begin
   key_to_check :=
-    concat(IncludeLeadingPathDelimiter(FileName),
-      UTF8DecodeIfNeeded(aSection, CheckRTLAnsi));
+    concat(IncludeLeadingPathDelimiter(FileName), aSection);
 
   Result := KeyExists(key_to_check);
 end;
@@ -557,8 +551,8 @@ var
 begin
   if SectionExists(aSection) then
   begin
-    key_to_open := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-    ident_to_check := UTF8DecodeIfNeeded(aIdent, CheckRTLAnsi);
+    key_to_open := aSection;
+    ident_to_check := aIdent;
 
     Result := ValueExists(key_to_open, ident_to_check, True);
   end;
@@ -585,9 +579,9 @@ var
   old_key_str: string;
   new_key_str: string;
 begin
-  section_str := UTF8DecodeIfNeeded(aSection, CheckRTLAnsi);
-  old_key_str :=  UTF8DecodeIfNeeded(aOldKey, CheckRTLAnsi);
-  new_key_str :=  UTF8DecodeIfNeeded(aNewKey, CheckRTLAnsi);
+  section_str := aSection;
+  old_key_str := aOldKey;
+  new_key_str := aNewKey;
 
   RenameIdent(section_str, old_key_str, new_key_str);
 end;

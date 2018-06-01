@@ -129,7 +129,6 @@ type
   { TRootKeysStruct }
 
   TRootKeysStruct = record
-    { TODO 1 -oAlfred Gerke -cUTF8 : Wahlweise in UTF8 oder Ansi ausgeben }
     Found: boolean;
     RootKey: string;
     RootKeyForDefaults: string;
@@ -369,8 +368,7 @@ function _ChangeTokenForKey(aToken: string;
 implementation
 
 uses
-  SysUtils,
-  regconvutils;
+  SysUtils;
 
 function _ChangeTokenForKey(aToken: string;
   aTokenValue: string;
@@ -444,7 +442,7 @@ end;
 
 function TCustomCaptionSettings.GetSection: string;
 begin
-  result := UTF8ToSysIfNeeded(FSection, CheckRTLAnsi);
+  result := FSection;
 end;
 
 procedure TCustomCaptionSettings.SetSection(
@@ -455,7 +453,7 @@ begin
   then
     Exit;
 
-  FSection := SysToUTF8IfNeeded(aSection, CheckRTLAnsi);
+  FSection := aSection;
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -463,7 +461,7 @@ end;
 
 function TCustomCaptionSettings.GetIdent: string;
 begin
-  result := UTF8ToSysIfNeeded(FIdent, CheckRTLAnsi);
+  result := FIdent;
 end;
 
 procedure TCustomCaptionSettings.SetIdent(aIdent: string);
@@ -471,7 +469,7 @@ begin
   if not TriggerOnBeforeCaptionSettingChange(rskIdentForCaption, aIdent) then
     Exit;
 
-  FIdent := SysToUTF8IfNeeded(aIdent, CheckRTLAnsi);
+  FIdent := aIdent;
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -662,12 +660,12 @@ end;
 
 function TCustomRegistrySettings<_T>.GetOrganisation: string;
 begin
-  Result := UTF8ToSysIfNeeded(FOrganisation, CheckRTLAnsi);
+  Result := FOrganisation;
 end;
 
 function TCustomRegistrySettings<_T>.GetProject: string;
 begin
-  Result := UTF8ToSysIfNeeded(FProject, CheckRTLAnsi);
+  Result := FProject;
 end;
 
 function TCustomRegistrySettings<_T>.TriggerOnBeforeRegistrySettingChange(
@@ -780,14 +778,11 @@ begin
 
   FRootKey := IncludeTrailingPathDelimiter(aRootKey);
 
-  FRootKey := SysToUTF8IfNeeded(FRootKey, CheckRTLAnsi);
+  FRootKey := FRootKey;
 
   FRootKey := ChangeTokenForKey(ttProject, FRootKey);
   FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
   FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
-
-  // FStrings werden immer in UTF8 gespeichert
-  //FRootKey := SysToUTF8IfNeeded(FRootKey, CheckRTLAnsi);
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -801,13 +796,11 @@ begin
 
   FRootKeyForDefaults := IncludeTrailingPathDelimiter(aRootKeyForDefaults);
 
-  FRootKeyForDefaults := SysToUTF8IfNeeded(FRootKeyForDefaults, CheckRTLAnsi);
+  FRootKeyForDefaults := FRootKeyForDefaults;
 
   FRootKeyForDefaults := ChangeTokenForKey(ttProject, FRootKeyForDefaults);
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
   FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
-
-  //FRootKeyForDefaults := SysToUTF8IfNeeded(FRootKeyForDefaults, CheckRTLAnsi);
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -818,7 +811,7 @@ begin
   if not TriggerOnBeforeRegistrySettingChange(rskSection, aSection) then
     Exit;
 
-  FSection := SysToUTF8IfNeeded(aSection, CheckRTLAnsi);
+  FSection := aSection;
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -829,7 +822,7 @@ begin
   if not TriggerOnBeforeRegistrySettingChange(rskIdent, aIdent) then
     Exit;
 
-  FIdent := SysToUTF8IfNeeded(aIdent, CheckRTLAnsi);
+  FIdent := aIdent;
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -863,7 +856,7 @@ begin
   if not TriggerOnBeforeRegistrySettingChange(rskRootForDefaults, aRootForDefaults) then
     Exit;
 
-  FRootForDefaults := SysToUTF8IfNeeded(aRootForDefaults, CheckRTLAnsi);
+  FRootForDefaults := aRootForDefaults;
 
   if Assigned(FOnChange) and FTriggerEvents then
     FOnChange(self);
@@ -912,7 +905,7 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetGUID(aGUID: string);
 begin
-  FGUID := SysToUTF8IfNeeded(aGUID, CheckRTLAnsi);
+  FGUID := aGUID;
 
   FRootKey := ChangeTokenForKey(ttGUID, FRootKey);
   FRootKeyForDefaults := ChangeTokenForKey(ttGUID, FRootKeyForDefaults);
@@ -920,7 +913,7 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetProject(aProject: string);
 begin
-  FProject := SysToUTF8IfNeeded(aProject, CheckRTLAnsi);
+  FProject := aProject;
 
   FRootKey := ChangeTokenForKey(ttProject, FRootKey);
   FRootKeyForDefaults := ChangeTokenForKey(ttProject, FRootKeyForDefaults);
@@ -928,7 +921,7 @@ end;
 
 procedure TCustomRegistrySettings<_T>.SetOrganisation(aOrganisation: string);
 begin
-  FOrganisation := SysToUTF8IfNeeded(aOrganisation, CheckRTLAnsi);
+  FOrganisation := aOrganisation;
 
   FRootKey := ChangeTokenForKey(ttOrganisation, FRootKey);
   FRootKeyForDefaults := ChangeTokenForKey(ttOrganisation, FRootKeyForDefaults);
@@ -957,7 +950,7 @@ end;
 
 function TCustomRegistrySettings<_T>.GetSection: string;
 begin
-  Result := UTF8ToSysIfNeeded(FSection, CheckRTLAnsi);
+  Result := FSection;
 end;
 
 function TCustomRegistrySettings<_T>.GetDefault: _T;
@@ -967,27 +960,27 @@ end;
 
 function TCustomRegistrySettings<_T>.GetIdent: string;
 begin
-  Result := UTF8ToSysIfNeeded(FIdent, CheckRTLAnsi);
+  Result := FIdent;
 end;
 
 function TCustomRegistrySettings<_T>.GetGUID: string;
 begin
-  Result := UTF8ToSysIfNeeded(FGUID, CheckRTLAnsi);
+  Result := FGUID;
 end;
 
 function TCustomRegistrySettings<_T>.GetRootKey: string;
 begin
-  Result := UTF8ToSysIfNeeded(FRootKey, CheckRTLAnsi);
+  Result := FRootKey;
 end;
 
 function TCustomRegistrySettings<_T>.GetRootKeyForDefaults: string;
 begin
-  Result := UTF8ToSysIfNeeded(FRootKeyForDefaults, CheckRTLAnsi);
+  Result := FRootKeyForDefaults;
 end;
 
 function TCustomRegistrySettings<_T>.GetRootForDefaults: string;
 begin
-  Result := UTF8ToSysIfNeeded(FRootForDefaults, CheckRTLAnsi);
+  Result := FRootForDefaults;
 end;
 
 procedure TCustomRegistrySettings<_T>.GetRootKeys(var aRootKeys: TRootKeysStruct);

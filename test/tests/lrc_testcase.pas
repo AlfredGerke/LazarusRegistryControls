@@ -86,17 +86,17 @@ end;
 
 function TLRCTestCase<_T>.GetListSectionUTF8Decoded: string;
 begin
-  Result := UTF8DecodeIfNeeded(FListSection, FCheckRTLNeeded);
+  Result := FListSection;
 end;
 
 function TLRCTestCase<_T>.GetSectionUTF8Decoded: string;
 begin
-  Result := UTF8DecodeIfNeeded(FSection, FCheckRTLNeeded);
+  Result := FSection;
 end;
 
 function TLRCTestCase<_T>.GetIdentUTF8Decoded: string;
 begin
-  Result := UTF8DecodeIfNeeded(FIdent, FCheckRTLNeeded);
+  Result := FIdent;
 end;
 
 end.
