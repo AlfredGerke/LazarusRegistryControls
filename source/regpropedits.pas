@@ -382,6 +382,18 @@ end;
 { TRegistrySettingsPropertyEditor }
 
 function TRegistrySettingsPropertyEditor.GetFormMethodName: shortstring;
+  {*--------------------------------------------------------------------------*}
+  function TrimEventName(const AName: shortstring): shortstring;
+  begin
+    Result := aName;
+    if (Length(Result) >= 2)
+    and (Result[1] in ['O','o']) and (Result[2] in ['N','n'])
+    then
+      Delete(Result, 1, 2);
+  end;
+  {*--------------------------------------------------------------------------*}
+
+
 var
   anz: Integer;
   root: TPersistent;
@@ -420,7 +432,7 @@ begin
   end;
   if (Result = EmptyStr) then
     exit;
-  Result := Result + GetTrimmedEventName;
+  Result := Result + TrimEventName(GetName); //GetTrimmedEventName;
 end;
 
 end.
