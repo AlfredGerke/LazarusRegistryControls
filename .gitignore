@@ -18,6 +18,7 @@ test/LazarusRegistryControlsTest.exe
 test/LazarusRegistryControlsTest.dbg
 test/bin/i386-win32/
 test/bin/x86_64-win64/
+test/units/backup
 *.bak
 link.res
 ppas.bat

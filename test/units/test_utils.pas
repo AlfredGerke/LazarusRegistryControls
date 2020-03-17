@@ -38,6 +38,8 @@ procedure CheckListItems(aControlListItems: TStrings;
 
 function GetNextCount: integer;
 
+function GetHKEYAsStr(AKey: HKEY): string;
+
 implementation
 
 uses
@@ -96,6 +98,21 @@ function GetNextCount: integer;
 begin
    inc(count);
    Result := count;
+end;
+
+function GetHKEYAsStr(AKey: HKEY): string;
+begin
+  case AKey of
+    HKEY_CLASSES_ROOT: Result := 'HKEY_CLASSES_ROOT';
+    HKEY_CURRENT_USER: Result := 'HKEY_CURRENT_USER';
+    HKEY_LOCAL_MACHINE: Result := 'HKEY_LOCAL_MACHINE';
+    HKEY_USERS: Result := 'HKEY_USERS';
+    HKEY_PERFORMANCE_DATA: Result := 'HKEY_PERFORMANCE_DATA';
+    HKEY_CURRENT_CONFIG: Result := 'HKEY_CURRENT_CONFIG';
+    HKEY_DYN_DATA: Result := 'HKEY_DYN_DATA';
+  else
+    Result := 'UNKOWN';
+  end;
 end;
 
 procedure GetRegistry(aRoot: HKEY;

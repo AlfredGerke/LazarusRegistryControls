@@ -1160,7 +1160,7 @@ end;
 procedure TLRCRegInifileTest.Root;
 begin
   AssertEquals('Falscher Eintrag für den Rootkey',
-    GetHKEYAsStr(HKEY_CURRENT_USER), GetHKEYAsStr(FLRCRRegIniFile.Root));
+    'HKEY_CURRENT_USER', FLRCRRegIniFile.Root);
 end;
 
 end.
