@@ -12,17 +12,19 @@ lib/x86_64-win64/
 example/lib/x86_64-win64/
 example v0.9-M.2/lib/x86_64-win64/
 example v0.9-M.2/bin/x86_64-win64/
-test/lib/x86_64-win64/
+example v0.9-M.2/sourcen/backup/frmmain.pas
+example v0.9-M.2/sourcen/backup/
 
+test/lib/x86_64-win64/
 test/LazarusRegistryControlsTest.exe
 test/LazarusRegistryControlsTest.dbg
 test/bin/i386-win32/
 test/bin/x86_64-win64/
 test/units/backup
+
 *.bak
 link.res
 ppas.bat
 *.lps
 *.lnk
 *.dbg
-example v0.9-M.2/sourcen/backup/frmmain.pas

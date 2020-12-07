@@ -1,14 +1,17 @@
 [Config]
 Compilator.SaveAll=0
 Compilator.Capture=0
-Compilator.HideOutput=0
+Compilator.CompileOnBackground=0
+Compilator.ProgSaveAll=0
+Compilator.ProgRunSelection=0
 Compilator.LogType=0
-DefaultCPIndex=0
+DefaultCP=0
 LogtoEnd=1
 DontOpen=0
 AbsolutePath=0
 FileFormat=0
 ProjectFilesOnly=0
+HTServer=localhost
 [Project tree]
 LazarusRegistryControls
 	+test
@@ -25,9 +28,10 @@ LazarusRegistryControls
 1=example v0.9-M.2\readme.md
 2=example\readme.md
 3=test\readme.md
+4=.gitignore
 [Selected Project Files]
 Main=
-Selected=test\readme.md
+Selected=.gitignore
 [README.md]
 TopLine=165
 Caret=1,188
@@ -38,5 +42,8 @@ Caret=143,27
 TopLine=1
 Caret=143,34
 [test\readme.md]
-TopLine=1
+TopLine=63
 Caret=1,29
+[.gitignore]
+TopLine=1
+Caret=6,30
