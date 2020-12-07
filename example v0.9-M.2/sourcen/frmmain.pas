@@ -8,7 +8,7 @@ uses
   Forms,
   ComCtrls,
   ExtCtrls,
-  Controls,
+  Controls, StdCtrls,
   fmeControlDetails,
   Classes;
 
@@ -20,6 +20,7 @@ type
     lstImageListOutline: TImageList;
     pnlOutline: TPanel;
     pnlDesktop: TPanel;
+    RadioButton1: TRadioButton;
     spOutline: TSplitter;
     tvOutline: TTreeView;
     procedure FormShow(Sender: TObject);
